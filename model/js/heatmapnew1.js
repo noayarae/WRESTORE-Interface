@@ -2,12 +2,10 @@ function heatinitialize() {
 
     //empty the div that shows all the data if they click on a sub basin
     // var PeakArray=[];
-    var min_value = heatpfra[oneMap].val[0].val;
-    var max_value = heatpfra[oneMap].val[126].val;
+
     //var option = document.getElementById('heatDrop').value-1;
     $('#oneMapPF').empty();
-    // $('#oneMapPF').append('Range: (' + heatpfra[oneMap].val[0].val + ' to ' + heatpfra[oneMap].val[126].val + ') cfs');
-
+    $('#oneMapPF').append('Range: (' + heatpfra[oneMap].val[0].val + ' to ' + heatpfra[oneMap].val[126].val + ') cfs');
     //$('#oneMapPF').tooltip({content:<img src="../images/gradient.png" width="292" height="20"/>});
     $('#twoMapPF').empty();
     $('#twoMapPF').append('Range: (' + heatpfra[twoMap].val[0].val + ' to ' + heatpfra[twoMap].val[126].val + ') cfs');
@@ -166,7 +164,7 @@ function heatinitialize() {
             var indexx = ressssPF1.indexOf(Number(whichNode));;
 
             switch (true) {
-                case (indexx < 0): filterColor = "#ffffff";  // #ffffff
+                case (indexx < 0): filterColor = "#000000";  // #ffffff
                     break;
                 case (indexx < 20): filterColor = "#ffff00";
                     break;
