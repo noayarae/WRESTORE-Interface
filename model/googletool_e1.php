@@ -4,97 +4,105 @@
     <meta charset=utf-8>
     <meta http-equiv="X-UA-Compatible" content="IE=8" />
     <title>WRESTORE - Watershed REstoration using Spatio-Temporal Optimization of REsources</title>
-    <link rel="stylesheet" href="css/style2.css">
+
     <style>
-        #map_canvas1 {
-            height: 675px;
-            width:445px;
-        }
-        #map_canvas2 {
-            height: 675px;
-            width:445px;
-        }
-        #heatmap_canvasPF1, #heatmap_canvasPF2, #heatmap_canvasRV1, #heatmap_canvasRV2, #heatmap_canvasSR1, #heatmap_canvasSR2, #heatmap_canvasNR1, #heatmap_canvasNR2 {
-            height: 400px;
-            width: 100%;
-            position: relative;
-        }
-        body {
-        }
-        #wholeTable {
-            /*display:none;*/
-        }
-        .pods {
-            padding: 2px;
-            margin-right: 1px;
-            border: 1px solid #999;
-            width: 15px;
-            float: left;
-            text-align: center;
-            height: 20px;
-            line-height: 1em;
-        }
-        .intropods {
-            padding: 2px;
-            margin-right: 1px;
-            border: 1px solid #999;
-            width: 70px;
-            float: left;
-            text-align: center;
-            line-height: 1em;
-            height: 20px;
-        }
-        .instructionpods {
-            padding: 2px;
-            margin-right: 1px;
-            width: 70px;
-            float: left;
-            text-align: center;
-            line-height: 1em;
-            height: 20px;
-        }
-        .container {
-            width: 950px;
-        }
-        #chart_div1 {
-            float: left;
-            width: 235px;
-            height: 550px;
-            display:block;
-            boarder: 1px solid yellow;
-        }
-        #chart_div2{
-            float: left;
-            width: 235px;
-            height: 550px;
-            display:block;
-            boarder: 1px solid yellow;
-        }
-        #chart_div3{
-            float: left;
-            width: 235px;
-            height: 550px;
-            display:block;
-            boarder: 1px solid yellow;
-        }
-        #chart_div4{
-            float: left;
-            width: 235px;
-            height: 550px;
-            display:block;
-            boarder: 1px solid yellow;
-        }
-        .info .tip{
-            display: none;
-            position: absolute;
-            border: 1px solid #333;
-            border-radius: 2px;
-            padding: 3px;
-            background-color : #FaF8C4;
-        }
+        /*#map_canvas1 {*/
+            /*height: 675px;*/
+            /*width:445px;*/
+        /*}*/
+        /*#map_canvas2 {*/
+            /*height: 675px;*/
+            /*width:445px;*/
+        /*}*/
+        /*#heatmap_canvasPF1, #heatmap_canvasPF2, #heatmap_canvasRV1, #heatmap_canvasRV2, #heatmap_canvasSR1, #heatmap_canvasSR2, #heatmap_canvasNR1, #heatmap_canvasNR2 {*/
+            /*height: 400px;*/
+            /*width: 100%;*/
+            /*position: relative;*/
+        /*}*/
+        /*body {*/
+        /*}*/
+        /*#wholeTable {*/
+            /*!*display:none;*!*/
+        /*}*/
+        /*.pods {*/
+            /*padding: 2px;*/
+            /*margin-right: 1px;*/
+            /*border: 1px solid #999;*/
+            /*width: 15px;*/
+            /*float: left;*/
+            /*text-align: center;*/
+            /*height: 20px;*/
+            /*line-height: 1em;*/
+        /*}*/
+        /*.intropods {*/
+            /*padding: 2px;*/
+            /*margin-right: 1px;*/
+            /*border: 1px solid #999;*/
+            /*width: 70px;*/
+            /*float: left;*/
+            /*text-align: center;*/
+            /*line-height: 1em;*/
+            /*height: 20px;*/
+        /*}*/
+        /*.instructionpods {*/
+            /*padding: 2px;*/
+            /*margin-right: 1px;*/
+            /*width: 70px;*/
+            /*float: left;*/
+            /*text-align: center;*/
+            /*line-height: 1em;*/
+            /*height: 20px;*/
+        /*}*/
+        /*.container {*/
+            /*width: 950px;*/
+        /*}*/
+        /*#chart_div1 {*/
+            /*float: left;*/
+            /*width: 235px;*/
+            /*height: 550px;*/
+            /*display:block;*/
+            /*boarder: 1px solid yellow;*/
+        /*}*/
+        /*#chart_div2{*/
+            /*float: left;*/
+            /*width: 235px;*/
+            /*height: 550px;*/
+            /*display:block;*/
+            /*boarder: 1px solid yellow;*/
+        /*}*/
+        /*#chart_div3{*/
+            /*float: left;*/
+            /*width: 235px;*/
+            /*height: 550px;*/
+            /*display:block;*/
+            /*boarder: 1px solid yellow;*/
+        /*}*/
+        /*#chart_div4{*/
+            /*float: left;*/
+            /*width: 235px;*/
+            /*height: 550px;*/
+            /*display:block;*/
+            /*boarder: 1px solid yellow;*/
+        /*}*/
+        /*.info .tip{*/
+            /*display: none;*/
+            /*position: absolute;*/
+            /*border: 1px solid #333;*/
+            /*border-radius: 2px;*/
+            /*padding: 3px;*/
+            /*background-color : #FaF8C4;*/
+        /*}*/
     </style>
-    <link rel="stylesheet" type="text/css" href="style.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="new/style.css" media="all" />
+    <!-- 'style1a.css' file replaces the code-lines setup above (line8 to line 95 in Vidya's code) -->
+    <link rel="stylesheet" type="text/css" href="css/style1a.css" media="all" />
+    <!-- 'style.css' file was renamed as 'css/style1b.css' -->
+    <link rel="stylesheet" type="text/css" href="css/style1b.css" media="all" />
+    <!-- 'new/style.css' was moved to 'css/style2.css'  -->
+    <!--    <link rel="stylesheet" type="text/css" href="new/style.css" media="all" />-->
+    <link rel="stylesheet" type="text/css" href="css/style2.css" media="all" />
+    <!-- 'css/map_legend.css' was created for editing map-legends in STEP-3 -->
+    <!--    <link rel="stylesheet" type="text/css" href="css/style3.css">-->
+    <link rel="stylesheet" type="text/css" href="css/map_legend.css">
     <link rel="stylesheet" type="text/css" href="css/basic.css" media="all" />
     <link rel="stylesheet" type="text/css" href="css/star.css" media="all" />
     <link rel="stylesheet" type="text/css" href="css/visualize.css" media="all" />

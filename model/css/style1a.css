@@ -1,0 +1,86 @@
+#map_canvas1 {
+    height: 675px;
+    width:445px;
+}
+#map_canvas2 {
+    height: 675px;
+    width:445px;
+}
+#heatmap_canvasPF1, #heatmap_canvasPF2, #heatmap_canvasRV1, #heatmap_canvasRV2, #heatmap_canvasSR1, #heatmap_canvasSR2, #heatmap_canvasNR1, #heatmap_canvasNR2 {
+    height: 400px;
+    width: 100%;
+    position: relative;
+}
+body {
+}
+#wholeTable {
+    /*display:none;*/
+}
+.pods {
+    padding: 2px;
+    margin-right: 1px;
+    border: 1px solid #999;
+    width: 15px;
+    float: left;
+    text-align: center;
+    height: 20px;
+    line-height: 1em;
+}
+.intropods {
+    padding: 2px;
+    margin-right: 1px;
+    border: 1px solid #999;
+    width: 70px;
+    float: left;
+    text-align: center;
+    line-height: 1em;
+    height: 20px;
+}
+.instructionpods {
+    padding: 2px;
+    margin-right: 1px;
+    width: 70px;
+    float: left;
+    text-align: center;
+    line-height: 1em;
+    height: 20px;
+}
+.container {
+    width: 950px;
+}
+#chart_div1 {
+    float: left;
+    width: 235px;
+    height: 550px;
+    display:block;
+    boarder: 1px solid yellow;
+}
+#chart_div2{
+    float: left;
+    width: 235px;
+    height: 550px;
+    display:block;
+    boarder: 1px solid yellow;
+}
+#chart_div3{
+    float: left;
+    width: 235px;
+    height: 550px;
+    display:block;
+    boarder: 1px solid yellow;
+}
+#chart_div4{
+    float: left;
+    width: 235px;
+    height: 550px;
+    display:block;
+    boarder: 1px solid yellow;
+}
+.info .tip{
+    display: none;
+    position: absolute;
+    border: 1px solid #333;
+    border-radius: 2px;
+    padding: 3px;
+    background-color : #FaF8C4;
+}

@@ -9,7 +9,7 @@ function heatinitialize() {
     var max_value = heatpfra[oneMap].val[126].val;
     //$('#oneMapPF').tooltip({content:<img src="../images/gradient.png" width="292" height="20"/>});
     $('#twoMapPF').empty();
-    $('#twoMapPF').append('Range: (' + heatpfra[twoMap].val[0].val + ' to ' + heatpfra[twoMap].val[126].val +') cfs');
+    $('#twoMapPF').append('Range*: (' + heatpfra[twoMap].val[0].val + ' to ' + heatpfra[twoMap].val[126].val +') cfs');
 
     $('#oneMapRV').empty();
     $('#oneMapRV').append('Range: (' + heatera[oneMap].val[0].val + ' to ' + heatera[oneMap].val[126].val +') Dollars');
