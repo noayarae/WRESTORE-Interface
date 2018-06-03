@@ -42,7 +42,8 @@ function subBasinGraph1() {
     //data3.addColumn({type: 'number', role: 'annotation'});
 
     for (var i = 0; i < 24; i++) {
-        colors[i] = 'gray';
+        colors[i] = '#a6a6a6';//'gray';
+        border[i] = '#737373';// Codes of dark-gray: #737373, #666666, #595959, #4d4d4d // gray = #808080
     }
 
     var num1 = $(".oneMap").html();
@@ -52,7 +53,8 @@ function subBasinGraph1() {
 
     colors[n1 - 1] = '#FA9A50';
     colors[n2 - 1] = '#DFFFA5';
-    //colors[n2-1] = 'FC78F5';
+    border[n1-1] = '#c65906';// Codes of dark-orange: #f77008, #df6407, #c65906 //Added by E.N.
+    border[n2-1] = '#85cc00';// Codes of dark-green: #a6ff00, #95e600; #85cc00  //Added by E.N.
 
     if (option == "Watershed") {
         for (rowlen = 0; rowlen < document.getElementById('wholeTable').rows.length - 1; rowlen++) {
@@ -76,60 +78,89 @@ function subBasinGraph1() {
             var min14 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F4)[1])))
             var max14 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F4)[2])))
             var perm14 = Number(Math.abs(parseFloat(m14 / (JSON.parse(chartArray[rowlen].F4)[0])))) * 100
-            //need to edit the tooltip for min and max
 
-            data.addRow([rowlen + 1,m11, min11, max11,colors[rowlen],createCustomHTMLContent1(rowlen + 1, 'PFR', m11.toExponential(2), min11.toExponential(2), max11.toExponential(2))]);
-            data1.addRow([rowlen + 1,m12, min12, max12,colors[rowlen],createCustomHTMLContent1(rowlen + 1, 'ER$', m12.toExponential(2), min12.toExponential(2), max12.toExponential(2))]);
-            data2.addRow([rowlen + 1,m13, min13, max13,colors[rowlen],createCustomHTMLContent1(rowlen + 1, 'SRed', m13.toExponential(2), min13.toExponential(2), max13.toExponential(2))]);
-            data3.addRow([rowlen + 1,m14, min14, max14,colors[rowlen],createCustomHTMLContent1(rowlen + 1, 'NRed', m14.toExponential(2), min14.toExponential(2), max14.toExponential(2))]);
+            //need to edit the tooltip for min and max
+            // -----------------  These four lines were developed by Efrain Noa-Yarasca
+            data.addRow([rowlen+1,m11,min11,max11,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
+            'line {stroke-color:'+'#000066'+'; stroke-width:'+1+'}'
+                ,createCustomHTMLContent1(rowlen+1,'PFR',m11.toExponential(2),min11.toExponential(2),max11.toExponential(2))]);
+            data1.addRow([rowlen+1,m12,min12,max12,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
+            'line {stroke-color:'+'#000066'+'; stroke-width:'+1+'}'
+                ,createCustomHTMLContent1(rowlen+1,'ER$',m12.toExponential(2),min12.toExponential(2),max12.toExponential(2))]);
+            data2.addRow([rowlen+1,m13,min13,max13,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
+            'line {stroke-color:'+'#000066'+'; stroke-width:'+1+'}'
+                ,createCustomHTMLContent1(rowlen+1,'SRed',m13.toExponential(2),min13.toExponential(2),max13.toExponential(2))]);
+            data3.addRow([rowlen+1,m14,min14,max14,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
+            'line {stroke-color:'+'#000066'+'; stroke-width:'+1+'}'
+                ,createCustomHTMLContent1(rowlen+1,'NRed',m14.toExponential(2),min14.toExponential(2),max14.toExponential(2))]);
+
+            // ----- Old code-lines --------
+            // data.addRow([rowlen + 1,m11, min11, max11,colors[rowlen],createCustomHTMLContent1(rowlen + 1, 'PFR', m11.toExponential(2), min11.toExponential(2), max11.toExponential(2))]);
+            // data1.addRow([rowlen + 1,m12, min12, max12,colors[rowlen],createCustomHTMLContent1(rowlen + 1, 'ER$', m12.toExponential(2), min12.toExponential(2), max12.toExponential(2))]);
+            // data2.addRow([rowlen + 1,m13, min13, max13,colors[rowlen],createCustomHTMLContent1(rowlen + 1, 'SRed', m13.toExponential(2), min13.toExponential(2), max13.toExponential(2))]);
+            // data3.addRow([rowlen + 1,m14, min14, max14,colors[rowlen],createCustomHTMLContent1(rowlen + 1, 'NRed', m14.toExponential(2), min14.toExponential(2), max14.toExponential(2))]);
         }
 
         var options = {
             title: 'Peak flow* reduction in cubic feet per second (PFR)',
+            legend: {position: 'none'},
+            //isStacked: true,//'percent',//'relative',//true,// It does not make effect when "Bars"
             // This line makes the entire category's tooltip active.
             focusTarget: 'category',
             // Use an HTML tooltip.
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
             vAxis: {gridlines: {count: document.getElementById('wholeTable').rows.length - 1}, direction: -1},
-            intervals: {style: 'bars',color: '#fff'},
-            hAxis: {textPosition: 'none'},
+            // intervals: {style: 'bars',color: '#fff'},
+            // interval: {max: {style: 'bars', lineWidth:1, fillOpacity: 1,color: '#ab1ab1'},// Added by E.N.
+            //     min: {style: 'bars',lineWidth:1, fillOpacity: 1, color: '#000000'}}, // Added by E.N.
+            hAxis: { textPosition: 'out', format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
+            // hAxis: {textPosition: 'none'},
         };
 
         var options1 = {
             title: 'Economic Revenue in Dollars (ER)',
+            legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
             focusTarget: 'category',
             // Use an HTML tooltip.
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
             vAxis: {gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
-            intervals: {style: 'bars',color: '#fff'},
-            hAxis: {textPosition: 'none'},
+            // intervals: {style: 'bars',color: '#fff'},
+            // interval: {max: {style: 'bars', lineWidth:1, fillOpacity: 1,color: '#ab1ab1'},// Added by E.N.
+            //     min: {style: 'bars',lineWidth:2, fillOpacity: 1, color: '#000000'}}, // Added by E.N.
+            hAxis: { textPosition: 'out',format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
         };
 
         var options2 = {
             title: 'In-stream sediment reduction in tons (SRed)',
+            legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
             focusTarget: 'category',
             // Use an HTML tooltip.
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
             vAxis: {gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
-            intervals: {style: 'bars',color: '#fff'},
-            hAxis: {textPosition: 'none'},
+            // intervals: {style: 'bars',color: '#fff'},
+            // interval: {max: {style: 'boxes', lineWidth:0.1, fillOpacity: 0.6,color: '#ab1ab1'},// Added by E.N.
+            //     min: {style: 'boxes',lineWidth:0.1, fillOpacity: 0.6, color: '#000000'}}, // Added by E.N.
+            hAxis: { textPosition: 'out',format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
         };
 
         var options3 = {
             title: 'In-stream nitrate reduction in kilograms (NRed)',
+            legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
             focusTarget: 'category',
             // Use an HTML tooltip.
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
             vAxis: {gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
-            intervals: {style: 'bars',color: '#fff'},
-            hAxis: {textPosition: 'none'},
+            // intervals: {style: 'bars',color: '#fff'},
+            // interval: {max: {style: 'points', lineWidth:1, fillOpacity: 1,color: '#ab1ab1'},// Added by E.N.
+            //     min: {style: 'points',lineWidth:1, fillOpacity: 1, color: '#000000'}}, // Added by E.N.
+            hAxis: { textPosition: 'out',format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
         };
 
         chart = new google.visualization.BarChart(document.getElementById('chart_div1'));
@@ -151,9 +182,7 @@ function subBasinGraph1() {
                 $.ajax({
                     url: 'sendToTime.php',
                     type: 'post',
-                    data: "JSONHolder=" + "BAR_PFR" + "," + page +
-                    "," + session + "," + (option + " " + (
-                        parseInt(clickd[0].row) + 1)),
+                    data: "JSONHolder=" + "BAR_PFR" + "," + page + "," + session + "," + (option + " " + (parseInt(clickd[0].row) + 1)),
                     success: function(data) {}
                 });
             }
@@ -168,9 +197,7 @@ function subBasinGraph1() {
                 $.ajax({
                     url: 'sendToTime.php',
                     type: 'post',
-                    data: "JSONHolder=" + "BAR_ER" + "," + page + "," +
-                    session + "," + (option + " " + (parseInt(
-                        clickd[0].row) + 1)),
+                    data: "JSONHolder=" + "BAR_ER" + "," + page + "," + session + "," + (option + " " + (parseInt(clickd[0].row) + 1)),
                     success: function(data) {}
                 });
             }
@@ -185,9 +212,7 @@ function subBasinGraph1() {
                 $.ajax({
                     url: 'sendToTime.php',
                     type: 'post',
-                    data: "JSONHolder=" + "BAR_SRed" + "," + page +
-                    "," + session + "," + (option + " " + (
-                        parseInt(clickd[0].row) + 1)),
+                    data: "JSONHolder=" + "BAR_SRed" + "," + page + "," + session + "," + (option + " " + (parseInt(clickd[0].row) + 1)),
                     success: function(data) {}
                 });
             }
@@ -202,9 +227,7 @@ function subBasinGraph1() {
                 $.ajax({
                     url: 'sendToTime.php',
                     type: 'post',
-                    data: "JSONHolder=" + "BAR_NRed" + "," + page +
-                    "," + session + "," + (option + " " + (
-                        parseInt(clickd[0].row) + 1)),
+                    data: "JSONHolder=" + "BAR_NRed" + "," + page + "," + session + "," + (option + " " + (parseInt(clickd[0].row) + 1)),
                     success: function(data) {}
                 });
             }
@@ -218,10 +241,12 @@ function subBasinGraph1() {
                 '<td>'+dm+' : </td>' +
                 '<td><b>' + m + '</b></td>' + '</tr>' + '<tr>'  + '</table>' + '</div>';
           }*/
+
         //tool tip edit for min and max
         function createCustomHTMLContent1(row, dm, m, min, max) {
             return '\n' + 'Alternative: ' + row + '\n' + dm + ': ' + m + "\n min:" + min + "\nmax:" + max;}
-        $('.visualize').trigger('visualizeRefresh');
+
+            $('.visualize').trigger('visualizeRefresh');
     }
 
     else {
@@ -263,14 +288,30 @@ function subBasinGraph1() {
             var perm14 = Number(Math.abs(parseFloat(m14 / (JSON.parse(chartArray[rowlen].F4)[0])))) * 100
             //var mm14=String("Alternative:"+(rowlen+1)+"\nPeakFlow:"+parseString(m14)+"\nPercentage:"+perm14)
 
-            data.addRow([rowlen + 1,m11, min11, max11,colors[rowlen],createCustomHTMLContent(rowlen + 1, 'PFR', m11.toExponential(2), min11.toExponential(2), max11.toExponential(2),'PFR wrt Watershed', perm11.toExponential(2))]);
-            data1.addRow([rowlen + 1,m12, min12, max12,colors[rowlen],createCustomHTMLContent(rowlen + 1, 'ER$', m12.toExponential(2), min12.toExponential(2), max12.toExponential(2),'ER$ wrt Watershed', perm12.toExponential(2))]);
-            data2.addRow([rowlen + 1,m13, min13, max13,colors[rowlen],createCustomHTMLContent(rowlen + 1, 'SRed', m13.toExponential(2), min13.toExponential(2), max13.toExponential(2),'SRed wrt Watershed', perm13.toExponential(2))]);
-            data3.addRow([rowlen + 1,m14, min14, max14,colors[rowlen],createCustomHTMLContent(rowlen + 1, 'NRed', m14.toExponential(2), min14.toExponential(2), max14.toExponential(2),'NRed wrt Watershed', perm14.toExponential(2))]);
+            // ---------------------  These four lines were developed by Efrain Noa-Yarasca
+            data.addRow([rowlen+1,m11,min11,max11,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
+            'line {stroke-color:'+'#000066'+'; stroke-width:'+1+'}'
+                ,createCustomHTMLContent(rowlen+1,'PFR',m11.toExponential(2),min11.toExponential(2),max11.toExponential(2),'PFR wrt Watershed',perm11.toExponential(2))]);
+            data1.addRow([rowlen+1,m12,min12,max12,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
+            'line {stroke-color:'+'#000066'+'; stroke-width:'+1+'}'
+                ,createCustomHTMLContent(rowlen+1,'ER$',m12.toExponential(2),min12.toExponential(2),max12.toExponential(2),'ER$ wrt Watershed',perm12.toExponential(2))]);
+            data2.addRow([rowlen+1,m13,min13,max13,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
+            'line {stroke-color:'+'#000066'+'; stroke-width:'+1+'}'
+                ,createCustomHTMLContent(rowlen+1,'SRed',m13.toExponential(2),min13.toExponential(2),max13.toExponential(2),'SRed wrt Watershed',perm13.toExponential(2))]);
+            data3.addRow([rowlen+1,m14,min14,max14,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
+            'line {stroke-color:'+'#000066'+'; stroke-width:'+1+'}'
+                ,createCustomHTMLContent(rowlen+1,'NRed',m14.toExponential(2),min14.toExponential(2),max14.toExponential(2),'NRed wrt Watershed',perm14.toExponential(2))]);
+
+            // ----- Old code-lines
+            // data.addRow([rowlen + 1,m11, min11, max11,colors[rowlen],createCustomHTMLContent(rowlen + 1, 'PFR', m11.toExponential(2), min11.toExponential(2), max11.toExponential(2),'PFR wrt Watershed', perm11.toExponential(2))]);
+            // data1.addRow([rowlen + 1,m12, min12, max12,colors[rowlen],createCustomHTMLContent(rowlen + 1, 'ER$', m12.toExponential(2), min12.toExponential(2), max12.toExponential(2),'ER$ wrt Watershed', perm12.toExponential(2))]);
+            // data2.addRow([rowlen + 1,m13, min13, max13,colors[rowlen],createCustomHTMLContent(rowlen + 1, 'SRed', m13.toExponential(2), min13.toExponential(2), max13.toExponential(2),'SRed wrt Watershed', perm13.toExponential(2))]);
+            // data3.addRow([rowlen + 1,m14, min14, max14,colors[rowlen],createCustomHTMLContent(rowlen + 1, 'NRed', m14.toExponential(2), min14.toExponential(2), max14.toExponential(2),'NRed wrt Watershed', perm14.toExponential(2))]);
         }
 
         var options = {
             title: 'Peak flow reduction in cfs (PFR)',
+            legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
             focusTarget: 'category',
             // Use an HTML tooltip.
@@ -278,11 +319,13 @@ function subBasinGraph1() {
             tooltip: {trigger: 'selection'},
             vAxis: {gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
             intervals: {style: 'bars',color: '#fff'},
-            hAxis: {textPosition: 'none'},
+            // hAxis: {textPosition: 'none'},
+            hAxis:{textPosition: 'out', format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
         };
 
         var options1 = {
             title: 'Economic Revenue in Dollars (ER$)',
+            legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
             focusTarget: 'category',
             // Use an HTML tooltip.
@@ -290,11 +333,13 @@ function subBasinGraph1() {
             tooltip: {trigger: 'selection'},
             vAxis: {gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
             intervals: {style: 'bars',color: '#fff'},
-            hAxis: {textPosition: 'none'},
+            // hAxis: {textPosition: 'none'},
+            hAxis:{textPosition: 'out', format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
         };
 
         var options2 = {
             title: 'In-stream sediment reduction in tons (SRed)',
+            legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
             focusTarget: 'category',
             // Use an HTML tooltip.
@@ -302,11 +347,13 @@ function subBasinGraph1() {
             tooltip: {trigger: 'selection'},
             vAxis: {gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
             intervals: {style: 'bars',color: '#fff'},
-            hAxis: {textPosition: 'none'},
+            // hAxis: {textPosition: 'none'},
+            hAxis:{textPosition: 'out', format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
         };
 
         var options3 = {
             title: 'In-stream nitrate reduction in kilograms (NRed)',
+            legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
             focusTarget: 'category',
             // Use an HTML tooltip.
@@ -314,7 +361,8 @@ function subBasinGraph1() {
             tooltip: {trigger: 'selection'},
             vAxis: {gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
             intervals: {style: 'bars',color: '#fff'},
-            hAxis: {textPosition: 'none'},
+            // hAxis: {textPosition: 'none'},
+            hAxis:{textPosition: 'out', format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
         };
 
         chart = new google.visualization.BarChart(document.getElementById('chart_div1'));
@@ -335,9 +383,7 @@ function subBasinGraph1() {
             $.ajax({
                 url: 'sendToTime.php',
                 type: 'post',
-                data: "JSONHolder=" + "BAR_PFR" + "," + page + "," +
-                session + "," + (option + " " + (parseInt(clickd[
-                    0].row) + 1)),
+                data: "JSONHolder=" + "BAR_PFR" + "," + page + "," + session + "," + (option + " " + (parseInt(clickd[0].row) + 1)),
                 success: function(data) {}
             });
         });
@@ -349,9 +395,7 @@ function subBasinGraph1() {
             $.ajax({
                 url: 'sendToTime.php',
                 type: 'post',
-                data: "JSONHolder=" + "BAR_ER" + "," + page + "," +
-                session + "," + (option + " " + (parseInt(clickd[
-                    0].row) + 1)),
+                data: "JSONHolder=" + "BAR_ER" + "," + page + "," + session + "," + (option + " " + (parseInt(clickd[0].row) + 1)),
                 success: function(data) {}
             });
         });
@@ -363,9 +407,7 @@ function subBasinGraph1() {
             $.ajax({
                 url: 'sendToTime.php',
                 type: 'post',
-                data: "JSONHolder=" + "BAR_SRed" + "," + page + "," +
-                session + "," + (option + " " + (parseInt(clickd[
-                    0].row) + 1)),
+                data: "JSONHolder=" + "BAR_SRed" + "," + page + "," + session + "," + (option + " " + (parseInt(clickd[0].row) + 1)),
                 success: function(data) {}
             });
         });
@@ -377,9 +419,7 @@ function subBasinGraph1() {
             $.ajax({
                 url: 'sendToTime.php',
                 type: 'post',
-                data: "JSONHolder=" + "BAR_NRed" + "," + page + "," +
-                session + "," + (option + " " + (parseInt(clickd[
-                    0].row) + 1)),
+                data: "JSONHolder=" + "BAR_NRed" + "," + page + "," + session + "," + (option + " " + (parseInt(clickd[0].row) + 1)),
                 success: function(data) {}
             });
         });
@@ -394,6 +434,7 @@ function subBasinGraph1() {
                 '<td>'+dpermw+' : </td>' +
                 '<td><b>' + permw +'%'+ '</b></td>' + '</tr>' + '</table>' + '</div>';
           }*/
+
         function createCustomHTMLContent(row, dm, m, min, max, dpermw, permw) {
             return '\n' + 'Alternative: ' + row + '\n' + dm + ': ' + m + "\nmin:" + min + "\nmax:" + max + "\n" + dpermw + ': ' + permw + ' %';
         }
