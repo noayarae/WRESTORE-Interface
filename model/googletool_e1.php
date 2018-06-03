@@ -99,6 +99,7 @@
     <link rel="stylesheet" type="text/css" href="css/star.css" media="all" />
     <link rel="stylesheet" type="text/css" href="css/visualize.css" media="all" />
     <link rel="stylesheet" type="text/css" href="js/shadowbox/shadowbox.css" media="all" />
+
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVNzONb19t-556kuu-ebT5DUF0wCpEt-g&callback=initMap"
             type="text/javascript"></script>
@@ -114,7 +115,6 @@
         //window.onload(heatinitialize);
         google.load("visualization", "1", {packages:["corechart"]});
         google.setOnLoadCallback(subBasinGraph1);
-
 
         /*Querying to gather data to fill google charts*/
 
