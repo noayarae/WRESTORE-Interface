@@ -745,38 +745,13 @@ function heatinitialize() {
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
     // ================================================================================================== //
-    // Function ton draw the LEGEND
+    // --------------  Function 1 ------------- //
+    
 
-    // // Get modal element
-    // var modal = document.getElementById('simpleModal');
-    // //Get open modal button
-    // var modal_btn = document.getElementById('modal_btn');
-    // //Get close button
-    // var close_btn = document.getElementsByClassName('close_btn')[0];
-    //
-    // //listen for open click
-    // modal_btn.addEventListener('click',openModal);
-    // //Listen for close click
-    // close_btn.addEventListener('click',closeModal);
-    // //Function to open modal
-    // function openModal(){
-    //     modal.style.display = 'block';
-    // }
-    //
-    // //Function to close modal
-    // function closeModal(){
-    //     modal.style.display = 'none'
-    // }
-    //
-    // //Function to close modalif outside click
-    // function outside_click(e) {
-    //     if(e.target == modal){
-    //         modal.style.display = 'none';
-    //     }
-    // }
 
-    // ============================
 
+
+    // ----------------  Function 2 -------------------------- //
     var colorList = {color1: '#ffffff', color2: '#ffff00', color3: '#ffcc00', color4: '#ff9900', color5: '#ff6600', color6: '#ff3300', color7: '#ff0000'};
 
     colorize = function(colorList, min_v, max_v) {

@@ -462,8 +462,10 @@ else
                     <div id="tabs-PF">
                         <div class="heatMapHolder1 map1">
                             <h4>Suggestion <span class="oneMap"></span></h4>
-                            <div class="info">
-                                <img  title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>
+                            <div class="info"> Map legend
+<!--                                <img  title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
+                                <img id="imm" class="play" title="click for additional information" alt="click for
+                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>
                                 <div id="oneMapPF" class="tip"></div>
                             </div>
                             <div id="heatMapHolderOne">
