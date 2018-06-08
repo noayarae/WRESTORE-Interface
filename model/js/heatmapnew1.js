@@ -746,9 +746,18 @@ function heatinitialize() {
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ //
     // ================================================================================================== //
     // --------------  Function 1 ------------- //
-    
 
-
+    var d_icon = document.getElementById("imm").className
+    if(d_icon == "play"){
+        var test = 1;
+        // document.getElementById("imm").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';
+        // document.getElementById("imm").className="pause";//el.className="pause";
+    }
+    else if(d_icon=="pause"){
+        var test = 2;
+        // document.getElementById("imm").src='images/dropdown_arrow.png';//el.src='img/dropdown_arrow.png';
+        // document.getElementById("imm").className="play";//el.className="play";
+    }
 
 
     // ----------------  Function 2 -------------------------- //
@@ -792,5 +801,38 @@ function heatinitialize() {
     }
 
     colorize(colorList, min_value, max_value);
+    //-------------------------------------------------//
+    //---------------- F3 -------------------//
+    var gStorage = {};
+
+    function toogle(anImage, anAltSrcArr) {
+        if (typeof(anImage) === "undefined" || typeof(anAltSrcArr) === "undefined" || anAltSrcArr.length === 0) {
+            return;
+        }
+
+        var id = anImage.id;
+        var oldSrc = anImage.src;
+
+        if (typeof(gStorage[id]) === "undefined") {
+            gStorage[id] = {
+                'id': id,
+                'origSrc': oldSrc,
+                'i': 0
+            };
+        }
+
+        gStorage[id].i += 1;
+        if (gStorage[id].i > anAltSrcArr.length) {
+            gStorage[id].i = 0;
+        }
+
+        if (gStorage[id].i === 0) {
+            anImage.src = gStorage[id].origSrc;
+        } else {
+            anImage.src = anAltSrcArr[gStorage[id].i - 1];
+        }
+    }
+
+    //---------------------------------------//
 
 }

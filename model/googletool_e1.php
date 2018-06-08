@@ -462,10 +462,14 @@ else
                     <div id="tabs-PF">
                         <div class="heatMapHolder1 map1">
                             <h4>Suggestion <span class="oneMap"></span></h4>
-                            <div class="info"> Map legend
+                            <div class="info"> Map legend 6
 <!--                                <img  title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
                                 <img id="imm" class="play" title="click for additional information" alt="click for
                                 additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>
+<!--                                <img id="imm" class="play" title="click mas+" alt="click mas"-->
+<!--                                     src="images/dropdown_arrow.png" onclick='toogle(this, ["images/dropup_arrow" +-->
+<!--                                      ".png"]);' width="14" height="14" alt=""/>-->
+
                                 <div id="oneMapPF" class="tip"></div>
                             </div>
                             <div id="heatMapHolderOne">
@@ -2342,7 +2346,23 @@ else
         });
         $(function(){
             $(".info").click(function(){
-                $(".tip", this).toggle().css("z-index" , 999)});
+                $(".tip", this).toggle().css("z-index" , 999);
+//                alert("here");
+
+                var d_icon = document.getElementById("imm").className
+                if(d_icon == "play"){
+                    var test = 1;
+                     document.getElementById("imm").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';
+                     document.getElementById("imm").className="pause";//el.className="pause";
+                }
+                else if(d_icon=="pause"){
+                    var test = 2;
+                     document.getElementById("imm").src='images/dropdown_arrow.png';//el.src='img/dropdown_arrow.png';
+                     document.getElementById("imm").className="play";//el.className="play";
+                }
+
+            });
+//            alert("is here")
         });
         // $(function(){
         //     $("#oneMapPF").click(function() {
