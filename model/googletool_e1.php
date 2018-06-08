@@ -462,13 +462,10 @@ else
                     <div id="tabs-PF">
                         <div class="heatMapHolder1 map1">
                             <h4>Suggestion <span class="oneMap"></span></h4>
-                            <div class="info"> Map legend 6
+                            <div class="info"> Map-legend 4
 <!--                                <img  title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
-                                <img id="imm" class="play" title="click for additional information" alt="click for
+                                <img id="imm" class="playdown" title="click for additional information" alt="click for
                                 additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>
-<!--                                <img id="imm" class="play" title="click mas+" alt="click mas"-->
-<!--                                     src="images/dropdown_arrow.png" onclick='toogle(this, ["images/dropup_arrow" +-->
-<!--                                      ".png"]);' width="14" height="14" alt=""/>-->
 
                                 <div id="oneMapPF" class="tip"></div>
                             </div>
@@ -479,7 +476,7 @@ else
                         </div>
                         <div class="heatMapHolder2 map2" style="margin-right:0">
                             <h4>Suggestion <span class="twoMap"></span></h4>
-                            <div class="info">
+                            <div class="info"> Map-legend 4
                                 <img  title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>
                                 <div id="twoMapPF" class="tip"></div>
                             </div>
@@ -2349,20 +2346,21 @@ else
                 $(".tip", this).toggle().css("z-index" , 999);
 //                alert("here");
 
+                // ------------- Switch drop and up icon is developed below by EN ------ //
                 var d_icon = document.getElementById("imm").className
-                if(d_icon == "play"){
+                if(d_icon == "playdown"){
                     var test = 1;
                      document.getElementById("imm").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';
-                     document.getElementById("imm").className="pause";//el.className="pause";
+                     document.getElementById("imm").className="playup";//el.className="pause";
                 }
-                else if(d_icon=="pause"){
+                else if(d_icon=="playup"){
                     var test = 2;
                      document.getElementById("imm").src='images/dropdown_arrow.png';//el.src='img/dropdown_arrow.png';
-                     document.getElementById("imm").className="play";//el.className="play";
+                     document.getElementById("imm").className="playdown";//el.className="play";
                 }
 
             });
-//            alert("is here")
+
         });
         // $(function(){
         //     $("#oneMapPF").click(function() {
