@@ -76,11 +76,3 @@ body {
     display:block;
     boarder: 1px solid yellow;
 }
-.info .tip{
-    display: none;
-    position: absolute;
-    border: 1px solid #333;
-    border-radius: 2px;
-    padding: 3px;
-    background-color : #FaF8C4;
-}

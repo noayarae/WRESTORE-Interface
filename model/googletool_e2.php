@@ -127,6 +127,53 @@
         /*Querying to gather data to fill google charts*/
 
     </script>
+
+    <script type='text/javascript' src='js/fda.js'></script>
+    <script type='text/javascript' src='js/mt_config.js'></script>
+
+    <script type='text/javascript' src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <style>
+        .button {
+            padding: 15px 25px;
+            font-size: 24px;
+            text-align: center;
+            cursor: pointer;
+            outline: none;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+        }
+
+        .button:hover {background-color: #3e8e41}
+
+        .button:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+    </style>
+    <!--  Tracking module  -->
+    <script type='text/javascript'>
+      /* The automaton is: s_start --one--> s_one --two--> s_two --three--> s_end
+	  * In the transition between s_two and s_end, when three is clicked, we invoke the submitData()
+	  * method, to store all collected data up to the moment.
+	  */
+      fda.addTransition('s_start', 'one', 's_one');
+      fda.addTransition('s_one', 'two', 's_two');
+      //fda.addTransition('s_two', 'three', 's_end', function() { submitData() });
+      fda.addTransition('s_two', 'three', 's_end');
+
+      var myObj = JSON.stringify(fda.data.s_start);
+
+      // If we are also interested in knowing whether the browser window is resized, we set this to true.
+      mt_detect_resize = true;
+
+      // This function must be invoked, and it has to go last.
+      $(document).ready(init);
+    </script>
+    <link rel='stylesheet' type='text/css' href='css/styles.css'/>
 </head>
 <!--  -------------------- START BODY -----------  -->
 <body name="body">
@@ -240,7 +287,7 @@ else
         <header id="siteHeader">
             <div>
                 <hgroup>
-                    <h1 name="site_header1"><a href="/">WRESTORE</a></h1>
+                    <h1 class="trackable" id='one' name="site_header1"><a href="/">WRESTORE</a></h1>
                     <h2 name="site_header2">Watershed REstoration using Spatio-Temporal Optimization of REsources</h2>
                     <h3 name="site_header3">Visualize & Design Your Watershed Landscape</h3>
                 </hgroup>
@@ -306,7 +353,8 @@ else
                 </table>
                 <h2>Legend </h2>
                 <!--<div class="keyHolder">
-                    <div id="tools" name="tools"></div><div id="toolpic" name="toolpic"></div>-->
+                    <div id="tools" name="tools"></div>
+                     <div id="toolpic" name="toolpic"></div>-->
                 <div class="containerhover">
                     <div name="tools" id="tools" class="tools">
                     </div>
@@ -314,7 +362,6 @@ else
                         <!--<img alt="WordPress" src="images/key.jpg" />-->
                     </div>
                 </div>
-            </section>
         </div>
         <br/>
         <h2>STEP 1: Compare the two maps below to assess if you like how the practices are allocated in the two suggestions.</h2>
@@ -395,7 +442,8 @@ else
         <!-- database graphing-->
         <div name='step2collapse' class ="containerABC collapsed">
             <div class="header">
-                <h2 name="step2">STEP 2: Now assess if the two suggestions above meet your expectation for goals at a specific sub-basin.</h2>
+                <h2 class="trackable" id='step_2' name="step2">STEP 2:
+                    Now assess if the two suggestions above meet your expectation for goals at a specific sub-basin.</h2>
             </div>
             <div class="graph">
                 <div class="dropDownArea">
@@ -431,7 +479,8 @@ else
 
         <div name='step3collapse' class ="containerABC collapsed" >
             <div class="header">
-                <h2 name="step3">STEP 3: Now assess if you like how the practices proposed by the suggestions affect the rest of the watershed landscape.</h2>
+                <h2 class="trackable" id='step_3' name="step3">STEP 3: Now
+                    assess if you like how the practices proposed by the suggestions affect the rest of the watershed landscape.</h2>
             </div>
             <div class="graph">
                 <!--<div class="dropDownHeatMap">
