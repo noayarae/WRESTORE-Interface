@@ -36,6 +36,8 @@ $pid = getvar('pid', '');			// Participant ID.
 $name = getvar('name', '');			// Name of this 'project' (optional)
 $content = getvar('content', '');	// Whole record of mouse-tracking data.
 $cont_array = explode("#",$content); // Content is exploted to get as ARRAY
+$login_t = getvar('login_time', '');	// Beginning of the user's session on this page
+$logoff_t = getvar('logoff_time', '');	// End of the user's session on this page
 //$agent = getvar('agent', '');
 
 // --------------------------------------------------------------------
@@ -46,7 +48,7 @@ $con3 = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
 //$con3 = mysqli_connect('localhost','root','','test');
 
 // -------- Insert data into 'USERS' table
-$query_ins = "INSERT INTO users (pid,name) VALUES ('$pid','$name');";
+$query_ins = "INSERT INTO users (pid,name,login,spent_time) VALUES ('$pid','$name','$login_t','$logoff_t');";
 $query_ins .= "SELECT @mid := MAX(id) AS MMMM FROM users;";
 $query_ins .= "UPDATE users SET usercod = (CONCAT('user',@mid)) WHERE ID = @mid;";
 //mysqli_multi_query($con2,$query_ins);

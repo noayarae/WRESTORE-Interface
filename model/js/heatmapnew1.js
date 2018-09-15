@@ -4,14 +4,6 @@ function heatinitialize() {
 
     //var option = document.getElementById('heatDrop').value-1;
     $('#oneMapPF').empty();
-<<<<<<< HEAD
-    // $('#oneMapPF').append('Range: (' + heatpfra[oneMap].val[0].val + ' to ' + heatpfra[oneMap].val[126].val +') cfs');
-    var min_value = heatpfra[oneMap].val[0].val;
-    var max_value = heatpfra[oneMap].val[126].val;
-    $('#twoMapPF').empty();
-    $('#twoMapPF').append('Range*: (' + heatpfra[twoMap].val[0].val + ' to ' + heatpfra[twoMap].val[126].val +') cfs');
-    
-=======
     // $('#oneMapPF').append('Range+: (' + heatpfra[oneMap].val[0].val + ' to ' + heatpfra[oneMap].val[126].val +') cfs');
     var min_value_PF1 = heatpfra[oneMap].val[0].val;
     var max_value_PF1 = heatpfra[oneMap].val[126].val;
@@ -20,7 +12,6 @@ function heatinitialize() {
     var min_value_PF2 = heatpfra[twoMap].val[0].val;
     var max_value_PF2 = heatpfra[twoMap].val[126].val;
     // alert (max_value_PF2);
->>>>>>> e680ad84147e40f33d8d80ee8a1c8daeec1f8b29
 
     $('#oneMapRV').empty();
     // $('#oneMapRV').append('Range: (' + heatera[oneMap].val[0].val + ' to ' + heatera[oneMap].val[126].val +') Dollars');
@@ -778,58 +769,15 @@ function heatinitialize() {
 
     // ================================================================================================== //
     // ----------------  Function 1 -------------------------- //
-<<<<<<< HEAD
 
     // ----------------  Function 2 -------------------------- //
-    var colorList = {color1: '#ffffff', color2: '#ffff00', color3: '#ffcc00', color4: '#ff9900', color5: '#ff6600', color6: '#ff3300', color7: '#ff0000'};
 
-    colorize = function(colorList, min_v, max_v) {
-        //var container = document.getElementById('modal_body_container'); // <-----
-
-        var container = document.getElementById('oneMapPF'); // <-----
-=======
-
-    // ----------------  Function 2 -------------------------- //
-    // var colorList = {color1: '#ffffff', color2: '#ffff00', color3: '#ffcc00', color4: '#ff9900', color5: '#ff6600', color6: '#ff3300', color7: '#ff0000'};
-    //
-    // colorize = function(colorList, min_v, max_v) {
-    //     var container = document.getElementById('oneMapPF'); // <-----
-
-        // var len_arr = Object.keys(colorList).length;
-        // var range2 = (max_v-min_v)/len_arr;
-        // var i = 0;
-
-        // for (var key in colorList) {
-        //     var boxContainer = document.createElement("DIV");
-        //     var box = document.createElement("DIV");
-        //     var label = document.createElement("SPAN");
-
-            // var range_inf2 = min_v + Math.ceil(i*range2); // Get the low value of range
-            // var range_sup2 = min_v + Math.ceil((i+1)*range2); // Get the high value of range
-
-            // boxContainer.appendChild(box);
-            // boxContainer.appendChild(label);
-            // container.appendChild(boxContainer);
-
-            // label.innerHTML = range_inf2 + ' - ' + range_sup2;// + ' cfs';
-            // label.className = "label";
-            // box.className = "box";
-            // box.style.backgroundColor = colorList[key];
-            // boxContainer.id = "box_container";
-
-            // i += 1;
-        // }
-    // }
-
-    // colorize(colorList, min_value_PF1, max_value_PF1);
-    //-------------------------------------------------//
-    //---------------- F3 -------------------//
+    //---------------------- F3 ----------------------//
     var colorList = {color1: '#ffffff', color2: '#ffff00', color3: '#ffcc00', color4: '#ff9900', color5: '#ff6600', color6: '#ff3300', color7: '#ff0000'};
 
     colorize = function(colorList, min_v, max_v, map_s) {
         min_v = Math.trunc(min_v);
         var container = document.getElementById(map_s); // <----- 'oneMapPF'
->>>>>>> e680ad84147e40f33d8d80ee8a1c8daeec1f8b29
 
         var len_arr = Object.keys(colorList).length;
         var range2 = (max_v-min_v)/len_arr;
@@ -847,11 +795,7 @@ function heatinitialize() {
             boxContainer.appendChild(label);
             container.appendChild(boxContainer);
 
-<<<<<<< HEAD
-            label.innerHTML = range_inf2 + ' - ' + range_sup2;// + ' cfs';
-=======
             label.innerHTML = range_inf2 + ' to ' + range_sup2;// + ' cfs';
->>>>>>> e680ad84147e40f33d8d80ee8a1c8daeec1f8b29
             label.className = "label";
             box.className = "box";
             box.style.backgroundColor = colorList[key];
@@ -860,19 +804,11 @@ function heatinitialize() {
         }
     }
 
-<<<<<<< HEAD
-    colorize(colorList, min_value, max_value);
-    //-------------------------------------------------//
-    //---------------- F3 -------------------//
-=======
     // colorize(colorList, min_value_PF1, max_value_PF1,'oneMapPF');
 
     for (i = 0; i < min_values.length; i++) {
         colorize(colorList, min_values[i], max_values[i],maps[i]);
     }
-
-
->>>>>>> e680ad84147e40f33d8d80ee8a1c8daeec1f8b29
     //---------------------------------------//
 
 }

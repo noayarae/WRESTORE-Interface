@@ -22,9 +22,9 @@ var mt_name = '';				// Name of the current 'project'.
 
 var report_begin = true; // report beginning. Init 1
 var report_mv = false; //true/false // report mouse movement. Init 4
-var report_resize = true; // report window resize. Init 6
+var report_resize = false; // report window resize. Init 6
 var report_ms_click = true; // report mouse click. Init 7
-var report_ms_el = true; // report mouseenter and mouseleave. Init 7
+var report_ms_el = false; // report mouseenter and mouseleave. Init 7
 
 var mt_aux1 = '';			// URL to which the tracking will be posted.
 var mt_aux2 = '';			// URL to which the tracking will be posted.
@@ -44,16 +44,16 @@ function init(){
 
 	// 2 --------------------------------------------------------------------------------------
 	// We set the posturl. It may be put manually, but it's better automatically.
-	// mt_posturl = $(location).attr('protocol') + '//' + $(location).attr('hostname') + $(location).attr('pathname');
-    mt_posturl = $(location).attr('protocol') +'//'+ $(location).attr('hostname')+ $(location).attr('pathname').substr(4);
+	mt_posturl = $(location).attr('protocol') + '//' + $(location).attr('hostname') + $(location).attr('pathname');
+    // mt_posturl = $(location).attr('protocol') +'//'+ $(location).attr('hostname')+ $(location).attr('pathname').substr(4);
   	mt_aux1 = $(location).attr('pathname').substr(4);
   	mt_aux2 = mt_aux1.split('/').pop()
+
     //// alert("LOCATION: "+ $(location).attr('pathname').substr(4));//substract
 	// 'www/' from the pathname
    //  mt_posturl = mt_posturl.replace('index.html','store.php');
    //  mt_posturl = mt_posturl.replace('index2.php','store.php');
-  mt_posturl = mt_posturl.replace(mt_aux2,'store.php');
-
+	mt_posturl = mt_posturl.replace(mt_aux2,'store.php');
 	//// alert("final url: "+ mt_posturl);
 
 	// 3 -------------------------------------------------------------------------------------
@@ -74,14 +74,13 @@ function init(){
 	// -------------------------------------------------------------------------------------
 	// We initialize movement within the viewport.
 	$(document).mousemove(function(e) {
-		if (mt_freq_sem && (Math.abs(mt_dxc-e.pageX)>mt_mms || Math.abs(mt_dyc-e.pageY)>mt_mms))
-		{
+		if (mt_freq_sem && (Math.abs(mt_dxc-e.pageX)>mt_mms || Math.abs(mt_dyc-e.pageY)>mt_mms)){
 			mt_freq_sem = false;
 			mt_dxc = e.pageX;
 			mt_dyc = e.pageY;
-      if (report_mv){
-        report('mv', 'x=' + e.pageX + ';y=' + e.pageY + ';');
-      }
+			if (report_mv){
+				report('mv', 'x=' + e.pageX + ';y=' + e.pageY + ';');
+			}
 			setTimeout('mt_freq_sem=true;', mt_freq);
 		}
 	});
@@ -97,10 +96,10 @@ function init(){
         return 'Are you sure you want to leave?';
     };
 
-/*
+	/*
 	$('.three').click(function() {
     submitData(); // L-136
-  });
+  	});
 
 	$('.end').click(function() {
         submitData2(); // L-136
@@ -110,12 +109,11 @@ function init(){
 
 	// 6 ---------------------------------------------------------------------------------------
 	// If we're asked to track the resizing of the main window, we do.
-	if (mt_detect_resize)
-	{
-		$(window).resize(function() {
-      if (report_resize){
-        report('resize', 'vpw=' + $(window).width() + ';vph=' + $(window).height() + ';');
-      }
+	if (mt_detect_resize){
+		$(window).resize(function(){
+			if (report_resize){
+				report('resize', 'vpw=' + $(window).width() + ';vph=' + $(window).height() + ';');
+			}
 		});
 	}
 
@@ -123,56 +121,79 @@ function init(){
 	// All objects with class 'trackable' will be tracked for clicks, mouseenters and mouseleaves (no mouse movements,
 	// that's too much data)
 	$('.trackable')
-		.click(function(e) {
-      if (report_ms_click){
-        report('m-clk', 'id=' + $(this).attr('id') + ';x=' + e.pageX + ';y=' + e.pageY + ';which=' + e.which + ';');
-      }
+		.click(function(e){
+			if (report_ms_click){
+				// report('m-clk', 'id=' + $(this).attr('id') + ';x=' + e.pageX + ';y=' + e.pageY + ';which=' + e.which + ';');
+				report('m-clk++  ', 'id=' + $(this).attr('id') + ';');
+			}
 			fda.next($(this).attr('id'));
 		})
-		.mouseenter(function() {
-      if (report_ms_el){
-        report('m-ent', 'id=' + $(this).attr('id') + ';');
-      }
+		.mouseenter(function(){
+			if (report_ms_el){
+				report('m-ent*', 'id=' + $(this).attr('id') + ';');
+			}
 		})
-		.mouseleave(function() {
-      if (report_ms_el){
-        report('m-lev', 'id=' + $(this).attr('id') + ';');
-      }
+		.mouseleave(function(){
+			if (report_ms_el){
+				report('m-lev', 'id=' + $(this).attr('id') + ';');
+			}
 		});
-}
 
-function getInstant()
-{
+    $('.track')
+        .click(function(e){
+            if (report_ms_click){
+                // report('m-clk', 'id=' + $(this).attr('id') + ';x=' + e.pageX + ';y=' + e.pageY + ';which=' + e.which + ';');
+                report('m-ccc%%  ', 'id=' + $(this).attr('id') + ';');
+            }
+            fda.next($(this).attr('id'));
+        })
+        .mouseleave(function(){
+            if (report_ms_click){
+                report('m-out %% ', 'id=' + $(this).attr('id') + ';');
+            }
+        });
+} // /*End Function init()*/
+
+// ============================================================================
+function getInstant(){
 	var thistime = new Date();
 	thistime -= 0;
 	return(thistime);
 }
 
-function report(code,content)
-{
+function report(code,content){
 	mt_rprt.push(''+(getInstant()-mt_rprt_offset)+':'+code+':'+content);
 }
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function submitData(silent){
-  console.log('closing 2');
-  mt_silent = silent? true:false;
+	if (report_begin){ // Get the end of the user's session on this page
+		report('end', 'vpw=' + $(window).width() + ';vph=' + $(window).height() + ';');
+	}
+
+	console.log('closing 2');
+	mt_silent = silent? true:false;
 	console.log("mt-silent: " + mt_silent);
-  console.log(mt_rprt);
+	// console.log(mt_rprt[0], mt_rprt[mt_rprt.length-1], mt_rprt_offset, getInstant()-mt_rprt_offset);
+	console.log(mt_rprt);
+    //console.log(globalVariable.xxx);
 	if (!mt_silent) console.log('mt.submitData(): Sending*...');
 
 	var request = $.ajax({
 		url: mt_posturl,
 		type: 'POST',
-		data: { pid: mt_pid, content: mt_rprt.join('#'), agent: navigator.userAgent, name: mt_name },
-    // data: { pid: mt_pid, name: mt_name },
+		// data: { pid: mt_pid, content: mt_rprt.join('#'), agent: navigator.userAgent, name: mt_name},
+		data: { pid: mt_pid, content: mt_rprt.join('#'), agent: navigator.userAgent,
+			name: mt_name, login_time: mt_rprt_offset, logoff_time: getInstant()-mt_rprt_offset},
+
+		// data: { pid: mt_pid, name: mt_name },
 		// dataType: 'xml',
 	});
 
 	// var oj1 = JSON.stringify(request);
   	console.log("current pathname ++: "+ mt_aux1);
   	console.log("current file-name++: "+ mt_aux2);
-	  console.log("Last url++: "+ mt_posturl);
+	console.log("Last url++: "+ mt_posturl);
 
     // console.log("pid: "+ mt_pid);
     // console.log(mt_rprt);
@@ -183,7 +204,7 @@ function submitData(silent){
     // var myObj = JSON.stringify(request.url);
     // console.log(Object.values(myObj));
 
-  /*
+	/*
 	request.done(function(xml) {
 		if (!mt_silent)
 		{mt_rprt.join('#') // Adds all the elements of 'mt_rprt' array separated by the specified separator '#'

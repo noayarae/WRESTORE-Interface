@@ -76,29 +76,28 @@
 
 
       google.maps.event.addListener(map1, 'click', function goToTimeMap1() {
+          // alert ("Suggestion " + (+oneMap + +1) + " - Outside watershed+"); // newalert
+          report('m-clk+', 'Sug:' + (+oneMap + +1) + '  Outside-watershed',';'); // track the suggestion and outside
+
           //session=session+1;
-          //alert (session + " " + page + " " + session)
-          $.ajax({
-              url: 'sendToTime.php',
-              type: 'post',
+          //alert (session + " " + page + " " + session);
+          /*$.ajax({url: 'sendToTime.php',type: 'post',
               data: "JSONHolder=" + "Map1" + "," + page + "," + session + "," + "Outside watershed",
               success: function(data) {
-
               }
-          });
+          });//*/
       });
-
 
       google.maps.event.addListener(map2, 'click', function goToTimeMap2() {
           //session=session+1;
-          $.ajax({
-              url: 'sendToTime.php',
-              type: 'post',
+          // alert ("suggestion " + (+twoMap + +1)+" - Outside-watershed");
+          report('m-clk+', 'Sug:' + (+twoMap + +1) + '  Outside-watershed',';'); // track the suggestion and outside
+
+          /*$.ajax({url: 'sendToTime.php', type: 'post',
               data: "JSONHolder=" + "Map2" + "," + page + "," + session + "," + "Outside watershed",
               success: function(data) {
-
               }
-          });
+          }); //*/
       });
       //This draws the subbasins
       doBackground();
@@ -151,8 +150,6 @@
       });
 
 
-
-
       ///Lay background map
 
       /////////////////Begin Background////////////////////////////////////
@@ -161,7 +158,7 @@
           doBack();
       }
 
-
+      // ----------- start 'doBack'
       function doBack() {
           // Initialize JSONP request
           var script = document.createElement('script');
@@ -181,9 +178,9 @@
           body.appendChild(script);
           //alert("Wetlands1");
       }
-      ///////////////End of back//////////////////////////////
+      // ----------- end of 'doBack'
 
-      ///////////////drawBack Start////////////////////////////////
+      // ----------- start 'drawBack'
 
       drawBack = function(data) {
               //function drawWet1(data) {
@@ -238,7 +235,8 @@
                   var obj = find(subBasinArray, 'subbasinID', whichNode);
                   if (obj) {
 
-                      var listAll = "Sub-basin Area: " + acres + " acres | Stream Length: " + rivers + " miles <br />" + JSON.stringify(obj);
+                      var listAll = "Sub-basin Area: " + acres + " acres | Stream Length+: " + rivers + " miles <br" +
+                          " />" + JSON.stringify(obj);
                       listAll = listAll.replace(/"0.0"/g, "No");
                       listAll = listAll.replace(/"1.0"/g, "Yes");
                       listAll = listAll.replace(/,/g, "<br />");
@@ -246,13 +244,13 @@
                       listAll = listAll.replace(/}/g, "");
                       listAll = listAll.replace(/{/g, "");
                       listAll = listAll.replace(/_/g, " ");
-                      listAll = listAll.replace(/variable area wetlands/g, "wetlands area");
+                      listAll = listAll.replace(/variable area wetlands/g, "wetlands area+");
                       listAll = listAll.replace(/:/g, ": ");
                       listAll = listAll.replace(/variable wetfr wetlands/g, "wetlands drainage");
                       listAll = listAll.replace(/wetlands area/g, "Wetlands area");
-                      listAll = listAll.replace(/filter strips/g, "Filter strip width in feet");
-                      listAll = listAll.replace(/wetlands drainage/g, "Wetlands drainage area fraction");
-                      listAll = listAll.replace(/subbasinID/g, "Sub-basin ID");
+                      listAll = listAll.replace(/filter strips/g, "Filter strip width in feet+");
+                      listAll = listAll.replace(/wetlands drainage/g, "Wetlands drainage area fraction+");
+                      listAll = listAll.replace(/subbasinID/g, "Sub-basin ID+");
                       listAll = listAll.replace(obj.variable_area_wetlands, obj.variable_area_wetlands + " acres ");
                       //alert (listAll);
                   } else {
@@ -276,18 +274,16 @@
                       /*setTimeout(function() {
                           infowindow2.close();
                       }, 5000);*/
+                      // alert ("Suggestion: " + this.indexID); // newalert
+                      report('m-clk+', 'Sug:' + (+oneMap + +1) + '  Sub-basin:' + this.indexID + ';'); // trackable
 
-                      $.ajax({
-                          url: 'sendToTime.php',
-                          type: 'post',
+                      /*$.ajax({url: 'sendToTime.php',type: 'post',
                           data: "JSONHolder=" + "Map1" + "," + page + "," + session + "," + this.indexID,
                           success: function(data) {
-
                           }
-                      });
+                      }); //*/
 
                   });
-
 
 
 
@@ -297,7 +293,7 @@
 
                   var obj = find(subBasinArray2, 'subbasinID', whichNode);
                   if (obj) {
-                      var listAll = "Sub-basin Area: " + acres + " acres | Stream Length: " + rivers + " miles <br />" + JSON.stringify(obj);
+                      var listAll = "Sub-basin Area: "+acres + " acres | Stream Length*: " + rivers + " miles <br />" + JSON.stringify(obj);
                       listAll = listAll.replace(/"0.0"/g, "No");
                       listAll = listAll.replace(/"1.0"/g, "Yes");
                       listAll = listAll.replace(/,/g, "<br />");
@@ -305,13 +301,13 @@
                       listAll = listAll.replace(/}/g, "");
                       listAll = listAll.replace(/{/g, "");
                       listAll = listAll.replace(/_/g, " ");
-                      listAll = listAll.replace(/variable area wetlands/g, "wetlands area");
+                      listAll = listAll.replace(/variable area wetlands/g, "wetlands area*");
                       listAll = listAll.replace(/:/g, ": ");
                       listAll = listAll.replace(/variable wetfr wetlands/g, "wetlands drainage");
                       listAll = listAll.replace(/wetlands area/g, "Wetlands area");
-                      listAll = listAll.replace(/filter strips/g, "Filter strip width in feet");
-                      listAll = listAll.replace(/wetlands drainage/g, "Wetlands drainage area fraction");
-                      listAll = listAll.replace(/subbasinID/g, "Sub-basin ID");
+                      listAll = listAll.replace(/filter strips/g, "Filter strip width in feet*");
+                      listAll = listAll.replace(/wetlands drainage/g, "Wetlands drainage area fraction*");
+                      listAll = listAll.replace(/subbasinID/g, "Sub-basin ID*");
                       listAll = listAll.replace(obj.variable_area_wetlands, obj.variable_area_wetlands + " acres");
                       //alert (listAll);
                   } else {
@@ -334,15 +330,14 @@
                       /*setTimeout(function() {
                           infowindow2.close();
                       }, 5000);*/
+                      // alert (this.indexID); // newalert
+                      report('m-clk+', 'Sug:' + (+twoMap + +1) + '  Sub-basin:'+this.indexID+';'); // trackable
 
-                      $.ajax({
-                          url: 'sendToTime.php',
-                          type: 'post',
+                      /*$.ajax({url: 'sendToTime.php',type: 'post',
                           data: "JSONHolder=" + "Map2" + "," + page + "," + session + "," + this.indexID,
                           success: function(data) {
-
                           }
-                      });
+                      });//*/
                   });
 
 
@@ -352,11 +347,10 @@
               }
               //map.fitBounds(bounds);
           }
-          ////END Draw Filter1////////
+          // ---------- end 'drawBack'
 
 
-
-      ////////////////////////////////EndBACKGROUND////////////////////////
+      ///////////////////////////  EndBACKGROUND////////////////////////
 
 
       /////////////////Begin Filter Strips///THIS ONE NEEDS TO BE THE POLYLINES////////////////////////////////////
@@ -375,13 +369,19 @@
           //    myOptions); 
           dofilter1();
           dofilter2();
-          $('#tools').append('&nbsp;&nbsp;Filter Strips<input name="bmpType" type="checkbox" checked value="filterStrips" onClick="toggleLayerNew(filterArray,filterArray2,filter)"> ');
+
+          /* $('#tools').append('&nbsp;&nbsp;Filter Strips<input name="bmpType" type="checkbox"' +
+               ' checked value="filterStrips"  onClick="toggleLayerNew(filterArray,filterArray2,filter)"> ');//*/
+          // Below, a second function to track 'click' and 'un-click' action was added.
+          $('#tools').append('&nbsp;&nbsp;Filter Strips<input class="fs" name="bmpType" type="checkbox" checked value="filterStrips"' +
+              ' onClick="toggleLayerNew(filterArray,filterArray2,filter);track_check_filterStrip();"> ');
+          //*/
           $('#toolpic').append('<img alt="WordPress" src="images/key_filterstrips.jpg" />');
 
       }
       ////////END starting Filter Strips//////////////////
 
-      ////////////////////filter/////////////////////
+      // -----------  start 'dofilter1'
       function dofilter1() {
 
           var obj = find(forMapArray, 'Title', 'filter_strips');
@@ -407,9 +407,9 @@
           var body = document.getElementsByTagName('body')[0];
           body.appendChild(script);
       }
-      ///////////////End of filter1//////////////////////////////
+      // -----------  end 'dofilter1'
 
-      ///////////////drawFilter1 Start////////////////////////////////
+      // -----------  start 'drawfilter1'
 
       drawFilter1 = function(data) {
           //function drawWet1(data) {
@@ -488,11 +488,11 @@
           //map.fitBounds(bounds);
       }
 
-      ////END Draw Filter1////////
+      // -----------  end 'drawfilter1'
 
 
 
-      ////START filter2////////
+      // -----------  start 'dofilter2'
       function dofilter2() {
           var obj = find(forMapArray2, 'Title', 'filter_strips');
           if (obj) {
@@ -521,10 +521,10 @@
           body.appendChild(script);
 
       }
-      ////END filter2////////
+      // -----------  end 'dofilter2'
 
 
-      ////START Draw Filter2////////
+      // -----------  start 'drawFilter2'
 
       drawFilter2 = function(data) {
           //alert (JSON.stringify(forMapArray2));
@@ -602,13 +602,11 @@
           }
           //map.fitBounds(bounds);
       }
-
-      ////////////////////////////////End Filter Strips totally ////////////////////////
-
-
+      // -----------  end 'drawFilter2'
+      /////////////////////////////  End 'Filter Strips' totally ////////////////////////
 
 
-      /////////////////Begin COVER CROPS////////////////////////////////////
+      ////////////////////////  Begin COVER CROPS  //////////////////////////////
 
       function doCoverCrops() {
           //   var myOptions = {
@@ -623,12 +621,16 @@
           //    myOptions); 
           docover1();
           docover2();
-          $('#tools').append('&nbsp;&nbsp;<span style="color:#99c9ba"><strong>Cover Crops</strong></span><input name="bmpType" type="checkbox" checked value="coverCrops" onClick="toggleLayerNew(coverArray,coverArray2,cover)"> ');
+          // $('#tools').append('&nbsp;&nbsp;<span style="color:#99c9ba"><strong>Cover Crops</strong></span><input name="bmpType" type="checkbox" checked value="coverCrops" onClick="toggleLayerNew(coverArray,coverArray2,cover)"> ');
+          $('#tools').append('&nbsp;&nbsp;<span style="color:#99c9ba"><strong>Cover Crops</strong></span>' +
+              '<input class="cc" name="bmpType" type="checkbox"' +
+              ' checked value="coverCrops" onClick="toggleLayerNew(coverArray,coverArray2,cover);track_check_coverCrop();"> ');
+          //*/
           $('#toolpic').append('<img alt="WordPress" src="images/key_covercrops.jpg" />');
       }
-      ////////END starting Filter Strips//////////////////
+      // ------------  end 'doCoverCrops'
 
-      ////////////////////filter/////////////////////
+      // ------------  start 'docover1'
       function docover1() {
           var obj = find(forMapArray, 'Title', 'cover_crops');
           if (obj) {
@@ -654,9 +656,9 @@
           body.appendChild(script);
           //alert("Wetlands1");
       }
-      ///////////////End of filter1//////////////////////////////
+      // ------------  end 'docover1'
 
-      ///////////////drawFilter1 Start/////////////////////////////RED!!!!!!!!!!!!!!!!!!!!!!!!///
+      // ------------  start 'drawCover1'
 
       drawCover1 = function(data) {
           //function drawWet1(data) {
@@ -731,20 +733,15 @@
                   /*setTimeout(function() {
                           infowindow2.close();
                       }, 5000);*/
+                  // alert (this.indexID); // newalert
+                  report('m-clk+', 'Sug:' + (+oneMap + +1) + '  Sub-basin:'+this.indexID+';'); // trackable
 
-                  $.ajax({
-                      url: 'sendToTime.php',
-                      type: 'post',
+                  /*$.ajax({url: 'sendToTime.php',type: 'post',
                       data: "JSONHolder=" + "Map1" + "," + page + "," + session + "," + this.indexID,
                       success: function(data) {
-
                       }
-                  });
-
+                  });//*/
               });
-
-
-
 
               coverArray.push(cover);
 
@@ -752,11 +749,9 @@
           //map.fitBounds(bounds);
       }
 
-      ////END Draw Filter1////////
+      // ------------  end 'drawCover1'
 
-
-
-      ////START filter2////////
+      // ------------  start 'doCover2'
       function docover2() {
           var obj = find(forMapArray2, 'Title', 'cover_crops');
           if (obj) {
@@ -782,11 +777,9 @@
           body.appendChild(script);
 
       }
-      ////END CoverCrops2////////
+      // ------------  end 'doCover2'
 
-
-      ////START Draw CoverCrops///////////////////////////RED! ///
-
+      // ------------  start 'drawCover2'
       drawCover2 = function(data) {
           var rows = data['rows'];
           //var whichNode=100;
@@ -806,7 +799,6 @@
               var rivers = parseFloat(row[3]).toFixed(1);
               /////////You will put your stream miles here/////////
               //alert (whichNode);
-
 
               cover2 = new google.maps.Polygon({
                   path: newCoordinates,
@@ -859,27 +851,22 @@
                   /*setTimeout(function() {
                           infowindow2.close();
                       }, 5000);*/
+                  // alert (this.indexID); // newalert
+                  report('m-clk+', 'Sug:' + (+twoMap + +1) + '  Sub-basin:'+this.indexID+';'); // trackable
 
-                  $.ajax({
-                      url: 'sendToTime.php',
-                      type: 'post',
+                  /*$.ajax({url: 'sendToTime.php',type: 'post',
                       data: "JSONHolder=" + "Map2" + "," + page + "," + session + "," + this.indexID,
                       success: function(data) {
-
                       }
-                  });
+                  });//*/
               });
-
-
 
               coverArray2.push(cover2);
           }
           //map.fitBounds(bounds);
       }
-
+      // ------------  end 'doCover2'
       ////////////////////////////////End COVER CROPS totally ////////////////////////
-
-
 
       /////////////////Begin Crop Rotation///////////////////////////////////////
 
@@ -896,12 +883,15 @@
           //    myOptions); 
           docrop1();
           docrop2();
-          $('#tools').append('&nbsp;&nbsp;<span style="color:#8da1bf"><strong>Crop Rotation</strong></span><input name="bmpType" type="checkbox" checked value="cropRotation" onClick="toggleLayerNew(cropArray,cropArray2,crop)"> ');
+          // $('#tools').append('&nbsp;&nbsp;<span style="color:#8da1bf"><strong>Crop Rotation</strong></span><input name="bmpType" type="checkbox" checked value="cropRotation" onClick="toggleLayerNew(cropArray,cropArray2,crop)"> ');
+          $('#tools').append('&nbsp;&nbsp;<span style="color:#8da1bf"><strong>Crop Rotation</strong></span>' +
+              '<input class="cr" name="bmpType" type="checkbox" checked value="cropRotation"' +
+              ' onClick="toggleLayerNew(cropArray,cropArray2,crop);track_check_cropRotation();"> ');
           $('#toolpic').append('<img alt="WordPress" src="images/key_cropRotation.jpg" />');
       }
-      ////////END starting crop rotation//////////////////
+      // ------------  end 'doCropRotation'
 
-      ////////////////////crop/////////////////////
+      // ------------  start 'docrop1'
       function docrop1() {
 
           var obj = find(forMapArray, 'Title', 'crop_rotation');
@@ -934,9 +924,9 @@
           body.appendChild(script);
           //alert("Wetlands1");
       }
-      ///////////////End of crop1//////////////////////////////
+      // ------------  end 'docrop1'
 
-      ///////////////drawcrop1 Start////////////////////////////////
+      // ------------  start 'drawCrop1'
 
       drawCrop1 = function(data) {
           //function drawWet1(data) {
@@ -1010,15 +1000,14 @@
                   /*setTimeout(function() {
                           infowindow2.close();
                       }, 5000);*/
+                  // alert (this.indexID); // newalert
+                  report('m-clk+', 'Sug:' + (+oneMap + +1) + '  Sub-basin:'+this.indexID+';'); // trackable
 
-                  $.ajax({
-                      url: 'sendToTime.php',
-                      type: 'post',
+                  /*$.ajax({url: 'sendToTime.php', type: 'post',
                       data: "JSONHolder=" + "Map1" + "," + page + "," + session + "," + this.indexID,
                       success: function(data) {
-
                       }
-                  });
+                  }); //*/
 
               });
 
@@ -1028,11 +1017,11 @@
           //map.fitBounds(bounds);
       }
 
-      ////END Crop1////////
+      // ------------  end 'drawCrop1'
 
 
 
-      ////START Crop2////////////////////////////////////////BLUE////////////////////////////////////
+      // ------------  start 'doCrop2'   --------- BLUE
       function docrop2() {
           var obj = find(forMapArray2, 'Title', 'crop_rotation');
           if (obj) {
@@ -1060,10 +1049,10 @@
           body.appendChild(script);
 
       }
-      ////END Crop2////////
+      // ------------  end 'doCrop2'
 
 
-      ////START Draw Crop2///////////////////////////////BLUE ////////////////////////////////
+      // ------------  start 'drawCrop2'   --------- BLUE
 
       drawCrop2 = function(data) {
           var rows = data['rows'];
@@ -1123,7 +1112,6 @@
               };
               crop2.objInfo = obj;
 
-
               google.maps.event.addListener(crop2, 'click', function(event) {
                   // if (infowindow) infowindow.close();     
                   $('.displayStuff').html(this.objInfo.list);
@@ -1136,26 +1124,21 @@
                   /*setTimeout(function() {
                           infowindow2.close();
                       }, 5000);*/
+                  // alert (this.indexID); // newalert
+                  report('m-clk+', 'Sug:' + (+twoMap + +1) + '  Sub-basin:'+this.indexID+';'); // trackable
 
-                  $.ajax({
-                      url: 'sendToTime.php',
-                      type: 'post',
+                  /*$.ajax({url: 'sendToTime.php',type: 'post',
                       data: "JSONHolder=" + "Map2" + "," + page + "," + session + "," + this.indexID,
                       success: function(data) {
-
                       }
-                  });
+                  }); //*/
               });
-
-
               cropArray2.push(crop2);
           }
           //map.fitBounds(bounds);
       }
-
+      // ------------  end 'drawCrop2'
       ////////////////////////////////End Crop Rotation totally ////////////////////////
-
-
 
 
       /////////////////////////Begin Strip Cropping////////////////////////////////////
@@ -1163,12 +1146,15 @@
       function doStripCropping() {
           dostrip1();
           dostrip2();
-          $('#tools').append('&nbsp;&nbsp;<span style="color:#87b07e"><strong>Strip Cropping</strong></span><input name="bmpType" type="checkbox" checked value="stripCropping" onClick="toggleLayerNew(stripArray,stripArray2,strip)">&nbsp;');
+          // $('#tools').append('&nbsp;&nbsp;<span style="color:#87b07e"><strong>Strip Cropping</strong></span><input name="bmpType" type="checkbox" checked value="stripCropping" onClick="toggleLayerNew(stripArray,stripArray2,strip)">&nbsp;');
+          $('#tools').append('&nbsp;&nbsp;<span style="color:#87b07e"><strong>Strip Cropping</strong></span>' +
+              '<input class="sc" name="bmpType" type="checkbox" checked value="stripCropping"' +
+              ' onClick="toggleLayerNew(stripArray,stripArray2,strip);track_check_stripCropping();">&nbsp;');
           $('#toolpic').append('<img alt="WordPress" src="images/key_stripCropping.jpg" />');
       }
-      ////////END starting Strips//////////////////
+      // ----------------  end 'doStripCropping()'
 
-      ////////////////////Strips1/////////////////////
+      // ----------------  start 'dostrip1()'
       function dostrip1() {
           var obj = find(forMapArray, 'Title', 'strip_cropping');
           if (obj) {
@@ -1194,10 +1180,9 @@
           body.appendChild(script);
           //alert("Wetlands1");
       }
-      ///////////////End of Strip1//////////////////////////////
+      // ----------------  end 'dostrip1()'
 
-      ///////////////drawStrip1 Start////////////////////GREEN//////////////////////////////
-
+      // ----------------  start 'drawStrip1' --------------------- /GREEN/
       drawStrip1 = function(data) {
           //function drawWet1(data) {
           //alert("ON");
@@ -1219,7 +1204,6 @@
               var rivers = parseFloat(row[3]).toFixed(1);
               /////////You will put your stream miles here/////////
               //alert (whichNode);
-
 
               strip = new google.maps.Polygon({
                   path: newCoordinates,
@@ -1272,15 +1256,14 @@
                   /*setTimeout(function() {
                           infowindow2.close();
                       }, 5000);*/
+                  // alert (this.indexID); // newalert
+                  report('m-clk+', 'Sug:' + (+oneMap + +1) + '  Sub-basin:'+this.indexID+';'); // trackable
 
-                  $.ajax({
-                      url: 'sendToTime.php',
-                      type: 'post',
+                  /*$.ajax({url: 'sendToTime.php', type: 'post',
                       data: "JSONHolder=" + "Map1" + "," + page + "," + session + "," + this.indexID,
                       success: function(data) {
-
                       }
-                  });
+                  }); //*/
               });
 
 
@@ -1289,11 +1272,11 @@
           //map.fitBounds(bounds);
       }
 
-      ////END Draw strip1////////
+      // ---------------  end 'drawStrip1'
 
 
 
-      ////START strip2////////
+      // ----------------  start 'dostrip2()'
       function dostrip2() {
           var obj = find(forMapArray2, 'Title', 'strip_cropping');
           if (obj) {
@@ -1319,10 +1302,10 @@
           body.appendChild(script);
 
       }
-      ////END filter2////////
+      // ----------------  end 'dostrip2()'
 
 
-      ////START Draw Filter2//////////////////////////////////////GREEN//////////////////////////
+      // ----------------  start 'drawStrip2' ---------- /GREEN/
 
       drawStrip2 = function(data) {
           var rows = data['rows'];
@@ -1399,22 +1382,21 @@
                   /*setTimeout(function() {
                           infowindow2.close();
                       }, 5000);*/
+                  // alert ('Suggestion ' + this.indexID); // newalert
+                  report('m-clk+', 'Sug:' + (+twoMap + +1) + '  Sub-basin:'+this.indexID+';'); // trackable
 
-                  $.ajax({
-                      url: 'sendToTime.php',
-                      type: 'post',
+                  /*$.ajax({url: 'sendToTime.php', type: 'post',
                       data: "JSONHolder=" + "Map2" + "," + page + "," + session + "," + this.indexID,
                       success: function(data) {
-
                       }
-                  });
+                  }); //*/
               });
 
               stripArray2.push(strip2);
           }
           //map.fitBounds(bounds);
       }
-
+      // ----------------  end 'drawStrip2'
 
 
       ///////////////This is used to parse out the long lats for all the polygons////////////////////////
@@ -1434,17 +1416,19 @@
           }
           return newCoordinates;
       }
-      ////END Draw Filter2////////
+      // ----- end 'constructNewCoordinates(polygon)'
 
-      ///////Begin Wetlands Markers////////////////////////////////////////////////////////////////////////////////
+      ////////////////////// Begin Wetlands Markers /////////////////////////////
       function dobinaryWetlands() {
           dowetlands1();
           dowetlands2();
-          $('#tools').append('&nbsp;&nbsp;Wetlands<input name="bmpType" type="checkbox" checked value="wetlands" onClick="toggleLayerNew(wetArray,wetArray2,wetlands)">');
+          // $('#tools').append('&nbsp;&nbsp;Wetlands<input name="bmpType" type="checkbox" checked value="wetlands" onClick="toggleLayerNew(wetArray,wetArray2,wetlands)">');
+          $('#tools').append('&nbsp;&nbsp;Wetlands<input class="wt" name="bmpType" type="checkbox" checked' +
+              ' value="wetlands" onClick="toggleLayerNew(wetArray,wetArray2,wetlands);track_check_wetland();">');
           $('#toolpic').append('<img alt="WordPress" src="images/key_wetlands.jpg" />');
       }
-      ////////END starting Wetlands//////////////////
-
+      // -------------- end 'dobinaryWetlands()'
+      // -------------- start 'dowetlands1()'
       function dowetlands1() {
           var obj = find(forMapArray, 'Title', 'variable_area_wetlands');
           if (obj) {
@@ -1468,8 +1452,8 @@
           script.src = url.join('');
           var body = document.getElementsByTagName('body')[0];
           body.appendChild(script);
-      }
-
+      } // -------------- end 'dowetlands1()'
+      // -------------- start 'drawWet1'
       drawWet1 = function(data) {
           var rows = data['rows'];
           //var whichNode=100;
@@ -1550,9 +1534,9 @@
               wetArray.push(wetlands);
           }
           //map.fitBounds(bounds);
-      }
+      } // -------------- end 'drawWet1'
 
-      ///////This is the second wetland////////////////////////////////////////////////////////
+      // -------------- start 'dowetlands2()'
       function dowetlands2() {
           var obj = find(forMapArray, 'Title', 'variable_area_wetlands');
           if (obj) {
@@ -1578,8 +1562,8 @@
           script.src = url.join('');
           var body = document.getElementsByTagName('body')[0];
           body.appendChild(script);
-      }
-
+      } // -------------- end 'dowetlands2()'
+      // -------------- start 'drawWet2'
       drawWet2 = function(data) {
               var rows = data['rows'];
               //var whichNode=100;
@@ -1650,7 +1634,6 @@
 
 
 
-
                   //alert (whichNode);
                   wetlands2 = geo;
                   //var country = new google.maps.Marker({  
@@ -1663,9 +1646,10 @@
                   wetArray2.push(wetlands2);
               }
               //map.fitBounds(bounds);
-          }
-          /////End the second wetland
-          ////////////This is the new piece that takes the markers and not shapes //////////////
+          } // -------------- end 'drawWet2'
+      ////////////////////////// End wetland totally ///////////////////////
+
+      ///////// This is the new piece that takes the markers and not shapes //////////
       function constructNewCoordinatesWet(polygon) {
 
           var geoOptions = {
@@ -1688,7 +1672,7 @@
               return geo;
           }
       }
-      /////////////That ends the Second Wetlands/////////////////////////////
+      // ------- end 'constructNewCoordinatesWet(polygon)'
 
 
       ////////////This is the new piece that takes the markers and not shapes for Grass Waterways//////////////
@@ -1712,7 +1696,7 @@
               return geo;
           }
       }
-      /////////////That Grass Waterway engine/////////////////////////////
+      // ------ end 'constructNewCoordinatesGrass(polygon)'
 
       ////////////This is the new piece that takes the markers and not shapes for No Till//////////////
       function constructNewCoordinatesTill(polygon) {
@@ -1735,18 +1719,20 @@
               return geo;
           }
       }
-      /////////////That Grass Waterway engine/////////////////////////////
+      // ------ end 'constructNewCoordinatesTill(polygon)'
 
 
-      ///////Begin no Till Markers////////////////////////////////////////////////////////////////////////////////
+      /////////////////////////// Begin No-Till Markers //////////////////////////////
       function doConserveTillage() {
           dotill1();
           dotill2();
-          $('#tools').append('&nbsp;&nbsp;Conservation Tillage<input name="bmpType" type="checkbox"  checked value="conservationTillage" onClick="toggleLayerNew(conserveArray,conserveArray2,notill)"> ');
+          // $('#tools').append('&nbsp;&nbsp;Conservation Tillage<input name="bmpType" type="checkbox"  checked value="conservationTillage" onClick="toggleLayerNew(conserveArray,conserveArray2,notill)"> ');
+          $('#tools').append('&nbsp;&nbsp;Conservation Tillage<input class="nt" name="bmpType" type="checkbox" checked value=' +
+              '"conservationTillage" onClick="toggleLayerNew(conserveArray,conserveArray2,notill);track_check_noTill();"> ');
           $('#toolpic').append('<img alt="WordPress" src="images/key_conservation.jpg" />');
       }
-      ////////END starting Tillage//////////////////
-
+      // ------- end 'doConserveTillage()'
+      // ------- start 'dotill1()'
       function dotill1() {
           var obj = find(forMapArray, 'Title', 'conservation_tillage');
           if (obj) {
@@ -1771,8 +1757,8 @@
           script.src = url.join('');
           var body = document.getElementsByTagName('body')[0];
           body.appendChild(script);
-      }
-
+      } // ------- end 'dotill1()'
+      //   ------- start 'drawTill1'
       drawTill1 = function(data) {
           var rows = data['rows'];
           //var whichNode=100;
@@ -1796,9 +1782,9 @@
               // alert("In");
           }
           //map.fitBounds(bounds);
-      }
+      } //   ------- end 'drawTill1'
 
-      ///////This is the second No Till////////////////////////////////////////////////////////
+      // ------- start 'dotill2()'
       function dotill2() {
           var obj = find(forMapArray2, 'Title', 'conservation_tillage');
           if (obj) {
@@ -1822,8 +1808,8 @@
           script.src = url.join('');
           var body = document.getElementsByTagName('body')[0];
           body.appendChild(script);
-      }
-
+      }  // ------- end 'dotill2()'
+      // ------- start 'drawTill2'
       drawTill2 = function(data) {
 
           var rows = data['rows'];
@@ -1843,19 +1829,21 @@
               notill2.setMap(map2);
               conserveArray2.push(notill2);
           }
-      }
+      } // ------- end 'drawTill2'
 
-      ////////END NO TILLAGE /////////////////////
+      //////// end NO-TILLAGE totally /////////////////////
 
-      ///////Begin Grass Markers////////////////////////////////////////////////////////////////////////////////
+      /////////////////  Begin Grass-Waterways Markers  //////////////////////////////////////////////////////////
       function doGrassWaterway() {
           dograss1();
           dograss2();
-          $('#tools').append('&nbsp;&nbsp;Grasswaterways<input name="bmpType" type="checkbox"  checked value="grassWaterWays" onClick="toggleLayerNew(grassArray,grassArray2,grass)"> ');
+          // $('#tools').append('&nbsp;&nbsp;Grasswaterways<input name="bmpType" type="checkbox"  checked value="grassWaterWays" onClick="toggleLayerNew(grassArray,grassArray2,grass)"> ');
+          $('#tools').append('&nbsp;&nbsp;Grasswaterways <input class="gw" name="bmpType" type="checkbox" checked' +
+              ' value="grassWaterWays" onClick="toggleLayerNew(grassArray,grassArray2,grass);track_check_grassWaterway();"> ');
           $('#toolpic').append('<img alt="WordPress" src="images/key_grass.png" />');
       }
-      ////////END Starting GW//////////////////
-
+      // ------ end 'doGrassWaterway()'
+      // ------ start 'dograss1()'
       function dograss1() {
           var obj = find(forMapArray, 'Title', 'grassed_waterway');
           if (obj) {
@@ -1879,8 +1867,8 @@
           script.src = url.join('');
           var body = document.getElementsByTagName('body')[0];
           body.appendChild(script);
-      }
-
+      } // -------------------------------- end 'dograss1()'
+      // ---------------------------------- start 'drawGrass1'
       drawGrass1 = function(data) {
           var rows = data['rows'];
           //var whichNode=100;
@@ -1909,9 +1897,9 @@
               grassArray.push(grass);
           }
           //map.fitBounds(bounds);
-      }
+      } // ---------------------------------- end 'drawGrass1'
 
-      ///////This is the second GW////////////////////////////////////////////////////////
+      // ------------------------------------ start 'dograss2()'
       function dograss2() {
           var obj = find(forMapArray2, 'Title', 'grassed_waterway');
           if (obj) {
@@ -1935,8 +1923,8 @@
           script.src = url.join('');
           var body = document.getElementsByTagName('body')[0];
           body.appendChild(script);
-      }
-
+      } // ------------------------------------ end 'dograss2()'
+      // ------------------------------------ start 'drawGrass2'
       drawGrass2 = function(data) {
           var rows = data['rows'];
           //var whichNode=100;
@@ -1959,8 +1947,8 @@
               grassArray2.push(grass2);
           }
       }
-
-      ////////END GW /////////////////////
+      // ------------------------------------ end 'drawGrass2'
+      ////////END GW (Grassed Waterways) totally /////////////////////
 
 
 
@@ -2067,8 +2055,6 @@
 
   }
 
-
-
   //alert(JSON.stringify(forMapArray));
   //Going to call the list of subbasins we need for this spot
   function find(arr, key, value) {
@@ -2079,3 +2065,75 @@
       }
       // return {}; // if you would want it null-safe
   }
+
+// ==================================  FUNCTION FOR TRACKING CHECKBOXS in LEGEND =============================== //
+  //  (1) Filter-strip          (fs)
+  //  (2) Cover-crops           (cc)
+  //  (3) Crop-rotation         (cr)
+  //  (4) Strip-Cropping        (sc)
+  //  (5) Wetlands              (wt)
+  //  (6) No-Till (Till conservation)(nt)
+  //  (7) Grass waterways       (gw)
+  function track_check_filterStrip(){ //(1) Filter-strip (fs)
+      var value_name = document.getElementsByClassName("fs")[0].getAttribute("value"); // Filter-strip (fs)
+      if ($('input.fs').is(':checked')) {
+          report('m-clk+', 'Check of ' + value_name + ';'); // report('Check of', ' Filter-strips' + ';');
+      }else{
+          report('m-clk+', 'Un-check of ' + value_name + ';');// report('Un-check of', ' Filter-strips' + ';');
+      }
+  }
+
+  function track_check_coverCrop(){ // (2) Cover-crops (cc)
+      var value_name = document.getElementsByClassName("cc")[0].getAttribute("value"); // Cover-Crop (cc)
+      if ($('input.cc').is(':checked')) {
+          report('m-clk+', 'Check of ' + value_name + ';'); // report('Check of', ' Filter-strips' + ';');
+      }else{
+          report('m-clk+', 'Un-check of ' + value_name + ';');// report('Un-check of', ' Filter-strips' + ';');
+      }
+  }
+
+  function track_check_cropRotation(){ // (3) Crop-rotation (cr)
+      var value_name = document.getElementsByClassName("cr")[0].getAttribute("value"); // Cover-Crop (cc)
+      if ($('input.cr').is(':checked')) {
+          report('m-clk+', 'Check of ' + value_name + ';'); // report('Check of', ' Filter-strips' + ';');
+      }else{
+          report('m-clk+', 'Un-check of ' + value_name + ';');// report('Un-check of', ' Filter-strips' + ';');
+      }
+  }
+
+  function track_check_stripCropping(){ // (4) Strip-Cropping (sc)
+      var value_name = document.getElementsByClassName("sc")[0].getAttribute("value"); // Cover-Crop (cc)
+      if ($('input.sc').is(':checked')) {
+          report('m-clk+', 'Check of ' + value_name + ';'); // report('Check of', ' Filter-strips' + ';');
+      }else{
+          report('m-clk+', 'Un-check of ' + value_name + ';');// report('Un-check of', ' Filter-strips' + ';');
+      }
+  }
+
+  function track_check_wetland(){ // (5) Wetlands (wt)
+      var value_name = document.getElementsByClassName("wt")[0].getAttribute("value"); // Cover-Crop (cc)
+      if ($('input.wt').is(':checked')) {
+          report('m-clk+', 'Check of ' + value_name + ';'); // report('Check of', ' Filter-strips' + ';');
+      }else{
+          report('m-clk+', 'Un-check of ' + value_name + ';');// report('Un-check of', ' Filter-strips' + ';');
+      }
+  }
+
+  function track_check_noTill(){ // (6) No-Till (Till conservation)(nt)
+      var value_name = document.getElementsByClassName("nt")[0].getAttribute("value"); // Cover-Crop (cc)
+      if ($('input.nt').is(':checked')) {
+          report('m-clk+', 'Check of ' + value_name + ';'); // report('Check of', ' Filter-strips' + ';');
+      }else{
+          report('m-clk+', 'Un-check of ' + value_name + ';');// report('Un-check of', ' Filter-strips' + ';');
+      }
+  }
+
+  function track_check_grassWaterway(){ // (7) Grass waterways (gw)
+      var value_name = document.getElementsByClassName("gw")[0].getAttribute("value"); // Cover-Crop (cc)
+      if ($('input.gw').is(':checked')) {
+          report('m-clk+', 'Check of ' + value_name + ';'); // report('Check of', ' Filter-strips' + ';');
+      }else{
+          report('m-clk+', 'Un-check of ' + value_name + ';');// report('Un-check of', ' Filter-strips' + ';');
+      }
+  }
+

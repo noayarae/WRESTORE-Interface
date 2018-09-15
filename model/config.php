@@ -3,7 +3,7 @@
 
 // Host (usually 'localhost') //Database name //Username. //Password.
 $dbhost = 'localhost';
-$dbname = 'test1';
+$dbname = 'test';
 $dbuser = 'root';
 $dbpass = '';
 //echo ("hello config.php");
