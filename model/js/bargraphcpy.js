@@ -57,7 +57,7 @@ function subBasinGraph1() {
     border[n2-1] = '#85cc00';// Codes for dark-green: #a6ff00, #95e600;// #85cc00  //Added by E.N.
 
     if (option == "Watershed") {
-        alert ("wholeTable: " + wholeTable);
+        // alert ("wholeTable: " + wholeTable);
         for (rowlen = 0; rowlen < document.getElementById('wholeTable').rows.length - 1; rowlen++) {
             //JSON.parse(chartArray[rowlen].F1)[0]
             var m11 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F1)[0])))
@@ -103,7 +103,7 @@ function subBasinGraph1() {
         }
 
         var options = {
-            title: 'Peak flow* reduction in cubic feet per second (PFR)',
+            title: 'Peak Flow Reduction in cubic feet per second (PFR)',
             legend: {position: 'none'},
             //isStacked: true,//'percent',//'relative',//true,// It does not make effect when "Bars"
             // This line makes the entire category's tooltip active.
@@ -300,7 +300,7 @@ function subBasinGraph1() {
         }
 
         var options = {
-            title: 'Peak flow reduction in cfs (PFR)',
+            title: 'Peak flow reduct+on in cfs (PFR)',
             legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
             focusTarget: 'category',

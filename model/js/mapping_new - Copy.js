@@ -62,11 +62,11 @@
           mapTypeId: google.maps.MapTypeId.ROADMAP
       });
 
-      // map2 = new google.maps.Map(document.getElementById('map_canvas2'), {
-      //     center: new google.maps.LatLng(39.9778, -86.2959),
-      //     zoom: 11,
-      //     mapTypeId: google.maps.MapTypeId.ROADMAP
-      // });
+      map2 = new google.maps.Map(document.getElementById('map_canvas2'), {
+          center: new google.maps.LatLng(39.9778, -86.2959),
+          zoom: 11,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+      });
 
       /////////////////TEST///////////////////////////////////////
       /*var numberone = new google.maps.LatLng(39.9778,-86.2959);
@@ -79,9 +79,9 @@
           report('m-clk+', 'Sug:' + (+oneMap + +1) + '  Outside-watershed',';'); // track the suggestion and outside
       });
 
-      // google.maps.event.addListener(map2, 'click', function goToTimeMap2() {
-      //     report('m-clk+', 'Sug:' + (+twoMap + +1) + '  Outside-watershed',';'); // track the suggestion and outside
-      // });
+      google.maps.event.addListener(map2, 'click', function goToTimeMap2() {
+          report('m-clk+', 'Sug:' + (+twoMap + +1) + '  Outside-watershed',';'); // track the suggestion and outside
+      });
 
       //This draws the subbasins
       doBackground();
@@ -273,7 +273,61 @@
 
                   backArray.push(background);
 
+                  background1.setMap(map2);
 
+                  var obj = find(subBasinArray2, 'subbasinID', whichNode);
+                  if (obj) {
+                      var listAll = "Sub-basin Area: "+acres + " acres | Stream Length*: " + rivers + " miles <br />" + JSON.stringify(obj);
+                      listAll = listAll.replace(/"0.0"/g, "No");
+                      listAll = listAll.replace(/"1.0"/g, "Yes");
+                      listAll = listAll.replace(/,/g, "<br />");
+                      listAll = listAll.replace(/"/g, "");
+                      listAll = listAll.replace(/}/g, "");
+                      listAll = listAll.replace(/{/g, "");
+                      listAll = listAll.replace(/_/g, " ");
+                      listAll = listAll.replace(/variable area wetlands/g, "wetlands area*");
+                      listAll = listAll.replace(/:/g, ": ");
+                      listAll = listAll.replace(/variable wetfr wetlands/g, "wetlands drainage");
+                      listAll = listAll.replace(/wetlands area/g, "Wetlands area");
+                      listAll = listAll.replace(/filter strips/g, "Filter strip width in feet*");
+                      listAll = listAll.replace(/wetlands drainage/g, "Wetlands drainage area fraction*");
+                      listAll = listAll.replace(/subbasinID/g, "Sub-basin ID*");
+                      listAll = listAll.replace(obj.variable_area_wetlands, obj.variable_area_wetlands + " acres");
+                      //alert (listAll);
+                  } else {
+                      var listAll = "Sub-basin Area: " + acres + " acres | Stream Length: " + rivers + " miles <br />" + "Sub-basin ID: " + whichNode;
+                  };
+
+                  var obj = {
+                      'list': listAll,
+                  };
+                  background1.objInfo = obj;;
+                  google.maps.event.addListener(background1, 'click', function(event) {
+                      console.log("in map 2");
+                      $('.displayStuff').html(this.objInfo.list);
+                      var abc = this.objInfo.list + '<br><div class="displayStuffb" name="What Do They Mean"><a target="_blank" href="infoBox.html" rel="shadowbox;height=640;width=620" name="What Do They Mean"><strong><em name="What Do They Mean">What do these numbers mean?</em></strong></a></div>';
+                      infowindow2 = new google.maps.InfoWindow({
+                          content: abc,
+                          position: event.latLng
+                      });
+                      infowindow2.open(map2);
+                      /*setTimeout(function() {
+                          infowindow2.close();
+                      }, 5000);*/
+                      // alert (this.indexID); // newalert
+                      report('m-clk+', 'Sug:' + (+twoMap + +1) + '  Sub-basin:'+this.indexID+';'); // trackable
+
+                      /*$.ajax({url: 'sendToTime.php',type: 'post',
+                          data: "JSONHolder=" + "Map2" + "," + page + "," + session + "," + this.indexID,
+                          success: function(data) {
+                          }
+                      });//*/
+                  });
+
+
+
+
+                  backArray2.push(background1);
               }
               //map.fitBounds(bounds);
           }
@@ -298,7 +352,7 @@
           // map1 = new google.maps.Map(document.getElementById('map-canvas1'),
           //    myOptions); 
           dofilter1();
-          // dofilter2();
+          dofilter2();
 
           /* $('#tools').append('&nbsp;&nbsp;Filter Strips<input name="bmpType" type="checkbox"' +
                ' checked value="filterStrips"  onClick="toggleLayerNew(filterArray,filterArray2,filter)"> ');//*/
@@ -423,10 +477,115 @@
 
 
       // -----------  start 'dofilter2'
+      function dofilter2() {
+          var obj = find(forMapArray2, 'Title', 'filter_strips');
+          if (obj) {
+              //alert("in it");
+              var listofSubs = obj.subs;
+              //alert(listofSubs);
+              //var listofSubs = obj.subs;
+              var strLen = listofSubs.length;
+              var listofSubs = listofSubs.slice(0, strLen - 1);
+          }
+          // Initialize JSONP request
+          var script = document.createElement('script');
+          var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
+          url.push('sql=');
+          //Streams
+          //var query2 = 'SELECT GRID_CODE, geometry FROM ' +
+          // '1NfttjsHSm_e2h9r55asztGg0V33mguyGyJPrWq4 Where GRID_CODE in (10,11,13,16,111)';
+          var query2 = 'SELECT GRID_CODE, geometry FROM ' +
+              '15rPfCYXIoquDLpunT66cvEz2yaqw7R6BRKptqBQ Where GRID_CODE in (' + listofSubs + ')';
+          var encodedQuery = encodeURIComponent(query2);
+          url.push(encodedQuery);
+          url.push('&callback=drawFilter2');
+          url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+          script.src = url.join('');
+          var body = document.getElementsByTagName('body')[0];
+          body.appendChild(script);
+
+      }
       // -----------  end 'dofilter2'
 
 
       // -----------  start 'drawFilter2'
+
+      drawFilter2 = function(data) {
+          //alert (JSON.stringify(forMapArray2));
+          var rows = data['rows'];
+          //alert(JSON.stringify(subBasinArray2));
+          //var whichNode=100;
+          for (var i in rows) {
+              var newCoordinates = [];
+              var whichNode = "";
+              var row = rows[i];
+              var whichNode = row[0];
+              // alert(whichNode);
+              var obj = find(subBasinArray2, 'subbasinID', whichNode);
+              if (obj) {
+                  filterAcre = obj.filter_strips;
+                  //  alert(filterAcre);
+
+                  switch (true) {
+                      case (filterAcre == 0):
+                          filterColor = "";
+                          break;
+
+                      case ((filterAcre > 0) && (filterAcre < 3)):
+                          filterColor = "#e927c2";
+                          break;
+
+                      case ((filterAcre >= 3) && (filterAcre < 6)):
+                          filterColor = "#bf8811";
+                          break;
+
+                      case ((filterAcre >= 6) && (filterAcre < 10)):
+                          filterColor = "#7da569";
+                          break;
+
+                      case ((filterAcre >= 10) && (filterAcre < 13)):
+                          filterColor = "#602288";
+                          break;
+
+                      case (filterAcre >= 13):
+                          filterColor = "#b10c0c";
+                          break;
+                      default:
+                          filterColor = "";
+                          break;
+
+                          //return wetlandsIcon;	
+
+                  }
+
+                  //alert(wetlandsIcon + ":" + wetlandsize);
+
+
+              }
+
+              //var geometries = rows[i][1]['geometry'];
+              //alert (geometries)
+
+              //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
+              var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
+              //  alert (newCoordinates);
+              //answersArray[oneMap].RATING
+
+              //alert (whichNode);
+
+
+              filter2 = new google.maps.Polyline({
+                  path: newCoordinates,
+                  strokeColor: filterColor,
+                  strokeOpacity: 1,
+                  strokeWeight: 2,
+                  fillColor: "#daca43",
+              })
+              filter2.setMap(map2);
+              filterArray2.push(filter2);
+          }
+          //map.fitBounds(bounds);
+      }
       // -----------  end 'drawFilter2'
       /////////////////////////////  End 'Filter Strips' totally ////////////////////////
 
@@ -445,7 +604,7 @@
           // map1 = new google.maps.Map(document.getElementById('map-canvas1'),
           //    myOptions); 
           docover1();
-          // docover2();
+          docover2();
           // $('#tools').append('&nbsp;&nbsp;<span style="color:#99c9ba"><strong>Cover Crops</strong></span><input name="bmpType" type="checkbox" checked value="coverCrops" onClick="toggleLayerNew(coverArray,coverArray2,cover)"> ');
           $('#tools').append('&nbsp;&nbsp;<span style="color:#99c9ba"><strong>Cover Crops</strong></span>' +
               '<input class="cc" name="bmpType" type="checkbox"' +
@@ -576,9 +735,119 @@
       // ------------  end 'drawCover1'
 
       // ------------  start 'doCover2'
+      function docover2() {
+          var obj = find(forMapArray2, 'Title', 'cover_crops');
+          if (obj) {
+              //alert("in it");
+              var listofSubs = obj.subs;
+              //var listofSubs = obj.subs;
+              var strLen = listofSubs.length;
+              var listofSubs = listofSubs.slice(0, strLen - 1);
+          }
+          // Initialize JSONP request
+          var script = document.createElement('script');
+          var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
+          url.push('sql=');
+          //Streams
+          var query2 = 'SELECT GRIDCODE, geometry, Area_Acres,Length_mil FROM ' +
+              '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA Where GRIDCODE in (' + listofSubs + ')';
+          var encodedQuery = encodeURIComponent(query2);
+          url.push(encodedQuery);
+          url.push('&callback=drawCover2');
+          url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+          script.src = url.join('');
+          var body = document.getElementsByTagName('body')[0];
+          body.appendChild(script);
+
+      }
       // ------------  end 'doCover2'
 
       // ------------  start 'drawCover2'
+      drawCover2 = function(data) {
+          var rows = data['rows'];
+          //var whichNode=100;
+          for (var i in rows) {
+              var newCoordinates = [];
+              var whichNode = "";
+              //var geometries = rows[i][1]['geometry'];
+              //alert (geometries)
+
+              //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
+              var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
+              //answersArray[oneMap].RATING
+              var row = rows[i];
+              var whichNode = row[0];
+              /////////You will put your acreage here///////////
+              var acres = parseFloat(row[2]).toFixed(1);
+              var rivers = parseFloat(row[3]).toFixed(1);
+              /////////You will put your stream miles here/////////
+              //alert (whichNode);
+
+              cover2 = new google.maps.Polygon({
+                  path: newCoordinates,
+                  //strokeColor: colors[0],
+                  strokeOpacity: .4,
+                  strokeWeight: 1,
+                  fillOpacity: 1,
+                  fillColor: "#99c9ba",
+                  indexID: whichNode,
+              })
+              cover2.setMap(map2);
+
+              var obj = find(subBasinArray2, 'subbasinID', whichNode);
+
+              if (obj) {
+                  var listAll = "Sub-basin Area: " + acres + " acres | Stream Length: " + rivers + " miles <br />" + JSON.stringify(obj);
+                  listAll = listAll.replace(/"0.0"/g, "No");
+                  listAll = listAll.replace(/"1.0"/g, "Yes");
+                  listAll = listAll.replace(/,/g, "<br />");
+                  listAll = listAll.replace(/"/g, "");
+                  listAll = listAll.replace(/}/g, "");
+                  listAll = listAll.replace(/{/g, "");
+                  listAll = listAll.replace(/_/g, " ");
+                  listAll = listAll.replace(/variable area wetlands/g, "wetlands area");
+                  listAll = listAll.replace(/:/g, ": ");
+                  listAll = listAll.replace(/variable wetfr wetlands/g, "wetlands drainage");
+                  listAll = listAll.replace(/wetlands area/g, "Wetlands area");
+                  listAll = listAll.replace(/filter strips/g, "Filter strip width in feet");
+                  listAll = listAll.replace(/wetlands drainage/g, "Wetlands drainage area fraction");
+                  listAll = listAll.replace(/subbasinID/g, "Sub-basin ID");
+                  listAll = listAll.replace(obj.variable_area_wetlands, obj.variable_area_wetlands + " acres");
+                  //alert (listAll);
+              } else {
+                  var listAll = "Sub-basin Area: " + acres + " acres | Stream Length: " + rivers + " miles <br />" + "Sub-basin ID: " + whichNode;
+              };
+
+              var obj = {
+                  'list': listAll,
+              };
+              cover2.objInfo = obj;
+              google.maps.event.addListener(cover2, 'click', function(event) {
+                  //console.log(this.objInfo);
+                  $('.displayStuff').html(this.objInfo.list);
+                  var abc = this.objInfo.list + '<br><div class="displayStuffb" name="What Do They Mean"><a target="_blank" href="infoBox.html" rel="shadowbox;height=640;width=620" name="What Do They Mean"><strong><em name="What Do They Mean">What do these numbers mean?</em></strong></a></div>';
+                  infowindow2 = new google.maps.InfoWindow({
+                      content: abc,
+                      position: event.latLng
+                  });
+                  infowindow2.open(map2);
+                  /*setTimeout(function() {
+                          infowindow2.close();
+                      }, 5000);*/
+                  // alert (this.indexID); // newalert
+                  report('m-clk+', 'Sug:' + (+twoMap + +1) + '  Sub-basin:'+this.indexID+';'); // trackable
+
+                  /*$.ajax({url: 'sendToTime.php',type: 'post',
+                      data: "JSONHolder=" + "Map2" + "," + page + "," + session + "," + this.indexID,
+                      success: function(data) {
+                      }
+                  });//*/
+              });
+
+              coverArray2.push(cover2);
+          }
+          //map.fitBounds(bounds);
+      }
       // ------------  end 'doCover2'
       ////////////////////////////////End COVER CROPS totally ////////////////////////
 
@@ -596,7 +865,7 @@
           // map1 = new google.maps.Map(document.getElementById('map-canvas1'),
           //    myOptions); 
           docrop1();
-          // docrop2();
+          docrop2();
           // $('#tools').append('&nbsp;&nbsp;<span style="color:#8da1bf"><strong>Crop Rotation</strong></span><input name="bmpType" type="checkbox" checked value="cropRotation" onClick="toggleLayerNew(cropArray,cropArray2,crop)"> ');
           $('#tools').append('&nbsp;&nbsp;<span style="color:#8da1bf"><strong>Crop Rotation</strong></span>' +
               '<input class="cr" name="bmpType" type="checkbox" checked value="cropRotation"' +
@@ -729,17 +998,128 @@
               cropArray.push(crop);
           }
           //map.fitBounds(bounds);
-      };
+      }
 
       // ------------  end 'drawCrop1'
 
 
 
       // ------------  start 'doCrop2'   --------- BLUE
+      function docrop2() {
+          var obj = find(forMapArray2, 'Title', 'crop_rotation');
+          if (obj) {
+              //alert("in it");
+              var listofSubs = obj.subs;
+              //var listofSubs = obj.subs;
+              var strLen = listofSubs.length;
+              var listofSubs = listofSubs.slice(0, strLen - 1);
+              //alert(listofSubs);
+
+          }
+          // Initialize JSONP request
+          var script = document.createElement('script');
+          var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
+          url.push('sql=');
+          //Streams
+          var query2 = 'SELECT GRIDCODE, geometry, Area_Acres,Length_mil FROM ' +
+              '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA Where GRIDCODE in (' + listofSubs + ')';
+          var encodedQuery = encodeURIComponent(query2);
+          url.push(encodedQuery);
+          url.push('&callback=drawCrop2');
+          url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+          script.src = url.join('');
+          var body = document.getElementsByTagName('body')[0];
+          body.appendChild(script);
+
+      }
       // ------------  end 'doCrop2'
 
 
       // ------------  start 'drawCrop2'   --------- BLUE
+
+      drawCrop2 = function(data) {
+          var rows = data['rows'];
+          //var whichNode=100;
+          for (var i in rows) {
+              var newCoordinates = [];
+              var whichNode = "";
+              //var geometries = rows[i][1]['geometry'];
+              //alert (geometries)
+
+              //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
+              var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
+              //answersArray[oneMap].RATING
+              var row = rows[i];
+              var whichNode = row[0];
+              /////////You will put your acreage here///////////
+              var acres = parseFloat(row[2]).toFixed(1);
+              var rivers = parseFloat(row[3]).toFixed(1);
+              /////////You will put your stream miles here/////////
+              //alert (whichNode);
+
+              crop2 = new google.maps.Polygon({
+                  path: newCoordinates,
+                  //strokeColor: colors[0],
+                  strokeOpacity: .4,
+                  strokeWeight: 1,
+                  fillOpacity: 1,
+                  fillColor: "#8da1bf",
+                  indexID: whichNode,
+              })
+              crop2.setMap(map2);
+              var obj = find(subBasinArray2, 'subbasinID', whichNode);
+              if (obj) {
+                  var listAll = "Sub-basin Area: " + acres + " acres | Stream Length: " + rivers + " miles <br />" + JSON.stringify(obj);
+                  listAll = listAll.replace(/"0.0"/g, "No");
+                  listAll = listAll.replace(/"1.0"/g, "Yes");
+                  listAll = listAll.replace(/,/g, "<br />");
+                  listAll = listAll.replace(/"/g, "");
+                  listAll = listAll.replace(/}/g, "");
+                  listAll = listAll.replace(/{/g, "");
+                  listAll = listAll.replace(/_/g, " ");
+                  listAll = listAll.replace(/variable area wetlands/g, "wetlands area");
+                  listAll = listAll.replace(/:/g, ": ");
+                  listAll = listAll.replace(/variable wetfr wetlands/g, "wetlands drainage");
+                  listAll = listAll.replace(/wetlands area/g, "Wetlands area");
+                  listAll = listAll.replace(/filter strips/g, "Filter strip width in feet");
+                  listAll = listAll.replace(/wetlands drainage/g, "Wetlands drainage area fraction");
+                  listAll = listAll.replace(/subbasinID/g, "Sub-basin ID");
+                  listAll = listAll.replace(obj.variable_area_wetlands, obj.variable_area_wetlands + " acres");
+                  //alert (listAll);
+              } else {
+                  var listAll = "Sub-basin Area: " + acres + " acres | Stream Length: " + rivers + " miles <br />" + "Sub-basin ID: " + whichNode;
+              };
+
+              var obj = {
+                  'list': listAll,
+              };
+              crop2.objInfo = obj;
+
+              google.maps.event.addListener(crop2, 'click', function(event) {
+                  // if (infowindow) infowindow.close();     
+                  $('.displayStuff').html(this.objInfo.list);
+                  var abc = this.objInfo.list + '<br><div class="displayStuffb" name="What Do They Mean"><a target="_blank" href="infoBox.html" rel="shadowbox;height=640;width=620" name="What Do They Mean"><strong><em name="What Do They Mean">What do these numbers mean?</em></strong></a></div>';
+                  infowindow2 = new google.maps.InfoWindow({
+                      content: abc,
+                      position: event.latLng
+                  });
+                  infowindow2.open(map2);
+                  /*setTimeout(function() {
+                          infowindow2.close();
+                      }, 5000);*/
+                  // alert (this.indexID); // newalert
+                  report('m-clk+', 'Sug:' + (+twoMap + +1) + '  Sub-basin:'+this.indexID+';'); // trackable
+
+                  /*$.ajax({url: 'sendToTime.php',type: 'post',
+                      data: "JSONHolder=" + "Map2" + "," + page + "," + session + "," + this.indexID,
+                      success: function(data) {
+                      }
+                  }); //*/
+              });
+              cropArray2.push(crop2);
+          }
+          //map.fitBounds(bounds);
+      }
       // ------------  end 'drawCrop2'
       ////////////////////////////////End Crop Rotation totally ////////////////////////
 
@@ -748,7 +1128,7 @@
 
       function doStripCropping() {
           dostrip1();
-          // dostrip2();
+          dostrip2();
           // $('#tools').append('&nbsp;&nbsp;<span style="color:#87b07e"><strong>Strip Cropping</strong></span><input name="bmpType" type="checkbox" checked value="stripCropping" onClick="toggleLayerNew(stripArray,stripArray2,strip)">&nbsp;');
           $('#tools').append('&nbsp;&nbsp;<span style="color:#87b07e"><strong>Strip Cropping</strong></span>' +
               '<input class="sc" name="bmpType" type="checkbox" checked value="stripCropping"' +
@@ -880,10 +1260,125 @@
 
 
       // ----------------  start 'dostrip2()'
+      function dostrip2() {
+          var obj = find(forMapArray2, 'Title', 'strip_cropping');
+          if (obj) {
+              //alert("in it");
+              var listofSubs = obj.subs;
+              //var listofSubs = obj.subs;
+              var strLen = listofSubs.length;
+              var listofSubs = listofSubs.slice(0, strLen - 1);
+          }
+          // Initialize JSONP request
+          var script = document.createElement('script');
+          var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
+          url.push('sql=');
+          //Streams
+          var query2 = 'SELECT GRIDCODE, geometry, Area_Acres,Length_mil FROM ' +
+              '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA Where GRIDCODE in (' + listofSubs + ')';
+          var encodedQuery = encodeURIComponent(query2);
+          url.push(encodedQuery);
+          url.push('&callback=drawStrip2');
+          url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+          script.src = url.join('');
+          var body = document.getElementsByTagName('body')[0];
+          body.appendChild(script);
+
+      }
       // ----------------  end 'dostrip2()'
 
 
       // ----------------  start 'drawStrip2' ---------- /GREEN/
+
+      drawStrip2 = function(data) {
+          var rows = data['rows'];
+          //var whichNode=100;
+          for (var i in rows) {
+              var newCoordinates = [];
+              var whichNode = "";
+              //var geometries = rows[i][1]['geometry'];
+              //alert (geometries)
+
+              //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
+              var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
+              //answersArray[oneMap].RATING
+              var row = rows[i];
+              var whichNode = row[0];
+              /////////You will put your acreage here///////////
+              var acres = parseFloat(row[2]).toFixed(1);
+              var rivers = parseFloat(row[3]).toFixed(1);
+              /////////You will put your stream miles here/////////
+              //alert (whichNode);
+
+
+              strip2 = new google.maps.Polygon({
+                  path: newCoordinates,
+                  //strokeColor: colors[0],
+                  strokeOpacity: .4,
+                  strokeWeight: 1,
+                  fillOpacity: 1,
+                  fillColor: "#87b07e",
+                  indexID: whichNode,
+              })
+              strip2.setMap(map2);
+              var obj = find(subBasinArray2, 'subbasinID', whichNode);
+              if (obj) {
+                  var listAll = "Sub-basin Area: " + acres + " acres | Stream Length: " + rivers + " miles <br />" + JSON.stringify(obj);
+
+                  listAll = listAll.replace(/"0.0"/g, "No");
+                  listAll = listAll.replace(/"1.0"/g, "Yes");
+                  listAll = listAll.replace(/,/g, "<br />");
+                  listAll = listAll.replace(/"/g, "");
+                  listAll = listAll.replace(/}/g, "");
+                  listAll = listAll.replace(/{/g, "");
+                  listAll = listAll.replace(/_/g, " ");
+                  listAll = listAll.replace(/variable area wetlands/g, "wetlands area");
+                  listAll = listAll.replace(/:/g, ": ");
+                  listAll = listAll.replace(/variable wetfr wetlands/g, "wetlands drainage");
+                  listAll = listAll.replace(/wetlands area/g, "Wetlands area");
+                  listAll = listAll.replace(/filter strips/g, "Filter strip width in feet");
+                  listAll = listAll.replace(/wetlands drainage/g, "Wetlands drainage area fraction");
+                  listAll = listAll.replace(/subbasinID/g, "Sub-basin ID");
+                  listAll = listAll.replace(obj.variable_area_wetlands, obj.variable_area_wetlands + " acres");
+
+
+
+
+                  //alert (listAll);
+              } else {
+                  var listAll = "Sub-basin Area: " + acres + " acres | Stream Length: " + rivers + " miles <br />" + "Sub-basin ID: " + whichNode;
+              };
+
+              var obj = {
+                  'list': listAll,
+              };
+              strip2.objInfo = obj;
+              google.maps.event.addListener(strip2, 'click', function(event) {
+                  //console.log(this.objInfo);
+                  $('.displayStuff').html(this.objInfo.list);
+                  var abc = this.objInfo.list + '<br><div class="displayStuffb" name="What Do They Mean"><a target="_blank" href="infoBox.html" rel="shadowbox;height=640;width=620" name="What Do They Mean"><strong><em name="What Do They Mean">What do these numbers mean?</em></strong></a></div>';
+                  infowindow2 = new google.maps.InfoWindow({
+                      content: abc,
+                      position: event.latLng
+                  });
+                  infowindow2.open(map2);
+                  /*setTimeout(function() {
+                          infowindow2.close();
+                      }, 5000);*/
+                  // alert ('Suggestion ' + this.indexID); // newalert
+                  report('m-clk+', 'Sug:' + (+twoMap + +1) + '  Sub-basin:'+this.indexID+';'); // trackable
+
+                  /*$.ajax({url: 'sendToTime.php', type: 'post',
+                      data: "JSONHolder=" + "Map2" + "," + page + "," + session + "," + this.indexID,
+                      success: function(data) {
+                      }
+                  }); //*/
+              });
+
+              stripArray2.push(strip2);
+          }
+          //map.fitBounds(bounds);
+      }
       // ----------------  end 'drawStrip2'
 
 
@@ -909,7 +1404,7 @@
       ////////////////////// Begin Wetlands Markers /////////////////////////////
       function dobinaryWetlands() {
           dowetlands1();
-          // dowetlands2();
+          dowetlands2();
           // $('#tools').append('&nbsp;&nbsp;Wetlands<input name="bmpType" type="checkbox" checked value="wetlands" onClick="toggleLayerNew(wetArray,wetArray2,wetlands)">');
           $('#tools').append('&nbsp;&nbsp;Wetlands<input class="wt" name="bmpType" type="checkbox" checked' +
               ' value="wetlands" onClick="toggleLayerNew(wetArray,wetArray2,wetlands);track_check_wetland();">');
@@ -1025,10 +1520,116 @@
       } // -------------- end 'drawWet1'
 
       // -------------- start 'dowetlands2()'
-      // -------------- end 'dowetlands2()'
+      function dowetlands2() {
+          var obj = find(forMapArray, 'Title', 'variable_area_wetlands');
+          if (obj) {
+              //alert("in it");
+              var listofSubs = obj.subs;
+              //alert ( listofSubs);
+              //var listofSubs = obj.subs;
+              var strLen = listofSubs.length;
+              var listofSubs = listofSubs.slice(0, strLen - 1);
+          }
 
+          // Initialize JSONP request
+          var script = document.createElement('script');
+          var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
+          url.push('sql=');
+          //Streams
+          var query = 'SELECT GRID_CODE, geometry FROM ' +
+              '1h0Pw3awyHJC1Eal7QHyP_FQZ6r7PpC5aUU0ybD0 Where GRID_CODE in (' + listofSubs + ')';
+          var encodedQuery = encodeURIComponent(query);
+          url.push(encodedQuery);
+          url.push('&callback=drawWet2');
+          url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+          script.src = url.join('');
+          var body = document.getElementsByTagName('body')[0];
+          body.appendChild(script);
+      } // -------------- end 'dowetlands2()'
       // -------------- start 'drawWet2'
-      // -------------- end 'drawWet2'
+      drawWet2 = function(data) {
+              var rows = data['rows'];
+              //var whichNode=100;
+              for (var i in rows) {
+                  var newCoordinates = [];
+                  var whichNode = "";
+                  //var geometries = rows[i][1]['geometry'];
+                  //alert (geometries)
+                  var row = rows[i];
+                  var whichNode = row[0];
+                  //alert (whichNode);
+                  var obj = find(subBasinArray2, 'subbasinID', whichNode);
+                  if (obj) {
+                      wetlandsize = obj.variable_area_wetlands;
+                      //alert ( wetlandsize);
+                      switch (true) {
+                          case (wetlandsize == 0):
+                              wetlandsIcon = "";
+                              break;
+
+                          case (wetlandsize < 2):
+                              wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands1.png";
+                              break;
+
+                          case ((wetlandsize >= 2) && (wetlandsize < 6)):
+                              wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands2.png";
+                              break;
+
+                          case ((wetlandsize >= 6) && (wetlandsize < 11)):
+                              wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands3.png";
+                              break;
+
+                          case ((wetlandsize >= 11) && (wetlandsize < 15)):
+                              wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands4.png";
+                              break;
+
+                          case ((wetlandsize >= 15) && (wetlandsize < 29)):
+                              wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands5.png";
+                              break;
+
+                          case ((wetlandsize >= 29) && (wetlandsize < 40)):
+                              wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands6.png";
+                              break;
+
+                          case ((wetlandsize >= 40)):
+                              wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands7.png";
+                              break;
+
+                          default:
+                              wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands.png";
+
+                              break;
+
+                              //return wetlandsIcon;
+
+                      }
+
+                      //alert(wetlandsIcon + ":" + wetlandsize);
+
+
+                  }
+
+
+
+                  //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
+                  var newCoordinates = constructNewCoordinatesWet(rows[i][1]['geometry']);
+                  //answersArray[oneMap].RATING
+
+
+
+                  //alert (whichNode);
+                  wetlands2 = geo;
+                  //var country = new google.maps.Marker({  
+                  // position:new google.maps.LatLng(newCoordinates),
+                  //map:map1,
+                  //icon: customIcons[1],
+                  //})
+                  //alert (country);
+                  wetlands2.setMap(map2);
+                  wetArray2.push(wetlands2);
+              }
+              //map.fitBounds(bounds);
+          } // -------------- end 'drawWet2'
       ////////////////////////// End wetland totally ///////////////////////
 
       ///////// This is the new piece that takes the markers and not shapes //////////
@@ -1107,14 +1708,13 @@
       /////////////////////////// Begin No-Till Markers //////////////////////////////
       function doConserveTillage() {
           dotill1();
-          // dotill2();
+          dotill2();
           // $('#tools').append('&nbsp;&nbsp;Conservation Tillage<input name="bmpType" type="checkbox"  checked value="conservationTillage" onClick="toggleLayerNew(conserveArray,conserveArray2,notill)"> ');
           $('#tools').append('&nbsp;&nbsp;Conservation Tillage<input class="nt" name="bmpType" type="checkbox" checked value=' +
               '"conservationTillage" onClick="toggleLayerNew(conserveArray,conserveArray2,notill);track_check_noTill();"> ');
           $('#toolpic').append('<img alt="WordPress" src="images/key_conservation.jpg" />');
       }
       // ------- end 'doConserveTillage()'
-
       // ------- start 'dotill1()'
       function dotill1() {
           var obj = find(forMapArray, 'Title', 'conservation_tillage');
@@ -1168,17 +1768,58 @@
       } //   ------- end 'drawTill1'
 
       // ------- start 'dotill2()'
-      // ------- end 'dotill2()'
-
+      function dotill2() {
+          var obj = find(forMapArray2, 'Title', 'conservation_tillage');
+          if (obj) {
+              //alert("in it");
+              var listofSubs = obj.subs;
+              //var listofSubs = obj.subs;
+              var strLen = listofSubs.length;
+              var listofSubs = listofSubs.slice(0, strLen - 1);
+          }
+          // Initialize JSONP request
+          var script = document.createElement('script');
+          var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
+          url.push('sql=');
+          //Streams
+          var query = 'SELECT GRIDCODE, geometry FROM ' +
+              '1iRLpYHfW4L9ncVMvhL5HD5Pwcuu63MVmRBWtn7Y Where GRIDCODE in (' + listofSubs + ')';
+          var encodedQuery = encodeURIComponent(query);
+          url.push(encodedQuery);
+          url.push('&callback=drawTill2');
+          url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+          script.src = url.join('');
+          var body = document.getElementsByTagName('body')[0];
+          body.appendChild(script);
+      }  // ------- end 'dotill2()'
       // ------- start 'drawTill2'
-      // ------- end 'drawTill2'
+      drawTill2 = function(data) {
+
+          var rows = data['rows'];
+          //var whichNode=100;
+          for (var i in rows) {
+              var newCoordinates = [];
+              var whichNode = "";
+              //var geometries = rows[i][1]['geometry'];
+              //alert (geometries)
+
+              //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
+              var newCoordinates = constructNewCoordinatesTill(rows[i][1]['geometry']);
+              //answersArray[oneMap].RATING
+              var row = rows[i];
+              var whichNode = row[0];
+              notill2 = geo;
+              notill2.setMap(map2);
+              conserveArray2.push(notill2);
+          }
+      } // ------- end 'drawTill2'
 
       //////// end NO-TILLAGE totally /////////////////////
 
       /////////////////  Begin Grass-Waterways Markers  //////////////////////////////////////////////////////////
       function doGrassWaterway() {
           dograss1();
-          // dograss2();
+          dograss2();
           // $('#tools').append('&nbsp;&nbsp;Grasswaterways<input name="bmpType" type="checkbox"  checked value="grassWaterWays" onClick="toggleLayerNew(grassArray,grassArray2,grass)"> ');
           $('#tools').append('&nbsp;&nbsp;Grasswaterways <input class="gw" name="bmpType" type="checkbox" checked' +
               ' value="grassWaterWays" onClick="toggleLayerNew(grassArray,grassArray2,grass);track_check_grassWaterway();"> ');
@@ -1242,9 +1883,53 @@
       } // ---------------------------------- end 'drawGrass1'
 
       // ------------------------------------ start 'dograss2()'
-      // ------------------------------------ end 'dograss2()'
-
+      function dograss2() {
+          var obj = find(forMapArray2, 'Title', 'grassed_waterway');
+          if (obj) {
+              //alert("in it");
+              var listofSubs = obj.subs;
+              //var listofSubs = obj.subs;
+              var strLen = listofSubs.length;
+              var listofSubs = listofSubs.slice(0, strLen - 1);
+          }
+          // Initialize JSONP request
+          var script = document.createElement('script');
+          var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
+          url.push('sql=');
+          //Streams
+          var query = 'SELECT GRIDCODE, geometry FROM ' +
+              '1iRLpYHfW4L9ncVMvhL5HD5Pwcuu63MVmRBWtn7Y Where GRIDCODE in (' + listofSubs + ')';
+          var encodedQuery = encodeURIComponent(query);
+          url.push(encodedQuery);
+          url.push('&callback=drawGrass2');
+          url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+          script.src = url.join('');
+          var body = document.getElementsByTagName('body')[0];
+          body.appendChild(script);
+      } // ------------------------------------ end 'dograss2()'
       // ------------------------------------ start 'drawGrass2'
+      drawGrass2 = function(data) {
+          var rows = data['rows'];
+          //var whichNode=100;
+          for (var i in rows) {
+              var newCoordinates = [];
+              var whichNode = "";
+              //var geometries = rows[i][1]['geometry'];
+              //alert (geometries)
+
+              //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
+              var newCoordinates = constructNewCoordinatesGrass(rows[i][1]['geometry']);
+              //answersArray[oneMap].RATING
+              var row = rows[i];
+              var whichNode = row[0];
+              //alert (whichNode);
+
+
+              grass2 = geo;
+              grass2.setMap(map2);
+              grassArray2.push(grass2);
+          }
+      }
       // ------------------------------------ end 'drawGrass2'
       ////////END GW (Grassed Waterways) totally /////////////////////
 
