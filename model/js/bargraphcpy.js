@@ -232,15 +232,6 @@ function subBasinGraph1() {
         });
 // ------------------------------------------ END chart 3 ------------------------------- //
 
-        /*function createCustomHTMLContent1( row, dm , m) {
-            return '<div style="padding:5px 5px 5px 5px;">' +
-                '<table id="medals_layout">' + '<tr>' +
-                '<td>Alternative : </td>' +
-                '<td><b>' + row + '</b></td>' + '</tr>' + '<tr>' +
-                '<td>'+dm+' : </td>' +
-                '<td><b>' + m + '</b></td>' + '</tr>' + '<tr>'  + '</table>' + '</div>';
-          }*/
-
         //tool tip edit for min and max
         function createCustomHTMLContent1(row, dm, m, min, max) {
             return '\n' + 'Alternative+: ' + row + '\n' + dm + ': ' + m + "\n min:" + min + "\nmax:" + max;

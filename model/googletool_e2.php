@@ -124,7 +124,6 @@
         //window.onload(heatinitialize);
         google.load("visualization", "1", {packages:["corechart"]});
         google.setOnLoadCallback(subBasinGraph1);
-        /*Querying to gather data to fill google charts*/
     </script>
 
     <script type='text/javascript' src='js/fda.js'></script>
