@@ -329,8 +329,8 @@ else
                 <table width="100%" border="0" cellspacing="1">
                     <tr>
                         <td width="86%">
-                            <h2 name="letscompareheader">Let's compare and vote!</h2>
-                            <p name="suggestionsNumberHeader">Total number of suggestions you will be comparing: <?php print $count ?> | Page <strong><span class="currentPage"></span></strong> of <span class="totalPages"></span>
+                            <h2 name="letscompareheader">Let's vote!</h2>
+                            <p name="suggestionsNumberHeader">Total number of suggestions you will be assessing: <?php print $count ?> | Page <strong><span class="currentPage"></span></strong> of <span class="totalPages"></span>
                             <hr noshade size=3 width=1000>
                             </p>
                         </td>
@@ -352,7 +352,8 @@ else
         </div>
         <br/>
 <!--    ===================================  STEP 1 ======================================  -->
-        <h2>STEP 1: Compare the two maps below to assess if you like how the practices are allocated in the two suggestions.</h2>
+        <h2>STEP 1: Assess if you like how the practices in the map below are allocated in the suggestion.</h2>
+        
         <div class="step1">
             <div class="displayStuffa">Click inside of any sub-basin to learn about practices proposed in a sub-basin.</div>
             <!-- <div class="displayStuffb" name="What Do They Mean"><a href="infoBox.html" rel="shadowbox;height=640;width=620" name="What Do They Mean"><strong><em name="What Do They Mean">What do these numbers mean?</em></strong></a></div>-->
@@ -383,7 +384,8 @@ else
         <div name='step2collapse' class ="containerABC collapsed">
             <div class="header">
                 <h2 class="trackable" id='step2' name="step2">
-                    STEP 2: Now assess if the two suggestions above meet your expectation for goals at a specific sub-basin.</h2>
+<!--                    STEP 2: Now assess if the two suggestions above meet your expectation for goals at a specific sub-basin.</h2>-->
+                    STEP 2: Now assess if the suggestion above met your expectations for the following objectives at specific sub-basin.</h2>
             </div>
             <div class="graph">
                 <div class="dropDownArea">
@@ -442,8 +444,8 @@ else
 <!--    ============================================  STEP 3 ====================================== -->
         <div name='step3collapse' class ="containerABC collapsed" >
             <div class="header">
-                <h2 class="trackable" id='step3' name="step3">STEP 3: Now
-                    assess if you like how the practices proposed by the suggestions affect the rest of the watershed landscape.</h2>
+                <h2 class="trackable" id='step3' name="step3">STEP 3: Now assess if you like how the practice
+                    proposed by the suggestion affects the rest of the watershed landscape.</h2>
             </div>
             <div class="graph">
 <!--                Below, (div class="dropDownHeatMap") opens a dropdown to select the number  of "suggestion". -->
@@ -614,13 +616,13 @@ src="images/info.png" width="14" height="14" alt=""/>-->
         </div>
         <!--  This last </div> was added by E.Noa -->
 <!--    =====================================  STEP 4  ====================================    -->
-        <h2 name="step4">STEP 4: Time to vote! Provide a rating for each of the suggestions shown above.</h2>
+        <h2 name="step4">STEP 4: Time to vote! Provide a rating for the suggestion shown above.</h2>
         <!-- <form id="form1" name="form1" method="post" action="sendToUsersFeedback.php?id=<? print $thisCSS;  ?>">-->
         
         <div class="mapHolder1_s4 map1">
             <h4>Suggestion <span class="oneMap"></span></h4>
             <div class="innerMapLinesHead">
-                <h4>Rate the design and performance of this alternative </h4>
+                <h4>Rate the design and performance of this suggestion </h4>
             </div>
             
             <div class="innerMapLines">
@@ -2320,7 +2322,12 @@ src="images/info.png" width="14" height="14" alt=""/>-->
         heatinitialize(); // This function is located at 'heatmapnew1.js' file
         // open a welcome message as soon as the window loads
         Shadowbox.open({
-            content:    '<div id="welcome-msg"><h2>Instructions</h2><ol><li>Please compare  alternatives based on how the conservation practices are spatially distributed  in the watershed and based on the performance of these alternatives with  respect to the various goals or objectives you selected earlier. </li><li>The bar-graphs at  the bottom of the page display how the various alternatives perform with respect  to the objectives. </li><li>Then, please make  a judgment on the quality of the design of the various alternatives based on  any subjective criteria important to you. </li><li>Once you have  compared the alternatives, please provide a rating on how much you like or dislike  a particular alternative.</li></ol></div>',
+            content:    '<div id="welcome-msg"><h2>Instructions</h2><ol><li>Please assess the suggestions based on ' +
+            'how the conservation practices are spatially distributed  in the watershed and based on the performance' +
+            ' of these suggestions with  respect to the various goals or objectives you selected earlier. </li>' +
+            '<li>The bar-graphs at  the bottom of the page display how the various suggestions perform with respect  to the objectives. </li>' +
+            '<li>Then, please make  a judgment on the quality of the design of the various suggestions. </li>' +
+            '<li>Once you have assessed the suggestion, please provide a rating on how much you like or dislike the particular suggestion.</li></ol></div>',
             player:     "html",
             title:      "WRESTORE Visualization Tool ",
             height:     450,
