@@ -124,7 +124,6 @@
         //window.onload(heatinitialize);
         google.load("visualization", "1", {packages:["corechart"]});
         google.setOnLoadCallback(subBasinGraph1);
-        /*Querying to gather data to fill google charts*/
     </script>
 
     <script type='text/javascript' src='js/fda.js'></script>
@@ -319,24 +318,7 @@ else
             </nav>-->
     </div>
     <!-- End Nav Row -->
-    <!--   <div class="row" id="banner">
-        <div class="instructionpods"> <strong>Progress Bar </strong><br /><a href="#void" onclick="instruct1()" >
-        What is this?</a></div>
-        <div class="intropods i1">Introspection<br />
-         1
-        </div>
-        <div class="pods s11">HS 1</div>
-        <div class="pods s12">HS 2</div>
-        <div class="pods s13">HS 3</div>
-        <div class="pods s14">HS 4</div>
-        <div class="pods s15">HS 5</div>
-        <div class="pods s16">HS 6</div>
-        <div class="intropods i2">Introspection<br />
-         2
-        </div>
-
-        <div style="clear:both"></div>
-        </div>-->
+    
     <div class="skip"></div>
     <div class="row " id="mainFrame">
         <div id="mainCol" style="width:100%">
@@ -378,78 +360,29 @@ else
             <!-- <div class="displayStuff"></div>-->
             <form id="form1" name="form1" method="post" action="sendToUsersFeedback.php?id=<? print $thisCSS;  ?>">
                 <!--Changed mapHolder to mapHolder1-->
+<!--                MAP1 in STEP1  -->
                 <div class="mapHolder1 map1">
                     <h4>Suggestion <span class="oneMap"></span></h4>
                     <div id="mapHolderOne">
                         <div id="map_canvas1" name="map_canvas1"></div>
                     </div>
-                    <!--
-                        <div class="innerMapLinesHead">
-                        <h4>Rate the design and performance of this alternative </h4>
-                        </div>
-                        <div class="innerMapLines">
-                        <div class="lines"><input name="rating1" type="radio" value="3" /><label> I like it:</label></div>
-                        <div class="lines"> <input name="rating1" type="radio" value="2" /><label> Neutral:</label></div>
-                        <div class="lines"> <input name="rating1" type="radio" value="1" /><label> I don't like it:</label></div>
-
-                          <input name="rating1" type="text" class="padInput" id="rating1" size="2" />
-                        </div>
-                        <div style="clear:both"></div>
-                        <div class="innerMapLinesHead">
-                          <h4>How confident are you about your rating? (%)</h4>
-                        </div>
-                         <div class="innerMapLines">
-                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                           <tr>
-                             <td width="22%"><input name="confidence1" type="text" id="confidence1" size="3" readonly="readonly"/></td>
-                             <td width="78%"><div id="slider"></div></td>
-                           </tr>
-                         </table>
-
-                        </div>
-                        -->
                 </div>
-                <div class="mapHolder2 map2" style="margin-right:0">
-                    <h4>Suggestion <span class="twoMap"></span></h4>
-                    <div id="mapHolderTwo">
-                        <div id="map_canvas2" name="map_canvas2"></div>
-                    </div>
-                    <!--
-                        <div class="innerMapLinesHead">
-                         <h4>Rate the design and performance of this alternative </h4>
-                         </div>
-                         <div class="innerMapLines">
-                        <div class="lines"><input name="rating2" type="radio" value="3" /><label> I like it:</label></div>
-                        <div class="lines"> <input name="rating2" type="radio" value="2" /><label> Neutral:</label></div>
-                        <div class="lines"> <input name="rating2" type="radio" value="1" /><label> I don't like it:</label></div>
-                        <input name="rating2" type="text" class="padInput" id="rating2" size="2"/>
-                        </div>
-
-                        <div style="clear:both"></div>
-                        <div class="innerMapLinesHead">
-                         <h4>How confident are you about your rating? (%)</h4>
-                        </div>
-                        <div class="innerMapLines">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                          <tr>
-                            <td width="22%"><input name="confidence2" type="text" id="confidence2" size="3" readonly="readonly"/></td>
-                            <td width="78%"><div id="slider1"></div></td>
-                          </tr>
-                        </table>
-
-                        </div>
-
-                        </div>-->
-                </div>
+<!--                MAP2 in STEP1  -->
+<!--                <div class="mapHolder2 map2" style="margin-right:0">-->
+<!--                    <h4>Suggestion** <span class="twoMap"></span></h4>-->
+<!--                    <div id="mapHolderTwo">-->
+<!--                        <div id="map_canvas2" name="map_canvas2"></div>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div style="clear:both"></div>
             </form>
         </div>
         <!--  ADDED by E.Noa  </form></div>-->
-<!--        ===================================  STEP 2 ======================================  -->
+<!--        ===================================  STEP  2 ======================================  -->
         <!-- database graphing-->
         <div name='step2collapse' class ="containerABC collapsed">
             <div class="header">
-                <h2 class="trackable" id='step_2' name="step2">
+                <h2 class="trackable" id='step2' name="step2">
                     STEP 2: Now assess if the two suggestions above meet your expectation for goals at a specific sub-basin.</h2>
             </div>
             <div class="graph">
@@ -509,7 +442,7 @@ else
 <!--    ============================================  STEP 3 ====================================== -->
         <div name='step3collapse' class ="containerABC collapsed" >
             <div class="header">
-                <h2 class="trackable" id='step_3' name="step3">STEP 3: Now
+                <h2 class="trackable" id='step3' name="step3">STEP 3: Now
                     assess if you like how the practices proposed by the suggestions affect the rest of the watershed landscape.</h2>
             </div>
             <div class="graph">
@@ -530,15 +463,15 @@ else
                             </div>-->
                 <div id="tabs">
                     <ul>
-                        <li><a class="trackable" id="S3-tab-PF" href="#tabs-PF"> PeakFlow</a></li>
-                        <li><a class="trackable" id="S3-tab-RV" href="#tabs-RV"> Revenue in $</a></li>
-                        <li><a class="trackable" id="S3-tab-SR" href="#tabs-SR"> Sediment red in tons</a></li>
-                        <li><a class="trackable" id="S3-tab-NR" href="#tabs-NR"> Nitrate red in kilograms </a></li>
+                        <li><a class="trackable" id="step3_tab_PF" href="#tabs-PF"> Peak.Flow in cfs</a></li>
+                        <li><a class="trackable" id="step3_tab_RV" href="#tabs-RV"> Economic.Revenue in $</a></li>
+                        <li><a class="trackable" id="step3_tab_SR" href="#tabs-SR"> Sediment.Reduction in tons</a></li>
+                        <li><a class="trackable" id="step3_tab_NR" href="#tabs-NR"> Nitrate.Reduction in kg</a></li>
                     </ul>
                     <div id="tabs-PF">
                         <div class="heatMapHolder1 map1">
                             <h4>Suggestion <span class="oneMap"></span></h4>
-                            <div class="info1 trackable" id="tab-PF-m1-Legend"> Legend
+                            <div class="info1 trackable" id="tab_PF_map1_Legend"> Legend
 <!--                            <img  title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
                                 <img id="imm1" class="playdown" title="click for additional information" alt="click for
                                 additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>
@@ -550,10 +483,12 @@ else
                                 <div id="heatmap_canvasPF1" name="heatmap_canvasPF1"></div>
                             </div>
                         </div>
+<!--                        MAP2 for PF in STEP3-->
                         <div class="heatMapHolder2 map2" style="margin-right:0">
                             <h4>Suggestion <span class="twoMap"></span></h4>
-                            <div class="info2 trackable" id="tab-PF-m2-Legend"> Legend
-<!--                            <img  title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
+                            <div class="info2 trackable" id="tab_PF_map2_Legend"> Legend
+<!--    comment      <img  title="click for additional information" alt="click for additional information"
+src="images/info.png" width="14" height="14" alt=""/>-->
                                 <img id="imm2" class="playdown" title="click for additional information" alt="click for
                                 additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>
 
@@ -565,10 +500,11 @@ else
                         </div>
                         <div style="clear:both"></div>
                     </div>
+                    
                     <div id="tabs-RV">
                         <div class="heatMapHolder1 map1">
                             <h4>Suggestion <span class="oneMap"></span></h4>
-                            <div class="info3 trackable" id="tab-RV-m1-Legend"> Legend
+                            <div class="info3 trackable" id="tab_RV_map1_Legend"> Legend
 <!--                            <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
                                 <img id="imm3" class="playdown" title="click for additional information" alt="click for
                                 additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>
@@ -579,9 +515,10 @@ else
                                 <div id="heatmap_canvasRV1" name="heatmap_canvasRV1"></div>
                             </div>
                         </div>
+                        
                         <div class="heatMapHolder2 map2" style="margin-right:0">
                             <h4>Suggestion <span class="twoMap"></span></h4>
-                            <div class="info4 trackable" id="tab-RV-m2-Legend"> Legend
+                            <div class="info4 trackable" id="tab_RV_map2_Legend"> Legend
 <!--                            <img  title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
                                 <img id="imm4" class="playdown" title="click for additional information" alt="click for
                                 additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>
@@ -594,10 +531,11 @@ else
                         </div>
                         <div style="clear:both"></div>
                     </div>
+                    
                     <div id="tabs-SR">
                         <div class="heatMapHolder1 map1">
                             <h4>Suggestion <span class="oneMap"></span></h4>
-                            <div class="info5 trackable" id="tab-SR-m1-Legend"> Legend
+                            <div class="info5 trackable" id="tab_SR_map1_Legend"> Legend
 <!--                            <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
                                 <img id="imm5" class="playdown" title="click for additional information" alt="click for
                                 additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>
@@ -608,9 +546,10 @@ else
                                 <div id="heatmap_canvasSR1" name="heatmap_canvasSR1"></div>
                             </div>
                         </div>
+                        
                         <div class="heatMapHolder2 map2" style="margin-right:0">
                             <h4>Suggestion <span class="twoMap"></span></h4>
-                            <div class="info6 trackable" id="tab-SR-m2-Legend"> Legend
+                            <div class="info6 trackable" id="tab_SR_map2_Legend"> Legend
 <!--                                <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
                                 <img id="imm6" class="playdown" title="click for additional information" alt="click for
                                 additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>
@@ -623,10 +562,11 @@ else
                         </div>
                         <div style="clear:both"></div>
                     </div>
+                    
                     <div id="tabs-NR">
                         <div class="heatMapHolder1 map1">
                             <h4>Suggestion <span class="oneMap"></span></h4>
-                            <div class="info7 trackable" id="tab-NR-m1-Legend"> Legend
+                            <div class="info7 trackable" id="tab_NR_map1_Legend"> Legend
 <!--                                <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
                                 <img id="imm7" class="playdown" title="click for additional information" alt="click for
                                 additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>
@@ -639,7 +579,7 @@ else
                         </div>
                         <div class="heatMapHolder2 map2" style="margin-right:0">
                             <h4>Suggestion <span class="twoMap"></span></h4>
-                            <div class="info8 trackable" id="tab-NR-m2-Legend"> Legend
+                            <div class="info8 trackable" id="tab_NR_map2_Legend"> Legend
 <!--                                <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
                                 <img id="imm8" class="playdown" title="click
                                  for additional information" alt="click for
@@ -653,6 +593,7 @@ else
                         </div>
                         <div style="clear:both"></div>
                     </div>
+                    
                 </div>
                 <!--<div class="heatmapHolder heatmap5">
                     <h4>nitrate red in kilograms <span class="heatMap"></span></h4>
@@ -682,17 +623,17 @@ else
                 </div>-->
             <div class="innerMapLines">
                 <div class="rating">
-                    <input class="trackable" id='s4-m1-val-0' name="rating1"
+                    <input class="trackable" id='step4_map1_star0' name="rating1"
                            type="radio" value="0" checked /><span id="hide"></span>
-                    <input class="trackable" id='s4-m1-val-1' name="rating1"
+                    <input class="trackable" id='step4_map1_star1' name="rating1"
                            type="radio" value="1" /><span></span>
-                    <input class="trackable" id='s4-m1-val-2' name="rating1"
+                    <input class="trackable" id='step4_map1_star2' name="rating1"
                            type="radio" value="2" /><span></span>
-                    <input class="trackable" id='s4-m1-val-3' name="rating1"
+                    <input class="trackable" id='step4_map1_star3' name="rating1"
                            type="radio" value="3" /><span></span>
-                    <input class="trackable" id='s4-m1-val-4' name="rating1"
+                    <input class="trackable" id='step4_map1_star4' name="rating1"
                            type="radio" value="4" /><span></span>
-                    <input class="trackable" id='s4-m1-val-5' name="rating1"
+                    <input class="trackable" id='step4_map1_star5' name="rating1"
                            type="radio" value="5" /><span></span>
                     <input name="rating1" type="text" class="padInput" id="rating1" size="2" />
                 </div>
@@ -728,17 +669,17 @@ else
                 </div>-->
             <div class="innerMapLines">
                 <div class="rating">
-                    <input class="trackable" id='s4-m2-val-0' name="rating2"
+                    <input class="trackable" id='step4-map2-star0' name="rating2"
                            type="radio" value="0" checked /><span id="hide"></span>
-                    <input class="trackable" id='s4-m2-val-1' name="rating2"
+                    <input class="trackable" id='step4-map2-star1' name="rating2"
                            type="radio" value="1" /><span></span>
-                    <input class="trackable" id='s4-m2-val-2' name="rating2"
+                    <input class="trackable" id='step4-map2-star2' name="rating2"
                            type="radio" value="2" /><span></span>
-                    <input class="trackable" id='s4-m2-val-3' name="rating2"
+                    <input class="trackable" id='step4-map2-star3' name="rating2"
                            type="radio" value="3" /><span></span>
-                    <input class="trackable" id='s4-m2-val-4' name="rating2"
+                    <input class="trackable" id='step4-map2-star4' name="rating2"
                            type="radio" value="4" /><span></span>
-                    <input class="trackable" id='s4-m2-val-5' name="rating2"
+                    <input class="trackable" id='step4-map2-star5' name="rating2"
                            type="radio" value="5" /><span></span>
                     <input name="rating2" type="text" class="padInput" id="rating2" size="2"/>
                 </div>

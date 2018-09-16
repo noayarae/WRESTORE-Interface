@@ -446,28 +446,31 @@ else
                     assess if you like how the practices proposed by the suggestions affect the rest of the watershed landscape.</h2>
             </div>
             <div class="graph">
-                <!--<div class="dropDownHeatMap">
-                            <label><br />
-                              Choose a suggestion to compare</label>
-                            <!--writing the drop down for the 127 subbasins --
-                            <select name="heatDrop" id="heatDrop" onchange='heatinitialize();'>
-                            <option value="1" selected="selected">suggestion 1</option>
-                                          <?php
-                $y=2;
-                while($y<=$count){
-                    print "<option value=$y>suggestion $y</option>";
-                    $y++;
-                }
-                ?>
-                            </select>
-                            </div>-->
+<!--                Below, (div class="dropDownHeatMap") opens a dropdown to select the number  of "suggestion". -->
+<!--                <div class="dropDownHeatMap">-->
+<!--                    <label><br />Choose a suggestion to compare</label>-->
+                    <!--writing the drop down for the 127 subbasins -->
+<!--                    <select name="heatDrop" id="heatDrop" onchange='heatinitialize();'>-->
+<!--                        <option value="1" selected="selected">suggestion 1</option>-->
+<!--                        --><?php
+//                        $y=2;
+//                        while($y<=$count){
+//                            print "<option value=$y>suggestion $y</option>";
+//                            $y++;
+//                        }
+//                        ?>
+                        
+<!--                    </select>-->
+<!--                </div>-->
+                
                 <div id="tabs">
                     <ul>
-                        <li><a class="trackable" id="step3_tab_PF" href="#tabs-PF"> Peak.Flow in cfs</a></li>
+                        <li><a class="trackable" id="step3_tab_PF" href="#tabs-PF"> Peak.Flow in cfs+</a></li>
                         <li><a class="trackable" id="step3_tab_RV" href="#tabs-RV"> Economic.Revenue in $</a></li>
                         <li><a class="trackable" id="step3_tab_SR" href="#tabs-SR"> Sediment.Reduction in tons</a></li>
                         <li><a class="trackable" id="step3_tab_NR" href="#tabs-NR"> Nitrate.Reduction in kg</a></li>
                     </ul>
+                    <!--    -------  tabs-PF  ------   -->
                     <div id="tabs-PF">
                         <div class="heatMapHolder1 map1">
                             <h4>Suggestion <span class="oneMap"></span></h4>
@@ -484,22 +487,24 @@ else
                             </div>
                         </div>
 <!--                        MAP2 for PF in STEP3-->
-                        <div class="heatMapHolder2 map2" style="margin-right:0">
-                            <h4>Suggestion <span class="twoMap"></span></h4>
-                            <div class="info2 trackable" id="tab_PF_map2_Legend"> Legend
-<!--                            <img  title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
-                                <img id="imm2" class="playdown" title="click for additional information" alt="click for
-                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>
+<!--                        <div class="heatMapHolder2 map2" style="margin-right:0">-->
+<!--                            <h4>Suggestion <span class="twoMap"></span></h4>-->
+<!--                            <div class="info2 trackable" id="tab_PF_map2_Legend"> Legend-->
+<!--    comment      <img  title="click for additional information" alt="click for additional information"
+src="images/info.png" width="14" height="14" alt=""/>-->
+<!--                                <img id="imm2" class="playdown" title="click for additional information" alt="click for-->
+<!--                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>-->
 
-                                <div id="twoMapPF" class="tip"></div>
-                            </div>
-                            <div id="heatMapHolderTwo"> <!--  It draws them map2 -->
-                                <div id="heatmap_canvasPF2" name="heatmap_canvasPF2"></div>
-                            </div>
-                        </div>
+<!--                                <div id="twoMapPF" class="tip"></div>-->
+<!--                            </div>-->
+<!--                            <div id="heatMapHolderTwo">-->
+                                <!--  It draws them map2 -->
+<!--                                <div id="heatmap_canvasPF2" name="heatmap_canvasPF2"></div>-->
+<!--                            </div>-->
+<!--                        </div>-->
                         <div style="clear:both"></div>
                     </div>
-                    
+                    <!--    -------  tabs-RV  ------   -->
                     <div id="tabs-RV">
                         <div class="heatMapHolder1 map1">
                             <h4>Suggestion <span class="oneMap"></span></h4>
@@ -510,27 +515,29 @@ else
 
                                 <div id="oneMapRV" class="tip"></div>
                             </div>
-                            <div id="heatMapHolderOne">
+                            <div id="heatMapHolderOne"><!--  It draws them map1 -->
                                 <div id="heatmap_canvasRV1" name="heatmap_canvasRV1"></div>
                             </div>
                         </div>
                         
-                        <div class="heatMapHolder2 map2" style="margin-right:0">
-                            <h4>Suggestion <span class="twoMap"></span></h4>
-                            <div class="info4 trackable" id="tab_RV_map2_Legend"> Legend
-<!--                            <img  title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
-                                <img id="imm4" class="playdown" title="click for additional information" alt="click for
-                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>
+<!--                        <div class="heatMapHolder2 map2" style="margin-right:0">-->
+<!--                            <h4>Suggestion <span class="twoMap"></span></h4>-->
+<!--                            <div class="info4 trackable" id="tab_RV_map2_Legend"> Legend-->
+<!--    comment    <img  title="click for additional information" alt="click for additional information"
+src="images/info.png" width="14" height="14" alt=""/>-->
+<!--                                <img id="imm4" class="playdown" title="click for additional information" alt="click for-->
+<!--                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>-->
 
-                                <div id="twoMapRV" class="tip"></div>
-                            </div>
-                            <div id="heatMapHolderTwo">
-                                <div id="heatmap_canvasRV2" name="heatmap_canvasRV2"></div>
-                            </div>
-                        </div>
+<!--                                <div id="twoMapRV" class="tip"></div>-->
+<!--                            </div>-->
+<!--                            <div id="heatMapHolderTwo">-->
+                                <!--  It draws them map2 -->
+<!--                                <div id="heatmap_canvasRV2" name="heatmap_canvasRV2"></div>-->
+<!--                            </div>-->
+<!--                        </div>-->
                         <div style="clear:both"></div>
                     </div>
-                    
+                    <!--    -------  tabs-SR  ------   -->
                     <div id="tabs-SR">
                         <div class="heatMapHolder1 map1">
                             <h4>Suggestion <span class="oneMap"></span></h4>
@@ -541,30 +548,31 @@ else
 
                                 <div id="oneMapSR" class="tip"></div>
                             </div>
-                            <div id="heatMapHolderOne">
+                            <div id="heatMapHolderOne"><!--  It draws them map1 -->
                                 <div id="heatmap_canvasSR1" name="heatmap_canvasSR1"></div>
                             </div>
                         </div>
                         
-                        <div class="heatMapHolder2 map2" style="margin-right:0">
-                            <h4>Suggestion <span class="twoMap"></span></h4>
-                            <div class="info6 trackable" id="tab_SR_map2_Legend"> Legend
-<!--                                <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
-                                <img id="imm6" class="playdown" title="click for additional information" alt="click for
-                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>
+<!--                        <div class="heatMapHolder2 map2" style="margin-right:0">-->
+<!--                            <h4>Suggestion <span class="twoMap"></span></h4>-->
+<!--                            <div class="info6 trackable" id="tab_SR_map2_Legend"> Legend-->
+<!--    comment        <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
+<!--                                <img id="imm6" class="playdown" title="click for additional information" alt="click for-->
+<!--                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>-->
 
-                                <div id="twoMapSR" class="tip"></div>
-                            </div>
-                            <div id="heatMapHolderTwo">
-                                <div id="heatmap_canvasSR2" name="heatmap_canvasSR2"></div>
-                            </div>
-                        </div>
+<!--                                <div id="twoMapSR" class="tip"></div>-->
+<!--                            </div>-->
+<!--                            <div id="heatMapHolderTwo">-->
+                                <!--  It draws them map2 -->
+<!--                                <div id="heatmap_canvasSR2" name="heatmap_canvasSR2"></div>-->
+<!--                            </div>-->
+<!--                         </div>-->
                         <div style="clear:both"></div>
                     </div>
-                    
+                    <!--    -------  tabs-NR  ------   -->
                     <div id="tabs-NR">
                         <div class="heatMapHolder1 map1">
-                            <h4>Suggestion <span class="oneMap"></span></h4>
+                            <h4>Suggestion* <span class="oneMap"></span></h4>
                             <div class="info7 trackable" id="tab_NR_map1_Legend"> Legend
 <!--                                <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
                                 <img id="imm7" class="playdown" title="click for additional information" alt="click for
@@ -572,24 +580,26 @@ else
 
                                 <div id="oneMapNR" class="tip"></div>
                             </div>
-                            <div id="heatMapHolderOne">
+                            <div id="heatMapHolderOne"><!--  It draws them map1 -->
                                 <div id="heatmap_canvasNR1" name="heatmap_canvasNR1"></div>
                             </div>
                         </div>
-                        <div class="heatMapHolder2 map2" style="margin-right:0">
-                            <h4>Suggestion <span class="twoMap"></span></h4>
-                            <div class="info8 trackable" id="tab_NR_map2_Legend"> Legend
-<!--                                <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
-                                <img id="imm8" class="playdown" title="click
-                                 for additional information" alt="click for
-                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>
+                        
+<!--                        <div class="heatMapHolder2 map2" style="margin-right:0">-->
+<!--                            <h4>Suggestion <span class="twoMap"></span></h4>-->
+<!--                            <div class="info8 trackable" id="tab_NR_map2_Legend"> Legend-->
+<!--    comment             <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
+<!--                                <img id="imm8" class="playdown" title="click-->
+<!--                                 for additional information" alt="click for-->
+<!--                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>-->
 
-                                <div id="twoMapNR" class="tip"></div>
-                            </div>
-                            <div id="heatMapHolderTwo">
-                                <div id="heatmap_canvasNR2" name="heatmap_canvasNR2"></div>
-                            </div>
-                        </div>
+<!--                                <div id="twoMapNR" class="tip"></div>-->
+<!--                            </div>-->
+<!--                            <div id="heatMapHolderTwo">-->
+                                <!--  It draws them map2 -->
+<!--                                <div id="heatmap_canvasNR2" name="heatmap_canvasNR2"></div>-->
+<!--                            </div>-->
+<!--                        </div>-->
                         <div style="clear:both"></div>
                     </div>
                     
@@ -2390,7 +2400,7 @@ else
         $(function(){
             $(".info1").click(function(){
                 $(".tip", this).toggle().css("z-index" , 999);
-                // ------------- Switch drop and up icon is developed below by EN ------ //
+                ////// --------- Switch drop and up icon is developed below by EN ------ //
                 var d_icon1 = document.getElementById("imm1").className;
                 if(d_icon1 == "playdown"){
                     document.getElementById("imm1").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';
@@ -2404,7 +2414,7 @@ else
 
             $(".info2").click(function(){
                 $(".tip", this).toggle().css("z-index" , 999);
-                // ------------- Switch drop and up icon for PF2-map is developed below by EN ------ //
+                ////// --------- Switch drop and up icon for PF2-map is developed below by EN ------ //
                 var d_icon2 = document.getElementById("imm2").className;
                 if(d_icon2 == "playdown"){
                     document.getElementById("imm2").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';
@@ -2418,7 +2428,7 @@ else
 
             $(".info3").click(function(){
                 $(".tip", this).toggle().css("z-index" , 999);
-                // ------------- Switch drop and up icon for PF2-map is developed below by EN ------ //
+                ////// --------- Switch drop and up icon for PF2-map is developed below by EN ------ //
                 var d_icon3 = document.getElementById("imm3").className;
                 if(d_icon3 == "playdown"){
                     document.getElementById("imm3").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';
@@ -2432,7 +2442,7 @@ else
 
             $(".info4").click(function(){
                 $(".tip", this).toggle().css("z-index" , 999);
-                // ------------- Switch drop and up icon for PF2-map is developed below by EN ------ //
+                ////// --------- Switch drop and up icon for PF2-map is developed below by EN ------ //
                 var d_icon4 = document.getElementById("imm4").className;
                 if(d_icon4 == "playdown"){
                     document.getElementById("imm4").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';
@@ -2446,7 +2456,7 @@ else
 
             $(".info5").click(function(){
                 $(".tip", this).toggle().css("z-index" , 999);
-                // ------------- Switch drop and up icon for PF2-map is developed below by EN ------ //
+                ////// --------- Switch drop and up icon for PF2-map is developed below by EN ------ //
                 var d_icon5 = document.getElementById("imm5").className;
                 if(d_icon5 == "playdown"){
                     document.getElementById("imm5").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';
@@ -2460,7 +2470,7 @@ else
 
             $(".info6").click(function(){
                 $(".tip", this).toggle().css("z-index" , 999);
-                // ------------- Switch drop and up icon for PF2-map is developed below by EN ------ //
+                ////// --------- Switch drop and up icon for PF2-map is developed below by EN ------ //
                 var d_icon6 = document.getElementById("imm6").className;
                 if(d_icon6 == "playdown"){
                     document.getElementById("imm6").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';
@@ -2474,7 +2484,7 @@ else
 
             $(".info7").click(function(){
                 $(".tip", this).toggle().css("z-index" , 999);
-                // ------------- Switch drop and up icon for PF2-map is developed below by EN ------ //
+                ////// --------- Switch drop and up icon for PF2-map is developed below by EN ------ //
                 var d_icon7 = document.getElementById("imm7").className;
                 if(d_icon7 == "playdown"){
                     document.getElementById("imm7").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';
@@ -2488,7 +2498,7 @@ else
 
             $(".info8").click(function(){
                 $(".tip", this).toggle().css("z-index" , 999);
-                // ------------- Switch drop and up icon for PF2-map is developed below by EN ------ //
+                ////// --------- Switch drop and up icon for PF2-map is developed below by EN ------ //
                 var d_icon8 = document.getElementById("imm8").className;
                 if(d_icon8 == "playdown"){
                     document.getElementById("imm8").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';

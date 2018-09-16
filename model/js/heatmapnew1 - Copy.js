@@ -7,92 +7,85 @@ function heatinitialize() {
     // $('#oneMapPF').append('Range+: (' + heatpfra[oneMap].val[0].val + ' to ' + heatpfra[oneMap].val[126].val +') cfs');
     var min_value_PF1 = heatpfra[oneMap].val[0].val;
     var max_value_PF1 = heatpfra[oneMap].val[126].val;
-    // $('#twoMapPF').empty();
-    ////// $('#twoMapPF').append('Range****: (' + heatpfra[twoMap].val[0].val + ' to ' + heatpfra[twoMap].val[126].val +') cfs');
-    // var min_value_PF2 = heatpfra[twoMap].val[0].val;
-    // var max_value_PF2 = heatpfra[twoMap].val[126].val;
-    ////// alert (max_value_PF2);
+    $('#twoMapPF').empty();
+    // $('#twoMapPF').append('Range****: (' + heatpfra[twoMap].val[0].val + ' to ' + heatpfra[twoMap].val[126].val +') cfs');
+    var min_value_PF2 = heatpfra[twoMap].val[0].val;
+    var max_value_PF2 = heatpfra[twoMap].val[126].val;
+    // alert (max_value_PF2);
 
     $('#oneMapRV').empty();
     // $('#oneMapRV').append('Range: (' + heatera[oneMap].val[0].val + ' to ' + heatera[oneMap].val[126].val +') Dollars');
     var min_value_RV1 = heatera[oneMap].val[0].val;
     var max_value_RV1 = heatera[oneMap].val[126].val;
-    ////// alert (max_value_RV1);
-    // $('#twoMapRV').empty();
-    ////// $('#twoMapRV').append('Range: (' + heatera[twoMap].val[0].val + ' to ' + heatera[twoMap].val[126].val +') Dollars');
-    // var min_value_RV2 = heatera[twoMap].val[0].val;
-    // var max_value_RV2 = heatera[twoMap].val[126].val;
-    ////// alert (max_value_RV2);
+    // alert (max_value_RV1);
+    $('#twoMapRV').empty();
+    // $('#twoMapRV').append('Range: (' + heatera[twoMap].val[0].val + ' to ' + heatera[twoMap].val[126].val +') Dollars');
+    var min_value_RV2 = heatera[twoMap].val[0].val;
+    var max_value_RV2 = heatera[twoMap].val[126].val;
+    // alert (max_value_RV2);
 
     $('#oneMapSR').empty();
     // $('#oneMapSR').append('Range: (' + heatseda[oneMap].val[0].val + ' to ' + heatseda[oneMap].val[126].val +') tons');
     var min_value_SR1 = heatseda[oneMap].val[0].val;
     var max_value_SR1 = heatseda[oneMap].val[126].val;
-    ////// alert (max_value_SR1);
-    // $('#twoMapSR').empty();
-    ////// $('#twoMapSR').append('Range: (' + heatseda[twoMap].val[0].val + ' to ' + heatseda[twoMap].val[126].val +') tons');
-    // var min_value_SR2 = heatseda[twoMap].val[0].val;
-    // var max_value_SR2 = heatseda[twoMap].val[126].val;
-    ////// alert (max_value_SR2);
+    // alert (max_value_SR1);
+    $('#twoMapSR').empty();
+    // $('#twoMapSR').append('Range: (' + heatseda[twoMap].val[0].val + ' to ' + heatseda[twoMap].val[126].val +') tons');
+    var min_value_SR2 = heatseda[twoMap].val[0].val;
+    var max_value_SR2 = heatseda[twoMap].val[126].val;
+    // alert (max_value_SR2);
 
     $('#oneMapNR').empty();
     // $('#oneMapNR').append('Range: (' + heatnita[oneMap].val[0].val + ' to ' + heatnita[oneMap].val[126].val +') kilograms');
     var min_value_NR1 = heatnita[oneMap].val[0].val;
     var max_value_NR1 = heatnita[oneMap].val[126].val;
-    ////// alert (max_value_NR1);
-    // $('#twoMapNR').empty();
-    ////// $('#twoMapNR').append('Range:(' + heatnita[twoMap].val[0].val + 'to' + heatnita[twoMap].val[126].val +') kilograms');
-    // var min_value_NR2 = heatnita[twoMap].val[0].val;
-    // var max_value_NR2 = heatnita[twoMap].val[126].val;
-    ////// alert (max_value_NR2);
+    // alert (max_value_NR1);
+    $('#twoMapNR').empty();
+    // $('#twoMapNR').append('Range: (' + heatnita[twoMap].val[0].val + ' to ' + heatnita[twoMap].val[126].val +') kilograms');
+    var min_value_NR2 = heatnita[twoMap].val[0].val;
+    var max_value_NR2 = heatnita[twoMap].val[126].val;
+    // alert (max_value_NR2);
 
-    //// --------------  These new variables are setup for building the map-legend  --------------------
-    //
-    // var maps = ['oneMapPF','twoMapPF','oneMapRV','twoMapRV','oneMapSR','twoMapSR','oneMapNR','twoMapNR'];
-    // var min_values = [min_value_PF1, min_value_PF2, min_value_RV1, min_value_RV2, min_value_SR1, min_value_SR2, min_value_NR1, min_value_NR2];
-    // var max_values = [max_value_PF1, max_value_PF2, max_value_RV1, max_value_RV2, max_value_SR1, max_value_SR2, max_value_NR1, max_value_NR2];
-    var maps = ['oneMapPF','oneMapRV','oneMapSR','oneMapNR'];
-    var min_values = [min_value_PF1, min_value_RV1, min_value_SR1, min_value_NR1];
-    var max_values = [max_value_PF1, max_value_RV1, max_value_SR1, max_value_NR1];
+    var maps = ['oneMapPF','twoMapPF','oneMapRV','twoMapRV','oneMapSR','twoMapSR','oneMapNR','twoMapNR'];
+    var min_values = [min_value_PF1, min_value_PF2, min_value_RV1, min_value_RV2, min_value_SR1, min_value_SR2, min_value_NR1, min_value_NR2];
+    var max_values = [max_value_PF1, max_value_PF2, max_value_RV1, max_value_RV2, max_value_SR1, max_value_SR2, max_value_NR1, max_value_NR2];
 
-    ////  ---------------  These variables are used to set ranges for maps  -----------------------
     var ressssPF1 = heatpfra[oneMap].val.map(function(a) {
         return a.name;
     });
-    // var ressssPF2 = heatpfra[twoMap].val.map(function(a) {
-    //     return a.name;
-    // });
+    var ressssPF2 = heatpfra[twoMap].val.map(function(a) {
+        return a.name;
+    });
     var ressssRV1 = heatera[oneMap].val.map(function(a) {
         return a.name;
     });
-    // var ressssRV2 = heatera[twoMap].val.map(function(a) {
-    //     return a.name;
-    // });
+    var ressssRV2 = heatera[twoMap].val.map(function(a) {
+        return a.name;
+    });
     var ressssSR1 = heatseda[oneMap].val.map(function(a) {
         return a.name;
     });
-    // var ressssSR2 = heatseda[twoMap].val.map(function(a) {
-    //     return a.name;
-    // });
+    var ressssSR2 = heatseda[twoMap].val.map(function(a) {
+        return a.name;
+    });
     var ressssNR1 = heatnita[oneMap].val.map(function(a) {
         return a.name;
     });
-    // var ressssNR2 = heatnita[twoMap].val.map(function(a) {
-    //     return a.name;
-    // });
+    var ressssNR2 = heatnita[twoMap].val.map(function(a) {
+        return a.name;
+    });
 
-    //  ------------------ Setting heatmaps with google.map ------  8 maps in total ----------------------
     heatmapPF1 = new google.maps.Map(document.getElementById('heatmap_canvasPF1'), {
         center: new google.maps.LatLng(39.9778, -86.2959),
         zoom: 10,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
-    // heatmapPF2 = new google.maps.Map(document.getElementById('heatmap_canvasPF2'), {
-    //     center: new google.maps.LatLng(39.9778, -86.2959),
-    //     zoom: 10,
-    //     mapTypeId: google.maps.MapTypeId.ROADMAP
-    // });
+    heatmapPF2 = new google.maps.Map(document.getElementById('heatmap_canvasPF2'), {
+        center: new google.maps.LatLng(39.9778, -86.2959),
+        zoom: 10,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
 
     heatmapRV1 = new google.maps.Map(document.getElementById('heatmap_canvasRV1'), {
         center: new google.maps.LatLng(39.9778, -86.2959),
@@ -100,11 +93,11 @@ function heatinitialize() {
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
-    // heatmapRV2 = new google.maps.Map(document.getElementById('heatmap_canvasRV2'), {
-    //     center: new google.maps.LatLng(39.9778, -86.2959),
-    //     zoom: 10,
-    //     mapTypeId: google.maps.MapTypeId.ROADMAP
-    // });
+    heatmapRV2 = new google.maps.Map(document.getElementById('heatmap_canvasRV2'), {
+        center: new google.maps.LatLng(39.9778, -86.2959),
+        zoom: 10,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
 
     heatmapSR1 = new google.maps.Map(document.getElementById('heatmap_canvasSR1'), {
         center: new google.maps.LatLng(39.9778, -86.2959),
@@ -112,11 +105,11 @@ function heatinitialize() {
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
-    // heatmapSR2 = new google.maps.Map(document.getElementById('heatmap_canvasSR2'), {
-    //     center: new google.maps.LatLng(39.9778, -86.2959),
-    //     zoom: 10,
-    //     mapTypeId: google.maps.MapTypeId.ROADMAP
-    // });
+    heatmapSR2 = new google.maps.Map(document.getElementById('heatmap_canvasSR2'), {
+        center: new google.maps.LatLng(39.9778, -86.2959),
+        zoom: 10,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
 
     heatmapNR1 = new google.maps.Map(document.getElementById('heatmap_canvasNR1'), {
         center: new google.maps.LatLng(39.9778, -86.2959),
@@ -124,13 +117,12 @@ function heatinitialize() {
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
-    // heatmapNR2 = new google.maps.Map(document.getElementById('heatmap_canvasNR2'), {
-    //     center: new google.maps.LatLng(39.9778, -86.2959),
-    //     zoom: 10,
-    //     mapTypeId: google.maps.MapTypeId.ROADMAP
-    // });
+    heatmapNR2 = new google.maps.Map(document.getElementById('heatmap_canvasNR2'), {
+        center: new google.maps.LatLng(39.9778, -86.2959),
+        zoom: 10,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
 
-    // -----------------------  set coordinates for maps ----------------------
     function constructNewCoordinates(polygon) {
         var newCoordinates = [];
         var coordinates = null;
@@ -146,18 +138,15 @@ function heatinitialize() {
         return newCoordinates;
     }
 
-    // ------------  do  doheatmaps  -----------------
     doheatPF1();
-    // doheatPF2();
+    doheatPF2();
     doheatRV1();
-    // doheatRV2();
+    doheatRV2();
     doheatSR1();
-    // doheatSR2();
+    doheatSR2();
     doheatNR1();
-    // doheatNR2();
+    doheatNR2();
 
-    // --------------  Start all related to "PF" (doheatPF1,"drawHeatPF1", doheatPF2, "drawHeatPF2") ----------------
-    // ----------------  Start doheartPF1 ------------
     function doheatPF1() {
         // Initialize JSONP request
         var script = document.createElement('script');
@@ -175,6 +164,8 @@ function heatinitialize() {
         body.appendChild(script);
         //alert("Wetlands1");
     }
+    ///////////////End of filter1/////////////////////////////
+    ///////////////drawFilter1 Start/////////////////////////////RED!!!!!!!!!!!!!!!!!!!!!!!!///
 
     drawHeatPF1 = function(data) {
         // alert(data);
@@ -218,8 +209,8 @@ function heatinitialize() {
                 fillOpacity: 1,
                 fillColor: filterColor,
                 indexID: whichNode,
-                clickable: true
-            });
+                clickable: true,
+            })
 
             google.maps.event.addListener(Peakflow, 'click', function(event) {
                 $.ajax({
@@ -232,13 +223,86 @@ function heatinitialize() {
             //alert(JSON.stringify(Peakflow));
             Peakflow.setMap(heatmapPF1);
         } // JavaScript Document
-    };
+    }
 
+    function doheatPF2() {
+        // Initialize JSONP request
+        var script = document.createElement('script');
+        var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
+        url.push('sql=');
+        //Streams
+        var query = 'SELECT GRIDCODE, geometry, Area_Acres,Length_mil FROM ' +
+            '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA ';
+        var encodedQuery = encodeURIComponent(query);
+        url.push(encodedQuery);
+        url.push('&callback=drawHeatPF2');
+        url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+        script.src = url.join('');
+        var body = document.getElementsByTagName('body')[0];
+        body.appendChild(script);
+        //alert("Wetlands1");
+    }
+    ///////////////End of filter1/////////////////////////////
+    ///////////////drawFilter1 Start/////////////////////////////RED!!!!!!!!!!!!!!!!!!!!!!!!///
 
-    // --------------  End all related to "PF" (doheatPF1,"drawHeatPF1", doheatPF2, "drawHeatPF2") ----------------
+    drawHeatPF2 = function(data) {
+        // alert(data);
+        var rows = data['rows'];
+        for (var i in rows) {
+            var newCoordinates = [];
+            var whichNode = "";
+            //var geometries = rows[i][1]['geometry'];
+            //alert (geometries)//newly added code...
+            var row = rows[i];
+            var whichNode = row[0];
 
-    // --------------  Start all related to "RV" (doheatRV1,"drawHeatRV1", doheatRV2, "drawHeatRV2") ----------------
-    // ---------------------------------  Start doheatRV1() --------------------------------
+            //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
+            var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
+            var indexx = ressssPF2.indexOf(Number(whichNode));
+
+            switch (true) {
+                case (indexx < 0): filterColor = "#ffffff";
+                    break;
+                case (indexx < 20): filterColor = "#ffff00";
+                    break;
+                case ((indexx >= 20) && (indexx < 40)): filterColor = "#ffcc00";
+                    break;
+                case ((indexx >= 40) && (indexx < 70)): filterColor = "#ff9900";
+                    break;
+                case ((indexx >= 70) && (indexx < 90)): filterColor = "#ff6600";
+                    break;
+                case (indexx >= 90): filterColor = "#ff3300";
+                    break;
+                default: filterColor = "#ff0000";
+                    break;
+                //return wetlandsIcon;
+            }
+
+            var whichNode = row[0];
+            Peakflow = new google.maps.Polygon({
+                path: newCoordinates,
+                //strokeColor: colors[0],
+                strokeOpacity: .4,
+                strokeWeight: 1,
+                fillOpacity: 1,
+                fillColor: filterColor,
+                indexID: whichNode,
+                clickable: true,
+            })
+
+            google.maps.event.addListener(Peakflow, 'click', function(event) {
+                $.ajax({
+                    url: 'sendToTime.php',
+                    type: 'post',
+                    data: "JSONHolder=" + "HeatMap_PFR" + "," + page + "," + session + "," + ("Suggestion" + (parseInt(option) + 1) + " " + this.indexID),
+                    success: function(data) {}
+                });
+            });
+            //alert(JSON.stringify(Peakflow));
+            Peakflow.setMap(heatmapPF2);
+        } // JavaScript Document
+    }
+
     function doheatRV1() {
         // Initialize JSONP request
         var script = document.createElement('script');
@@ -299,8 +363,8 @@ function heatinitialize() {
                 fillOpacity: 1,
                 fillColor: filterColor,
                 indexID: whichNode,
-                clickable: true
-            });
+                clickable: true,
+            })
 
             google.maps.event.addListener(ERevenue, 'click', function(event) {
                 $.ajax({
@@ -313,12 +377,83 @@ function heatinitialize() {
             //alert(JSON.stringify(Peakflow));
             ERevenue.setMap(heatmapRV1);
         } // JavaScript Document
-    };
+    }
 
+    function doheatRV2() {
+        // Initialize JSONP request
+        var script = document.createElement('script');
+        var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
+        url.push('sql=');
+        //Streams
+        var query = 'SELECT GRIDCODE, geometry, Area_Acres,Length_mil FROM ' +
+            '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA ';
+        var encodedQuery = encodeURIComponent(query);
+        url.push(encodedQuery);
+        url.push('&callback=drawHeatRV2');
+        url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+        script.src = url.join('');
+        var body = document.getElementsByTagName('body')[0];
+        body.appendChild(script);
+        //alert("Wetlands1");
+    }
+    drawHeatRV2 = function(data) {
+        // alert(data);
+        var rows = data['rows'];
+        for (var i in rows) {
+            var newCoordinates = [];
+            var whichNode = "";
+            //var geometries = rows[i][1]['geometry'];
+            //alert (geometries)//newly added code...
+            var row = rows[i];
+            var whichNode = row[0];
 
-    // --------------  End all related to "RV" (doheatRV1,"drawHeatRV1", doheatRV2, "drawHeatRV2") ----------------
+            //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
+            var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
+            var indexx = ressssRV2.indexOf(Number(whichNode));
 
-    // --------------  Start all related to "SR" (doheatSR1,"drawHeatSR1", doheatSR2, "drawHeatSR2") ----------------
+            switch (true) {
+                case (indexx < 0): filterColor = "#ffffff";
+                    break;
+                case (indexx < 20): filterColor = "#ffff00";
+                    break;
+                case ((indexx >= 20) && (indexx < 40)): filterColor = "#ffcc00";
+                    break;
+                case ((indexx >= 40) && (indexx < 70)): filterColor = "#ff9900";
+                    break;
+                case ((indexx >= 70) && (indexx < 90)): filterColor = "#ff6600";
+                    break;
+                case (indexx >= 90): filterColor = "#ff3300";
+                    break;
+                default: filterColor = "#ff0000";
+                    break;
+                //return wetlandsIcon;
+            }
+
+            var whichNode = row[0];
+            ERevenue = new google.maps.Polygon({
+                path: newCoordinates,
+                //strokeColor: colors[0],
+                strokeOpacity: .4,
+                strokeWeight: 1,
+                fillOpacity: 1,
+                fillColor: filterColor,
+                indexID: whichNode,
+                clickable: true,
+            })
+
+            google.maps.event.addListener(ERevenue, 'click', function(event) {
+                $.ajax({
+                    url: 'sendToTime.php',
+                    type: 'post',
+                    data: "JSONHolder=" + "HeatMap_ER" + "," + page + "," + session + "," + ("Suggestion" + (parseInt(option) + 1) + " " + this.indexID),
+                    success: function(data) {}
+                });
+            });
+            //alert(JSON.stringify(Peakflow));
+            ERevenue.setMap(heatmapRV2);
+        } // JavaScript Document
+    }
+
     function doheatSR1() {
         // Initialize JSONP request
         var script = document.createElement('script');
@@ -379,8 +514,8 @@ function heatinitialize() {
                 fillOpacity: 1,
                 fillColor: filterColor,
                 indexID: whichNode,
-                clickable: true
-            });
+                clickable: true,
+            })
 
             google.maps.event.addListener(Sediments, 'click', function(event) {
                 $.ajax({
@@ -393,12 +528,86 @@ function heatinitialize() {
             //alert(JSON.stringify(Peakflow));
             Sediments.setMap(heatmapSR1);
         } // JavaScript Document
-    };
+    }
 
+    function doheatSR2() {
+        // Initialize JSONP request
+        var script = document.createElement('script');
+        var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
+        url.push('sql=');
+        //Streams
+        var query = 'SELECT GRIDCODE, geometry, Area_Acres,Length_mil FROM ' +
+            '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA ';
+        var encodedQuery = encodeURIComponent(query);
+        url.push(encodedQuery);
+        url.push('&callback=drawHeatSR2');
+        url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+        script.src = url.join('');
+        var body = document.getElementsByTagName('body')[0];
+        body.appendChild(script);
+        //alert("Wetlands1");
+    }
 
-    // --------------  End all related to "SR" (doheatSR1,"drawHeatSR1", doheatSR2, "drawHeatSR2") ----------------
+    drawHeatSR2 = function(data) {
+        // alert(data);
+        var rows = data['rows'];
+        for (var i in rows) {
+            var newCoordinates = [];
+            var whichNode = "";
+            //var geometries = rows[i][1]['geometry'];
+            //alert (geometries)//newly added code...
+            var row = rows[i];
+            var whichNode = row[0];
 
-    // --------------  Start all related to "NR" (doheatNR1,"drawHeatNR1", doheatNR2, "drawHeatNR2") ----------------
+            //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
+            var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
+            var indexx = ressssSR2.indexOf(Number(whichNode));
+
+            switch (true) {
+                case (indexx < 0):filterColor = "#ffffff";
+                    break;
+                case (indexx < 20):filterColor = "#ffff00";
+                    break;
+                case ((indexx >= 20) && (indexx < 40)):filterColor = "#ffcc00";
+                    break;
+                case ((indexx >= 40) && (indexx < 70)):filterColor = "#ff9900";
+                    break;
+                case ((indexx >= 70) && (indexx < 90)):filterColor = "#ff6600";
+                    break;
+                case (indexx >= 90):filterColor = "#ff3300";
+                    break;
+                default:filterColor = "#ff0000";
+                    break;
+                //return wetlandsIcon;
+            }
+
+            var whichNode = row[0];
+            Sediments = new google.maps.Polygon({
+                path: newCoordinates,
+                //strokeColor: colors[0],
+                strokeOpacity: .4,
+                strokeWeight: 1,
+                fillOpacity: 1,
+                fillColor: filterColor,
+                indexID: whichNode,
+                clickable: true,
+            })
+
+            google.maps.event.addListener(Sediments, 'click', function(event) {
+                $.ajax({
+                    url: 'sendToTime.php',
+                    type: 'post',
+                    data: "JSONHolder=" + "HeatMap_SRed" + "," + page + "," + session + "," + ("Suggestion" + (parseInt(option) + 1) + " " + this.indexID),
+                    success: function(data) {}
+                });
+            });
+            //alert(JSON.stringify(Peakflow));
+            Sediments.setMap(heatmapSR2);
+            //PeakArray.push(Peakflow);
+            //heatmap1.data.setStyle();
+        } // JavaScript Document
+    }
+
     function doheatNR1() {
         // Initialize JSONP request
         var script = document.createElement('script');
@@ -459,8 +668,8 @@ function heatinitialize() {
                 fillOpacity: 1,
                 fillColor: filterColor,
                 indexID: whichNode,
-                clickable: true
-            });
+                clickable: true,
+            })
 
             google.maps.event.addListener(Nitrates, 'click', function(event) {
                 $.ajax({
@@ -475,10 +684,86 @@ function heatinitialize() {
             //PeakArray.push(Peakflow);
             //heatmap1.data.setStyle();
         } // JavaScript Document
-    };
+    }
 
-    // --------------  End all related to "NR" (doheatNR1,"drawHeatNR1", doheatNR2, "drawHeatNR2") ----------------
+    function doheatNR2() {
+        // Initialize JSONP request
+        var script = document.createElement('script');
+        var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
+        url.push('sql=');
+        //Streams
+        var query = 'SELECT GRIDCODE, geometry, Area_Acres,Length_mil FROM ' +
+            '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA ';
+        var encodedQuery = encodeURIComponent(query);
+        url.push(encodedQuery);
+        url.push('&callback=drawHeatNR2');
+        url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+        script.src = url.join('');
+        var body = document.getElementsByTagName('body')[0];
+        body.appendChild(script);
+        //alert("Wetlands1");
+    }
 
+    drawHeatNR2 = function(data) {
+        // alert(data);
+        var rows = data['rows'];
+        for (var i in rows) {
+            var newCoordinates = [];
+            var whichNode = "";
+            //var geometries = rows[i][1]['geometry'];
+            //alert (geometries)//newly added code...
+            var row = rows[i];
+            var whichNode = row[0];
+
+            //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
+            var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
+            var indexx = ressssNR2.indexOf(Number(whichNode));
+
+            switch (true) {
+                case (indexx < 0):filterColor = "#ffffff";
+                    break;
+                case (indexx < 20):filterColor = "#ffff00";
+                    break;
+                case ((indexx >= 20) && (indexx < 40)):filterColor = "#ffcc00";
+                    break;
+                case ((indexx >= 40) && (indexx < 70)):filterColor = "#ff9900";
+                    break;
+                case ((indexx >= 70) && (indexx < 90)):filterColor = "#ff6600";
+                    break;
+                case (indexx >= 90):filterColor = "#ff3300";
+                    break;
+                default:filterColor = "#ff0000";
+                    break;
+                //return wetlandsIcon;
+            }
+
+            var whichNode = row[0];
+            Nitrates = new google.maps.Polygon({
+                path: newCoordinates,
+                //strokeColor: colors[0],
+                strokeOpacity: .4,
+                strokeWeight: 1,
+                fillOpacity: 1,
+                fillColor: filterColor,
+                indexID: whichNode,
+                clickable: true,
+            })
+
+            google.maps.event.addListener(Nitrates, 'click', function(event) {
+                $.ajax({
+                    url: 'sendToTime.php',
+                    type: 'post',
+                    data: "JSONHolder=" + "HeatMap_NRed" + "," + page + "," + session + "," + (
+                        "Suggestion" + (parseInt(option) + 1) + " " + this.indexID),
+                    success: function(data) {}
+                });
+            });
+            //alert(JSON.stringify(Peakflow));
+            Nitrates.setMap(heatmapNR2);
+            //PeakArray.push(Peakflow);
+            //heatmap1.data.setStyle();
+        } // JavaScript Document
+    }
     ///////////////////////////////////////////////
     $("#tabs").tabs();
 

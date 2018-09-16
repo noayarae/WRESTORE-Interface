@@ -8,7 +8,8 @@ function heatinitialize() {
     var min_value_PF1 = heatpfra[oneMap].val[0].val;
     var max_value_PF1 = heatpfra[oneMap].val[126].val;
     // $('#twoMapPF').empty();
-    ////// $('#twoMapPF').append('Range****: (' + heatpfra[twoMap].val[0].val + ' to ' + heatpfra[twoMap].val[126].val +') cfs');
+    ////// $('#twoMapPF').append('Range****: (' + heatpfra[twoMap].val[0].val + ' to ' + heatpfra[twoMap].val[126].val
+    ////// +') cfs');
     // var min_value_PF2 = heatpfra[twoMap].val[0].val;
     // var max_value_PF2 = heatpfra[twoMap].val[126].val;
     ////// alert (max_value_PF2);
@@ -19,7 +20,8 @@ function heatinitialize() {
     var max_value_RV1 = heatera[oneMap].val[126].val;
     ////// alert (max_value_RV1);
     // $('#twoMapRV').empty();
-    ////// $('#twoMapRV').append('Range: (' + heatera[twoMap].val[0].val + ' to ' + heatera[twoMap].val[126].val +') Dollars');
+    ////// $('#twoMapRV').append('Range: (' + heatera[twoMap].val[0].val + ' to ' + heatera[twoMap].val[126].val +')
+    ////// Dollars');
     // var min_value_RV2 = heatera[twoMap].val[0].val;
     // var max_value_RV2 = heatera[twoMap].val[126].val;
     ////// alert (max_value_RV2);
@@ -30,7 +32,8 @@ function heatinitialize() {
     var max_value_SR1 = heatseda[oneMap].val[126].val;
     ////// alert (max_value_SR1);
     // $('#twoMapSR').empty();
-    ////// $('#twoMapSR').append('Range: (' + heatseda[twoMap].val[0].val + ' to ' + heatseda[twoMap].val[126].val +') tons');
+    ////// $('#twoMapSR').append('Range: (' + heatseda[twoMap].val[0].val + ' to ' + heatseda[twoMap].val[126].val +')
+    ////// tons');
     // var min_value_SR2 = heatseda[twoMap].val[0].val;
     // var max_value_SR2 = heatseda[twoMap].val[126].val;
     ////// alert (max_value_SR2);
@@ -41,21 +44,16 @@ function heatinitialize() {
     var max_value_NR1 = heatnita[oneMap].val[126].val;
     ////// alert (max_value_NR1);
     // $('#twoMapNR').empty();
-    ////// $('#twoMapNR').append('Range:(' + heatnita[twoMap].val[0].val + 'to' + heatnita[twoMap].val[126].val +') kilograms');
+    ////// $('#twoMapNR').append('Range: (' + heatnita[twoMap].val[0].val + ' to ' + heatnita[twoMap].val[126].val +')
+    ////// kilograms');
     // var min_value_NR2 = heatnita[twoMap].val[0].val;
     // var max_value_NR2 = heatnita[twoMap].val[126].val;
     ////// alert (max_value_NR2);
 
-    //// --------------  These new variables are setup for building the map-legend  --------------------
-    //
-    // var maps = ['oneMapPF','twoMapPF','oneMapRV','twoMapRV','oneMapSR','twoMapSR','oneMapNR','twoMapNR'];
-    // var min_values = [min_value_PF1, min_value_PF2, min_value_RV1, min_value_RV2, min_value_SR1, min_value_SR2, min_value_NR1, min_value_NR2];
-    // var max_values = [max_value_PF1, max_value_PF2, max_value_RV1, max_value_RV2, max_value_SR1, max_value_SR2, max_value_NR1, max_value_NR2];
-    var maps = ['oneMapPF','oneMapRV','oneMapSR','oneMapNR'];
-    var min_values = [min_value_PF1, min_value_RV1, min_value_SR1, min_value_NR1];
-    var max_values = [max_value_PF1, max_value_RV1, max_value_SR1, max_value_NR1];
+    var maps = ['oneMapPF','twoMapPF','oneMapRV','twoMapRV','oneMapSR','twoMapSR','oneMapNR','twoMapNR'];
+    var min_values = [min_value_PF1, min_value_PF2, min_value_RV1, min_value_RV2, min_value_SR1, min_value_SR2, min_value_NR1, min_value_NR2];
+    var max_values = [max_value_PF1, max_value_PF2, max_value_RV1, max_value_RV2, max_value_SR1, max_value_SR2, max_value_NR1, max_value_NR2];
 
-    ////  ---------------  These variables are used to set ranges for maps  -----------------------
     var ressssPF1 = heatpfra[oneMap].val.map(function(a) {
         return a.name;
     });
@@ -80,8 +78,8 @@ function heatinitialize() {
     // var ressssNR2 = heatnita[twoMap].val.map(function(a) {
     //     return a.name;
     // });
+// -----------------------------------------------------------------------------
 
-    //  ------------------ Setting heatmaps with google.map ------  8 maps in total ----------------------
     heatmapPF1 = new google.maps.Map(document.getElementById('heatmap_canvasPF1'), {
         center: new google.maps.LatLng(39.9778, -86.2959),
         zoom: 10,
@@ -130,7 +128,6 @@ function heatinitialize() {
     //     mapTypeId: google.maps.MapTypeId.ROADMAP
     // });
 
-    // -----------------------  set coordinates for maps ----------------------
     function constructNewCoordinates(polygon) {
         var newCoordinates = [];
         var coordinates = null;
@@ -146,7 +143,6 @@ function heatinitialize() {
         return newCoordinates;
     }
 
-    // ------------  do  doheatmaps  -----------------
     doheatPF1();
     // doheatPF2();
     doheatRV1();
@@ -156,8 +152,6 @@ function heatinitialize() {
     doheatNR1();
     // doheatNR2();
 
-    // --------------  Start all related to "PF" (doheatPF1,"drawHeatPF1", doheatPF2, "drawHeatPF2") ----------------
-    // ----------------  Start doheartPF1 ------------
     function doheatPF1() {
         // Initialize JSONP request
         var script = document.createElement('script');
@@ -232,13 +226,9 @@ function heatinitialize() {
             //alert(JSON.stringify(Peakflow));
             Peakflow.setMap(heatmapPF1);
         } // JavaScript Document
-    };
+    }
 
 
-    // --------------  End all related to "PF" (doheatPF1,"drawHeatPF1", doheatPF2, "drawHeatPF2") ----------------
-
-    // --------------  Start all related to "RV" (doheatRV1,"drawHeatRV1", doheatRV2, "drawHeatRV2") ----------------
-    // ---------------------------------  Start doheatRV1() --------------------------------
     function doheatRV1() {
         // Initialize JSONP request
         var script = document.createElement('script');
@@ -316,9 +306,6 @@ function heatinitialize() {
     };
 
 
-    // --------------  End all related to "RV" (doheatRV1,"drawHeatRV1", doheatRV2, "drawHeatRV2") ----------------
-
-    // --------------  Start all related to "SR" (doheatSR1,"drawHeatSR1", doheatSR2, "drawHeatSR2") ----------------
     function doheatSR1() {
         // Initialize JSONP request
         var script = document.createElement('script');
@@ -396,9 +383,6 @@ function heatinitialize() {
     };
 
 
-    // --------------  End all related to "SR" (doheatSR1,"drawHeatSR1", doheatSR2, "drawHeatSR2") ----------------
-
-    // --------------  Start all related to "NR" (doheatNR1,"drawHeatNR1", doheatNR2, "drawHeatNR2") ----------------
     function doheatNR1() {
         // Initialize JSONP request
         var script = document.createElement('script');
@@ -476,8 +460,6 @@ function heatinitialize() {
             //heatmap1.data.setStyle();
         } // JavaScript Document
     };
-
-    // --------------  End all related to "NR" (doheatNR1,"drawHeatNR1", doheatNR2, "drawHeatNR2") ----------------
 
     ///////////////////////////////////////////////
     $("#tabs").tabs();
