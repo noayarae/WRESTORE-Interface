@@ -616,20 +616,13 @@ src="images/info.png" width="14" height="14" alt=""/>-->
 <!--    =====================================  STEP 4  ====================================    -->
         <h2 name="step4">STEP 4: Time to vote! Provide a rating for each of the suggestions shown above.</h2>
         <!-- <form id="form1" name="form1" method="post" action="sendToUsersFeedback.php?id=<? print $thisCSS;  ?>">-->
-        <div class="mapHolder1 map1">
+        
+        <div class="mapHolder1_s4 map1">
             <h4>Suggestion <span class="oneMap"></span></h4>
             <div class="innerMapLinesHead">
                 <h4>Rate the design and performance of this alternative </h4>
             </div>
-            <!--<div class="rating">
-                <input type="radio" name="rating1" value="0" checked />
-                <span id="hide"></span>
-                <input type="radio" name="rating1" value="1" /><span></span>
-                <input type="radio" name="rating1" value="2" /><span></span>
-                <input type="radio" name="rating1" value="3" /><span></span>
-                <input type="radio" name="rating1" value="4" /><span></span>
-                <input type="radio" name="rating1" value="5" /><span></span>
-                </div>-->
+            
             <div class="innerMapLines">
                 <div class="rating">
                     <input class="trackable" id='step4_map1_star0' name="rating1"
@@ -662,20 +655,14 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 </table>
             </div>
         </div>
+        
+        <!--
         <div class="mapHolder2 map2" style="margin-right:0">
             <h4>Suggestion <span class="twoMap"></span></h4>
             <div class="innerMapLinesHead">
                 <h4>Rate the design and performance of this alternative </h4>
             </div>
-            <!--<div class="rating">
-                <input type="radio" name="rating2" value="0" checked />
-                   <span id="hide"></span>
-                   <input type="radio" name="rating2" value="1" /><span></span>
-                   <input type="radio" name="rating2" value="2" /><span></span>
-                   <input type="radio" name="rating2" value="3" /><span></span>
-                   <input type="radio" name="rating2" value="4" /><span></span>
-                   <input type="radio" name="rating2" value="5" /><span></span>
-                </div>-->
+            
             <div class="innerMapLines">
                 <div class="rating">
                     <input class="trackable" id='step4-map2-star0' name="rating2"
@@ -708,7 +695,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 </table>
             </div>
         </div>
-        
+        -->
 <!--    ==========================================  STEP 5  ==========================================    -->
         <h2 name="step5">STEP 5: click on the blue buttons to see additional suggestions or click on the orange button if you have rated <b>all</b> of them.</h2>
         <!--</div>-->
