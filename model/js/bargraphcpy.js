@@ -103,7 +103,11 @@ function subBasinGraph1() {
         }
 
         var options = {
-            title: 'Peak Flow Reduction in cubic feet per second (PFR)',
+            // title: 'Peak Flow Reductio in cubic feet per second (PFR)',
+            height: 320, width: 220,
+            chartArea: {'width': '80%', 'height': '92%'},
+            // chartArea:{left:10,top:20,width:"100%",height:"100%"},
+            // backgroundColor: '#ffff80',
             legend: {position: 'none'},
             //isStacked: true,//'percent',//'relative',//true,// It does not make effect when "Bars"
             // This line makes the entire category's tooltip active.
@@ -120,7 +124,11 @@ function subBasinGraph1() {
         };
 
         var options1 = {
-            title: 'Economic Revenue in Dollars (ER)',
+            // title: 'Economic Revenue in Dollars (ER)',
+            height: 320, width: 220,
+            chartArea: {'width': '80%', 'height': '92%'},
+            // chartArea:{left:10,top:20,width:"100%",height:"100%"},
+            // backgroundColor: 'green',
             legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
             focusTarget: 'category',
@@ -135,7 +143,11 @@ function subBasinGraph1() {
         };
 
         var options2 = {
-            title: 'In-stream sediment reduction in tons (SRed)',
+            // title: 'In-stream sediment reduction in tons (SRed)',
+            height: 320, width: 220,
+            chartArea: {'width': '80%', 'height': '92%'},
+            // chartArea:{left:10,top:20,width:"100%",height:"100%"},
+            // backgroundColor: 'green',
             legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
             focusTarget: 'category',
@@ -150,7 +162,11 @@ function subBasinGraph1() {
         };
 
         var options3 = {
-            title: 'In-stream nitrate reduction in kilograms (NRed)',
+            // title: 'In-stream nitrate reduction in kilograms (NRed)',
+            height: 320, width: 220,
+            chartArea: {'width': '80%', 'height': '92%'},
+            // chartArea:{left:10,top:20,width:"100%",height:"100%"},
+            // backgroundColor: 'green',
             legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
             focusTarget: 'category',
@@ -247,35 +263,35 @@ function subBasinGraph1() {
                     //alert(key + ': ' + value);
                     //subChart=value.split(',');
                     subChart = JSON.parse("[" + value + "]");
-                };
+                }
             });
             //JSON.parse(chartArray[rowlen].F1)[0]
-            var m11 = Number(parseFloat(Math.abs(subChart[1][0])))
-            var min11 = Number(parseFloat(Math.abs(subChart[1][1])))
-            var max11 = Number(parseFloat(Math.abs(subChart[1][2])))
-            var perm11 = 0.0006
-            var perm11 = Number(Math.abs(parseFloat(m11 / (JSON.parse(chartArray[rowlen].F1)[0])))) * 100
+            var m11 = Number(parseFloat(Math.abs(subChart[1][0])));
+            var min11 = Number(parseFloat(Math.abs(subChart[1][1])));
+            var max11 = Number(parseFloat(Math.abs(subChart[1][2])));
+            var perm11 = 0.0006;
+            var perm11 = Number(Math.abs(parseFloat(m11 / (JSON.parse(chartArray[rowlen].F1)[0])))) * 100;
             //var mm11=String("Alternative:"+(rowlen+1)+"\nPeakFlow:"+parseString(m11)+"\nPercentage:"+perm11)
 
-            var m12 = Number(parseFloat(Math.abs(subChart[2][0])))
-            var min12 = Number(parseFloat(Math.abs(subChart[2][1])))
-            var max12 = Number(parseFloat(Math.abs(subChart[2][2])))
-            var perm12 = 0.0006
-            var perm12 = Number(Math.abs(parseFloat(m12 / (JSON.parse(chartArray[rowlen].F2)[0])))) * 100
+            var m12 = Number(parseFloat(Math.abs(subChart[2][0])));
+            var min12 = Number(parseFloat(Math.abs(subChart[2][1])));
+            var max12 = Number(parseFloat(Math.abs(subChart[2][2])));
+            var perm12 = 0.0006;
+            var perm12 = Number(Math.abs(parseFloat(m12 / (JSON.parse(chartArray[rowlen].F2)[0])))) * 100;
             //var mm12=String("Alternative:"+(rowlen+1)+"\nPeakFlow:"+parseString(m12)+"\nPercentage:"+perm12)
 
-            var m13 = Number(parseFloat(Math.abs(subChart[3][0])))
-            var min13 = Number(parseFloat(Math.abs(subChart[3][1])))
-            var max13 = Number(parseFloat(Math.abs(subChart[3][2])))
-            var perm13 = 0.0006
-            var perm13 = Number(Math.abs(parseFloat(m13 / (JSON.parse(chartArray[rowlen].F3)[0])))) * 100
+            var m13 = Number(parseFloat(Math.abs(subChart[3][0])));
+            var min13 = Number(parseFloat(Math.abs(subChart[3][1])));
+            var max13 = Number(parseFloat(Math.abs(subChart[3][2])));
+            var perm13 = 0.0006;
+            var perm13 = Number(Math.abs(parseFloat(m13 / (JSON.parse(chartArray[rowlen].F3)[0])))) * 100;
             //var mm13=String("Alternative:"+(rowlen+1)+"\nPeakFlow:"+parseString(m13)+"\nPercentage:"+perm13)
 
-            var m14 = Number(parseFloat(Math.abs(subChart[4][0])))
-            var min14 = Number(parseFloat(Math.abs(subChart[4][1])))
-            var max14 = Number(parseFloat(Math.abs(subChart[4][2])))
-            var perm14 = 0.0006
-            var perm14 = Number(Math.abs(parseFloat(m14 / (JSON.parse(chartArray[rowlen].F4)[0])))) * 100
+            var m14 = Number(parseFloat(Math.abs(subChart[4][0])));
+            var min14 = Number(parseFloat(Math.abs(subChart[4][1])));
+            var max14 = Number(parseFloat(Math.abs(subChart[4][2])));
+            var perm14 = 0.0006;
+            var perm14 = Number(Math.abs(parseFloat(m14 / (JSON.parse(chartArray[rowlen].F4)[0])))) * 100;
             //var mm14=String("Alternative:"+(rowlen+1)+"\nPeakFlow:"+parseString(m14)+"\nPercentage:"+perm14)
 
             // ---------------------  These four lines were developed by Efrain Noa-Yarasca
@@ -439,5 +455,8 @@ function subBasinGraph1() {
         }
         $('.visualize').trigger('visualizeRefresh');
     }
+//    End of ELSE
+
+
 }
 

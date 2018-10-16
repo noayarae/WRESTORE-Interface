@@ -158,7 +158,6 @@
 	  * In the transition between s_two and s_end, when three is clicked, we invoke the submitData()
 	  * method, to store all collected data up to the moment.
 	  */
-//	  alert ("hello again");
       fda.addTransition('s_start', 'one', 's_one');
       fda.addTransition('s_one', 'two', 's_two');
       //fda.addTransition('s_two', 'three', 's_end', function() { submitData() });
@@ -283,7 +282,7 @@ else
 
 <!--[if lte IE 6]><script src="js/ie6/warning.js"></script><script>window.onload=function(){e("js/ie6/")}</script><![endif]-->
 <div class="wrapper">
-    <!--  =============================  WRESTORE TITTLE  ============================ -->
+    <!--  // ===========================================  WRESTORE TITTLE  ======================================== -->
     <div class="row">
         <header id="siteHeader">
             <div>
@@ -298,7 +297,7 @@ else
     </div>
     <!-- end Main Site Header -->
     
-    <!--  =================================  QUIT SAVE INSTRUCTIONS  ===============================  -->
+    <!--  // =====================================  QUIT SAVE INSTRUCTIONS  ================================= -->
     <div class="row" id="navRow">
         <!-- Nav Row -->
         <nav id="mainNav">
@@ -338,7 +337,7 @@ else
                         <td width="14%"></td>
                     </tr>
                 </table>
-<!--    ==================================  LEGEND ===============================  -->
+<!--    =================================  LEGEND ======================================  -->
                 <h2>Legend+ </h2>
                 <!--<div class="keyHolder">
                     <div id="tools" name="tools"></div>
@@ -380,7 +379,7 @@ else
             </form>
         </div>
         <!--  ADDED by E.Noa  </form></div>-->
-<!--        =================================== STEP 2 ======================================  -->
+<!--        ===================================  STEP  2 ======================================  -->
         <!-- database graphing-->
         <div name='step2collapse' class ="containerABC collapsed">
             <div class="header">
@@ -463,7 +462,7 @@ else
 //                        }
 //                        ?>
                         
-<!--                    </select> -->
+<!--                    </select>-->
 <!--                </div>-->
                 
                 <div id="tabs">
@@ -473,7 +472,7 @@ else
                         <li><a class="trackable" id="step3_tab_SR" href="#tabs-SR"> Sediment.Reduction in tons</a></li>
                         <li><a class="trackable" id="step3_tab_NR" href="#tabs-NR"> Nitrate.Reduction in kg</a></li>
                     </ul>
-                    <!--    ------------  tabs-PF  ------------   -->
+                    <!--    -------  tabs-PF  ------   -->
                     <div id="tabs-PF">
                         <div class="heatMapHolder1 map1">
                             <h4>Suggestion <span class="oneMap"></span></h4>
@@ -507,7 +506,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
 <!--                        </div>-->
                         <div style="clear:both"></div>
                     </div>
-                    <!--    ---------  tabs-RV  --------   -->
+                    <!--    -------  tabs-RV  ------   -->
                     <div id="tabs-RV">
                         <div class="heatMapHolder1 map1">
                             <h4>Suggestion <span class="oneMap"></span></h4>
@@ -725,11 +724,11 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
-<!--            <tr>-->
-<!--                <td>&nbsp;</td>-->
-<!--                <td>&nbsp;</td>-->
-<!--                <td>&nbsp;</td>-->
-<!--            </tr>-->
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
         </table>
         <textarea name="JSONHolder" id="JSONHolder" cols="45" rows="5"></textarea>
         <!--   </form>-->
@@ -765,7 +764,6 @@ src="images/info.png" width="14" height="14" alt=""/>-->
         // Tooltip only Text
         $('.masterTooltip').hover(function(){
             // Hover over code
-            alert ("hola--");
             var title = $(this).attr('title');
             $(this).data('tipText', title).removeAttr('title');
             $('<p class="tooltip"></p>')
@@ -784,7 +782,6 @@ src="images/info.png" width="14" height="14" alt=""/>-->
         });
     });
 </script>
-
 <?php /*?><?
             //This grabs the incoming test type from Vidya and uses php to write out the jquery needed to style the progress bar. From Line 150 or so above
             echo "
@@ -795,7 +792,6 @@ src="images/info.png" width="14" height="14" alt=""/>-->
              $('.skip').html(".$writeThis.");
             </script>";
             ?><?php */?>
-
 <script type="text/javascript">
     //The next chunk of code is simply parsing out all the data from the table at the top of the page and putting them in Arrays that we can access for all things. Also creates the answers array that we need to pass the answers. If you ever want to see any of these arrays you can use the structure // alert(JSON.stringify(arrayName)); where arrayName is the name of the array you want to see.
     var array = [];
@@ -818,12 +814,13 @@ src="images/info.png" width="14" height="14" alt=""/>-->
             //themselves but for now we need all the originals.
             if(headers[index]=="USERID" || headers[index]=="INDVID" || headers[index]=="RATING"  || headers[index]=="CONFIDENCE" ){
                 arrayItemAnswers[headers[index]] = $(item).html();
-            }
+            };
 
 
             if(headers[index]=="F0" || headers[index]=="F1" || headers[index]=="F2"  || headers[index]=="F3"  || headers[index]=="F4"  || headers[index]=="F5" ){
                 chartArrayItems[headers[index]] = $(item).html();
-            }
+            };
+
         });
 
         arrayItemAnswers["stripCropping"]="0";
@@ -839,7 +836,6 @@ src="images/info.png" width="14" height="14" alt=""/>-->
         chartArray.push(chartArrayItems);
 
     });
-    
     //**********************************trying to enter the heatmap code***************************
 
     var heatpfra=new Array(); //HEAT-Peak-Flow-Reduction-Array
@@ -872,7 +868,6 @@ src="images/info.png" width="14" height="14" alt=""/>-->
             heatiter++;
 
         });
-        
         heatpfr.sort( function (a, b) {
             if ((typeof b.val === 'undefined' && typeof a.val !== 'undefined') || a.val < b.val) {
                 return -1;
@@ -880,6 +875,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
             if ((typeof a.val === 'undefined' && typeof b.val !== 'undefined') || a.val > b.val) {
                 return 1;
             }
+
             return 0;
         });
 
@@ -890,9 +886,9 @@ src="images/info.png" width="14" height="14" alt=""/>-->
             if ((typeof a.val === 'undefined' && typeof b.val !== 'undefined') || a.val > b.val) {
                 return 1;
             }
+
             return 0;
         });
-        
         heatsed.sort(function (a, b) {
             if ((typeof b.val === 'undefined' && typeof a.val !== 'undefined') || a.val < b.val) {
                 return -1;
@@ -1035,12 +1031,12 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                         player:     "html",
                         title:      "WRESTORE Visualization Tool ",
                         height:     450,
-                        width:      550
+                        width:      550,
                     });
                 }
             });
 
-        });
+        })
 
 
         $("body").click(function(e) {
@@ -1054,95 +1050,100 @@ src="images/info.png" width="14" height="14" alt=""/>-->
 
             var obj1=$(e.target).attr('name');
             var obj8 = $(e.target).attr('width');
-            var obj3 = $(e.target).attr('height');
+            var obj3 = $(e.target).attr('height')
             var objj=$(e.target).parents().eq(11);
             console.log($(e.target).parents().eq(11).attr('className'));
 
-            if((obj3==492) && (obj8==59)){
+            if((obj3==492) && (obj8==59))
+            {
                 obj1= 'popupClose';
             }
             var answer='NULL';
 
-            if(obj1=='stripCropping1'){
+            if(obj1=='stripCropping1')
+            {
                 var answer=document.querySelector('input[name="stripCropping1"]:checked').value;
             }
-            
-            if(obj1=='stripCropping2'){
+            if(obj1=='stripCropping2')
+            {
                 var answer=document.querySelector('input[name="stripCropping2"]:checked').value;
+
             }
-            
-            if(obj1=='cropRotation1'){
+            if(obj1=='cropRotation1')
+            {
                 var answer=document.querySelector('input[name="cropRotation1"]:checked').value;
             }
-            
-            if(obj1=='cropRotation2'){
+            if(obj1=='cropRotation2')
+            {
                 var answer=document.querySelector('input[name="cropRotation2"]:checked').value;
             }
-            
-            if(obj1=='coverCrops1'){
+            if(obj1=='coverCrops1')
+            {
                 var answer=document.querySelector('input[name="coverCrops1"]:checked').value;
             }
-            
-            if(obj1=='coverCrops2'){
+            if(obj1=='coverCrops2')
+            {
                 var answer=document.querySelector('input[name="coverCrops2"]:checked').value;
             }
-            
-            if(obj1=='filterStrips1'){
+            if(obj1=='filterStrips1')
+            {
                 var answer=document.querySelector('input[name="filterStrips1"]:checked').value;
             }
-            
-            if(obj1=='filterStrips2'){
+            if(obj1=='filterStrips2')
+            {
                 var answer=document.querySelector('input[name="filterStrips2"]:checked').value;
             }
-            
-            if(obj1=='grassedWaterways1'){
+            if(obj1=='grassedWaterways1')
+            {
                 var answer=document.querySelector('input[name="grassedWaterways1"]:checked').value;
             }
-            
-            if(obj1=='grassedWaterways2'){
+            if(obj1=='grassedWaterways2')
+            {
                 var answer=document.querySelector('input[name="grassedWaterways2"]:checked').value;
             }
-            
-            if(obj1=='conservationTillage1'){
+            if(obj1=='conservationTillage1')
+            {
                 var answer=document.querySelector('input[name="conservationTillage1"]:checked').value;
             }
-            
-            if(obj1=='conservationTillage2'){
+            if(obj1=='conservationTillage2')
+            {
                 var answer=document.querySelector('input[name="conservationTillage2"]:checked').value;
             }
-            
-            if(obj1=='Wetlands1'){
+            if(obj1=='Wetlands1')
+            {
                 var answer=document.querySelector('input[name="Wetlands1"]:checked').value;
             }
-            
-            if(obj1=='Wetlands2'){
+            if(obj1=='Wetlands2')
+            {
                 var answer=document.querySelector('input[name="Wetlands2"]:checked').value;
             }
-            
-            if(obj1=='rating1'){
+            if(obj1=='rating1')
+            {
                 var answer=document.querySelector('input[name="rating1"]:checked').value;
             }
-            
-            if(obj1=='rating2'){
+            if(obj1=='rating2')
+            {
                 var answer=document.querySelector('input[name="rating2"]:checked').value;
             }
-            
-            if(obj1=='subDrop'){
+            if(obj1=='subDrop')
+            {
                 var answer=document.getElementsByName('subDrop').item(0).value;
             }
-            
-            if(obj1=='bmpType'){
+            if(obj1=='bmpType')
+            {
                 var answer=$(e.target).val();
             }
-            
-            if(obj1=='heatDrop'){
+            if(obj1=='heatDrop')
+            {
                 var answer='suggestion '+document.getElementsByName('heatDrop').item(0).value;
+
             }
 
 
             if (typeof obj1==="undefined" | typeof obj1==="");
             //alert ("bad");
             else(
+
                 //alert(obj1);
                 $.ajax({
                     url: 'sendToTime.php',
@@ -1168,21 +1169,20 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 }
             });
             // Do whatever you want; the event that'd fire if the "special" element has been clicked on has been cancelled.
-        }
+        };
 
-        //Time to get our data. getSubBasins is called each time we need a new set of maps. oneMap and twoMap are the
-        // variables that change on the click of the buttons. It causes us to move to the new rows in the giant dataset.
-        // The maps then read the new materials and away we go. That (mapping) occurs in the initialize() function.
-        
+        //Time to get our data. getSubBasins is called each time we need a new set of maps. oneMap and twoMap are the variables that change on the click of the buttons. It causes us to move to the new rows in the giant dataset. The maps then read the new materials and away we go. That (mapping) occurs in the initialize() function.
         function getSubBasins(){
             subBasinArray=[];
             subBasinArray2=[];
             bmpArray=array[oneMap].CHOSENBMP.split(',');
 
             ///////////////////////////////////////////////////////////////////
-            
-            var option = document.getElementById('subDrop').value;
 
+            //we should be able to put the google charts stuff here because we want the graphs to refresh every page as the maps do.
+
+            var option = document.getElementById('subDrop').value;
+            //alert("I am in it");
             var rowlen;
 
             var data = new google.visualization.DataTable();
@@ -1194,6 +1194,8 @@ src="images/info.png" width="14" height="14" alt=""/>-->
             data.addColumn({type: 'string', role: 'style'});
             data.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
 
+            //data.addColumn({type: 'number', role: 'annotation'});
+
             var data1 = new google.visualization.DataTable();
 
             data1.addColumn('number', 'Individual');
@@ -1202,6 +1204,8 @@ src="images/info.png" width="14" height="14" alt=""/>-->
             data1.addColumn({id:'max', type:'number', role:'interval'});
             data1.addColumn({type: 'string', role: 'style'});
             data1.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
+            //data1.addColumn({type: 'number', role: 'annotation'});
+
 
             var data2 = new google.visualization.DataTable();
 
@@ -1211,6 +1215,8 @@ src="images/info.png" width="14" height="14" alt=""/>-->
             data2.addColumn({id:'max', type:'number', role:'interval'});
             data2.addColumn({type: 'string', role: 'style'});
             data2.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
+            //data2.addColumn({type: 'number', role: 'annotation'});
+
 
             var data3 = new google.visualization.DataTable();
 
@@ -1220,6 +1226,8 @@ src="images/info.png" width="14" height="14" alt=""/>-->
             data3.addColumn({id:'max', type:'number', role:'interval'});
             data3.addColumn({type: 'string', role: 'style'});
             data3.addColumn({'type': 'string', 'role': 'tooltip', 'p': {'html': true}});
+            //data3.addColumn({type: 'number', role: 'annotation'});
+
 
             for(var i = 0; i < 24; i++) {
                 colors[i] = 'gray';
@@ -1237,11 +1245,12 @@ src="images/info.png" width="14" height="14" alt=""/>-->
             if (option=="Watershed")
             {
                 for (rowlen = 0; rowlen < document.getElementById('wholeTable').rows.length-1; rowlen++) {
-                    
+                    //JSON.parse(chartArray[rowlen].F1)[0]
                     var m11=Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F1)[0])))
                     var min11=Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F1)[1])))
                     var max11=Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F1)[2])))
                     var perm11=Number(Math.abs(parseFloat(m11/(JSON.parse(chartArray[rowlen].F1)[0]))))*100
+
 
                     var m12=Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F2)[0])/1))
                     var min12=Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F2)[1])))
@@ -1257,7 +1266,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                     var min14=Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F4)[1])))
                     var max14=Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F4)[2])))
                     var perm14=Number(Math.abs(parseFloat(m14/(JSON.parse(chartArray[rowlen].F4)[0]))))*100
-                    
+                    //need to edit the tooltip for min and max
                     data.addRow([rowlen+1,m11,min11,max11,colors[rowlen],createCustomHTMLContent1(rowlen+1,'PFR',m11.toExponential(2),min11.toExponential(2),max11.toExponential(2))]);
                     data1.addRow([rowlen+1,m12,min12,max12,colors[rowlen],createCustomHTMLContent1(rowlen+1,'ER$',m12.toExponential(2),min12.toExponential(2),max12.toExponential(2))]);
                     data2.addRow([rowlen+1,m13,min13,max13,colors[rowlen],createCustomHTMLContent1(rowlen+1,'SRed',m13.toExponential(2),min13.toExponential(2),max13.toExponential(2))]);
@@ -1265,40 +1274,48 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 }
 
                 var options = {
-                    title: 'Peak flow reduction in cubic feet per ------- (PFR)',
+                    title: 'Peak flow reduction in cubic feet per second (PFR)',
+                    // This line makes the entire category's tooltip active.
                     focusTarget: 'category',
+                    // Use an HTML tooltip.
                     tooltip: { isHtml: true },
                     tooltip: { trigger: 'selection'},
                     vAxis: { gridlines: { count: document.getElementById('wholeTable').rows.length-1 } , direction: -1},
                     intervals: { style: 'bars' , color: '#fff'},
-                    hAxis: { textPosition: 'none' }
+                    hAxis: { textPosition: 'none' },
                 };
                 var options1 = {
-                    title: 'Economic Revenue in Dollars ----- (ER)',
+                    title: 'Economic Revenue in Dollars (ER)',
+                    // This line makes the entire category's tooltip active.
                     focusTarget: 'category',
+                    // Use an HTML tooltip.
                     tooltip: { isHtml: true },
                     tooltip: { trigger: 'selection'},
                     vAxis: { gridlines: { count: document.getElementById('wholeTable').rows.length-1 } , direction: -1},
                     intervals: { style: 'bars' , color: '#fff'},
-                    hAxis: { textPosition: 'none' }
+                    hAxis: { textPosition: 'none' },
                 };
                 var options2 = {
-                    title: 'In-stream sediment reduction in ---- (SRed)',
+                    title: 'In-stream sediment reduction in tons (SRed)',
+                    // This line makes the entire category's tooltip active.
                     focusTarget: 'category',
+                    // Use an HTML tooltip.
                     tooltip: { isHtml: true },
                     tooltip: { trigger: 'selection'},
                     vAxis: { gridlines: { count: document.getElementById('wholeTable').rows.length-1 } , direction: -1},
                     intervals: { style: 'bars' , color: '#fff'},
-                    hAxis: { textPosition: 'none' }
+                    hAxis: { textPosition: 'none' },
                 };
                 var options3 = {
-                    title: 'In-stream nitrate reduction in ----- (NRed)',
+                    title: 'In-stream nitrate reduction in kilograms (NRed)',
+                    // This line makes the entire category's tooltip active.
                     focusTarget: 'category',
+                    // Use an HTML tooltip.
                     tooltip: { isHtml: true },
                     tooltip: { trigger: 'selection'},
                     vAxis: { gridlines: { count: document.getElementById('wholeTable').rows.length-1 }, direction: -1 },
                     intervals: { style: 'bars' , color: '#fff'},
-                    hAxis: { textPosition: 'none' }
+                    hAxis: { textPosition: 'none' },
                 };
 
                 chart = new google.visualization.BarChart(document.getElementById('chart_div1'));
@@ -1313,59 +1330,123 @@ src="images/info.png" width="14" height="14" alt=""/>-->
 
                 //the barclick event capturing is done here.
                 google.visualization.events.addListener(chart, 'select', function goToTimeBar() {
+                     //session = session+1;
+                    //alert (session + " " + page + " " + session)
                     var clickd=chart.getSelection();
+//                    echo ("This a click:  " + clickd);
+                    $.ajax({
+                        url: 'sendToTime.php',
+                        type: 'post',
+                        data:"JSONHolder=" + "BAR_PFR" + "," + page + "," + session+ "," + (option + " "+(parseInt(clickd[0].row)+1)),
+                        success: function(data) {
+
+                        }
+                    });
                 });
-                
                 google.visualization.events.addListener(chart1, 'select', function goToTimeBar() {
+                    //session = session+1;
+                    //alert (session + " " + page + " " + session)
                     var clickd=chart1.getSelection();
                     console.log(clickd);
+                    $.ajax({
+                        url: 'sendToTime.php',
+                        type: 'post',
+                        data:"JSONHolder=" + "BAR_ER" + "," + page + "," + session+ "," + (option + " "+(parseInt(clickd[0].row)+1)),
+                        success: function(data) {
+
+                        }
+                    });
                 });
-                
                 google.visualization.events.addListener(chart2, 'select', function goToTimeBar() {
+                    //session = session+1;
+                    //alert (session + " " + page + " " + session)
                     var clickd=chart2.getSelection();
+                    $.ajax({
+                        url: 'sendToTime.php',
+                        type: 'post',
+                        data:"JSONHolder=" + "BAR_SRed" + "," + page + "," + session+ "," + (option + " "+(parseInt(clickd[0].row)+1)),
+                        success: function(data) {
+
+                        }
+                    });
                 });
-                
                 google.visualization.events.addListener(chart3, 'select', function goToTimeBar() {
+                    //session = session+1;
+                    //alert (session + " " + page + " " + session)
                     var clickd=chart3.getSelection();
+                    $.ajax({
+                        url: 'sendToTime.php',
+                        type: 'post',
+                        data:"JSONHolder=" + "BAR_NRed" + "," + page + "," + session+ "," + (option + " "+(parseInt(clickd[0].row)+1)),
+                        success: function(data) {
+
+                        }
+                    });
                 });
 
+                /*function createCustomHTMLContent1( row, dm , m) {
+                  return '<div style="padding:5px 5px 5px 5px;">' +
+                      '<table id="medals_layout">' + '<tr>' +
+                      '<td>Alternative : </td>' +
+                      '<td><b>' + row + '</b></td>' + '</tr>' + '<tr>' +
+                      '<td>'+dm+' : </td>' +
+                      '<td><b>' + m + '</b></td>' + '</tr>' + '<tr>'  + '</table>' + '</div>';
+                }*/
                 function createCustomHTMLContent1( row, dm , m, min , max) {
                     return '\n'+'Alternative: ' + row +'\n'+dm+': '+ m + "\n min:" + min +"\nmax:" + max ;
+
                 }
+
                 $('.visualize').trigger('visualizeRefresh');
+
             }
-            else {
+            else
+            {
+
                 for (rowlen = 0; rowlen < document.getElementById('wholeTable').rows.length-1; rowlen++) {
+
                     var subChart=[];
 
                     $.each(array[rowlen], function(key, value) {
                         if (key==option){
+                            //alert(key + ': ' + value);
+                            //subChart=value.split(',');
                             subChart=JSON.parse("["+value+"]");
-                        }
+                        };
                     });
-                    var m11=Number(parseFloat(Math.abs(subChart[1][0])));
-                    var min11=Number(parseFloat(Math.abs(subChart[1][1])));
-                    var max11=Number(parseFloat(Math.abs(subChart[1][2])));
-                    var perm11=0.0006;
-                    var perm11=Number(Math.abs(parseFloat(m11/(JSON.parse(chartArray[rowlen].F1)[0]))))*100;
+                    //JSON.parse(chartArray[rowlen].F1)[0]
+                    var m11=Number(parseFloat(Math.abs(subChart[1][0])))
+                    var min11=Number(parseFloat(Math.abs(subChart[1][1])))
+                    var max11=Number(parseFloat(Math.abs(subChart[1][2])))
+                    var perm11=0.0006
+                    var perm11=Number(Math.abs(parseFloat(m11/(JSON.parse(chartArray[rowlen].F1)[0]))))*100
 
-                    var m12=Number(parseFloat(Math.abs(subChart[2][0])));
-                    var min12=Number(parseFloat(Math.abs(subChart[2][1])));
-                    var max12=Number(parseFloat(Math.abs(subChart[2][2])));
-                    var perm12=0.0006;
-                    var perm12=Number(Math.abs(parseFloat(m12/(JSON.parse(chartArray[rowlen].F2)[0]))))*100;
+                    //var mm11=String("Alternative:"+(rowlen+1)+"\nPeakFlow:"+parseString(m11)+"\nPercentage:"+perm11)
 
-                    var m13=Number(parseFloat(Math.abs(subChart[3][0])));
-                    var min13=Number(parseFloat(Math.abs(subChart[3][1])));
-                    var max13=Number(parseFloat(Math.abs(subChart[3][2])));
-                    var perm13=0.0006;
-                    var perm13=Number(Math.abs(parseFloat(m13/(JSON.parse(chartArray[rowlen].F3)[0]))))*100;
-                    
-                    var m14=Number(parseFloat(Math.abs(subChart[4][0])));
-                    var min14=Number(parseFloat(Math.abs(subChart[4][1])));
-                    var max14=Number(parseFloat(Math.abs(subChart[4][2])));
-                    var perm14=0.0006;
-                    var perm14=Number(Math.abs(parseFloat(m14/(JSON.parse(chartArray[rowlen].F4)[0]))))*100;
+                    var m12=Number(parseFloat(Math.abs(subChart[2][0])))
+                    var min12=Number(parseFloat(Math.abs(subChart[2][1])))
+                    var max12=Number(parseFloat(Math.abs(subChart[2][2])))
+                    var perm12=0.0006
+                    var perm12=Number(Math.abs(parseFloat(m12/(JSON.parse(chartArray[rowlen].F2)[0]))))*100
+
+
+                    //var mm12=String("Alternative:"+(rowlen+1)+"\nPeakFlow:"+parseString(m12)+"\nPercentage:"+perm12)
+
+                    var m13=Number(parseFloat(Math.abs(subChart[3][0])))
+                    var min13=Number(parseFloat(Math.abs(subChart[3][1])))
+                    var max13=Number(parseFloat(Math.abs(subChart[3][2])))
+                    var perm13=0.0006
+                    var perm13=Number(Math.abs(parseFloat(m13/(JSON.parse(chartArray[rowlen].F3)[0]))))*100
+
+                    //var mm13=String("Alternative:"+(rowlen+1)+"\nPeakFlow:"+parseString(m13)+"\nPercentage:"+perm13)
+
+                    var m14=Number(parseFloat(Math.abs(subChart[4][0])))
+                    var min14=Number(parseFloat(Math.abs(subChart[4][1])))
+                    var max14=Number(parseFloat(Math.abs(subChart[4][2])))
+                    var perm14=0.0006
+                    var perm14=Number(Math.abs(parseFloat(m14/(JSON.parse(chartArray[rowlen].F4)[0]))))*100
+
+                    //var mm14=String("Alternative:"+(rowlen+1)+"\nPeakFlow:"+parseString(m14)+"\nPercentage:"+perm14)
 
                     data.addRow([rowlen+1,m11,min11,max11,colors[rowlen],createCustomHTMLContent(rowlen+1,'PFR',m11.toExponential(2),min11.toExponential(2),max11.toExponential(2),'PFR wrt Watershed',perm11.toExponential(2))]);
                     data1.addRow([rowlen+1,m12,min12,max12,colors[rowlen],createCustomHTMLContent(rowlen+1,'ER$',m12.toExponential(2),min12.toExponential(2),max12.toExponential(2),'ER$ wrt Watershed',perm12.toExponential(2))]);
@@ -1375,40 +1456,48 @@ src="images/info.png" width="14" height="14" alt=""/>-->
 
                 var options = {
                     title: 'Peak flow reduction in cfs (PFR)',
+                    // This line makes the entire category's tooltip active.
                     focusTarget: 'category',
+                    // Use an HTML tooltip.
                     tooltip: { isHtml: true },
                     tooltip: { trigger: 'selection'},
                     vAxis: { gridlines: { count: document.getElementById('wholeTable').rows.length-1 } , direction: -1},
                     intervals: { style: 'bars' , color: '#fff'},
-                    hAxis: { textPosition: 'none' }
+                    hAxis: { textPosition: 'none' },
+
                 };
-                
                 var options1 = {
                     title: 'Economic Revenue in Dollars (ER$)',
+                    // This line makes the entire category's tooltip active.
                     focusTarget: 'category',
+                    // Use an HTML tooltip.
                     tooltip: { isHtml: true },
                     tooltip: { trigger: 'selection'},
                     vAxis: { gridlines: { count: document.getElementById('wholeTable').rows.length-1 } , direction: -1},
                     intervals: { style: 'bars' , color: '#fff'},
-                    hAxis: { textPosition: 'none' }
+                    hAxis: { textPosition: 'none' },
                 };
                 var options2 = {
                     title: 'In-stream sediment reduction in tons (SRed)',
+                    // This line makes the entire category's tooltip active.
                     focusTarget: 'category',
+                    // Use an HTML tooltip.
                     tooltip: { isHtml: true },
                     tooltip: { trigger: 'selection'},
                     vAxis: { gridlines: { count: document.getElementById('wholeTable').rows.length-1 }, direction: -1 },
                     intervals: { style: 'bars' , color: '#fff'},
-                    hAxis: { textPosition: 'none' }
+                    hAxis: { textPosition: 'none' },
                 };
                 var options3 = {
                     title: 'In-stream nitrate reduction in kilograms (NRed)',
+                    // This line makes the entire category's tooltip active.
                     focusTarget: 'category',
+                    // Use an HTML tooltip.
                     tooltip: { isHtml: true },
                     tooltip: { trigger: 'selection'},
                     vAxis: { gridlines: { count: document.getElementById('wholeTable').rows.length-1 } , direction: -1},
                     intervals: { style: 'bars' , color: '#fff'},
-                    hAxis: { textPosition: 'none' }
+                    hAxis: { textPosition: 'none' },
                 };
 
                 chart = new google.visualization.BarChart(document.getElementById('chart_div1'));
@@ -1420,23 +1509,71 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 chart1.draw(data1, options1);
                 chart2.draw(data2, options2);
                 chart3.draw(data3, options3);
-                
+
+                //the barclick event capturing is done here.
                 google.visualization.events.addListener(chart, 'select', function goToTimeBar() {
-                    var clickd=chart.getSelection();
+                     //session = session+1;
+                    //alert (session + " " + page + " " + session)
+                    var clickd=chart.getSelection()
+                    $.ajax({
+                        url: 'sendToTime.php',
+                        type: 'post',
+                        data:"JSONHolder=" + "BAR_PFR" + "," + page + "," + session+ "," + (option + " "+(parseInt(clickd[0].row)+1)),
+                        success: function(data) {
+
+                        }
+                    });
                 });
-                
                 google.visualization.events.addListener(chart1, 'select', function goToTimeBar() {
-                    var clickd=chart1.getSelection();
+                    //session = session+1;
+                    //alert (session + " " + page + " " + session)
+                    var clickd=chart1.getSelection()
+                    $.ajax({
+                        url: 'sendToTime.php',
+                        type: 'post',
+                        data:"JSONHolder=" + "BAR_ER" + "," + page + "," + session+ "," + (option + " "+(parseInt(clickd[0].row)+1)),
+                        success: function(data) {
+
+                        }
+                    });
                 });
-                
                 google.visualization.events.addListener(chart2, 'select', function goToTimeBar() {
-                    var clickd=chart2.getSelection();
+                    //session = session+1;
+                    //alert (session + " " + page + " " + session)
+                    var clickd=chart2.getSelection()
+                    $.ajax({
+                        url: 'sendToTime.php',
+                        type: 'post',
+                        data:"JSONHolder=" + "BAR_SRed" + "," + page + "," + session+ "," + (option + " "+(parseInt(clickd[0].row)+1)),
+                        success: function(data) {
+
+                        }
+                    });
                 });
-                
                 google.visualization.events.addListener(chart3, 'select', function goToTimeBar() {
-                    var clickd=chart3.getSelection();
+                    //session = session+1;
+                    //alert (session + " " + page + " " + session)
+                    var clickd=chart3.getSelection()
+                    $.ajax({
+                        url: 'sendToTime.php',
+                        type: 'post',
+                        data:"JSONHolder=" + "BAR_NRed" + "," + page + "," + session+ "," + (option + " "+(parseInt(clickd[0].row)+1)),
+                        success: function(data) {
+
+                        }
+                    });
                 });
-                
+
+                /*function createCustomHTMLContent( row, dm , m, dpermw, permw) {
+                  return '<div style="padding:5px 5px 5px 5px;">' +
+                      '<table id="medals_layout">' + '<tr>' +
+                      '<td>Alternative : </td>' +
+                      '<td><b>' + row + '</b></td>' + '</tr>' + '<tr>' +
+                      '<td>'+dm+' : </td>' +
+                      '<td><b>' + m + '</b></td>' + '</tr>' + '<tr>' +
+                      '<td>'+dpermw+' : </td>' +
+                      '<td><b>' + permw +'%'+ '</b></td>' + '</tr>' + '</table>' + '</div>';
+                }*/
                 function createCustomHTMLContent( row, dm , m, min , max, dpermw, permw) {
                     return '\n'+'Alternative: ' + row +'\n'+dm+': '+ m +"\nmin:"+ min + "\nmax:" + max + "\n" + dpermw +': '+permw+' %';
                 }
@@ -1450,19 +1587,21 @@ src="images/info.png" width="14" height="14" alt=""/>-->
             subBasinArrayStart=array[oneMap].REGIONSUBBASINID.split(',');
             assArray=array[oneMap].ASSIGNMENTS.split(',');
             var count=0;
+            //alert("subBasinArrayStart"+subBasinArrayStart);
             $.each(subBasinArrayStart, function(index, value) {
+
                 var subArrayItem={};
                 subArrayItem["subbasinID"] = value;
                 subBasinArray.push(subArrayItem);
                 count=count+1;
+
             });
-            
+            //alert(JSON.stringify(subBasinArray));
             $.each(bmpArray, function(index, value) {
                 if (value=="1"){
                     bmpArray[index] = bmpArrayNames[index];
                 }
             });
-            
             bmpArray = jQuery.removeFromArray("0", bmpArray);
             //alert("bmpArray"+bmpArray);
             var count1=0;
@@ -1483,19 +1622,21 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 $.each(subBasinArray, function(index, value) {
                     subBasinArray[index][value1]=assArray[count1];
                     count1=count1+1;
+
                 });
 
                 //Here I am looping and finding out which values do not equal 0. I put them in an string and will stick that string into an Array. (BELOW)
                 $.each(subBasinArray, function(index2, value2) {
                     if (subBasinArray[index2][value1]!=="0.0"){
                         words=words + subBasinArray[index2]["subbasinID"] + ",";
-                    }
+                    };
                 });
 
                 forMapArray[count2]["subs"]=words;
                 //This one shows all the subbasins for the each bmp
                 //alert(JSON.stringify(forMapArray));
                 count2=count2+1;
+
             });
             /////// //Now I do this for the second group//////////////////////////////////////////////
 
@@ -1514,15 +1655,15 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 count=count+1;
                 //alert (value);
             });
-            
             //alert(JSON.stringify(subBasinArray2));
             $.each(bmpArray2, function(index, value) {
                 if (value=="1"){
                     //alert(JSON.stringify(bmpArray2));
                     bmpArray2[index] = bmpArrayNames[index];
+
                 }
+
             });
-            
             bmpArray2 = jQuery.removeFromArray("0", bmpArray2);
             //alert(JSON.stringify(bmpArray2));
             //startmoving  bmpArray, adding values to it.
@@ -1548,18 +1689,18 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 $.each(subBasinArray2, function(index2, value2) {
                     if (subBasinArray2[index2][value1]!=="0.0"){
                         words=words + subBasinArray2[index2]["subbasinID"] + ",";
-                    }
+                    };
                 });
                 forMapArray2[count2]["subs"]=words;
                 //alert(JSON.stringify(forMapArray2));
                 count2=count2+1;
             });
-            
             //Now that I have all the data arranged for the incoming dataset (multiple arrays labeled 1 and 2) I initialize mapping. It is on mapping.js
             initialize();
 
         }
         ////////////////////////////////END GET SUBBASINS////////////////////////////////////////////////
+
 
         //use this to remove all the 0s in the array above
         jQuery.removeFromArray = function(value, arr) {
@@ -1570,8 +1711,10 @@ src="images/info.png" width="14" height="14" alt=""/>-->
 
         //This grabs the information needed to get the radio buttons set up with new data
 
+
         function setUpRadio(){
-            //Setting up the radio buttons
+
+            //Setting  up the radio buttons
             var $radios = $('input:radio[name=rating1]');
             //alert(answersArray[oneMap].RATING);
             var ratingAnswer=answersArray[oneMap].RATING;
@@ -1762,9 +1905,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 //$radios.filter('[rating1]').attr('checked', true);
             }
         }
-        //  -----------------------------  END setting up radio buttons  ------------------------------//
-        
-        //  ----------------------------  Start setting radio(s)  ---------------------------
+        //END setting up radio buttons
         //Putting radio button values in text area
         jQuery('input:radio[name=rating1]').change(function(){
             //var id = $(this).attr("value");
@@ -1772,7 +1913,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 return document.querySelector('input[name="rating1"]:checked').value;
             });
             //alert($(this).val());
-        });
+        })
 
         jQuery('input:radio[name=rating2]').change(function(){
             //var id = $(this).attr("value");
@@ -1780,7 +1921,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 return document.querySelector('input[name="rating2"]:checked').value;
             });
             //alert($(this).val());
-        });
+        })
 
         //setting up stripcropping radio
         jQuery('input:radio[name=stripCropping1]').change(function(){
@@ -1789,7 +1930,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 return document.querySelector('input[name="stripCropping1"]:checked').value;
             });
             //alert($(this).val());
-        });
+        })
 
         jQuery('input:radio[name=stripCropping2]').change(function(){
             //var id = $(this).attr("value");
@@ -1797,7 +1938,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 return document.querySelector('input[name="stripCropping2"]:checked').value;
             });
             //alert($(this).val());
-        });
+        })
 
         //setting up cropRotation radio
         jQuery('input:radio[name=cropRotation1]').change(function(){
@@ -1806,7 +1947,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 return document.querySelector('input[name="cropRotation1"]:checked').value;
             });
             //alert($(this).val());
-        });
+        })
 
         jQuery('input:radio[name=cropRotation2]').change(function(){
             //var id = $(this).attr("value");
@@ -1814,7 +1955,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 return document.querySelector('input[name="cropRotation2"]:checked').value;
             });
             //alert($(this).val());
-        });
+        })
 
         //setting up coverCrops radio
         jQuery('input:radio[name=coverCrops1]').change(function(){
@@ -1823,7 +1964,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 return document.querySelector('input[name="coverCrops1"]:checked').value;
             });
             //alert($(this).val());
-        });
+        })
 
         jQuery('input:radio[name=coverCrops2]').change(function(){
             //var id = $(this).attr("value");
@@ -1831,7 +1972,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 return document.querySelector('input[name="coverCrops2"]:checked').value;
             });
             //alert($(this).val());
-        });
+        })
 
         //setting up filterStrips radio
         jQuery('input:radio[name=filterStrips1]').change(function(){
@@ -1840,7 +1981,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 return document.querySelector('input[name="filterStrips1"]:checked').value;
             });
             //alert($(this).val());
-        });
+        })
 
         jQuery('input:radio[name=filterStrips2]').change(function(){
             //var id = $(this).attr("value");
@@ -1848,7 +1989,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 return document.querySelector('input[name="filterStrips2"]:checked').value;
             });
             //alert($(this).val());
-        });
+        })
 
         //setting up grassedWaterways radio
         jQuery('input:radio[name=grassedWaterways1]').change(function(){
@@ -1857,7 +1998,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 return document.querySelector('input[name="grassedWaterways1"]:checked').value;
             });
             //alert($(this).val());
-        });
+        })
 
         jQuery('input:radio[name=grassedWaterways2]').change(function(){
             //var id = $(this).attr("value");
@@ -1865,7 +2006,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 return document.querySelector('input[name="grassedWaterways2"]:checked').value;
             });
             //alert($(this).val());
-        });
+        })
 
         //setting up conservationTillage radio
         jQuery('input:radio[name=conservationTillage1]').change(function(){
@@ -1874,7 +2015,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 return document.querySelector('input[name="conservationTillage1"]:checked').value;
             });
             //alert($(this).val());
-        });
+        })
 
         jQuery('input:radio[name=conservationTillage2]').change(function(){
             //var id = $(this).attr("value");
@@ -1882,7 +2023,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 return document.querySelector('input[name="conservationTillage2"]:checked').value;
             });
             //alert($(this).val());
-        });
+        })
 
 
         //setting up wetlands radio
@@ -1892,7 +2033,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 return document.querySelector('input[name="Wetlands1"]:checked').value;
             });
             //alert($(this).val());
-        });
+        })
 
         jQuery('input:radio[name=Wetlands2]').change(function(){
             //var id = $(this).attr("value");
@@ -1900,8 +2041,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 return document.querySelector('input[name="Wetlands2"]:checked').value;
             });
             //alert($(this).val());
-        });
-        //  ----------------------------  End setting radio(s)  --------------
+        })
 
         //Setting up the slider.
         $(function() {
@@ -1989,7 +2129,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
         //$("#confidence1").val(answersArray[oneMap].CONFIDENCE);
         //$("#confidence2").val(answersArray[twoMap].CONFIDENCE);
         $("#JSONHolder").val(JSON.stringify(answersArray));
-        setUpRadio();   //   < --------
+        setUpRadio();
         getSubBasins();
 
         //This fires off each time someone hits the next button. It moves the data 2 spots and runs through the new arrays that are created. The if
@@ -2191,7 +2331,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
             player:     "html",
             title:      "WRESTORE Visualization Tool ",
             height:     450,
-            width:      550
+            width:      550,
         });
     };
 
@@ -2203,7 +2343,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
             player:     "html",
             title:      "WRESTORE Visualization Tool ",
             height:     450,
-            width:      550
+            width:      550,
         });
 
     };
@@ -2216,7 +2356,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
             player:     "html",
             title:      "WRESTORE Visualization Tool ",
             height:     550,
-            width:      920
+            width:      920,
         });
 
     };

@@ -1,98 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" style="height: 100vh; overflow: hidden">
 <head>
     <meta charset=utf-8>
     <meta http-equiv="X-UA-Compatible" content="IE=8" />
     <title>WRESTORE - Watershed REstoration using Spatio-Temporal Optimization of REsources</title>
-
-    <style>
-        /*#map_canvas1 {*/
-            /*height: 675px;*/
-            /*width:445px;*/
-        /*}*/
-        /*#map_canvas2 {*/
-            /*height: 675px;*/
-            /*width:445px;*/
-        /*}*/
-        /*#heatmap_canvasPF1, #heatmap_canvasPF2, #heatmap_canvasRV1, #heatmap_canvasRV2, #heatmap_canvasSR1, #heatmap_canvasSR2, #heatmap_canvasNR1, #heatmap_canvasNR2 {*/
-            /*height: 400px;*/
-            /*width: 100%;*/
-            /*position: relative;*/
-        /*}*/
-        /*body {*/
-        /*}*/
-        /*#wholeTable {*/
-            /*!*display:none;*!*/
-        /*}*/
-        /*.pods {*/
-            /*padding: 2px;*/
-            /*margin-right: 1px;*/
-            /*border: 1px solid #999;*/
-            /*width: 15px;*/
-            /*float: left;*/
-            /*text-align: center;*/
-            /*height: 20px;*/
-            /*line-height: 1em;*/
-        /*}*/
-        /*.intropods {*/
-            /*padding: 2px;*/
-            /*margin-right: 1px;*/
-            /*border: 1px solid #999;*/
-            /*width: 70px;*/
-            /*float: left;*/
-            /*text-align: center;*/
-            /*line-height: 1em;*/
-            /*height: 20px;*/
-        /*}*/
-        /*.instructionpods {*/
-            /*padding: 2px;*/
-            /*margin-right: 1px;*/
-            /*width: 70px;*/
-            /*float: left;*/
-            /*text-align: center;*/
-            /*line-height: 1em;*/
-            /*height: 20px;*/
-        /*}*/
-        /*.container {*/
-            /*width: 950px;*/
-        /*}*/
-        /*#chart_div1 {*/
-            /*float: left;*/
-            /*width: 235px;*/
-            /*height: 550px;*/
-            /*display:block;*/
-            /*boarder: 1px solid yellow;*/
-        /*}*/
-        /*#chart_div2{*/
-            /*float: left;*/
-            /*width: 235px;*/
-            /*height: 550px;*/
-            /*display:block;*/
-            /*boarder: 1px solid yellow;*/
-        /*}*/
-        /*#chart_div3{*/
-            /*float: left;*/
-            /*width: 235px;*/
-            /*height: 550px;*/
-            /*display:block;*/
-            /*boarder: 1px solid yellow;*/
-        /*}*/
-        /*#chart_div4{*/
-            /*float: left;*/
-            /*width: 235px;*/
-            /*height: 550px;*/
-            /*display:block;*/
-            /*boarder: 1px solid yellow;*/
-        /*}*/
-        /*.info .tip{*/
-            /*display: none;*/
-            /*position: absolute;*/
-            /*border: 1px solid #333;*/
-            /*border-radius: 2px;*/
-            /*padding: 3px;*/
-            /*background-color : #FaF8C4;*/
-        /*}*/
-    </style>
+    
     <!-- 'style1a.css' file replaces the code-lines setup above (line8 to line 95 in Vidya's code) -->
     <link rel="stylesheet" type="text/css" href="css/style1a.css" media="all" />
     <!-- 'style.css' file was renamed as 'css/style1b.css' -->
@@ -107,13 +19,15 @@
     <link rel="stylesheet" type="text/css" href="css/star.css" media="all" />
     <link rel="stylesheet" type="text/css" href="css/visualize.css" media="all" />
     <link rel="stylesheet" type="text/css" href="js/shadowbox/shadowbox.css" media="all" />
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">-->
+<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>-->
 
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVNzONb19t-556kuu-ebT5DUF0wCpEt-g&callback=initMap"
             type="text/javascript"></script>
     <script type="text/javascript" src="js/json2.js"></script>
     <script type="text/javascript" src="js/jquery.collapsible.js"></script>
-    
+
     <script type="text/javascript" src="js/bargraphcpy.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
     <!--[if IE]>
@@ -154,28 +68,35 @@
     </style>
     <!--  Tracking module  -->
     <script type='text/javascript'>
-      /* The automaton is: s_start --one--> s_one --two--> s_two --three--> s_end
-	  * In the transition between s_two and s_end, when three is clicked, we invoke the submitData()
-	  * method, to store all collected data up to the moment.
-	  */
-//	  alert ("hello again");
-      fda.addTransition('s_start', 'one', 's_one');
-      fda.addTransition('s_one', 'two', 's_two');
-      //fda.addTransition('s_two', 'three', 's_end', function() { submitData() });
-      fda.addTransition('s_two', 'three', 's_end');
+        /* The automaton is: s_start --one--> s_one --two--> s_two --three--> s_end
+		* In the transition between s_two and s_end, when three is clicked, we invoke the submitData()
+		* method, to store all collected data up to the moment.
+		*/
+        //	  alert ("hello again");
+        fda.addTransition('s_start', 'one', 's_one');
+        fda.addTransition('s_one', 'two', 's_two');
+        //fda.addTransition('s_two', 'three', 's_end', function() { submitData() });
+        fda.addTransition('s_two', 'three', 's_end');
 
-      var myObj = JSON.stringify(fda.data.s_start);
+        var myObj = JSON.stringify(fda.data.s_start);
 
-      // If we are also interested in knowing whether the browser window is resized, we set this to true.
-      mt_detect_resize = true;
+        // If we are also interested in knowing whether the browser window is resized, we set this to true.
+        mt_detect_resize = true;
 
-      // This function must be invoked, and it has to go last.
-      $(document).ready(init);
+        // This function must be invoked, and it has to go last.
+        $(document).ready(init);
     </script>
     <link rel='stylesheet' type='text/css' href='css/styles.css'/>
 </head>
 <!--  -------------------- START BODY -----------  -->
 <body name="body">
+<!--<body name="body" style="height: 100vh; background:#ff99ff;">-->
+
+<!--<div>-->
+    <div style="height: 100vh; background:#e6ffcc;">
+<!--    <div style="height: 100vh; overflow: auto; background:#99ff66;">-->
+<!--body {width:100%; height:100%;}-->
+
 <?php
 include ('data.php');
 //echo $yellow;
@@ -192,7 +113,7 @@ $_SESSION['USERID']=111;
 $USERID = 111;
 
 $connection =
-    mysqli_connect (DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME, 3306)
+	mysqli_connect (DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME, 3306)
 or die("Unable to connect to server<br>\n");
 //echo "Connected to database!<br><br>";
 
@@ -207,52 +128,52 @@ $tableSize=mysqli_num_rows($result)+1;
 //echo mysqli_num_rows($result);
 
 if (mysqli_num_rows($result)>0){
-    print '<table border="2" id="wholeTable"><tr>';
-    print "<th>ID</th>";
-    foreach($row as $name => $value) {
-        print "<th>$name</th>";
-    }
-    print '</tr>';
-    while($row) {
-        $ColCount=0;
-        print '<tr>';
-        print "<td>$count</td>";
-        foreach($row as $value) {
-            $ColCount=$ColCount+1;
-            if ( $value ==''  ) {
-                print "<td></td>";
-            } else {
-                print "<td>$value</td>";
-            }
-        }
-        print '</tr>';
-        $row = mysqli_fetch_assoc($result);
-        $count = $count + 1;
-    }
-
-    //I am looking to see if we are left with an odd number of maps. If so, I add one line of fake data so that the maps load properly on the last page.
-    if ( $count%2 ){
-        print '<tr>';
-        print '<td>'.$count.'</td>';
-        print '<td>'.$USERID.'</td>';
-        print '<td>-1</td>';
-        print '<td>0</td>';
-        print '<td>0</td>';
-        print '<td>0,0,0,0,0,0,0</td>';
-        print '<td>1</td>';
-        print '<td>0,0,0,0,0,0,0,0,0,0</td>';
-        print '<td>0</td>';
-        $i=0;
-        while($i<=($ColCount-8)){
-
-            print '<td>0,0,0,0,0,0</td>';
-            $i++;
-        }
-        print '</tr>';
-        //print $ColCount;
-    };
-
-    print '</table>';
+	print '<table border="2" id="wholeTable"><tr>';
+	print "<th>ID</th>";
+	foreach($row as $name => $value) {
+		print "<th>$name</th>";
+	}
+	print '</tr>';
+	while($row) {
+		$ColCount=0;
+		print '<tr>';
+		print "<td>$count</td>";
+		foreach($row as $value) {
+			$ColCount=$ColCount+1;
+			if ( $value ==''  ) {
+				print "<td></td>";
+			} else {
+				print "<td>$value</td>";
+			}
+		}
+		print '</tr>';
+		$row = mysqli_fetch_assoc($result);
+		$count = $count + 1;
+	}
+	
+	//I am looking to see if we are left with an odd number of maps. If so, I add one line of fake data so that the maps load properly on the last page.
+	if ( $count%2 ){
+		print '<tr>';
+		print '<td>'.$count.'</td>';
+		print '<td>'.$USERID.'</td>';
+		print '<td>-1</td>';
+		print '<td>0</td>';
+		print '<td>0</td>';
+		print '<td>0,0,0,0,0,0,0</td>';
+		print '<td>1</td>';
+		print '<td>0,0,0,0,0,0,0,0,0,0</td>';
+		print '<td>0</td>';
+		$i=0;
+		while($i<=($ColCount-8)){
+			
+			print '<td>0,0,0,0,0,0</td>';
+			$i++;
+		}
+		print '</tr>';
+		//print $ColCount;
+	};
+	
+	print '</table>';
 }
 //Looking in the session table so I can find out what session type they are in and color in the needed div in the Progress Bar.
 $query1 =("SELECT * FROM session_info where USERID='$USERID'");
@@ -265,16 +186,16 @@ $jump=$row1['JUMP'];
 $writeThis=NULL;
 //Write out the auto search has happend!
 if ($jump==1){
-    $writeThis='An automated search has occurred and this is why you have jumped one human guided search process';
+	$writeThis='An automated search has occurred and this is why you have jumped one human guided search process';
 };
 mysqli_close($connection);
 if ($session_type=="0")
 {$thisCSS=".i".$current_session;
-    $color="green";
+	$color="green";
 }
 else
 {$thisCSS=".s".$searchid.$current_session;
-    $color="yellow";
+	$color="yellow";
 }
 //You can echo the variable above if you want to see it value. I take the var color and write out some css using javascript in line 550 or so below.
 //echo $thisCSS;
@@ -290,7 +211,9 @@ else
                 <hgroup>
                     <h1 class="trackable" id='back-main-page'
                         name="site_header1"><a href="/">WRESTORE</a></h1>
-                    <h2 name="site_header2">Watershed REstoration using Spatio-Temporal Optimization of REsources</h2>
+                    <h2 name="site_header2" style="padding-top: 7px;">
+                        Watershed REstoration using Spatio-Temporal Optimization of REsources
+                    </h2>
                     <h3 name="site_header3">Visualize & Design Your Watershed Landscape</h3>
                 </hgroup>
             </div>
@@ -298,447 +221,506 @@ else
     </div>
     <!-- end Main Site Header -->
     
-    <!--  =================================  QUIT SAVE INSTRUCTIONS  ===============================  -->
-    <div class="row" id="navRow">
-        <!-- Nav Row -->
-        <nav id="mainNav">
-            <ul name="site_header4">
-                <span class="trackable" id='quit' title="Option to quit current search experiment">
-                    <li><a name="abortheader" href="abort.html" rel="shadowbox;height=240;width=900" name="Quit">Quit</a></li>
-                </span>
-                <span class="trackable" id='save' title="Option to save current designs and come back later">
-                    <li style="width:150px"><a name="saveMapHeader" href="#void" class="submitFeedbackJon" name="Save Current Map">Save Current Maps</a></li>
-                </span>
-                <span class="trackable" id='instructions' title="Option to view instructions again">
-                    <li style="width:120px"><a name="InstructionsHeader" href="#void" onclick="instruct()" class="submitFeedbackJon"  name="Instructions">Instructions</a></li>
-                </span>
-            </ul>
-        </nav>
-        <!--<nav id="loginNav">
-            <a href="#">Register</a> | <a href="#">Login</a>
-            </nav>-->
-    </div>
     <!-- End Nav Row -->
+</div> <!-- Added Oct 4, 2018-->
+<div class="skip"></div>
     
-    <div class="skip"></div>
-    <div class="row " id="mainFrame">
-        <div id="mainCol" style="width:100%">
-            <section id="content">
-                <header id="pageHeader">
-                </header>
-                <!-- <h2>Welcome <?   //echo $_SESSION["var"]; ?></h2>-->
-                <table width="100%" border="0" cellspacing="1">
-                    <tr>
-                        <td width="86%">
-                            <h2 name="letscompareheader">Let's vote!</h2>
-                            <p name="suggestionsNumberHeader">Total number of suggestions you will be assessing: <?php print $count ?> | Page <strong><span class="currentPage"></span></strong> of <span class="totalPages"></span>
-                            <hr noshade size=3 width=1000>
-                            </p>
-                        </td>
-                        <td width="14%"></td>
-                    </tr>
-                </table>
-<!--    ==================================  LEGEND ===============================  -->
-                <h2>Legend+ </h2>
+<div class="row" id="mainFrame">
+    <div id="mainCol">
+        <section id="content">
+            <header id="pageHeader">
+            </header>
+            <!-- <h2>Welcome <?   //echo $_SESSION["var"]; ?></h2>-->
+            
+            <h2 name="letscompareheader" style="display: inline-block;width: 90px;">Let's vote!</h2>
+            <p name="suggestionsNumberHeader" style="display: inline-block;">
+                Total number of suggestions you will be assessing: 20 | Page <strong><span class="currentPage">1</span></strong> of <span class="totalPages">10</span>
+            </p>
+            <!--                <hr noshade size=3 width=1200>-->
+            
+            <!--    ==================================  LEGEND ===============================  -->
+            <!--                <h2>Legend+ </h2>-->
                 <!--<div class="keyHolder">
                     <div id="tools" name="tools"></div>
                      <div id="toolpic" name="toolpic"></div>-->
-                <div class="containerhover">
-                    <div class="tools" name="tools" id="tools">
-                    </div>
-                    <div class="toolpic" name="toolpic" id="toolpic">
-                        <!--<img alt="WordPress" src="images/key.jpg" />-->
-                    </div>
-                </div>
-        </div>
-        <br/>
-<!--    ===================================  STEP 1 ======================================  -->
-        <h2>STEP 1: Assess if you like how the practices in the map below are allocated in the suggestion.</h2>
-        
-        <div class="step1">
-            <div class="displayStuffa">Click inside of any sub-basin to learn about practices proposed in a sub-basin.</div>
+        </section>
+    </div>
+    
+    <!--  =================================  QUIT SAVE INSTRUCTIONS  ===============================  -->
+    <div id="mainCol2">
+        <span class="trackable" id='instructions' title="Option to view instructions again">
+            <a name="InstructionsHeader" href="#void" onclick="instruct()" class="submitFeedbackJon"  name="Instructions">Instructions</a>
+        </span>
+        <span class="trackable" id='save' title="Option to save current designs and come back later">
+            <a name="saveMapHeader" href="#void" class="submitFeedbackJon" name="Save Current Map">Save</a>
+        </span>
+        <span class="trackable" id='quit' title="Option to quit current search experiment">
+            <a name="abortheader" href="abort.html" rel="shadowbox;height=240;width=900" name="Quit">Quit</a>
+        </span>
+    </div>
+</div>
+
+<!--  =======================  CONSERVATION PRACTICES OPTIONS ===============================  -->
+<div class="containerhover">
+    <div class="tools" name="tools" id="tools">
+    </div>
+    <!--                    <div class="toolpic" name="toolpic" id="toolpic">-->
+    <!--<img alt="WordPress" src="images/key.jpg" />-->
+</div>
+<!--<br/>-->
+
+<!--    ===============================  MAIN MAP (before STEP 1) ================================  -->
+<!--        <h2>STEP 1: Assess if you like how the practices in the map below are allocated in the suggestion.</h2>-->
+
+<div class="container-fluid step1" style="display: inline;">
+<!--            <div class="displayStuffa">Click inside of any sub-basin to learn about practices proposed in a sub-basin.</div>-->
             <!-- <div class="displayStuffb" name="What Do They Mean"><a href="infoBox.html" rel="shadowbox;height=640;width=620" name="What Do They Mean"><strong><em name="What Do They Mean">What do these numbers mean?</em></strong></a></div>-->
             <!--pop up boxes will display this info-->
             <!-- <div class="displayStuff"></div>-->
-            <form id="form1" name="form1" method="post" action="sendToUsersFeedback.php?id=<? print $thisCSS;  ?>">
+    <form id="form1" name="form1" method="post" action="sendToUsersFeedback.php?id=<? print $thisCSS;  ?>">
                 <!--Changed mapHolder to mapHolder1-->
-<!--                MAP1 in STEP1  -->
-                <div class="mapHolder1 map1">
-                    <h4>Suggestion <span class="oneMap"></span></h4>
-                    <div id="mapHolderOne">
-                        <div id="map_canvas1" name="map_canvas1"></div>
+                <!--                MAP1 in STEP1  -->
+        <div class="mapHolder1 map1">
+            <h4>Suggestion <span class="oneMap"></span></h4>
+            <div class="displayStuffa">Click inside of any sub-basin to learn about practices proposed in a sub-basin.</div>
+            <div id="mapHolderOne">
+                <div id="map_canvas1" name="map_canvas1"></div>
+                
+                <h3 style="position: relative; left: 35%; top: -100px; z-index: 200;">This is a test statement</h3>
+                
+                <!--   ++++++++++++++   inserting  STEP2 Alternatives BARPLOTS   ++++++++++++++  -->
+                <div name='step2collapse' class ="containerABC collapsed" style="position: relative; width: 250px;
+                left: 5px; top: -502px; z-index: 100; background-color: #ff9933;">
+                    <div class="header">
+                        <h2 class="trackable" id='step2' name="step2">
+                            STEP 2: Alternatives</h2>
+                    </div>
+
+                    <div class="graph" style="height: 405px">
+                        <div class="dropDownArea">
+                            <label>Choose a sub-basin to compare</label>
+                            <select name="subDrop" id="subDrop" onchange='subBasinGraph1(); selected_option();'>
+                                <option id="watershed" value="Watershed" selected="selected">Watershed</option>
+					            <?php
+					            $y=1;
+					            while($y<=127){
+						            print "<option id=SB-$y value=S$y>Subbasin $y</option>";
+						            $y++;
+					            }
+					            ?>
+                            </select>
+
+                            <script>
+                                function selected_option() {
+                                    var theSelect = subDrop;
+                                    report('m-clk**  ' , "Sub-basin " + theSelect[theSelect.selectedIndex].value , ';');
+                                }
+                            </script>
+                            <br>
+                        </div>
+
+                        <div class="container">
+                            <div id="tabs3" style="font-size: 11px; height: 98%">
+                                <ul>
+                                    <li><a class="trackable" href="#c0"> Start</a></li>
+                                    <li><a class="trackable" href="#c1"> PFR</a></li>
+                                    <li><a class="trackable" href="#c2"> ER</a></li>
+                                    <li><a class="trackable" href="#c3"> SR</a></li>
+                                    <li><a class="trackable" href="#c4"> NR</a></li>
+                                </ul>
+                                
+                                <div class='trackable' id="c0">
+                                    <h4 style="font-size: 20px">Instructions </h4>
+                                    <p>Instructions go here</p>
+                                </div>
+                                <div class='trackable' id="c1">
+                                    <div id="chart_div1"></div>
+                                </div>
+                                <div class='trackable' id="c2">
+                                    <div id="chart_div2"></div>
+                                </div>
+                                <div class='trackable' id="c3">
+                                    <div id="chart_div3"></div>
+                                </div>
+                                <div class='trackable' id="c4">
+                                    <div id="chart_div4"></div>
+                                </div>
+                                
+                            </div>
+                        </div>
                     </div>
                 </div>
-<!--                MAP2 in STEP1  -->
-<!--                <div class="mapHolder2 map2" style="margin-right:0">-->
-<!--                    <h4>Suggestion** <span class="twoMap"></span></h4>-->
-<!--                    <div id="mapHolderTwo">-->
-<!--                        <div id="map_canvas2" name="map_canvas2"></div>-->
-<!--                    </div>-->
-<!--                </div>-->
-                <div style="clear:both"></div>
-            </form>
+                <script>
+                    $( function() {
+                        $( "#tabs3" ).tabs();
+                    } );
+                </script>
+                <!--   +++++++++++   finish inserting Alternatives BARPLOTS +++++++++++ -->
+
+                <!--   ++++++++++++++   inserting  STEP3 Heatmaps   ++++++++++++++  -->
+                <div name='step3collapse' class ="containerABC collapsed" style="position: relative;float: right;
+                width: 275px; right: 5px; top: -530px; z-index: 100; background-color: #ff9933;">
+                    <div class="header">
+                        <h2 class="trackable" id='step3' name="step3">STEP 3: Goals</h2>
+                    </div>
+                    <div class="graph" style="height: 405px">
+                        <div id="tabs" style="font-size: 12px; height: 98%">
+                            <ul>
+                                <li><a class="trackable" href="#infor_heatmap"> Start</a></li>
+                                <li><a class="trackable" id="step3_tab_PF" href="#tabs-PF"> PFR</a></li>
+                                <li><a class="trackable" id="step3_tab_RV" href="#tabs-RV"> ER</a></li>
+                                <li><a class="trackable" id="step3_tab_SR" href="#tabs-SR"> SR</a></li>
+                                <li><a class="trackable" id="step3_tab_NR" href="#tabs-NR"> NR</a></li>
+                            </ul>
+
+                            <!--    ------------  tabs-Info of HeatMap  ------------   -->
+                            <div class='trackable' id="infor_heatmap">
+                                <h4 style="font-size: 20px">Instructions </h4>
+                                <p>Instructions go here</p>
+                            </div>
+                            
+                            <!--    ------------  tabs-PF  ------------   -->
+                            <div id="tabs-PF">
+                                <div class="heatMapHolder1 map1">
+                                    <h4>Suggestion <span class="oneMap"></span></h4>
+                                    <div class="info1 trackable" id="tab_PF_map1_Legend"> Legend
+                                        <!--    ----     <img  title="click for additional information" alt="click
+                                        for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
+                                        <img id="imm1" class="playdown" title="click for additional information"
+                                             alt="click for additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>
+                                        <div id="oneMapPF" class="tip"></div>
+                                    </div>
+                                    <div id="heatMapHolderOne">
+                                        <!--  It draws them map1 -->
+                                        <div id="heatmap_canvasPF1" name="heatmap_canvasPF1"></div>
+                                    </div>
+                                </div>
+                                <div style="clear:both"></div>
+                            </div>
+                            <!--    ---------  tabs-RV  --------   -->
+                            <div id="tabs-RV">
+                                <div class="heatMapHolder1 map1">
+                                    <h4>Suggestion <span class="oneMap"></span></h4>
+                                    <div class="info3 trackable" id="tab_RV_map1_Legend"> Legend
+                                        <!--                            <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
+                                        <img id="imm3" class="playdown" title="click for additional information" alt="click for
+                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>
+                                        <div id="oneMapRV" class="tip"></div>
+                                    </div>
+                                    <div id="heatMapHolderOne"><!--  It draws them map1 -->
+                                        <div id="heatmap_canvasRV1" name="heatmap_canvasRV1"></div>
+                                    </div>
+                                </div>
+                                <div style="clear:both"></div>
+                            </div>
+                            <!--    -------  tabs-SR  ------   -->
+                            <div id="tabs-SR">
+                                <div class="heatMapHolder1 map1">
+                                    <h4>Suggestion <span class="oneMap"></span></h4>
+                                    <div class="info5 trackable" id="tab_SR_map1_Legend"> Legend
+                                        <!--                            <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
+                                        <img id="imm5" class="playdown" title="click for additional information" alt="click for
+                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>
+                                        <div id="oneMapSR" class="tip"></div>
+                                    </div>
+                                    <div id="heatMapHolderOne"><!--  It draws them map1 -->
+                                        <div id="heatmap_canvasSR1" name="heatmap_canvasSR1"></div>
+                                    </div>
+                                </div>
+                                <div style="clear:both"></div>
+                            </div>
+                            <!--    -------  tabs-NR  ------   -->
+                            <div id="tabs-NR">
+                                <div class="heatMapHolder1 map1">
+                                    <h4>Suggestion* <span class="oneMap"></span></h4>
+                                    <div class="info7 trackable" id="tab_NR_map1_Legend"> Legend
+                                        <!--                                <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
+                                        <img id="imm7" class="playdown" title="click for additional information" alt="click for
+                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>
+                                        <div id="oneMapNR" class="tip"></div>
+                                    </div>
+                                    <div id="heatMapHolderOne"><!--  It draws them map1 -->
+                                        <div id="heatmap_canvasNR1" name="heatmap_canvasNR1"></div>
+                                    </div>
+                                </div>
+                                <div style="clear:both"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--    +++++++++++  finish inserting HEATMAPS  +++++++++++ -->
+                
+                <!--     *******  Inserting RATING (STEP 4)  *********  -->
+                <div id="vote_section" style="position: relative; left: 35px; top: -125px; z-index: 100;
+                background-color: #f0e4b0;">
+                    <h2 name="step4">STEP 4: Time to vote! Provide a rating for the suggestion shown above.</h2>
+                    <div class="mapHolder1_s4 map1">
+                        <h4>Suggestion <span class="oneMap"></span></h4>
+                        <div class="innerMapLinesHead">
+                            <h4>Rate the design and performance of this suggestion </h4>
+                        </div>
+
+                        <div class="innerMapLines">
+                            <div class="rating">
+                                <input class="trackable" id='step4_map1_star0' name="rating1"
+                                       type="radio" value="0" checked /><span id="hide"></span>
+                                <input class="trackable" id='step4_map1_star1' name="rating1"
+                                       type="radio" value="1" /><span></span>
+                                <input class="trackable" id='step4_map1_star2' name="rating1"
+                                       type="radio" value="2" /><span></span>
+                                <input class="trackable" id='step4_map1_star3' name="rating1"
+                                       type="radio" value="3" /><span></span>
+                                <input class="trackable" id='step4_map1_star4' name="rating1"
+                                       type="radio" value="4" /><span></span>
+                                <input class="trackable" id='step4_map1_star5' name="rating1"
+                                       type="radio" value="5" /><span></span>
+                                <input name="rating1" type="text" class="padInput" id="rating1" size="2" />
+                            </div>
+                        </div>
+                        <div style="clear:both"></div>
+                        <div class="innerMapLinesHead1">
+                            <h4>How confident are you about your rating? (%)</h4>
+                        </div>
+                        <div class="innerMapLines1">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td width="22%"><input name="confidence1" type="text" id="confidence1" size="3" readonly="readonly"/></td>
+                                    <td width="78%"><div id="slider"></div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--   **************    Finish inserting RATING  ********  -->
+            
+            </div>
         </div>
-        <!--  ADDED by E.Noa  </form></div>-->
+        <div style="clear:both"></div>
+    </form>
+</div>
+<!--  ADDED by E.Noa  </form></div>-->
 <!--        =================================== STEP 2 ======================================  -->
         <!-- database graphing-->
-        <div name='step2collapse' class ="containerABC collapsed">
-            <div class="header">
-                <h2 class="trackable" id='step2' name="step2">
-<!--                    STEP 2: Now assess if the two suggestions above meet your expectation for goals at a specific sub-basin.</h2>-->
-                    STEP 2: Now assess if the suggestion above met your expectations for the following objectives at specific sub-basin.</h2>
-            </div>
-            <div class="graph">
-                <div class="dropDownArea">
-                    <label><br />
-                        Choose a sub-basin to compare</label>
-                    <!--writing the drop down for the 127 subbasins -->
-                    <select name="subDrop" id="subDrop" onchange='subBasinGraph1(); selected_option();'>
-                        <option id="watershed" value="Watershed" selected="selected">Watershed</option>
-                        <?php
-                        $y=1;
-                        while($y<=127){ //track when "Sub-basin" */;
-//                            print "<option value=S$y>Subbasin $y</option>";
-                            print "<option id=SB-$y value=S$y>Subbasin $y</option>";
-                            $y++;
-                        }
-                        ?>
-                    </select>
-                    
-                    <script> // js function to track sub-basin selection (By E. Noa)
-                        function selected_option() {
-                            var theSelect = subDrop;
-//                            alert ("sb selected  " + theSelect[theSelect.selectedIndex].value);
-                            report('m-clk**  ' , "Sub-basin " + theSelect[theSelect.selectedIndex].value , ';');
-                        }
-                    </script>
-                    
-                    <br>
-                </div>
-                <!--This is where the google charts (bar plots) are actually being graphed-->
-                <div class="container">
-<!--                    ------------------------------------------------------------  -->
-                    <div class='trackable' id="chart_div1"></div>
-                    <?php
-//                        $cid = 1;//new subBasinGraph1();//).getid();// "idi";//getid();(new outer()).inner();
-//                    print "<div class='d1' id='d1_id'>";
-//                            print "<div class='trackable' id='chart_div1'></div>";
-//                            echo("hello");
-//                        print "</div>";
-                    ?>
-<!--                    ------------------------------------------------------------  -->
-                    <div class='trackable' id="chart_div2"></div>
-<!--                    ------------------------------------------------------------  -->
-                    <div class='trackable' id="chart_div3"></div>
-<!--                    ------------------------------------------------------------  -->
-                    <div class='trackable' id="chart_div4"></div>
-<!--                    ------------------------------------------------------------ -->
-                    
-                    <script>
-                        var first = '<span class="oneMap"></span>';
-                        var second = '<span class="twoMap"></span>';
-                    </script>
-                </div>
-            </div>
-        </div>
+<!--<div name='step2collapse' class ="containerABC collapsed" style="width: 250px;-->
+<!--    background-color: #ff9933;">-->
+<!--    <div class="header">-->
+<!--        <h2 class="trackable" id='step2' name="step2">-->
+<!--            STEP 2: Now assess if the suggestion above met your expectations</h2>-->
+<!--    </div>-->
+<!--    -->
+<!--    <div class="graph">-->
+<!--        <div class="dropDownArea">-->
+<!--            <label><br />-->
+<!--                Choose a sub-basin to compare</label>-->
+<!--            <select name="subDrop" id="subDrop" onchange='subBasinGraph1(); selected_option();'>-->
+<!--                <option id="watershed" value="Watershed" selected="selected">Watershed</option>-->
+<!--                --><?php
+//                $y=1;
+//                while($y<=127){
+//                    print "<option id=SB-$y value=S$y>Subbasin $y</option>";
+//                    $y++;
+//                }
+//                ?>
+<!--            </select>-->
+<!---->
+<!--            <script>-->
+<!--                function selected_option() {-->
+<!--                    var theSelect = subDrop;-->
+<!--                    report('m-clk**  ' , "Sub-basin " + theSelect[theSelect.selectedIndex].value , ';');-->
+<!--                }-->
+<!--            </script>-->
+<!--            <br>-->
+<!--        </div>-->
+<!--        -->
+<!--        <div class="container">-->
+<!--            <div class='trackable' id="chart_div1"></div>-->
+<!--            <div class='trackable' id="chart_div2"></div>-->
+<!--            <div class='trackable' id="chart_div3"></div>-->
+<!--            <div class='trackable' id="chart_div4"></div>-->
+<!--            -->
+<!--            <script>-->
+<!--                var first = '<span class="oneMap"></span>';-->
+<!--                var second = '<span class="twoMap"></span>';-->
+<!--            </script>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
         <div style="clear:both"></div>
+
 <!--    ============================================  STEP 3 ====================================== -->
-        <div name='step3collapse' class ="containerABC collapsed" >
-            <div class="header">
-                <h2 class="trackable" id='step3' name="step3">STEP 3: Now assess if you like how the practice
-                    proposed by the suggestion affects the rest of the watershed landscape.</h2>
-            </div>
-            <div class="graph">
-<!--                Below, (div class="dropDownHeatMap") opens a dropdown to select the number  of "suggestion". -->
-<!--                <div class="dropDownHeatMap">-->
-<!--                    <label><br />Choose a suggestion to compare</label>-->
-                    <!--writing the drop down for the 127 subbasins -->
-<!--                    <select name="heatDrop" id="heatDrop" onchange='heatinitialize();'>-->
-<!--                        <option value="1" selected="selected">suggestion 1</option>-->
-<!--                        --><?php
-//                        $y=2;
-//                        while($y<=$count){
-//                            print "<option value=$y>suggestion $y</option>";
-//                            $y++;
-//                        }
-//                        ?>
-                        
-<!--                    </select> -->
-<!--                </div>-->
-                
-                <div id="tabs">
-                    <ul>
-                        <li><a class="trackable" id="step3_tab_PF" href="#tabs-PF"> Peak.Flow in cfs+</a></li>
-                        <li><a class="trackable" id="step3_tab_RV" href="#tabs-RV"> Economic.Revenue in $</a></li>
-                        <li><a class="trackable" id="step3_tab_SR" href="#tabs-SR"> Sediment.Reduction in tons</a></li>
-                        <li><a class="trackable" id="step3_tab_NR" href="#tabs-NR"> Nitrate.Reduction in kg</a></li>
-                    </ul>
+<!--<div name='step3collapse' class ="containerABC collapsed" >-->
+<!--    <div class="header">-->
+<!--        <h2 class="trackable" id='step3' name="step3">STEP 3: Now assess if you like how the practice-->
+<!--                    proposed by the suggestion affects the rest of the watershed landscape.</h2>-->
+<!--    </div>-->
+<!--    <div class="graph">-->
+<!--                -->
+<!--        <div id="tabs">-->
+<!--            <ul>-->
+<!--                <li><a class="trackable" id="step3_tab_PF" href="#tabs-PF"> Peak.Flow in cfs+</a></li>-->
+<!--                <li><a class="trackable" id="step3_tab_RV" href="#tabs-RV"> Economic.Revenue in $</a></li>-->
+<!--                <li><a class="trackable" id="step3_tab_SR" href="#tabs-SR"> Sediment.Reduction in tons</a></li>-->
+<!--                <li><a class="trackable" id="step3_tab_NR" href="#tabs-NR"> Nitrate.Reduction in kg</a></li>-->
+<!--            </ul>-->
                     <!--    ------------  tabs-PF  ------------   -->
-                    <div id="tabs-PF">
-                        <div class="heatMapHolder1 map1">
-                            <h4>Suggestion <span class="oneMap"></span></h4>
-                            <div class="info1 trackable" id="tab_PF_map1_Legend"> Legend
-<!--                            <img  title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
-                                <img id="imm1" class="playdown" title="click for additional information" alt="click for
-                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>
-
-                                <div id="oneMapPF" class="tip"></div>
-                            </div>
-                            <div id="heatMapHolderOne">
-                                <!--  It draws them map1 -->
-                                <div id="heatmap_canvasPF1" name="heatmap_canvasPF1"></div>
-                            </div>
-                        </div>
-<!--                        MAP2 for PF in STEP3-->
-<!--                        <div class="heatMapHolder2 map2" style="margin-right:0">-->
-<!--                            <h4>Suggestion <span class="twoMap"></span></h4>-->
-<!--                            <div class="info2 trackable" id="tab_PF_map2_Legend"> Legend-->
-<!--    comment      <img  title="click for additional information" alt="click for additional information"
-src="images/info.png" width="14" height="14" alt=""/>-->
-<!--                                <img id="imm2" class="playdown" title="click for additional information" alt="click for-->
+<!--            <div id="tabs-PF">-->
+<!--                <div class="heatMapHolder1 map1">-->
+<!--                    <h4>Suggestion <span class="oneMap"></span></h4>-->
+<!--                    <div class="info1 trackable" id="tab_PF_map1_Legend"> Legend-->
+                        <!--  ------  <img  title="click for additional information" alt="click for additional
+                                information" src="images/info.png" width="14" height="14" alt=""/>-->
+<!--                        <img id="imm1" class="playdown" title="click for additional information" alt="click for-->
 <!--                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>-->
-
-<!--                                <div id="twoMapPF" class="tip"></div>-->
-<!--                            </div>-->
-<!--                            <div id="heatMapHolderTwo">-->
-                                <!--  It draws them map2 -->
-<!--                                <div id="heatmap_canvasPF2" name="heatmap_canvasPF2"></div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-                        <div style="clear:both"></div>
-                    </div>
-                    <!--    ---------  tabs-RV  --------   -->
-                    <div id="tabs-RV">
-                        <div class="heatMapHolder1 map1">
-                            <h4>Suggestion <span class="oneMap"></span></h4>
-                            <div class="info3 trackable" id="tab_RV_map1_Legend"> Legend
-<!--                            <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
-                                <img id="imm3" class="playdown" title="click for additional information" alt="click for
-                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>
-
-                                <div id="oneMapRV" class="tip"></div>
-                            </div>
-                            <div id="heatMapHolderOne"><!--  It draws them map1 -->
-                                <div id="heatmap_canvasRV1" name="heatmap_canvasRV1"></div>
-                            </div>
-                        </div>
-                        
-<!--                        <div class="heatMapHolder2 map2" style="margin-right:0">-->
-<!--                            <h4>Suggestion <span class="twoMap"></span></h4>-->
-<!--                            <div class="info4 trackable" id="tab_RV_map2_Legend"> Legend-->
-<!--    comment    <img  title="click for additional information" alt="click for additional information"
-src="images/info.png" width="14" height="14" alt=""/>-->
-<!--                                <img id="imm4" class="playdown" title="click for additional information" alt="click for-->
+<!--                        <div id="oneMapPF" class="tip"></div>-->
+<!--                    </div>-->
+<!--                    <div id="heatMapHolderOne">-->
+                        <!--  -------- It draws them map1 -->
+<!--                        <div id="heatmap_canvasPF1" name="heatmap_canvasPF1"></div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                        -->
+<!--                <div style="clear:both"></div>-->
+<!--            </div>-->
+            <!--    ---------  tabs-RV  --------   -->
+<!--            <div id="tabs-RV">-->
+<!--                <div class="heatMapHolder1 map1">-->
+<!--                    <h4>Suggestion <span class="oneMap"></span></h4>-->
+<!--                    <div class="info3 trackable" id="tab_RV_map1_Legend"> Legend-->
+                        <!--  ------- <img title="click for additional information" alt="click for additional
+                        information" src="images/info.png" width="14" height="14" alt=""/>-->
+<!--                        <img id="imm3" class="playdown" title="click for additional information" alt="click for-->
 <!--                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>-->
+<!--                        <div id="oneMapRV" class="tip"></div>-->
+<!--                    </div>-->
+<!--                    <div id="heatMapHolderOne">-->
+                        <!--  --------------------- It draws them map1 -->
+<!--                        <div id="heatmap_canvasRV1" name="heatmap_canvasRV1"></div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
-<!--                                <div id="twoMapRV" class="tip"></div>-->
-<!--                            </div>-->
-<!--                            <div id="heatMapHolderTwo">-->
-                                <!--  It draws them map2 -->
-<!--                                <div id="heatmap_canvasRV2" name="heatmap_canvasRV2"></div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-                        <div style="clear:both"></div>
-                    </div>
-                    <!--    -------  tabs-SR  ------   -->
-                    <div id="tabs-SR">
-                        <div class="heatMapHolder1 map1">
-                            <h4>Suggestion <span class="oneMap"></span></h4>
-                            <div class="info5 trackable" id="tab_SR_map1_Legend"> Legend
-<!--                            <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
-                                <img id="imm5" class="playdown" title="click for additional information" alt="click for
-                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>
-
-                                <div id="oneMapSR" class="tip"></div>
-                            </div>
-                            <div id="heatMapHolderOne"><!--  It draws them map1 -->
-                                <div id="heatmap_canvasSR1" name="heatmap_canvasSR1"></div>
-                            </div>
-                        </div>
-                        
-<!--                        <div class="heatMapHolder2 map2" style="margin-right:0">-->
-<!--                            <h4>Suggestion <span class="twoMap"></span></h4>-->
-<!--                            <div class="info6 trackable" id="tab_SR_map2_Legend"> Legend-->
-<!--    comment        <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
-<!--                                <img id="imm6" class="playdown" title="click for additional information" alt="click for-->
+<!--                <div style="clear:both"></div>-->
+<!--            </div>-->
+            <!--    -------  tabs-SR  ------   -->
+<!--            <div id="tabs-SR">-->
+<!--                <div class="heatMapHolder1 map1">-->
+<!--                    <h4>Suggestion <span class="oneMap"></span></h4>-->
+<!--                    <div class="info5 trackable" id="tab_SR_map1_Legend"> Legend-->
+                                <!--  ------------  <img title="click for additional information" alt="click for
+                                additional information" src="images/info.png" width="14" height="14" alt=""/>-->
+<!--                        <img id="imm5" class="playdown" title="click for additional information" alt="click for-->
 <!--                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>-->
-
-<!--                                <div id="twoMapSR" class="tip"></div>-->
-<!--                            </div>-->
-<!--                            <div id="heatMapHolderTwo">-->
-                                <!--  It draws them map2 -->
-<!--                                <div id="heatmap_canvasSR2" name="heatmap_canvasSR2"></div>-->
-<!--                            </div>-->
-<!--                         </div>-->
-                        <div style="clear:both"></div>
-                    </div>
-                    <!--    -------  tabs-NR  ------   -->
-                    <div id="tabs-NR">
-                        <div class="heatMapHolder1 map1">
-                            <h4>Suggestion* <span class="oneMap"></span></h4>
-                            <div class="info7 trackable" id="tab_NR_map1_Legend"> Legend
-<!--                                <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
-                                <img id="imm7" class="playdown" title="click for additional information" alt="click for
-                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>
-
-                                <div id="oneMapNR" class="tip"></div>
-                            </div>
-                            <div id="heatMapHolderOne"><!--  It draws them map1 -->
-                                <div id="heatmap_canvasNR1" name="heatmap_canvasNR1"></div>
-                            </div>
-                        </div>
-                        
-<!--                        <div class="heatMapHolder2 map2" style="margin-right:0">-->
-<!--                            <h4>Suggestion <span class="twoMap"></span></h4>-->
-<!--                            <div class="info8 trackable" id="tab_NR_map2_Legend"> Legend-->
-<!--    comment             <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
-<!--                                <img id="imm8" class="playdown" title="click-->
-<!--                                 for additional information" alt="click for-->
+<!--                        <div id="oneMapSR" class="tip"></div>-->
+<!--                    </div>-->
+<!--                    <div id="heatMapHolderOne">-->
+                        <!--  ----------------- It draws them map1 -->
+<!--                        <div id="heatmap_canvasSR1" name="heatmap_canvasSR1"></div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div style="clear:both"></div>-->
+<!--            </div>-->
+            <!--    -------  tabs-NR  ------   -->
+<!--            <div id="tabs-NR">-->
+<!--                <div class="heatMapHolder1 map1">-->
+<!--                    <h4>Suggestion* <span class="oneMap"></span></h4>-->
+<!--                    <div class="info7 trackable" id="tab_NR_map1_Legend"> Legend-->
+                        <!--  ---------  <img title="click for additional information" alt="click for additional
+                        information" src="images/info.png" width="14" height="14" alt=""/>-->
+<!--                        <img id="imm7" class="playdown" title="click for additional information" alt="click for-->
 <!--                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>-->
-
-<!--                                <div id="twoMapNR" class="tip"></div>-->
-<!--                            </div>-->
-<!--                            <div id="heatMapHolderTwo">-->
-                                <!--  It draws them map2 -->
-<!--                                <div id="heatmap_canvasNR2" name="heatmap_canvasNR2"></div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-                        <div style="clear:both"></div>
-                    </div>
-                    
-                </div>
-                <!--<div class="heatmapHolder heatmap5">
-                    <h4>nitrate red in kilograms <span class="heatMap"></span></h4>
-                    <div id="heatmapHolderFive">
-                        <div id="heatmap_canvas5" name="heatmap_canvas5"></div>
-                    </div>
-                    </div>-->
-            </div>
-        </div>
-        <!--  This last </div> was added by E.Noa -->
+<!--                        <div id="oneMapNR" class="tip"></div>-->
+<!--                    </div>-->
+<!--                    <div id="heatMapHolderOne">-->
+                        <!--  ---------   It draws them map1 -->
+<!--                        <div id="heatmap_canvasNR1" name="heatmap_canvasNR1"></div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div style="clear:both"></div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+        
 <!--    =====================================  STEP 4  ====================================    -->
-        <h2 name="step4">STEP 4: Time to vote! Provide a rating for the suggestion shown above.</h2>
-        <!-- <form id="form1" name="form1" method="post" action="sendToUsersFeedback.php?id=<? print $thisCSS;  ?>">-->
-        
-        <div class="mapHolder1_s4 map1">
-            <h4>Suggestion <span class="oneMap"></span></h4>
-            <div class="innerMapLinesHead">
-                <h4>Rate the design and performance of this suggestion </h4>
-            </div>
-            
-            <div class="innerMapLines">
-                <div class="rating">
-                    <input class="trackable" id='step4_map1_star0' name="rating1"
-                           type="radio" value="0" checked /><span id="hide"></span>
-                    <input class="trackable" id='step4_map1_star1' name="rating1"
-                           type="radio" value="1" /><span></span>
-                    <input class="trackable" id='step4_map1_star2' name="rating1"
-                           type="radio" value="2" /><span></span>
-                    <input class="trackable" id='step4_map1_star3' name="rating1"
-                           type="radio" value="3" /><span></span>
-                    <input class="trackable" id='step4_map1_star4' name="rating1"
-                           type="radio" value="4" /><span></span>
-                    <input class="trackable" id='step4_map1_star5' name="rating1"
-                           type="radio" value="5" /><span></span>
-                    <input name="rating1" type="text" class="padInput" id="rating1" size="2" />
-                </div>
-            </div>
-            <div style="clear:both"></div>
-            <div class="innerMapLinesHead1">
-                <h4>How confident are you about your rating? (%)</h4>
-            </div>
-            <div class="innerMapLines1">
-                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                        <td width="22%"><input name="confidence1" type="text" id="confidence1" size="3" readonly="readonly"/></td>
-                        <td width="78%">
-                            <div id="slider"></div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        
-        <!--
-        <div class="mapHolder2 map2" style="margin-right:0">
-            <h4>Suggestion <span class="twoMap"></span></h4>
-            <div class="innerMapLinesHead">
-                <h4>Rate the design and performance of this alternative </h4>
-            </div>
-            
-            <div class="innerMapLines">
-                <div class="rating">
-                    <input class="trackable" id='step4-map2-star0' name="rating2"
-                           type="radio" value="0" checked /><span id="hide"></span>
-                    <input class="trackable" id='step4-map2-star1' name="rating2"
-                           type="radio" value="1" /><span></span>
-                    <input class="trackable" id='step4-map2-star2' name="rating2"
-                           type="radio" value="2" /><span></span>
-                    <input class="trackable" id='step4-map2-star3' name="rating2"
-                           type="radio" value="3" /><span></span>
-                    <input class="trackable" id='step4-map2-star4' name="rating2"
-                           type="radio" value="4" /><span></span>
-                    <input class="trackable" id='step4-map2-star5' name="rating2"
-                           type="radio" value="5" /><span></span>
-                    <input name="rating2" type="text" class="padInput" id="rating2" size="2"/>
-                </div>
-            </div>
-            <div style="clear:both"></div>
-            <div class="innerMapLinesHead1">
-                <h4>How confident are you about your rating? (%)</h4>
-            </div>
-            <div class="innerMapLines1">
-                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                        <td width="22%"><input name="confidence2" type="text" id="confidence2" size="3" readonly="readonly"/></td>
-                        <td width="78%">
-                            <div id="slider1"></div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        -->
+
+<!--<div id="vote_section">-->
+<!--    <h2 name="step4">STEP 4: Time to vote! Provide a rating for the suggestion shown above.</h2>-->
+<!--    <div class="mapHolder1_s4 map1">-->
+<!--        <h4>Suggestion <span class="oneMap"></span></h4>-->
+<!--        <div class="innerMapLinesHead">-->
+<!--            <h4>Rate the design and performance of this suggestion </h4>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="innerMapLines">-->
+<!--            <div class="rating">-->
+<!--                <input class="trackable" id='step4_map1_star0' name="rating1"-->
+<!--                       type="radio" value="0" checked /><span id="hide"></span>-->
+<!--                <input class="trackable" id='step4_map1_star1' name="rating1"-->
+<!--                       type="radio" value="1" /><span></span>-->
+<!--                <input class="trackable" id='step4_map1_star2' name="rating1"-->
+<!--                       type="radio" value="2" /><span></span>-->
+<!--                <input class="trackable" id='step4_map1_star3' name="rating1"-->
+<!--                       type="radio" value="3" /><span></span>-->
+<!--                <input class="trackable" id='step4_map1_star4' name="rating1"-->
+<!--                       type="radio" value="4" /><span></span>-->
+<!--                <input class="trackable" id='step4_map1_star5' name="rating1"-->
+<!--                       type="radio" value="5" /><span></span>-->
+<!--                <input name="rating1" type="text" class="padInput" id="rating1" size="2" />-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div style="clear:both"></div>-->
+<!--        <div class="innerMapLinesHead1">-->
+<!--            <h4>How confident are you about your rating? (%)</h4>-->
+<!--        </div>-->
+<!--        <div class="innerMapLines1">-->
+<!--            <table width="100%" border="0" cellspacing="0" cellpadding="0">-->
+<!--                <tr>-->
+<!--                    <td width="22%"><input name="confidence1" type="text" id="confidence1" size="3" readonly="readonly"/></td>-->
+<!--                    <td width="78%"><div id="slider"></div>-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--            </table>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
 <!--    ==========================================  STEP 5  ==========================================    -->
-        <h2 name="step5">STEP 5: click on the blue buttons to see additional suggestions or click on the orange button if you have rated <b>all</b> of them.</h2>
-        <!--</div>-->
-        <div style="clear:both"></div>
-        <table width="1000" border="0" cellspacing="1">
-            <tr>
-                <td width="41%">
-                    <div align="left">
-                        <input type="button" name="Back" id="Back" value="&lt;&lt;
-                         Record Rating & Move Back One Set" class="trackable barBlue moveBack" />
-                    </div>
-                </td>
-                <td width="26%"><input type="button" name="Submit All Maps" id="button" value="Done with all the Ratings"
-                                       class="trackable barOrange submitAll" /></td>
-                <td width="33%">
-                    <div align="right">
-                        <input type="button" name="Next" id="Next" value="Record Rating & Move Forward One Set &gt;&gt;"
-                               class="trackable barBlue moveNext" />
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-<!--            <tr>-->
-<!--                <td>&nbsp;</td>-->
-<!--                <td>&nbsp;</td>-->
-<!--                <td>&nbsp;</td>-->
-<!--            </tr>-->
-        </table>
-        <textarea name="JSONHolder" id="JSONHolder" cols="45" rows="5"></textarea>
+<!--<h2 name="step5">STEP 5: click on the blue buttons to see additional suggestions or click on the orange button if you have rated <b>all</b> of them.</h2>-->
+<div style="clear:both"></div>
+<div id="move_alt" style="position: relative; top: -20px; width: 750px; margin: 0px auto 0px auto;">
+    <table width="100%" border="0" cellspacing="1">
+        <tr>
+            <td width="41%">
+                <div align="left">
+                    <input type="button" name="Back" id="Back" value="&lt;&lt;
+                Previous Alternative" class="trackable barBlue moveBack" />
+                </div>
+            </td>
+            <td width="26%"><input type="button" name="Submit All Maps" id="button" value="Done with all the Ratings"
+                                   class="trackable barOrange submitAll" />
+            </td>
+            <td width="33%">
+                <div align="right">
+                    <input type="button" name="Next" id="Next" value="Next Alternative &gt;&gt;"
+                           class="trackable barBlue moveNext" />
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!-- ===================================  END  STEP 5  =================================== -->
+
+<!--        <textarea name="JSONHolder" id="JSONHolder" cols="45" rows="5"></textarea>-->
+        <textarea name="JSONHolder" id="JSONHolder" cols="45" rows="5" style="display: none;"></textarea>
         <!--   </form>-->
         <!--   </div>-->
         <!--            </section>-->
         <!--    </div>     <!-- end main content column -->
         <!-- Right Side Column -->
         <div class="clear"></div>
-    </div>
+<!--    </div>-->
     <!-- end mainFrame -->
 </div>
 <!-- end Wrapper -->
@@ -839,7 +821,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
         chartArray.push(chartArrayItems);
 
     });
-    
+
     //**********************************trying to enter the heatmap code***************************
 
     var heatpfra=new Array(); //HEAT-Peak-Flow-Reduction-Array
@@ -872,7 +854,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
             heatiter++;
 
         });
-        
+
         heatpfr.sort( function (a, b) {
             if ((typeof b.val === 'undefined' && typeof a.val !== 'undefined') || a.val < b.val) {
                 return -1;
@@ -892,7 +874,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
             }
             return 0;
         });
-        
+
         heatsed.sort(function (a, b) {
             if ((typeof b.val === 'undefined' && typeof a.val !== 'undefined') || a.val < b.val) {
                 return -1;
@@ -1066,75 +1048,75 @@ src="images/info.png" width="14" height="14" alt=""/>-->
             if(obj1=='stripCropping1'){
                 var answer=document.querySelector('input[name="stripCropping1"]:checked').value;
             }
-            
+
             if(obj1=='stripCropping2'){
                 var answer=document.querySelector('input[name="stripCropping2"]:checked').value;
             }
-            
+
             if(obj1=='cropRotation1'){
                 var answer=document.querySelector('input[name="cropRotation1"]:checked').value;
             }
-            
+
             if(obj1=='cropRotation2'){
                 var answer=document.querySelector('input[name="cropRotation2"]:checked').value;
             }
-            
+
             if(obj1=='coverCrops1'){
                 var answer=document.querySelector('input[name="coverCrops1"]:checked').value;
             }
-            
+
             if(obj1=='coverCrops2'){
                 var answer=document.querySelector('input[name="coverCrops2"]:checked').value;
             }
-            
+
             if(obj1=='filterStrips1'){
                 var answer=document.querySelector('input[name="filterStrips1"]:checked').value;
             }
-            
+
             if(obj1=='filterStrips2'){
                 var answer=document.querySelector('input[name="filterStrips2"]:checked').value;
             }
-            
+
             if(obj1=='grassedWaterways1'){
                 var answer=document.querySelector('input[name="grassedWaterways1"]:checked').value;
             }
-            
+
             if(obj1=='grassedWaterways2'){
                 var answer=document.querySelector('input[name="grassedWaterways2"]:checked').value;
             }
-            
+
             if(obj1=='conservationTillage1'){
                 var answer=document.querySelector('input[name="conservationTillage1"]:checked').value;
             }
-            
+
             if(obj1=='conservationTillage2'){
                 var answer=document.querySelector('input[name="conservationTillage2"]:checked').value;
             }
-            
+
             if(obj1=='Wetlands1'){
                 var answer=document.querySelector('input[name="Wetlands1"]:checked').value;
             }
-            
+
             if(obj1=='Wetlands2'){
                 var answer=document.querySelector('input[name="Wetlands2"]:checked').value;
             }
-            
+
             if(obj1=='rating1'){
                 var answer=document.querySelector('input[name="rating1"]:checked').value;
             }
-            
+
             if(obj1=='rating2'){
                 var answer=document.querySelector('input[name="rating2"]:checked').value;
             }
-            
+
             if(obj1=='subDrop'){
                 var answer=document.getElementsByName('subDrop').item(0).value;
             }
-            
+
             if(obj1=='bmpType'){
                 var answer=$(e.target).val();
             }
-            
+
             if(obj1=='heatDrop'){
                 var answer='suggestion '+document.getElementsByName('heatDrop').item(0).value;
             }
@@ -1173,14 +1155,14 @@ src="images/info.png" width="14" height="14" alt=""/>-->
         //Time to get our data. getSubBasins is called each time we need a new set of maps. oneMap and twoMap are the
         // variables that change on the click of the buttons. It causes us to move to the new rows in the giant dataset.
         // The maps then read the new materials and away we go. That (mapping) occurs in the initialize() function.
-        
+
         function getSubBasins(){
             subBasinArray=[];
             subBasinArray2=[];
             bmpArray=array[oneMap].CHOSENBMP.split(',');
 
             ///////////////////////////////////////////////////////////////////
-            
+
             var option = document.getElementById('subDrop').value;
 
             var rowlen;
@@ -1237,7 +1219,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
             if (option=="Watershed")
             {
                 for (rowlen = 0; rowlen < document.getElementById('wholeTable').rows.length-1; rowlen++) {
-                    
+
                     var m11=Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F1)[0])))
                     var min11=Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F1)[1])))
                     var max11=Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F1)[2])))
@@ -1257,7 +1239,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                     var min14=Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F4)[1])))
                     var max14=Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F4)[2])))
                     var perm14=Number(Math.abs(parseFloat(m14/(JSON.parse(chartArray[rowlen].F4)[0]))))*100
-                    
+
                     data.addRow([rowlen+1,m11,min11,max11,colors[rowlen],createCustomHTMLContent1(rowlen+1,'PFR',m11.toExponential(2),min11.toExponential(2),max11.toExponential(2))]);
                     data1.addRow([rowlen+1,m12,min12,max12,colors[rowlen],createCustomHTMLContent1(rowlen+1,'ER$',m12.toExponential(2),min12.toExponential(2),max12.toExponential(2))]);
                     data2.addRow([rowlen+1,m13,min13,max13,colors[rowlen],createCustomHTMLContent1(rowlen+1,'SRed',m13.toExponential(2),min13.toExponential(2),max13.toExponential(2))]);
@@ -1315,16 +1297,16 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 google.visualization.events.addListener(chart, 'select', function goToTimeBar() {
                     var clickd=chart.getSelection();
                 });
-                
+
                 google.visualization.events.addListener(chart1, 'select', function goToTimeBar() {
                     var clickd=chart1.getSelection();
                     console.log(clickd);
                 });
-                
+
                 google.visualization.events.addListener(chart2, 'select', function goToTimeBar() {
                     var clickd=chart2.getSelection();
                 });
-                
+
                 google.visualization.events.addListener(chart3, 'select', function goToTimeBar() {
                     var clickd=chart3.getSelection();
                 });
@@ -1360,7 +1342,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                     var max13=Number(parseFloat(Math.abs(subChart[3][2])));
                     var perm13=0.0006;
                     var perm13=Number(Math.abs(parseFloat(m13/(JSON.parse(chartArray[rowlen].F3)[0]))))*100;
-                    
+
                     var m14=Number(parseFloat(Math.abs(subChart[4][0])));
                     var min14=Number(parseFloat(Math.abs(subChart[4][1])));
                     var max14=Number(parseFloat(Math.abs(subChart[4][2])));
@@ -1382,7 +1364,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                     intervals: { style: 'bars' , color: '#fff'},
                     hAxis: { textPosition: 'none' }
                 };
-                
+
                 var options1 = {
                     title: 'Economic Revenue in Dollars (ER$)',
                     focusTarget: 'category',
@@ -1420,23 +1402,23 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 chart1.draw(data1, options1);
                 chart2.draw(data2, options2);
                 chart3.draw(data3, options3);
-                
+
                 google.visualization.events.addListener(chart, 'select', function goToTimeBar() {
                     var clickd=chart.getSelection();
                 });
-                
+
                 google.visualization.events.addListener(chart1, 'select', function goToTimeBar() {
                     var clickd=chart1.getSelection();
                 });
-                
+
                 google.visualization.events.addListener(chart2, 'select', function goToTimeBar() {
                     var clickd=chart2.getSelection();
                 });
-                
+
                 google.visualization.events.addListener(chart3, 'select', function goToTimeBar() {
                     var clickd=chart3.getSelection();
                 });
-                
+
                 function createCustomHTMLContent( row, dm , m, min , max, dpermw, permw) {
                     return '\n'+'Alternative: ' + row +'\n'+dm+': '+ m +"\nmin:"+ min + "\nmax:" + max + "\n" + dpermw +': '+permw+' %';
                 }
@@ -1456,13 +1438,13 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 subBasinArray.push(subArrayItem);
                 count=count+1;
             });
-            
+
             $.each(bmpArray, function(index, value) {
                 if (value=="1"){
                     bmpArray[index] = bmpArrayNames[index];
                 }
             });
-            
+
             bmpArray = jQuery.removeFromArray("0", bmpArray);
             //alert("bmpArray"+bmpArray);
             var count1=0;
@@ -1514,7 +1496,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 count=count+1;
                 //alert (value);
             });
-            
+
             //alert(JSON.stringify(subBasinArray2));
             $.each(bmpArray2, function(index, value) {
                 if (value=="1"){
@@ -1522,7 +1504,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                     bmpArray2[index] = bmpArrayNames[index];
                 }
             });
-            
+
             bmpArray2 = jQuery.removeFromArray("0", bmpArray2);
             //alert(JSON.stringify(bmpArray2));
             //startmoving  bmpArray, adding values to it.
@@ -1554,7 +1536,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
                 //alert(JSON.stringify(forMapArray2));
                 count2=count2+1;
             });
-            
+
             //Now that I have all the data arranged for the incoming dataset (multiple arrays labeled 1 and 2) I initialize mapping. It is on mapping.js
             initialize();
 
@@ -1763,7 +1745,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
             }
         }
         //  -----------------------------  END setting up radio buttons  ------------------------------//
-        
+
         //  ----------------------------  Start setting radio(s)  ---------------------------
         //Putting radio button values in text area
         jQuery('input:radio[name=rating1]').change(function(){
@@ -2249,7 +2231,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
             }*/
 
         });
-        
+
 //        This function containing ".info1" to ".info8" were added by ENY
         $(function(){
             $(".info1").click(function(){
@@ -2366,24 +2348,7 @@ src="images/info.png" width="14" height="14" alt=""/>-->
 //
 
         });
-        // $(function(){
-        //     $("#oneMapPF").click(function() {
-        //         $(this).tooltip("open");
-        //     });
-        //     $("#oneMapPF").mouseout(function() {
-        //         $(this).tooltip("disable");
-        //     });
-        // });
-        //   $('.info').on({
-        //         "click": function() {
-        //             //$(this).tooltip({ items: "#tt", content: "abc<br/><img src ='http://www.w3schools.com/html/pic_mountain.jpg'>"});
-        //             debugger
-        //             $(this).tooltip("open");
-        //         },
-        //         "mouseout": function() {
-        //             $(this).tooltip("disable");
-        //         }
-        //     });
+        
     });
 </script>
 </body>

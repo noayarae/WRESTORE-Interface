@@ -59,7 +59,15 @@
       map1 = new google.maps.Map(document.getElementById('map_canvas1'), {
           center: new google.maps.LatLng(39.9778, -86.2959),
           zoom: 11,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+
+          mapTypeControl: true,
+          mapTypeControlOptions: {
+              style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+              position: google.maps.ControlPosition.TOP_CENTER
+          },
+          streetViewControl: false,
+          scaleControl: true
       });
 
       // map2 = new google.maps.Map(document.getElementById('map_canvas2'), {

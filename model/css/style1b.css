@@ -54,16 +54,7 @@ table.table-style td {
 
 
 /****** RESET ********/
-/* http://meyerweb.com/eric/tools/css/reset/ */
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{
-  margin:0;
-  padding:0;
-  border:0;
-  outline:0;
-  font-size:100%;
-  font:inherit;
-  vertical-align:baseline;
-}
+
 /* HTML5 display-role reset for older browsers */
 article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{
   display:block;
@@ -182,12 +173,11 @@ sup, sub 		{   line-height:0;}
 #loginNav a:hover{text-decoration:underline;}
 
 /**** Content Frame ****/
-#mainFrame{ margin:3px 0 3px 0; float:left; display:inline;}
+/*#mainFrame{ margin:3px 0 3px 0; float:left; display:inline;}*/
 .mainFrameRightBck{background:url(images/contentAreaBckgrd.gif) repeat-y;}
 
 /**** Main Content Area ****/
-#mainCol{margin:3px 30px 0 0; padding:5px 0 5px 0; width:682px; float:left; display:inline;}
-section#content h1{color:2d637f; margin-bottom:18px;}
+section#content h1{color:#2d637f; margin-bottom:18px;}
 section#content article{}
 
 /**** Right Side Column ****/
@@ -341,14 +331,13 @@ label.error {
 	padding: 15px;
 }
 .heatMapHolder1 {
-	width: 45%;
+	width: 100%;
+	height: 98%;
 	float: left;
 	background-color: #FA9A50;
-	margin-top: 8px;
-	margin-right: 15px;
-	margin-bottom: 8px;
+	margin: 5px 0px 5px 0px;
 	border: 1px solid #CCC;
-	padding: 15px;
+	padding: 1px 0px 1px 0px;
 }
 
 .heatMapHolder2 {
@@ -457,11 +446,9 @@ label.error {
 	padding-left: 200px;
 	margin-top: 15px;
 }
-#mapHolderOne, #mapHolderTwo {
-	margin-bottom: 12px;
-	padding: 2px;
-}
+
 #heatMapHolderOne, #heatMapHolderTwo {
+	height: 320px;
 	margin-bottom: 12px;
 	padding: 2px;
 }
@@ -470,10 +457,6 @@ label.error {
 	margin-bottom: 12px;
 	width: 99%;
 	padding: 1px;
-}
-
-#map_canvas1, #map_canvas2 {
-	border: 1px solid #999;
 }
 
 #heatmap_canvasPF1, #heatmap_canvasPF2,#heatmap_canvasRV1, #heatmap_canvasRV2,#heatmap_canvasSR1, #heatmap_canvasSR2,#heatmap_canvasNR1, #heatmap_canvasNR2 {
@@ -542,15 +525,6 @@ label.error {
   background-image:url('http://cdn2.iconfinder.com/data/icons/vaga/arrow_down.png');
 }
 
-.containerhover {
-    float: center;
-	width: 980px;
-	padding: 5px;
-	margin-top: 5px;
-	margin-right: 15px;
-	margin-bottom: 5px;
-	margin-left: 5px;
-}
 .containerhover div {
     float: center;
 	width: 980px;
@@ -635,10 +609,6 @@ label.error {
 	display: block;
 }
 
-.dropDownArea {
-	margin-bottom: 10px;
-	text-align: left;
-}
 #graph {
 	float: left;
 	border: 3px solid #CCC;
@@ -652,14 +622,12 @@ label.error {
 }
 .graph {
 	float: left;
-	border: 3px solid #CCC;
-	padding-top: 5px;
-	padding-right: 5px;
-	padding-bottom: 5px;
-	padding-left: 5px;
-	margin-bottom: 5px;
+	border: 0px solid #CCC;
+	padding: 0px 0px 2px 0px;
+	margin: 0px 0px 2px 0px;
 	background-color: #FBF8C4;
-	width: 98.5%;
+	width: 100%;
+	height: 440px;
 }
 .collapsed .graph{
   height:0px;

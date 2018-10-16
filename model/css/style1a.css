@@ -1,13 +1,14 @@
 #map_canvas1 {
-    height: 675px;
-    width:445px;
+    height: 475px;
+    /*width:445px;*/
 }
 #map_canvas2 {
     height: 675px;
     width:445px;
 }
 #heatmap_canvasPF1, #heatmap_canvasPF2, #heatmap_canvasRV1, #heatmap_canvasRV2, #heatmap_canvasSR1, #heatmap_canvasSR2, #heatmap_canvasNR1, #heatmap_canvasNR2 {
-    height: 400px;
+    /*height: 400px;*/
+    height: 100%;
     width: 100%;
     position: relative;
 }
@@ -46,33 +47,34 @@ body {
     height: 20px;
 }
 .container {
-    width: 950px;
+    width: 100%;
+    height: 87%;
 }
 #chart_div1 {
     float: left;
-    width: 235px;
-    height: 550px;
-    display:block;
+    width: 100%;
+    height: 100%;
+    /*display:block;*/
     boarder: 1px solid yellow;
 }
 #chart_div2{
     float: left;
     width: 235px;
     height: 550px;
-    display:block;
+    /*display:block;*/
     boarder: 1px solid yellow;
 }
 #chart_div3{
     float: left;
     width: 235px;
     height: 550px;
-    display:block;
+    /*display:block;*/
     boarder: 1px solid yellow;
 }
 #chart_div4{
     float: left;
     width: 235px;
     height: 550px;
-    display:block;
+    /*display:block;*/
     boarder: 1px solid yellow;
 }
