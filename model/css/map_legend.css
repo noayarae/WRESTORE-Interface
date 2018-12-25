@@ -83,7 +83,8 @@ body{
 /* ----------------------------------------------- */
 /* info1 class contains 'Map legend' */
 .info1, .info3, .info5, .info7 {
-    display: inline-block;
+    /*display: inline-block;*/
+    display: none; /* None was set up to hide the old legend button */
     font-size: 70%;
     border: 1px solid #f77008;/*#000000; /* to verify border*/
     border-radius: 5px;
@@ -148,8 +149,8 @@ body{
     list-style: none;
 }
 
-#box_container {
-    font-size: 70%;
+.box_container {
+    font-size: 90%;
     list-style: none;
     margin-left: 0;
     line-height: 15px; /* space between rows */

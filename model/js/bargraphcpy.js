@@ -1,5 +1,6 @@
 // JavaScript Document
 function subBasinGraph1() {
+    // alert ("alert 4");
     var option = document.getElementById('subDrop').value;
     //alert(option);
     // alert("I am in it");
@@ -58,27 +59,30 @@ function subBasinGraph1() {
 
     if (option == "Watershed") {
         // alert ("wholeTable: " + wholeTable);
+        //alert ("numebr of row in DDBB: " + document.getElementById('wholeTable').rows.length); // E: gets the number
+        // of rows o the DDBB, in this case 21 (header is one row)
         for (rowlen = 0; rowlen < document.getElementById('wholeTable').rows.length - 1; rowlen++) {
+            // E: Through this for-loop all data F1,F2, F3, and F4 in read
             //JSON.parse(chartArray[rowlen].F1)[0]
-            var m11 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F1)[0])))
-            var min11 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F1)[1])))
-            var max11 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F1)[2])))
-            var perm11 = Number(Math.abs(parseFloat(m11 / (JSON.parse(chartArray[rowlen].F1)[0])))) * 100
+            var m11 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F1)[0])));
+            var min11 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F1)[1])));
+            var max11 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F1)[2])));
+            var perm11 = Number(Math.abs(parseFloat(m11 / (JSON.parse(chartArray[rowlen].F1)[0])))) * 100;
 
-            var m12 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F2)[0]) / 1))
-            var min12 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F2)[1])))
-            var max12 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F2)[2])))
-            var perm12 = Number(Math.abs(parseFloat(m12 / (JSON.parse(chartArray[rowlen].F2)[0])))) * 100
+            var m12 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F2)[0]) / 1));
+            var min12 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F2)[1])));
+            var max12 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F2)[2])));
+            var perm12 = Number(Math.abs(parseFloat(m12 / (JSON.parse(chartArray[rowlen].F2)[0])))) * 100;
 
-            var m13 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F3)[0]) / 1))
-            var min13 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F3)[1])))
-            var max13 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F3)[2])))
-            var perm13 = Number(Math.abs(parseFloat(m13 / (JSON.parse(chartArray[rowlen].F3)[0])))) * 100
+            var m13 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F3)[0]) / 1));
+            var min13 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F3)[1])));
+            var max13 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F3)[2])));
+            var perm13 = Number(Math.abs(parseFloat(m13 / (JSON.parse(chartArray[rowlen].F3)[0])))) * 100;
 
-            var m14 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F4)[0]) / 1))
-            var min14 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F4)[1])))
-            var max14 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F4)[2])))
-            var perm14 = Number(Math.abs(parseFloat(m14 / (JSON.parse(chartArray[rowlen].F4)[0])))) * 100
+            var m14 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F4)[0]) / 1));
+            var min14 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F4)[1])));
+            var max14 = Number(parseFloat(Math.abs(JSON.parse(chartArray[rowlen].F4)[2])));
+            var perm14 = Number(Math.abs(parseFloat(m14 / (JSON.parse(chartArray[rowlen].F4)[0])))) * 100;
 
             //need to edit the tooltip for min and max
             // -----------------  These four lines were developed by Efrain Noa-Yarasca
@@ -103,10 +107,10 @@ function subBasinGraph1() {
         }
 
         var options = {
-            // title: 'Peak Flow Reductio in cubic feet per second (PFR)',
-            height: 320, width: 220,
-            chartArea: {'width': '80%', 'height': '92%'},
-            // chartArea:{left:10,top:20,width:"100%",height:"100%"},
+            title: 'Peak Flow Reduction in cfs', //E: title is not shown because fit outside of frame
+            height: 500, width: 270,
+            chartArea: {top:0},
+            // chartArea:{left:40,top:0,width:"100%",height:"100%"},
             // backgroundColor: '#ffff80',
             legend: {position: 'none'},
             //isStacked: true,//'percent',//'relative',//true,// It does not make effect when "Bars"
@@ -115,19 +119,19 @@ function subBasinGraph1() {
             // Use an HTML tooltip.
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
-            vAxis: {gridlines: {count: document.getElementById('wholeTable').rows.length - 1}, direction: -1},
-            // intervals: {style: 'bars',color: '#fff'},
+            vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+                gridlines: {count: document.getElementById('wholeTable').rows.length - 1}, direction: -1},
+            intervals: {style: 'bars',color: '#fff'},
             // interval: {max: {style: 'bars', lineWidth:1, fillOpacity: 1,color: '#ab1ab1'},// Added by E.N.
             //     min: {style: 'bars',lineWidth:1, fillOpacity: 1, color: '#000000'}}, // Added by E.N.
-            hAxis: { textPosition: 'out', format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
-            // hAxis: {textPosition: 'none'},
+            hAxis: {title:'Discharge in cubic feet per second', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
+                bold: false, italic: true}, textPosition: 'out', format: 'short', textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
         };
 
         var options1 = {
             // title: 'Economic Revenue in Dollars (ER)',
-            height: 320, width: 220,
-            chartArea: {'width': '80%', 'height': '92%'},
-            // chartArea:{left:10,top:20,width:"100%",height:"100%"},
+            height: 500, width: 270,
+            chartArea: {top:0},
             // backgroundColor: 'green',
             legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
@@ -135,18 +139,19 @@ function subBasinGraph1() {
             // Use an HTML tooltip.
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
-            vAxis: {gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
+            vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+                gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
             // intervals: {style: 'bars',color: '#fff'},
             // interval: {max: {style: 'bars', lineWidth:1, fillOpacity: 1,color: '#ab1ab1'},// Added by E.N.
             //     min: {style: 'bars',lineWidth:2, fillOpacity: 1, color: '#000000'}}, // Added by E.N.
-            hAxis: { textPosition: 'out',format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
+            hAxis: {title:'Cost in US Dollars', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
+                bold: false, italic: true}, textPosition: 'out',format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
         };
 
         var options2 = {
             // title: 'In-stream sediment reduction in tons (SRed)',
-            height: 320, width: 220,
-            chartArea: {'width': '80%', 'height': '92%'},
-            // chartArea:{left:10,top:20,width:"100%",height:"100%"},
+            height: 500, width: 270,
+            chartArea: {top:0},
             // backgroundColor: 'green',
             legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
@@ -154,18 +159,19 @@ function subBasinGraph1() {
             // Use an HTML tooltip.
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
-            vAxis: {gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
+            vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+                gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
             // intervals: {style: 'bars',color: '#fff'},
             // interval: {max: {style: 'boxes', lineWidth:0.1, fillOpacity: 0.6,color: '#ab1ab1'},// Added by E.N.
             //     min: {style: 'boxes',lineWidth:0.1, fillOpacity: 0.6, color: '#000000'}}, // Added by E.N.
-            hAxis: { textPosition: 'out',format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
+            hAxis: {title:'Sediment Reduction in Tons', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
+                bold: false, italic: true}, textPosition: 'out',format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
         };
 
         var options3 = {
             // title: 'In-stream nitrate reduction in kilograms (NRed)',
-            height: 320, width: 220,
-            chartArea: {'width': '80%', 'height': '92%'},
-            // chartArea:{left:10,top:20,width:"100%",height:"100%"},
+            height: 500, width: 270,
+            chartArea: {top:0},
             // backgroundColor: 'green',
             legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
@@ -173,11 +179,13 @@ function subBasinGraph1() {
             // Use an HTML tooltip.
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
-            vAxis: {gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
+            vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+                gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
             // intervals: {style: 'bars',color: '#fff'},
             // interval: {max: {style: 'points', lineWidth:1, fillOpacity: 1,color: '#ab1ab1'},// Added by E.N.
             //     min: {style: 'points',lineWidth:1, fillOpacity: 1, color: '#000000'}}, // Added by E.N.
-            hAxis: { textPosition: 'out',format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
+            hAxis: {title:'Nitrate Reduction in Kg', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
+                bold: false, italic: true}, textPosition: 'out',format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
         };
 
         chart = new google.visualization.BarChart(document.getElementById('chart_div1'));
@@ -192,7 +200,8 @@ function subBasinGraph1() {
 
 //----------------------------------- chart watershed -------------------------------------------//
         //the barclick event capturing is done here.
-        google.visualization.events.addListener(chart, 'select', function goToTimeBar() {
+        // google.visualization.events.addListener(chart, 'select', function goToTimeBar() {
+        google.visualization.events.addListener(chart, 'select', function() {
             //session=session+1; // alert (session + " f1 " + page + " " + session);//alert (session + " f1 " + page + " , " + option+ ' d ' + (parseInt(clickd[0].row) + 1))
             var clickd = chart.getSelection();
             var selected_item = chart.getSelection()[0];
@@ -272,6 +281,7 @@ function subBasinGraph1() {
             var perm11 = 0.0006;
             var perm11 = Number(Math.abs(parseFloat(m11 / (JSON.parse(chartArray[rowlen].F1)[0])))) * 100;
             //var mm11=String("Alternative:"+(rowlen+1)+"\nPeakFlow:"+parseString(m11)+"\nPercentage:"+perm11)
+            //alert("m11 - subbsin: "+ m11); // E: this shows F1 but for each SubBasin
 
             var m12 = Number(parseFloat(Math.abs(subChart[2][0])));
             var min12 = Number(parseFloat(Math.abs(subChart[2][1])));
@@ -316,59 +326,75 @@ function subBasinGraph1() {
         }
 
         var options = {
-            title: 'Peak flow reduct+on in cfs (PFR)',
+            title: 'Peak Flow Reduction in cfs',
+            height: 500, width: 270,
+            chartArea: {top:0},
             legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
             focusTarget: 'category',
             // Use an HTML tooltip.
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
-            vAxis: {gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
+            vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+                gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
             intervals: {style: 'bars',color: '#fff'},
             // hAxis: {textPosition: 'none'},
-            hAxis:{textPosition: 'out', format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
+            hAxis:{title:'Discharge in cubic feet per second', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
+                bold: false, italic: true}, textPosition: 'out', format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
         };
 
         var options1 = {
             title: 'Economic Revenue in Dollars (ER$)',
+            height: 500, width: 270,
+            chartArea: {top:0},
             legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
             focusTarget: 'category',
             // Use an HTML tooltip.
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
-            vAxis: {gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
+            vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+                gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
             intervals: {style: 'bars',color: '#fff'},
             // hAxis: {textPosition: 'none'},
-            hAxis:{textPosition: 'out', format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
+            hAxis:{title:'Cost in US Dollars', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
+                bold: false, italic: true}, textPosition: 'out', format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
         };
 
         var options2 = {
             title: 'In-stream sediment reduction in tons (SRed)',
+            height: 500, width: 270,
+            chartArea: {top:0},
             legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
             focusTarget: 'category',
             // Use an HTML tooltip.
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
-            vAxis: {gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
+            vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+                gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
             intervals: {style: 'bars',color: '#fff'},
             // hAxis: {textPosition: 'none'},
-            hAxis:{textPosition: 'out', format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
+            hAxis:{title:'Sediment Reduction in Tons', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
+                bold: false, italic: true}, textPosition: 'out', format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
         };
 
         var options3 = {
             title: 'In-stream nitrate reduction in kilograms (NRed)',
+            height: 500, width: 270,
+            chartArea: {top:0},
             legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
             focusTarget: 'category',
             // Use an HTML tooltip.
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
-            vAxis: {gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
+            vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+                gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
             intervals: {style: 'bars',color: '#fff'},
             // hAxis: {textPosition: 'none'},
-            hAxis:{textPosition: 'out', format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
+            hAxis:{title:'Nitrate Reduction in Kg', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
+                bold: false, italic: true}, textPosition: 'out', format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
         };
 
         chart = new google.visualization.BarChart(document.getElementById('chart_div1'));
@@ -457,6 +483,20 @@ function subBasinGraph1() {
     }
 //    End of ELSE
 
-
 }
 
+
+function mmq_legend(){
+    // var circle_6 = document.createElement('DIV');
+    // circle_6.className = "circle";
+    // circle_6.style.height = "14px"; circle_6.style.width = "14px";
+    // circle_6.style.backgroundColor = "#1ad1ff";//"#4ddbff";
+    // return circle_6;
+
+    var circle_7 = document.createElement('DIV');
+    circle_7.className = "circle";
+    circle_7.style.height = "15px"; circle_7.style.width = "15px";
+    circle_7.style.backgroundColor = "#ff3300";//"#ff1a1a";
+    return circle_7;
+
+}

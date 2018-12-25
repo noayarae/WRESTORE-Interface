@@ -1,4 +1,10 @@
-/* --------- Query to delete "USERS" table if exists and create it doesn't --------- */
+/*  Drop (Delete) a DDBB */
+DROP DATABASE databasename;
+
+/*  Create a DDBB */
+CREATE DATABASE databasename;
+
+/* --------- Query to delete "USERS" table if exists and create if it doesn't --------- */
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (

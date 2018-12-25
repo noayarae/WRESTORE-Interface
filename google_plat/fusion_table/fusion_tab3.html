@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+        <title>Fusion Tables Styling</title>
+        <style>
+            /* Always set the map height explicitly to define the size of the div
+             * element that contains the map. */
+            #map {
+                height: 100%;
+            }
+            /* Optional: Makes the sample page fill the window. */
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+    </head>
+<body>
+<div id="map"></div>
+<script>
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'),
+//            {center: {lat: -25, lng: 133},
+            {center: {lat: 45.65, lng: -123.0},
+//            -123.070718175,45.7905424206,0
+        zoom: 11
+        });
+
+        var sub_basins = new google.maps.FusionTablesLayer({
+            query: {
+                select: 'geometry',
+//                from: '1ertEwm-1bMBhpEwHhtNYT47HQ9k2ki_6sRa-UQ'
+                from: '1ZBdUCcDAjB0w94aiSRybOvnbtUxHYrvaMmeljHaD'
+            },
+            styles: [
+                {polygonOptions: {fillColor: '#00FF00',fillOpacity: 0.1}},
+//                {where: 'birds > 300',polygonOptions: {fillColor: '#a050FF'}},
+//                {where: 'population > 5',polygonOptions: {fillOpacity: 1.0}}
+            ]
+        });
+        sub_basins.setMap(map);
+
+        var streams = new google.maps.FusionTablesLayer({
+            query: {
+                select: 'geometry',
+                from: '1gDYXeEtt5-wJyxXnYhtvo-mukynPcaQUhqNQx4Nb'
+            }
+        });
+        streams.setMap(map);
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVNzONb19t-556kuu-ebT5DUF0wCpEt-g&callback=initMap">
+</script>
+</body>
+</html>

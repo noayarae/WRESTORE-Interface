@@ -400,7 +400,6 @@ if (!JSON) {
         };
     }
 
-
 // If the JSON object does not yet have a parse method, give it one.
 
     if (typeof JSON.parse !== 'function') {
@@ -410,7 +409,6 @@ if (!JSON) {
 // a JavaScript value if the text is a valid JSON text.
 
             var j;
-
             function walk(holder, key) {
 
 // The walk method is used to recursively walk the resulting structure so
@@ -431,7 +429,6 @@ if (!JSON) {
                 }
                 return reviver.call(holder, key, value);
             }
-
 
 // Parsing happens in four stages. In the first stage, we replace certain
 // Unicode characters with escape sequences. JavaScript handles many characters
@@ -480,7 +477,6 @@ if (!JSON) {
             }
 
 // If the text is not JSON parseable, then a SyntaxError is thrown.
-
             throw new SyntaxError('JSON.parse');
         };
     }

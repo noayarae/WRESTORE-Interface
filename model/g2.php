@@ -1,71 +1,57 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" style="height: 100vh; overflow: hidden">
+<!--<html xmlns="http://www.w3.org/1999/xhtml" style="height: 100vh; overflow: hidden; width: 100%;">-->
+<html xmlns="http://www.w3.org/1999/xhtml" style="height: 100vh">
 <head>
     <meta charset=utf-8>
     <meta http-equiv="X-UA-Compatible" content="IE=8" />
     <title>WRESTORE - Watershed REstoration using Spatio-Temporal Optimization of REsources</title>
-    
-    <!-- 'style1a.css' file replaces the code-lines setup above (line8 to line 95 in Vidya's code) -->
-    <link rel="stylesheet" type="text/css" href="css/style1a.css" media="all" />
-    <!-- 'style.css' file was renamed as 'css/style1b.css' -->
-    <link rel="stylesheet" type="text/css" href="css/style1b.css" media="all" />
-    <!-- 'new/style.css' was moved to 'css/style2.css'  -->
-    <!--    <link rel="stylesheet" type="text/css" href="new/style.css" media="all" />-->
-    <link rel="stylesheet" type="text/css" href="css/style2.css" media="all" />
+
+    <link rel="stylesheet" type="text/css" href="css/basic.css"/>
+    <link rel="stylesheet" type="text/css" href="css/gdropdown.css"/>
     <!-- 'css/map_legend.css' was created for editing map-legends in STEP-3 -->
-    <!--    <link rel="stylesheet" type="text/css" href="css/style3.css">-->
     <link rel="stylesheet" type="text/css" href="css/map_legend.css">
-    <link rel="stylesheet" type="text/css" href="css/basic.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="css/star.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="css/visualize.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="js/shadowbox/shadowbox.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/star.css"/>
+    <!-- 'style1a.css' file encloses styles setup at the begginig of this file -->
+    <link rel="stylesheet" type="text/css" href="css/style1a.css"/>
+    <!-- 'style.css' file was renamed as 'css/style1b.css' -->
+    <link rel="stylesheet" type="text/css" href="css/style1b.css"/>
+    <!-- 'new/style.css' was moved to 'css/style2.css'  -->
+    <link rel="stylesheet" type="text/css" href="css/style2.css"/>
+    <link rel='stylesheet' type='text/css' href='css/styles.css'/>
+    <link rel="stylesheet" type="text/css" href="css/visualize.css"/>
+    
+    <link rel="stylesheet" type="text/css" href="js/shadowbox/shadowbox.css"/>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Oswald:400,300' type='text/css'>
 <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">-->
 <!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>-->
 
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<!--    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVNzONb19t-556kuu-ebT5DUF0wCpEt-g&callback=initMap"-->
+<!--            type="text/javascript"></script>-->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVNzONb19t-556kuu-ebT5DUF0wCpEt-g&callback=initMap"
             type="text/javascript"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript' src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <!--[if IE]><![endif]-->
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+
+    <script type="text/javascript" src="js/legend_DOM.js"></script>
     <script type="text/javascript" src="js/json2.js"></script>
     <script type="text/javascript" src="js/jquery.collapsible.js"></script>
-
     <script type="text/javascript" src="js/bargraphcpy.js"></script>
-    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
-    <!--[if IE]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript' src='js/fda.js'></script>
+    <script type='text/javascript' src='js/mt_config.js'></script>
+    
     <script type="text/javascript">
         //window.onload(heatinitialize);
         google.load("visualization", "1", {packages:["corechart"]});
         google.setOnLoadCallback(subBasinGraph1);
     </script>
-
-    <script type='text/javascript' src='js/fda.js'></script>
-    <script type='text/javascript' src='js/mt_config.js'></script>
-
-    <script type='text/javascript' src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <style>
-        .button {
-            padding: 15px 25px;
-            font-size: 24px;
-            text-align: center;
-            cursor: pointer;
-            outline: none;
-            color: #fff;
-            background-color: #4CAF50;
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 9px #999;
-        }
-
-        .button:hover {background-color: #3e8e41}
-
-        .button:active {
-            background-color: #3e8e41;
-            box-shadow: 0 5px #666;
-            transform: translateY(4px);
-        }
-    </style>
+    
     <!--  Tracking module  -->
     <script type='text/javascript'>
         /* The automaton is: s_start --one--> s_one --two--> s_two --three--> s_end
@@ -86,22 +72,21 @@
         // This function must be invoked, and it has to go last.
         $(document).ready(init);
     </script>
-    <link rel='stylesheet' type='text/css' href='css/styles.css'/>
+
+    
 </head>
 <!--  -------------------- START BODY -----------  -->
 <body name="body">
-<!--<body name="body" style="height: 100vh; background:#ff99ff;">-->
+<!--  This "WRAPPER" Div encloses the whole page, after "BODY" with out JavaScripts -->
+<div class="wrapper"> <!-- style="background:#e6ffcc;" #e6ffcc; #99ff66; #e6ff0c; -->
 
-<!--<div>-->
-    <div style="height: 100vh; background:#e6ffcc;">
-<!--    <div style="height: 100vh; overflow: auto; background:#99ff66;">-->
-<!--body {width:100%; height:100%;}-->
-
+<!--  This PHP reads/grabs the data from the DB and creates a "TABLE" Html-tag to save them on it -->
 <?php
 include ('data.php');
 //echo $yellow;
 
-//This is a simple script that checks to see the session userID is even active. If not, that means someone is trying to access this page without loging in and I throw them out.
+//This is a simple script that checks to see the session userID is even active. If not, that means someone is trying
+// to access this page without loggin in and I throw them out.
 /*session_set_cookie_params(3600);
 session_start();
 if ( $_SESSION['USERID']=="" ) {
@@ -112,28 +97,32 @@ $_SESSION['USERID']=111;
 //$USERID = $_SESSION['USERID'];
 $USERID = 111;
 
-$connection =
-	mysqli_connect (DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME, 3306)
+// E: This code tries to connect to the server. Arguments are called from 'data.php' included above in L-103.
+$connection = mysqli_connect (DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME, 3306)
 or die("Unable to connect to server<br>\n");
 //echo "Connected to database!<br><br>";
 
 $count = 0;
 
-//I am grabbing the massive amount of data from the takefeedback table. I actually am going to write it out on the page in a table.
+//E: I am grabbing the massive amount of data from the 'takefeedback' table. I actually am going to write it out on the
+// page in a table.
 $query =("SELECT * FROM takefeedback where USERID = '$USERID'");
-$result = mysqli_query($connection, $query);
-$row = mysqli_fetch_assoc($result);
-$tableSize=mysqli_num_rows($result)+1;
-//I am writing out the entire table of data.  I have it hid with css where the id wholeTable is hidden. You can always turn that css to not hide if you want to see it.
-//echo mysqli_num_rows($result);
+$result = mysqli_query($connection, $query); //  ???
+$row = mysqli_fetch_assoc($result); // E: Fetches (busca) a result row as an associative array.
+$tableSize = mysqli_num_rows($result)+1; // E: Returns the 'number of rows + 1' from the result set
+//E: I am writing out the entire table of data.  I have it hid (escondido) with css where the id 'wholeTable' is hidden.
+// You can always turn that css to not hide if you want to see it.
+//echo mysqli_num_rows($result); ???
 
 if (mysqli_num_rows($result)>0){
 	print '<table border="2" id="wholeTable"><tr>';
+	// E: these lines read and set the names in the table
 	print "<th>ID</th>";
 	foreach($row as $name => $value) {
 		print "<th>$name</th>";
 	}
 	print '</tr>';
+	
 	while($row) {
 		$ColCount=0;
 		print '<tr>';
@@ -151,7 +140,10 @@ if (mysqli_num_rows($result)>0){
 		$count = $count + 1;
 	}
 	
-	//I am looking to see if we are left with an odd number of maps. If so, I add one line of fake data so that the maps load properly on the last page.
+	// I am looking to see if we are left with an odd number of maps. If so, I add one line of fake data so that the
+    // maps load properly on the last page.
+    // E: If the number of rows (coming from mysql) is odd, the last map will not load properly. That is why, here a
+    // row with data mostly zeros is added to have NO problems loading the last map.
 	if ( $count%2 ){
 		print '<tr>';
 		print '<td>'.$count.'</td>';
@@ -165,17 +157,17 @@ if (mysqli_num_rows($result)>0){
 		print '<td>0</td>';
 		$i=0;
 		while($i<=($ColCount-8)){
-			
 			print '<td>0,0,0,0,0,0</td>';
 			$i++;
 		}
 		print '</tr>';
 		//print $ColCount;
 	};
-	
 	print '</table>';
 }
-//Looking in the session table so I can find out what session type they are in and color in the needed div in the Progress Bar.
+
+// Looking in the session table so I can find out what session type they are in and color in the needed div in the
+// Progress Bar.
 $query1 =("SELECT * FROM session_info where USERID='$USERID'");
 $result1 = mysqli_query($connection,$query1);
 $row1 = mysqli_fetch_assoc($result1);
@@ -197,71 +189,65 @@ else
 {$thisCSS=".s".$searchid.$current_session;
 	$color="yellow";
 }
-//You can echo the variable above if you want to see it value. I take the var color and write out some css using javascript in line 550 or so below.
+//You can echo the variable above if you want to see it value. I take the var color and write out some css
+// using javascript in line 550 or so below.
 //echo $thisCSS;
 
 ?>
 
 <!--[if lte IE 6]><script src="js/ie6/warning.js"></script><script>window.onload=function(){e("js/ie6/")}</script><![endif]-->
-<div class="wrapper">
-    <!--  =============================  WRESTORE TITTLE  ============================ -->
-    <div class="row">
+<!--  ================= LINE-1: WRESTORE TITTLE  ===================== -->
+<div id="line1" class="wrapper1">
+    <div class="wrapper2">
         <header id="siteHeader">
-            <div>
-                <hgroup>
-                    <h1 class="trackable" id='back-main-page'
-                        name="site_header1"><a href="/">WRESTORE</a></h1>
-                    <h2 name="site_header2" style="padding-top: 7px;">
-                        Watershed REstoration using Spatio-Temporal Optimization of REsources
-                    </h2>
-                    <h3 name="site_header3">Visualize & Design Your Watershed Landscape</h3>
-                </hgroup>
-            </div>
+            <hgroup>
+<!--                <h1 id='back-main-page' name="site_header1"><a href="/">WRESTORE</a></h1>-->
+                <h1 id='back-main-page' name="site_header1">WRESTORE</h1>
+                <h2 name="site_header2" style="padding-top: 5px; color: black;">
+                    Watershed Restoration using Spatio-Temporal Optimization of Resources
+                </h2>
+                <h3 name="site_header3" style="letter-spacing: 2px;">Visualize & Design Your Watershed Landscape</h3>
+            </hgroup>
         </header>
     </div>
-    <!-- end Main Site Header -->
-    
-    <!-- End Nav Row -->
-</div> <!-- Added Oct 4, 2018-->
-<div class="skip"></div>
-    
-<div class="row" id="mainFrame">
-    <div id="mainCol">
-        <section id="content">
-            <header id="pageHeader">
-            </header>
+</div>
+<!--<div class="skip"></div>-->
+
+<!--  ================== LINE-2: "LET's VOTE" ================= -->
+<div id="line2" class="wrapper1">
+    <div id="mainFrame" class="wrapper2" >
+        <div id="line2-col1">
+            <section id="content">
             <!-- <h2>Welcome <?   //echo $_SESSION["var"]; ?></h2>-->
             
-            <h2 name="letscompareheader" style="display: inline-block;width: 90px;">Let's vote!</h2>
-            <p name="suggestionsNumberHeader" style="display: inline-block;">
-                Total number of suggestions you will be assessing: 20 | Page <strong><span class="currentPage">1</span></strong> of <span class="totalPages">10</span>
-            </p>
+                <h2 name="letscompareheader" style="display: inline-block;width: 90px;">Let's vote!</h2>
+                
+                <p name="suggestionsNumberHeader" style="display: inline-block;">
+                    Total number* of <b>alternatives</b> you will be assessing: 20 | Page
+                    <strong><span class="currentPage">1</span></strong> of <span class="totalPages">20</span>
+                </p>
             <!--                <hr noshade size=3 width=1200>-->
             
-            <!--    ==================================  LEGEND ===============================  -->
-            <!--                <h2>Legend+ </h2>-->
-                <!--<div class="keyHolder">
-                    <div id="tools" name="tools"></div>
-                     <div id="toolpic" name="toolpic"></div>-->
-        </section>
-    </div>
-    
-    <!--  =================================  QUIT SAVE INSTRUCTIONS  ===============================  -->
-    <div id="mainCol2">
-        <span class="trackable" id='instructions' title="Option to view instructions again">
-            <a name="InstructionsHeader" href="#void" onclick="instruct()" class="submitFeedbackJon"  name="Instructions">Instructions</a>
-        </span>
-        <span class="trackable" id='save' title="Option to save current designs and come back later">
-            <a name="saveMapHeader" href="#void" class="submitFeedbackJon" name="Save Current Map">Save</a>
-        </span>
-        <span class="trackable" id='quit' title="Option to quit current search experiment">
-            <a name="abortheader" href="abort.html" rel="shadowbox;height=240;width=900" name="Quit">Quit</a>
-        </span>
+            </section>
+        </div>
+        
+        <div id="line2-col2">
+            <div class="topnav">
+                <a class="trackable mainbuttons submitFeedbackJon" title="Option to quit current search experiment"
+                   name="Quit" href="abort.html" rel="shadowbox;height=240;width=900">Quit</a>
+                <a class="trackable mainbuttons submitFeedbackJon" title="Option to save current design and come back later"
+                   name="saveMapHeader" href="#" onclick="instruct();return false;">Save</a>
+                <a class="trackable mainbuttons submitFeedbackJon" title="Option to view instructions again"
+                   name="InstructionsHeader" href="#" onclick="instruct();return false;">Instructions</a>
+                <a class="trackable mainbuttons submitFeedbackJon" title="Option to stop the website for a while"
+                   name="TakeRest" href="#" onclick="takeRest_function();return false;">Take a rest</a>
+            </div>
+        </div>
     </div>
 </div>
 
-<!--  =======================  CONSERVATION PRACTICES OPTIONS ===============================  -->
-<div class="containerhover">
+<!--  ============== LINE-3: BMP BUTTONS (off for now) ================  -->
+<div id="line3" class="containerhover" style="display: none">
     <div class="tools" name="tools" id="tools">
     </div>
     <!--                    <div class="toolpic" name="toolpic" id="toolpic">-->
@@ -269,237 +255,295 @@ else
 </div>
 <!--<br/>-->
 
-<!--    ===============================  MAIN MAP (before STEP 1) ================================  -->
-<!--        <h2>STEP 1: Assess if you like how the practices in the map below are allocated in the suggestion.</h2>-->
-
-<div class="container-fluid step1" style="display: inline;">
+<!--    ================ LINE-4: MAIN MAP (before STEP 1) ================================  -->
+<div id="line4" class="wrapper1 container-fluid" style="display: block;">
 <!--            <div class="displayStuffa">Click inside of any sub-basin to learn about practices proposed in a sub-basin.</div>-->
             <!-- <div class="displayStuffb" name="What Do They Mean"><a href="infoBox.html" rel="shadowbox;height=640;width=620" name="What Do They Mean"><strong><em name="What Do They Mean">What do these numbers mean?</em></strong></a></div>-->
             <!--pop up boxes will display this info-->
             <!-- <div class="displayStuff"></div>-->
-    <form id="form1" name="form1" method="post" action="sendToUsersFeedback.php?id=<? print $thisCSS;  ?>">
-                <!--Changed mapHolder to mapHolder1-->
-                <!--                MAP1 in STEP1  -->
+    
+<!--    <form id="form1" name="form1" method="post" action="sendToUsersFeedback.php?id=--><?// print $thisCSS;  ?><!--">-->
+    
+    <form id="form1" class="wrapper2" name="form1" method="post" action="sendToUsersFeedback.php?id=<? print $thisCSS;
+    ?>">
+        <!--Changed mapHolder to mapHolder1-->
         <div class="mapHolder1 map1">
-            <h4>Suggestion <span class="oneMap"></span></h4>
-            <div class="displayStuffa">Click inside of any sub-basin to learn about practices proposed in a sub-basin.</div>
+            <div class="mainMap_header" style="height: 26px;">
+<!--            <div class="header" style="width: 250px; display: inline-block; color: #ff9933">-->
+                <div id="step1" class="header" style="/*width: 150px;*/ display: inline-block; color: #ff9933">
+<!--                    <h2 id='step2' name="step2">STEP 1: Alternatives</h2>-->
+                    <h2 title="Step 1 displays a map with conservation practices corresponding to each alternative.">STEP 1:</h2>
+                </div>
+                <h4 class="sugg_title">Alternative <span class="oneMap"></span></h4>
+                <div class="displayStuffa">Click inside of any sub-basin to learn about practices proposed in a sub-basin.</div>
+            </div>
+            
             <div id="mapHolderOne">
                 <div id="map_canvas1" name="map_canvas1"></div>
                 
-                <h3 style="position: relative; left: 35%; top: -100px; z-index: 200;">This is a test statement</h3>
-                
-                <!--   ++++++++++++++   inserting  STEP2 Alternatives BARPLOTS   ++++++++++++++  -->
-                <div name='step2collapse' class ="containerABC collapsed" style="position: relative; width: 250px;
-                left: 5px; top: -502px; z-index: 100; background-color: #ff9933;">
-                    <div class="header">
-                        <h2 class="trackable" id='step2' name="step2">
-                            STEP 2: Alternatives</h2>
-                    </div>
+                <!--   ++++++++++++++   inserting  STEP1 Alternatives BARPLOTS (Before STEP2)   ++++++++++++++  -->
+<!--                <div class ="containerABC collapsed" name='step1_alter' style="position: relative; width: 250px;-->
+<!--                left: 2px; top: -464px; z-index: 100; background-color: #ffffff; height: 470px; border: 1px solid-->
+<!--                #999999;">-->
+                <div class ="heatmaps_frame1 collapsed" name='step1_alter'>
+<!--                For testing   -->
+<!--                <div name='step2collapse' class ="containerABC collapsed" style="position: relative; width: 250px;-->
+<!--                left: 5px; top: 0px; z-index: 100; background-color: #ff9933; border: 2px solid black;">-->
 
-                    <div class="graph" style="height: 405px">
-                        <div class="dropDownArea">
-                            <label>Choose a sub-basin to compare</label>
-                            <select name="subDrop" id="subDrop" onchange='subBasinGraph1(); selected_option();'>
-                                <option id="watershed" value="Watershed" selected="selected">Watershed</option>
-					            <?php
+<!--                    <div class="graph" style="height: inherit; width: inherit;">-->
+                    <div class="dropDownArea">
+                        <label>Choose a sub-basin to vote</label>
+                        <select id="subDrop" title="Click here to select a sub-basin" name="subDrop"
+                                    onchange='subBasinGraph1(); selected_option();'>
+                            <option id="watershed" value="Watershed" selected="selected">Watershed</option>
+                            <?php
 					            $y=1;
 					            while($y<=127){
 						            print "<option id=SB-$y value=S$y>Subbasin $y</option>";
 						            $y++;
 					            }
 					            ?>
-                            </select>
+                        </select>
 
-                            <script>
+                        <script>
                                 function selected_option() {
                                     var theSelect = subDrop;
                                     report('m-clk**  ' , "Sub-basin " + theSelect[theSelect.selectedIndex].value , ';');
                                 }
-                            </script>
-                            <br>
-                        </div>
-
-                        <div class="container">
-                            <div id="tabs3" style="font-size: 11px; height: 98%">
-                                <ul>
-                                    <li><a class="trackable" href="#c0"> Start</a></li>
-                                    <li><a class="trackable" href="#c1"> PFR</a></li>
-                                    <li><a class="trackable" href="#c2"> ER</a></li>
-                                    <li><a class="trackable" href="#c3"> SR</a></li>
-                                    <li><a class="trackable" href="#c4"> NR</a></li>
-                                </ul>
-                                
-                                <div class='trackable' id="c0">
-                                    <h4 style="font-size: 20px">Instructions </h4>
-                                    <p>Instructions go here</p>
-                                </div>
-                                <div class='trackable' id="c1">
-                                    <div id="chart_div1"></div>
-                                </div>
-                                <div class='trackable' id="c2">
-                                    <div id="chart_div2"></div>
-                                </div>
-                                <div class='trackable' id="c3">
-                                    <div id="chart_div3"></div>
-                                </div>
-                                <div class='trackable' id="c4">
-                                    <div id="chart_div4"></div>
-                                </div>
-                                
+                        </script>
+<!--                        <br>-->
+                    </div>
+                    
+<!--                        <div class="altern_container">-->
+                    <div id="tabs_bp" style="font-size: 11px; height: 394px; /*; height: 87%*/">
+                        <ul class="tabs_barplot">
+                            <li><a id="step1-start" class="trackable" href="#start_barplot" > Start</a></li>
+                            <li><a id="step1-PFR" class="trackable" href="#PFR_barplot" > PFR</a></li>
+                            <li><a id="step1-CR" class="trackable" href="#CR_barplot" > CR</a></li>
+                            <li><a id="step1-SR" class="trackable" href="#SR_barplot" > SR</a></li>
+                            <li><a id="step1-NR" class="trackable" href="#NR_barplot"> NR</a></li>
+                        </ul>
+                        <div class="tab_container1">
+                                <!--    ------------ (1a)  tabs-Info of HeatMap  ------------   -->
+                            <div id="start_barplot">
+                                        <h4 style="font-size: 20px">Instructions </h4>
+                                        <p>Next tabs display a bar plot showing 20 <b>alternatives</b> corresponding
+                                            to the tab's name objective function. The orange-color bar corresponds to the
+                                            alternative whose map is shown on the main panel. Clicking on any bar,the
+                                            average, maximum and minimum values of all feasible solutions found by
+                                            the optimization process will pop up. </p>
+                                        <br>
+                                        <p><b>PFR: </b>Peak Flow Reduction in cms</p><br>
+                                        <p><b>CR:  </b>Cost revenue in US Dollars</p><br>
+                                        <p><b>SR:  </b>Sediment Reduction Tons</p><br>
+                                        <p><b>NR:  </b>Nitrate Reduction in Kg</p><br>
+                                    </div>
+                                    <!--    ------------ (2a)  tabs-PFR  ------------   -->
+                            <div id="PFR_barplot">
+                                <div id="chart_div1"></div>
+                            </div>
+                                    <!--    ------------ (3a)  tabs-Cost  ------------   -->
+                            <div id="CR_barplot">
+                                <div id="chart_div2"></div>
+                            </div>
+                                    <!--    ------------ (4a)  tabs-Sed. Reduction  ------------   -->
+                            <div id="SR_barplot">
+                                <div id="chart_div3"></div>
+                            </div>
+                                    <!--    ------------ (5a)  tabs-Nit. Reduction  ------------   -->
+                            <div id="NR_barplot">
+                                <div id="chart_div4"></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <script>
                     $( function() {
-                        $( "#tabs3" ).tabs();
+                        $("#tabs_bp").tabs();
+//                        $( "#tabs_bp li:last-child a" ).tabs('show');
+                        
+//                        $( "#tabs_hm" ).tabs({active: 1});
+//
+//                        var active = $( "#tabs_hm" ).tabs( "option", "active" );
+//                        $( "#tabs_hm" ).tabs( "option", "active", 2 );
                     } );
                 </script>
                 <!--   +++++++++++   finish inserting Alternatives BARPLOTS +++++++++++ -->
+            
+            </div>
+        </div>
 
-                <!--   ++++++++++++++   inserting  STEP3 Heatmaps   ++++++++++++++  -->
-                <div name='step3collapse' class ="containerABC collapsed" style="position: relative;float: right;
-                width: 275px; right: 5px; top: -530px; z-index: 100; background-color: #ff9933;">
-                    <div class="header">
-                        <h2 class="trackable" id='step3' name="step3">STEP 3: Goals</h2>
+        <!--   ++++++++++++++   inserting  STEP2 Heatmaps (before step3)  ++++++++++++++  -->
+        <!--        This 'div" is a false frame to positioning the 'heat-map' container    -->
+<!--        <div class="col2" style="margin: 4px 0px 4px 0px;">-->
+        <div class="false_frame" style="margin: 4px 0px 4px 0px;">
+            
+            <!--                <div name='step3collapse' class ="containerABC collapsed" style="position: relative;float: right;-->
+            <!--                width: 275px; height: 495px; right: 2px; top: -995px; z-index: 100; background-color: #ffffff;border:-->
+            <!--                1px solid #999999;">-->
+            
+<!--            <div name='step3collapse' class ="containerABC collapsed" style="/*position: relative;*/float: right;-->
+<!--                width: 275px;height: 495px; right: 5px; top: 0px; z-index: 100; background-color: #ff9933;">-->
+
+            <div id="heatmaps_frame" name='step2_goals' style="width: 21.5%; right: 5px; top: 0px;">
+                
+                <div class = "heatmap_header" style="height: 26px;">
+                    <div id='step2' class="header" name="step2">
+                        <!--                    <h2 id='step2' name="step2">STEP 2: Goals</h2>-->
+                        <h2 title="Step 2 shows heatmaps for each goal corresponding to the alternative.">STEP 2:</h2>
                     </div>
-                    <div class="graph" style="height: 405px">
-                        <div id="tabs" style="font-size: 12px; height: 98%">
-                            <ul>
-                                <li><a class="trackable" href="#infor_heatmap"> Start</a></li>
-                                <li><a class="trackable" id="step3_tab_PF" href="#tabs-PF"> PFR</a></li>
-                                <li><a class="trackable" id="step3_tab_RV" href="#tabs-RV"> ER</a></li>
-                                <li><a class="trackable" id="step3_tab_SR" href="#tabs-SR"> SR</a></li>
-                                <li><a class="trackable" id="step3_tab_NR" href="#tabs-NR"> NR</a></li>
-                            </ul>
-
-                            <!--    ------------  tabs-Info of HeatMap  ------------   -->
-                            <div class='trackable' id="infor_heatmap">
+                    <h4 class="sugg_title">Goals</h4>
+                </div>
+                
+<!--            <div class="graph" style="height: 460px">-->
+                <div id="tabs_hm" style="font-size: 12px; height: 460px; margin: 2px 0px 0px 0px;">
+                        <ul class="tabs_heatmap">
+                            <li><a class="trackable" id="step2_start" href="#info_heatmap">Start</a></li>
+                            <li><a class="trackable" id="step2_PFR_tab" href="#tabs-PF">PFR</a></li>
+                            <li><a class="trackable" id="step2_CR_tab" href="#tabs-RV">CR</a></li>
+                            <li><a class="trackable" id="step2_SR_tab" href="#tabs-SR">SR</a></li>
+                            <li><a class="trackable" id="step2_NR_tab" href="#tabs-NR">NR</a></li>
+                        </ul>
+                        <div class="tab_container2">
+                            <!--    ------------ (1b) tabs-Info of HeatMap  ------------   -->
+                            <div id="info_heatmap" class='trackable tab_content2'>
                                 <h4 style="font-size: 20px">Instructions </h4>
-                                <p>Instructions go here</p>
+                                <p>Next tabs display a heatmap by sub-basins corresponding to the tab's name
+                                    objective function and to the alternative in vote. </p>
+                                <br>
+                                <p><b>PFR: </b>Peak Flow Reduction in cms</p><br>
+                                <p><b>CR:  </b>Cost revenue in US Dollars</p><br>
+                                <p><b>SR:  </b>Sediment Reduction Tons</p><br>
+                                <p><b>NR:  </b>Nitrate Reduction in Kg</p><br>
+
                             </div>
-                            
-                            <!--    ------------  tabs-PF  ------------   -->
-                            <div id="tabs-PF">
-                                <div class="heatMapHolder1 map1">
-                                    <h4>Suggestion <span class="oneMap"></span></h4>
-                                    <div class="info1 trackable" id="tab_PF_map1_Legend"> Legend
-                                        <!--    ----     <img  title="click for additional information" alt="click
-                                        for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
-                                        <img id="imm1" class="playdown" title="click for additional information"
-                                             alt="click for additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>
-                                        <div id="oneMapPF" class="tip"></div>
+                            <!--    ------------ (2b) tabs-PF  ------------   -->
+<!--                            <div id="tabs-PF" class="tab_content2">-->
+<!--                                <div id="tabs-PF" class="heatMapHolder1 map1">-->
+                            <div id="tabs-PF" class="map1">
+                                <div class="tab-header2">
+                                    <h4>Alternative <span class="oneMap"></span></h4>
+                                    <!--                                    <div class="info1 trackable" id="tab_PF_map1_Legend"> Legend_*-->
+                                    <!--    ----     <img  title="click for additional information" alt="click
+									for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
+                                    <!--                                        <img id="imm1" class="playdown" title="click for additional information"-->
+                                    <!--                                             alt="click for additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>-->
+                                    <!--                                        <div id="oneMapPF" class="tip"></div>-->
+                                    <!--                                    </div>-->
+                                    <input id="fullscreen_heatmap1" class="trackable" type="button"
+                                           title="Click here to display a fullscreen map" value="fullscreen PFR"/>
+
+                                </div>
+                                <div id="heatMapHolderOne">
+                                    <div id="oneMapPF" class="tip"></div>
+                                    <!--  It draws them map1 -->
+                                    <div id="heatmap_canvasPF1" name="heatmap_canvasPF1"></div>
+                                </div>
+                            </div>
+                            <div style="clear:both"></div>
+<!--                            </div>-->
+                            <!--    ------------ (3b) tabs-RV  --------   -->
+<!--                            <div id="tabs-RV" class="tab_content2">-->
+<!--                                <div id="tabs-RV" class="heatMapHolder1 map1">-->
+                            <div id="tabs-RV" class="map1">
+                                <div class="tab-header2">
+                                    <h4>Alternative <span class="oneMap"></span></h4>
+                                    <!--                                    <div class="info3 trackable" id="tab_RV_map1_Legend"> Legend-->
+                                    <!--                            <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
+                                    <!--                                        <img id="imm3" class="playdown" title="click for additional information" alt="click for-->
+                                    <!--                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>-->
+                                    <!--                                        <div id="oneMapRV" class="tip"></div>-->
+                                    <!--                                    </div>-->
+
+                                    <input id="fullscreen_heatmap2" class="trackable" type="button"
+                                           title="Click here to display a fullscreen map" value="fullscreen CR"/>
+                                </div>
+                                
+                                <div id="heatMapHolderOne">
+                                    <div id="oneMapRV" class="tip"></div>
+                                    <!--  It draws them map1 -->
+                                    <div id="heatmap_canvasRV1" name="heatmap_canvasRV1"></div>
+                                </div>
+                            </div>
+                            <div style="clear:both"></div>
+<!--                            </div>-->
+                            <!--    ------------ (4b) tabs-SR  --------   -->
+<!--                            <div id="tabs-SR" class="tab_content2">-->
+<!--                                <div id="tabs-SR" class="heatMapHolder1 map1">-->
+                            <div id="tabs-SR" class="map1">
+                                <div class="tab-header2">
+                                    <h4>Alternative <span class="oneMap"></span></h4>
+                                    <!--                                    <div class="info5 trackable" id="tab_SR_map1_Legend"> Legend-->
+                                    <!--                            <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
+                                    <!--                                        <img id="imm5" class="playdown" title="click for additional information" alt="click for-->
+                                    <!--                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>-->
+                                    <!--                                        <div id="oneMapSR" class="tip"></div>-->
+                                    <!--                                    </div>-->
+
+                                    <input id="fullscreen_heatmap3" class="trackable" type="button"
+                                           title="Click here to display a fullscreen map" value="fullscreen SR"/>
+                                </div>
+                                <div id="heatMapHolderOne">
+                                    <div id="oneMapSR" class="tip"></div>
+                                    <!--  It draws them map1 -->
+                                    <div id="heatmap_canvasSR1" name="heatmap_canvasSR1"></div>
+                                </div>
+                            </div>
+                            <div style="clear:both"></div>
+<!--                            </div>-->
+                            <!--    -----------  (5b)  tabs-NR  ------   -->
+<!--                            <div id="tabs-NR" class="tab_content2">-->
+<!--                                <div id="tabs-NR" class="heatMapHolder1 map1">-->
+                                <div id="tabs-NR" class="map1">
+                                    <div class="tab-header2">
+                                        <h4>Alternative* <span class="oneMap"></span></h4>
+                                        <!--                                    <div class="info7 trackable" id="tab_NR_map1_Legend"> Legend-->
+                                        <!--                                <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
+                                        <!--                                        <img id="imm7" class="playdown" title="click for additional information" alt="click for-->
+                                        <!--                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>-->
+                                        <!--                                        <div id="oneMapNR" class="tip"></div>-->
+                                        <!--                                    </div>-->
+
+                                        <input id="fullscreen_heatmap4" class="trackable" type="button"
+                                               title="Click here to display a fullscreen map" value="fullscreen NR"/>
                                     </div>
                                     <div id="heatMapHolderOne">
-                                        <!--  It draws them map1 -->
-                                        <div id="heatmap_canvasPF1" name="heatmap_canvasPF1"></div>
-                                    </div>
-                                </div>
-                                <div style="clear:both"></div>
-                            </div>
-                            <!--    ---------  tabs-RV  --------   -->
-                            <div id="tabs-RV">
-                                <div class="heatMapHolder1 map1">
-                                    <h4>Suggestion <span class="oneMap"></span></h4>
-                                    <div class="info3 trackable" id="tab_RV_map1_Legend"> Legend
-                                        <!--                            <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
-                                        <img id="imm3" class="playdown" title="click for additional information" alt="click for
-                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>
-                                        <div id="oneMapRV" class="tip"></div>
-                                    </div>
-                                    <div id="heatMapHolderOne"><!--  It draws them map1 -->
-                                        <div id="heatmap_canvasRV1" name="heatmap_canvasRV1"></div>
-                                    </div>
-                                </div>
-                                <div style="clear:both"></div>
-                            </div>
-                            <!--    -------  tabs-SR  ------   -->
-                            <div id="tabs-SR">
-                                <div class="heatMapHolder1 map1">
-                                    <h4>Suggestion <span class="oneMap"></span></h4>
-                                    <div class="info5 trackable" id="tab_SR_map1_Legend"> Legend
-                                        <!--                            <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
-                                        <img id="imm5" class="playdown" title="click for additional information" alt="click for
-                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>
-                                        <div id="oneMapSR" class="tip"></div>
-                                    </div>
-                                    <div id="heatMapHolderOne"><!--  It draws them map1 -->
-                                        <div id="heatmap_canvasSR1" name="heatmap_canvasSR1"></div>
-                                    </div>
-                                </div>
-                                <div style="clear:both"></div>
-                            </div>
-                            <!--    -------  tabs-NR  ------   -->
-                            <div id="tabs-NR">
-                                <div class="heatMapHolder1 map1">
-                                    <h4>Suggestion* <span class="oneMap"></span></h4>
-                                    <div class="info7 trackable" id="tab_NR_map1_Legend"> Legend
-                                        <!--                                <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
-                                        <img id="imm7" class="playdown" title="click for additional information" alt="click for
-                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>
                                         <div id="oneMapNR" class="tip"></div>
-                                    </div>
-                                    <div id="heatMapHolderOne"><!--  It draws them map1 -->
+                                        <!--  It draws them map1 -->
                                         <div id="heatmap_canvasNR1" name="heatmap_canvasNR1"></div>
                                     </div>
                                 </div>
                                 <div style="clear:both"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--    +++++++++++  finish inserting HEATMAPS  +++++++++++ -->
-                
-                <!--     *******  Inserting RATING (STEP 4)  *********  -->
-                <div id="vote_section" style="position: relative; left: 35px; top: -125px; z-index: 100;
-                background-color: #f0e4b0;">
-                    <h2 name="step4">STEP 4: Time to vote! Provide a rating for the suggestion shown above.</h2>
-                    <div class="mapHolder1_s4 map1">
-                        <h4>Suggestion <span class="oneMap"></span></h4>
-                        <div class="innerMapLinesHead">
-                            <h4>Rate the design and performance of this suggestion </h4>
+<!--                            </div>-->
                         </div>
 
-                        <div class="innerMapLines">
-                            <div class="rating">
-                                <input class="trackable" id='step4_map1_star0' name="rating1"
-                                       type="radio" value="0" checked /><span id="hide"></span>
-                                <input class="trackable" id='step4_map1_star1' name="rating1"
-                                       type="radio" value="1" /><span></span>
-                                <input class="trackable" id='step4_map1_star2' name="rating1"
-                                       type="radio" value="2" /><span></span>
-                                <input class="trackable" id='step4_map1_star3' name="rating1"
-                                       type="radio" value="3" /><span></span>
-                                <input class="trackable" id='step4_map1_star4' name="rating1"
-                                       type="radio" value="4" /><span></span>
-                                <input class="trackable" id='step4_map1_star5' name="rating1"
-                                       type="radio" value="5" /><span></span>
-                                <input name="rating1" type="text" class="padInput" id="rating1" size="2" />
-                            </div>
-                        </div>
-                        <div style="clear:both"></div>
-                        <div class="innerMapLinesHead1">
-                            <h4>How confident are you about your rating? (%)</h4>
-                        </div>
-                        <div class="innerMapLines1">
-                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                <tr>
-                                    <td width="22%"><input name="confidence1" type="text" id="confidence1" size="3" readonly="readonly"/></td>
-                                    <td width="78%"><div id="slider"></div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
+                    
                 </div>
-                <!--   **************    Finish inserting RATING  ********  -->
-            
             </div>
+            <script>
+                $( function() {
+                    $("#tabs_hm").tabs();
+                } );
+            </script>
+            
         </div>
+        <!--    +++++++++++  finish inserting HEATMAPS  +++++++++++ -->
+        
         <div style="clear:both"></div>
     </form>
+    
+    <!--    This lines add new icon in the main map for fullscreen -->
+<!--    <input type="button" id="fullscreen" value="Fullscreen" style="position: relative;-->
+<!--    top: -458px; left: 264px; z-index: 200; width: 90px; height: 25px; background-color: #ff9900" />-->
+
+<!--    <input type="button" id="fullscreen" value="Fullscreen" style="position: relative; top: -318px; left: 265px;-->
+<!--    z-index: 200; width: 90px; height: 25px;/* background-color: #ff9999*/; cursor: pointer" />-->
+
 </div>
-<!--  ADDED by E.Noa  </form></div>-->
+
+<!--    <input type="button" id="fullscreen" value="Fullscreen" style="position: relative; top: -465px; left: 264px;-->
+<!--    z-index: 200; width: 90px; height: 25px; background-color: #ff9999; cursor: pointer" />-->
+    
 <!--        =================================== STEP 2 ======================================  -->
         <!-- database graphing-->
 <!--<div name='step2collapse' class ="containerABC collapsed" style="width: 250px;-->
@@ -547,198 +591,188 @@ else
 <!--    </div>-->
 <!--</div>-->
         <div style="clear:both"></div>
-
-<!--    ============================================  STEP 3 ====================================== -->
-<!--<div name='step3collapse' class ="containerABC collapsed" >-->
-<!--    <div class="header">-->
-<!--        <h2 class="trackable" id='step3' name="step3">STEP 3: Now assess if you like how the practice-->
-<!--                    proposed by the suggestion affects the rest of the watershed landscape.</h2>-->
-<!--    </div>-->
-<!--    <div class="graph">-->
-<!--                -->
-<!--        <div id="tabs">-->
-<!--            <ul>-->
-<!--                <li><a class="trackable" id="step3_tab_PF" href="#tabs-PF"> Peak.Flow in cfs+</a></li>-->
-<!--                <li><a class="trackable" id="step3_tab_RV" href="#tabs-RV"> Economic.Revenue in $</a></li>-->
-<!--                <li><a class="trackable" id="step3_tab_SR" href="#tabs-SR"> Sediment.Reduction in tons</a></li>-->
-<!--                <li><a class="trackable" id="step3_tab_NR" href="#tabs-NR"> Nitrate.Reduction in kg</a></li>-->
-<!--            </ul>-->
-                    <!--    ------------  tabs-PF  ------------   -->
-<!--            <div id="tabs-PF">-->
-<!--                <div class="heatMapHolder1 map1">-->
-<!--                    <h4>Suggestion <span class="oneMap"></span></h4>-->
-<!--                    <div class="info1 trackable" id="tab_PF_map1_Legend"> Legend-->
-                        <!--  ------  <img  title="click for additional information" alt="click for additional
-                                information" src="images/info.png" width="14" height="14" alt=""/>-->
-<!--                        <img id="imm1" class="playdown" title="click for additional information" alt="click for-->
-<!--                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>-->
-<!--                        <div id="oneMapPF" class="tip"></div>-->
-<!--                    </div>-->
-<!--                    <div id="heatMapHolderOne">-->
-                        <!--  -------- It draws them map1 -->
-<!--                        <div id="heatmap_canvasPF1" name="heatmap_canvasPF1"></div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                        -->
-<!--                <div style="clear:both"></div>-->
-<!--            </div>-->
-            <!--    ---------  tabs-RV  --------   -->
-<!--            <div id="tabs-RV">-->
-<!--                <div class="heatMapHolder1 map1">-->
-<!--                    <h4>Suggestion <span class="oneMap"></span></h4>-->
-<!--                    <div class="info3 trackable" id="tab_RV_map1_Legend"> Legend-->
-                        <!--  ------- <img title="click for additional information" alt="click for additional
-                        information" src="images/info.png" width="14" height="14" alt=""/>-->
-<!--                        <img id="imm3" class="playdown" title="click for additional information" alt="click for-->
-<!--                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>-->
-<!--                        <div id="oneMapRV" class="tip"></div>-->
-<!--                    </div>-->
-<!--                    <div id="heatMapHolderOne">-->
-                        <!--  --------------------- It draws them map1 -->
-<!--                        <div id="heatmap_canvasRV1" name="heatmap_canvasRV1"></div>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-<!--                <div style="clear:both"></div>-->
-<!--            </div>-->
-            <!--    -------  tabs-SR  ------   -->
-<!--            <div id="tabs-SR">-->
-<!--                <div class="heatMapHolder1 map1">-->
-<!--                    <h4>Suggestion <span class="oneMap"></span></h4>-->
-<!--                    <div class="info5 trackable" id="tab_SR_map1_Legend"> Legend-->
-                                <!--  ------------  <img title="click for additional information" alt="click for
-                                additional information" src="images/info.png" width="14" height="14" alt=""/>-->
-<!--                        <img id="imm5" class="playdown" title="click for additional information" alt="click for-->
-<!--                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>-->
-<!--                        <div id="oneMapSR" class="tip"></div>-->
-<!--                    </div>-->
-<!--                    <div id="heatMapHolderOne">-->
-                        <!--  ----------------- It draws them map1 -->
-<!--                        <div id="heatmap_canvasSR1" name="heatmap_canvasSR1"></div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div style="clear:both"></div>-->
-<!--            </div>-->
-            <!--    -------  tabs-NR  ------   -->
-<!--            <div id="tabs-NR">-->
-<!--                <div class="heatMapHolder1 map1">-->
-<!--                    <h4>Suggestion* <span class="oneMap"></span></h4>-->
-<!--                    <div class="info7 trackable" id="tab_NR_map1_Legend"> Legend-->
-                        <!--  ---------  <img title="click for additional information" alt="click for additional
-                        information" src="images/info.png" width="14" height="14" alt=""/>-->
-<!--                        <img id="imm7" class="playdown" title="click for additional information" alt="click for-->
-<!--                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>-->
-<!--                        <div id="oneMapNR" class="tip"></div>-->
-<!--                    </div>-->
-<!--                    <div id="heatMapHolderOne">-->
-                        <!--  ---------   It draws them map1 -->
-<!--                        <div id="heatmap_canvasNR1" name="heatmap_canvasNR1"></div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div style="clear:both"></div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+    
         
-<!--    =====================================  STEP 4  ====================================    -->
+<!--    =================================  STEP 3 (before step4)  ====================================    -->
+    <!--     *******  Inserting RATING (STEP 3)  *********  -->
+<div id="line5" class="wrapper1">
+    <div class="wrapper2">
+        <div class="vote_section" style="position: relative; /*left: 345px; top: -515px;*/ z-index: 100;">
+            <!--                <div id="vote_section" style="position: relative; left: 35px; top: -115px; z-index: 100;-->
+            <!--                background-color: #f0e4b0;">-->
 
-<!--<div id="vote_section">-->
-<!--    <h2 name="step4">STEP 4: Time to vote! Provide a rating for the suggestion shown above.</h2>-->
-<!--    <div class="mapHolder1_s4 map1">-->
-<!--        <h4>Suggestion <span class="oneMap"></span></h4>-->
-<!--        <div class="innerMapLinesHead">-->
-<!--            <h4>Rate the design and performance of this suggestion </h4>-->
-<!--        </div>-->
-<!---->
-<!--        <div class="innerMapLines">-->
-<!--            <div class="rating">-->
-<!--                <input class="trackable" id='step4_map1_star0' name="rating1"-->
-<!--                       type="radio" value="0" checked /><span id="hide"></span>-->
-<!--                <input class="trackable" id='step4_map1_star1' name="rating1"-->
-<!--                       type="radio" value="1" /><span></span>-->
-<!--                <input class="trackable" id='step4_map1_star2' name="rating1"-->
-<!--                       type="radio" value="2" /><span></span>-->
-<!--                <input class="trackable" id='step4_map1_star3' name="rating1"-->
-<!--                       type="radio" value="3" /><span></span>-->
-<!--                <input class="trackable" id='step4_map1_star4' name="rating1"-->
-<!--                       type="radio" value="4" /><span></span>-->
-<!--                <input class="trackable" id='step4_map1_star5' name="rating1"-->
-<!--                       type="radio" value="5" /><span></span>-->
-<!--                <input name="rating1" type="text" class="padInput" id="rating1" size="2" />-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div style="clear:both"></div>-->
-<!--        <div class="innerMapLinesHead1">-->
-<!--            <h4>How confident are you about your rating? (%)</h4>-->
-<!--        </div>-->
-<!--        <div class="innerMapLines1">-->
-<!--            <table width="100%" border="0" cellspacing="0" cellpadding="0">-->
-<!--                <tr>-->
-<!--                    <td width="22%"><input name="confidence1" type="text" id="confidence1" size="3" readonly="readonly"/></td>-->
-<!--                    <td width="78%"><div id="slider"></div>-->
-<!--                    </td>-->
-<!--                </tr>-->
-<!--            </table>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+<!--            <h2 name="step4">STEP 3: Time to vote! Provide a rating for the suggestion shown above.</h2>-->
+            <div id="step3_row1">
+<!--                <h2 class="header" name="step4">STEP 3: Voting</h2>-->
+                <h2 class="header" name="step3" title="Step 3 asks for rating the current alternative">STEP 3:</h2>
+                <div class="displayStuffa">Provide a rating for the <b>alternative</b> shown above</div>
+            </div>
+            <div id="step3_row2" class="map1">
+                <h4>Alternative <span class="oneMap"></span></h4>
+                <div class="innerMapLinesHead">
+                    <h4>Rate the design and performance of this suggestion </h4>
+                </div>
+
+                <div class="innerMapLines">
+                    <div class="rating">
+                        <input id='step3_star0' class="trackable" name="rating1"
+                               type="radio" value="0" checked /><span id="hide"></span>
+                        <input id='step3_star1' class="trackable" name="rating1"
+                               type="radio" value="1" /><span></span>
+                        <input id='step3_star2' class="trackable" name="rating1"
+                               type="radio" value="2" /><span></span>
+                        <input id='step3_star3' class="trackable" name="rating1"
+                               type="radio" value="3" /><span></span>
+                        <input id='step3_star4' class="trackable" name="rating1"
+                               type="radio" value="4" /><span></span>
+                        <input id='step3_star5' class="trackable" name="rating1"
+                               type="radio" value="5" /><span></span>
+                        <input name="rating1" type="text" class="padInput" id="rating1" size="2" />
+                    </div>
+                </div>
+                <div style="clear:both"></div>
+                <div class="innerMapLinesHead1">
+                    <h4>How confident are you about your rating? (%)</h4>
+                </div>
+                <div class="innerMapLines1">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="22%"><input name="confidence1" type="text" id="confidence1" size="3" readonly="readonly"/></td>
+                            <td width="78%"><div id="slider"></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    <!--   **************    Finish inserting RATING  ********  -->
+
 
 
 <!--    ==========================================  STEP 5  ==========================================    -->
 <!--<h2 name="step5">STEP 5: click on the blue buttons to see additional suggestions or click on the orange button if you have rated <b>all</b> of them.</h2>-->
 <div style="clear:both"></div>
-<div id="move_alt" style="position: relative; top: -20px; width: 750px; margin: 0px auto 0px auto;">
-    <table width="100%" border="0" cellspacing="1">
-        <tr>
-            <td width="41%">
-                <div align="left">
-                    <input type="button" name="Back" id="Back" value="&lt;&lt;
-                Previous Alternative" class="trackable barBlue moveBack" />
-                </div>
-            </td>
-            <td width="26%"><input type="button" name="Submit All Maps" id="button" value="Done with all the Ratings"
-                                   class="trackable barOrange submitAll" />
-            </td>
-            <td width="33%">
-                <div align="right">
-                    <input type="button" name="Next" id="Next" value="Next Alternative &gt;&gt;"
-                           class="trackable barBlue moveNext" />
-                </div>
-            </td>
-        </tr>
-    </table>
+
+<div id="line6">
+    <div id="move_alt" class="wrapper2" style="position: relative; top: -50px;">
+<!--    For testing-->
+<!--    <div id="move_alt" class="wrapper2">-->
+        <div id="move_frame2" style="/*border: 1px solid; border-radius: 5px*/">
+            <div class="l6_box" style="/*border: 1px solid; border-radius: 5px*/">
+                <input id="Back" class="trackable barBlue moveBack" type="button" name="Back"
+                       title="Click here to back to the previous alternative" value="&lt;&lt; Previous Alternative" />
+            </div>
+            <div class="l6_box" style="/*border: 1px solid; border-radius: 5px*/">
+                <input id="button" class="trackable barOrange submitAll" type="button" name="Submit All Maps" value="Done with all the Ratings"
+                       style="margin: 0px auto 0px auto;" />
+            </div>
+            <div class="l6_box" style="/*border: 1px solid; border-radius: 5px*/">
+                <input id="Next" class="trackable barBlue moveNext" type="button" name="Next"
+                       title="Click here to move to the next alternative" style="position:
+                relative; float: right;" value="Next Alternative &gt;&gt;" />
+            </div>
+        </div>
+        
+<!--        <table width="100%" border="0" cellspacing="1">-->
+<!--            <tr>-->
+<!--                <td width="41%">-->
+<!--                    <div align="left">-->
+<!--                        <input type="button" name="Back" id="Back" value="&lt;&lt; Previous Alternative" class="trackable barBlue moveBack" />-->
+<!--                    </div>-->
+<!--                </td>-->
+<!--                <td width="26%">-->
+<!--                    <input type="button" name="Submit All Maps" id="button" value="Done with all the Ratings" class="trackable barOrange submitAll" />-->
+<!--                </td>-->
+<!--                <td width="33%">-->
+<!--                    <div align="right">-->
+<!--                        <input type="button" name="Next" id="Next" value="Next Alternative &gt;&gt;" class="trackable barBlue moveNext" />-->
+<!--                    </div>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--        </table>-->
+    </div>
 </div>
+
 
 <!-- ===================================  END  STEP 5  =================================== -->
 
-<!--        <textarea name="JSONHolder" id="JSONHolder" cols="45" rows="5"></textarea>-->
-        <textarea name="JSONHolder" id="JSONHolder" cols="45" rows="5" style="display: none;"></textarea>
-        <!--   </form>-->
-        <!--   </div>-->
-        <!--            </section>-->
-        <!--    </div>     <!-- end main content column -->
-        <!-- Right Side Column -->
-        <div class="clear"></div>
-<!--    </div>-->
-    <!-- end mainFrame -->
+    <!--  VOLADIZOS  -->
+    <!--  (1) Voladizo 1: Fullscreen Button  -->
+    <!--  For RIGHT side  -->
+    <!--    <input type="button" id="fullscreen" value="Fullscreen" style="position: relative; top: -618px; left: 965px;-->
+    <!--    z-index: 200; width: 90px; height: 25px; background-color: #ff9999; cursor: pointer" />-->
+    <!--  For LEFT side  -->
+    <input id="fullscreen" class="trackable" title="Click here to display a fullscreen map" type="button"
+           value="Fullscreen" style="position: relative; top: -605px;
+     left: 268px; z-index: 200; width: 90px; height: 25px;/* background-color: #ff9999*/; cursor: pointer" />
+    <!--  For TESTING  -->
+    <!--    <input type="button" id="fullscreen" value="Fullscreen" style="position: relative; z-index: 200; width: 90px; -->
+    <!--    height: 25px; background-color: #ff9999; cursor: pointer" />-->
+
+    <!--  (2) Voladizo 2: DataBase  -->
+    <!--        <textarea name="JSONHolder" id="JSONHolder" cols="45" rows="5" style="display: none;"></textarea>-->
+    <textarea name="JSONHolder" id="JSONHolder" cols="45" rows="5"></textarea>
+    <div class="clear"></div>
+
+    <!--  (3) Voladizo 3: SVG circle-shapes for representing Wetlands into the main map -->
+    <!--  Start SVG  -->
+    <!--  (width, height, cx,cy,r) = (box_width, box_height, coord_x, coord_y, radius)  -->
+    <div id="div1">Circles for wetlands r = 3.5, 4.5, 5.0, 5.5, 6.0, 7.0, 7.5</div>
+    <svg id="svg1" width="7" height="7">
+        <circle cx="3.5" cy="3.5" r="3.5" fill="#336699" />
+        Sorry, your browser does not support inline SVG.
+    </svg>
+    <svg id="svg2" width="9" height="9">
+        <circle cx="4.5" cy="4.5" r="4.5" fill="#e600e6" />
+        Sorry, your browser does not support inline SVG.
+    </svg>
+    <svg id="svg3" width="10" height="10">
+        <circle cx="5" cy="5" r="5" fill="#ff6666" />
+        Sorry, your browser does not support inline SVG.
+    </svg>
+    <svg id="svg4" width="11" height="11">
+        <circle cx="5.5" cy="5.5" r="5.5" fill="#00b300" />
+        Sorry, your browser does not support inline SVG.
+    </svg>
+    <svg id="svg5" width="12" height="12">
+        <circle cx="6" cy="6" r="6" fill="#e6b800" />
+        Sorry, your browser does not support inline SVG.
+    </svg>
+    <svg id="svg6" width="14" height="14">
+        <circle cx="7" cy="7" r="7" fill="#1ad1ff" />
+        Sorry, your browser does not support inline SVG.
+    </svg>
+    <svg id="svg7" width="16" height="16">
+        <!--        <circle cx="7.5" cy="7.5" r="7.5" stroke="black" stroke-width="1" fill="#ff3300" />-->
+        <circle cx="7.5" cy="7.5" r="7.5" fill="#ff3300" />
+        Sorry, your browser does not support inline SVG.
+    </svg>
+    <!--  End SVG  -->
+    <!--  End VOLADIZOS -->
 </div>
-<!-- end Wrapper -->
+<!-- E: end the "wrapper" Div which holds the all page after "BODY" Div -->
+
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+<link href="js/shadowbox/shadowbox.css" rel="stylesheet" type="text/css"/>
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
+<script type="text/javascript" src="http://filamentgroup.github.com/EnhanceJS/enhance.js"></script>
+
 <script type="text/javascript" src="js/jquery.maskedinput.js"></script>
 <script type="text/javascript" src="js/jquery.keyfilter.js"></script>
 <script type="text/javascript" src="js/shadowbox/shadowbox.js"></script>
 <script type="text/javascript" src="js/mapping_new.js"></script>
 <script type="text/javascript" src="js/heatmapnew1.js"></script>
-<script type="text/javascript" src="http://filamentgroup.github.com/EnhanceJS/enhance.js"></script>
 <script type="text/javascript" src="js/visualize.jQuery.js"></script>
 <script type="text/javascript" src="js/excanvas.js"></script>
 <script type="text/javascript" src="js/graphing.js"></script>
 <script type="text/javascript" src="js/graphingSub.js"></script>
-<link href="js/shadowbox/shadowbox.css" rel="stylesheet" type="text/css"/>
+
 <script type="text/javascript">
     Shadowbox.init();
 </script>
@@ -784,6 +818,7 @@ else
     var headers = [];
     var answersArray=[];
     var chartArray=[];
+    // alerta (JSON.stringify (arrayName));
 
     $('#wholeTable th').each(function(index, item) {
         headers[index] = $(item).html();
@@ -837,8 +872,7 @@ else
         var heater=new Array();
         var heatsed=new Array();
         var heatnit=new Array();
-
-
+        
         //		$('td:nth-child(15)').nextUntil('td:nth-child(143)').each(function() {
         $('td:gt(14):lt(127)',$(this)).each(function() {
             var subarr=[];
@@ -916,7 +950,7 @@ else
     //console.log(heatpfra[1].val[0].val);
     //console.log(heatpfra[1].val[0].name);
 
-    //**********************************trying to enter the heatmap code***************************
+    //**********************************trying to enter the heatmap code (2)***************************
 
     //expand collapse
 
@@ -934,35 +968,27 @@ else
                  return $toolpic.is(":visible") ? "Collapse" : "Expand";
             });*/
         });
-
     });
 
     //empty the comment box div that are not corresponding to the BMP selection.
     var subBMP=[];
-    subBMP=array[0].CHOSENBMP.split(',');
-    if(subBMP[0] != 1){
-        $('#stripCropping.commentBoxQ').hide();
-    }
-    if(subBMP[1] != 1){
-        $('#cropRotation.commentBoxQ').hide();
-    }
-    if(subBMP[2] != 1){
-        $('#coverCrops.commentBoxQ').hide();
-    }
-    if(subBMP[3] != 1){
-        $('#filterStrips.commentBoxQ').hide();
-    }
-    if(subBMP[4] != 1){
-        $('#grassedWaterways.commentBoxQ').hide();
-    }
-    if(subBMP[5] != 1){
-        $('#conservationTillage.commentBoxQ').hide();
-    }
-    if(subBMP[7] != 1){
-        $('#Wetlands.commentBoxQ').hide();
-    }
-
-
+    subBMP = array[0].CHOSENBMP.split(','); //E: 'CHOSENBMP' is the binary number of ChosenBMP from the DDBB
+    //alert ("array[].CHOSENBMP(949): " + array[0].CHOSENBMP);
+//    alert ("subBMP(949): " + subBMP);
+    console.log("L.1021 subBMP: " + subBMP);// E: It shows the selected BMP, ex: 1,1,1,1,1,1,0,1,1,0
+    console.log("subBMP[0]: " + subBMP[0]);
+    console.log("subBMP[6]: " + subBMP[6]);
+    console.log("subBMP[7]: " + subBMP[7]);
+    console.log("subBMP[9]: " + subBMP[9]);
+    
+    if(subBMP[0] != 1){$('#stripCropping.commentBoxQ').hide();}
+    if(subBMP[1] != 1){$('#cropRotation.commentBoxQ').hide();}
+    if(subBMP[2] != 1){$('#coverCrops.commentBoxQ').hide();}
+    if(subBMP[3] != 1){$('#filterStrips.commentBoxQ').hide();}
+    if(subBMP[4] != 1){$('#grassedWaterways.commentBoxQ').hide();}
+    if(subBMP[5] != 1){$('#conservationTillage.commentBoxQ').hide();}
+    if(subBMP[7] != 1){$('#Wetlands.commentBoxQ').hide();}
+    
     //for star rating hover
     $('.rating input[type="radio"]').hover(function() {
         $(this).nextAll('span').removeClass().addClass('jshoverNext');
@@ -971,14 +997,15 @@ else
     },function() {
         $('.rating input[type="radio"] + span').removeClass();
     });
-
-    //
+    
 
     var totalLength=array.length;
 
-    var totalPages=Math.floor(totalLength/2);
+//    var totalPages=Math.floor(totalLength/2);
+    var totalPages=Math.floor(totalLength);
     var page = 1;
-    var oneMap=0;
+    var oneMap=0;// E: The DDBB is set in Array starting from 0. Ex: CHOSENBMP[0] to CHOSENBMP[19]. That is why
+    // oneMap starts from zero, at each moveNext or moveBack it increases or decreases
     var twoMap=1;
     var subBasinArray=[];
     var subBasinArray2=[];
@@ -990,12 +1017,12 @@ else
     ///BEGIN FUNCTION FOR MAPPING IT IS CALLING THE MAPPING JS
     var forMapArray=[];
     var forMapArray2=[];
-    var subBasinArrayStart2=[];
-    var bmpArray2=[];
-    var assArray2=[];
     var subBasinArrayStart=[];
+    var subBasinArrayStart2=[];
     var bmpArray=[];
+    var bmpArray2=[];
     var assArray=[];
+    var assArray2=[];
     var session=0;
     var bmpArrayNames=["strip_cropping", "crop_rotation", "cover_crops", "filter_strips", "grassed_waterway", "conservation_tillage", "No", "variable_area_wetlands","variable_wetfr_wetlands"];
     //only call to graph based off of maps
@@ -1003,6 +1030,7 @@ else
     var instance = 0;
     colorChangeGraphIt(instance);
 
+    //   **************  It goes until Line 2282  ********************* //
     $(document).ready(function() {
         //This is the function used to allow the user to stop in the middle of grading maps and come back later and  have the results saved.
         $('.submitFeedbackJon').live("click",function() {
@@ -1021,7 +1049,6 @@ else
                     });
                 }
             });
-
         });
 
 
@@ -1034,10 +1061,11 @@ else
             var obj2=$(e.target).naturalHeight;
             var obj1=$(e.target).naturalWidth;*/
 
-            var obj1=$(e.target).attr('name');
+            var obj1 = $(e.target).attr('name');
+//            alert("obj1:  " + obj1);
             var obj8 = $(e.target).attr('width');
             var obj3 = $(e.target).attr('height');
-            var objj=$(e.target).parents().eq(11);
+            var objj = $(e.target).parents().eq(11);
             console.log($(e.target).parents().eq(11).attr('className'));
 
             if((obj3==492) && (obj8==59)){
@@ -1311,8 +1339,8 @@ else
                     var clickd=chart3.getSelection();
                 });
 
-                function createCustomHTMLContent1( row, dm , m, min , max) {
-                    return '\n'+'Alternative: ' + row +'\n'+dm+': '+ m + "\n min:" + min +"\nmax:" + max ;
+                function createCustomHTMLContent1(row, dm, m, min, max) {
+                    return '\n'+'Alternative: ' + row +'\n'+dm+': '+ m + "\n min:" + min +"\nmax:" + max;
                 }
                 $('.visualize').trigger('visualizeRefresh');
             }
@@ -1419,14 +1447,12 @@ else
                     var clickd=chart3.getSelection();
                 });
 
-                function createCustomHTMLContent( row, dm , m, min , max, dpermw, permw) {
+                function createCustomHTMLContent(row, dm , m, min, max, dpermw, permw) {
                     return '\n'+'Alternative: ' + row +'\n'+dm+': '+ m +"\nmin:"+ min + "\nmax:" + max + "\n" + dpermw +': '+permw+' %';
                 }
-
                 $('.visualize').trigger('visualizeRefresh');
 
             }
-
             /////////////end charting stuff
 
             subBasinArrayStart=array[oneMap].REGIONSUBBASINID.split(',');
@@ -1537,12 +1563,15 @@ else
                 count2=count2+1;
             });
 
-            //Now that I have all the data arranged for the incoming dataset (multiple arrays labeled 1 and 2) I initialize mapping. It is on mapping.js
-            initialize();
-
+            //Now that I have all the data arranged for the incoming dataset (multiple arrays labeled 1 and 2)  I
+            // initialize mapping. It is on mapping.js
+//            initialize();//E: Original WRESTORE considers only this line, I added below line
+            google.maps.event.addDomListener(window, 'load', initialize);
+            
         }
         ////////////////////////////////END GET SUBBASINS////////////////////////////////////////////////
-
+        
+        
         //use this to remove all the 0s in the array above
         jQuery.removeFromArray = function(value, arr) {
             return jQuery.grep(arr, function(elem, index) {
@@ -1551,7 +1580,6 @@ else
         };
 
         //This grabs the information needed to get the radio buttons set up with new data
-
         function setUpRadio(){
             //Setting up the radio buttons
             var $radios = $('input:radio[name=rating1]');
@@ -1690,7 +1718,7 @@ else
             var grassedWaterwaysAnswer2=answersArray[twoMap].grassedWaterways;
             $('input[name=grassedWaterways2]').attr('checked', false);
             $radios12.filter('[value='+grassedWaterwaysAnswer2+']').attr('checked', true);
-            //alert(rating1a);
+//            alert("rating1a :: "+ grassedWaterwaysAnswer2);//E:
             if(grassedWaterwaysAnswer2 !== "0") {
                 $radios12.filter('[value='+grassedWaterwaysAnswer2+']').attr('checked', true);
                 //$radios.filter('[rating1]').attr('checked', true);
@@ -1724,6 +1752,8 @@ else
             var $radios15 = $('input:radio[name=Wetlands1]');
             //alert(answersArray[oneMap].RATING);
             var WetlandsAnswer1=answersArray[oneMap].Wetlands;
+//            alert("WetlandsAnswer1: "+ WetlandsAnswer1);//E:
+//            alert("WetlandsAnswer1: "+ answersArray);//E:
             $('input[name=Wetlands1]').attr('checked', false);
             $radios15.filter('[value='+WetlandsAnswer1+']').attr('checked', true);
             //alert(rating1a);
@@ -1734,7 +1764,7 @@ else
 
             //setting up Wetlands two
             var $radios16 = $('input:radio[name=Wetlands2]');
-            //alert(answersArray[oneMap].RATING);
+//            alert("rating"+answersArray[oneMap].RATING);//E:
             var WetlandsAnswer2=answersArray[twoMap].Wetlands;
             $('input[name=Wetlands2]').attr('checked', false);
             $radios16.filter('[value='+WetlandsAnswer2+']').attr('checked', true);
@@ -1866,7 +1896,6 @@ else
             //alert($(this).val());
         });
 
-
         //setting up wetlands radio
         jQuery('input:radio[name=Wetlands1]').change(function(){
             //var id = $(this).attr("value");
@@ -1918,6 +1947,7 @@ else
         });
 
         $( "#confidence1" ).val( $( "#slider" ).slider( "option","values"));
+        
 //        $("#JSONHolder").hide(); // It hides all the rating table
         $("#rating1").hide();
         $("#rating2").hide();
@@ -1974,169 +2004,212 @@ else
         setUpRadio();   //   < --------
         getSubBasins();
 
-        //This fires off each time someone hits the next button. It moves the data 2 spots and runs through the new arrays that are created. The if
-        // statement stops it from doing anything if at the end of the set.
+
+        //  ============== Start moveNext =============== //
+        //This fires off each time someone hits the next button. It moves the data 2 spots and runs through the
+        //new arrays that are created. The "if" statement stops it from doing anything if at the end of the set.
+        // ----- 'page' goes from 1 to 20; 'oneMap' goes from 0 to 19 ----- //
         $(".moveNext").click(function() {
             $('.displayStuff').html("");
-            //Load the answers into the answers array//////////////////////
+            // Load the answers into the answers array //
             $(".moveBack").fadeTo(1000,1);
             //$(".moveBack").show();
             answersArray[oneMap].RATING=$("#rating1").val();
+//            alert ("last rate: " + answersArray[oneMap].RATING);// E: shows the last rating
+            console.log("last-rate: " + answersArray[oneMap].RATING);
             //answersArray[oneMap].CONFIDENCE=$("#confidence1").val();
-            answersArray[twoMap].RATING=$("#rating2").val();
+//            answersArray[twoMap].RATING=$("#rating2").val();
             //answersArray[twoMap].CONFIDENCE=$("#confidence2").val();
             var value1 = $( "#slider" ).slider( "option", "value" );
-            answersArray[oneMap].CONFIDENCE=value1;
-            var value2 = $( "#slider1" ).slider( "option", "value" );
-            answersArray[twoMap].CONFIDENCE=value2;
+//            answersArray[oneMap].CONFIDENCE=value1;
+//            var value2 = $( "#slider1" ).slider( "option", "value" );
+//            answersArray[twoMap].CONFIDENCE=value2;
 
             answersArray[oneMap].stripCropping=$("#stripCropping1").val();
-            answersArray[twoMap].stripCropping=$("#stripCropping2").val();
+//            answersArray[twoMap].stripCropping=$("#stripCropping2").val();
+//            alert ("stripCropping1: " + answersArray[oneMap].stripCropping);// E: Alert()
+            console.log("stripCropping1: " + answersArray[oneMap].stripCropping);
+            
             answersArray[oneMap].cropRotation=$("#cropRotation1").val();
-            answersArray[twoMap].cropRotation=$("#cropRotation2").val();
+//            answersArray[twoMap].cropRotation=$("#cropRotation2").val();
+//            alert ("cropRotation: " + answersArray[oneMap].cropRotation);// E: Alert()
+            console.log("cropRotation: " + answersArray[oneMap].cropRotation);
+            
             answersArray[oneMap].coverCrops=$("#coverCrops1").val();
-            answersArray[twoMap].coverCrops=$("#coverCrops2").val();
+//            answersArray[twoMap].coverCrops=$("#coverCrops2").val();
             answersArray[oneMap].filterStrips=$("#filterStrips1").val();
-            answersArray[twoMap].filterStrips=$("#filterStrips2").val();
+//            answersArray[twoMap].filterStrips=$("#filterStrips2").val();
             answersArray[oneMap].grassedWaterways=$("#grassedWaterways1").val();
-            answersArray[twoMap].grassedWaterways=$("#grassedWaterways2").val();
+//            answersArray[twoMap].grassedWaterways=$("#grassedWaterways2").val();
             answersArray[oneMap].conservationTillage=$("#conservationTillage1").val();
-            answersArray[twoMap].conservationTillage=$("#conservationTillage2").val();
+//            answersArray[twoMap].conservationTillage=$("#conservationTillage2").val();
             answersArray[oneMap].Wetlands=$("#Wetlands1").val();
-            answersArray[twoMap].Wetlands=$("#Wetlands2").val();
+//            answersArray[twoMap].Wetlands=$("#Wetlands2").val();
 
+//            JSONHolder holds rates obtained from users
             $("#JSONHolder").val(JSON.stringify(answersArray));
-            //alert(JSON.stringify(answersArray));
+//            alert(JSON.stringify(answersArray));//E:
 
             //This gets new data
-
-            if(page!=totalPages){
+//            alert ("move-Next: current page: " + page + " of " + totalPages);//E: it gives the current page which is
+            // same as # of suggestion
+//            alert ("move-Next: current 'bmpArray' index: " + oneMap); //E: it gives the current 'bmpArray' index,
+            // which goes from 0 to 19 (20 alternatives)
+            
+            if(page!=totalPages){ //'page' value starts at 1 an so on.
+//                alert("here");
                 if (page==totalPages-1){
-                    //				 $(".moveNext").fadeTo(1000,.2);
+                    $(".moveNext").fadeTo(1000,.2);
                 }
+                page = page + 1;
+                $('.currentPage').text(page);//E: Set text content into the element with 'currentPAge' class
                 //			 $(".moveNext").show();
-                // alert(oneMap);
-                bmpArray=array[page].CHOSENBMP;
-                oneMap=oneMap+2;
-                twoMap=twoMap+2;
+//                alert("'oneMap' value: " + oneMap);
+                bmpArray=array[page-1].CHOSENBMP;
+//                bmpArray=array[page-1].CHOSENBMP;
+//                alert("new 'bmpArray' to display: ["+ (page-1) +"]: " + bmpArray);//E: it provides the CHESENBMP from DDBB
+//                oneMap=oneMap+2;
+                oneMap=oneMap+1; // <---------------------------    oneMap = oneMap + 1
+//                alert("new 'page': " + page);//E: 'page' was increased into 1 above
+//                alert("move-Next: next 'bmpArray' index: " + oneMap);//E:
+//                //twoMap=twoMap+2;
                 $( ".oneMap" ).html(oneMap+1);
-                $( ".twoMap" ).html(twoMap+1);
+//                //$( ".twoMap" ).html(twoMap+1);
                 //this next line will get new data and then map
                 //Maps are still being created with new data
                 getSubBasins();
                 //MAP IT//////////
                 //initialize();
                 $( "#tabs" ).tabs("destroy");
+//                alert("destroy 1 - in 'moveNext' button ");//E: it shows which button was clicked (moveNext or moveBack)
                 heatinitialize();
 
                 $("#rating1").val(answersArray[oneMap].RATING);
-                $("#rating2").val(answersArray[twoMap].RATING);
+//                $("#rating2").val(answersArray[twoMap].RATING);
                 $("#confidence1").val(answersArray[oneMap].CONFIDENCE);
                 $( "#slider" ).slider("option","value",(answersArray[oneMap].CONFIDENCE));
-                $( "#slider1" ).slider("option","value",(answersArray[twoMap].CONFIDENCE));
+//                $( "#slider1" ).slider("option","value",(answersArray[twoMap].CONFIDENCE));
                 $("#confidence2").val(answersArray[twoMap].CONFIDENCE);
 
                 $("#stripCropping1").val(answersArray[oneMap].stripCropping);
-                $("#stripCropping2").val(answersArray[twoMap].stripCropping);
+//                $("#stripCropping2").val(answersArray[twoMap].stripCropping);
                 $("#cropRotation1").val(answersArray[oneMap].cropRotation);
-                $("#cropRotation2").val(answersArray[twoMap].cropRotation);
+//                $("#cropRotation2").val(answersArray[twoMap].cropRotation);
                 $("#coverCrops1").val(answersArray[oneMap].coverCrops);
-                $("#coverCrops2").val(answersArray[twoMap].coverCrops);
+//                alert("alert: "+ answersArray[oneMap].cropRotation); //E:
+//                $("#coverCrops2").val(answersArray[twoMap].coverCrops);
                 $("#filterStrips1").val(answersArray[oneMap].filterStrips);
-                $("#filterStrips2").val(answersArray[twoMap].filterStrips);
+//                $("#filterStrips2").val(answersArray[twoMap].filterStrips);
                 $("#grassedWaterways1").val(answersArray[oneMap].grassedWaterways);
-                $("#grassedWaterways2").val(answersArray[twoMap].grassedWaterways);
+//                $("#grassedWaterways2").val(answersArray[twoMap].grassedWaterways);
                 $("#conservationTillage1").val(answersArray[oneMap].conservationTillage);
-                $("#conservationTillage2").val(answersArray[twoMap].conservationTillage);
+//                $("#conservationTillage2").val(answersArray[twoMap].conservationTillage);
                 $("#Wetlands1").val(answersArray[oneMap].Wetlands);
-                $("#Wetlands2").val(answersArray[twoMap].Wetlands);
+//                alert("alert wetlands1: "+ answersArray); //E:
+//                $("#Wetlands2").val(answersArray[twoMap].Wetlands);
                 //This JSONHolder is just a hidden text field on the page where I am saving my giant array of answers. When the person is done, this field is submitted and we can grab all the data out of it.
                 $("#JSONHolder").val(JSON.stringify(answersArray));
                 setUpRadio();
                 $(".map1").hide();
                 $(".map1").fadeIn("slow");
-                $(".map2").hide();
-                $(".map2").fadeIn("slow");
+//                $(".map2").hide();
+//                $(".map2").fadeIn("slow");
                 subBasinGraph1();
+                
                 //alert(JSON.stringify(bmpArray));
-                page=page+1;
-                $('.currentPage').text(page);
+//                page = page + 1;
+//                $('.currentPage').text(page);//E: Set text content into the element with 'currentPAge' class
             }
             else
             {
-                $(".moveNext").fadeTo(1000,.2);
+                $(".moveNext").fadeTo(1000,0.2);
+//                alert("total pages DONE: ");//E: it alerts when all the 20 pages were displayed.
             }
         });
-
+        // ============= End moveNext ================= //
+    
+        // ============= Start moveBack ================= //
         //This is fired when people are going backwards!
         $(".moveBack").click(function() {
+//            alert("moving back: ");
             $('.displayStuff').html("");
             $(".moveNext").fadeTo(1000,1);
             answersArray[oneMap].RATING=$("#rating1").val();
             //answersArray[oneMap].CONFIDENCE=$("#confidence1").val();
-            answersArray[twoMap].RATING=$("#rating2").val();
+//            answersArray[twoMap].RATING=$("#rating2").val();
             //answersArray[twoMap].CONFIDENCE=$("#confidence2").val();
             var value1 = $( "#slider" ).slider( "option", "value" );
             answersArray[oneMap].CONFIDENCE=value1;
-            var value2 = $( "#slider1" ).slider( "option", "value" );
-            answersArray[twoMap].CONFIDENCE=value2;
+//            var value2 = $( "#slider1" ).slider( "option", "value" );
+//            answersArray[twoMap].CONFIDENCE=value2;
 
             answersArray[oneMap].stripCropping=$("#stripCropping1").val();
-            answersArray[twoMap].stripCropping=$("#stripCropping2").val();
+//            answersArray[twoMap].stripCropping=$("#stripCropping2").val();
             answersArray[oneMap].cropRotation=$("#cropRotation1").val();
-            answersArray[twoMap].cropRotation=$("#cropRotation2").val();
+//            answersArray[twoMap].cropRotation=$("#cropRotation2").val();
             answersArray[oneMap].coverCrops=$("#coverCrops1").val();
-            answersArray[twoMap].coverCrops=$("#coverCrops2").val();
+//            answersArray[twoMap].coverCrops=$("#coverCrops2").val();
             answersArray[oneMap].filterStrips=$("#filterStrips1").val();
-            answersArray[twoMap].filterStrips=$("#filterStrips2").val();
+//            answersArray[twoMap].filterStrips=$("#filterStrips2").val();
             answersArray[oneMap].grassedWaterways=$("#grassedWaterways1").val();
-            answersArray[twoMap].grassedWaterways=$("#grassedWaterways2").val();
+//            answersArray[twoMap].grassedWaterways=$("#grassedWaterways2").val();
             answersArray[oneMap].conservationTillage=$("#conservationTillage1").val();
-            answersArray[twoMap].conservationTillage=$("#conservationTillage2").val();
+//            answersArray[twoMap].conservationTillage=$("#conservationTillage2").val();
             answersArray[oneMap].Wetlands=$("#Wetlands1").val();
-            answersArray[twoMap].Wetlands=$("#Wetlands2").val();
+//            answersArray[twoMap].Wetlands=$("#Wetlands2").val();
 
             $("#JSONHolder").val(JSON.stringify(answersArray));
             //alert(JSON.stringify(answersArray));
+//            alert("move Back: current page: "+ page);//E: it gives the current page, before to be decreased
             if(page>1){
                 //write the answers in the fields to the AnswersArray
                 $(".moveNext").fadeTo(1000,1);
-                bmpArray=array[page].CHOSENBMP;
-                oneMap=oneMap-2;
-                twoMap=twoMap-2;
-                $( ".oneMap" ).html(oneMap+1);
-                $( ".twoMap" ).html(twoMap+1);
+                bmpArray=array[page-1].CHOSENBMP;
+                alert("current 'bmpArray': ["+ (page-1) +"]: " + bmpArray);//E: it provides the CHESENBMP
+                // from DDBB
+//                oneMap=oneMap-2;
+                alert("move Back: current 'bmpArray' index: "+ oneMap);//E: it displays the current
+                // 'bmpArray' index
+                oneMap=oneMap-1;
+//                twoMap=twoMap-2;
+                alert("move Back: next 'bmpArray' index: "+ oneMap);//E: it displays the next index of 'bmpArray'.
+                // Index goes from 0 to 19
+                $( ".oneMap" ).html(oneMap+1);//E: 'oneMap' start from 0 to 19.
+                
+//                $( ".twoMap" ).html(twoMap+1);
                 //this next line will get new data and then map
                 getSubBasins();
                 $( "#tabs" ).tabs("destroy");
+//                alert("destroy 2");
                 heatinitialize();
                 //getSubBasins();
                 $("#rating1").val(answersArray[oneMap].RATING);
-                $("#rating2").val(answersArray[twoMap].RATING);
+//                $("#rating2").val(answersArray[twoMap].RATING);
                 $( "#slider" ).slider("option","value",(answersArray[oneMap].CONFIDENCE));
-                $( "#slider1" ).slider("option","value",(answersArray[twoMap].CONFIDENCE));
+//                $( "#slider1" ).slider("option","value",(answersArray[twoMap].CONFIDENCE));
                 $("#confidence1").val(answersArray[oneMap].CONFIDENCE);
-                $("#confidence2").val(answersArray[twoMap].CONFIDENCE);
+//                $("#confidence2").val(answersArray[twoMap].CONFIDENCE);
 
                 $("#stripCropping1").val(answersArray[oneMap].stripCropping);
-                $("#stripCropping2").val(answersArray[twoMap].stripCropping);
+//                $("#stripCropping2").val(answersArray[twoMap].stripCropping);
                 $("#cropRotation1").val(answersArray[oneMap].cropRotation);
-                $("#cropRotation2").val(answersArray[twoMap].cropRotation);
+//                $("#cropRotation2").val(answersArray[twoMap].cropRotation);
                 $("#coverCrops1").val(answersArray[oneMap].coverCrops);
-                $("#coverCrops2").val(answersArray[twoMap].coverCrops);
+//                $("#coverCrops2").val(answersArray[twoMap].coverCrops);
                 $("#filterStrips1").val(answersArray[oneMap].filterStrips);
-                $("#filterStrips2").val(answersArray[twoMap].filterStrips);
+//                $("#filterStrips2").val(answersArray[twoMap].filterStrips);
                 $("#grassedWaterways1").val(answersArray[oneMap].grassedWaterways);
-                $("#grassedWaterways2").val(answersArray[twoMap].grassedWaterways);
+//                $("#grassedWaterways2").val(answersArray[twoMap].grassedWaterways);
                 $("#conservationTillage1").val(answersArray[oneMap].conservationTillage);
-                $("#conservationTillage2").val(answersArray[twoMap].conservationTillage);
+//                $("#conservationTillage2").val(answersArray[twoMap].conservationTillage);
                 $("#Wetlands1").val(answersArray[oneMap].Wetlands);
-                $("#Wetlands2").val(answersArray[twoMap].Wetlands);
+//                $("#Wetlands2").val(answersArray[twoMap].Wetlands);
 
                 setUpRadio();
                 subBasinGraph1();
+                
                 //alert(JSON.stringify(bmpArray));
-                page=page-1;
+                page = page - 1;
                 if (page==1){
                     $(".moveBack").fadeTo(1000,.2);
                 }
@@ -2146,18 +2219,20 @@ else
                 $(".moveBack").fadeTo(1000,.2);
             }
         });
-
+        //  =======================  End moveBack ================ //
+        //  =======================  Start submit All ================ //
         //This sends all the data. I move the answers data into the id JSONHolder and then submit the form.
         $(".submitAll").click(function() {
             answersArray[oneMap].RATING=$("#rating1").val();
-            answersArray[twoMap].RATING=$("#rating2").val();
+//            answersArray[twoMap].RATING=$("#rating2").val();
             var value1 = $( "#slider" ).slider( "option", "value" );
             answersArray[oneMap].CONFIDENCE=value1;
             var value2 = $( "#slider1" ).slider( "option", "value" );
-            answersArray[twoMap].CONFIDENCE=value2;
+//            answersArray[twoMap].CONFIDENCE=value2;
             $("#JSONHolder").val(JSON.stringify(answersArray));
             $('#form1').submit();
         });
+        //  =======================  End submit All ================ //
     });
 
     window.onload = function() {
@@ -2178,43 +2253,72 @@ else
     };
 
     function instruct() {
-
         // open a welcome message as soon as the window loads
         Shadowbox.open({
-            content:    '<div id="welcome-msg"><h2>Instructions</h2><ol><li>Please compare  alternatives based on how the conservation practices are spatially distributed  in the watershed and based on the performance of these alternatives with  respect to the various goals or objectives you selected earlier. </li><li>The bar-graphs at  the bottom of the page display how the various alternatives perform with respect  to the objectives. </li><li>Then, please make  a judgment on the quality of the design of the various alternatives based on  any subjective criteria important to you. </li><li>Once you have  compared the alternatives, please provide a rating on how much you like or dislike  a particular alternative.</li></ol></div>',
+            content:    '<div id="welcome-msg"><h2>Instructions*</h2><ol><li>Please compare  alternatives based on ' +
+            'how the conservation practices are spatially distributed  in the watershed and based on the performance of these alternatives with  respect to the various goals or objectives you selected earlier. </li>' +
+            '<li>The bar-graphs at  the bottom of the page display how the various alternatives perform with respect  to the objectives. </li>' +
+            '<li>Then, please make  a judgment on the quality of the design of the various alternatives based on  any subjective criteria important to you. </li>' +
+            '<li>Once you have  compared the alternatives, please provide a rating on how much you like or dislike  a particular alternative.</li></ol></div>',
             player:     "html",
             title:      "WRESTORE Visualization Tool ",
             height:     450,
             width:      550
         });
+    }
 
-    };
+    function takeRest_function() {
+        // Way 1. It has some CSS lines
+        // Source1: https://sweetalert.js.org/docs/#content
+        // Source2: https://sweetalert2.github.io/
+        swal({
+            title: "Rest time!",
+            text: "You press the option to take a rest. During this time the WRESTORE tool is stopped. When you are " +
+            "ready to continue press \'ok\'",
+            icon: "success",
+            button: "Continue!",
+            closeOnClickOutside: false,
+            closeOnEsc: false
+        });
 
+        // Way 2. It has a own CSS file
+//        Shadowbox.open({
+//            content:    '<div msg-frame> <div id="takeRest-msg"><h2>Rest time</h2><ol><li>You press the option to ' +
+//            'take a rest .</li>' +
+//            '<li>During this time the WRESTORE tool is stopped. When you are ready to continue press \'ok\' cross ' +
+//            'icon at the right bottom.</li></ol></div> </div>',
+//            player:     "html",
+//            title:      "WRESTORE Visualization Tool* ",
+//            height:     450,
+//            width:      850
+//        });
+    }
+    
     function instruct1() {
-
         // open a welcome message as soon as the window loads
         Shadowbox.open({
-            content:'<div id="welcome-msg"><h2>The Progress Bar</h2><p><img src="images/table.jpg"></p><p>The  progress bar shows you at what step of WRESTORE&#39s <strong>search-learn</strong> process  you currently are in. The <strong>search-learn</strong> process is divided into  consecutive sessions of interaction, during which you will get to see and  compare multiple alternatives. A colored box in the progress bar shows you  which session you currently are in. <strong>If you are in</strong> –</p><ul><li>an <strong>Introspection</strong> session, then you will get to see all of the  previously found alternatives that you have seen before and have rated as &ldquo;favorably&rdquo; solutions (except for Introspection session 1 that consist of  &ldquo;initial&rdquo; alternatives to help you become familiar with the designs). In the  introspection session you should reflect on why you liked the solutions that  you rated highly and whether you need to change your criteria for comparing or  rating alternatives.</li><li> a <strong>Human-guided Search (HS)</strong> session, then you are now actively involved  in helping the underlying WRESTORE tools to search for better alternatives. So,  you will see some &ldquo;bad&rdquo; alternatives and some &ldquo;good alternatives&rdquo;. Please use  your most current understanding of preferences and priorities to compare and  rate alternatives as they appear.</li><li><p> an <strong>Automated Search</strong> session, then the underlying WRESTORE tools  are searching for alternatives in an automated manner. In this session, you  will <strong><u>not</u></strong> be asked to compare and rate alternatives. Instead, the  feedbacks you gave in earlier sessions will be used to mechanically estimate  the ratings of the alternatives. <em>Note, that even though Automated Search is  currently shown to occur between the 4th and 5th  introspection sessions, it could also unexpectedly occur between any other  introspections sessions. But when that occurs in real-time, you will be  notified in the progress bar!</em></p></li></ul></div>',
+            content:'<div id="welcome-msg"><h2>The Progress Bar</h2><p><img src="images/table.jpg"></p><p>The  ' +
+            'progress ' +
+            'bar shows you at what step of WRESTORE&#39s <strong>search-learn</strong> process  you currently are in. The <strong>search-learn</strong> process is divided into  consecutive sessions of interaction, during which you will get to see and  compare multiple alternatives. A colored box in the progress bar shows you  which session you currently are in. <strong>If you are in</strong> –</p><ul><li>an <strong>Introspection</strong> session, then you will get to see all of the  previously found alternatives that you have seen before and have rated as &ldquo;favorably&rdquo; solutions (except for Introspection session 1 that consist of  &ldquo;initial&rdquo; alternatives to help you become familiar with the designs). In the  introspection session you should reflect on why you liked the solutions that  you rated highly and whether you need to change your criteria for comparing or  rating alternatives.</li><li> a <strong>Human-guided Search (HS)</strong> session, then you are now actively involved  in helping the underlying WRESTORE tools to search for better alternatives. So,  you will see some &ldquo;bad&rdquo; alternatives and some &ldquo;good alternatives&rdquo;. Please use  your most current understanding of preferences and priorities to compare and  rate alternatives as they appear.</li><li><p> an <strong>Automated Search</strong> session, then the underlying WRESTORE tools  are searching for alternatives in an automated manner. In this session, you  will <strong><u>not</u></strong> be asked to compare and rate alternatives. Instead, the  feedbacks you gave in earlier sessions will be used to mechanically estimate  the ratings of the alternatives. <em>Note, that even though Automated Search is  currently shown to occur between the 4th and 5th  introspection sessions, it could also unexpectedly occur between any other  introspections sessions. But when that occurs in real-time, you will be  notified in the progress bar!</em></p></li></ul></div>',
             player:     "html",
             title:      "WRESTORE Visualization Tool ",
             height:     550,
             width:      920
         });
-
-    };
-
+    }
 </script>
+
 <script type="text/javascript">
     var togglecount = 0;
-    var toggleCountStep2 = 0;
-    var toggleCountStep3 = 0;
+    var toggleCountStep2 = 0;// Now it should be step1
+    var toggleCountStep3 = 0;// Now it should be step2
     $(function(){
         $('.header').click(function(){
             togglecount++;
-            $(this).closest('.containerABC').toggleClass('collapsed');
+            $(this).closest('.heatmaps_frame1').toggleClass('collapsed');//'heatmaps_frame1' was before 'containerABC'
             var a = $(this).parent().attr('name');
-            if(a==='step2collapse') toggleCountStep2++;
-            if(a==='step3collapse') toggleCountStep3++;
+            if(a==='step1_alter') toggleCountStep2++;// Before: step2collapse. Now it is: 'step1_alter'
+            if(a==='step2_goals') toggleCountStep3++;// Before: step3collapse. Now it is: 'step2_goals'
             /*if(togglecount > 1 && toggleCountStep2 > 2 && toggleCountStep3 >2)*/
             /* if(togglecount >1)
             {
@@ -2232,124 +2336,943 @@ else
 
         });
 
-//        This function containing ".info1" to ".info8" were added by ENY
-        $(function(){
-            $(".info1").click(function(){
-                $(".tip", this).toggle().css("z-index" , 999);
-                ////// --------- Switch drop and up icon is developed below by EN ------ //
-                var d_icon1 = document.getElementById("imm1").className;
-                if(d_icon1 == "playdown"){
-                    document.getElementById("imm1").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';
-                    document.getElementById("imm1").className="playup";//el.className="pause";
-                }
-                else if(d_icon1 == "playup"){
-                    document.getElementById("imm1").src='images/dropdown_arrow.png';//el.src='img/dropdown_arrow.png';
-                    document.getElementById("imm1").className="playdown";//el.className="play";
-                }
-            });
-
-            $(".info2").click(function(){
-                $(".tip", this).toggle().css("z-index" , 999);
-                ////// --------- Switch drop and up icon for PF2-map is developed below by EN ------ //
-                var d_icon2 = document.getElementById("imm2").className;
-                if(d_icon2 == "playdown"){
-                    document.getElementById("imm2").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';
-                    document.getElementById("imm2").className="playup";//el.className="pause";
-                }
-                else if(d_icon2 == "playup"){
-                    document.getElementById("imm2").src='images/dropdown_arrow.png';//el.src='img/dropdown_arrow.png';
-                    document.getElementById("imm2").className="playdown";//el.className="play";
-                }
-            });
-
-            $(".info3").click(function(){
-                $(".tip", this).toggle().css("z-index" , 999);
-                ////// --------- Switch drop and up icon for PF2-map is developed below by EN ------ //
-                var d_icon3 = document.getElementById("imm3").className;
-                if(d_icon3 == "playdown"){
-                    document.getElementById("imm3").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';
-                    document.getElementById("imm3").className="playup";//el.className="pause";
-                }
-                else if(d_icon3 == "playup"){
-                    document.getElementById("imm3").src='images/dropdown_arrow.png';//el.src='img/dropdown_arrow.png';
-                    document.getElementById("imm3").className="playdown";//el.className="play";
-                }
-            });
-
-            $(".info4").click(function(){
-                $(".tip", this).toggle().css("z-index" , 999);
-                ////// --------- Switch drop and up icon for PF2-map is developed below by EN ------ //
-                var d_icon4 = document.getElementById("imm4").className;
-                if(d_icon4 == "playdown"){
-                    document.getElementById("imm4").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';
-                    document.getElementById("imm4").className="playup";//el.className="pause";
-                }
-                else if(d_icon4 == "playup"){
-                    document.getElementById("imm4").src='images/dropdown_arrow.png';//el.src='img/dropdown_arrow.png';
-                    document.getElementById("imm4").className="playdown";//el.className="play";
-                }
-            });
-
-            $(".info5").click(function(){
-                $(".tip", this).toggle().css("z-index" , 999);
-                ////// --------- Switch drop and up icon for PF2-map is developed below by EN ------ //
-                var d_icon5 = document.getElementById("imm5").className;
-                if(d_icon5 == "playdown"){
-                    document.getElementById("imm5").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';
-                    document.getElementById("imm5").className="playup";//el.className="pause";
-                }
-                else if(d_icon5 == "playup"){
-                    document.getElementById("imm5").src='images/dropdown_arrow.png';//el.src='img/dropdown_arrow.png';
-                    document.getElementById("imm5").className="playdown";//el.className="play";
-                }
-            });
-
-            $(".info6").click(function(){
-                $(".tip", this).toggle().css("z-index" , 999);
-                ////// --------- Switch drop and up icon for PF2-map is developed below by EN ------ //
-                var d_icon6 = document.getElementById("imm6").className;
-                if(d_icon6 == "playdown"){
-                    document.getElementById("imm6").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';
-                    document.getElementById("imm6").className="playup";//el.className="pause";
-                }
-                else if(d_icon6 == "playup"){
-                    document.getElementById("imm6").src='images/dropdown_arrow.png';//el.src='img/dropdown_arrow.png';
-                    document.getElementById("imm6").className="playdown";//el.className="play";
-                }
-            });
-
-            $(".info7").click(function(){
-                $(".tip", this).toggle().css("z-index" , 999);
-                ////// --------- Switch drop and up icon for PF2-map is developed below by EN ------ //
-                var d_icon7 = document.getElementById("imm7").className;
-                if(d_icon7 == "playdown"){
-                    document.getElementById("imm7").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';
-                    document.getElementById("imm7").className="playup";//el.className="pause";
-                }
-                else if(d_icon7 == "playup"){
-                    document.getElementById("imm7").src='images/dropdown_arrow.png';//el.src='img/dropdown_arrow.png';
-                    document.getElementById("imm7").className="playdown";//el.className="play";
-                }
-            });
-
-            $(".info8").click(function(){
-                $(".tip", this).toggle().css("z-index" , 999);
-                ////// --------- Switch drop and up icon for PF2-map is developed below by EN ------ //
-                var d_icon8 = document.getElementById("imm8").className;
-                if(d_icon8 == "playdown"){
-                    document.getElementById("imm8").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';
-                    document.getElementById("imm8").className="playup";//el.className="pause";
-                }
-                else if(d_icon8 == "playup"){
-                    document.getElementById("imm8").src='images/dropdown_arrow.png';//el.src='img/dropdown_arrow.png';
-                    document.getElementById("imm8").className="playdown";//el.className="play";
-                }
-            });
+        // -------------- This function contains ".info1" to ".info8" by ENoa ------------//
+        // 'info1' to info8' work for creating 'legend' and 'dropdown' incon in heat maps.
+//        $(function(){
+//            $(".info1").click(function(){
+//                $(".tip", this).toggle().css("z-index" , 999);
+//                ////// --------- Switch drop and up icon is developed below by EN ------ //
+//                var d_icon1 = document.getElementById("imm1").className;
+//                if(d_icon1 == "playdown"){
+//                    document.getElementById("imm1").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';
+//                    document.getElementById("imm1").className="playup";//el.className="pause";
+//                }
+//                else if(d_icon1 == "playup"){
+//                    document.getElementById("imm1").src='images/dropdown_arrow.png';//el.src='img/dropdown_arrow.png';
+//                    document.getElementById("imm1").className="playdown";//el.className="play";
+//                }
+//            });
 //
-
-        });
-        
+//            $(".info2").click(function(){
+//                $(".tip", this).toggle().css("z-index" , 999);
+//                ////// --------- Switch drop and up icon for PF2-map is developed below by EN ------ //
+//                var d_icon2 = document.getElementById("imm2").className;
+//                if(d_icon2 == "playdown"){
+//                    document.getElementById("imm2").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';
+//                    document.getElementById("imm2").className="playup";//el.className="pause";
+//                }
+//                else if(d_icon2 == "playup"){
+//                    document.getElementById("imm2").src='images/dropdown_arrow.png';//el.src='img/dropdown_arrow.png';
+//                    document.getElementById("imm2").className="playdown";//el.className="play";
+//                }
+//            });
+//
+//            $(".info3").click(function(){
+//                $(".tip", this).toggle().css("z-index" , 999);
+//                ////// --------- Switch drop and up icon for PF2-map is developed below by EN ------ //
+//                var d_icon3 = document.getElementById("imm3").className;
+//                if(d_icon3 == "playdown"){
+//                    document.getElementById("imm3").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';
+//                    document.getElementById("imm3").className="playup";//el.className="pause";
+//                }
+//                else if(d_icon3 == "playup"){
+//                    document.getElementById("imm3").src='images/dropdown_arrow.png';//el.src='img/dropdown_arrow.png';
+//                    document.getElementById("imm3").className="playdown";//el.className="play";
+//                }
+//            });
+//
+//            $(".info4").click(function(){
+//                $(".tip", this).toggle().css("z-index" , 999);
+//                ////// --------- Switch drop and up icon for PF2-map is developed below by EN ------ //
+//                var d_icon4 = document.getElementById("imm4").className;
+//                if(d_icon4 == "playdown"){
+//                    document.getElementById("imm4").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';
+//                    document.getElementById("imm4").className="playup";//el.className="pause";
+//                }
+//                else if(d_icon4 == "playup"){
+//                    document.getElementById("imm4").src='images/dropdown_arrow.png';//el.src='img/dropdown_arrow.png';
+//                    document.getElementById("imm4").className="playdown";//el.className="play";
+//                }
+//            });
+//
+//            $(".info5").click(function(){
+//                $(".tip", this).toggle().css("z-index" , 999);
+//                ////// --------- Switch drop and up icon for PF2-map is developed below by EN ------ //
+//                var d_icon5 = document.getElementById("imm5").className;
+//                if(d_icon5 == "playdown"){
+//                    document.getElementById("imm5").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';
+//                    document.getElementById("imm5").className="playup";//el.className="pause";
+//                }
+//                else if(d_icon5 == "playup"){
+//                    document.getElementById("imm5").src='images/dropdown_arrow.png';//el.src='img/dropdown_arrow.png';
+//                    document.getElementById("imm5").className="playdown";//el.className="play";
+//                }
+//            });
+//
+//            $(".info6").click(function(){
+//                $(".tip", this).toggle().css("z-index" , 999);
+//                ////// --------- Switch drop and up icon for PF2-map is developed below by EN ------ //
+//                var d_icon6 = document.getElementById("imm6").className;
+//                if(d_icon6 == "playdown"){
+//                    document.getElementById("imm6").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';
+//                    document.getElementById("imm6").className="playup";//el.className="pause";
+//                }
+//                else if(d_icon6 == "playup"){
+//                    document.getElementById("imm6").src='images/dropdown_arrow.png';//el.src='img/dropdown_arrow.png';
+//                    document.getElementById("imm6").className="playdown";//el.className="play";
+//                }
+//            });
+//
+//            $(".info7").click(function(){
+//                $(".tip", this).toggle().css("z-index" , 999);
+//                ////// --------- Switch drop and up icon for PF2-map is developed below by EN ------ //
+//                var d_icon7 = document.getElementById("imm7").className;
+//                if(d_icon7 == "playdown"){
+//                    document.getElementById("imm7").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';
+//                    document.getElementById("imm7").className="playup";//el.className="pause";
+//                }
+//                else if(d_icon7 == "playup"){
+//                    document.getElementById("imm7").src='images/dropdown_arrow.png';//el.src='img/dropdown_arrow.png';
+//                    document.getElementById("imm7").className="playdown";//el.className="play";
+//                }
+//            });
+//
+//            $(".info8").click(function(){
+//                $(".tip", this).toggle().css("z-index" , 999);
+//                ////// --------- Switch drop and up icon for PF2-map is developed below by EN ------ //
+//                var d_icon8 = document.getElementById("imm8").className;
+//                if(d_icon8 == "playdown"){
+//                    document.getElementById("imm8").src='images/dropup_arrow.png';//el.src='img/dropup_arrow.png';
+//                    document.getElementById("imm8").className="playup";//el.className="pause";
+//                }
+//                else if(d_icon8 == "playup"){
+//                    document.getElementById("imm8").src='images/dropdown_arrow.png';//el.src='img/dropdown_arrow.png';
+//                    document.getElementById("imm8").className="playdown";//el.className="play";
+//                }
+//            });
+//        });
     });
 </script>
+
+
+
+<!--  #######################################################################  -->
+<!--  ######## This js script detects the inactive time of the user ######### -->
+<script>
+    var timeoutID;
+
+    function setup() {
+        this.addEventListener("mousemove", resetTimer, false);
+        this.addEventListener("mousedown", resetTimer, false);
+        this.addEventListener("keypress", resetTimer, false);
+        this.addEventListener("DOMMouseScroll", resetTimer, false);
+        this.addEventListener("mousewheel", resetTimer, false);
+        this.addEventListener("touchmove", resetTimer, false);
+        this.addEventListener("MSPointerMove", resetTimer, false);
+        startTimer();
+    }
+    setup();
+    function startTimer() {
+        // wait 2 seconds before calling goInactive
+        timeoutID = window.setTimeout(goInactive, 1500000);
+    }
+    function resetTimer(e) {
+        window.clearTimeout(timeoutID);
+        goActive();
+    }
+    function goInactive() {
+        // do something
+        alert("It appears you are inactive on this page."+"\n"+
+            "Press 'Ok' to keep working?");
+
+//            var txt;
+//            if (confirm("It appears you are inactive on this page."+"\n"+
+//                "Press 'Ok' to keep working on this page?")) {
+//                txt = "You pressed OK!";
+//            } else {
+//                txt = "You pressed Cancel!";
+//            }
+//            document.getElementById("demo").innerHTML = txt;
+    }
+    function goActive() {
+        // do something
+        startTimer();
+    }
+</script>
+
+<!--  #####################  For buttons into map pannel  #######################  -->
+<script>
+    // E: This js script creates the button icon for LEGEND in the main map. This button displays even in fullscreen.
+    // This works with code-lines from 86, after "map1 = new google.maps.Map(document.getElementById('map_canvas1')"
+    // in mapping_new.js
+    
+    // ---- Function for button 'legend' into main map ----- //
+    function buttonControl(options) {
+        // Level 0
+        var mainMapLegend_frame = document.createElement('DIV'); //E: main container of the main-map-legend pannel
+        mainMapLegend_frame.className = "mainMapLegend_frame"; //E: class name for the created DIV
+        
+        // Level 1
+        var mainMapLegend_container = document.createElement('DIV'); //E: main container of the main-map-legend pannel
+        mainMapLegend_container.className = "mainMapLegend_container"; //E: class name for the created DIV
+        
+        // Level 1.a
+        var mainMapLeg_button = document.createElement('DIV'); //E: legend-header (title) DIV is created here
+        mainMapLeg_button.className = 'mainMapLegend_button';
+        mainMapLeg_button.title = 'Click here to On/Off the legend';
+        mainMapLeg_button.index = 1;
+
+        // Level 1.a.1
+        var mainMapLeg_title = document.createElement('DIV'); //E: legend-header (title) DIV is created here
+        mainMapLeg_title.innerHTML = options.name;
+        mainMapLeg_title.className = 'mainMapLegend_title';
+
+        // Level 1.b
+        var legend_contend = document.createElement('DIV'); //E: DIV is created to contain the legend features
+        legend_contend.className = "feat_content"; //E: class name for the created DIV
+        
+        var lleggg = new mm_legend(); // E: It calls the function 'mm_legend" where the Legend-DOM is built
+        legend_contend.appendChild(lleggg);
+        
+//        var bmp_icons = {
+//            bmp1: {name: 'Crop Rotation*',icon: 'images/legend_imgs/img01_c.jpg'},
+//            bmp2: {name: 'Cover Crop',icon: 'images/legend_imgs/img02_c.jpg'},
+//            bmp3: {name: 'Strip Cropping',icon: 'images/legend_imgs/img03_c.jpg'},
+//            bmp5: {name: 'Grass Waterways',icon: 'images/legend_imgs/img05_c.jpg'},
+//            bmp6: {name: 'Conservation Tillage',icon: 'images/legend_imgs/img06_c.jpg'},
+//            bmp4: {name: 'Filter Strip',icon: 'images/legend_imgs/img04_b.jpg'},
+//            bmp7: {name: 'Wetland Area (acres)',icon: 'images/legend_imgs/img07_b.jpg'}
+//        };
+//        for (var key in bmp_icons) {
+//            var type = bmp_icons[key];
+//            var name = type.name;
+//            var icon = type.icon;
+//            var div = document.createElement('div');
+////            div.innerHTML = name + "<br>" +'<img src="' + icon + '"> ';
+//            div.innerHTML = '<div class="name_width">'+ name +'</div>' + '<img src="' + icon + '"> ';
+//            var sep = document.createElement('DIV');
+//            sep.className = "separatorDiv";
+//            legend_contend.appendChild(div);
+//            legend_contend.appendChild(sep);
+//        }
+
+        
+        //Level 1.a.2
+        var dropdown_arrow = document.createElement('DIV'); //E: DIV is created the dropdown arrow
+        dropdown_arrow.className = "dropdown_img"; //E: class name for the created DIV
+        dropdown_arrow.innerHTML = '<i style="font-size:20px" class="fa">&#xf103;</i>';
+        
+        //E: Links between DOM's created above
+        mainMapLegend_frame.appendChild(mainMapLegend_container);
+        
+        mainMapLegend_container.appendChild(mainMapLeg_button);
+        mainMapLegend_container.appendChild(legend_contend);
+
+        mainMapLeg_button.appendChild(mainMapLeg_title);
+        mainMapLeg_button.appendChild(dropdown_arrow);
+        
+        // Add the control to the map
+        
+        // options.gmap.controls[options.position].push(mainMapLeg_button);
+        options.gmap.controls[options.position].push(mainMapLegend_frame);
+        
+
+        var mm_leg = 0;
+        // When the button is clicked pan to sydney
+//        google.maps.event.addDomListener(mainMapLegend_frame, 'click', options.action);
+        google.maps.event.addDomListener(mainMapLegend_frame, 'click', function () {
+//            report('m-clk*** ' , 'PFR Legend ');
+            jQuery('.feat_content').toggle('show');
+            var cond=(mm_leg%2) ? report('m-clk**','MM Legend NOactivated'):report('m-clk**','MM Legend activated');
+            mm_leg++
+//            options.action;
+        });
+        return mainMapLegend_frame;
+    }
+
+    // ---------------------------------------------------------------------------- //
+    // ---------------- These LEGEND works for legend in heat-maps ---------------- //
+    //  /////////////  FUNCTION for PFR-LEGEND button into the heat-map  ///////////
+    function buttonControl_pfr(options, colorList, map, min_v, max_v) {
+        min_v = Math.trunc(min_v);
+//        alert("Line:2694-g2.php: " + "colors: " + Object.keys(colors).length + " map: " + map + "  min: " + min_v + "  max: " + max_v);
+        
+        // Level 0: extra frame to engañar to google map
+        var hml_extraFrame = document.createElement('DIV'); //E: main container of the main-map-legend pannel
+        hml_extraFrame.className = "hml_extraFrame"; //E: class name for the created DIV
+        
+        // Level 1: propper frame to show. It contains title and lengend-content
+        var heatMapLegend_frame = document.createElement('DIV'); //E: main container of the main-map-legend pannel
+        heatMapLegend_frame.className = "heatMapLegend_frame"; //E: class name for the created DIV
+
+        // Level 1.a. Legend title or button
+        var heatMapLegend_frameHead = document.createElement('DIV'); //E: legend-header (title) DIV is created here
+        heatMapLegend_frameHead.className = 'mainMapLegend_button';
+        heatMapLegend_frameHead.title = 'Click here to On/Off the legend';
+        heatMapLegend_frameHead.index = 1;
+        
+        // Level 1.b. Legend displayable contain (contenido desplegable)
+        var heatMapLegend_container_pfr = document.createElement('DIV'); //E: container of labels and square boxes
+        heatMapLegend_container_pfr.className = "heatMapLegend_container_pfr"; //E: class name for the created DIV
+        heatMapLegend_container_pfr.style.display="none";// Delete this to start displayind the leyend.
+
+        // Level 1.a.1
+        var heatMapLeg_title = document.createElement('DIV'); //E: legend-header (title) DIV is created here
+        heatMapLeg_title.innerHTML = options.name;
+        heatMapLeg_title.className = 'heatMapLegend_title';
+
+        // Level 1.b.1
+        var len_arr = Object.keys(colorList).length;
+        var range2 = (max_v-min_v)/len_arr;
+        var i = 0;
+        
+        for (var key in colorList) {
+            var boxContainer = document.createElement("DIV");
+            var box = document.createElement("DIV");
+            var label = document.createElement("SPAN");
+
+            var range_inf2 = min_v + Math.ceil(i*range2); // Get the low value of range
+            var range_sup2 = min_v + Math.ceil((i+1)*range2); // Get the high value of range
+
+            boxContainer.appendChild(box);
+            boxContainer.appendChild(label);
+            heatMapLegend_container_pfr.appendChild(boxContainer);
+
+//            label.innerHTML = range_inf2 + ' to ' + range_sup2;// + ' cfs';
+            label.innerHTML = range_inf2 + ' - ' + range_sup2;// + ' cfs';
+            label.className = "label";
+            box.className = "box";
+            box.style.backgroundColor = colorList[key];
+//            boxContainer.id = "box_container";
+            boxContainer.className = "box_container";
+            i += 1;
+        }
+
+        //Level 1.a.2
+        var dropdown_arrow = document.createElement('DIV'); //E: DIV is created the dropdown arrow
+        dropdown_arrow.className = "dropdown_img"; //E: class name for the created DIV
+        dropdown_arrow.innerHTML = '<i style="font-size:20px" class="fa">&#xf103;</i>';
+        
+        //E: Links between DOM's created above
+        hml_extraFrame.appendChild(heatMapLegend_frame);
+        
+        heatMapLegend_frame.appendChild(heatMapLegend_frameHead);
+        heatMapLegend_frame.appendChild(heatMapLegend_container_pfr);
+
+        heatMapLegend_frameHead.appendChild(heatMapLeg_title);
+        heatMapLegend_frameHead.appendChild(dropdown_arrow);
+
+        // Add the control to the map
+        // options.gmap.controls[options.position].push(mainMapLeg_button);
+        options.gmap.controls[options.position].push(hml_extraFrame);
+        
+        var pfr_leg = 0;
+//        google.maps.event.addDomListener(hml_extraFrame, 'click', options.action);
+        google.maps.event.addDomListener(hml_extraFrame, 'click', function () {
+//            report('m-clk*** ' , 'PFR Legend ');
+            jQuery('.heatMapLegend_container_pfr').toggle('show');
+            var cond=(pfr_leg%2) ? report('m-clk**','PFR Legend NOactivated'):report('m-clk**','PFR Legend activated');
+            pfr_leg++
+//            options.action;
+        });
+        return hml_extraFrame;
+    }
+    
+//  /////////////  FUNCTION for CR-LEGEND button into the heat-map  ///////////
+    function buttonControl_cr(options, colorList, map, min_v, max_v) {
+        min_v = Math.trunc(min_v);
+//        alert("Line:2694-g2.php: " + "colors: " + Object.keys(colors).length + " map: " + map + "  min: " + min_v + "  max: " + max_v);
+
+        // Level 0: extra frame to engañar to google map
+        var hml_extraFrame = document.createElement('DIV'); //E: main container of the main-map-legend pannel
+        hml_extraFrame.className = "hml_extraFrame"; //E: class name for the created DIV
+
+        // Level 1: propper frame to show. It contains title and lengend-content
+        var heatMapLegend_frame = document.createElement('DIV'); //E: main container of the main-map-legend pannel
+        heatMapLegend_frame.className = "heatMapLegend_frame"; //E: class name for the created DIV
+
+        // Level 1.a. Legend title or button
+        var heatMapLegend_frameHead = document.createElement('DIV'); //E: legend-header (title) DIV is created here
+        heatMapLegend_frameHead.className = 'mainMapLegend_button';
+        heatMapLegend_frameHead.title = 'Click here to On/Off the legend';
+        heatMapLegend_frameHead.index = 1;
+
+        // Level 1.b. Legend displayable contain (contenido desplegable)
+        var heatMapLegend_container_cr = document.createElement('DIV'); //E: container of labels and square boxes
+        heatMapLegend_container_cr.className = "heatMapLegend_container_cr"; //E: class name for the created DIV
+        heatMapLegend_container_cr.style.display="none";// Delete this to start displayind the leyend.
+        
+        // Level 1.a.1
+        var heatMapLeg_title = document.createElement('DIV'); //E: legend-header (title) DIV is created here
+        heatMapLeg_title.innerHTML = options.name;
+        heatMapLeg_title.className = 'heatMapLegend_title';
+
+        // Level 1.b.1
+        var len_arr = Object.keys(colorList).length;
+        var range2 = (max_v-min_v)/len_arr;
+        var i = 0;
+
+        for (var key in colorList) {
+            var boxContainer = document.createElement("DIV");
+            var box = document.createElement("DIV");
+            var label = document.createElement("SPAN");
+
+            var range_inf2 = min_v + Math.ceil(i*range2); // Get the low value of range
+            var range_sup2 = min_v + Math.ceil((i+1)*range2); // Get the high value of range
+
+            boxContainer.appendChild(box);
+            boxContainer.appendChild(label);
+            heatMapLegend_container_cr.appendChild(boxContainer);
+
+//            label.innerHTML = range_inf2 + ' to ' + range_sup2;// + ' cfs';
+            label.innerHTML = range_inf2 + ' - ' + range_sup2;// + ' cfs';
+            label.className = "label";
+            box.className = "box";
+            box.style.backgroundColor = colorList[key];
+//            boxContainer.id = "box_container";
+            boxContainer.className = "box_container";
+            i += 1;
+        }
+
+        //Level 1.a.2
+        var dropdown_arrow = document.createElement('DIV'); //E: DIV is created the dropdown arrow
+        dropdown_arrow.className = "dropdown_img"; //E: class name for the created DIV
+        dropdown_arrow.innerHTML = '<i style="font-size:20px" class="fa">&#xf103;</i>';
+
+        //E: Links between DOM's created above
+        hml_extraFrame.appendChild(heatMapLegend_frame);
+
+        heatMapLegend_frame.appendChild(heatMapLegend_frameHead);
+        heatMapLegend_frame.appendChild(heatMapLegend_container_cr);
+
+        heatMapLegend_frameHead.appendChild(heatMapLeg_title);
+        heatMapLegend_frameHead.appendChild(dropdown_arrow);
+
+        // Add the control to the map
+        // options.gmap.controls[options.position].push(mainMapLeg_button);
+        options.gmap.controls[options.position].push(hml_extraFrame);
+
+        var cr_leg = 0;
+//        google.maps.event.addDomListener(hml_extraFrame, 'click', options.action);
+        google.maps.event.addDomListener(hml_extraFrame, 'click', function () {
+            jQuery('.heatMapLegend_container_cr').toggle('show');
+            var cond=(cr_leg%2) ? report('m-clk**','CR Legend NOactivated'):report('m-clk**','CR Legend activated');
+            cr_leg++
+        });
+        
+        return hml_extraFrame;
+    }
+    
+    //   /////////////   FUNCTION for SR-LEGEND button into the heat-map  /////////////
+    function buttonControl_sr(options, colorList, map, min_v, max_v) {
+        min_v = Math.trunc(min_v);
+//        alert("Line:2694-g2.php: " + "colors: " + Object.keys(colors).length + " map: " + map + "  min: " + min_v + "  max: " + max_v);
+
+        // Level 0: extra frame to engañar to google map
+        var hml_extraFrame = document.createElement('DIV'); //E: main container of the main-map-legend pannel
+        hml_extraFrame.className = "hml_extraFrame"; //E: class name for the created DIV
+
+        // Level 1: propper frame to show. It contains title and lengend-content
+        var heatMapLegend_frame = document.createElement('DIV'); //E: main container of the main-map-legend pannel
+        heatMapLegend_frame.className = "heatMapLegend_frame"; //E: class name for the created DIV
+
+        // Level 1.a. Legend title or button
+        var heatMapLegend_frameHead = document.createElement('DIV'); //E: legend-header (title) DIV is created here
+        heatMapLegend_frameHead.className = 'mainMapLegend_button';
+        heatMapLegend_frameHead.title = 'Click here to On/Off the legend';
+        heatMapLegend_frameHead.index = 1;
+
+        // Level 1.b. Legend displayable contain (contenido desplegable)
+        var heatMapLegend_container_sr = document.createElement('DIV'); //E: container of labels and square boxes
+        heatMapLegend_container_sr.className = "heatMapLegend_container_sr"; //E: class name for the created DIV
+        heatMapLegend_container_sr.style.display="none";// Delete this to start displayind the leyend.
+
+        // Level 1.a.1
+        var heatMapLeg_title = document.createElement('DIV'); //E: legend-header (title) DIV is created here
+        heatMapLeg_title.innerHTML = options.name;
+        heatMapLeg_title.className = 'heatMapLegend_title';
+
+        // Level 1.b.1
+        var len_arr = Object.keys(colorList).length;
+        var range2 = (max_v-min_v)/len_arr;
+        var i = 0;
+
+        for (var key in colorList) {
+            var boxContainer = document.createElement("DIV");
+            var box = document.createElement("DIV");
+            var label = document.createElement("SPAN");
+
+            var range_inf2 = min_v + Math.ceil(i*range2); // Get the low value of range
+            var range_sup2 = min_v + Math.ceil((i+1)*range2); // Get the high value of range
+
+            boxContainer.appendChild(box);
+            boxContainer.appendChild(label);
+            heatMapLegend_container_sr.appendChild(boxContainer);
+
+//            label.innerHTML = range_inf2 + ' to ' + range_sup2;// + ' cfs';
+            label.innerHTML = range_inf2 + ' - ' + range_sup2;// + ' cfs';
+            label.className = "label";
+            box.className = "box";
+            box.style.backgroundColor = colorList[key];
+//            boxContainer.id = "box_container";
+            boxContainer.className = "box_container";
+            i += 1;
+        }
+
+        //Level 1.a.2
+        var dropdown_arrow = document.createElement('DIV'); //E: DIV is created the dropdown arrow
+        dropdown_arrow.className = "dropdown_img"; //E: class name for the created DIV
+        dropdown_arrow.innerHTML = '<i style="font-size:20px" class="fa">&#xf103;</i>';
+
+        //E: Links between DOM's created above
+        hml_extraFrame.appendChild(heatMapLegend_frame);
+
+        heatMapLegend_frame.appendChild(heatMapLegend_frameHead);
+        heatMapLegend_frame.appendChild(heatMapLegend_container_sr);
+
+        heatMapLegend_frameHead.appendChild(heatMapLeg_title);
+        heatMapLegend_frameHead.appendChild(dropdown_arrow);
+
+        // Add the control to the map
+        // options.gmap.controls[options.position].push(mainMapLeg_button);
+        options.gmap.controls[options.position].push(hml_extraFrame);
+
+        var sr_leg = 0;
+//        google.maps.event.addDomListener(hml_extraFrame, 'click', options.action);
+        google.maps.event.addDomListener(hml_extraFrame, 'click', function () {
+            jQuery('.heatMapLegend_container_sr').toggle('show');
+            var cond=(sr_leg%2)? report('m-clk**','SR Legend NOactivated'):report('m-clk**','SR Legend activated');
+            sr_leg++
+        });
+        
+        return hml_extraFrame;
+    }
+
+    //  /////////////  FUNCTION for NR-LEGEND button into the heat-map  /////////////
+    function buttonControl_nr(options, colorList, map, min_v, max_v) {
+        min_v = Math.trunc(min_v);
+//        alert("Line:2694-g2.php: " + "colors: " + Object.keys(colors).length + " map: " + map + "  min: " + min_v + "  max: " + max_v);
+
+        // Level 0: extra frame to engañar to google map
+        var hml_extraFrame = document.createElement('DIV'); //E: main container of the main-map-legend pannel
+        hml_extraFrame.className = "hml_extraFrame"; //E: class name for the created DIV
+
+        // Level 1: propper frame to show. It contains title and lengend-content
+        var heatMapLegend_frame = document.createElement('DIV'); //E: main container of the main-map-legend pannel
+        heatMapLegend_frame.className = "heatMapLegend_frame"; //E: class name for the created DIV
+
+        // Level 1.a. Legend title or button
+        var heatMapLegend_frameHead = document.createElement('DIV'); //E: legend-header (title) DIV is created here
+        heatMapLegend_frameHead.className = 'mainMapLegend_button';
+        heatMapLegend_frameHead.title = 'Click here to On/Off the legend';
+        heatMapLegend_frameHead.index = 1;
+
+        // Level 1.b. Legend displayable contain (contenido desplegable)
+        var heatMapLegend_container_nr = document.createElement('DIV'); //E: container of labels and square boxes
+        heatMapLegend_container_nr.className = "heatMapLegend_container_nr"; //E: class name for the created DIV
+        heatMapLegend_container_nr.style.display="none";// Delete this to start displayind the leyend.
+        
+        // Level 1.a.1
+        var heatMapLeg_title = document.createElement('DIV'); //E: legend-header (title) DIV is created here
+        heatMapLeg_title.innerHTML = options.name;
+        heatMapLeg_title.className = 'heatMapLegend_title';
+
+        // Level 1.b.1
+        var len_arr = Object.keys(colorList).length;
+        var range2 = (max_v-min_v)/len_arr;
+        var i = 0;
+
+        for (var key in colorList) {
+            var boxContainer = document.createElement("DIV");
+            var box = document.createElement("DIV");
+            var label = document.createElement("SPAN");
+
+            var range_inf2 = min_v + Math.ceil(i*range2); // Get the low value of range
+            var range_sup2 = min_v + Math.ceil((i+1)*range2); // Get the high value of range
+
+            boxContainer.appendChild(box);
+            boxContainer.appendChild(label);
+            heatMapLegend_container_nr.appendChild(boxContainer);
+
+//            label.innerHTML = range_inf2 + ' to ' + range_sup2;// + ' cfs';
+            label.innerHTML = range_inf2 + ' - ' + range_sup2;// + ' cfs';
+            label.className = "label";
+            box.className = "box";
+            box.style.backgroundColor = colorList[key];
+//            boxContainer.id = "box_container";
+            boxContainer.className = "box_container";
+            i += 1;
+        }
+
+        //Level 1.a.2
+        var dropdown_arrow = document.createElement('DIV'); //E: DIV is created the dropdown arrow
+        dropdown_arrow.className = "dropdown_img"; //E: class name for the created DIV
+        dropdown_arrow.innerHTML = '<i style="font-size:20px" class="fa">&#xf103;</i>';
+
+        //E: Links between DOM's created above
+        hml_extraFrame.appendChild(heatMapLegend_frame);
+
+        heatMapLegend_frame.appendChild(heatMapLegend_frameHead);
+        heatMapLegend_frame.appendChild(heatMapLegend_container_nr);
+
+        heatMapLegend_frameHead.appendChild(heatMapLeg_title);
+        heatMapLegend_frameHead.appendChild(dropdown_arrow);
+
+        // Add the control to the map
+        // options.gmap.controls[options.position].push(mainMapLeg_button);
+        options.gmap.controls[options.position].push(hml_extraFrame);
+
+        var nr_leg = 0;
+//        google.maps.event.addDomListener(hml_extraFrame, 'click', options.action);
+        google.maps.event.addDomListener(hml_extraFrame, 'click', function () {
+            jQuery('.heatMapLegend_container_nr').toggle('show');
+            var cond=(nr_leg%2)? report('m-clk**','NR Legend NOactivated'):report('m-clk**','NR Legend activated');
+            nr_leg++
+//            options.action;
+        });
+        return hml_extraFrame;
+    }
+    
+    // ------------------  End setting functions for PFR, CR, SR, NR, legend-buttons ------
+    
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$  Start  CHECK BOXES in the main map $$$$$$$$$$$$$$$$$$$$$$$$
+
+    //E: (1)Function for Crop_Rotation checkbox
+    function checkBox_CropRotation(options) {
+        var container = document.createElement('DIV'); //first make the outer container
+        container.className = "checkboxContainer";
+        container.title = options.title;
+        container.id = options.id1;//'filter';
+
+        var span = document.createElement('SPAN'); //E:It creates the check-box square
+        span.role = "checkbox";
+        span.className = "checkboxSpan";
+
+        var bDiv = document.createElement('DIV'); //E:It creates a blank DIV to draw the "check" symbol v.
+        bDiv.className = "blankDiv";
+        bDiv.id = options.id2;
+
+        var image = document.createElement('IMG'); //E:It creates a tag "IMG" with the check symbol v.
+        image.className = "blankImg";
+        image.src = "http://maps.gstatic.com/mapfiles/mv/imgs8.png";
+
+        var label = document.createElement('LABEL'); //E:It creates a tag "LABEL" with the name Label.
+        label.className = "checkboxLabel";
+        label.innerHTML = options.label;
+
+        container.appendChild(label); // If this DOM goes at the end, order of presentation will be switch
+        bDiv.appendChild(image);
+        span.appendChild(bDiv);
+        container.appendChild(span);
+        
+        //E: This lines draws the check box into the map, as it is called the 'checkBox' function. The "checked" or
+        // "unchecked" condition is controlled from the 'css' file
+        google.maps.event.addDomListener(container,'click',function(){
+            (document.getElementById(bDiv.id).style.display == 'none') ? document.getElementById(bDiv.id).style
+                .display = 'block' : document.getElementById(bDiv.id).style.display = 'none';
+            toggleLayerNew(cropArray, crop);
+//            toggleLayerNew(arg1, arg2);
+            //alert(this.id); // option to add some alert
+            options.action(); // option to add some other function
+        });
+        return container;
+    }
+
+    //E: (2)Function for Cover_Crop checkbox
+    function checkBox_CoverCrop(options) {
+        var container = document.createElement('DIV'); //first make the outer container
+        container.className = "checkboxContainer";
+        container.title = options.title;
+        container.id = options.id1;
+
+        var span = document.createElement('SPAN'); //E:It creates the check-box square
+        span.role = "checkbox";
+        span.className = "checkboxSpan";
+
+        var bDiv = document.createElement('DIV'); //E:It creates a blank DIV to draw the "check" symbol v.
+        bDiv.className = "blankDiv";
+        bDiv.id = options.id2;
+
+        var image = document.createElement('IMG'); //E:It creates a tag "IMG" with the check symbol v.
+        image.className = "blankImg";
+        image.src = "http://maps.gstatic.com/mapfiles/mv/imgs8.png";
+
+        var label = document.createElement('LABEL'); //E:It creates a tag "LABEL" with the name Label.
+        label.className = "checkboxLabel";
+        label.innerHTML = options.label;
+
+        container.appendChild(label); // If this DOM goes at the end, order of presentation will be switch
+        bDiv.appendChild(image);
+        span.appendChild(bDiv);
+        container.appendChild(span);
+
+        //E: This lines draws the check box into the map, as it is called the 'checkBox' function. The "checked" or
+        // "unchecked" condition is controlled from the 'css' file
+        google.maps.event.addDomListener(container,'click',function(){
+            (document.getElementById(bDiv.id).style.display == 'none') ? document.getElementById(bDiv.id).style
+                .display = 'block' : document.getElementById(bDiv.id).style.display = 'none';
+            toggleLayerNew(coverArray, cover); ////////E: important to change for each BMP
+//            alert(this.id); // option to add some alert
+            options.action(); // option to add some other function
+        });
+        return container;
+    }
+
+    //E: (3)Function for Strip Cropping checkbox
+    function checkBox_StripCropping(options) {
+        var container = document.createElement('DIV'); //first make the outer container
+        container.className = "checkboxContainer";
+        container.title = options.title;
+        container.id = options.id1;
+
+        var span = document.createElement('SPAN'); //E:It creates the check-box square
+        span.role = "checkbox";
+        span.className = "checkboxSpan";
+
+        var bDiv = document.createElement('DIV'); //E:It creates a blank DIV to draw the "check" symbol v.
+        bDiv.className = "blankDiv";
+        bDiv.id = options.id2;
+
+        var image = document.createElement('IMG'); //E:It creates a tag "IMG" with the check symbol v.
+        image.className = "blankImg";
+        image.src = "http://maps.gstatic.com/mapfiles/mv/imgs8.png";
+
+        var label = document.createElement('LABEL'); //E:It creates a tag "LABEL" with the name Label.
+        label.className = "checkboxLabel";
+        label.innerHTML = options.label;
+
+        container.appendChild(label); // If this DOM goes at the end, order of presentation will be switched
+        bDiv.appendChild(image);
+        span.appendChild(bDiv);
+        container.appendChild(span);
+
+        //E: This lines draws the check box into the map, as it is called the 'checkBox' function. The "checked" or
+        // "unchecked" condition is controlled from the 'css' file
+        google.maps.event.addDomListener(container,'click',function(){
+            (document.getElementById(bDiv.id).style.display == 'none') ? document.getElementById(bDiv.id).style
+                .display = 'block' : document.getElementById(bDiv.id).style.display = 'none';
+            toggleLayerNew(stripArray, strip); ////////E: important to change for each BMP
+//            alert(this.id); // option to add some alert
+            options.action(); // option to add some other function
+        });
+        return container;
+    }
+    
+    //E: (4)Function for Filter-strip checkbox
+    function checkBox_FilterStrip(options) { //E: Function for checkbox Filterstrip
+        var container = document.createElement('DIV'); //first make the outer container
+        container.className = "checkboxContainer";
+        container.title = options.title;
+        container.id = options.id1;//'filter';
+
+        var span = document.createElement('SPAN'); //E:It creates the check-box square
+        span.role = "checkbox";
+        span.className = "checkboxSpan";
+
+        var bDiv = document.createElement('DIV'); //E:It creates a blank DIV to draw the "check" symbol v.
+        bDiv.className = "blankDiv";
+        bDiv.id = options.id2;
+
+        var image = document.createElement('IMG'); //E:It creates a tag "IMG" with the check symbol v.
+        image.className = "blankImg";
+        image.src = "http://maps.gstatic.com/mapfiles/mv/imgs8.png";
+
+        var label = document.createElement('LABEL'); //E:It creates a tag "LABEL" with the name Label.
+        label.className = "checkboxLabel";
+        label.innerHTML = options.label;
+
+        container.appendChild(label); // If this DOM goes at the end, order of presentation will be switch
+        bDiv.appendChild(image);
+        span.appendChild(bDiv);
+        container.appendChild(span);
+        
+        //E: This lines draws the check box into the map, as it is called the 'checkBox' function. The "checked" or
+        // "unchecked" condition is controlled from the 'css' file
+        google.maps.event.addDomListener(container,'click',function(){
+            (document.getElementById(bDiv.id).style.display == 'none') ? document.getElementById(bDiv.id).style
+                .display = 'block' : document.getElementById(bDiv.id).style.display = 'none';
+            toggleLayerNew(filterArray, filter);
+//            alert(this.id); // option to add some alert
+            options.action(); // option to add some other function
+        });
+        return container;
+    }
+
+    //E: (5)Function for Grasswaterways checkbox
+    function checkBox_Grasswaterways(options) { //E: Function for checkbox Grasswaterways
+        var container = document.createElement('DIV'); //first make the outer container
+        container.className = "checkboxContainer";
+        container.title = options.title;
+        container.id = options.id1;//'filter';
+
+        var span = document.createElement('SPAN'); //E:It creates the check-box square
+        span.role = "checkbox";
+        span.className = "checkboxSpan";
+
+        var bDiv = document.createElement('DIV'); //E:It creates a blank DIV to draw the "check" symbol v.
+        bDiv.className = "blankDiv";
+        bDiv.id = options.id2;
+
+        var image = document.createElement('IMG'); //E:It creates a tag "IMG" with the check symbol v.
+        image.className = "blankImg";
+        image.src = "http://maps.gstatic.com/mapfiles/mv/imgs8.png";
+
+        var label = document.createElement('LABEL'); //E:It creates a tag "LABEL" with the name Label.
+        label.className = "checkboxLabel";
+        label.innerHTML = options.label;
+
+        container.appendChild(label); // If this DOM goes at the end, order of presentation will be switch
+        bDiv.appendChild(image);
+        span.appendChild(bDiv);
+        container.appendChild(span);
+
+        //E: This lines draws the check box into the map, as it is called the 'checkBox' function. The "checked" or
+        // "unchecked" condition is controlled from the 'css' file
+        google.maps.event.addDomListener(container,'click',function(){
+            (document.getElementById(bDiv.id).style.display == 'none') ? document.getElementById(bDiv.id).style
+                .display = 'block' : document.getElementById(bDiv.id).style.display = 'none';
+            toggleLayerNew(grassArray, grass);
+//            alert(this.id); // option to add some alert
+            options.action(); // option to add some other function
+        });
+        return container;
+    }
+    
+    //E: (6)Function for No Tillage checkbox (Conservation Tillage)
+    function checkBox_NoTillage(options) { //E: Function for checkbox No Tillage
+        var container = document.createElement('DIV'); //first make the outer container
+        container.className = "checkboxContainer";
+        container.title = options.title;
+        container.id = options.id1;
+
+        var span = document.createElement('SPAN'); //E:It creates the check-box square
+        span.role = "checkbox";
+        span.className = "checkboxSpan";
+
+        var bDiv = document.createElement('DIV'); //E:It creates a blank DIV to draw the "check" symbol v.
+        bDiv.className = "blankDiv";
+        bDiv.id = options.id2;
+
+        var image = document.createElement('IMG'); //E:It creates a tag "IMG" with the check symbol v.
+        image.className = "blankImg";
+        image.src = "http://maps.gstatic.com/mapfiles/mv/imgs8.png";
+
+        var label = document.createElement('LABEL'); //E:It creates a tag "LABEL" with the name Label.
+        label.className = "checkboxLabel";
+        label.innerHTML = options.label;
+
+        container.appendChild(label); // If this DOM goes at the end, order of presentation will be switch
+        bDiv.appendChild(image);
+        span.appendChild(bDiv);
+        container.appendChild(span);
+
+        //E: This lines draws the check box into the map, as it is called the 'checkBox' function. The "checked" or
+        // "unchecked" condition is controlled from the 'css' file
+        google.maps.event.addDomListener(container,'click',function(){
+            (document.getElementById(bDiv.id).style.display == 'none') ? document.getElementById(bDiv.id).style
+                .display = 'block' : document.getElementById(bDiv.id).style.display = 'none';
+            toggleLayerNew(conserveArray, notill);
+//            alert(this.id); // option to add some alert
+            options.action(); // option to add some other function
+        });
+        return container;
+    }
+    
+    //E: (7)Function for Wetlands checkbox (Wetlands)
+    function checkBox_Wetlands(options) { //E: Function for checkbox No Tillage
+        var container = document.createElement('DIV'); //first make the outer container
+        container.className = "checkboxContainer";
+        container.title = options.title;
+        container.id = options.id1;
+
+        var span = document.createElement('SPAN'); //E:It creates the check-box square
+        span.role = "checkbox";
+        span.className = "checkboxSpan";
+
+        var bDiv = document.createElement('DIV'); //E:It creates a blank DIV to draw the "check" symbol v.
+        bDiv.className = "blankDiv";
+        bDiv.id = options.id2;
+
+        var image = document.createElement('IMG'); //E:It creates a tag "IMG" with the check symbol v.
+        image.className = "blankImg";
+        image.src = "http://maps.gstatic.com/mapfiles/mv/imgs8.png";
+
+        var label = document.createElement('LABEL'); //E:It creates a tag "LABEL" with the name Label.
+        label.className = "checkboxLabel";
+        label.innerHTML = options.label;
+
+        container.appendChild(label); // If this DOM goes at the end, order of presentation will be switch
+        bDiv.appendChild(image);
+        span.appendChild(bDiv);
+        container.appendChild(span);
+
+        //E: This lines draws the check box into the map, as it is called the 'checkBox' function. The "checked" or
+        // "unchecked" condition is controlled from the 'css' file
+        google.maps.event.addDomListener(container,'click',function(){
+            (document.getElementById(bDiv.id).style.display == 'none') ? document.getElementById(bDiv.id).style
+                .display = 'block' : document.getElementById(bDiv.id).style.display = 'none';
+            toggleLayerNew(wetArray, wetlands);
+//            alert(this.id); // option to add some alert
+            options.action(); // option to add some other function
+        });
+        return container;
+    }
+
+
+    // -----------------------  Function for Second way  ------------------------
+    function bmp1_ckbox_function(controlDiv, map) {
+        //Based on: https://stackoverflow.com/questions/28155703/custom-button-with-google-maps-drawing
+        // Set CSS for the control border.
+        var controlUI = document.createElement('div');
+        controlUI.style.backgroundColor = '#ffffff';//'#99ff66';
+        controlUI.style.height = '23px';
+//        controlUI.style.marginTop = '5px';
+        controlUI.style.marginLeft = '-9px';
+        controlUI.style.paddingTop = '1px';
+        controlUI.style.cursor = 'pointer';
+        controlUI.style.display = 'inline-flex';
+        controlUI.title = 'Your Custom function..';
+        controlUI.className = 'controlUI';
+        controlDiv.appendChild(controlUI);
+
+        // Set CSS for the control interior.
+        var controlText = document.createElement('div');
+        controlText.style.padding = '2px';
+        controlText.innerHTML = 'Crop Rotation+';
+        controlText.style.color = '#000000';
+
+        var span = document.createElement('SPAN'); //E:It creates the check-box square
+        span.role = "checkbox";
+        span.className = "checkboxSpan";
+//
+        var bDiv = document.createElement('DIV'); //E:It creates a blank DIV to draw the "check" symbol v.
+        bDiv.className = "blankDiv";
+        bDiv.id = 'bmp1_box';//options.id;
+//
+        var image = document.createElement('IMG'); //E:It creates a tag "IMG" with the check symbol v.
+        image.className = "blankImg";
+        image.src = "http://maps.gstatic.com/mapfiles/mv/imgs8.png";
+//
+        controlUI.appendChild(controlText);
+        
+        bDiv.appendChild(image);
+        span.appendChild(bDiv);
+        controlUI.appendChild(span);
+        
+        // Setup the click event listeners
+        google.maps.event.addDomListener(controlUI,'click',function(){
+            (document.getElementById(bDiv.id).style.display == 'block') ? document.getElementById(bDiv.id).style
+                .display = 'none' : document.getElementById(bDiv.id).style.display = 'block';
+        });
+    }
+    // ---------------------  End Function for Second way -------------------
+    
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$  End  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    
+</script>
+
 </body>
+<!-- not used
+<i style="font-size:20px;color:red" class="fa">&#xf103;</i>
+-->
 </html>

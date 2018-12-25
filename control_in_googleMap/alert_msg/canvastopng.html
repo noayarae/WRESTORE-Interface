@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas1" width="25" height="25"
+        style="border:1px solid #c3c3c3; display: none">
+    Your browser does not support the canvas element.
+</canvas>
+<div id="insert1">hello</div>
+
+<!-- This sets the frame of the circle -->
+<canvas id="myCanvas2" width="50" height="50" style="display: none; border:1px solid #c3c3c3">
+    Your browser does not support the canvas element.
+</canvas>
+<div id="insert2">hello2</div>
+
+<script>
+    var canvas1 = document.getElementById("myCanvas1");
+    var ctx1 = canvas1.getContext("2d");
+//    ctx1.fillStyle = "#af3001";
+//    ctx1.fillRect(0,0,20,20);
+    ctx1.beginPath();
+    ctx1.arc(15, 15, 9.5, 0, 2 * Math.PI);
+    ctx1.fillStyle = "black";
+    ctx1.fill();
+
+    var div1 = document.getElementById("insert1");
+    var var1 = new convertCanvasToImage(canvas1);//    alert("alert:" + var1);
+    div1.appendChild(var1);
+
+    var canvas2 = document.getElementById("myCanvas2");
+    var ctx2 = canvas2.getContext("2d");
+    ctx2.beginPath();
+    ctx2.arc(15, 15, 10, 0, 2 * Math.PI);
+    ctx2.fillStyle = "green";
+    ctx2.fill();
+
+    var canvas3 = document.getElementById("myCanvas2");
+    var ctx3 = canvas3.getContext("2d");
+    ctx3.beginPath();
+    ctx3.arc(15, 15, 10.5, 0, 2 * Math.PI);
+    ctx3.fillStyle = "red";
+    ctx3.fill();
+
+    var div2 = document.getElementById("insert2");
+    var var2 = new convertCanvasToImage(canvas2);//    alert("alert:" + var1);
+    div2.appendChild(var2);
+
+    var div3 = document.getElementById("insert2");
+    var var3 = new convertCanvasToImage(canvas3);//    alert("alert:" + var1);
+    div3.appendChild(var3);
+
+    function convertCanvasToImage(canvas) {
+        var image = new Image();
+        image.src = canvas.toDataURL("image/png");
+        return image;
+    }
+
+//    var canvasdom = document.createElement('CANVAS');
+//    var ctxdom = canvasdom.getContext("2d");
+//    canvasdom.id = 'myCanvas2';
+//    canvasdom.style.width = '180px';
+//    canvasdom.style.height = '50px';
+//    canvasdom.style.border = '1px solid #0000FF';
+//    //    var ctxdom = canvasdom.getContext("2d");
+//    ctxdom.fillStyle = "#FF0000";
+//    ctxdom.fillRect(0,0,50,40);//(x,y,width, height)
+//
+//    var divd = document.getElementById("insert2");
+//    var vard = new convertCanvasToImage(canvasdom);
+//    divd.appendChild(vard);
+
+</script>
+
+</body>
+</html>

@@ -35,17 +35,18 @@
   var crop;
   var crop2;
   var filterColor;
-  var blueIcon = "http://wrestore.iupui.edu/model/images/green.png";
-  var starIcon = "http://wrestore.iupui.edu/model/images/gw.png";
+  // var blueIcon = "http://wrestore.iupui.edu/model/images/green.png";
+  // var starIcon = "http://wrestore.iupui.edu/model/images/gw.png";
   var tillIcon = "http://wrestore.iupui.edu/model/images/noTill.png";
   var wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands.png";
   var grassIcon = "http://wrestore.iupui.edu/model/images/grass.png";
   var wetlandsize;
   var filterAcre;
-  var size;
+  // var size;
   // var obj;
   //var obj1;
   var lots = [];
+  // var cccc = 0;
 
   // This is firing off around 800 of tools.php	
 
@@ -56,19 +57,247 @@
       $('#toolpic').empty();
       //$('#tools').append('Click anywhere on this yellow bar for additional info on the icons representing these practices<br/>');
 
-      map1 = new google.maps.Map(document.getElementById('map_canvas1'), {
+      // var new_icon = $('#new_icon').get(0); // this is for adding a button icon for full screen
+      map1 = new google.maps.Map(document.getElementById('map_canvas1'),{
           center: new google.maps.LatLng(39.9778, -86.2959),
-          zoom: 11,
+          zoom: 10.5,
+          disableDefaultUI: true, //E:it disables all default icons from google map
           mapTypeId: google.maps.MapTypeId.ROADMAP,
-
-          mapTypeControl: true,
+          mapTypeControl: false, //E: It disables type of map option
           mapTypeControlOptions: {
-              style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+              style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR
+          //     position: google.maps.ControlPosition.TOP_CENTER
+          },
+          zoomControl: false,
+          zoomControlOptions: {
               position: google.maps.ControlPosition.TOP_CENTER
           },
-          streetViewControl: false,
-          scaleControl: true
+          // streetViewControl: false,
+          // streetViewControlOptions: { position: google.maps.ControlPosition.LEFT_TOP},
+          fullscreenControl: true,
+          fullscreenControl: {
+              position: google.maps.ControlPosition.BOTTOM_RIGHT
+          },
+          scaleControl: false
       });
+
+      // ----------------- Start NEW Legend into the Main map---------------- //
+      // E: This part sets up a custom button into the map to display the legend
+      // These code-lines calls the js script located around 2620 in g2.php
+
+      var buttonOptions = {
+          gmap: map1,
+          name: 'Legend* ',
+          position: google.maps.ControlPosition.TOP_RIGHT,
+          // action: function(){
+          //     // map1.panTo(new google.maps.LatLng(-33.9, 151.2));
+          //     jQuery('.feat_content').toggle('show');
+          //     report('m-clk*** ' , 'Main-map Legend ');
+          //     // jQuery(alert("button added.. "));
+          //     // alert("button added.. ");
+          // },
+      };
+      var button1 = new buttonControl(buttonOptions);
+      //
+      //// This is a second button. By clicking on it you get a new position view of the map
+      // var buttonOptions = {
+      //     gmap: map1,
+      //     name: 'Home',
+      //     position: google.maps.ControlPosition.TOP_RIGHT,
+      //     action: function(){map1.panTo(new google.maps.LatLng(-33.9, 151.2));}
+      // };
+      // var button1 = new buttonControl(buttonOptions);
+
+      //  ---------------- end NEW Legend ----------------- //
+
+
+      // E: This three lines add new icon into map to replace the usual 'fullscreen' icon provided by google map
+      $('#fullscreen').click(function() {
+          $('#map_canvas1 div.gm-style button[title="Toggle fullscreen view"]').trigger('click');
+          // cccc = 1;
+
+          //// Add fullscreen events. When the full-screen is closed, it is registered.(It does not work for Firefox)
+          // document.addEventListener('webkitfullscreenchange', exitHandler);
+          // document.addEventListener('mozfullscreenchange', exitHandler);
+          // function exitHandler() {
+          //     if (!document.webkitIsFullScreen && !document.mozFullScreen) {
+          //         report('m-clk*** ' , 'out');
+          //         // document.removeEventListener("webkitfullscreenchange", exitHandler);
+          //     }
+          // }
+
+          // Add fullscreen's events. When they are out (close fullscreen), they are captured and reported into the DB
+          if (document.addEventListener) {
+              document.addEventListener('webkitfullscreenchange', exitHandler, false);
+              document.addEventListener('mozfullscreenchange', exitHandler, false);
+              document.addEventListener('fullscreenchange', exitHandler, false);
+              document.addEventListener('MSFullscreenChange', exitHandler, false);
+          }
+          // This function captures the close-fullscreen and reports into the DDBB
+          function exitHandler() {
+              if (!document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
+                  report('m-clk*** ','close_fullscreen');
+                  document.removeEventListener("webkitfullscreenchange", exitHandler);
+                  document.removeEventListener('mozfullscreenchange', exitHandler);
+                  document.removeEventListener('fullscreenchange', exitHandler);
+                  document.removeEventListener('MSFullscreenChange', exitHandler);
+              }
+          }
+
+      });
+
+
+      // // ======= Start Add NEW button into the main map (NOT IN USE FOR NOW) ========//
+      // var BMP_buttonOptions = {
+      //     gmap: map1,
+      //     name: 'Legend+ ',
+      //     // position: google.maps.ControlPosition.TOP_RIGHT,
+      //     position: google.maps.ControlPosition.TOP_LEFT,
+      //     action: function(){
+      //         // map1.panTo(new google.maps.LatLng(-33.9, 151.2));
+      //         // jQuery('.feat_content').toggle('show');
+      //         alert("button added.. ");
+      //     }
+      // };
+      // var BMP_buttons = new BMP_buttonControl(BMP_buttonOptions);
+      // // =========  End Add NEW button into the main map ======= //
+
+
+      // $$$$$$$$$$$$    create the check box items for the MAIN map $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+      //create the check box items (1),(2),(3),(4),(5),(6),(7)
+      var frame = document.createElement('DIV');
+      frame.className = 'BMP_checkboxes_frame';
+      var container1 = document.createElement('DIV');
+      container1.className = 'BMP_checkboxes_container1';
+      container1.style.display = 'inline-flex';
+      var container2 = document.createElement('DIV');
+      container2.className = 'BMP_checkboxes_container2';
+      container2.style.display = 'inline-flex';
+
+      // ---  (1) Menu for "Crop Rotation (cr)"
+      var cr_checkOptions = { //cr: "Crop Rotation"
+          title: "On/Off Crop Rotation", //"This allows for multiple selection/toggling on/off",
+          id1: "CropRot", // For container.id
+          id2: "CropRotation", // For bDiv.id
+          label: "Crop Rotation &nbsp", // "&nbsp;&nbsp;&nbsp;text"
+          action: function(){
+              report('m-clk*c ' , 'Crop Rotation click ');
+              // alert('you clicked check Crop Rotation');
+          }
+      };
+      var cr_checkbox = new checkBox_CropRotation(cr_checkOptions); //cr: "Crop Rotation"
+      // ---  (1) End Menu for "Crop Rotation (cr)"
+
+      // ---  (2) Menu for "Cover Crop (cc)"
+      var cc_checkOptions = { //cc: "Cover Crop"
+          title: "On/Off Cover Crop", //"This allows for multiple selection/toggling on/off",
+          id1: "CoverCrop1",
+          id2: "CoverCrop2",
+          label: "Cover Crop &nbsp", // "&nbsp;&nbsp;&nbsp;text"
+          action: function(){
+              report('m-clk*c ' , 'Cover Crop click ');
+              // alert('you clicked check Cover Crop');
+          }
+      };
+      var cc_checkbox = new checkBox_CoverCrop(cc_checkOptions); //cc: "Cover Crop"
+      // ---  (2) End Menu for "Cover Crop (cc)"
+
+      // ---  (3) Menu for "Strip Cropping (sc)"
+      var sc_checkOptions = { //sc: "Strip Cropping"
+          title: "On/Off Strip Cropping",
+          id1: "StripCropping1",
+          id2: "StripCropping2",
+          label: "Strip Cropping &nbsp", // "&nbsp;&nbsp;&nbsp;text"
+          action: function(){
+              report('m-clk*c ' , 'Strip Cropping click ');
+              // alert('you clicked check Cover Crop');
+          }
+      };
+      var sc_checkbox = new checkBox_StripCropping(sc_checkOptions); //sc: "Strip Cropping"
+      // ---  (3) End Menu for "Strip Cropping (sc)"
+
+      // ---  (4) Menu for "Filter Strip (fs)"
+      var fs_checkOptions = { //fs: "filter strip"
+          title: "On/Off Filter Strip", //"This allows for multiple selection/toggling on/off",
+          id1: "FilterStr",
+          id2: "Filter",
+          label: "Filter Strips &nbsp", // "&nbsp;&nbsp;&nbsp;text"
+          action: function(){
+              report('m-clk*c ' , 'Filter Cropping click ');
+              // alert('you clicked check 1');
+          }
+      };
+      var fs_checkbox = new checkBox_FilterStrip(fs_checkOptions); //fs: "filter strip"
+      // ---  (4) End Menu for "Filter Strip (fs)"
+
+      // ---  (5) Menu for "Grass waterways (gw)"
+      var gw_checkOptions = { //gw: "Grasswaterways"
+          title: "On/Off Grass waterways", //"This allows for multiple selection/toggling on/off",
+          id1: "Grasswaterways1",
+          id2: "Grasswaterways2",
+          label: "Grasswaterways &nbsp", // "&nbsp;&nbsp;&nbsp;text"
+          action: function(){
+              report('m-clk*c ' , 'Grass Waterways click ');
+              // alert('you clicked check 1');
+          }
+      };
+      var gw_checkbox = new checkBox_Grasswaterways(gw_checkOptions); //gw: "Grass waterways"
+      // ---  (5) End Menu for "Grass waterways (gw)"
+
+      // ---  (6) Menu for "No Tillage (nt)"
+      var nt_checkOptions = { //nt: "No Tillage"
+          title: "On/Off No Tillage", //"This allows for multiple selection/toggling on/off",
+          id1: "NoTillage1",
+          id2: "NoTillage2",
+          label: "Conservation Tillage &nbsp", // "&nbsp;&nbsp;&nbsp;text"
+          action: function(){
+              report('m-clk*c ' , 'Conservation Tillage click ');
+              // alert('you clicked check 1');
+          }
+      };
+      var nt_checkbox = new checkBox_NoTillage(nt_checkOptions); //nt: "NoTillage"
+      // ---  (6) End Menu for "No Tillage (nt)"
+
+      // ---  (7) Menu for "Wetlands (wt)"
+      var wt_checkOptions = { //wt: "Wetlands"
+          title: "On/Off Wetlands", //"This allows for multiple selection/toggling on/off",
+          id1: "Wetlands1",
+          id2: "Wetlands2",
+          label: "Wetlands &nbsp", // "&nbsp;&nbsp;&nbsp;text"
+          action: function(){
+              report('m-clk*c ' , 'Wetlands click ');
+              // alert('you clicked check 1');
+          }
+      };
+      var wt_checkbox = new checkBox_Wetlands(wt_checkOptions); //wt: "Wetlands"
+      // ---  (7) End Menu for "Wetlands (wt)"
+
+      container2.appendChild(cr_checkbox); //E: (1) Append "Crop Rotation"
+      container2.appendChild(cc_checkbox); //E: (2) Append "Cover Crop"
+      container2.appendChild(sc_checkbox); //E: (3) Append "Strip Cropping"
+      container2.appendChild(fs_checkbox); //E: (4) Append "Filter Strip"
+      container2.appendChild(gw_checkbox); //E: (5) Append "Grasswaterways"
+      container2.appendChild(nt_checkbox); //E: (6) Append "No Tillage"
+      container2.appendChild(wt_checkbox); //E: (7) Append "Wetlands"
+
+      container1.appendChild(container2);
+      frame.appendChild(container1);
+
+      map1.controls[google.maps.ControlPosition.TOP_RIGHT].push(frame); //E: position of "frame" div into te map
+
+      google.maps.event.addDomListener(frame,'click',function(){ //E: Add event "frame" to the map
+      });
+
+      // // ****************  Start a Second way to get check button in the main-map *************
+      // // It calls the 'bmp1_ckbox_function' function at g2.php. Line: 2893
+      // var box_bmp1 = document.createElement('DIV');
+      // var box_bmp1_exit = new bmp1_ckbox_function(box_bmp1,map1);
+      // map1.controls[google.maps.ControlPosition.TOP_CENTER].push(box_bmp1);
+      // // ***********************  End Second way *****************
+
+      // =========  End create the check box items $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ ======= //
+
 
       // map2 = new google.maps.Map(document.getElementById('map_canvas2'), {
       //     center: new google.maps.LatLng(39.9778, -86.2959),
@@ -82,11 +311,11 @@
       number.setMap(map1);*/
       ////////////////////////////////////////////////////////////
 
+
       google.maps.event.addListener(map1, 'click', function goToTimeMap1() {
           // alert ("Suggestion " + (+oneMap + +1) + " - Outside watershed+"); // newalert
           report('m-clk+', 'Sug:' + (+oneMap + +1) + '  Outside-watershed',';'); // track the suggestion and outside
       });
-
       // google.maps.event.addListener(map2, 'click', function goToTimeMap2() {
       //     report('m-clk+', 'Sug:' + (+twoMap + +1) + '  Outside-watershed',';'); // track the suggestion and outside
       // });
@@ -94,7 +323,8 @@
       //This draws the subbasins
       doBackground();
 
-      //I check through an array and if the title appears in it that means we have data for that BMP. Each function that is called makes the two maps. You will see them inside of each function. Only background doesnt do this because the background is the same with either map. 
+      //I check through an array and if the title appears in it that means we have data for that BMP. Each function
+      // that is called makes the two maps. You will see them inside of each function. Only background doesnt do this because the background is the same with either map.
       $.each(forMapArray, function(index, value) {
           //alert("YES"); 
           if (forMapArray[index]["Title"] == "crop_rotation") {
@@ -164,7 +394,8 @@
           var encodedQuery = encodeURIComponent(query);
           url.push(encodedQuery);
           url.push('&callback=drawBack');
-          url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+          // url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+          url.push('&key=IzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
           script.src = url.join('');
           var body = document.getElementsByTagName('body')[0];
           body.appendChild(script);
@@ -173,7 +404,6 @@
       // ----------- end of 'doBack'
 
       // ----------- start 'drawBack'
-
       drawBack = function(data) {
               //function drawWet1(data) {
               //alert("ON");
@@ -204,29 +434,27 @@
                       strokeWeight: 1,
                       fillOpacity: 0,
                       fillColor: "#ffffff",
+                      // fillColor: "#a182f1",//"#ffffff",
                       clickable: true,
-                      indexID: whichNode,
+                      indexID: whichNode
+                  });
 
-                  })
-
-                  var background1 = new google.maps.Polygon({
-                      path: newCoordinates,
-                      //strokeColor: colors[0],
-                      strokeOpacity: .6,
-                      strokeWeight: 1,
-                      fillOpacity: 0,
-                      fillColor: "#ffffff",
-                      clickable: true,
-                      indexID: whichNode,
-                  })
-
-
+                  //// For Map2
+                  // var background1 = new google.maps.Polygon({
+                  //     path: newCoordinates,
+                  //     //strokeColor: colors[0],
+                  //     strokeOpacity: .6,
+                  //     strokeWeight: 1,
+                  //     fillOpacity: 0,
+                  //     fillColor: "#11ffff",//"#ffffff",
+                  //     clickable: true,
+                  //     indexID: whichNode
+                  // });
 
                   background.setMap(map1);
                   //var listAll
                   var obj = find(subBasinArray, 'subbasinID', whichNode);
                   if (obj) {
-
                       var listAll = "Sub-basin Area: " + acres + " acres | Stream Length+: " + rivers + " miles <br" +
                           " />" + JSON.stringify(obj);
                       listAll = listAll.replace(/"0.0"/g, "No");
@@ -247,17 +475,19 @@
                       //alert (listAll);
                   } else {
                       var listAll = "Sub-basin Area: " + acres + " acres | Stream Length: " + rivers + " miles <br />" + "Sub-basin ID: " + whichNode;
-                  };
+                  }
 
                   var obj = {
-                      'list': listAll,
+                      'list': listAll
                   };
                   background.objInfo = obj;
                   google.maps.event.addListener(background, 'click', function(event) {
                       console.log("in map 1");
 
                       $('.displayStuff').html(this.objInfo.list);
-                      var abc = this.objInfo.list + '<br><div class="displayStuffb" name="What Do They Mean"><a target="_blank" href="infoBox.html" rel="shadowbox;height=640;width=620" name="What Do They Mean"><strong><em name="What Do They Mean">What do these numbers mean?</em></strong></a></div>';
+                      var abc = this.objInfo.list + '<br><div class="displayStuffb" name="What Do They Mean">' +
+                          '<a target="_blank" href="infoBox.html" rel="shadowbox;height=640;width=620" name="What Do They Mean">' +
+                          '<strong><em name="What Do They Mean">What do these numbers mean?</em></strong></a></div>';
                       infowindow2 = new google.maps.InfoWindow({
                           content: abc,
                           position: event.latLng
@@ -274,20 +504,13 @@
                           success: function(data) {
                           }
                       }); //*/
-
                   });
 
-
-
                   backArray.push(background);
-
-
               }
               //map.fitBounds(bounds);
-          }
+          };
           // ---------- end 'drawBack'
-
-
       ///////////////////////////  EndBACKGROUND////////////////////////
 
 
@@ -295,29 +518,20 @@
 
       function doFilterStrips() {
           //  alert(JSON.stringify(lots));
-          //   var myOptions = {
-          //    center: new google.maps.LatLng(39.838264982256035,-86.0098324295571),
-          //zoom: 10,
-          //   mapTypeId: google.maps.MapTypeId.ROADMAP
-          // };
-
-          // map = new google.maps.Map(document.getElementById('map-canvas'),
-          //    myOptions); 
-          // map1 = new google.maps.Map(document.getElementById('map-canvas1'),
-          //    myOptions); 
           dofilter1();
           // dofilter2();
 
-          /* $('#tools').append('&nbsp;&nbsp;Filter Strips<input name="bmpType" type="checkbox"' +
-               ' checked value="filterStrips"  onClick="toggleLayerNew(filterArray,filterArray2,filter)"> ');//*/
-          // Below, a second function to track 'click' and 'un-click' action was added.
-          $('#tools').append('&nbsp;&nbsp;Filter Strips<input class="fs" name="bmpType" type="checkbox" checked value="filterStrips"' +
-              ' onClick="toggleLayerNew(filterArray,filterArray2,filter);track_check_filterStrip();"> ');
-          //*/
-          $('#toolpic').append('<img alt="WordPress" src="images/key_filterstrips.jpg" />');
+          // $('#tools').append('&nbsp;&nbsp;Filter Strips<input name="bmpType" type="checkbox"' +
+          //      ' checked value="filterStrips"  onClick="toggleLayerNew(filterArray,filterArray2,filter)"> ');
 
+          // THIS WAS OFF BECAUSE A NEW BMP-BAR WAS BUILT INTO THE MAIN MAP
+          // Below, a second function to track 'click' and 'un-click' action was added.
+          // $('#tools').append('&nbsp;&nbsp;Filter Strips<input class="fs" name="bmpType" type="checkbox" checked value="filterStrips"' +
+          //     ' onClick="toggleLayerNew(filterArray, filter);track_check_filterStrip();"> ');
+
+          // $('#toolpic').append('<img alt="WordPress" src="images/key_filterstrips.jpg" />');
       }
-      ////////END starting Filter Strips//////////////////
+      //////// --- END starting Filter Strips --- //////////////////
 
       // -----------  start 'dofilter1'
       function dofilter1() {
@@ -393,14 +607,9 @@
                       default:
                           filterColor = "";
                           break;
-
-                          //return wetlandsIcon;	
-
                   }
 
                   //alert(wetlandsIcon + ":" + wetlandsize);
-
-
               }
 
               //alert (whichNode);
@@ -411,28 +620,23 @@
               var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
               //answersArray[oneMap].RATING
 
-
-
               filter = new google.maps.Polyline({
                   path: newCoordinates,
                   strokeColor: filterColor,
                   strokeOpacity: 1,
                   strokeWeight: 2,
-                  fillColor: "#daca43",
-              })
+                  fillColor: "#daca43"
+              });
               filter.setMap(map1);
               filterArray.push(filter);
           }
           //map.fitBounds(bounds);
-      }
+      };
 
       // -----------  end 'drawfilter1'
 
-
-
       // -----------  start 'dofilter2'
       // -----------  end 'dofilter2'
-
 
       // -----------  start 'drawFilter2'
       // -----------  end 'drawFilter2'
@@ -442,24 +646,16 @@
       ////////////////////////  Begin COVER CROPS  //////////////////////////////
 
       function doCoverCrops() {
-          //   var myOptions = {
-          //    center: new google.maps.LatLng(39.838264982256035,-86.0098324295571),
-          //zoom: 10,
-          //   mapTypeId: google.maps.MapTypeId.ROADMAP
-          // };
-
-          // map = new google.maps.Map(document.getElementById('map-canvas'),
-          //    myOptions); 
-          // map1 = new google.maps.Map(document.getElementById('map-canvas1'),
-          //    myOptions); 
           docover1();
           // docover2();
           // $('#tools').append('&nbsp;&nbsp;<span style="color:#99c9ba"><strong>Cover Crops</strong></span><input name="bmpType" type="checkbox" checked value="coverCrops" onClick="toggleLayerNew(coverArray,coverArray2,cover)"> ');
-          $('#tools').append('&nbsp;&nbsp;<span style="color:#99c9ba"><strong>Cover Crops</strong></span>' +
-              '<input class="cc" name="bmpType" type="checkbox"' +
-              ' checked value="coverCrops" onClick="toggleLayerNew(coverArray,coverArray2,cover);track_check_coverCrop();"> ');
-          //*/
-          $('#toolpic').append('<img alt="WordPress" src="images/key_covercrops.jpg" />');
+
+          // THIS WAS OFF BECAUSE A NEW BMP-BAR WAS BUILT INTO THE MAIN MAP
+          // $('#tools').append('&nbsp;&nbsp;<span style="color:#99c9ba"><strong>Cover Crops</strong></span>' +
+          //     '<input class="cc" name="bmpType" type="checkbox"' +
+          //     ' checked value="coverCrops" onClick="toggleLayerNew(coverArray, cover);track_check_coverCrop();"> ');
+          //
+          // $('#toolpic').append('<img alt="WordPress" src="images/key_covercrops.jpg" />');
       }
       // ------------  end 'doCoverCrops'
 
@@ -483,7 +679,8 @@
           var encodedQuery = encodeURIComponent(query);
           url.push(encodedQuery);
           url.push('&callback=drawCover1');
-          url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+          // url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+          url.push('&key=IzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
           script.src = url.join('');
           var body = document.getElementsByTagName('body')[0];
           body.appendChild(script);
@@ -522,8 +719,8 @@
                   strokeWeight: 1,
                   fillOpacity: 1,
                   fillColor: "#99c9ba",
-                  indexID: whichNode,
-              })
+                  indexID: whichNode
+              });
               cover.setMap(map1);
 
 
@@ -548,10 +745,10 @@
                   //alert (listAll);
               } else {
                   var listAll = "Sub-basin Area: " + acres + " acres | Stream Length: " + rivers + " miles <br />" + "Sub-basin ID: " + whichNode;
-              };
+              }
 
               var obj = {
-                  'list': listAll,
+                  'list': listAll
               };
               cover.objInfo = obj;
               google.maps.event.addListener(cover, 'click', function(event) {
@@ -580,7 +777,7 @@
 
           }
           //map.fitBounds(bounds);
-      }
+      };
       // ------------  end 'drawCover1'
 
       // ------------  start 'doCover2'
@@ -593,29 +790,20 @@
       /////////////////Begin Crop Rotation///////////////////////////////////////
 
       function doCropRotation() {
-          //   var myOptions = {
-          //    center: new google.maps.LatLng(39.838264982256035,-86.0098324295571),
-          //zoom: 10,
-          //   mapTypeId: google.maps.MapTypeId.ROADMAP
-          // };
-
-          // map = new google.maps.Map(document.getElementById('map-canvas'),
-          //    myOptions); 
-          // map1 = new google.maps.Map(document.getElementById('map-canvas1'),
-          //    myOptions); 
           docrop1();
           // docrop2();
           // $('#tools').append('&nbsp;&nbsp;<span style="color:#8da1bf"><strong>Crop Rotation</strong></span><input name="bmpType" type="checkbox" checked value="cropRotation" onClick="toggleLayerNew(cropArray,cropArray2,crop)"> ');
-          $('#tools').append('&nbsp;&nbsp;<span style="color:#8da1bf"><strong>Crop Rotation</strong></span>' +
-              '<input class="cr" name="bmpType" type="checkbox" checked value="cropRotation"' +
-              ' onClick="toggleLayerNew(cropArray,cropArray2,crop);track_check_cropRotation();"> ');
-          $('#toolpic').append('<img alt="WordPress" src="images/key_cropRotation.jpg" />');
+
+          // THIS WAS OFF BECAUSE A NEW BMP-BAR WAS BUILT INTO THE MAIN MAP
+          // $('#tools').append('&nbsp;&nbsp;<span style="color:#8da1bf"><strong>Crop Rotation</strong></span>' +
+          //     '<input class="cr" name="bmpType" type="checkbox" checked value="cropRotation"' +
+          //     ' onClick="toggleLayerNew(cropArray, crop);track_check_cropRotation();"> ');
+          // $('#toolpic').append('<img alt="WordPress" src="images/key_cropRotation.jpg" />');
       }
       // ------------  end 'doCropRotation'
 
       // ------------  start 'docrop1'
       function docrop1() {
-
           var obj = find(forMapArray, 'Title', 'crop_rotation');
           if (obj) {
               //alert("in it");
@@ -624,9 +812,7 @@
               var strLen = listofSubs.length;
               var listofSubs = listofSubs.slice(0, strLen - 1);
               //alert(listofSubs);
-
           }
-
 
           // listOfSubs=forMapArray1["crop_rotation"];
           //alert(listOfSubs);
@@ -640,7 +826,10 @@
           var encodedQuery = encodeURIComponent(query);
           url.push(encodedQuery);
           url.push('&callback=drawCrop1');
-          url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+          // url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+          url.push('&key=1ZBdUCcDAjB0w94aiSRybOvnbtUxHYrvaMmeljHaD');
+          // 1ZBdUCcDAjB0w94aiSRybOvnbtUxHYrvaMmeljHaD
+          // https://fusiontables.google.com/DataSource?docid=1ZBdUCcDAjB0w94aiSRybOvnbtUxHYrvaMmeljHaD#map:id=3
           script.src = url.join('');
           var body = document.getElementsByTagName('body')[0];
           body.appendChild(script);
@@ -679,8 +868,8 @@
                   strokeWeight: 1,
                   fillOpacity: 1,
                   fillColor: "#8da1bf",
-                  indexID: whichNode,
-              })
+                  indexID: whichNode
+              });
               crop.setMap(map1);
 
               var obj = find(subBasinArray, 'subbasinID', whichNode);
@@ -704,10 +893,10 @@
                   //alert (listAll);
               } else {
                   var listAll = "Sub-basin Area: " + acres + " acres | Stream Length: " + rivers + " miles <br />" + "Sub-basin ID: " + whichNode;
-              };
+              }
 
               var obj = {
-                  'list': listAll,
+                  'list': listAll
               };
               crop.objInfo = obj;
               google.maps.event.addListener(crop, 'click', function(event) {
@@ -733,7 +922,6 @@
 
               });
 
-
               cropArray.push(crop);
           }
           //map.fitBounds(bounds);
@@ -758,10 +946,12 @@
           dostrip1();
           // dostrip2();
           // $('#tools').append('&nbsp;&nbsp;<span style="color:#87b07e"><strong>Strip Cropping</strong></span><input name="bmpType" type="checkbox" checked value="stripCropping" onClick="toggleLayerNew(stripArray,stripArray2,strip)">&nbsp;');
-          $('#tools').append('&nbsp;&nbsp;<span style="color:#87b07e"><strong>Strip Cropping</strong></span>' +
-              '<input class="sc" name="bmpType" type="checkbox" checked value="stripCropping"' +
-              ' onClick="toggleLayerNew(stripArray,stripArray2,strip);track_check_stripCropping();">&nbsp;');
-          $('#toolpic').append('<img alt="WordPress" src="images/key_stripCropping.jpg" />');
+
+          // THIS WAS OFF BECAUSE A NEW BMP-BAR WAS BUILT INTO THE MAIN MAP
+          // $('#tools').append('&nbsp;&nbsp;<span style="color:#87b07e"><strong>Strip Cropping</strong></span>' +
+          //     '<input class="sc" name="bmpType" type="checkbox" checked value="stripCropping"' +
+          //     ' onClick="toggleLayerNew(stripArray, strip);track_check_stripCropping();">&nbsp;');
+          // $('#toolpic').append('<img alt="WordPress" src="images/key_stripCropping.jpg" />');
       }
       // ----------------  end 'doStripCropping()'
 
@@ -823,8 +1013,8 @@
                   strokeWeight: 1,
                   fillOpacity: 1,
                   fillColor: "#87b07e",
-                  indexID: whichNode,
-              })
+                  indexID: whichNode
+              });
               strip.setMap(map1);
               var obj = find(subBasinArray, 'subbasinID', whichNode);
               var jonArray = [];
@@ -848,10 +1038,10 @@
                   //alert (listAll);
               } else {
                   var listAll = "Sub-basin Area: " + acres + " acres | Stream Length: " + rivers + " miles <br />" + "Sub-basin ID: " + whichNode;
-              };
+              }
 
               var obj = {
-                  'list': listAll,
+                  'list': listAll
               };
               strip.objInfo = obj;
               google.maps.event.addListener(strip, 'click', function(event) {
@@ -881,8 +1071,7 @@
               stripArray.push(strip);
           }
           //map.fitBounds(bounds);
-      }
-
+      };
       // ---------------  end 'drawStrip1'
 
 
@@ -919,9 +1108,11 @@
           dowetlands1();
           // dowetlands2();
           // $('#tools').append('&nbsp;&nbsp;Wetlands<input name="bmpType" type="checkbox" checked value="wetlands" onClick="toggleLayerNew(wetArray,wetArray2,wetlands)">');
-          $('#tools').append('&nbsp;&nbsp;Wetlands<input class="wt" name="bmpType" type="checkbox" checked' +
-              ' value="wetlands" onClick="toggleLayerNew(wetArray,wetArray2,wetlands);track_check_wetland();">');
-          $('#toolpic').append('<img alt="WordPress" src="images/key_wetlands.jpg" />');
+
+          // THIS WAS OFF BECAUSE A NEW BMP-BAR WAS BUILT INTO THE MAIN MAP
+          // $('#tools').append('&nbsp;&nbsp;Wetlands<input class="wt" name="bmpType" type="checkbox" checked' +
+          //     ' value="wetlands" onClick="toggleLayerNew(wetArray, wetlands);track_check_wetland();">');
+          // $('#toolpic').append('<img alt="WordPress" src="images/key_wetlands.jpg" />');
       }
       // -------------- end 'dobinaryWetlands()'
       // -------------- start 'dowetlands1()'
@@ -953,6 +1144,18 @@
       drawWet1 = function(data) {
           var rows = data['rows'];
           //var whichNode=100;
+
+          // function to convert SVG To Image(SVG) {
+          function svg_to_img(arg1){
+              // var svg = document.getElementById('svg6');
+              var svg = document.getElementById(arg1);
+              var xml = new XMLSerializer().serializeToString(svg);
+              var svg64 = btoa(xml); //for utf8: btoa(unescape(encodeURIComponent(xml)))
+              var b64start = 'data:image/svg+xml;base64,';
+              var image64 = b64start + svg64;
+              return image64;
+          }
+
           for (var i in rows) {
               var newCoordinates = [];
               var whichNode = "";
@@ -969,47 +1172,47 @@
                           break;
 
                       case (wetlandsize < 2):
-                          wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands1.png";
+                          // wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands1.png";
+                          wetlandsIcon = svg_to_img('svg1');
                           break;
 
                       case ((wetlandsize >= 2) && (wetlandsize < 6)):
-                          wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands2.png";
+                          // wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands2.png";
+                          wetlandsIcon = svg_to_img('svg2');
                           break;
 
                       case ((wetlandsize >= 6) && (wetlandsize < 11)):
-                          wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands3.png";
+                          // wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands3.png";
+                          wetlandsIcon = svg_to_img('svg3');
                           break;
 
                       case ((wetlandsize >= 11) && (wetlandsize < 15)):
-                          wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands4.png";
+                          // wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands4.png";
+                          wetlandsIcon = svg_to_img('svg4');
                           break;
 
                       case ((wetlandsize >= 15) && (wetlandsize < 29)):
-                          wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands5.png";
+                          // wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands5.png";
+                          wetlandsIcon = svg_to_img('svg5');
                           break;
 
                       case ((wetlandsize >= 29) && (wetlandsize < 40)):
-                          wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands6.png";
+                          // wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands6.png";
+                          wetlandsIcon = svg_to_img('svg6');
                           break;
 
                       case ((wetlandsize >= 40)):
-                          wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands7.png";
+                          // wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands7.png";
+                          wetlandsIcon = svg_to_img('svg7');
                           break;
 
                       default:
                           wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands.png";
-
                           break;
-
-                          //return wetlandsIcon;	
-
+                          //return wetlandsIcon;
                   }
-
                   //alert(wetlandsIcon + ":" + wetlandsize);
-
-
               }
-
 
               //var geometries = rows[i][1]['geometry'];
               //alert (geometries)
@@ -1030,7 +1233,8 @@
               wetArray.push(wetlands);
           }
           //map.fitBounds(bounds);
-      } // -------------- end 'drawWet1'
+      };
+      // -------------- end 'drawWet1'
 
       // -------------- start 'dowetlands2()'
       // -------------- end 'dowetlands2()'
@@ -1048,7 +1252,7 @@
               strokeWeight: 1,
               fillColor: colors[0],
               fillOpacity: 0.3,
-              icon: wetlandsIcon,
+              icon: wetlandsIcon
           };
           //alert(wetlandsIcon);
           var opts = geoOptions;
@@ -1073,7 +1277,7 @@
               strokeWeight: 1,
               fillColor: colors[0],
               fillOpacity: 0.3,
-              icon: grassIcon,
+              icon: grassIcon
           };
           var opts = geoOptions;
           var newCoordinates = [];
@@ -1096,7 +1300,7 @@
               strokeWeight: 1,
               fillColor: colors[0],
               fillOpacity: 0.3,
-              icon: tillIcon,
+              icon: tillIcon
           };
           var opts = geoOptions;
           var newCoordinates = [];
@@ -1117,9 +1321,11 @@
           dotill1();
           // dotill2();
           // $('#tools').append('&nbsp;&nbsp;Conservation Tillage<input name="bmpType" type="checkbox"  checked value="conservationTillage" onClick="toggleLayerNew(conserveArray,conserveArray2,notill)"> ');
-          $('#tools').append('&nbsp;&nbsp;Conservation Tillage<input class="nt" name="bmpType" type="checkbox" checked value=' +
-              '"conservationTillage" onClick="toggleLayerNew(conserveArray,conserveArray2,notill);track_check_noTill();"> ');
-          $('#toolpic').append('<img alt="WordPress" src="images/key_conservation.jpg" />');
+
+          // THIS WAS OFF BECAUSE A NEW BMP-BAR WAS BUILT INTO THE MAIN MAP
+          // $('#tools').append('&nbsp;&nbsp;Conservation Tillage<input class="nt" name="bmpType" type="checkbox" checked value=' +
+          //     '"conservationTillage" onClick="toggleLayerNew(conserveArray, notill);track_check_noTill();"> ');
+          // $('#toolpic').append('<img alt="WordPress" src="images/key_conservation.jpg" />');
       }
       // ------- end 'doConserveTillage()'
 
@@ -1158,8 +1364,6 @@
               var whichNode = "";
               var row = rows[i];
               var whichNode = row[0];
-
-
               //var geometries = rows[i][1]['geometry'];
               //alert (geometries)
 
@@ -1173,7 +1377,8 @@
               // alert("In");
           }
           //map.fitBounds(bounds);
-      } //   ------- end 'drawTill1'
+      };
+      //   ------- end 'drawTill1'
 
       // ------- start 'dotill2()'
       // ------- end 'dotill2()'
@@ -1188,9 +1393,11 @@
           dograss1();
           // dograss2();
           // $('#tools').append('&nbsp;&nbsp;Grasswaterways<input name="bmpType" type="checkbox"  checked value="grassWaterWays" onClick="toggleLayerNew(grassArray,grassArray2,grass)"> ');
-          $('#tools').append('&nbsp;&nbsp;Grasswaterways <input class="gw" name="bmpType" type="checkbox" checked' +
-              ' value="grassWaterWays" onClick="toggleLayerNew(grassArray,grassArray2,grass);track_check_grassWaterway();"> ');
-          $('#toolpic').append('<img alt="WordPress" src="images/key_grass.png" />');
+
+          // THIS WAS OFF BECAUSE A NEW BMP-BAR WAS BUILT INTO THE MAIN MAP
+          // $('#tools').append('&nbsp;&nbsp;Grasswaterways <input class="gw" name="bmpType" type="checkbox" checked' +
+          //     ' value="grassWaterWays" onClick="toggleLayerNew(grassArray, grass);track_check_grassWaterway();"> ');
+          // $('#toolpic').append('<img alt="WordPress" src="images/key_grass.png" />');
       }
       // ------ end 'doGrassWaterway()'
       // ------ start 'dograss1()'
@@ -1235,7 +1442,6 @@
               var whichNode = row[0];
               //alert (whichNode);
 
-
               grass = geo;
               //var country = new google.maps.Marker({  
               // position:new google.maps.LatLng(newCoordinates),
@@ -1255,111 +1461,33 @@
       // ------------------------------------ start 'drawGrass2'
       // ------------------------------------ end 'drawGrass2'
       ////////END GW (Grassed Waterways) totally /////////////////////
-
-
-
+      
 
   } ///END MAPPING FUNCTION
 
-
-  function toggleLayerNew(whichArray, whichArray2, mapName) {
+  // function toggleLayerNew(whichArray, whichArray2, mapName) {
+  function toggleLayerNew(whichArray, mapName) {
       if (mapName.getMap()) {
-          //alert (cropArray);
+          // alert (cropArray);
           $.each(whichArray, function(index, value) {
-              //alert(value); 
+              // alert(value);
               value.setMap(null);
           });
-
-          $.each(whichArray2, function(index, value) {
-              //alert(value); 
-              value.setMap(null);
-          });
+          // $.each(whichArray2, function(index, value) {
+          //     value.setMap(null);
+          // });
 
       } else {
-
           $.each(whichArray, function(index, value) {
-              //alert(value); 
+              // alert(value);
               value.setMap(map1);
           });
-
-          $.each(whichArray2, function(index, value) {
-              //alert(value); 
-              value.setMap(map2);
-          });
-
-
-      };
-  }
-
-
-
-  function toggleLayerNewOld(this_layer, this_layer2) {
-      //alert (this_layer);
-      if (this_layer.getMap()) {
-          this_layer.setMap(null);
-          this_layer2.setMap(null);
-          alert("turn it off");
-      } else {
-          this_layer.setMap(map);
-          this_layer2.setMap(map);
-          alert("turn it on");
+          // $.each(whichArray2, function(index, value) {
+          //     value.setMap(map2);
+          // });
       }
   }
 
-
-
-
-  function toggleLayer(this_layer, this_layer2) {
-      if (typeof stripCropping === 'undefined') {
-          // variable is undefined
-      } else {
-          stripCropping.setMap(null);
-          stripCropping2.setMap(null);
-
-      }
-
-      if (typeof crop === 'undefined') {
-          crop.setMap(null);
-          // variable is undefined
-      } else {
-          crop.setMap(null);
-          crop2.setMap(null);
-
-      }
-
-      if (typeof grassWaterway === 'undefined') {
-          // variable is undefined
-      } else {
-          grassWaterway.setMap(null);
-          grassWaterway2.setMap(null);
-
-      }
-
-      if (typeof wetlands === 'undefined') {
-          // variable is undefined
-      } else {
-          wetlands.setMap(null);
-          wetlands2.setMap(null);
-      }
-
-      if (typeof notill === 'undefined') {
-          // variable is undefined
-      } else {
-          notill.setMap(null);
-          notill2.setMap(null);
-      }
-
-      //cropRotation.setMap(null);
-
-      //secondLayer=this_layer & "1";
-      //alert(secondLayer);
-      //background.setMap(null);
-      //background2.setMap(null);
-      //  this_layer.setMap(map1);
-      // this_layer2.setMap(map2);
-
-
-  }
 
   //alert(JSON.stringify(forMapArray));
   //Going to call the list of subbasins we need for this spot
@@ -1372,7 +1500,7 @@
       // return {}; // if you would want it null-safe
   }
 
-// ==================================  FUNCTION FOR TRACKING CHECKBOXS in LEGEND =============================== //
+// ====================  FUNCTION FOR TRACKING CHECKBOXS in LEGEND = (Added by E.Noa) =================== //
   //  (1) Filter-strip          (fs)
   //  (2) Cover-crops           (cc)
   //  (3) Crop-rotation         (cr)
@@ -1442,4 +1570,6 @@
           report('m-clk+', 'Un-check of ' + value_name + ';');// report('Un-check of', ' Filter-strips' + ';');
       }
   }
+// ================== END ->  FUNCTION FOR TRACKING CHECKBOXS in LEGEND = (Added by E.Noa) =================== //
+
 
