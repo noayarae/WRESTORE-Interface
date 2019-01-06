@@ -36,6 +36,7 @@ function init(){
 	// We obtain the timing of the first load of the page and report it, along with data about the status of the viewport.
 	mt_rprt_offset = getInstant();
 	if (report_begin){
+		var initial_time = 0;
 		report('begin', 'offset=' + mt_rprt_offset + ';vpw=' + $(window).width() + ';vph=' + $(window).height() + ';');
 	}
 

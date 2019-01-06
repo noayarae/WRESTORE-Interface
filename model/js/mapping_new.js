@@ -46,7 +46,6 @@
   // var obj;
   //var obj1;
   var lots = [];
-  // var cccc = 0;
 
   // This is firing off around 800 of tools.php	
 
@@ -114,8 +113,6 @@
       // E: This three lines add new icon into map to replace the usual 'fullscreen' icon provided by google map
       $('#fullscreen').click(function() {
           $('#map_canvas1 div.gm-style button[title="Toggle fullscreen view"]').trigger('click');
-          // cccc = 1;
-
           //// Add fullscreen events. When the full-screen is closed, it is registered.(It does not work for Firefox)
           // document.addEventListener('webkitfullscreenchange', exitHandler);
           // document.addEventListener('mozfullscreenchange', exitHandler);
@@ -387,19 +384,18 @@
           var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
           url.push('sql=');
           //Streams
-          /*var query = 'SELECT GRIDCODE, Area_Acres,Length_mil FROM ' +
-			 '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA';*/
+          // var query = 'SELECT GRIDCODE, Area_Acres,Length_mil FROM ' +
+			//  '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA';
           var query = 'SELECT GRIDCODE, geometry, Area_Acres,Length_mil FROM ' +
               '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA';
           var encodedQuery = encodeURIComponent(query);
           url.push(encodedQuery);
           url.push('&callback=drawBack');
-          // url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
-          url.push('&key=IzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+          url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+          // url.push('&key=IzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
           script.src = url.join('');
           var body = document.getElementsByTagName('body')[0];
           body.appendChild(script);
-          //alert("Wetlands1");
       }
       // ----------- end of 'doBack'
 
@@ -407,13 +403,19 @@
       drawBack = function(data) {
               //function drawWet1(data) {
               //alert("ON");
-              var rows = data['rows'];
+          var rows = data['rows'];
+          // alert("L-407 rows (Back): " + rows);//E:It show the list of sub-basins
+          // alert("rows: " + typeof 'rows');//alert("row: " + rows.length);//E: rows.length = 130
+          // alert("L-407 rows (Back): " + rows[0]);//E:alert. 'row[0]' is string and shows the sub-basin 129
+          // alert("Type row[0]: " + typeof 'rows[0]');//E:alert
+          // alert("row[0][1]['geometry']: " + rows[0][1]['geometry']);//E:alert
+
               //var whichNode=100;
               for (var i in rows) {
                   var newCoordinates = [];
                   var whichNode = "";
                   //var geometries = rows[i][1]['geometry'];
-                  //alert (geometries)
+                  // alert (geometries);
 
                   //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
                   var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
@@ -679,12 +681,10 @@
           var encodedQuery = encodeURIComponent(query);
           url.push(encodedQuery);
           url.push('&callback=drawCover1');
-          // url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
-          url.push('&key=IzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+          url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
           script.src = url.join('');
           var body = document.getElementsByTagName('body')[0];
           body.appendChild(script);
-          //alert("Wetlands1");
       }
       // ------------  end 'docover1'
 
@@ -826,14 +826,13 @@
           var encodedQuery = encodeURIComponent(query);
           url.push(encodedQuery);
           url.push('&callback=drawCrop1');
-          // url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
-          url.push('&key=1ZBdUCcDAjB0w94aiSRybOvnbtUxHYrvaMmeljHaD');
+          url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+          // url.push('&key=1ZBdUCcDAjB0w94aiSRybOvnbtUxHYrvaMmeljHaD');
           // 1ZBdUCcDAjB0w94aiSRybOvnbtUxHYrvaMmeljHaD
           // https://fusiontables.google.com/DataSource?docid=1ZBdUCcDAjB0w94aiSRybOvnbtUxHYrvaMmeljHaD#map:id=3
           script.src = url.join('');
           var body = document.getElementsByTagName('body')[0];
           body.appendChild(script);
-          //alert("Wetlands1");
       }
       // ------------  end 'docrop1'
 
@@ -977,9 +976,9 @@
           url.push('&callback=drawStrip1');
           url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
           script.src = url.join('');
+          // alert("script.src: " + url);
           var body = document.getElementsByTagName('body')[0];
           body.appendChild(script);
-          //alert("Wetlands1");
       }
       // ----------------  end 'dostrip1()'
 
@@ -1094,6 +1093,7 @@
               coordinates = coordinates[0];
               // alert("length = 1");
           }
+          // alert(coordinates);
           for (var i in coordinates) {
               newCoordinates.push(
                   new google.maps.LatLng(coordinates[i][1], coordinates[i][0]));

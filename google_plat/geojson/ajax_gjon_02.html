@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- This code finds a person's name within a JSON object -->
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .encontrado {color: green}
+        .no-encontrado {color:#EB2D43}
+    </style>
+</head>
+
+<body>
+<!-- 'onkeyup' executes the function 'ajax_get_json' each time the user up the key -->
+<!-- 'this' passes the value inserted by the user as parameter -->
+Buscar persona: <input type="text" onkeyup="ajax_get_json(this.value)"/>
+
+<div id="info"></div>
+
+<script type="text/javascript">
+
+    function ajax_get_json(usuarioIngresado){// the name inserted into the box is received here as 'usuarioIngresado'
+
+        var resultado = document.getElementById("info");// Get 'info' div as reference an store into 'resultado' variable
+        // Create a var 'xmlhttp' whose value depends by the navigator we are using
+        var xmlhttp; // variable to request the data
+        // Verify the type of navigator
+        if(window.XMLHttpRequest){
+            xmlhttp = new XMLHttpRequest(); // For new navigator
+        }else {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); // For IE
+        }
+
+        // Analize the number of characters inserted. If it is Zero (nothing was inserted) no message should be shown
+        if (usuarioIngresado.length === 0){
+            resultado.innerHTML = "";
+        }else {
+            xmlhttp.onreadystatechange = function () { //This property processes the answer sent by the server
+                if(xmlhttp.readyState === 4 && xmlhttp.status === 200){//(4) The request has been done, (200) The status was success
+                    // By 'xmlhttp.responseText' we get the server's answer as String byut we need to convert as JSON object
+                    var datos = JSON.parse(xmlhttp.responseText);//By 'parse' method we convert into JSON object and it is stored as 'datos'
+//                    console.log(datos); // By 'concole' we see the 'datos' results
+
+                    var x = encontrarPersona (datos, usuarioIngresado);// By 'encontrarPersona' function, this var finds the person into JSON object
+                    var mensaje = (x === true)? "<span class = 'encontrado'>Si fue encontrado</span>":
+                        "<span class = 'no-encontrado'>No fue encontrado</span>";
+
+                    resultado.innerHTML = mensaje;
+                }
+            };
+            xmlhttp.open("GET", "datos.json", true);//'GET' because we are obtaining information. 'datos.json' name where the information is coming. 'true' asynchronomous request
+            xmlhttp.send();//The request is sent
+        }
+    }
+
+    // This function passes two parameters: the JSON object and the inserted name
+    function encontrarPersona (objetoJSON, nombreIngresado){
+        var arr = []; // Set an empty array
+
+        for (var i in objetoJSON){ // Iteration of JSON object through each JSON's object value
+            arr.push(objetoJSON[i].nombre); // Get 'nombre' of each person and push into the 'arr' var
+        }
+//        return arreglo; // This function returns the values of 'arr' which contains 'nombres'
+
+        return arr.indexOf(nombreIngresado) > -1; // (-1) means the name does not belong to the array
+    }
+
+</script>
+
+</body>
+</html>

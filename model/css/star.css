@@ -17,7 +17,10 @@
     height:16px;
     line-height:16px;
     padding:1px 22px 1px 0; /* 1px FireFox fix */
-    background:url(../images/stars1.png) no-repeat -22px 0;
+    /*background:url(../images/stars1.png) no-repeat -22px 0;*/
+    /*background:url(../images/stars1_50.png) no-repeat -22px 0;*/
+    /*background:url(../images/stars1_100.png) no-repeat -22px 0;*/
+    background:url(../images/stars2_40x20_t.png) no-repeat -22px 0;
 }
 
 /* Change span immediately following the checked radio */

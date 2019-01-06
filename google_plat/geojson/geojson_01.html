@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Layer: Simple</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script src="data/us2.js"></script>
+</head>
+<body>
+<div id="map"></div>
+
+<script>
+    var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 10,
+//            center: {lat: -28, lng: 137}
+            center: {lat: 45.6, lng: -123}
+//            center: {lat: 29.5,lng: -95.8}
+        });
+
+        // NOTE: This uses cross-domain XHR, and may not work on older browsers.
+//        map.data.loadGeoJson('https://storage.googleapis.com/mapsdevsite/json/google.json');
+//        var sb1 = 'https://api.myjson.com/bins/zyxh8';
+        var sb1 = 'https://api.myjson.com/bins/12j3do';
+        var sb2 = 'https://api.myjson.com/bins/u962k';
+
+//        map.data.loadGeoJson('https://api.myjson.com/bins/17x7t0');
+//        map.data.loadGeoJson('https://api.myjson.com/bins/nv4fo');
+        map.data.loadGeoJson(sb1);
+        map.data.loadGeoJson(sb2);
+//// Several polygons
+//        map.data.loadGeoJson('https://api.myjson.com/bins/f97ss');
+
+
+//        var markers = ["{zzfIsjmu@kHuczRrg{NxcsO}t{GtczR","a}~cIqcskBu|sEov{OoxNel}AfccMwfzG~q|@nknX}u~GvczR",
+//            "cljkHmfoQl|J{hrV~syGzhrV"];
+//        var markers = ["{zzfIsjmu@kHuczRrg{NxcsO}t{GtczR"];
+//            var bounds = new google.maps.LatLngBounds();
+
+        for (var i = 0; i < markers.length; i++) {
+            var encodedPath = markers[i];
+            decodedPolygon = google.maps.geometry.encoding.decodePath(encodedPath);
+
+            var bermudaTriangle = new google.maps.Polygon({
+                paths: decodedPolygon,
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: '#FF0000',
+                fillOpacity: 0.35
+            });
+//            poly = new google.maps.Polyline(bermudaTriangle);
+//            bermudaTriangle.setMap(map);
+        }
+
+
+
+
+//        map.data.loadGeoJson('/data/map.js');
+//        map.data.loadGeoJson('./data/mckey.json');
+//        map.data.loadGeoJson('data/out1.json');
+//        map.data.addGeoJson(data);
+    }
+//    map.data.addGeoJson(data);
+
+//    data = map.data.loadGeoJson('data/out1.json');
+//    map.data.addGeoJson(data);
+
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVNzONb19t-556kuu-ebT5DUF0wCpEt-g&callback=initMap">
+</script>
+</body>
+</html>

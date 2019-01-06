@@ -1,5 +1,5 @@
 function heatinitialize() {
-    alert("heatinitialize");
+    // alert("L:2 heatinitialize");
     var cccc = 0;
     //empty the div that shows all the data if they click on a sub basin
     // var PeakArray=[];
@@ -184,9 +184,6 @@ function heatinitialize() {
         }
 
     });
-
-
-
 
 
     // ----------------- Start Legend setting (COST-RV) --------------- //
@@ -387,8 +384,8 @@ function heatinitialize() {
         var encodedQuery = encodeURIComponent(query);
         url.push(encodedQuery);
         url.push('&callback=drawHeatPF1');
-        // url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
-        url.push('&key=IzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+        url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+        // url.push('&key=IzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
         script.src = url.join('');
         var body = document.getElementsByTagName('body')[0];
         body.appendChild(script);

@@ -139,13 +139,12 @@
     PuzzleDemo.prototype.loadData_ = function() {
         var xmlhttpRequest = new XMLHttpRequest;
         xmlhttpRequest.onreadystatechange = function() {
-            if (xmlhttpRequest.status != 200 ||
-                xmlhttpRequest.readyState != XMLHttpRequest.DONE) return;
+            if (xmlhttpRequest.status != 200 || xmlhttpRequest.readyState != XMLHttpRequest.DONE) return;
             this.loadDataComplete_(JSON.parse(xmlhttpRequest.responseText));
         }.bind(this);
-        xmlhttpRequest.open(
-            'GET', 'https://storage.googleapis.com/mapsdevsite/json/puzzle.json',
-            true);
+//        xmlhttpRequest.open('GET', 'https://storage.googleapis.com/mapsdevsite/json/puzzle.json',true);
+        xmlhttpRequest.open('GET', 'puzzle.json',true);
+
         xmlhttpRequest.send(null);
     };
 

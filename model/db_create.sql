@@ -39,3 +39,8 @@ ALTER TABLE users DROP COLUMN calc;
 ALTER TABLE users ADD COLUMN (spent_time_sec DECIMAL);
 UPDATE users SET spent_time_sec = spent_time/1000;
 /* ================================================= */
+
+/* INSERT a data into a table.*/
+/* Note: the 'id' column is 'AUTO-INCREMENT' type that is why it is set as 'NULL' */
+INSERT INTO user10 (id, usercod, pid, name,time,all_act)
+VALUES (NULL, 'usercode', 'pi20','name20','time20','click all 20');

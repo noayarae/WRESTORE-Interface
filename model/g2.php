@@ -19,17 +19,15 @@
     <link rel="stylesheet" type="text/css" href="css/style2.css"/>
     <link rel='stylesheet' type='text/css' href='css/styles.css'/>
     <link rel="stylesheet" type="text/css" href="css/visualize.css"/>
-    
     <link rel="stylesheet" type="text/css" href="js/shadowbox/shadowbox.css"/>
-    
+
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Oswald:400,300' type='text/css'>
 <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">-->
 <!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>-->
 
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<!--    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVNzONb19t-556kuu-ebT5DUF0wCpEt-g&callback=initMap"-->
-<!--            type="text/javascript"></script>-->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVNzONb19t-556kuu-ebT5DUF0wCpEt-g&callback=initMap"
             type="text/javascript"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -37,7 +35,6 @@
     <!--[if IE]><![endif]-->
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    
 
     <script type="text/javascript" src="js/legend_DOM.js"></script>
     <script type="text/javascript" src="js/json2.js"></script>
@@ -218,13 +215,10 @@ else
     <div id="mainFrame" class="wrapper2" >
         <div id="line2-col1">
             <section id="content">
-            <!-- <h2>Welcome <?   //echo $_SESSION["var"]; ?></h2>-->
-            
-                <h2 name="letscompareheader" style="display: inline-block;width: 90px;">Let's vote!</h2>
-                
-                <p name="suggestionsNumberHeader" style="display: inline-block;">
-                    Total number* of <b>alternatives</b> you will be assessing: 20 | Page
-                    <strong><span class="currentPage">1</span></strong> of <span class="totalPages">20</span>
+                <p name="suggestionsNumberHeader" style="display: inline-block; font-size: 17px;">
+                    Total number of <font color="#7d110c"><b>alternatives</b></font> (i.e., conservation
+                    plans) recommended in this session: 20 | <font color="#7d110c"><strong>Page
+                    <span class="currentPage">1</span> of <span class="totalPages">20</span></strong></font>
                 </p>
             <!--                <hr noshade size=3 width=1200>-->
             
@@ -233,14 +227,36 @@ else
         
         <div id="line2-col2">
             <div class="topnav">
-                <a class="trackable mainbuttons submitFeedbackJon" title="Option to quit current search experiment"
-                   name="Quit" href="abort.html" rel="shadowbox;height=240;width=900">Quit</a>
-                <a class="trackable mainbuttons submitFeedbackJon" title="Option to save current design and come back later"
-                   name="saveMapHeader" href="#" onclick="instruct();return false;">Save</a>
-                <a class="trackable mainbuttons submitFeedbackJon" title="Option to view instructions again"
-                   name="InstructionsHeader" href="#" onclick="instruct();return false;">Instructions</a>
-                <a class="trackable mainbuttons submitFeedbackJon" title="Option to stop the website for a while"
-                   name="TakeRest" href="#" onclick="takeRest_function();return false;">Take a rest</a>
+                    <!--    MENU BAR as TEXT   -->
+<!--                <a id="quit" class="trackable mainbuttons submitFeedbackJon" title="Option to quit current search-->
+<!--                experiment" name="Quit" href="abort.html" rel="shadowbox;height=240;width=900">Quit</a>-->
+
+<!--                <a id="save" class="trackable mainbuttons submitFeedbackJon" title="Option to save current design and-->
+<!--                come back later" name="saveMapHeader" href="#" onclick="instruct();return false;">Save</a>-->
+
+<!--                <a id="instructions" class="trackable mainbuttons submitFeedbackJon" title="Option to view instructions-->
+<!--                again" name="InstructionsHeader" href="#" onclick="open_instruction();return false;">Instructions</a>-->
+
+<!--                <a id="take_rest" class="trackable mainbuttons submitFeedbackJon" title="Option to stop the website-->
+<!--                for a while" name="TakeRest" href="#" onclick="takeRest_function();return false;">Take a rest</a>-->
+
+                <!--    MENU BAR as ICONS   -->
+                <button id="instructions2" class="trackable mainbuttons2 submitFeedbackJon" onclick="open_instruction
+                ()" title="Option to view instructions" style="font-size:22px">
+                    <i class="fa fa-info-circle"></i></button>
+
+                <button id="pause" class="trackable mainbuttons2 submitFeedbackJon" onclick="takeRest_function
+                ()" title="Option to pause the website for a while" style="font-size:22px">
+                    <i class="fa fa-pause"></i></button>
+
+                <button id="save" class="trackable mainbuttons2 submitFeedbackJon" onclick="open_instruction
+                ()" title="Option to save current design and come back later" style="font-size:22px">
+                    <i class="fa fa-save"></i></button>
+
+
+                <button id="quit" class="trackable mainbuttons2 submitFeedbackJon" onclick="exit_wrestore()"
+                        title="Option to quit current search experiment" style="font-size:22px">
+                    <i class="fa fa-sign-out"></i></button>
             </div>
         </div>
     </div>
@@ -268,14 +284,21 @@ else
     ?>">
         <!--Changed mapHolder to mapHolder1-->
         <div class="mapHolder1 map1">
-            <div class="mainMap_header" style="height: 26px;">
-<!--            <div class="header" style="width: 250px; display: inline-block; color: #ff9933">-->
-                <div id="step1" class="header" style="/*width: 150px;*/ display: inline-block; color: #ff9933">
-<!--                    <h2 id='step2' name="step2">STEP 1: Alternatives</h2>-->
-                    <h2 title="Step 1 displays a map with conservation practices corresponding to each alternative.">STEP 1:</h2>
+            <div class="step_line" style="height: 26px;">
+<!--                    <h2 title="Lear about recommended conservation decisions in this-->
+<!--alternative by clicking inside each sub-basin in the map.-->
+<!--The left panel shows maps of how this alternative effects-->
+<!--the costs and benefits over the watershed landscape">STEP 1:</h2>-->
+<!--                </div>-->
+
+                <div id="step1" class="step_box" title="Lear about recommended conservation decisions in this
+alternative by clicking inside each sub-basin in the map.
+The left panel shows maps of how this alternative effects
+the costs and benefits over the watershed landscape">STEP 1:
                 </div>
-                <h4 class="sugg_title">Alternative <span class="oneMap"></span></h4>
-                <div class="displayStuffa">Click inside of any sub-basin to learn about practices proposed in a sub-basin.</div>
+
+                <p class="step_title_text">Learn about <font color="#7d110c"><strong>Alternative <span
+                                    class="oneMap"></span></strong></font></p>
             </div>
             
             <div id="mapHolderOne">
@@ -360,12 +383,6 @@ else
                 <script>
                     $( function() {
                         $("#tabs_bp").tabs();
-//                        $( "#tabs_bp li:last-child a" ).tabs('show');
-                        
-//                        $( "#tabs_hm" ).tabs({active: 1});
-//
-//                        var active = $( "#tabs_hm" ).tabs( "option", "active" );
-//                        $( "#tabs_hm" ).tabs( "option", "active", 2 );
                     } );
                 </script>
                 <!--   +++++++++++   finish inserting Alternatives BARPLOTS +++++++++++ -->
@@ -375,7 +392,6 @@ else
 
         <!--   ++++++++++++++   inserting  STEP2 Heatmaps (before step3)  ++++++++++++++  -->
         <!--        This 'div" is a false frame to positioning the 'heat-map' container    -->
-<!--        <div class="col2" style="margin: 4px 0px 4px 0px;">-->
         <div class="false_frame" style="margin: 4px 0px 4px 0px;">
             
             <!--                <div name='step3collapse' class ="containerABC collapsed" style="position: relative;float: right;-->
@@ -386,13 +402,17 @@ else
 <!--                width: 275px;height: 495px; right: 5px; top: 0px; z-index: 100; background-color: #ff9933;">-->
 
             <div id="heatmaps_frame" name='step2_goals' style="width: 21.5%; right: 5px; top: 0px;">
-                
-                <div class = "heatmap_header" style="height: 26px;">
-                    <div id='step2' class="header" name="step2">
-                        <!--                    <h2 id='step2' name="step2">STEP 2: Goals</h2>-->
-                        <h2 title="Step 2 shows heatmaps for each goal corresponding to the alternative.">STEP 2:</h2>
+<!--                <div class = "heatmap_header" style="height: 26px;">-->
+                <div class = "step_line" style="height: 26px;">
+                    <div id='step2' class="step_box" name="step2"
+                         title="Learn about how costs and benefits of this alternative compare
+to those of other recommended alternatives (on previous or
+following pages of this session)">
+                        STEP 2:
+<!--                        <h2 title="Step 2 shows heatmaps for each goal corresponding to the alternative.">STEP 2:</h2>-->
                     </div>
-                    <h4 class="sugg_title">Goals</h4>
+                    <p class="step_title_text">Compare <font color="#7d110c"><strong>Alternative <span
+                                class="oneMap"></span></strong></font> with others</p>
                 </div>
                 
 <!--            <div class="graph" style="height: 460px">-->
@@ -675,24 +695,6 @@ else
                 relative; float: right;" value="Next Alternative &gt;&gt;" />
             </div>
         </div>
-        
-<!--        <table width="100%" border="0" cellspacing="1">-->
-<!--            <tr>-->
-<!--                <td width="41%">-->
-<!--                    <div align="left">-->
-<!--                        <input type="button" name="Back" id="Back" value="&lt;&lt; Previous Alternative" class="trackable barBlue moveBack" />-->
-<!--                    </div>-->
-<!--                </td>-->
-<!--                <td width="26%">-->
-<!--                    <input type="button" name="Submit All Maps" id="button" value="Done with all the Ratings" class="trackable barOrange submitAll" />-->
-<!--                </td>-->
-<!--                <td width="33%">-->
-<!--                    <div align="right">-->
-<!--                        <input type="button" name="Next" id="Next" value="Next Alternative &gt;&gt;" class="trackable barBlue moveNext" />-->
-<!--                    </div>-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--        </table>-->
     </div>
 </div>
 
@@ -720,7 +722,7 @@ else
     <!--  (3) Voladizo 3: SVG circle-shapes for representing Wetlands into the main map -->
     <!--  Start SVG  -->
     <!--  (width, height, cx,cy,r) = (box_width, box_height, coord_x, coord_y, radius)  -->
-    <div id="div1">Circles for wetlands r = 3.5, 4.5, 5.0, 5.5, 6.0, 7.0, 7.5</div>
+    <div id="div1">wetlands' Circles: r = 3.5, 4.5, 5.0, 5.5, 6.0, 7.0, 7.5</div>
     <svg id="svg1" width="7" height="7">
         <circle cx="3.5" cy="3.5" r="3.5" fill="#336699" />
         Sorry, your browser does not support inline SVG.
@@ -751,6 +753,112 @@ else
         Sorry, your browser does not support inline SVG.
     </svg>
     <!--  End SVG  -->
+
+    <!--  (4) Voladizo 4: Instructions BOX -->
+    <!--  Start Instructions Box  -->
+    <div id="shade_frame">
+    </div>
+    <div id="inst_box1">
+        <div id="sb-title-inner" class="inst_base">
+            WRESTORE Visualization Tool
+        </div>
+        <div id="message_box">
+            <div id="ints_welcome-msg">
+                <h2>Instructions</h2><br>
+                <p>In this session, you will see multiple options for implementing new conservation practices on the
+                    watershed landscape.</p>
+                <br/>
+                <p>In WRESTORE, an option is also called an <b>alternative</b> or a <b>conservation plan</b>. Every
+                    alternative consists of multiple conservation decisions distributed over the landscape. Each
+                    conservation decision describes the type of recommended conservation practice, location where the
+                    practice is implemented, and other attributes such as size, etc.</p>
+                <br/>
+                <p>You are advise to first learn about decisions recommended by an alternative (i.e. <b>Step 1</b>), then
+                    compare it with other alternatives (i.e. <b>Step 2</b>), and then finally evaluate the alternative based
+                    on its overall performance, feasibility, and your own personal preferences (i.e. <b>Step 3</b>).</p>
+                <br/>
+                <p>Your feedback will help WRESTORE to identify how to create new alternatives that best meet your
+                    preferences and constraints.</p>
+            </div>
+        </div>
+        <div class="cross"><img id="close_instuctions" class="trackable cross_img"  onclick="close_instruction();"
+                                title="Close" src="images/cross_img_15.png" alt=""/></div>
+    </div>
+    <script type="text/javascript">
+        function close_instruction(){
+//            alert ("hello instruction open");
+            document.getElementById("shade_frame").style.display = "none";
+            document.getElementById("inst_box1").style.display = "none";
+        }
+    </script>
+    <!--  End Instructions Box  -->
+
+    <!--  (5) Voladizo 5: Take-Rest BOX -->
+    <!--  Start Take-Rest Box  -->
+    <div id="shade_frame">
+    </div>
+    <div id="inst_box1_tr">
+        <div id="sb-title-inner" class="inst_base">
+            WRESTORE Visualization Tool
+        </div>
+        <div id="message_box">
+            <div id="ints_welcome-msg">
+                <h2>Pause !</h2>
+                <br>
+                <p>You clicked on the Pause button. When you are ready to continue working with WRESTORE, please
+                    close this window by clicking on the cross icon <img src="images/cross_img_15.png" style="width:
+                    14px; height: 14px; border: 1px solid; border-radius: 50%"> (bottom right). </p>
+                <br>
+            </div>
+        </div>
+        <div class="cross"><img id="close_take_rest" class="trackable cross_img" onclick="close_tr_instruction();"
+                                title="Close" src="images/cross_img_15.png" alt=""/></div>
+    </div>
+    <script type="text/javascript">
+        function close_tr_instruction(){
+//            alert ("hello instruction open");
+            document.getElementById("shade_frame").style.display = "none";
+            document.getElementById("inst_box1_tr").style.display = "none";
+        }
+    </script>
+    <!--  End Take-Rest Box  -->
+
+    <!--  (6) Voladizo 6: Inactive-time -->
+    <!--  Start Inactive-time Box  -->
+    <div id="shade_frame">
+    </div>
+    <div id="inst_box1_in">
+        <div id="sb-title-inner" class="inst_base">
+            WRESTORE Visualization Tool
+        </div>
+        <div id="message_box">
+            <div id="ints_welcome-msg">
+                <h2>Inactive time</h2>
+                <br>
+                <p>It appears you are inactive on this page. When you are ready to continue working with WRESTORE,
+                    please close this window by clicking on the cross icon <img src="images/cross_img_15.png" style="width:
+                    14px; height: 14px; border: 1px solid; border-radius: 50%"> (bottom right). </p>
+                <br>
+<!--                <button id="continue_after_inactive" class="trackable" onclick="cont_after_inactive()">Continue</button>-->
+            </div>
+        </div>
+        <div class="cross"><img id="close_take_rest" class="trackable cross_img" onclick="cont_after_inactive();"
+                                title="Close" src="images/cross_img_15.png" alt=""/></div>
+    </div>
+    <script type="text/javascript">
+        function cont_after_inactive(){
+//            alert ("hello instruction open");
+            document.getElementById("shade_frame").style.display = "none";
+            document.getElementById("inst_box1_in").style.display = "none";
+        }
+    </script>
+    <!--  End Inactive-time Box Box  -->
+
+    <!--  (7) Voladizo 7:  -->
+    <!--  Start   -->
+
+    <!--  End   -->
+
     <!--  End VOLADIZOS -->
 </div>
 <!-- E: end the "wrapper" Div which holds the all page after "BODY" Div -->
@@ -776,18 +884,20 @@ else
 <script type="text/javascript">
     Shadowbox.init();
 </script>
+
+<!--  Start TOOLTIP TOOL TIP -->
+<!--  This 'script' sets a message on some icons when hovering  -->
 <script type="text/javascript">
     $(document).ready(function() {
         // Tooltip only Text
         $('.masterTooltip').hover(function(){
             // Hover over code
-            alert ("hola--");
             var title = $(this).attr('title');
             $(this).data('tipText', title).removeAttr('title');
             $('<p class="tooltip"></p>')
                 .text(title)
                 .appendTo('body')
-                .fadeIn('slow');
+                .fadeIn('fast');
         }, function() {
             // Hover out code
             $(this).attr('title', $(this).data('tipText'));
@@ -800,6 +910,7 @@ else
         });
     });
 </script>
+<!--  End TOOLTIP TOOL TIP -->
 
 <?php /*?><?
             //This grabs the incoming test type from Vidya and uses php to write out the jquery needed to style the progress bar. From Line 150 or so above
@@ -2165,14 +2276,14 @@ else
                 //write the answers in the fields to the AnswersArray
                 $(".moveNext").fadeTo(1000,1);
                 bmpArray=array[page-1].CHOSENBMP;
-                alert("current 'bmpArray': ["+ (page-1) +"]: " + bmpArray);//E: it provides the CHESENBMP
+//                alert("current 'bmpArray': ["+ (page-1) +"]: " + bmpArray);//E: it provides the CHESENBMP
                 // from DDBB
 //                oneMap=oneMap-2;
-                alert("move Back: current 'bmpArray' index: "+ oneMap);//E: it displays the current
+//                alert("move Back: current 'bmpArray' index: "+ oneMap);//E: it displays the current
                 // 'bmpArray' index
                 oneMap=oneMap-1;
 //                twoMap=twoMap-2;
-                alert("move Back: next 'bmpArray' index: "+ oneMap);//E: it displays the next index of 'bmpArray'.
+//                alert("move Back: next 'bmpArray' index: "+ oneMap);//E: it displays the next index of 'bmpArray'.
                 // Index goes from 0 to 19
                 $( ".oneMap" ).html(oneMap+1);//E: 'oneMap' start from 0 to 19.
                 
@@ -2239,12 +2350,19 @@ else
         heatinitialize(); // This function is located at 'heatmapnew1.js' file
         // open a welcome message as soon as the window loads
         Shadowbox.open({
-            content:    '<div id="welcome-msg"><h2>Instructions</h2><ol><li>Please assess the suggestions based on ' +
-            'how the conservation practices are spatially distributed  in the watershed and based on the performance' +
-            ' of these suggestions with  respect to the various goals or objectives you selected earlier. </li>' +
-            '<li>The bar-graphs at  the bottom of the page display how the various suggestions perform with respect  to the objectives. </li>' +
-            '<li>Then, please make  a judgment on the quality of the design of the various suggestions. </li>' +
-            '<li>Once you have assessed the suggestion, please provide a rating on how much you like or dislike the particular suggestion.</li></ol></div>',
+            content:    '<div id="welcome-msg"><h2>Instructions</h2><br>' +
+            '<p>In this session, you will see multiple options for implementing new conservation practices on the ' +
+            'watershed landscape.</p>' + '<br>' +
+            '<p>In WRESTORE, an option is also called an <b>alternative</b> or a <b>conservation plan</b>. Every ' +
+            'alternative consists of multiple conservation decisions distributed over the landscape. Each ' +
+            'conservation decision describes the type of recommended conservation practice, location where the ' +
+            'practice is implemented, and other attributes such as size, etc.</p>' + '<br>' +
+            '<p>You are advise to first learn about decisions recommended by an alternative (i.e. <b>Step 1</b>), ' +
+            'then compare it with other alternatives (i.e. <b>Step 2</b>), and then finally evaluate the alternative '+
+            'based on its overall performance, feasibility, and your own personal preferences (i.e. <b>Step 3</b>).</p>'+
+            '<br>' +
+            '<p>Your feedback will help WRESTORE to identify how to create new alternatives that best meet your ' +
+            'preferences and constraints.</p></div>',
             player:     "html",
             title:      "WRESTORE Visualization Tool ",
             height:     450,
@@ -2252,39 +2370,44 @@ else
         });
     };
 
-    function instruct() {
-        // open a welcome message as soon as the window loads
-        Shadowbox.open({
-            content:    '<div id="welcome-msg"><h2>Instructions*</h2><ol><li>Please compare  alternatives based on ' +
-            'how the conservation practices are spatially distributed  in the watershed and based on the performance of these alternatives with  respect to the various goals or objectives you selected earlier. </li>' +
-            '<li>The bar-graphs at  the bottom of the page display how the various alternatives perform with respect  to the objectives. </li>' +
-            '<li>Then, please make  a judgment on the quality of the design of the various alternatives based on  any subjective criteria important to you. </li>' +
-            '<li>Once you have  compared the alternatives, please provide a rating on how much you like or dislike  a particular alternative.</li></ol></div>',
-            player:     "html",
-            title:      "WRESTORE Visualization Tool ",
-            height:     450,
-            width:      550
-        });
+    function open_instruction() {
+//        ////   WAY 1
+//        // open a welcome message as soon as the window loads
+//        Shadowbox.open({
+//            content:    '<div id="welcome-msg"><h2>Instructions*</h2><ol><li>Please compare  alternatives based on ' +
+//            'how the conservation practices are spatially distributed  in the watershed and based on the performance of these alternatives with  respect to the various goals or objectives you selected earlier. </li>' +
+//            '<li>The bar-graphs at  the bottom of the page display how the various alternatives perform with respect  to the objectives. </li>' +
+//            '<li>Then, please make  a judgment on the quality of the design of the various alternatives based on  any subjective criteria important to you. </li>' +
+//            '<li>Once you have  compared the alternatives, please provide a rating on how much you like or dislike  a particular alternative.</li></ol></div>',
+//            player:     "html",
+//            title:      "WRESTORE Visualization Tool ",
+//            height:     450,
+//            width:      550
+//        });
+
+        ////   WAY 2
+            // alert ("Open instruction");
+            document.getElementById("shade_frame").style.display = "block";
+            document.getElementById("inst_box1").style.display = "block";
     }
 
     function takeRest_function() {
-        // Way 1. It has some CSS lines
-        // Source1: https://sweetalert.js.org/docs/#content
-        // Source2: https://sweetalert2.github.io/
-        swal({
-            title: "Rest time!",
-            text: "You press the option to take a rest. During this time the WRESTORE tool is stopped. When you are " +
-            "ready to continue press \'ok\'",
-            icon: "success",
-            button: "Continue!",
-            closeOnClickOutside: false,
-            closeOnEsc: false
-        });
+//        //// Way 1. It has some CSS lines
+//        // Source1: https://sweetalert.js.org/docs/#content
+//        // Source2: https://sweetalert2.github.io/
+//        swal({
+//            title: "Rest time!",
+//            text: "You press the option to take a rest. During this time the WRESTORE tool is stopped. When you are " +
+//            "ready to continue press \'ok\'",
+//            icon: "success",
+//            button: "Continue!",
+//            closeOnClickOutside: false,
+//            closeOnEsc: false
+//        });
 
-        // Way 2. It has a own CSS file
+        //// WAY 2. It has a own CSS file
 //        Shadowbox.open({
-//            content:    '<div msg-frame> <div id="takeRest-msg"><h2>Rest time</h2><ol><li>You press the option to ' +
-//            'take a rest .</li>' +
+//            content:    '<div msg-frame> <div id="takeRest-msg"><h2>Rest time</h2><ol><li>You press the option to take a rest .</li>' +
 //            '<li>During this time the WRESTORE tool is stopped. When you are ready to continue press \'ok\' cross ' +
 //            'icon at the right bottom.</li></ol></div> </div>',
 //            player:     "html",
@@ -2292,6 +2415,11 @@ else
 //            height:     450,
 //            width:      850
 //        });
+
+        ////   WAY 3
+//        alert ("Open Take rest");
+        document.getElementById("shade_frame").style.display = "block";
+        document.getElementById("inst_box1_tr").style.display = "block";
     }
     
     function instruct1() {
@@ -2474,7 +2602,7 @@ else
     setup();
     function startTimer() {
         // wait 2 seconds before calling goInactive
-        timeoutID = window.setTimeout(goInactive, 1500000);
+        timeoutID = window.setTimeout(goInactive, 600000); //E: Set the start of inactive time in mili-sec
     }
     function resetTimer(e) {
         window.clearTimeout(timeoutID);
@@ -2482,8 +2610,12 @@ else
     }
     function goInactive() {
         // do something
-        alert("It appears you are inactive on this page."+"\n"+
-            "Press 'Ok' to keep working?");
+        report('m-clk* ', 'Wrestore page inactive');
+        document.getElementById("shade_frame").style.display = "block";
+        document.getElementById("inst_box1_in").style.display = "block";
+
+//        alert("It appears you are inactive on this page."+"\n"+
+//            "Press 'Ok' to keep working?");
 
 //            var txt;
 //            if (confirm("It appears you are inactive on this page."+"\n"+
