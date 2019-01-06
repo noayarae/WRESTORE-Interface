@@ -405,11 +405,10 @@ the costs and benefits over the watershed landscape">STEP 1:
 <!--                <div class = "heatmap_header" style="height: 26px;">-->
                 <div class = "step_line" style="height: 26px;">
                     <div id='step2' class="step_box" name="step2"
-                         title="Learn about how costs and benefits of this alternative compare
-to those of other recommended alternatives (on previous or
-following pages of this session)">
+                         title="Learn about how costs and benefits of this alternative
+compare to those of other recommended alternatives
+(on previous or following pages of this session)">
                         STEP 2:
-<!--                        <h2 title="Step 2 shows heatmaps for each goal corresponding to the alternative.">STEP 2:</h2>-->
                     </div>
                     <p class="step_title_text">Compare <font color="#7d110c"><strong>Alternative <span
                                 class="oneMap"></span></strong></font> with others</p>
@@ -438,8 +437,6 @@ following pages of this session)">
 
                             </div>
                             <!--    ------------ (2b) tabs-PF  ------------   -->
-<!--                            <div id="tabs-PF" class="tab_content2">-->
-<!--                                <div id="tabs-PF" class="heatMapHolder1 map1">-->
                             <div id="tabs-PF" class="map1">
                                 <div class="tab-header2">
                                     <h4>Alternative <span class="oneMap"></span></h4>
@@ -461,10 +458,8 @@ following pages of this session)">
                                 </div>
                             </div>
                             <div style="clear:both"></div>
-<!--                            </div>-->
+
                             <!--    ------------ (3b) tabs-RV  --------   -->
-<!--                            <div id="tabs-RV" class="tab_content2">-->
-<!--                                <div id="tabs-RV" class="heatMapHolder1 map1">-->
                             <div id="tabs-RV" class="map1">
                                 <div class="tab-header2">
                                     <h4>Alternative <span class="oneMap"></span></h4>
@@ -486,10 +481,8 @@ following pages of this session)">
                                 </div>
                             </div>
                             <div style="clear:both"></div>
-<!--                            </div>-->
+
                             <!--    ------------ (4b) tabs-SR  --------   -->
-<!--                            <div id="tabs-SR" class="tab_content2">-->
-<!--                                <div id="tabs-SR" class="heatMapHolder1 map1">-->
                             <div id="tabs-SR" class="map1">
                                 <div class="tab-header2">
                                     <h4>Alternative <span class="oneMap"></span></h4>
@@ -510,10 +503,8 @@ following pages of this session)">
                                 </div>
                             </div>
                             <div style="clear:both"></div>
-<!--                            </div>-->
+
                             <!--    -----------  (5b)  tabs-NR  ------   -->
-<!--                            <div id="tabs-NR" class="tab_content2">-->
-<!--                                <div id="tabs-NR" class="heatMapHolder1 map1">-->
                                 <div id="tabs-NR" class="map1">
                                     <div class="tab-header2">
                                         <h4>Alternative* <span class="oneMap"></span></h4>
@@ -534,7 +525,6 @@ following pages of this session)">
                                     </div>
                                 </div>
                                 <div style="clear:both"></div>
-<!--                            </div>-->
                         </div>
 
                     
