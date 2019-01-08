@@ -74,10 +74,10 @@
 </head>
 <!--  -------------------- START BODY -----------  -->
 <body name="body">
-<!--  This "WRAPPER" Div encloses the whole page, after "BODY" with out JavaScripts -->
+<!--  E: This "WRAPPER" Div encloses the whole page, after "BODY" with out JavaScripts -->
 <div class="wrapper"> <!-- style="background:#e6ffcc;" #e6ffcc; #99ff66; #e6ff0c; -->
 
-<!--  This PHP reads/grabs the data from the DB and creates a "TABLE" Html-tag to save them on it -->
+<!--  E: This PHP reads/grabs the data from the DB and creates a "TABLE" Html-tag to save them on it -->
 <?php
 include ('data.php');
 //echo $yellow;
@@ -198,7 +198,6 @@ else
     <div class="wrapper2">
         <header id="siteHeader">
             <hgroup>
-<!--                <h1 id='back-main-page' name="site_header1"><a href="/">WRESTORE</a></h1>-->
                 <h1 id='back-main-page' name="site_header1">WRESTORE</h1>
                 <h2 name="site_header2" style="padding-top: 5px; color: black;">
                     Watershed Restoration using Spatio-Temporal Optimization of Resources
@@ -220,8 +219,6 @@ else
                     plans) recommended in this session: 20 | <font color="#7d110c"><strong>Page
                     <span class="currentPage">1</span> of <span class="totalPages">20</span></strong></font>
                 </p>
-            <!--                <hr noshade size=3 width=1200>-->
-            
             </section>
         </div>
         
@@ -267,9 +264,7 @@ else
     <div class="tools" name="tools" id="tools">
     </div>
     <!--                    <div class="toolpic" name="toolpic" id="toolpic">-->
-    <!--<img alt="WordPress" src="images/key.jpg" />-->
 </div>
-<!--<br/>-->
 
 <!--    ================ LINE-4: MAIN MAP (before STEP 1) ================================  -->
 <div id="line4" class="wrapper1 container-fluid" style="display: block;">
@@ -278,163 +273,74 @@ else
             <!--pop up boxes will display this info-->
             <!-- <div class="displayStuff"></div>-->
     
-<!--    <form id="form1" name="form1" method="post" action="sendToUsersFeedback.php?id=--><?// print $thisCSS;  ?><!--">-->
-    
     <form id="form1" class="wrapper2" name="form1" method="post" action="sendToUsersFeedback.php?id=<? print $thisCSS;
     ?>">
+        <!--        =================================== STEP 1 ======================================  -->
         <!--Changed mapHolder to mapHolder1-->
         <div class="mapHolder1 map1">
             <div class="step_line" style="height: 26px;">
-<!--                    <h2 title="Lear about recommended conservation decisions in this-->
-<!--alternative by clicking inside each sub-basin in the map.-->
-<!--The left panel shows maps of how this alternative effects-->
-<!--the costs and benefits over the watershed landscape">STEP 1:</h2>-->
-<!--                </div>-->
-
-                <div id="step1" class="step_box" title="Lear about recommended conservation decisions in this
+                <div id="step1" class="step_box"
+                     title="Lear about recommended conservation decisions in this
 alternative by clicking inside each sub-basin in the map.
 The left panel shows maps of how this alternative effects
 the costs and benefits over the watershed landscape">STEP 1:
                 </div>
-
-                <p class="step_title_text">Learn about <font color="#7d110c"><strong>Alternative <span
-                                    class="oneMap"></span></strong></font></p>
+                <div>
+                    <h4 class="step_title_text">Learn about <font color="#7d110c"><strong>Alternative <span
+                                    class="oneMap"></span></strong></font></h4>
+                </div>
             </div>
             
             <div id="mapHolderOne">
                 <div id="map_canvas1" name="map_canvas1"></div>
                 
-                <!--   ++++++++++++++   inserting  STEP1 Alternatives BARPLOTS (Before STEP2)   ++++++++++++++  -->
+                <!--   ++++++++++++++   inserting in STEP1 HeatMaps   ++++++++++++++  -->
 <!--                <div class ="containerABC collapsed" name='step1_alter' style="position: relative; width: 250px;-->
 <!--                left: 2px; top: -464px; z-index: 100; background-color: #ffffff; height: 470px; border: 1px solid-->
 <!--                #999999;">-->
-                <div class ="heatmaps_frame1 collapsed" name='step1_alter'>
+<!--                <div class ="heatmaps_frame1 collapsed" name='step1_alter'>-->
+                <div class ="panel_1 collapsed" name='step1_alter'>
 <!--                For testing   -->
 <!--                <div name='step2collapse' class ="containerABC collapsed" style="position: relative; width: 250px;-->
 <!--                left: 5px; top: 0px; z-index: 100; background-color: #ff9933; border: 2px solid black;">-->
 
 <!--                    <div class="graph" style="height: inherit; width: inherit;">-->
-                    <div class="dropDownArea">
-                        <label>Choose a sub-basin to vote</label>
-                        <select id="subDrop" title="Click here to select a sub-basin" name="subDrop"
-                                    onchange='subBasinGraph1(); selected_option();'>
-                            <option id="watershed" value="Watershed" selected="selected">Watershed</option>
-                            <?php
-					            $y=1;
-					            while($y<=127){
-						            print "<option id=SB-$y value=S$y>Subbasin $y</option>";
-						            $y++;
-					            }
-					            ?>
-                        </select>
-
-                        <script>
-                                function selected_option() {
-                                    var theSelect = subDrop;
-                                    report('m-clk**  ' , "Sub-basin " + theSelect[theSelect.selectedIndex].value , ';');
-                                }
-                        </script>
-<!--                        <br>-->
-                    </div>
+<!--                    <div class="dropDownArea">-->
+<!--                        <label style="margin: 0px 0px 0px 3px;">Choose a catchment of interest to you</label>-->
+<!--                    </div>-->
                     
 <!--                        <div class="altern_container">-->
-                    <div id="tabs_bp" style="font-size: 11px; height: 394px; /*; height: 87%*/">
-                        <ul class="tabs_barplot">
-                            <li><a id="step1-start" class="trackable" href="#start_barplot" > Start</a></li>
-                            <li><a id="step1-PFR" class="trackable" href="#PFR_barplot" > PFR</a></li>
-                            <li><a id="step1-CR" class="trackable" href="#CR_barplot" > CR</a></li>
-                            <li><a id="step1-SR" class="trackable" href="#SR_barplot" > SR</a></li>
-                            <li><a id="step1-NR" class="trackable" href="#NR_barplot"> NR</a></li>
-                        </ul>
-                        <div class="tab_container1">
-                                <!--    ------------ (1a)  tabs-Info of HeatMap  ------------   -->
-                            <div id="start_barplot">
-                                        <h4 style="font-size: 20px">Instructions </h4>
-                                        <p>Next tabs display a bar plot showing 20 <b>alternatives</b> corresponding
-                                            to the tab's name objective function. The orange-color bar corresponds to the
-                                            alternative whose map is shown on the main panel. Clicking on any bar,the
-                                            average, maximum and minimum values of all feasible solutions found by
-                                            the optimization process will pop up. </p>
-                                        <br>
-                                        <p><b>PFR: </b>Peak Flow Reduction in cms</p><br>
-                                        <p><b>CR:  </b>Cost revenue in US Dollars</p><br>
-                                        <p><b>SR:  </b>Sediment Reduction Tons</p><br>
-                                        <p><b>NR:  </b>Nitrate Reduction in Kg</p><br>
-                                    </div>
-                                    <!--    ------------ (2a)  tabs-PFR  ------------   -->
-                            <div id="PFR_barplot">
-                                <div id="chart_div1"></div>
-                            </div>
-                                    <!--    ------------ (3a)  tabs-Cost  ------------   -->
-                            <div id="CR_barplot">
-                                <div id="chart_div2"></div>
-                            </div>
-                                    <!--    ------------ (4a)  tabs-Sed. Reduction  ------------   -->
-                            <div id="SR_barplot">
-                                <div id="chart_div3"></div>
-                            </div>
-                                    <!--    ------------ (5a)  tabs-Nit. Reduction  ------------   -->
-                            <div id="NR_barplot">
-                                <div id="chart_div4"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <script>
-                    $( function() {
-                        $("#tabs_bp").tabs();
-                    } );
-                </script>
-                <!--   +++++++++++   finish inserting Alternatives BARPLOTS +++++++++++ -->
-            
-            </div>
-        </div>
-
-        <!--   ++++++++++++++   inserting  STEP2 Heatmaps (before step3)  ++++++++++++++  -->
-        <!--        This 'div" is a false frame to positioning the 'heat-map' container    -->
-        <div class="false_frame" style="margin: 4px 0px 4px 0px;">
-            
-            <!--                <div name='step3collapse' class ="containerABC collapsed" style="position: relative;float: right;-->
-            <!--                width: 275px; height: 495px; right: 2px; top: -995px; z-index: 100; background-color: #ffffff;border:-->
-            <!--                1px solid #999999;">-->
-            
-<!--            <div name='step3collapse' class ="containerABC collapsed" style="/*position: relative;*/float: right;-->
-<!--                width: 275px;height: 495px; right: 5px; top: 0px; z-index: 100; background-color: #ff9933;">-->
-
-            <div id="heatmaps_frame" name='step2_goals' style="width: 21.5%; right: 5px; top: 0px;">
-<!--                <div class = "heatmap_header" style="height: 26px;">-->
-                <div class = "step_line" style="height: 26px;">
-                    <div id='step2' class="step_box" name="step2"
-                         title="Learn about how costs and benefits of this alternative
-compare to those of other recommended alternatives
-(on previous or following pages of this session)">
-                        STEP 2:
-                    </div>
-                    <p class="step_title_text">Compare <font color="#7d110c"><strong>Alternative <span
-                                class="oneMap"></span></strong></font> with others</p>
-                </div>
-                
-<!--            <div class="graph" style="height: 460px">-->
-                <div id="tabs_hm" style="font-size: 12px; height: 460px; margin: 2px 0px 0px 0px;">
+                    <div id="tabs_hm" style="font-size: 12px; height: 450px; margin: 2px 0px 0px 0px;">
                         <ul class="tabs_heatmap">
-                            <li><a class="trackable" id="step2_start" href="#info_heatmap">Start</a></li>
-                            <li><a class="trackable" id="step2_PFR_tab" href="#tabs-PF">PFR</a></li>
-                            <li><a class="trackable" id="step2_CR_tab" href="#tabs-RV">CR</a></li>
-                            <li><a class="trackable" id="step2_SR_tab" href="#tabs-SR">SR</a></li>
-                            <li><a class="trackable" id="step2_NR_tab" href="#tabs-NR">NR</a></li>
+                            <li><a id="step2_start" class="trackable" href="#info_heatmap">Start</a></li>
+                            <li><a id="step2_PFR_tab" class="trackable" href="#tabs-PF">PFR</a></li>
+                            <li style="width: 40px;"><a id="step2_CR_tab" class="trackable" style="margin: 0px 0px 0px 4px;" href="#tabs-RV">P</a></li>
+                            <li><a id="step2_SR_tab" class="trackable" href="#tabs-SR">SR</a></li>
+                            <li><a id="step2_NR_tab" class="trackable" href="#tabs-NR">NR</a></li>
                         </ul>
                         <div class="tab_container2">
                             <!--    ------------ (1b) tabs-Info of HeatMap  ------------   -->
-                            <div id="info_heatmap" class='trackable tab_content2'>
+                            <div id="info_heatmap" class='tab_content2' style="height: 345px; overflow: auto;">
+<!--                            <div id="info_heatmap" class='tab_content2' style="height: 345px; overflow: auto; border: 1px solid red;">-->
                                 <h4 style="font-size: 20px">Instructions </h4>
-                                <p>Next tabs display a heatmap by sub-basins corresponding to the tab's name
-                                    objective function and to the alternative in vote. </p>
+                                <p>Click on tabs to view how the performance(i.e., costs and benefits) of this
+                                    alternative spatially varies over the landscape. </p>
                                 <br>
-                                <p><b>PFR: </b>Peak Flow Reduction in cms</p><br>
-                                <p><b>CR:  </b>Cost revenue in US Dollars</p><br>
-                                <p><b>SR:  </b>Sediment Reduction Tons</p><br>
-                                <p><b>NR:  </b>Nitrate Reduction in Kg</p><br>
-
+                                <p>Also, note the following about the tabs:</p>
+                                <ul>
+                                    <li><p><b>PFR </b>is Peak Flow Reduction in cubic meters per second (cms)
+                                            . This represents the benefit of reduced flooding in the
+                                            landscape</p></li>
+                                    <li><p><b>P </b>is Profit (Revenue-Cost) in US Dollars. This represents the
+                                            expenses and revenue accrued from implementing proposed conservation
+                                            decisions on the landscape.
+                                        </p></li>
+                                    <li><p><b>SR </b>is Sediment Reduction in tons. This represents the benefit of
+                                            reduced erosion in the landscape.
+                                        </p></li>
+                                    <li><p><b>NR </b>is Nitrate Reduction in Kilograms (kg). This represents
+                                            the benefit of reduced fertilizer loss in the landscape.</p></li>
+                                </ul>
                             </div>
                             <!--    ------------ (2b) tabs-PF  ------------   -->
                             <div id="tabs-PF" class="map1">
@@ -471,9 +377,8 @@ compare to those of other recommended alternatives
                                     <!--                                    </div>-->
 
                                     <input id="fullscreen_heatmap2" class="trackable" type="button"
-                                           title="Click here to display a fullscreen map" value="fullscreen CR"/>
+                                           title="Click here to display a fullscreen map" value="fullscreen P"/>
                                 </div>
-                                
                                 <div id="heatMapHolderOne">
                                     <div id="oneMapRV" class="tip"></div>
                                     <!--  It draws them map1 -->
@@ -505,102 +410,165 @@ compare to those of other recommended alternatives
                             <div style="clear:both"></div>
 
                             <!--    -----------  (5b)  tabs-NR  ------   -->
-                                <div id="tabs-NR" class="map1">
-                                    <div class="tab-header2">
-                                        <h4>Alternative* <span class="oneMap"></span></h4>
-                                        <!--                                    <div class="info7 trackable" id="tab_NR_map1_Legend"> Legend-->
-                                        <!--                                <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
-                                        <!--                                        <img id="imm7" class="playdown" title="click for additional information" alt="click for-->
-                                        <!--                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>-->
-                                        <!--                                        <div id="oneMapNR" class="tip"></div>-->
-                                        <!--                                    </div>-->
+                            <div id="tabs-NR" class="map1">
+                                <div class="tab-header2">
+                                    <h4>Alternative* <span class="oneMap"></span></h4>
+                                    <!--                                    <div class="info7 trackable" id="tab_NR_map1_Legend"> Legend-->
+                                    <!--                                <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
+                                    <!--                                        <img id="imm7" class="playdown" title="click for additional information" alt="click for-->
+                                    <!--                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>-->
+                                    <!--                                        <div id="oneMapNR" class="tip"></div>-->
+                                    <!--                                    </div>-->
 
-                                        <input id="fullscreen_heatmap4" class="trackable" type="button"
-                                               title="Click here to display a fullscreen map" value="fullscreen NR"/>
-                                    </div>
-                                    <div id="heatMapHolderOne">
-                                        <div id="oneMapNR" class="tip"></div>
-                                        <!--  It draws them map1 -->
-                                        <div id="heatmap_canvasNR1" name="heatmap_canvasNR1"></div>
-                                    </div>
+                                    <input id="fullscreen_heatmap4" class="trackable" type="button"
+                                           title="Click here to display a fullscreen map" value="fullscreen NR"/>
                                 </div>
-                                <div style="clear:both"></div>
+                                <div id="heatMapHolderOne">
+                                    <div id="oneMapNR" class="tip"></div>
+                                    <!--  It draws them map1 -->
+                                    <div id="heatmap_canvasNR1" name="heatmap_canvasNR1"></div>
+                                </div>
+                            </div>
+                            <div style="clear:both"></div>
                         </div>
+                    </div>
 
-                    
+                    <!--                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    -->
                 </div>
+                <script>
+                    $( function() {
+                        $("#tabs_bp").tabs();
+                    } );
+                </script>
+                <!--   +++++++++++   finish HeatMaps in Step 1 +++++++++++ -->
+            
+            </div>
+        </div>
+
+        <!--        =================================== STEP 2 ======================================  -->
+        <!--   ++++++++++++++   inserting Barplots STEP2  (before HeatMaps)  ++++++++++++++  -->
+        <!--        This 'div" is a false frame to positioning the 'heat-map' container    -->
+        <div class="false_frame" style="margin: 4px 0px 4px 0px;">
+            
+            <!--                <div name='step3collapse' class ="containerABC collapsed" style="position: relative;float: right;-->
+            <!--                width: 275px; height: 495px; right: 2px; top: -995px; z-index: 100; background-color: #ffffff;border:-->
+            <!--                1px solid #999999;">-->
+
+<!--            <div id="heatmaps_frame" name='step2_goals' style="width: 23.3%; right: 5px; top: 0px;">-->
+            <div class="panel_2" name='step2_goals' style="width: 23.3%; right: 5px; top: 0px;">
+<!--                <div class = "heatmap_header" style="height: 26px;">-->
+                <div class = "step_line" style="height: 26px; margin: 0px 0px 3px 0px;">
+                    <div id='step2' class="step_box" name="step2" style="width: 75px;"
+                         title="Learn about how costs and benefits of this alternative
+compare to those of other recommended alternatives
+(on previous or following pages of this session)">
+                        STEP 2:
+                    </div>
+                    <div>
+                        <h4 class="step_title_text">Compare <font color="#7d110c"><strong>Alternative <span
+                                class="oneMap"></span></strong></font> with others</h4>
+                    </div>
+                </div>
+
+                <div class="graph" style="height: 464px">
+                    <div class="dropDownArea">
+                        <label style="margin: 0px 0px 0px 3px;">Choose a catchment of interest to you</label>
+                        <select id="subDrop" title="Click here to select a sub-basin" name="subDrop"
+                            style="margin: 0px 0px 0px 3px;" onchange='subBasinGraph1(); selected_option();'>
+                            <option id="watershed" value="Watershed" selected="selected">Full Watershed</option>
+                            <?php
+                            $y=1;
+                            while($y<=127){
+                                print "<option id=SB-$y value=S$y>Subbasin $y</option>";
+                                $y++;
+                            }
+                            ?>
+                        </select>
+                        <script>
+                            function selected_option() {
+                                var theSelect = subDrop;
+                                report('m-clk**  ' , "Sub-basin " + theSelect[theSelect.selectedIndex].value , ';');
+                            }
+                        </script>
+                    </div>
+
+                    <div id="tabs_bp" style="font-size: 12px; height: 413px; /*; height: 87%*/">
+                        <ul class="tabs_barplot">
+                            <li><a id="step1-start" class="trackable" href="#start_barplot" > Start</a></li>
+                            <li><a id="step1-PFR" class="trackable" href="#PFR_barplot" > PFR</a></li>
+                            <li style="width: 40px;"><a id="step1-CR" class="trackable" style="margin: 0px 0px 0px 4px;" href="#CR_barplot" > P</a></li>
+                            <li><a id="step1-SR" class="trackable" href="#SR_barplot" > SR</a></li>
+                            <li><a id="step1-NR" class="trackable" href="#NR_barplot"> NR</a></li>
+                        </ul>
+                        <div class="tab_container1">
+                        <!--    ------------ (1a)  tabs-Info of HeatMap  ------------   -->
+                        <div id="start_barplot" style="height: 370px; overflow: auto;">
+<!--                        <div id="start_barplot" style="height: 406px; overflow: auto; border: 1px solid red">-->
+                            <h4 style="font-size: 20px">Instructions </h4>
+                            <p>Click on tabs to view bar plots that compare performance (i.e., costs and benefits) of
+                                this alternative with others.</p>
+                            <br>
+                            <p>Also, note the following about the bar plots:</p>
+                            <ol>
+                                <li>The orange colored bar corresponds to the alternative you see on this page.</li>
+                                <li>The length of the bar corresponds to an average value of a cost or benefit.
+                                    When thin lines are present within the bars, they indicate the range (i.e.,
+                                    minimum and maximum values) of the cost or benefit.</li>
+                                <li><p>The acronym for costs and benefits stand for:</p>
+                                    <ul style="list-style-type:disc">
+                                        <li><p><b>PFR </b>is Peak Flow Reduction in cubic meters per second (cms)
+                                                . This represents the benefit of reduced flooding in the
+                                                landscape</p></li>
+                                        <li><p><b>P </b>is Profit (Revenue-Cost) in US Dollars. This represents the
+                                                expenses and revenue accrued from implementing proposed conservation
+                                                decisions on the landscape.
+                                            </p></li>
+                                        <li><p><b>SR </b>is Sediment Reduction in tons. This represents the benefit of
+                                                reduced erosion in the landscape.
+                                            </p></li>
+                                        <li><p><b>NR </b>is Nitrate Reduction in Kilograms (kg). This represents
+                                                the benefit of reduced fertilizer loss in the landscape.</p></li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+                        <!--    ------------ (2a)  tabs-PFR  ------------   -->
+                        <div id="PFR_barplot">
+                            <div id="chart_div1"></div>
+                        </div>
+                        <!--    ------------ (3a)  tabs-Cost  ------------   -->
+                        <div id="CR_barplot">
+                            <div id="chart_div2"></div>
+                        </div>
+                        <!--    ------------ (4a)  tabs-Sed. Reduction  ------------   -->
+                        <div id="SR_barplot">
+                            <div id="chart_div3"></div>
+                        </div>
+                        <!--    ------------ (5a)  tabs-Nit. Reduction  ------------   -->
+                        <div id="NR_barplot">
+                            <div id="chart_div4"></div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+<!--                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    -->
             </div>
             <script>
                 $( function() {
                     $("#tabs_hm").tabs();
                 } );
             </script>
-            
+
         </div>
-        <!--    +++++++++++  finish inserting HEATMAPS  +++++++++++ -->
+        <!--    +++++++++++  finish inserting Barplots in STEP2  +++++++++++ -->
         
         <div style="clear:both"></div>
     </form>
-    
-    <!--    This lines add new icon in the main map for fullscreen -->
-<!--    <input type="button" id="fullscreen" value="Fullscreen" style="position: relative;-->
-<!--    top: -458px; left: 264px; z-index: 200; width: 90px; height: 25px; background-color: #ff9900" />-->
-
-<!--    <input type="button" id="fullscreen" value="Fullscreen" style="position: relative; top: -318px; left: 265px;-->
-<!--    z-index: 200; width: 90px; height: 25px;/* background-color: #ff9999*/; cursor: pointer" />-->
 
 </div>
-
-<!--    <input type="button" id="fullscreen" value="Fullscreen" style="position: relative; top: -465px; left: 264px;-->
-<!--    z-index: 200; width: 90px; height: 25px; background-color: #ff9999; cursor: pointer" />-->
     
-<!--        =================================== STEP 2 ======================================  -->
-        <!-- database graphing-->
-<!--<div name='step2collapse' class ="containerABC collapsed" style="width: 250px;-->
-<!--    background-color: #ff9933;">-->
-<!--    <div class="header">-->
-<!--        <h2 class="trackable" id='step2' name="step2">-->
-<!--            STEP 2: Now assess if the suggestion above met your expectations</h2>-->
-<!--    </div>-->
-<!--    -->
-<!--    <div class="graph">-->
-<!--        <div class="dropDownArea">-->
-<!--            <label><br />-->
-<!--                Choose a sub-basin to compare</label>-->
-<!--            <select name="subDrop" id="subDrop" onchange='subBasinGraph1(); selected_option();'>-->
-<!--                <option id="watershed" value="Watershed" selected="selected">Watershed</option>-->
-<!--                --><?php
-//                $y=1;
-//                while($y<=127){
-//                    print "<option id=SB-$y value=S$y>Subbasin $y</option>";
-//                    $y++;
-//                }
-//                ?>
-<!--            </select>-->
-<!---->
-<!--            <script>-->
-<!--                function selected_option() {-->
-<!--                    var theSelect = subDrop;-->
-<!--                    report('m-clk**  ' , "Sub-basin " + theSelect[theSelect.selectedIndex].value , ';');-->
-<!--                }-->
-<!--            </script>-->
-<!--            <br>-->
-<!--        </div>-->
-<!--        -->
-<!--        <div class="container">-->
-<!--            <div class='trackable' id="chart_div1"></div>-->
-<!--            <div class='trackable' id="chart_div2"></div>-->
-<!--            <div class='trackable' id="chart_div3"></div>-->
-<!--            <div class='trackable' id="chart_div4"></div>-->
-<!--            -->
-<!--            <script>-->
-<!--                var first = '<span class="oneMap"></span>';-->
-<!--                var second = '<span class="twoMap"></span>';-->
-<!--            </script>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-        <div style="clear:both"></div>
+    <div style="clear:both"></div>
     
         
 <!--    =================================  STEP 3 (before step4)  ====================================    -->
@@ -608,66 +576,64 @@ compare to those of other recommended alternatives
 <div id="line5" class="wrapper1">
     <div class="wrapper2">
         <div class="vote_section" style="position: relative; /*left: 345px; top: -515px;*/ z-index: 100;">
-            <!--                <div id="vote_section" style="position: relative; left: 35px; top: -115px; z-index: 100;-->
-            <!--                background-color: #f0e4b0;">-->
 
 <!--            <h2 name="step4">STEP 3: Time to vote! Provide a rating for the suggestion shown above.</h2>-->
-            <div id="step3_row1">
-<!--                <h2 class="header" name="step4">STEP 3: Voting</h2>-->
-                <h2 class="header" name="step3" title="Step 3 asks for rating the current alternative">STEP 3:</h2>
-                <div class="displayStuffa">Provide a rating for the <b>alternative</b> shown above</div>
-            </div>
-            <div id="step3_row2" class="map1">
-                <h4>Alternative <span class="oneMap"></span></h4>
-                <div class="innerMapLinesHead">
-                    <h4>Rate the design and performance of this suggestion </h4>
-                </div>
+            <div class="step_line">
+                <div class="step_box" name="step3" title="Let's Vote!">STEP 3:</div>
+<!--                <div class="displayStuffa">Provide a rating for the <b>alternative</b> shown above</div>-->
 
-                <div class="innerMapLines">
-                    <div class="rating">
-                        <input id='step3_star0' class="trackable" name="rating1"
-                               type="radio" value="0" checked /><span id="hide"></span>
-                        <input id='step3_star1' class="trackable" name="rating1"
-                               type="radio" value="1" /><span></span>
-                        <input id='step3_star2' class="trackable" name="rating1"
-                               type="radio" value="2" /><span></span>
-                        <input id='step3_star3' class="trackable" name="rating1"
-                               type="radio" value="3" /><span></span>
-                        <input id='step3_star4' class="trackable" name="rating1"
-                               type="radio" value="4" /><span></span>
-                        <input id='step3_star5' class="trackable" name="rating1"
-                               type="radio" value="5" /><span></span>
-                        <input name="rating1" type="text" class="padInput" id="rating1" size="2" />
+                <div class="map1" style="display: inline-flex; margin: 5px;">
+                    <div>
+                        <h4 class="step_title_text">Rate <font color="#7d110c"><strong>Alternative <span
+                                            class="oneMap"></span></strong></font> based on its performance and
+                            feasibility</h4>
                     </div>
-                </div>
-                <div style="clear:both"></div>
-                <div class="innerMapLinesHead1">
-                    <h4>How confident are you about your rating? (%)</h4>
-                </div>
-                <div class="innerMapLines1">
-                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                        <tr>
-                            <td width="22%"><input name="confidence1" type="text" id="confidence1" size="3" readonly="readonly"/></td>
-                            <td width="78%"><div id="slider"></div>
-                            </td>
-                        </tr>
-                    </table>
+<!--                    <div class="innerMapLinesHead">-->
+<!--                        <h4>Rate the design and performance of this suggestion </h4>-->
+<!--                    </div>-->
+
+                    <div class="innerMapLines">
+                        <div class="rating">
+                            <input id='step3_star0' class="trackable" name="rating1"
+                               type="radio" value="0" checked /><span id="hide"></span>
+                            <input id='step3_star1' class="trackable" name="rating1"
+                               type="radio" value="1" /><span></span>
+                            <input id='step3_star2' class="trackable" name="rating1"
+                               type="radio" value="2" /><span></span>
+                            <input id='step3_star3' class="trackable" name="rating1"
+                               type="radio" value="3" /><span></span>
+                            <input id='step3_star4' class="trackable" name="rating1"
+                               type="radio" value="4" /><span></span>
+                            <input id='step3_star5' class="trackable" name="rating1"
+                               type="radio" value="5" /><span></span>
+                            <input name="rating1" type="text" class="padInput" id="rating1" size="2" />
+                        </div>
+                    </div>
+
+                    <div class="innerMapLinesHead1">
+                        <h4>How confident are you about your rating? (%)</h4>
+                    </div>
+                    <div class="innerMapLines1">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td width="22%"><input name="confidence1" type="text" id="confidence1" size="3" readonly="readonly"/></td>
+                                <td width="78%"><div id="slider"></div></td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-    
     <!--   **************    Finish inserting RATING  ********  -->
-
-
 
 <!--    ==========================================  STEP 5  ==========================================    -->
 <!--<h2 name="step5">STEP 5: click on the blue buttons to see additional suggestions or click on the orange button if you have rated <b>all</b> of them.</h2>-->
 <div style="clear:both"></div>
 
 <div id="line6">
-    <div id="move_alt" class="wrapper2" style="position: relative; top: -50px;">
+    <div id="move_alt" class="wrapper2" style="position: relative; top: -32px;">
 <!--    For testing-->
 <!--    <div id="move_alt" class="wrapper2">-->
         <div id="move_frame2" style="/*border: 1px solid; border-radius: 5px*/">
@@ -693,13 +659,14 @@ compare to those of other recommended alternatives
 
     <!--  VOLADIZOS  -->
     <!--  (1) Voladizo 1: Fullscreen Button  -->
+    <!--    This lines add new icon in the main map for fullscreen -->
     <!--  For RIGHT side  -->
     <!--    <input type="button" id="fullscreen" value="Fullscreen" style="position: relative; top: -618px; left: 965px;-->
     <!--    z-index: 200; width: 90px; height: 25px; background-color: #ff9999; cursor: pointer" />-->
     <!--  For LEFT side  -->
     <input id="fullscreen" class="trackable" title="Click here to display a fullscreen map" type="button"
-           value="Fullscreen" style="position: relative; top: -605px;
-     left: 268px; z-index: 200; width: 90px; height: 25px;/* background-color: #ff9999*/; cursor: pointer" />
+           value="Fullscreen" style="position: relative; top: -587px;
+     left: 296px; z-index: 200; width: 90px; height: 25px;/* background-color: #ff9999*/; cursor: pointer" />
     <!--  For TESTING  -->
     <!--    <input type="button" id="fullscreen" value="Fullscreen" style="position: relative; z-index: 200; width: 90px; -->
     <!--    height: 25px; background-color: #ff9999; cursor: pointer" />-->

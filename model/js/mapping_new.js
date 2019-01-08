@@ -1,39 +1,39 @@
   // JavaScript Document
   var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
   var backArray = [];
-  var backArray2 = [];
+  // var backArray2 = [];
   var cropArray = [];
-  var cropArray2 = [];
+  // var cropArray2 = [];
   var stripArray = [];
-  var stripArray2 = [];
+  // var stripArray2 = [];
   var wetArray = [];
-  var wetArray2 = [];
+  // var wetArray2 = [];
   var conserveArray = [];
-  var conserveArray2 = [];
+  // var conserveArray2 = [];
   var grassArray = [];
-  var grassArray2 = [];
+  // var grassArray2 = [];
   var filterArray = [];
-  var filterArray2 = [];
+  // var filterArray2 = [];
   var coverArray = [];
-  var coverArray2 = [];
+  // var coverArray2 = [];
   //var listAll;
   var number;
   var map;
   var map1;
-  var map2;
+  // var map2;
   var grass;
   var wetlands;
-  var wetlands2;
+  // var wetlands2;
   var filter;
+  // var filter2;
   var strip;
+  // var strip2;
   var notill;
   var cover;
   var background;
-  var background2;
-  var strip2;
-  var filter2;
+  // var background2;
   var crop;
-  var crop2;
+  // var crop2;
   var filterColor;
   // var blueIcon = "http://wrestore.iupui.edu/model/images/green.png";
   // var starIcon = "http://wrestore.iupui.edu/model/images/gw.png";
@@ -46,7 +46,6 @@
   // var obj;
   //var obj1;
   var lots = [];
-
   // This is firing off around 800 of tools.php	
 
   function initialize() {
@@ -58,7 +57,8 @@
 
       // var new_icon = $('#new_icon').get(0); // this is for adding a button icon for full screen
       map1 = new google.maps.Map(document.getElementById('map_canvas1'),{
-          center: new google.maps.LatLng(39.9778, -86.2959),
+          // center: new google.maps.LatLng(39.9778, -86.2959),
+          center: new google.maps.LatLng(39.9778, -86.44),
           zoom: 10.5,
           disableDefaultUI: true, //E:it disables all default icons from google map
           mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -86,9 +86,9 @@
 
       var buttonOptions = {
           gmap: map1,
-          name: 'Legend* ',
+          name: 'Legend ',
           position: google.maps.ControlPosition.TOP_RIGHT,
-          // action: function(){
+          // action: function(){ //do something
           //     // map1.panTo(new google.maps.LatLng(-33.9, 151.2));
           //     jQuery('.feat_content').toggle('show');
           //     report('m-clk*** ' , 'Main-map Legend ');
@@ -97,7 +97,7 @@
           // },
       };
       var button1 = new buttonControl(buttonOptions);
-      //
+
       //// This is a second button. By clicking on it you get a new position view of the map
       // var buttonOptions = {
       //     gmap: map1,
@@ -313,11 +313,10 @@
           // alert ("Suggestion " + (+oneMap + +1) + " - Outside watershed+"); // newalert
           report('m-clk+', 'Sug:' + (+oneMap + +1) + '  Outside-watershed',';'); // track the suggestion and outside
       });
-      // google.maps.event.addListener(map2, 'click', function goToTimeMap2() {
-      //     report('m-clk+', 'Sug:' + (+twoMap + +1) + '  Outside-watershed',';'); // track the suggestion and outside
-      // });
 
-      //This draws the subbasins
+
+
+      //E: Call 'Background' function to draw the base map (subbasins map)
       doBackground();
 
       //I check through an array and if the title appears in it that means we have data for that BMP. Each function
@@ -369,16 +368,16 @@
       });
 
 
+      ////////////////////////  Begin BACKGROUND  ////////////////////////////////
       ///Lay background map
 
-      /////////////////Begin Background////////////////////////////////////
-
-      function doBackground() {
-          doBack();
-      }
+      // function doBackground() {
+      //     doBack();
+      // }
 
       // ----------- start 'doBack'
-      function doBack() {
+      // function doBack() {
+      function doBackground() {
           // Initialize JSONP request
           var script = document.createElement('script');
           var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
@@ -390,7 +389,7 @@
               '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA';
           var encodedQuery = encodeURIComponent(query);
           url.push(encodedQuery);
-          url.push('&callback=drawBack');
+          url.push('&callback=drawBack'); //E:Here, the function 'drawBack' is called.  <===
           url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
           // url.push('&key=IzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
           script.src = url.join('');
@@ -440,18 +439,6 @@
                       clickable: true,
                       indexID: whichNode
                   });
-
-                  //// For Map2
-                  // var background1 = new google.maps.Polygon({
-                  //     path: newCoordinates,
-                  //     //strokeColor: colors[0],
-                  //     strokeOpacity: .6,
-                  //     strokeWeight: 1,
-                  //     fillOpacity: 0,
-                  //     fillColor: "#11ffff",//"#ffffff",
-                  //     clickable: true,
-                  //     indexID: whichNode
-                  // });
 
                   background.setMap(map1);
                   //var listAll
@@ -516,27 +503,15 @@
       ///////////////////////////  EndBACKGROUND////////////////////////
 
 
-      /////////////////Begin Filter Strips///THIS ONE NEEDS TO BE THE POLYLINES////////////////////////////////////
+      /////////////////Begin Filter Strips///THIS ONE NEEDS TO BE THE POLYLINES//////////////////////////////
+      // function doFilterStrips() {
+      //     dofilter1();
+      // }
 
-      function doFilterStrips() {
-          //  alert(JSON.stringify(lots));
-          dofilter1();
-          // dofilter2();
-
-          // $('#tools').append('&nbsp;&nbsp;Filter Strips<input name="bmpType" type="checkbox"' +
-          //      ' checked value="filterStrips"  onClick="toggleLayerNew(filterArray,filterArray2,filter)"> ');
-
-          // THIS WAS OFF BECAUSE A NEW BMP-BAR WAS BUILT INTO THE MAIN MAP
-          // Below, a second function to track 'click' and 'un-click' action was added.
-          // $('#tools').append('&nbsp;&nbsp;Filter Strips<input class="fs" name="bmpType" type="checkbox" checked value="filterStrips"' +
-          //     ' onClick="toggleLayerNew(filterArray, filter);track_check_filterStrip();"> ');
-
-          // $('#toolpic').append('<img alt="WordPress" src="images/key_filterstrips.jpg" />');
-      }
-      //////// --- END starting Filter Strips --- //////////////////
 
       // -----------  start 'dofilter1'
-      function dofilter1() {
+      // function dofilter1() {
+      function doFilterStrips() {
 
           var obj = find(forMapArray, 'Title', 'filter_strips');
           if (obj) {
@@ -555,7 +530,7 @@
               '15rPfCYXIoquDLpunT66cvEz2yaqw7R6BRKptqBQ Where GRID_CODE in (' + listofSubs + ')';
           var encodedQuery = encodeURIComponent(query);
           url.push(encodedQuery);
-          url.push('&callback=drawFilter1');
+          url.push('&callback=drawFilter1'); //E:Here, the function 'drawFilter1' is called.  <===
           url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
           script.src = url.join('');
           var body = document.getElementsByTagName('body')[0];
@@ -637,32 +612,19 @@
 
       // -----------  end 'drawfilter1'
 
-      // -----------  start 'dofilter2'
-      // -----------  end 'dofilter2'
-
-      // -----------  start 'drawFilter2'
-      // -----------  end 'drawFilter2'
       /////////////////////////////  End 'Filter Strips' totally ////////////////////////
 
 
       ////////////////////////  Begin COVER CROPS  //////////////////////////////
 
-      function doCoverCrops() {
-          docover1();
-          // docover2();
-          // $('#tools').append('&nbsp;&nbsp;<span style="color:#99c9ba"><strong>Cover Crops</strong></span><input name="bmpType" type="checkbox" checked value="coverCrops" onClick="toggleLayerNew(coverArray,coverArray2,cover)"> ');
-
-          // THIS WAS OFF BECAUSE A NEW BMP-BAR WAS BUILT INTO THE MAIN MAP
-          // $('#tools').append('&nbsp;&nbsp;<span style="color:#99c9ba"><strong>Cover Crops</strong></span>' +
-          //     '<input class="cc" name="bmpType" type="checkbox"' +
-          //     ' checked value="coverCrops" onClick="toggleLayerNew(coverArray, cover);track_check_coverCrop();"> ');
-          //
-          // $('#toolpic').append('<img alt="WordPress" src="images/key_covercrops.jpg" />');
-      }
+      // function doCoverCrops() {
+      //     docover1();
+      // }
       // ------------  end 'doCoverCrops'
 
       // ------------  start 'docover1'
-      function docover1() {
+      // function docover1() {
+      function doCoverCrops() {
           var obj = find(forMapArray, 'Title', 'cover_crops');
           if (obj) {
               //alert("in it");
@@ -680,7 +642,7 @@
               '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA Where GRIDCODE in (' + listofSubs + ')';
           var encodedQuery = encodeURIComponent(query);
           url.push(encodedQuery);
-          url.push('&callback=drawCover1');
+          url.push('&callback=drawCover1');//E:Here, the function 'drawCover1' is called.  <===
           url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
           script.src = url.join('');
           var body = document.getElementsByTagName('body')[0];
@@ -780,30 +742,18 @@
       };
       // ------------  end 'drawCover1'
 
-      // ------------  start 'doCover2'
-      // ------------  end 'doCover2'
-
-      // ------------  start 'drawCover2'
-      // ------------  end 'doCover2'
       ////////////////////////////////End COVER CROPS totally ////////////////////////
 
       /////////////////Begin Crop Rotation///////////////////////////////////////
 
-      function doCropRotation() {
-          docrop1();
-          // docrop2();
-          // $('#tools').append('&nbsp;&nbsp;<span style="color:#8da1bf"><strong>Crop Rotation</strong></span><input name="bmpType" type="checkbox" checked value="cropRotation" onClick="toggleLayerNew(cropArray,cropArray2,crop)"> ');
-
-          // THIS WAS OFF BECAUSE A NEW BMP-BAR WAS BUILT INTO THE MAIN MAP
-          // $('#tools').append('&nbsp;&nbsp;<span style="color:#8da1bf"><strong>Crop Rotation</strong></span>' +
-          //     '<input class="cr" name="bmpType" type="checkbox" checked value="cropRotation"' +
-          //     ' onClick="toggleLayerNew(cropArray, crop);track_check_cropRotation();"> ');
-          // $('#toolpic').append('<img alt="WordPress" src="images/key_cropRotation.jpg" />');
-      }
+      // function doCropRotation() {
+      //     docrop1();
+      // }
       // ------------  end 'doCropRotation'
 
       // ------------  start 'docrop1'
-      function docrop1() {
+      // function docrop1() {
+      function doCropRotation() {
           var obj = find(forMapArray, 'Title', 'crop_rotation');
           if (obj) {
               //alert("in it");
@@ -825,7 +775,7 @@
               '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA Where GRIDCODE in (' + listofSubs + ')';
           var encodedQuery = encodeURIComponent(query);
           url.push(encodedQuery);
-          url.push('&callback=drawCrop1');
+          url.push('&callback=drawCrop1');//E:Here, the function 'drawCrop1' is called.  <===
           url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
           // url.push('&key=1ZBdUCcDAjB0w94aiSRybOvnbtUxHYrvaMmeljHaD');
           // 1ZBdUCcDAjB0w94aiSRybOvnbtUxHYrvaMmeljHaD
@@ -928,34 +878,19 @@
 
       // ------------  end 'drawCrop1'
 
-
-
-      // ------------  start 'doCrop2'   --------- BLUE
-      // ------------  end 'doCrop2'
-
-
-      // ------------  start 'drawCrop2'   --------- BLUE
-      // ------------  end 'drawCrop2'
       ////////////////////////////////End Crop Rotation totally ////////////////////////
 
 
       /////////////////////////Begin Strip Cropping////////////////////////////////////
 
-      function doStripCropping() {
-          dostrip1();
-          // dostrip2();
-          // $('#tools').append('&nbsp;&nbsp;<span style="color:#87b07e"><strong>Strip Cropping</strong></span><input name="bmpType" type="checkbox" checked value="stripCropping" onClick="toggleLayerNew(stripArray,stripArray2,strip)">&nbsp;');
-
-          // THIS WAS OFF BECAUSE A NEW BMP-BAR WAS BUILT INTO THE MAIN MAP
-          // $('#tools').append('&nbsp;&nbsp;<span style="color:#87b07e"><strong>Strip Cropping</strong></span>' +
-          //     '<input class="sc" name="bmpType" type="checkbox" checked value="stripCropping"' +
-          //     ' onClick="toggleLayerNew(stripArray, strip);track_check_stripCropping();">&nbsp;');
-          // $('#toolpic').append('<img alt="WordPress" src="images/key_stripCropping.jpg" />');
-      }
+      // function doStripCropping() {
+      //     dostrip1();
+      // }
       // ----------------  end 'doStripCropping()'
 
       // ----------------  start 'dostrip1()'
-      function dostrip1() {
+      // function dostrip1() {
+      function doStripCropping() {
           var obj = find(forMapArray, 'Title', 'strip_cropping');
           if (obj) {
               //alert("in it");
@@ -973,7 +908,7 @@
               '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA Where GRIDCODE in (' + listofSubs + ')';
           var encodedQuery = encodeURIComponent(query);
           url.push(encodedQuery);
-          url.push('&callback=drawStrip1');
+          url.push('&callback=drawStrip1');//E:Here, the function 'drawStrip1' is called.  <===
           url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
           script.src = url.join('');
           // alert("script.src: " + url);
@@ -1075,15 +1010,8 @@
 
 
 
-      // ----------------  start 'dostrip2()'
-      // ----------------  end 'dostrip2()'
-
-
-      // ----------------  start 'drawStrip2' ---------- /GREEN/
-      // ----------------  end 'drawStrip2'
-
-
       ///////////////This is used to parse out the long lats for all the polygons////////////////////////
+
       function constructNewCoordinates(polygon) {
           var newCoordinates = [];
           var coordinates = null;
@@ -1101,22 +1029,17 @@
           }
           return newCoordinates;
       }
-      // ----- end 'constructNewCoordinates(polygon)'
+      ////////// ----- end 'constructNewCoordinates(polygon)'  /////////
 
       ////////////////////// Begin Wetlands Markers /////////////////////////////
-      function dobinaryWetlands() {
-          dowetlands1();
-          // dowetlands2();
-          // $('#tools').append('&nbsp;&nbsp;Wetlands<input name="bmpType" type="checkbox" checked value="wetlands" onClick="toggleLayerNew(wetArray,wetArray2,wetlands)">');
-
-          // THIS WAS OFF BECAUSE A NEW BMP-BAR WAS BUILT INTO THE MAIN MAP
-          // $('#tools').append('&nbsp;&nbsp;Wetlands<input class="wt" name="bmpType" type="checkbox" checked' +
-          //     ' value="wetlands" onClick="toggleLayerNew(wetArray, wetlands);track_check_wetland();">');
-          // $('#toolpic').append('<img alt="WordPress" src="images/key_wetlands.jpg" />');
-      }
+      // function dobinaryWetlands() {
+      //     dowetlands1();
+      // }
       // -------------- end 'dobinaryWetlands()'
+
       // -------------- start 'dowetlands1()'
-      function dowetlands1() {
+      // function dowetlands1() {
+      function dobinaryWetlands() {
           var obj = find(forMapArray, 'Title', 'variable_area_wetlands');
           if (obj) {
               //alert("in it");
@@ -1134,12 +1057,14 @@
               '1h0Pw3awyHJC1Eal7QHyP_FQZ6r7PpC5aUU0ybD0 Where GRID_CODE in (' + listofSubs + ')';
           var encodedQuery = encodeURIComponent(query);
           url.push(encodedQuery);
-          url.push('&callback=drawWet1');
+          url.push('&callback=drawWet1');//E:Here, the function 'drawWet1' is called.  <===
           url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
           script.src = url.join('');
           var body = document.getElementsByTagName('body')[0];
           body.appendChild(script);
-      } // -------------- end 'dowetlands1()'
+      }
+      // -------------- end 'dowetlands1()'
+
       // -------------- start 'drawWet1'
       drawWet1 = function(data) {
           var rows = data['rows'];
@@ -1236,11 +1161,6 @@
       };
       // -------------- end 'drawWet1'
 
-      // -------------- start 'dowetlands2()'
-      // -------------- end 'dowetlands2()'
-
-      // -------------- start 'drawWet2'
-      // -------------- end 'drawWet2'
       ////////////////////////// End wetland totally ///////////////////////
 
       ///////// This is the new piece that takes the markers and not shapes //////////
@@ -1317,20 +1237,14 @@
 
 
       /////////////////////////// Begin No-Till Markers //////////////////////////////
-      function doConserveTillage() {
-          dotill1();
-          // dotill2();
-          // $('#tools').append('&nbsp;&nbsp;Conservation Tillage<input name="bmpType" type="checkbox"  checked value="conservationTillage" onClick="toggleLayerNew(conserveArray,conserveArray2,notill)"> ');
-
-          // THIS WAS OFF BECAUSE A NEW BMP-BAR WAS BUILT INTO THE MAIN MAP
-          // $('#tools').append('&nbsp;&nbsp;Conservation Tillage<input class="nt" name="bmpType" type="checkbox" checked value=' +
-          //     '"conservationTillage" onClick="toggleLayerNew(conserveArray, notill);track_check_noTill();"> ');
-          // $('#toolpic').append('<img alt="WordPress" src="images/key_conservation.jpg" />');
-      }
+      // function doConserveTillage() {
+      //     dotill1();
+      // }
       // ------- end 'doConserveTillage()'
 
       // ------- start 'dotill1()'
-      function dotill1() {
+      // function dotill1() {
+      function doConserveTillage() {
           var obj = find(forMapArray, 'Title', 'conservation_tillage');
           if (obj) {
               //alert("in it");
@@ -1354,7 +1268,9 @@
           script.src = url.join('');
           var body = document.getElementsByTagName('body')[0];
           body.appendChild(script);
-      } // ------- end 'dotill1()'
+      }
+      // ------- end 'dotill1()'
+
       //   ------- start 'drawTill1'
       drawTill1 = function(data) {
           var rows = data['rows'];
@@ -1380,28 +1296,17 @@
       };
       //   ------- end 'drawTill1'
 
-      // ------- start 'dotill2()'
-      // ------- end 'dotill2()'
-
-      // ------- start 'drawTill2'
-      // ------- end 'drawTill2'
-
       //////// end NO-TILLAGE totally /////////////////////
 
       /////////////////  Begin Grass-Waterways Markers  //////////////////////////////////////////////////////////
-      function doGrassWaterway() {
-          dograss1();
-          // dograss2();
-          // $('#tools').append('&nbsp;&nbsp;Grasswaterways<input name="bmpType" type="checkbox"  checked value="grassWaterWays" onClick="toggleLayerNew(grassArray,grassArray2,grass)"> ');
-
-          // THIS WAS OFF BECAUSE A NEW BMP-BAR WAS BUILT INTO THE MAIN MAP
-          // $('#tools').append('&nbsp;&nbsp;Grasswaterways <input class="gw" name="bmpType" type="checkbox" checked' +
-          //     ' value="grassWaterWays" onClick="toggleLayerNew(grassArray, grass);track_check_grassWaterway();"> ');
-          // $('#toolpic').append('<img alt="WordPress" src="images/key_grass.png" />');
-      }
+      // function doGrassWaterway() {
+      //     dograss1();
+      // }
       // ------ end 'doGrassWaterway()'
+
       // ------ start 'dograss1()'
-      function dograss1() {
+      // function dograss1() {
+      function doGrassWaterway() {
           var obj = find(forMapArray, 'Title', 'grassed_waterway');
           if (obj) {
               //alert("in it");
@@ -1424,7 +1329,9 @@
           script.src = url.join('');
           var body = document.getElementsByTagName('body')[0];
           body.appendChild(script);
-      } // -------------------------------- end 'dograss1()'
+      }
+      // -------------------------------- end 'dograss1()'
+
       // ---------------------------------- start 'drawGrass1'
       drawGrass1 = function(data) {
           var rows = data['rows'];
@@ -1455,15 +1362,15 @@
           //map.fitBounds(bounds);
       } // ---------------------------------- end 'drawGrass1'
 
-      // ------------------------------------ start 'dograss2()'
-      // ------------------------------------ end 'dograss2()'
-
-      // ------------------------------------ start 'drawGrass2'
-      // ------------------------------------ end 'drawGrass2'
       ////////END GW (Grassed Waterways) totally /////////////////////
       
 
   } ///END MAPPING FUNCTION
+
+
+
+
+
 
   // function toggleLayerNew(whichArray, whichArray2, mapName) {
   function toggleLayerNew(whichArray, mapName) {

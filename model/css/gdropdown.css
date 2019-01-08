@@ -109,14 +109,15 @@
   font-family: Arial, sans-serif;
   -webkit-user-select: none;
   font-size: 11px;
-  padding-top: 1px;
-  padding-bottom: 3px;
-  padding-left: 5px;
+  padding: 1px 3px 3px 3px;
+  /*padding-top: 1px;*/
+  /*padding-bottom: 3px;*/
+  /*padding-left: 5px;*/
+  /*padding-right: 8px;*/
   direction: ltr;
   text-align: left;
   background-color: rgb(255, 255, 255);
   white-space: nowrap;
-  padding-right: 8px;
   color: rgb(0, 0, 0);
 }
 .checkboxSpan{ /*8*/

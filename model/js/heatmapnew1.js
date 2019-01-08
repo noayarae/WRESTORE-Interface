@@ -126,7 +126,7 @@ function heatinitialize() {
     // var sttt;
     var buttonOptions_1 = {
         gmap: heatmapPF1,
-        name: 'Legende ',
+        name: 'Legend ',
         position: google.maps.ControlPosition.TOP_RIGHT,
         // action: function(){
         //     // map1.panTo(new google.maps.LatLng(-33.9, 151.2));
@@ -191,7 +191,7 @@ function heatinitialize() {
     // These code-lines calls the js script located around 2690 in g2.php
     var buttonOptions_1 = {
         gmap: heatmapRV1,
-        name: 'Legendi ',
+        name: 'Legend ',
         position: google.maps.ControlPosition.TOP_RIGHT,
         // action: function(){
         //     // map1.panTo(new google.maps.LatLng(-33.9, 151.2));
@@ -246,7 +246,6 @@ function heatinitialize() {
             }
         }
 
-
     });
 
     // ----------------- Start Legend setting (SR) --------------- //
@@ -254,7 +253,7 @@ function heatinitialize() {
     // These code-lines calls the js script located around 2690 in g2.php
     var buttonOptions_1 = {
         gmap: heatmapSR1,
-        name: 'Legendo ',
+        name: 'Legend ',
         position: google.maps.ControlPosition.TOP_RIGHT,
         // action: function(){
         //     // map1.panTo(new google.maps.LatLng(-33.9, 151.2));
@@ -320,7 +319,7 @@ function heatinitialize() {
     // These code-lines calls the js script located around 2690 in g2.php
     var buttonOptions_1 = {
         gmap: heatmapNR1,
-        name: 'Legendu ',
+        name: 'Legend ',
         position: google.maps.ControlPosition.TOP_RIGHT,
         // action: function(){
         //     // map1.panTo(new google.maps.LatLng(-33.9, 151.2));
