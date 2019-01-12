@@ -424,7 +424,7 @@
           // alert("row[0][1]: " + rows[0][1]);//E:alert
           // alert("row[0][1]['geometry']: " + rows[0][1]['geometry']);//E:alert
 
-              //var whichNode=100;
+              ////var whichNode=100;
               for (var i in rows) {
                   var newCoordinates = [];
                   var whichNode = "";
