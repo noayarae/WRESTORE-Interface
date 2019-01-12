@@ -55,6 +55,7 @@
       $('#toolpic').empty();
       //$('#tools').append('Click anywhere on this yellow bar for additional info on the icons representing these practices<br/>');
 
+      // ////// START Drawing MAIN MAP //////////////
       // var new_icon = $('#new_icon').get(0); // this is for adding a button icon for full screen
       map1 = new google.maps.Map(document.getElementById('map_canvas1'),{
           // center: new google.maps.LatLng(39.9778, -86.2959),
@@ -79,6 +80,7 @@
           },
           scaleControl: false
       });
+      // /////////////////////////// END Drawing MAIN MAP ///////////////////
 
       // ----------------- Start NEW Legend into the Main map---------------- //
       // E: This part sets up a custom button into the map to display the legend
@@ -315,14 +317,14 @@
       });
 
 
-
+      /////////////   MAIN PART OF THE
       //E: Call 'Background' function to draw the base map (subbasins map)
       doBackground();
 
       //I check through an array and if the title appears in it that means we have data for that BMP. Each function
       // that is called makes the two maps. You will see them inside of each function. Only background doesnt do this because the background is the same with either map.
       $.each(forMapArray, function(index, value) {
-          //alert("YES"); 
+          //alert("YES");
           if (forMapArray[index]["Title"] == "crop_rotation") {
               doCropRotation();
           }
@@ -368,7 +370,17 @@
       });
 
 
-      ////////////////////////  Begin BACKGROUND  ////////////////////////////////
+      // Next lines shows FUNCTIONS for drawing POLYGONS (sub-basins) and LINES & MARKERS (filterStrip, Wets, etc.)
+      //  (0) Base Map (Backgournd) (bk)
+      //  (1) Crop-rotation         (cr)
+      //  (2) Cover-crops           (cc)
+      //  (3) Strip-Cropping        (sc)
+      //  (4) Filter-strip          (fs)
+      //  (5) Grass waterways       (gw)
+      //  (6) No-Till (Till conservation)(nt)
+      //  (7) Wetlands              (wt)
+
+      //////////////////////// (0)  Begin BACKGROUND  ////////////////////////////////
       ///Lay background map
 
       // function doBackground() {
@@ -403,49 +415,57 @@
               //function drawWet1(data) {
               //alert("ON");
           var rows = data['rows'];
-          // alert("L-407 rows (Back): " + rows);//E:It show the list of sub-basins
+          // alert("L-407 rows: " + rows);//E:It show the list of sub-basins
           // alert("rows: " + typeof 'rows');//alert("row: " + rows.length);//E: rows.length = 130
-          // alert("L-407 rows (Back): " + rows[0]);//E:alert. 'row[0]' is string and shows the sub-basin 129
-          // alert("Type row[0]: " + typeof 'rows[0]');//E:alert
+
+          // alert("L-407 row[0]: " + rows[0]);//E:alert. 'row[0]' is string and shows the sub-basin 129
+          // alert("row[0]: " + rows[0].length);// alert("Type row[0]: " + typeof 'rows[0]');//E:alert
+
+          // alert("row[0][1]: " + rows[0][1]);//E:alert
           // alert("row[0][1]['geometry']: " + rows[0][1]['geometry']);//E:alert
 
               //var whichNode=100;
               for (var i in rows) {
                   var newCoordinates = [];
                   var whichNode = "";
-                  //var geometries = rows[i][1]['geometry'];
+                  // var geometries = rows[i][1]['geometry'];
                   // alert (geometries);
 
-                  //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
-                  var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
+                  if (i==1) alert("Sub-basin: "+ rows[i][0]+"  Area: "+ rows[i][2]+"  stream: "+ rows[i][3]);
+                  if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
+                  var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);//E: Function is Set at 1069
                   //answersArray[oneMap].RATING
                   var row = rows[i];
                   var whichNode = row[0];
-                  // alert (whichNode);
+                  // alert (whichNode);//E: Which sub-basin
                   /////////You will put your acreage here///////////
                   var acres = parseFloat(row[2]).toFixed(1);
                   var rivers = parseFloat(row[3]).toFixed(1);
                   /////////You will put your stream miles here/////////
                   //alert (whichNode);
 
-                  var background = new google.maps.Polygon({
+                  var background = new google.maps.Polygon({//E: Base map (background) features
                       path: newCoordinates,
                       //strokeColor: colors[0],
                       strokeOpacity: .6,
                       strokeWeight: 1,
                       fillOpacity: 0,
                       fillColor: "#ffffff",
-                      // fillColor: "#a182f1",//"#ffffff",
                       clickable: true,
                       indexID: whichNode
                   });
 
-                  background.setMap(map1);
+                  background.setMap(map1);//E: IT SETS THE BASEMAP POLYGONS
                   //var listAll
+                  // alert("Sub Basin Array: " + JSON.stringify(subBasinArray));
+
                   var obj = find(subBasinArray, 'subbasinID', whichNode);
+                  // alert ("Hello: " + obj);// alert (obj);
+                  // alert(JSON.stringify(obj, null, 4));
                   if (obj) {
-                      var listAll = "Sub-basin Area: " + acres + " acres | Stream Length+: " + rivers + " miles <br" +
+                      var listAll = "Sub-basin Area: " +acres+ " acres | Stream Length+: " + rivers + " miles <br" +
                           " />" + JSON.stringify(obj);
+                      // alert (listAll);// alert ('type_of listAll (before): ' + typeof 'listAll');//
                       listAll = listAll.replace(/"0.0"/g, "No");
                       listAll = listAll.replace(/"1.0"/g, "Yes");
                       listAll = listAll.replace(/,/g, "<br />");
@@ -459,9 +479,30 @@
                       listAll = listAll.replace(/wetlands area/g, "Wetlands area");
                       listAll = listAll.replace(/filter strips/g, "Filter strip width in feet+");
                       listAll = listAll.replace(/wetlands drainage/g, "Wetlands drainage area fraction+");
+                      // alert(parseFloat(listAll.match(/[\d\.]+/)));//E: Extract only the first number of the string
                       listAll = listAll.replace(/subbasinID/g, "Sub-basin ID+");
                       listAll = listAll.replace(obj.variable_area_wetlands, obj.variable_area_wetlands + " acres ");
-                      //alert (listAll);
+                      // alert ('type_of listAll (after): ' + typeof 'listAll');//alert (listAll);//
+
+                      //These two lines get the last value of 'listAll' which is the 'variable_wetfr_wetlands'
+                      var listAll_array = listAll.split(" ");//E: It get 'listAll" as array
+                      // alert(listAll_array.length);//alert(listAll_array.slice(-1)[0]);// alert(typeof
+                      var list_length = listAll_array.length;//E: It gets the length of "listAll_array"
+                      var wfr = Number(listAll_array.slice(-1)[0]);//E: It gets the last item of "listAll_array"
+                      var wfr_r = Math.round(wfr * 1000) / 1000;//E: Round the last item of "listAll_array"
+                      // alert(wfr + ' and ' + typeof wfr +" - wfr rounded: "+ wfr_r + " and "+typeof wfr_r);
+                      listAll_array[list_length-1] = wfr_r;//E: Replace the last item of"listAll_array" by rounded value
+                      // alert ('the last list:  '+ listAll_array);
+                      //THESE LINES GET BACK from ARRAY to STRING
+                      var newlist = JSON.stringify(listAll_array);
+                      // alert (newlist);
+                      newlist = newlist.replace(/"/g, "");
+                      newlist = newlist.replace(/,/g, " ");
+                      newlist = newlist.replace(/[\[\]']+/g, '');//E: replace '[]' symbols by '' (nothing)
+                      listAll = newlist;
+                      // alert ('type_of new_listAll (after): ' + typeof 'newlist');//alert (newlist);
+                      // alert('done');
+
                   } else {
                       var listAll = "Sub-basin Area: " + acres + " acres | Stream Length: " + rivers + " miles <br />" + "Sub-basin ID: " + whichNode;
                   }
@@ -470,18 +511,24 @@
                       'list': listAll
                   };
                   background.objInfo = obj;
+                  // alert (background);//E: it gives '[obj obj]'
+                  // alert(JSON.stringify(obj, null, 4));//E: it gives all sub-basin with its Conservations features
+                  // alert("backgound: "+ background);//E: It gives "[object Object]" 130 times
+
                   google.maps.event.addListener(background, 'click', function(event) {
-                      console.log("in map 1");
+                      console.log("L517: in background");
 
                       $('.displayStuff').html(this.objInfo.list);
-                      var abc = this.objInfo.list + '<br><div class="displayStuffb" name="What Do They Mean">' +
+                      var window_info = this.objInfo.list + '<br><div class="displayStuffb" name="What Do They Mean">' +
                           '<a target="_blank" href="infoBox.html" rel="shadowbox;height=640;width=620" name="What Do They Mean">' +
-                          '<strong><em name="What Do They Mean">What do these numbers mean?</em></strong></a></div>';
-                      infowindow2 = new google.maps.InfoWindow({
-                          content: abc,
+                          '<strong><em name="What Do They Mean">What do these numbers* mean?</em></strong></a></div>';
+
+                      // alert("L524: " + window_info);
+                      infowindow2 = new google.maps.InfoWindow({//E: it makes a window with information
+                          content: window_info,
                           position: event.latLng
                       });
-                      infowindow2.open(map1);
+                      infowindow2.open(map1);//E: The window with information is added to the map.
                       /*setTimeout(function() {
                           infowindow2.close();
                       }, 5000);*/
@@ -496,6 +543,7 @@
                   });
 
                   backArray.push(background);
+                  // alert(backArray.length);//E: is starts at 1 ends at 130
               }
               //map.fitBounds(bounds);
           };
@@ -503,7 +551,410 @@
       ///////////////////////////  EndBACKGROUND////////////////////////
 
 
-      /////////////////Begin Filter Strips///THIS ONE NEEDS TO BE THE POLYLINES//////////////////////////////
+      ///////////////// (1)  Begin Crop Rotation///////////////////////////////////////
+
+      // function doCropRotation() {
+      //     docrop1();
+      // }
+      // ------------  end 'doCropRotation'
+
+      // ------------  start 'docrop1'
+      // function docrop1() {
+      function doCropRotation() {
+          var obj = find(forMapArray, 'Title', 'crop_rotation');
+          if (obj) {
+              //alert("in it");
+              var listofSubs = obj.subs;
+              //var listofSubs = obj.subs;
+              var strLen = listofSubs.length;
+              var listofSubs = listofSubs.slice(0, strLen - 1);
+              //alert(listofSubs);
+          }
+
+          // listOfSubs=forMapArray1["crop_rotation"];
+          //alert(listOfSubs);
+          // Initialize JSONP request
+          var script = document.createElement('script');
+          var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
+          url.push('sql=');
+          //Streams
+          var query = 'SELECT GRIDCODE, geometry, Area_Acres,Length_mil FROM ' +
+              '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA Where GRIDCODE in (' + listofSubs + ')';
+          var encodedQuery = encodeURIComponent(query);
+          url.push(encodedQuery);
+          url.push('&callback=drawCrop1');//E:Here, the function 'drawCrop1' is called.  <===
+          url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+          // url.push('&key=1ZBdUCcDAjB0w94aiSRybOvnbtUxHYrvaMmeljHaD');
+          // 1ZBdUCcDAjB0w94aiSRybOvnbtUxHYrvaMmeljHaD
+          // https://fusiontables.google.com/DataSource?docid=1ZBdUCcDAjB0w94aiSRybOvnbtUxHYrvaMmeljHaD#map:id=3
+          script.src = url.join('');
+          var body = document.getElementsByTagName('body')[0];
+          body.appendChild(script);
+      }
+      // ------------  end 'docrop1'
+
+      // ------------  start 'drawCrop1'
+
+      drawCrop1 = function(data) {
+          //function drawWet1(data) {
+          //alert("ON");
+          var rows = data['rows'];
+          //var whichNode=100;
+          for (var i in rows) {
+              var newCoordinates = [];
+              var whichNode = "";
+              //var geometries = rows[i][1]['geometry'];
+              //alert (geometries)
+
+              //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
+              var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
+              //answersArray[oneMap].RATING
+              var row = rows[i];
+              var whichNode = row[0];
+              /////////You will put your acreage here///////////
+              var acres = parseFloat(row[2]).toFixed(1);
+              var rivers = parseFloat(row[3]).toFixed(1);
+              /////////You will put your stream miles here/////////
+              //alert (whichNode);
+
+              crop = new google.maps.Polygon({
+                  path: newCoordinates,
+                  //strokeColor: colors[0],
+                  strokeOpacity: .4,
+                  strokeWeight: 1,
+                  fillOpacity: 1,
+                  fillColor: "#8da1bf",
+                  indexID: whichNode
+              });
+              crop.setMap(map1);
+
+              var obj = find(subBasinArray, 'subbasinID', whichNode);
+              if (obj) {
+                  var listAll = "Sub-basin Area: " + acres + " acres | Stream Length: " + rivers + " miles <br />" + JSON.stringify(obj);
+                  listAll = listAll.replace(/"0.0"/g, "No");
+                  listAll = listAll.replace(/"1.0"/g, "Yes");
+                  listAll = listAll.replace(/,/g, "<br />");
+                  listAll = listAll.replace(/"/g, "");
+                  listAll = listAll.replace(/}/g, "");
+                  listAll = listAll.replace(/{/g, "");
+                  listAll = listAll.replace(/_/g, " ");
+                  listAll = listAll.replace(/variable area wetlands/g, "wetlands area");
+                  listAll = listAll.replace(/:/g, ": ");
+                  listAll = listAll.replace(/variable wetfr wetlands/g, "wetlands drainage");
+                  listAll = listAll.replace(/wetlands area/g, "Wetlands area");
+                  listAll = listAll.replace(/filter strips/g, "Filter strip width in feet");
+                  listAll = listAll.replace(/wetlands drainage/g, "Wetlands drainage area fraction");
+                  listAll = listAll.replace(/subbasinID/g, "Sub-basin ID");
+                  listAll = listAll.replace(obj.variable_area_wetlands, obj.variable_area_wetlands + " acres");
+                  //alert (listAll);
+              } else {
+                  var listAll = "Sub-basin Area: " + acres + " acres | Stream Length: " + rivers + " miles <br />" + "Sub-basin ID: " + whichNode;
+              }
+
+              var obj = {
+                  'list': listAll
+              };
+              crop.objInfo = obj;
+              google.maps.event.addListener(crop, 'click', function(event) {
+                  //console.log(this.objInfo);
+                  $('.displayStuff').html(this.objInfo.list);
+                  var window_info = this.objInfo.list + '<br><div class="displayStuffb" name="What Do They Mean"><a' +
+                      ' target="_blank" href="infoBox.html" rel="shadowbox;height=640;width=620" name="What Do They Mean">' +
+                      '<strong><em name="What Do They Mean">What do these numbers** mean?</em></strong></a></div>';
+                  infowindow2 = new google.maps.InfoWindow({
+                      content: window_info,
+                      position: event.latLng
+                  });
+                  infowindow2.open(map1);
+                  /*setTimeout(function() {
+                          infowindow2.close();
+                      }, 5000);*/
+                  // alert (this.indexID); // newalert
+                  report('m-clk+', 'Sug:' + (+oneMap + +1) + '  Sub-basin:'+this.indexID+';'); // trackable
+
+                  /*$.ajax({url: 'sendToTime.php', type: 'post',
+                      data: "JSONHolder=" + "Map1" + "," + page + "," + session + "," + this.indexID,
+                      success: function(data) {
+                      }
+                  }); //*/
+
+              });
+
+              cropArray.push(crop);
+          }
+          //map.fitBounds(bounds);
+      };
+
+      // ------------  end 'drawCrop1'
+
+      ////////////////////////////////End Crop Rotation totally ////////////////////////
+
+
+
+      ///////////////////(2) Begin COVER CROPS  //////////////////////////////
+
+      // function doCoverCrops() {
+      //     docover1();
+      // }
+      // ------------  end 'doCoverCrops'
+
+      // ------------  start 'docover1'
+      // function docover1() {
+      function doCoverCrops() {
+          var obj = find(forMapArray, 'Title', 'cover_crops');
+          if (obj) {
+              //alert("in it");
+              var listofSubs = obj.subs;
+              //var listofSubs = obj.subs;
+              var strLen = listofSubs.length;
+              var listofSubs = listofSubs.slice(0, strLen - 1);
+          }
+          // Initialize JSONP request
+          var script = document.createElement('script');
+          var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
+          url.push('sql=');
+          //Streams
+          var query = 'SELECT GRIDCODE, geometry, Area_Acres,Length_mil FROM ' +
+              '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA Where GRIDCODE in (' + listofSubs + ')';
+          var encodedQuery = encodeURIComponent(query);
+          url.push(encodedQuery);
+          url.push('&callback=drawCover1');//E:Here, the function 'drawCover1' is called.  <===
+          url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+          script.src = url.join('');
+          var body = document.getElementsByTagName('body')[0];
+          body.appendChild(script);
+      }
+      // ------------  end 'docover1'
+
+      // ------------  start 'drawCover1'
+
+      drawCover1 = function(data) {
+          //function drawWet1(data) {
+          //alert("ON");
+          var rows = data['rows'];
+          //var whichNode=100;
+          for (var i in rows) {
+              var newCoordinates = [];
+              var whichNode = "";
+              //var geometries = rows[i][1]['geometry'];
+              //alert (geometries)
+
+              //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
+              var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
+              //answersArray[oneMap].RATING
+              var row = rows[i];
+              var whichNode = row[0];
+              /////////You will put your acreage here///////////
+              var acres = parseFloat(row[2]).toFixed(1);
+              var rivers = parseFloat(row[3]).toFixed(1);
+              /////////You will put your stream miles here/////////
+              //alert (whichNode);
+
+              cover = new google.maps.Polygon({
+                  path: newCoordinates,
+                  //strokeColor: colors[0],
+                  strokeOpacity: .4,
+                  strokeWeight: 1,
+                  fillOpacity: 1,
+                  fillColor: "#99c9ba",
+                  indexID: whichNode
+              });
+              cover.setMap(map1);
+
+
+              var obj = find(subBasinArray, 'subbasinID', whichNode);
+              if (obj) {
+                  var listAll = "Sub-basin Area: " + acres + " acres | Stream Length: " + rivers + " miles <br />" + JSON.stringify(obj);
+                  listAll = listAll.replace(/"0.0"/g, "No");
+                  listAll = listAll.replace(/"1.0"/g, "Yes");
+                  listAll = listAll.replace(/,/g, "<br />");
+                  listAll = listAll.replace(/"/g, "");
+                  listAll = listAll.replace(/}/g, "");
+                  listAll = listAll.replace(/{/g, "");
+                  listAll = listAll.replace(/_/g, " ");
+                  listAll = listAll.replace(/variable area wetlands/g, "wetlands area");
+                  listAll = listAll.replace(/:/g, ": ");
+                  listAll = listAll.replace(/variable wetfr wetlands/g, "wetlands drainage");
+                  listAll = listAll.replace(/wetlands area/g, "Wetlands area");
+                  listAll = listAll.replace(/filter strips/g, "Filter strip width in feet");
+                  listAll = listAll.replace(/wetlands drainage/g, "Wetlands drainage area fraction");
+                  listAll = listAll.replace(/subbasinID/g, "Sub-basin ID");
+                  listAll = listAll.replace(obj.variable_area_wetlands, obj.variable_area_wetlands + " acres");
+                  //alert (listAll);
+              } else {
+                  var listAll = "Sub-basin Area: " + acres + " acres | Stream Length: " + rivers + " miles <br />" + "Sub-basin ID: " + whichNode;
+              }
+
+              var obj = {
+                  'list': listAll
+              };
+              cover.objInfo = obj;
+              google.maps.event.addListener(cover, 'click', function(event) {
+                  //console.log(this.objInfo);
+                  $('.displayStuff').html(this.objInfo.list);
+                  var window_info = this.objInfo.list + '<br><div class="displayStuffb" name="What Do They Mean"><a' +
+                      ' target="_blank" href="infoBox.html" rel="shadowbox;height=640;width=620" name="What Do They Mean">' +
+                      '<strong><em name="What Do They Mean">What do these numbers*** mean?</em></strong></a></div>';
+                  infowindow2 = new google.maps.InfoWindow({
+                      content: window_info,
+                      position: event.latLng
+                  });
+                  infowindow2.open(map1);
+                  /*setTimeout(function() {
+                          infowindow2.close();
+                      }, 5000);*/
+                  // alert (this.indexID); // newalert
+                  report('m-clk+', 'Sug:' + (+oneMap + +1) + '  Sub-basin:'+this.indexID+';'); // trackable
+
+                  /*$.ajax({url: 'sendToTime.php',type: 'post',
+                      data: "JSONHolder=" + "Map1" + "," + page + "," + session + "," + this.indexID,
+                      success: function(data) {
+                      }
+                  });//*/
+              });
+
+              coverArray.push(cover);
+
+          }
+          //map.fitBounds(bounds);
+      };
+      // ------------  end 'drawCover1'
+
+      //////////////////////////  End COVER CROPS totally ////////////////////////
+
+
+      ///////////////////////// (3) Begin STRIP CROPPING ////////////////////////////////
+
+      // function doStripCropping() {
+      //     dostrip1();
+      // }
+      // ----------------  end 'doStripCropping()'
+
+      // ----------------  start 'dostrip1()'
+      // function dostrip1() {
+      function doStripCropping() {
+          var obj = find(forMapArray, 'Title', 'strip_cropping');
+          if (obj) {
+              //alert("in it");
+              var listofSubs = obj.subs;
+              //var listofSubs = obj.subs;
+              var strLen = listofSubs.length;
+              var listofSubs = listofSubs.slice(0, strLen - 1);
+          }
+          // Initialize JSONP request
+          var script = document.createElement('script');
+          var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
+          url.push('sql=');
+          //Streams
+          var query = 'SELECT GRIDCODE, geometry, Area_Acres,Length_mil FROM ' +
+              '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA Where GRIDCODE in (' + listofSubs + ')';
+          var encodedQuery = encodeURIComponent(query);
+          url.push(encodedQuery);
+          url.push('&callback=drawStrip1');//E:Here, the function 'drawStrip1' is called.  <===
+          url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+          script.src = url.join('');
+          // alert("script.src: " + url);
+          var body = document.getElementsByTagName('body')[0];
+          body.appendChild(script);
+      }
+      // ----------------  end 'dostrip1()'
+
+      // ----------------  start 'drawStrip1' --------------------- /GREEN/
+      drawStrip1 = function(data) {
+          //function drawWet1(data) {
+          //alert("ON");
+          var rows = data['rows'];
+          //var whichNode=100;
+          for (var i in rows) {
+              var newCoordinates = [];
+              var whichNode = "";
+              //var geometries = rows[i][1]['geometry'];
+              //alert (geometries)
+
+              //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
+              var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
+              //answersArray[oneMap].RATING
+              var row = rows[i];
+              var whichNode = row[0];
+              /////////You will put your acreage here///////////
+              var acres = parseFloat(row[2]).toFixed(1);
+              var rivers = parseFloat(row[3]).toFixed(1);
+              /////////You will put your stream miles here/////////
+              //alert (whichNode);
+
+              strip = new google.maps.Polygon({
+                  path: newCoordinates,
+                  //strokeColor: colors[0],
+                  strokeOpacity: .4,
+                  strokeWeight: 1,
+                  fillOpacity: 1,
+                  fillColor: "#87b07e",
+                  indexID: whichNode
+              });
+              strip.setMap(map1);
+              var obj = find(subBasinArray, 'subbasinID', whichNode);
+              var jonArray = [];
+              if (obj) {
+                  var listAll = "Sub-basin Area: " + acres + " acres | Stream Length: " + rivers + " miles <br />" + JSON.stringify(obj);
+                  listAll = listAll.replace(/"0.0"/g, "No");
+                  listAll = listAll.replace(/"1.0"/g, "Yes");
+                  listAll = listAll.replace(/,/g, "<br />");
+                  listAll = listAll.replace(/"/g, "");
+                  listAll = listAll.replace(/}/g, "");
+                  listAll = listAll.replace(/{/g, "");
+                  listAll = listAll.replace(/_/g, " ");
+                  listAll = listAll.replace(/variable area wetlands/g, "wetlands area");
+                  listAll = listAll.replace(/:/g, ": ");
+                  listAll = listAll.replace(/variable wetfr wetlands/g, "wetlands drainage");
+                  listAll = listAll.replace(/wetlands area/g, "Wetlands area");
+                  listAll = listAll.replace(/filter strips/g, "Filter strip width in feet");
+                  listAll = listAll.replace(/wetlands drainage/g, "Wetlands drainage area fraction");
+                  listAll = listAll.replace(/subbasinID/g, "Sub-basin ID");
+                  listAll = listAll.replace(obj.variable_area_wetlands, obj.variable_area_wetlands + " acres");
+                  //alert (listAll);
+              } else {
+                  var listAll = "Sub-basin Area: " + acres + " acres | Stream Length: " + rivers + " miles <br />" + "Sub-basin ID: " + whichNode;
+              }
+
+              var obj = {
+                  'list': listAll
+              };
+              strip.objInfo = obj;
+              google.maps.event.addListener(strip, 'click', function(event) {
+                  //console.log(this.objInfo);
+                  $('.displayStuff').html(this.objInfo.list);
+                  var window_info = this.objInfo.list + '<br><div class="displayStuffb" name="What Do They Mean"><a' +
+                      ' target="_blank" href="infoBox.html" rel="shadowbox;height=640;width=620" name="What Do They Mean">' +
+                      '<strong><em name="What Do They Mean">What do these numbers**** mean?</em></strong></a></div>';
+                  infowindow2 = new google.maps.InfoWindow({
+                      content: window_info,
+                      position: event.latLng
+
+                  });
+                  infowindow2.open(map1);
+                  /*setTimeout(function() {
+                          infowindow2.close();
+                      }, 5000);*/
+                  // alert (this.indexID); // newalert
+                  report('m-clk+', 'Sug:' + (+oneMap + +1) + '  Sub-basin:'+this.indexID+';'); // trackable
+
+                  /*$.ajax({url: 'sendToTime.php', type: 'post',
+                      data: "JSONHolder=" + "Map1" + "," + page + "," + session + "," + this.indexID,
+                      success: function(data) {
+                      }
+                  }); //*/
+              });
+
+              stripArray.push(strip);
+          }
+          //map.fitBounds(bounds);
+      };
+      // ---------------  end 'drawStrip1'
+
+      ///////////////////////// End STRIP CROPPING totally ////////////////////////////////
+
+
+      ///////////////// (4) Begin FILTER STRIP///THIS ONE NEEDS TO BE THE POLYLINES//////////////////////////////
       // function doFilterStrips() {
       //     dofilter1();
       // }
@@ -612,401 +1063,7 @@
 
       // -----------  end 'drawfilter1'
 
-      /////////////////////////////  End 'Filter Strips' totally ////////////////////////
-
-
-      ////////////////////////  Begin COVER CROPS  //////////////////////////////
-
-      // function doCoverCrops() {
-      //     docover1();
-      // }
-      // ------------  end 'doCoverCrops'
-
-      // ------------  start 'docover1'
-      // function docover1() {
-      function doCoverCrops() {
-          var obj = find(forMapArray, 'Title', 'cover_crops');
-          if (obj) {
-              //alert("in it");
-              var listofSubs = obj.subs;
-              //var listofSubs = obj.subs;
-              var strLen = listofSubs.length;
-              var listofSubs = listofSubs.slice(0, strLen - 1);
-          }
-          // Initialize JSONP request
-          var script = document.createElement('script');
-          var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
-          url.push('sql=');
-          //Streams
-          var query = 'SELECT GRIDCODE, geometry, Area_Acres,Length_mil FROM ' +
-              '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA Where GRIDCODE in (' + listofSubs + ')';
-          var encodedQuery = encodeURIComponent(query);
-          url.push(encodedQuery);
-          url.push('&callback=drawCover1');//E:Here, the function 'drawCover1' is called.  <===
-          url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
-          script.src = url.join('');
-          var body = document.getElementsByTagName('body')[0];
-          body.appendChild(script);
-      }
-      // ------------  end 'docover1'
-
-      // ------------  start 'drawCover1'
-
-      drawCover1 = function(data) {
-          //function drawWet1(data) {
-          //alert("ON");
-          var rows = data['rows'];
-          //var whichNode=100;
-          for (var i in rows) {
-              var newCoordinates = [];
-              var whichNode = "";
-              //var geometries = rows[i][1]['geometry'];
-              //alert (geometries)
-
-              //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
-              var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
-              //answersArray[oneMap].RATING
-              var row = rows[i];
-              var whichNode = row[0];
-              /////////You will put your acreage here///////////
-              var acres = parseFloat(row[2]).toFixed(1);
-              var rivers = parseFloat(row[3]).toFixed(1);
-              /////////You will put your stream miles here/////////
-              //alert (whichNode);
-
-              cover = new google.maps.Polygon({
-                  path: newCoordinates,
-                  //strokeColor: colors[0],
-                  strokeOpacity: .4,
-                  strokeWeight: 1,
-                  fillOpacity: 1,
-                  fillColor: "#99c9ba",
-                  indexID: whichNode
-              });
-              cover.setMap(map1);
-
-
-              var obj = find(subBasinArray, 'subbasinID', whichNode);
-              if (obj) {
-                  var listAll = "Sub-basin Area: " + acres + " acres | Stream Length: " + rivers + " miles <br />" + JSON.stringify(obj);
-                  listAll = listAll.replace(/"0.0"/g, "No");
-                  listAll = listAll.replace(/"1.0"/g, "Yes");
-                  listAll = listAll.replace(/,/g, "<br />");
-                  listAll = listAll.replace(/"/g, "");
-                  listAll = listAll.replace(/}/g, "");
-                  listAll = listAll.replace(/{/g, "");
-                  listAll = listAll.replace(/_/g, " ");
-                  listAll = listAll.replace(/variable area wetlands/g, "wetlands area");
-                  listAll = listAll.replace(/:/g, ": ");
-                  listAll = listAll.replace(/variable wetfr wetlands/g, "wetlands drainage");
-                  listAll = listAll.replace(/wetlands area/g, "Wetlands area");
-                  listAll = listAll.replace(/filter strips/g, "Filter strip width in feet");
-                  listAll = listAll.replace(/wetlands drainage/g, "Wetlands drainage area fraction");
-                  listAll = listAll.replace(/subbasinID/g, "Sub-basin ID");
-                  listAll = listAll.replace(obj.variable_area_wetlands, obj.variable_area_wetlands + " acres");
-                  //alert (listAll);
-              } else {
-                  var listAll = "Sub-basin Area: " + acres + " acres | Stream Length: " + rivers + " miles <br />" + "Sub-basin ID: " + whichNode;
-              }
-
-              var obj = {
-                  'list': listAll
-              };
-              cover.objInfo = obj;
-              google.maps.event.addListener(cover, 'click', function(event) {
-                  //console.log(this.objInfo);
-                  $('.displayStuff').html(this.objInfo.list);
-                  var abc = this.objInfo.list + '<br><div class="displayStuffb" name="What Do They Mean"><a target="_blank" href="infoBox.html" rel="shadowbox;height=640;width=620" name="What Do They Mean"><strong><em name="What Do They Mean">What do these numbers mean?</em></strong></a></div>';
-                  infowindow2 = new google.maps.InfoWindow({
-                      content: abc,
-                      position: event.latLng
-                  });
-                  infowindow2.open(map1);
-                  /*setTimeout(function() {
-                          infowindow2.close();
-                      }, 5000);*/
-                  // alert (this.indexID); // newalert
-                  report('m-clk+', 'Sug:' + (+oneMap + +1) + '  Sub-basin:'+this.indexID+';'); // trackable
-
-                  /*$.ajax({url: 'sendToTime.php',type: 'post',
-                      data: "JSONHolder=" + "Map1" + "," + page + "," + session + "," + this.indexID,
-                      success: function(data) {
-                      }
-                  });//*/
-              });
-
-              coverArray.push(cover);
-
-          }
-          //map.fitBounds(bounds);
-      };
-      // ------------  end 'drawCover1'
-
-      ////////////////////////////////End COVER CROPS totally ////////////////////////
-
-      /////////////////Begin Crop Rotation///////////////////////////////////////
-
-      // function doCropRotation() {
-      //     docrop1();
-      // }
-      // ------------  end 'doCropRotation'
-
-      // ------------  start 'docrop1'
-      // function docrop1() {
-      function doCropRotation() {
-          var obj = find(forMapArray, 'Title', 'crop_rotation');
-          if (obj) {
-              //alert("in it");
-              var listofSubs = obj.subs;
-              //var listofSubs = obj.subs;
-              var strLen = listofSubs.length;
-              var listofSubs = listofSubs.slice(0, strLen - 1);
-              //alert(listofSubs);
-          }
-
-          // listOfSubs=forMapArray1["crop_rotation"];
-          //alert(listOfSubs);
-          // Initialize JSONP request
-          var script = document.createElement('script');
-          var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
-          url.push('sql=');
-          //Streams
-          var query = 'SELECT GRIDCODE, geometry, Area_Acres,Length_mil FROM ' +
-              '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA Where GRIDCODE in (' + listofSubs + ')';
-          var encodedQuery = encodeURIComponent(query);
-          url.push(encodedQuery);
-          url.push('&callback=drawCrop1');//E:Here, the function 'drawCrop1' is called.  <===
-          url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
-          // url.push('&key=1ZBdUCcDAjB0w94aiSRybOvnbtUxHYrvaMmeljHaD');
-          // 1ZBdUCcDAjB0w94aiSRybOvnbtUxHYrvaMmeljHaD
-          // https://fusiontables.google.com/DataSource?docid=1ZBdUCcDAjB0w94aiSRybOvnbtUxHYrvaMmeljHaD#map:id=3
-          script.src = url.join('');
-          var body = document.getElementsByTagName('body')[0];
-          body.appendChild(script);
-      }
-      // ------------  end 'docrop1'
-
-      // ------------  start 'drawCrop1'
-
-      drawCrop1 = function(data) {
-          //function drawWet1(data) {
-          //alert("ON");
-          var rows = data['rows'];
-          //var whichNode=100;
-          for (var i in rows) {
-              var newCoordinates = [];
-              var whichNode = "";
-              //var geometries = rows[i][1]['geometry'];
-              //alert (geometries)
-
-              //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
-              var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
-              //answersArray[oneMap].RATING
-              var row = rows[i];
-              var whichNode = row[0];
-              /////////You will put your acreage here///////////
-              var acres = parseFloat(row[2]).toFixed(1);
-              var rivers = parseFloat(row[3]).toFixed(1);
-              /////////You will put your stream miles here/////////
-              //alert (whichNode);
-
-              crop = new google.maps.Polygon({
-                  path: newCoordinates,
-                  //strokeColor: colors[0],
-                  strokeOpacity: .4,
-                  strokeWeight: 1,
-                  fillOpacity: 1,
-                  fillColor: "#8da1bf",
-                  indexID: whichNode
-              });
-              crop.setMap(map1);
-
-              var obj = find(subBasinArray, 'subbasinID', whichNode);
-              if (obj) {
-                  var listAll = "Sub-basin Area: " + acres + " acres | Stream Length: " + rivers + " miles <br />" + JSON.stringify(obj);
-                  listAll = listAll.replace(/"0.0"/g, "No");
-                  listAll = listAll.replace(/"1.0"/g, "Yes");
-                  listAll = listAll.replace(/,/g, "<br />");
-                  listAll = listAll.replace(/"/g, "");
-                  listAll = listAll.replace(/}/g, "");
-                  listAll = listAll.replace(/{/g, "");
-                  listAll = listAll.replace(/_/g, " ");
-                  listAll = listAll.replace(/variable area wetlands/g, "wetlands area");
-                  listAll = listAll.replace(/:/g, ": ");
-                  listAll = listAll.replace(/variable wetfr wetlands/g, "wetlands drainage");
-                  listAll = listAll.replace(/wetlands area/g, "Wetlands area");
-                  listAll = listAll.replace(/filter strips/g, "Filter strip width in feet");
-                  listAll = listAll.replace(/wetlands drainage/g, "Wetlands drainage area fraction");
-                  listAll = listAll.replace(/subbasinID/g, "Sub-basin ID");
-                  listAll = listAll.replace(obj.variable_area_wetlands, obj.variable_area_wetlands + " acres");
-                  //alert (listAll);
-              } else {
-                  var listAll = "Sub-basin Area: " + acres + " acres | Stream Length: " + rivers + " miles <br />" + "Sub-basin ID: " + whichNode;
-              }
-
-              var obj = {
-                  'list': listAll
-              };
-              crop.objInfo = obj;
-              google.maps.event.addListener(crop, 'click', function(event) {
-                  //console.log(this.objInfo);
-                  $('.displayStuff').html(this.objInfo.list);
-                  var abc = this.objInfo.list + '<br><div class="displayStuffb" name="What Do They Mean"><a target="_blank" href="infoBox.html" rel="shadowbox;height=640;width=620" name="What Do They Mean"><strong><em name="What Do They Mean">What do these numbers mean?</em></strong></a></div>';
-                  infowindow2 = new google.maps.InfoWindow({
-                      content: abc,
-                      position: event.latLng
-                  });
-                  infowindow2.open(map1);
-                  /*setTimeout(function() {
-                          infowindow2.close();
-                      }, 5000);*/
-                  // alert (this.indexID); // newalert
-                  report('m-clk+', 'Sug:' + (+oneMap + +1) + '  Sub-basin:'+this.indexID+';'); // trackable
-
-                  /*$.ajax({url: 'sendToTime.php', type: 'post',
-                      data: "JSONHolder=" + "Map1" + "," + page + "," + session + "," + this.indexID,
-                      success: function(data) {
-                      }
-                  }); //*/
-
-              });
-
-              cropArray.push(crop);
-          }
-          //map.fitBounds(bounds);
-      };
-
-      // ------------  end 'drawCrop1'
-
-      ////////////////////////////////End Crop Rotation totally ////////////////////////
-
-
-      /////////////////////////Begin Strip Cropping////////////////////////////////
-
-      // function doStripCropping() {
-      //     dostrip1();
-      // }
-      // ----------------  end 'doStripCropping()'
-
-      // ----------------  start 'dostrip1()'
-      // function dostrip1() {
-      function doStripCropping() {
-          var obj = find(forMapArray, 'Title', 'strip_cropping');
-          if (obj) {
-              //alert("in it");
-              var listofSubs = obj.subs;
-              //var listofSubs = obj.subs;
-              var strLen = listofSubs.length;
-              var listofSubs = listofSubs.slice(0, strLen - 1);
-          }
-          // Initialize JSONP request
-          var script = document.createElement('script');
-          var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
-          url.push('sql=');
-          //Streams
-          var query = 'SELECT GRIDCODE, geometry, Area_Acres,Length_mil FROM ' +
-              '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA Where GRIDCODE in (' + listofSubs + ')';
-          var encodedQuery = encodeURIComponent(query);
-          url.push(encodedQuery);
-          url.push('&callback=drawStrip1');//E:Here, the function 'drawStrip1' is called.  <===
-          url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
-          script.src = url.join('');
-          // alert("script.src: " + url);
-          var body = document.getElementsByTagName('body')[0];
-          body.appendChild(script);
-      }
-      // ----------------  end 'dostrip1()'
-
-      // ----------------  start 'drawStrip1' --------------------- /GREEN/
-      drawStrip1 = function(data) {
-          //function drawWet1(data) {
-          //alert("ON");
-          var rows = data['rows'];
-          //var whichNode=100;
-          for (var i in rows) {
-              var newCoordinates = [];
-              var whichNode = "";
-              //var geometries = rows[i][1]['geometry'];
-              //alert (geometries)
-
-              //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
-              var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
-              //answersArray[oneMap].RATING
-              var row = rows[i];
-              var whichNode = row[0];
-              /////////You will put your acreage here///////////
-              var acres = parseFloat(row[2]).toFixed(1);
-              var rivers = parseFloat(row[3]).toFixed(1);
-              /////////You will put your stream miles here/////////
-              //alert (whichNode);
-
-              strip = new google.maps.Polygon({
-                  path: newCoordinates,
-                  //strokeColor: colors[0],
-                  strokeOpacity: .4,
-                  strokeWeight: 1,
-                  fillOpacity: 1,
-                  fillColor: "#87b07e",
-                  indexID: whichNode
-              });
-              strip.setMap(map1);
-              var obj = find(subBasinArray, 'subbasinID', whichNode);
-              var jonArray = [];
-              if (obj) {
-                  var listAll = "Sub-basin Area: " + acres + " acres | Stream Length: " + rivers + " miles <br />" + JSON.stringify(obj);
-                  listAll = listAll.replace(/"0.0"/g, "No");
-                  listAll = listAll.replace(/"1.0"/g, "Yes");
-                  listAll = listAll.replace(/,/g, "<br />");
-                  listAll = listAll.replace(/"/g, "");
-                  listAll = listAll.replace(/}/g, "");
-                  listAll = listAll.replace(/{/g, "");
-                  listAll = listAll.replace(/_/g, " ");
-                  listAll = listAll.replace(/variable area wetlands/g, "wetlands area");
-                  listAll = listAll.replace(/:/g, ": ");
-                  listAll = listAll.replace(/variable wetfr wetlands/g, "wetlands drainage");
-                  listAll = listAll.replace(/wetlands area/g, "Wetlands area");
-                  listAll = listAll.replace(/filter strips/g, "Filter strip width in feet");
-                  listAll = listAll.replace(/wetlands drainage/g, "Wetlands drainage area fraction");
-                  listAll = listAll.replace(/subbasinID/g, "Sub-basin ID");
-                  listAll = listAll.replace(obj.variable_area_wetlands, obj.variable_area_wetlands + " acres");
-                  //alert (listAll);
-              } else {
-                  var listAll = "Sub-basin Area: " + acres + " acres | Stream Length: " + rivers + " miles <br />" + "Sub-basin ID: " + whichNode;
-              }
-
-              var obj = {
-                  'list': listAll
-              };
-              strip.objInfo = obj;
-              google.maps.event.addListener(strip, 'click', function(event) {
-                  //console.log(this.objInfo);
-                  $('.displayStuff').html(this.objInfo.list);
-                  var abc = this.objInfo.list + '<br><div class="displayStuffb" name="What Do They Mean"><a target="_blank" href="infoBox.html" rel="shadowbox;height=640;width=620" name="What Do They Mean"><strong><em name="What Do They Mean">What do these numbers mean?</em></strong></a></div>';
-                  infowindow2 = new google.maps.InfoWindow({
-                      content: abc,
-                      position: event.latLng
-					  
-                  });
-                  infowindow2.open(map1);
-                  /*setTimeout(function() {
-                          infowindow2.close();
-                      }, 5000);*/
-                  // alert (this.indexID); // newalert
-                  report('m-clk+', 'Sug:' + (+oneMap + +1) + '  Sub-basin:'+this.indexID+';'); // trackable
-
-                  /*$.ajax({url: 'sendToTime.php', type: 'post',
-                      data: "JSONHolder=" + "Map1" + "," + page + "," + session + "," + this.indexID,
-                      success: function(data) {
-                      }
-                  }); //*/
-              });
-
-
-              stripArray.push(strip);
-          }
-          //map.fitBounds(bounds);
-      };
-      // ---------------  end 'drawStrip1'
+      /////////////////////////////  End 'FILTER STRIP' totally ////////////////////////
 
 
 
@@ -1031,7 +1088,187 @@
       }
       ////////// ----- end 'constructNewCoordinates(polygon)'  /////////
 
-      ////////////////////// Begin Wetlands Markers /////////////////////////////
+
+      ///////////////// (5)  Begin GRASS-WATERWAYS Markers  ////////////////////////////////////////////////
+      // function doGrassWaterway() {
+      //     dograss1();
+      // }
+      // ------ end 'doGrassWaterway()'
+
+      // ------ start 'dograss1()'
+      // function dograss1() {
+      function doGrassWaterway() {
+          var obj = find(forMapArray, 'Title', 'grassed_waterway');
+          if (obj) {
+              //alert("in it");
+              var listofSubs = obj.subs;
+              //var listofSubs = obj.subs;
+              var strLen = listofSubs.length;
+              var listofSubs = listofSubs.slice(0, strLen - 1);
+          }
+          // Initialize JSONP request
+          var script = document.createElement('script');
+          var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
+          url.push('sql=');
+          //Streams
+          var query = 'SELECT GRIDCODE, geometry FROM ' +
+              '1iRLpYHfW4L9ncVMvhL5HD5Pwcuu63MVmRBWtn7Y Where GRIDCODE in (' + listofSubs + ')';
+          var encodedQuery = encodeURIComponent(query);
+          url.push(encodedQuery);
+          url.push('&callback=drawGrass1');
+          url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+          script.src = url.join('');
+          var body = document.getElementsByTagName('body')[0];
+          body.appendChild(script);
+      }
+      // -------------------------------- end 'dograss1()'
+
+      // ---------------------------------- start 'drawGrass1'
+      drawGrass1 = function(data) {
+          var rows = data['rows'];
+          //var whichNode=100;
+          for (var i in rows) {
+              var newCoordinates = [];
+              var whichNode = "";
+              //var geometries = rows[i][1]['geometry'];
+              //alert (geometries)
+
+              //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
+              var newCoordinates = constructNewCoordinatesGrass(rows[i][1]['geometry']);
+              //answersArray[oneMap].RATING
+              var row = rows[i];
+              var whichNode = row[0];
+              //alert (whichNode);
+
+              grass = geo;
+              //var country = new google.maps.Marker({
+              // position:new google.maps.LatLng(newCoordinates),
+              //map:map1,
+              //icon: customIcons[1],
+              //})
+              //alert (country);
+              grass.setMap(map1);
+              grassArray.push(grass);
+          }
+          //map.fitBounds(bounds);
+      }; // ---------------------------------- end 'drawGrass1'
+
+
+      ////////////This is the new piece that takes the markers and not shapes for Grass Waterways//////////////
+      function constructNewCoordinatesGrass(polygon) {
+          var geoOptions = {
+              strokeColor: colors[0],
+              strokeOpacity: 0.8,
+              strokeWeight: 1,
+              fillColor: colors[0],
+              fillOpacity: 0.3,
+              icon: grassIcon
+          };
+          var opts = geoOptions;
+          var newCoordinates = [];
+          var coordinates = null;
+          if (polygon['coordinates']) {
+              var coordinates = polygon['coordinates'];
+              var options = opts || {};
+              options.position = new google.maps.LatLng(coordinates[1], coordinates[0]);
+              geo = new google.maps.Marker(options);
+              return geo;
+          }
+      }
+      // ------ end 'constructNewCoordinatesGrass(polygon)'
+
+      ////////END GW (GRASS-WATERWAYS) totally /////////////////////
+
+
+
+      /////////////////////////  (6) Begin No-Till Markers //////////////////////////////
+      // function doConserveTillage() {
+      //     dotill1();
+      // }
+      // ------- end 'doConserveTillage()'
+
+      // ------- start 'dotill1()'
+      // function dotill1() {
+      function doConserveTillage() {
+          var obj = find(forMapArray, 'Title', 'conservation_tillage');
+          if (obj) {
+              //alert("in it");
+              var listofSubs = obj.subs;
+              //var listofSubs = obj.subs;
+              var strLen = listofSubs.length;
+              var listofSubs = listofSubs.slice(0, strLen - 1);
+              //alert(listofSubs);
+          }
+          // Initialize JSONP request
+          var script = document.createElement('script');
+          var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
+          url.push('sql=');
+          //Streams
+          var query = 'SELECT GRIDCODE, geometry FROM ' +
+              '1iRLpYHfW4L9ncVMvhL5HD5Pwcuu63MVmRBWtn7Y Where GRIDCODE in (' + listofSubs + ')';
+          var encodedQuery = encodeURIComponent(query);
+          url.push(encodedQuery);
+          url.push('&callback=drawTill1');
+          url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+          script.src = url.join('');
+          var body = document.getElementsByTagName('body')[0];
+          body.appendChild(script);
+      }
+      // ------- end 'dotill1()'
+
+      //   ------- start 'drawTill1'
+      drawTill1 = function(data) {
+          var rows = data['rows'];
+          //var whichNode=100;
+          for (var i in rows) {
+              var newCoordinates = [];
+              var whichNode = "";
+              var row = rows[i];
+              var whichNode = row[0];
+              //var geometries = rows[i][1]['geometry'];
+              //alert (geometries)
+
+              //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
+              var newCoordinates = constructNewCoordinatesTill(rows[i][1]['geometry']);
+              //answersArray[oneMap].RATING
+
+              notill = geo;
+              notill.setMap(map1);
+              conserveArray.push(notill);
+              // alert("In");
+          }
+          //map.fitBounds(bounds);
+      };
+      //   ------- end 'drawTill1'
+
+      ////////////This is the new piece that takes the markers and not shapes for No Till//////////////
+      function constructNewCoordinatesTill(polygon) {
+          var geoOptions = {
+              strokeColor: colors[0],
+              strokeOpacity: 0.8,
+              strokeWeight: 1,
+              fillColor: colors[0],
+              fillOpacity: 0.3,
+              icon: tillIcon
+          };
+          var opts = geoOptions;
+          var newCoordinates = [];
+          var coordinates = null;
+          if (polygon['coordinates']) {
+              var coordinates = polygon['coordinates'];
+              var options = opts || {};
+              options.position = new google.maps.LatLng(coordinates[1], coordinates[0]);
+              geo = new google.maps.Marker(options);
+              return geo;
+          }
+      }
+      // ------ end 'constructNewCoordinatesTill(polygon)'
+
+      //////// end NO-TILLAGE totally /////////////////////
+
+
+
+      // //////////////////// (7) Begin WETLANDS Markers /////////////////////////////
       // function dobinaryWetlands() {
       //     dowetlands1();
       // }
@@ -1134,7 +1371,7 @@
                       default:
                           wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands.png";
                           break;
-                          //return wetlandsIcon;
+                      //return wetlandsIcon;
                   }
                   //alert(wetlandsIcon + ":" + wetlandsize);
               }
@@ -1148,7 +1385,7 @@
 
               //alert (whichNode);
               wetlands = geo;
-              //var country = new google.maps.Marker({  
+              //var country = new google.maps.Marker({
               // position:new google.maps.LatLng(newCoordinates),
               //map:map1,
               //icon: customIcons[1],
@@ -1160,8 +1397,6 @@
           //map.fitBounds(bounds);
       };
       // -------------- end 'drawWet1'
-
-      ////////////////////////// End wetland totally ///////////////////////
 
       ///////// This is the new piece that takes the markers and not shapes //////////
       function constructNewCoordinatesWet(polygon) {
@@ -1188,189 +1423,11 @@
       }
       // ------- end 'constructNewCoordinatesWet(polygon)'
 
+      // //////////////////////// End WETLANDS totally ///////////////////////
 
-      ////////////This is the new piece that takes the markers and not shapes for Grass Waterways//////////////
-      function constructNewCoordinatesGrass(polygon) {
-          var geoOptions = {
-              strokeColor: colors[0],
-              strokeOpacity: 0.8,
-              strokeWeight: 1,
-              fillColor: colors[0],
-              fillOpacity: 0.3,
-              icon: grassIcon
-          };
-          var opts = geoOptions;
-          var newCoordinates = [];
-          var coordinates = null;
-          if (polygon['coordinates']) {
-              var coordinates = polygon['coordinates'];
-              var options = opts || {};
-              options.position = new google.maps.LatLng(coordinates[1], coordinates[0]);
-              geo = new google.maps.Marker(options);
-              return geo;
-          }
-      }
-      // ------ end 'constructNewCoordinatesGrass(polygon)'
+  } ///END MAPPING FUNCTIONs
 
-      ////////////This is the new piece that takes the markers and not shapes for No Till//////////////
-      function constructNewCoordinatesTill(polygon) {
-          var geoOptions = {
-              strokeColor: colors[0],
-              strokeOpacity: 0.8,
-              strokeWeight: 1,
-              fillColor: colors[0],
-              fillOpacity: 0.3,
-              icon: tillIcon
-          };
-          var opts = geoOptions;
-          var newCoordinates = [];
-          var coordinates = null;
-          if (polygon['coordinates']) {
-              var coordinates = polygon['coordinates'];
-              var options = opts || {};
-              options.position = new google.maps.LatLng(coordinates[1], coordinates[0]);
-              geo = new google.maps.Marker(options);
-              return geo;
-          }
-      }
-      // ------ end 'constructNewCoordinatesTill(polygon)'
-
-
-      /////////////////////////// Begin No-Till Markers //////////////////////////////
-      // function doConserveTillage() {
-      //     dotill1();
-      // }
-      // ------- end 'doConserveTillage()'
-
-      // ------- start 'dotill1()'
-      // function dotill1() {
-      function doConserveTillage() {
-          var obj = find(forMapArray, 'Title', 'conservation_tillage');
-          if (obj) {
-              //alert("in it");
-              var listofSubs = obj.subs;
-              //var listofSubs = obj.subs;
-              var strLen = listofSubs.length;
-              var listofSubs = listofSubs.slice(0, strLen - 1);
-              //alert(listofSubs);
-          }
-          // Initialize JSONP request
-          var script = document.createElement('script');
-          var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
-          url.push('sql=');
-          //Streams
-          var query = 'SELECT GRIDCODE, geometry FROM ' +
-              '1iRLpYHfW4L9ncVMvhL5HD5Pwcuu63MVmRBWtn7Y Where GRIDCODE in (' + listofSubs + ')';
-          var encodedQuery = encodeURIComponent(query);
-          url.push(encodedQuery);
-          url.push('&callback=drawTill1');
-          url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
-          script.src = url.join('');
-          var body = document.getElementsByTagName('body')[0];
-          body.appendChild(script);
-      }
-      // ------- end 'dotill1()'
-
-      //   ------- start 'drawTill1'
-      drawTill1 = function(data) {
-          var rows = data['rows'];
-          //var whichNode=100;
-          for (var i in rows) {
-              var newCoordinates = [];
-              var whichNode = "";
-              var row = rows[i];
-              var whichNode = row[0];
-              //var geometries = rows[i][1]['geometry'];
-              //alert (geometries)
-
-              //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
-              var newCoordinates = constructNewCoordinatesTill(rows[i][1]['geometry']);
-              //answersArray[oneMap].RATING
-
-              notill = geo;
-              notill.setMap(map1);
-              conserveArray.push(notill);
-              // alert("In");
-          }
-          //map.fitBounds(bounds);
-      };
-      //   ------- end 'drawTill1'
-
-      //////// end NO-TILLAGE totally /////////////////////
-
-      /////////////////  Begin Grass-Waterways Markers  //////////////////////////////////////////////////////////
-      // function doGrassWaterway() {
-      //     dograss1();
-      // }
-      // ------ end 'doGrassWaterway()'
-
-      // ------ start 'dograss1()'
-      // function dograss1() {
-      function doGrassWaterway() {
-          var obj = find(forMapArray, 'Title', 'grassed_waterway');
-          if (obj) {
-              //alert("in it");
-              var listofSubs = obj.subs;
-              //var listofSubs = obj.subs;
-              var strLen = listofSubs.length;
-              var listofSubs = listofSubs.slice(0, strLen - 1);
-          }
-          // Initialize JSONP request
-          var script = document.createElement('script');
-          var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
-          url.push('sql=');
-          //Streams
-          var query = 'SELECT GRIDCODE, geometry FROM ' +
-              '1iRLpYHfW4L9ncVMvhL5HD5Pwcuu63MVmRBWtn7Y Where GRIDCODE in (' + listofSubs + ')';
-          var encodedQuery = encodeURIComponent(query);
-          url.push(encodedQuery);
-          url.push('&callback=drawGrass1');
-          url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
-          script.src = url.join('');
-          var body = document.getElementsByTagName('body')[0];
-          body.appendChild(script);
-      }
-      // -------------------------------- end 'dograss1()'
-
-      // ---------------------------------- start 'drawGrass1'
-      drawGrass1 = function(data) {
-          var rows = data['rows'];
-          //var whichNode=100;
-          for (var i in rows) {
-              var newCoordinates = [];
-              var whichNode = "";
-              //var geometries = rows[i][1]['geometry'];
-              //alert (geometries)
-
-              //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
-              var newCoordinates = constructNewCoordinatesGrass(rows[i][1]['geometry']);
-              //answersArray[oneMap].RATING
-              var row = rows[i];
-              var whichNode = row[0];
-              //alert (whichNode);
-
-              grass = geo;
-              //var country = new google.maps.Marker({  
-              // position:new google.maps.LatLng(newCoordinates),
-              //map:map1,
-              //icon: customIcons[1],
-              //})
-              //alert (country);
-              grass.setMap(map1);
-              grassArray.push(grass);
-          }
-          //map.fitBounds(bounds);
-      } // ---------------------------------- end 'drawGrass1'
-
-      ////////END GW (Grassed Waterways) totally /////////////////////
-      
-
-  } ///END MAPPING FUNCTION
-
-
-
-
-
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   // function toggleLayerNew(whichArray, whichArray2, mapName) {
   function toggleLayerNew(whichArray, mapName) {
@@ -1408,21 +1465,23 @@
   }
 
 // ====================  FUNCTION FOR TRACKING CHECKBOXS in LEGEND = (Added by E.Noa) =================== //
-  //  (1) Filter-strip          (fs)
+  //  (1) Crop-rotation         (cr)
   //  (2) Cover-crops           (cc)
-  //  (3) Crop-rotation         (cr)
-  //  (4) Strip-Cropping        (sc)
-  //  (5) Wetlands              (wt)
+  //  (3) Strip-Cropping        (sc)
+  //  (4) Filter-strip          (fs)
+  //  (5) Grass waterways       (gw)
   //  (6) No-Till (Till conservation)(nt)
-  //  (7) Grass waterways       (gw)
-  function track_check_filterStrip(){ //(1) Filter-strip (fs)
-      var value_name = document.getElementsByClassName("fs")[0].getAttribute("value"); // Filter-strip (fs)
-      if ($('input.fs').is(':checked')) {
+  //  (7) Wetlands              (wt)
+
+  function track_check_cropRotation(){ // (1) Crop-rotation (cr)
+      var value_name = document.getElementsByClassName("cr")[0].getAttribute("value"); // Cover-Crop (cc)
+      if ($('input.cr').is(':checked')) {
           report('m-clk+', 'Check of ' + value_name + ';'); // report('Check of', ' Filter-strips' + ';');
       }else{
           report('m-clk+', 'Un-check of ' + value_name + ';');// report('Un-check of', ' Filter-strips' + ';');
       }
   }
+
 
   function track_check_coverCrop(){ // (2) Cover-crops (cc)
       var value_name = document.getElementsByClassName("cc")[0].getAttribute("value"); // Cover-Crop (cc)
@@ -1433,16 +1492,8 @@
       }
   }
 
-  function track_check_cropRotation(){ // (3) Crop-rotation (cr)
-      var value_name = document.getElementsByClassName("cr")[0].getAttribute("value"); // Cover-Crop (cc)
-      if ($('input.cr').is(':checked')) {
-          report('m-clk+', 'Check of ' + value_name + ';'); // report('Check of', ' Filter-strips' + ';');
-      }else{
-          report('m-clk+', 'Un-check of ' + value_name + ';');// report('Un-check of', ' Filter-strips' + ';');
-      }
-  }
 
-  function track_check_stripCropping(){ // (4) Strip-Cropping (sc)
+  function track_check_stripCropping(){ // (3) Strip-Cropping (sc)
       var value_name = document.getElementsByClassName("sc")[0].getAttribute("value"); // Cover-Crop (cc)
       if ($('input.sc').is(':checked')) {
           report('m-clk+', 'Check of ' + value_name + ';'); // report('Check of', ' Filter-strips' + ';');
@@ -1451,14 +1502,26 @@
       }
   }
 
-  function track_check_wetland(){ // (5) Wetlands (wt)
-      var value_name = document.getElementsByClassName("wt")[0].getAttribute("value"); // Cover-Crop (cc)
-      if ($('input.wt').is(':checked')) {
+
+  function track_check_filterStrip(){ //(4) Filter-strip (fs)
+      var value_name = document.getElementsByClassName("fs")[0].getAttribute("value"); // Filter-strip (fs)
+      if ($('input.fs').is(':checked')) {
           report('m-clk+', 'Check of ' + value_name + ';'); // report('Check of', ' Filter-strips' + ';');
       }else{
           report('m-clk+', 'Un-check of ' + value_name + ';');// report('Un-check of', ' Filter-strips' + ';');
       }
   }
+
+
+  function track_check_grassWaterway(){ // (5) Grass waterways (gw)
+      var value_name = document.getElementsByClassName("gw")[0].getAttribute("value"); // Cover-Crop (cc)
+      if ($('input.gw').is(':checked')) {
+          report('m-clk+', 'Check of ' + value_name + ';'); // report('Check of', ' Filter-strips' + ';');
+      }else{
+          report('m-clk+', 'Un-check of ' + value_name + ';');// report('Un-check of', ' Filter-strips' + ';');
+      }
+  }
+
 
   function track_check_noTill(){ // (6) No-Till (Till conservation)(nt)
       var value_name = document.getElementsByClassName("nt")[0].getAttribute("value"); // Cover-Crop (cc)
@@ -1469,14 +1532,16 @@
       }
   }
 
-  function track_check_grassWaterway(){ // (7) Grass waterways (gw)
-      var value_name = document.getElementsByClassName("gw")[0].getAttribute("value"); // Cover-Crop (cc)
-      if ($('input.gw').is(':checked')) {
+
+  function track_check_wetland(){ // (7) Wetlands (wt)
+      var value_name = document.getElementsByClassName("wt")[0].getAttribute("value"); // Cover-Crop (cc)
+      if ($('input.wt').is(':checked')) {
           report('m-clk+', 'Check of ' + value_name + ';'); // report('Check of', ' Filter-strips' + ';');
       }else{
           report('m-clk+', 'Un-check of ' + value_name + ';');// report('Un-check of', ' Filter-strips' + ';');
       }
   }
+
 // ================== END ->  FUNCTION FOR TRACKING CHECKBOXS in LEGEND = (Added by E.Noa) =================== //
 
 

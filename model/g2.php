@@ -33,12 +33,12 @@
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type='text/javascript' src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <!--[if IE]><![endif]-->
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<!--    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script type="text/javascript" src="js/legend_DOM.js"></script>
     <script type="text/javascript" src="js/json2.js"></script>
-    <script type="text/javascript" src="js/jquery.collapsible.js"></script>
+<!--    <script type="text/javascript" src="js/jquery.collapsible.js"></script>-->
     <script type="text/javascript" src="js/bargraphcpy.js"></script>
     <script type='text/javascript' src='js/fda.js'></script>
     <script type='text/javascript' src='js/mt_config.js'></script>
@@ -627,6 +627,8 @@ compare to those of other recommended alternatives
     </div>
 </div>
     <!--   **************    Finish inserting RATING  ********  -->
+
+
 
 <!--    ==========================================  STEP 5  ==========================================    -->
 <!--<h2 name="step5">STEP 5: click on the blue buttons to see additional suggestions or click on the orange button if you have rated <b>all</b> of them.</h2>-->
@@ -2267,7 +2269,8 @@ compare to those of other recommended alternatives
                 $("#filterStrips1").val(answersArray[oneMap].filterStrips);
 //                $("#filterStrips2").val(answersArray[twoMap].filterStrips);
                 $("#grassedWaterways1").val(answersArray[oneMap].grassedWaterways);
-//                $("#grassedWaterways2").val(answersArray[twoMap].grassedWaterways);
+
+
                 $("#conservationTillage1").val(answersArray[oneMap].conservationTillage);
 //                $("#conservationTillage2").val(answersArray[twoMap].conservationTillage);
                 $("#Wetlands1").val(answersArray[oneMap].Wetlands);
@@ -2394,32 +2397,34 @@ compare to those of other recommended alternatives
 </script>
 
 <script type="text/javascript">
-    var togglecount = 0;
-    var toggleCountStep2 = 0;// Now it should be step1
-    var toggleCountStep3 = 0;// Now it should be step2
-    $(function(){
-        $('.header').click(function(){
-            togglecount++;
-            $(this).closest('.heatmaps_frame1').toggleClass('collapsed');//'heatmaps_frame1' was before 'containerABC'
-            var a = $(this).parent().attr('name');
-            if(a==='step1_alter') toggleCountStep2++;// Before: step2collapse. Now it is: 'step1_alter'
-            if(a==='step2_goals') toggleCountStep3++;// Before: step3collapse. Now it is: 'step2_goals'
-            /*if(togglecount > 1 && toggleCountStep2 > 2 && toggleCountStep3 >2)*/
-            /* if(togglecount >1)
-            {
-                if(a==='step2collapse'){
-                    var headstep= $("[name='step3collapse']");
-                    //var headchild= headstep.closest('.containerABC').toggleClass('collapsed');
-                    headstep.closest('.containerABC').toggleClass('collapsed');
-                }
-                if(a==='step3collapse'){
-                    var headstep= $("[name='step2collapse']");
-                    //var headchild= headstep.closest('.containerABC').toggleClass('collapsed');
-                    headstep.closest('.containerABC').toggleClass('collapsed');
-                }
-            }*/
-
-        });
+//    var togglecount = 0;
+//    var toggleCountStep2 = 0;// Now it should be step1
+//    var toggleCountStep3 = 0;// Now it should be step2
+//    $(function(){
+//        $('.header').click(function(){
+//            togglecount++;
+//            //Now 'panel_1', before was 'heatmaps_frame1'. Now 'heatmaps_frame1' was before 'containerABC'
+//            $(this).closest('.panel_1').toggleClass('collapsed');
+//            var a = $(this).parent().attr('name');
+//            if(a==='step1_alter') toggleCountStep2++;// Before: step2collapse. Now it is: 'step1_alter'
+//            if(a==='step2_goals') toggleCountStep3++;// Before: step3collapse. Now it is: 'step2_goals'
+//            /*if(togglecount > 1 && toggleCountStep2 > 2 && toggleCountStep3 >2)*/
+//            /* if(togglecount >1)*/
+//            {
+////                if(a==='step2collapse'){
+//                if(a==='step1_alter'){
+//                    var headstep= $("[name='step3collapse']");
+//                    //var headchild= headstep.closest('.containerABC').toggleClass('collapsed');
+//                    headstep.closest('.containerABC').toggleClass('collapsed');
+//                }
+//                if(a==='step3collapse'){
+//                    var headstep= $("[name='step2collapse']");
+//                    //var headchild= headstep.closest('.containerABC').toggleClass('collapsed');
+//                    headstep.closest('.containerABC').toggleClass('collapsed');
+//                }
+//            }
+//
+//        });
 
         // -------------- This function contains ".info1" to ".info8" by ENoa ------------//
         // 'info1' to info8' work for creating 'legend' and 'dropdown' incon in heat maps.
@@ -2536,7 +2541,7 @@ compare to those of other recommended alternatives
 //                }
 //            });
 //        });
-    });
+//    });
 </script>
 
 

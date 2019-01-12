@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Layer: Simple</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        html, body, #googleMap {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
+    <!--<script type="text/javascript" src="javascrip.js"></script>-->
+    <!--<script src="mckay_data1.js"></script> &lt;!&ndash; Here goes the JS.File name &ndash;&gt;-->
+    <script src="mky3.js"></script> <!-- Here goes the JS.File name -->
+</head>
+<body>
+<div id="googleMap"></div>
+
+<script>
+    function initMap() {
+
+        var mapProp = {
+//            center: {lat: 40.75597, lng: -73.974228},
+            center: {lat: 45.65, lng: -123.1},
+            zoom: 10.5
+        };
+        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+        alert("MapData coord.: " + (map_data.features));
+        alert("MapData coord.: " + JSON.stringify(map_data.features[0]));
+//        map.data.addGeoJson(map_data.features[0]);//E: It draws just one polygon
+
+        //E: This for loop draws all the polygon from McKay watershed
+        for (var i = 0; i < map_data.features.length; i++) {//E: 'map_data' is the variable-name in 'mckay_data1.js'
+            map.data.addGeoJson(map_data.features[i]);
+            map.data.setStyle({
+//                paths: decodedPolygon,
+                fillColor: 'red',
+                fillOpacity: 0.2,
+                strokeColor: '#aa2220',
+                strokeOpacity: 0.8,
+                strokeWeight: 1
+            });
+        }
+
+    }
+
+    google.maps.event.addDomListener(window, 'load', initMap);
+
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVNzONb19t-556kuu-ebT5DUF0wCpEt-g&callback=initMap"></script>
+</body>
+</html>
