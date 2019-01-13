@@ -42,6 +42,8 @@
     <script type="text/javascript" src="js/bargraphcpy.js"></script>
     <script type='text/javascript' src='js/fda.js'></script>
     <script type='text/javascript' src='js/mt_config.js'></script>
+<!--    DATA    -->
+    <script src="data/ecw_basemap.js"></script> <!-- Here goes the JS.File name. var "map_data" -->
     
     <script type="text/javascript">
         //window.onload(heatinitialize);

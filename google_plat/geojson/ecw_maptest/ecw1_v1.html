@@ -14,7 +14,7 @@
     <!--<script type="text/javascript" src="javascrip.js"></script>-->
     <!--<script src="mckay_data1.js"></script> &lt;!&ndash; Here goes the JS.File name &ndash;&gt;-->
     <!--<script src="mky3.js"></script> &lt;!&ndash; Here goes the JS.File name &ndash;&gt;-->
-    <script src="ecw1.js"></script> <!-- Here goes the JS.File name -->
+    <script src="ecw1.js"></script> <!-- Here goes the JS.File name. var "map_data" -->
 </head>
 <body>
 <div id="googleMap"></div>
@@ -36,7 +36,7 @@
 
         //E: This for loop draws all the polygon from McKay watershed
         for (var i = 0; i < map_data.features.length; i++) {//E: 'map_data' is the variable-name in 'mckay_data1.js'
-//            if (i==0) alert("property: " + i + " - " + JSON.stringify(map_data.properties[i]));//E:Show all properties of the current subbasin
+            if (i<2) alert("property: " + i + " - " + JSON.stringify(map_data.properties[i]));//E:Show all properties of the current subbasin
 //            if (i==0) alert("property: " + i + " - " + JSON.stringify(map_data.properties[i]["Subbasin"]));//E:Show the current subbasin
             map.data.addGeoJson(map_data.features[i]);
             map.data.setStyle({

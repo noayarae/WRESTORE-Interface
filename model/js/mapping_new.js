@@ -20,6 +20,7 @@
   var number;
   var map;
   var map1;
+  var basemap_1;
   // var map2;
   var grass;
   var wetlands;
@@ -57,7 +58,8 @@
 
       // ////// START Drawing MAIN MAP //////////////
       // var new_icon = $('#new_icon').get(0); // this is for adding a button icon for full screen
-      map1 = new google.maps.Map(document.getElementById('map_canvas1'),{
+      // map1 = new google.maps.Map(document.getElementById('map_canvas1'),{
+      basemap_1 = new google.maps.Map(document.getElementById('map_canvas1'),{
           // center: new google.maps.LatLng(39.9778, -86.2959),
           center: new google.maps.LatLng(39.9778, -86.44),
           zoom: 10.5,
@@ -87,7 +89,8 @@
       // These code-lines calls the js script located around 2620 in g2.php
 
       var buttonOptions = {
-          gmap: map1,
+          // gmap: map1,
+          gmap: basemap_1,
           name: 'Legend ',
           position: google.maps.ControlPosition.TOP_RIGHT,
           // action: function(){ //do something
@@ -145,7 +148,6 @@
 
       });
 
-
       // // ======= Start Add NEW button into the main map (NOT IN USE FOR NOW) ========//
       // var BMP_buttonOptions = {
       //     gmap: map1,
@@ -160,7 +162,6 @@
       // };
       // var BMP_buttons = new BMP_buttonControl(BMP_buttonOptions);
       // // =========  End Add NEW button into the main map ======= //
-
 
       // $$$$$$$$$$$$    create the check box items for the MAIN map $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
@@ -283,7 +284,8 @@
       container1.appendChild(container2);
       frame.appendChild(container1);
 
-      map1.controls[google.maps.ControlPosition.TOP_RIGHT].push(frame); //E: position of "frame" div into te map
+      // map1.controls[google.maps.ControlPosition.TOP_RIGHT].push(frame); //E:Placing the "frame" div into te map
+      basemap_1.controls[google.maps.ControlPosition.TOP_RIGHT].push(frame); //E:Placing the "frame" div into te map
 
       google.maps.event.addDomListener(frame,'click',function(){ //E: Add event "frame" to the map
       });
@@ -311,7 +313,9 @@
       ////////////////////////////////////////////////////////////
 
 
-      google.maps.event.addListener(map1, 'click', function goToTimeMap1() {
+      // Tacking when clicking outside of watershed
+      // google.maps.event.addListener(map1, 'click', function goToTimeMap1() {
+      google.maps.event.addListener(basemap_1, 'click', function goToTimeMap1() {
           // alert ("Suggestion " + (+oneMap + +1) + " - Outside watershed+"); // newalert
           report('m-clk+', 'Sug:' + (+oneMap + +1) + '  Outside-watershed',';'); // track the suggestion and outside
       });
@@ -382,13 +386,6 @@
 
       //////////////////////// (0)  Begin BACKGROUND  ////////////////////////////////
       ///Lay background map
-
-      // function doBackground() {
-      //     doBack();
-      // }
-
-      // ----------- start 'doBack'
-      // function doBack() {
       function doBackground() {
           // Initialize JSONP request
           var script = document.createElement('script');
@@ -415,7 +412,7 @@
               //function drawWet1(data) {
               //alert("ON");
           var rows = data['rows'];
-          // alert("L-407 rows: " + rows);//E:It show the list of sub-basins
+          // alert("L-407 rows: "+ "\n" + rows);//E:It show the list of sub-basins
           // alert("rows: " + typeof 'rows');//alert("row: " + rows.length);//E: rows.length = 130
 
           // alert("L-407 row[0]: " + rows[0]);//E:alert. 'row[0]' is string and shows the sub-basin 129
@@ -430,21 +427,21 @@
                   var whichNode = "";
                   // var geometries = rows[i][1]['geometry'];
                   // alert (geometries);
-
-                  if (i==1) alert("Sub-basin: "+ rows[i][0]+"  Area: "+ rows[i][2]+"  stream: "+ rows[i][3]);
-                  if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
+                  // if (i<5) alert("value of i: "+ i);
+                  // if (i==1) alert("Sub-basin: "+ rows[i][0]+"  Area: "+ rows[i][2]+"  stream: "+ rows[i][3]);
+                  // if (i==1) alert("geometry "+i+":"+ "\n" +rows[i][1]['geometry']['coordinates']);
                   var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);//E: Function is Set at 1069
                   //answersArray[oneMap].RATING
                   var row = rows[i];
                   var whichNode = row[0];
-                  // alert (whichNode);//E: Which sub-basin
+                  // alert (whichNode);//E: 'whichNode' tells which sub-basin
                   /////////You will put your acreage here///////////
                   var acres = parseFloat(row[2]).toFixed(1);
                   var rivers = parseFloat(row[3]).toFixed(1);
                   /////////You will put your stream miles here/////////
                   //alert (whichNode);
 
-                  var background = new google.maps.Polygon({//E: Base map (background) features
+                  var background = new google.maps.Polygon({//E: Watershed (background) features
                       path: newCoordinates,
                       //strokeColor: colors[0],
                       strokeOpacity: .6,
@@ -455,17 +452,19 @@
                       indexID: whichNode
                   });
 
-                  background.setMap(map1);//E: IT SETS THE BASEMAP POLYGONS
+                  // background.setMap(map1);//E: IT SETS THE POLYGONS over the BASEMAP
+                  background.setMap(basemap_1);//E: IT SETS THE POLYGONS over the BASEMAP
                   //var listAll
-                  // alert("Sub Basin Array: " + JSON.stringify(subBasinArray));
+                  console.log("Sub Basin Array: "+ "\n" + JSON.stringify(subBasinArray));
 
+                  //SubBasin="WhichNode", "SubBasinArray" involves DATA from Optimization, from DDBB (Mysql)
                   var obj = find(subBasinArray, 'subbasinID', whichNode);
                   // alert ("Hello: " + obj);// alert (obj);
                   // alert(JSON.stringify(obj, null, 4));
                   if (obj) {
                       var listAll = "Sub-basin Area: " +acres+ " acres | Stream Length+: " + rivers + " miles <br" +
                           " />" + JSON.stringify(obj);
-                      // alert (listAll);// alert ('type_of listAll (before): ' + typeof 'listAll');//
+                      //alert ("List(before): "+listAll);//alert ('type_of listAll (before): '+typeof 'listAll');//
                       listAll = listAll.replace(/"0.0"/g, "No");
                       listAll = listAll.replace(/"1.0"/g, "Yes");
                       listAll = listAll.replace(/,/g, "<br />");
@@ -500,7 +499,8 @@
                       newlist = newlist.replace(/,/g, " ");
                       newlist = newlist.replace(/[\[\]']+/g, '');//E: replace '[]' symbols by '' (nothing)
                       listAll = newlist;
-                      // alert ('type_of new_listAll (after): ' + typeof 'newlist');//alert (newlist);
+                      // alert ("List(After): "+newlist);//alert('type_of new_listAll(after): ' + typeof 'newlist');//alert
+                      // (newlist);
                       // alert('done');
 
                   } else {
@@ -528,7 +528,8 @@
                           content: window_info,
                           position: event.latLng
                       });
-                      infowindow2.open(map1);//E: The window with information is added to the map.
+                      // infowindow2.open(map1);//E: The window with information is added to the basemap.
+                      infowindow2.open(basemap_1);//E: The window with information is added to the basemap.
                       /*setTimeout(function() {
                           infowindow2.close();
                       }, 5000);*/
@@ -548,18 +549,11 @@
               //map.fitBounds(bounds);
           };
           // ---------- end 'drawBack'
-      ///////////////////////////  EndBACKGROUND////////////////////////
+      ///////////////////////////  End BACKGROUND////////////////////////
 
 
       ///////////////// (1)  Begin Crop Rotation///////////////////////////////////////
 
-      // function doCropRotation() {
-      //     docrop1();
-      // }
-      // ------------  end 'doCropRotation'
-
-      // ------------  start 'docrop1'
-      // function docrop1() {
       function doCropRotation() {
           var obj = find(forMapArray, 'Title', 'crop_rotation');
           if (obj) {
@@ -684,7 +678,6 @@
           }
           //map.fitBounds(bounds);
       };
-
       // ------------  end 'drawCrop1'
 
       ////////////////////////////////End Crop Rotation totally ////////////////////////
@@ -693,13 +686,6 @@
 
       ///////////////////(2) Begin COVER CROPS  //////////////////////////////
 
-      // function doCoverCrops() {
-      //     docover1();
-      // }
-      // ------------  end 'doCoverCrops'
-
-      // ------------  start 'docover1'
-      // function docover1() {
       function doCoverCrops() {
           var obj = find(forMapArray, 'Title', 'cover_crops');
           if (obj) {
@@ -759,8 +745,8 @@
                   fillColor: "#99c9ba",
                   indexID: whichNode
               });
-              cover.setMap(map1);
-
+              // cover.setMap(map1);
+              cover.setMap(basemap_1);
 
               var obj = find(subBasinArray, 'subbasinID', whichNode);
               if (obj) {
@@ -799,7 +785,8 @@
                       content: window_info,
                       position: event.latLng
                   });
-                  infowindow2.open(map1);
+                  // infowindow2.open(map1);
+                  infowindow2.open(basemap_1);
                   /*setTimeout(function() {
                           infowindow2.close();
                       }, 5000);*/
@@ -825,13 +812,6 @@
 
       ///////////////////////// (3) Begin STRIP CROPPING ////////////////////////////////
 
-      // function doStripCropping() {
-      //     dostrip1();
-      // }
-      // ----------------  end 'doStripCropping()'
-
-      // ----------------  start 'dostrip1()'
-      // function dostrip1() {
       function doStripCropping() {
           var obj = find(forMapArray, 'Title', 'strip_cropping');
           if (obj) {
@@ -891,7 +871,9 @@
                   fillColor: "#87b07e",
                   indexID: whichNode
               });
-              strip.setMap(map1);
+              // strip.setMap(map1);
+              strip.setMap(basemap_1);
+
               var obj = find(subBasinArray, 'subbasinID', whichNode);
               var jonArray = [];
               if (obj) {
@@ -931,7 +913,8 @@
                       position: event.latLng
 
                   });
-                  infowindow2.open(map1);
+                  // infowindow2.open(map1);
+                  infowindow2.open(basemap_1);
                   /*setTimeout(function() {
                           infowindow2.close();
                       }, 5000);*/
@@ -955,13 +938,7 @@
 
 
       ///////////////// (4) Begin FILTER STRIP///THIS ONE NEEDS TO BE THE POLYLINES//////////////////////////////
-      // function doFilterStrips() {
-      //     dofilter1();
-      // }
 
-
-      // -----------  start 'dofilter1'
-      // function dofilter1() {
       function doFilterStrips() {
 
           var obj = find(forMapArray, 'Title', 'filter_strips');
@@ -1055,7 +1032,9 @@
                   strokeWeight: 2,
                   fillColor: "#daca43"
               });
-              filter.setMap(map1);
+
+              // filter.setMap(map1);
+              filter.setMap(basemap_1);
               filterArray.push(filter);
           }
           //map.fitBounds(bounds);
@@ -1064,7 +1043,6 @@
       // -----------  end 'drawfilter1'
 
       /////////////////////////////  End 'FILTER STRIP' totally ////////////////////////
-
 
 
       ///////////////This is used to parse out the long lats for all the polygons////////////////////////
@@ -1090,13 +1068,7 @@
 
 
       ///////////////// (5)  Begin GRASS-WATERWAYS Markers  ////////////////////////////////////////////////
-      // function doGrassWaterway() {
-      //     dograss1();
-      // }
-      // ------ end 'doGrassWaterway()'
 
-      // ------ start 'dograss1()'
-      // function dograss1() {
       function doGrassWaterway() {
           var obj = find(forMapArray, 'Title', 'grassed_waterway');
           if (obj) {
@@ -1147,12 +1119,14 @@
               //icon: customIcons[1],
               //})
               //alert (country);
-              grass.setMap(map1);
+
+              // grass.setMap(map1);
+              grass.setMap(basemap_1);
               grassArray.push(grass);
           }
           //map.fitBounds(bounds);
-      }; // ---------------------------------- end 'drawGrass1'
-
+      };
+      // ---------------------------------- end 'drawGrass1'
 
       ////////////This is the new piece that takes the markers and not shapes for Grass Waterways//////////////
       function constructNewCoordinatesGrass(polygon) {
@@ -1182,13 +1156,7 @@
 
 
       /////////////////////////  (6) Begin No-Till Markers //////////////////////////////
-      // function doConserveTillage() {
-      //     dotill1();
-      // }
-      // ------- end 'doConserveTillage()'
 
-      // ------- start 'dotill1()'
-      // function dotill1() {
       function doConserveTillage() {
           var obj = find(forMapArray, 'Title', 'conservation_tillage');
           if (obj) {
@@ -1233,7 +1201,8 @@
               //answersArray[oneMap].RATING
 
               notill = geo;
-              notill.setMap(map1);
+              // notill.setMap(map1);
+              notill.setMap(basemap_1);
               conserveArray.push(notill);
               // alert("In");
           }
@@ -1269,13 +1238,7 @@
 
 
       // //////////////////// (7) Begin WETLANDS Markers /////////////////////////////
-      // function dobinaryWetlands() {
-      //     dowetlands1();
-      // }
-      // -------------- end 'dobinaryWetlands()'
 
-      // -------------- start 'dowetlands1()'
-      // function dowetlands1() {
       function dobinaryWetlands() {
           var obj = find(forMapArray, 'Title', 'variable_area_wetlands');
           if (obj) {
@@ -1391,7 +1354,9 @@
               //icon: customIcons[1],
               //})
               //alert (country);
-              wetlands.setMap(map1);
+
+              // wetlands.setMap(map1);
+              wetlands.setMap(basemap_1);
               wetArray.push(wetlands);
           }
           //map.fitBounds(bounds);
@@ -1444,7 +1409,8 @@
       } else {
           $.each(whichArray, function(index, value) {
               // alert(value);
-              value.setMap(map1);
+              // value.setMap(map1);
+              value.setMap(basemap_1);
           });
           // $.each(whichArray2, function(index, value) {
           //     value.setMap(map2);
