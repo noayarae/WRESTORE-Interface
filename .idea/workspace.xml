@@ -10,38 +10,80 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.32312927">
+    <splitter split-orientation="vertical" split-proportion="0.3282313">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="g2.php" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/model/g2.php">
+          <file leaf-file-name="db_create.sql" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/model/db_create.sql">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="102">
-                  <caret line="45" column="36" lean-forward="false" selection-start-line="45" selection-start-column="36" selection-end-line="45" selection-end-column="36" />
+                <state relative-caret-position="68">
+                  <caret line="12" column="42" lean-forward="false" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="g2c.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/model/g2c.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="119">
+                  <caret line="49" column="4" lean-forward="false" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
                   <folding>
-                    <element signature="e#28279#28284#0#PHP" expanded="false" />
-                    <marker date="1547370926182" expanded="false" signature="164:209" ph="..." />
-                    <marker date="1547370926182" expanded="true" signature="5662:5713" ph="SELECT * FRO... takefeedback" />
-                    <marker date="1547370926182" expanded="true" signature="7673:7722" ph="SELECT * FRO... session_info" />
-                    <marker date="1547370926182" expanded="false" signature="15209:15233" ph="..." />
-                    <marker date="1547370926182" expanded="true" signature="123168:123175" ph="“" />
-                    <marker date="1547370926182" expanded="true" signature="123184:123191" ph="”" />
-                    <marker date="1547370926182" expanded="true" signature="123255:123262" ph="“" />
-                    <marker date="1547370926182" expanded="true" signature="123269:123276" ph="”" />
-                    <marker date="1547370926182" expanded="true" signature="123721:123728" ph="“" />
-                    <marker date="1547370926182" expanded="true" signature="123731:123738" ph="”" />
-                    <marker date="1547370926182" expanded="true" signature="123761:123768" ph="“" />
-                    <marker date="1547370926182" expanded="true" signature="123785:123792" ph="”" />
-                    <marker date="1547370926182" expanded="true" signature="138756:138770" ph="..." />
-                    <marker date="1547370926182" expanded="true" signature="138783:138791" ph="..." />
-                    <marker date="1547370926182" expanded="true" signature="143409:143423" ph="..." />
-                    <marker date="1547370926182" expanded="true" signature="143436:143444" ph="..." />
-                    <marker date="1547370926182" expanded="true" signature="147801:147815" ph="..." />
-                    <marker date="1547370926182" expanded="true" signature="147828:147836" ph="..." />
-                    <marker date="1547370926182" expanded="true" signature="152090:152104" ph="..." />
-                    <marker date="1547370926182" expanded="true" signature="152117:152125" ph="..." />
-                    <marker date="1547370926182" expanded="true" signature="156380:156394" ph="..." />
-                    <marker date="1547370926182" expanded="true" signature="156407:156415" ph="..." />
+                    <marker date="1548290266328" expanded="true" signature="5967:6018" ph="SELECT * FRO... takefeedback" />
+                    <marker date="1548290266328" expanded="true" signature="7978:8027" ph="SELECT * FRO... session_info" />
+                    <marker date="1548290266328" expanded="true" signature="101512:101519" ph="“" />
+                    <marker date="1548290266328" expanded="true" signature="101528:101535" ph="”" />
+                    <marker date="1548290266328" expanded="true" signature="101599:101606" ph="“" />
+                    <marker date="1548290266328" expanded="true" signature="101613:101620" ph="”" />
+                    <marker date="1548290266328" expanded="true" signature="102065:102072" ph="“" />
+                    <marker date="1548290266328" expanded="true" signature="102075:102082" ph="”" />
+                    <marker date="1548290266328" expanded="true" signature="102105:102112" ph="“" />
+                    <marker date="1548290266328" expanded="true" signature="102129:102136" ph="”" />
+                    <marker date="1548290266328" expanded="true" signature="107120:107134" ph="..." />
+                    <marker date="1548290266328" expanded="true" signature="107147:107155" ph="..." />
+                    <marker date="1548290266328" expanded="true" signature="111773:111787" ph="..." />
+                    <marker date="1548290266328" expanded="true" signature="111800:111808" ph="..." />
+                    <marker date="1548290266328" expanded="true" signature="116165:116179" ph="..." />
+                    <marker date="1548290266328" expanded="true" signature="116192:116200" ph="..." />
+                    <marker date="1548290266328" expanded="true" signature="120454:120468" ph="..." />
+                    <marker date="1548290266328" expanded="true" signature="120481:120489" ph="..." />
+                    <marker date="1548290266328" expanded="true" signature="124744:124758" ph="..." />
+                    <marker date="1548290266328" expanded="true" signature="124771:124779" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="mapping_new_g2c.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/model/js/mapping_new_g2c.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-729">
+                  <caret line="403" column="56" lean-forward="true" selection-start-line="403" selection-start-column="14" selection-end-line="403" selection-end-column="56" />
+                  <folding>
+                    <element signature="e#53848#54948#0" expanded="false" />
+                    <element signature="e#53890#53998#0" expanded="false" />
+                    <element signature="e#54026#54162#0" expanded="false" />
+                    <element signature="e#54190#54327#0" expanded="false" />
+                    <element signature="e#54355#54493#0" expanded="false" />
+                    <element signature="e#54521#54660#0" expanded="false" />
+                    <element signature="e#54688#54804#0" expanded="false" />
+                    <element signature="e#54831#54924#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="heatmapnew1_g2c.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/model/js/heatmapnew1_g2c.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="663">
+                  <caret line="395" column="38" lean-forward="false" selection-start-line="395" selection-start-column="38" selection-end-line="395" selection-end-column="38" />
+                  <folding>
+                    <element signature="e#3766#4215#0" expanded="false" />
+                    <element signature="e#6819#7267#0" expanded="false" />
+                    <element signature="e#9784#10232#0" expanded="false" />
+                    <element signature="e#12780#13228#0" expanded="false" />
+                    <element signature="e#17168#17923#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -50,7 +92,7 @@
           <file leaf-file-name="mckay_v1.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/google_plat/geojson/Mckay_maptest/mckay_v1.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="204">
+                <state relative-caret-position="578">
                   <caret line="44" column="15" lean-forward="false" selection-start-line="44" selection-start-column="15" selection-end-line="44" selection-end-column="15" />
                   <folding>
                     <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
@@ -59,166 +101,12 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ecw1.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/google_plat/geojson/ecw_maptest/shp_to_gjson/ecw1.js">
+          <file leaf-file-name="mapping_new_g1.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/model/js/mapping_new_g1.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding>
-                    <element signature="e#66#7685888#0" expanded="false" />
-                    <element signature="e#21917#48743#0" expanded="false" />
-                    <element signature="e#22042#48719#0" expanded="false" />
-                    <element signature="e#7686073#7686217#0" expanded="false" />
-                    <element signature="e#7686227#7686372#0" expanded="false" />
-                    <element signature="e#7686382#7686527#0" expanded="false" />
-                    <element signature="e#7686537#7686682#0" expanded="false" />
-                    <element signature="e#7686692#7686836#0" expanded="false" />
-                    <element signature="e#7686846#7686991#0" expanded="false" />
-                    <element signature="e#7687001#7687146#0" expanded="false" />
-                    <element signature="e#7687156#7687301#0" expanded="false" />
-                    <element signature="e#7687311#7687457#0" expanded="false" />
-                    <element signature="e#7687467#7687612#0" expanded="false" />
-                    <element signature="e#7687622#7687767#0" expanded="false" />
-                    <element signature="e#7687777#7687923#0" expanded="false" />
-                    <element signature="e#7687933#7688079#0" expanded="false" />
-                    <element signature="e#7688089#7688235#0" expanded="false" />
-                    <element signature="e#7688245#7688391#0" expanded="false" />
-                    <element signature="e#7688401#7688547#0" expanded="false" />
-                    <element signature="e#7688557#7688703#0" expanded="false" />
-                    <element signature="e#7688713#7688859#0" expanded="false" />
-                    <element signature="e#7688869#7689015#0" expanded="false" />
-                    <element signature="e#7689025#7689171#0" expanded="false" />
-                    <element signature="e#7689181#7689326#0" expanded="false" />
-                    <element signature="e#7689336#7689481#0" expanded="false" />
-                    <element signature="e#7689491#7689636#0" expanded="false" />
-                    <element signature="e#7689646#7689790#0" expanded="false" />
-                    <element signature="e#7689800#7689946#0" expanded="false" />
-                    <element signature="e#7689956#7690102#0" expanded="false" />
-                    <element signature="e#7690112#7690257#0" expanded="false" />
-                    <element signature="e#7690267#7690412#0" expanded="false" />
-                    <element signature="e#7690422#7690568#0" expanded="false" />
-                    <element signature="e#7690578#7690723#0" expanded="false" />
-                    <element signature="e#7690733#7690878#0" expanded="false" />
-                    <element signature="e#7690888#7691033#0" expanded="false" />
-                    <element signature="e#7691043#7691189#0" expanded="false" />
-                    <element signature="e#7691199#7691344#0" expanded="false" />
-                    <element signature="e#7691354#7691499#0" expanded="false" />
-                    <element signature="e#7691509#7691654#0" expanded="false" />
-                    <element signature="e#7691664#7691810#0" expanded="false" />
-                    <element signature="e#7691820#7691966#0" expanded="false" />
-                    <element signature="e#7691976#7692121#0" expanded="false" />
-                    <element signature="e#7692131#7692275#0" expanded="false" />
-                    <element signature="e#7692285#7692429#0" expanded="false" />
-                    <element signature="e#7692439#7692585#0" expanded="false" />
-                    <element signature="e#7692595#7692740#0" expanded="false" />
-                    <element signature="e#7692750#7692895#0" expanded="false" />
-                    <element signature="e#7692905#7693050#0" expanded="false" />
-                    <element signature="e#7693060#7693205#0" expanded="false" />
-                    <element signature="e#7693215#7693360#0" expanded="false" />
-                    <element signature="e#7693370#7693515#0" expanded="false" />
-                    <element signature="e#7693525#7693670#0" expanded="false" />
-                    <element signature="e#7693680#7693825#0" expanded="false" />
-                    <element signature="e#7693835#7693980#0" expanded="false" />
-                    <element signature="e#7693990#7694135#0" expanded="false" />
-                    <element signature="e#7694145#7694289#0" expanded="false" />
-                    <element signature="e#7694299#7694444#0" expanded="false" />
-                    <element signature="e#7694454#7694598#0" expanded="false" />
-                    <element signature="e#7694608#7694753#0" expanded="false" />
-                    <element signature="e#7694763#7694908#0" expanded="false" />
-                    <element signature="e#7694918#7695063#0" expanded="false" />
-                    <element signature="e#7695073#7695217#0" expanded="false" />
-                    <element signature="e#7695227#7695372#0" expanded="false" />
-                    <element signature="e#7695382#7695527#0" expanded="false" />
-                    <element signature="e#7695537#7695682#0" expanded="false" />
-                    <element signature="e#7695692#7695837#0" expanded="false" />
-                    <element signature="e#7695847#7695992#0" expanded="false" />
-                    <element signature="e#7696002#7696147#0" expanded="false" />
-                    <element signature="e#7696157#7696302#0" expanded="false" />
-                    <element signature="e#7696312#7696457#0" expanded="false" />
-                    <element signature="e#7696467#7696612#0" expanded="false" />
-                    <element signature="e#7696622#7696767#0" expanded="false" />
-                    <element signature="e#7696777#7696922#0" expanded="false" />
-                    <element signature="e#7696932#7697077#0" expanded="false" />
-                    <element signature="e#7697087#7697232#0" expanded="false" />
-                    <element signature="e#7697242#7697387#0" expanded="false" />
-                    <element signature="e#7697397#7697542#0" expanded="false" />
-                    <element signature="e#7697552#7697697#0" expanded="false" />
-                    <element signature="e#7697707#7697852#0" expanded="false" />
-                    <element signature="e#7697862#7698007#0" expanded="false" />
-                    <element signature="e#7698017#7698162#0" expanded="false" />
-                    <element signature="e#7698172#7698317#0" expanded="false" />
-                    <element signature="e#7698327#7698472#0" expanded="false" />
-                    <element signature="e#7698482#7698627#0" expanded="false" />
-                    <element signature="e#7698637#7698782#0" expanded="false" />
-                    <element signature="e#7698792#7698935#0" expanded="false" />
-                    <element signature="e#7698945#7699090#0" expanded="false" />
-                    <element signature="e#7699100#7699245#0" expanded="false" />
-                    <element signature="e#7699255#7699400#0" expanded="false" />
-                    <element signature="e#7699410#7699555#0" expanded="false" />
-                    <element signature="e#7699565#7699710#0" expanded="false" />
-                    <element signature="e#7699720#7699865#0" expanded="false" />
-                    <element signature="e#7699875#7700019#0" expanded="false" />
-                    <element signature="e#7700029#7700174#0" expanded="false" />
-                    <element signature="e#7700184#7700329#0" expanded="false" />
-                    <element signature="e#7700339#7700483#0" expanded="false" />
-                    <element signature="e#7700493#7700638#0" expanded="false" />
-                    <element signature="e#7700648#7700793#0" expanded="false" />
-                    <element signature="e#7700803#7700948#0" expanded="false" />
-                    <element signature="e#7700958#7701101#0" expanded="false" />
-                    <element signature="e#7701111#7701256#0" expanded="false" />
-                    <element signature="e#7701266#7701412#0" expanded="false" />
-                    <element signature="e#7701422#7701568#0" expanded="false" />
-                    <element signature="e#7701578#7701724#0" expanded="false" />
-                    <element signature="e#7701734#7701880#0" expanded="false" />
-                    <element signature="e#7701890#7702036#0" expanded="false" />
-                    <element signature="e#7702046#7702192#0" expanded="false" />
-                    <element signature="e#7702202#7702348#0" expanded="false" />
-                    <element signature="e#7702358#7702504#0" expanded="false" />
-                    <element signature="e#7702514#7702660#0" expanded="false" />
-                    <element signature="e#7702670#7702815#0" expanded="false" />
-                    <element signature="e#7702825#7702971#0" expanded="false" />
-                    <element signature="e#7702981#7703127#0" expanded="false" />
-                    <element signature="e#7703137#7703283#0" expanded="false" />
-                    <element signature="e#7703293#7703439#0" expanded="false" />
-                    <element signature="e#7703449#7703595#0" expanded="false" />
-                    <element signature="e#7703605#7703750#0" expanded="false" />
-                    <element signature="e#7703760#7703906#0" expanded="false" />
-                    <element signature="e#7703916#7704061#0" expanded="false" />
-                    <element signature="e#7704071#7704217#0" expanded="false" />
-                    <element signature="e#7704227#7704373#0" expanded="false" />
-                    <element signature="e#7704383#7704529#0" expanded="false" />
-                    <element signature="e#7704539#7704685#0" expanded="false" />
-                    <element signature="e#7704695#7704840#0" expanded="false" />
-                    <element signature="e#7704850#7704993#0" expanded="false" />
-                    <element signature="e#7705003#7705148#0" expanded="false" />
-                    <element signature="e#7705158#7705304#0" expanded="false" />
-                    <element signature="e#7705314#7705459#0" expanded="false" />
-                    <element signature="e#7705469#7705614#0" expanded="false" />
-                    <element signature="e#7705624#7705768#0" expanded="false" />
-                    <element signature="e#7705778#7705923#0" expanded="false" />
-                    <element signature="e#7705933#7706077#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="mapping_new.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/model/js/mapping_new.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="150">
-                  <caret line="416" column="0" lean-forward="false" selection-start-line="416" selection-start-column="0" selection-end-line="416" selection-end-column="0" />
-                  <folding>
-                    <element signature="e#3378#3415#0" expanded="false" />
-                    <element signature="e#6236#6320#0" expanded="false" />
-                    <element signature="e#7883#8014#0" expanded="false" />
-                    <element signature="e#8506#8631#0" expanded="false" />
-                    <element signature="e#9082#9211#0" expanded="false" />
-                    <element signature="e#9710#9831#0" expanded="false" />
-                    <element signature="e#10348#10469#0" expanded="false" />
-                    <element signature="e#10977#11103#0" expanded="false" />
-                    <element signature="e#11575#11689#0" expanded="false" />
-                    <element signature="e#28331#32497#0" expanded="false" />
-                  </folding>
+                <state relative-caret-position="-10019">
+                  <caret line="423" column="36" lean-forward="false" selection-start-line="423" selection-start-column="22" selection-end-line="423" selection-end-column="36" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -227,168 +115,104 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="mky3.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/google_plat/geojson/Mckay_maptest/mky3.js">
+          <file leaf-file-name="g2c.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/model/g2c.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="51">
-                  <caret line="216026" column="13" lean-forward="false" selection-start-line="216026" selection-start-column="13" selection-end-line="216026" selection-end-column="13" />
+                <state relative-caret-position="108">
+                  <caret line="48" column="33" lean-forward="false" selection-start-line="48" selection-start-column="33" selection-end-line="48" selection-end-column="33" />
                   <folding>
-                    <element signature="e#66#8133793#0" expanded="false" />
-                    <element signature="e#153198#325178#0" expanded="false" />
-                    <element signature="e#325188#523617#0" expanded="false" />
-                    <element signature="e#523627#714032#0" expanded="false" />
-                    <element signature="e#714042#894420#0" expanded="false" />
-                    <element signature="e#894430#1036801#0" expanded="false" />
-                    <element signature="e#8133936#8134038#0" expanded="false" />
-                    <element signature="e#8134048#8134151#0" expanded="false" />
-                    <element signature="e#8134161#8134264#0" expanded="false" />
-                    <element signature="e#8134274#8134376#0" expanded="false" />
-                    <element signature="e#8134386#8134489#0" expanded="false" />
-                    <element signature="e#8134499#8134602#0" expanded="false" />
-                    <element signature="e#8134612#8134715#0" expanded="false" />
-                    <element signature="e#8134725#8134828#0" expanded="false" />
-                    <element signature="e#8134838#8134942#0" expanded="false" />
-                    <element signature="e#8134952#8135056#0" expanded="false" />
-                    <element signature="e#8135066#8135170#0" expanded="false" />
-                    <element signature="e#8135180#8135284#0" expanded="false" />
-                    <element signature="e#8135294#8135398#0" expanded="false" />
-                    <element signature="e#8135408#8135512#0" expanded="false" />
-                    <element signature="e#8135522#8135626#0" expanded="false" />
-                    <element signature="e#8135636#8135740#0" expanded="false" />
-                    <element signature="e#8135750#8135854#0" expanded="false" />
-                    <element signature="e#8135864#8135968#0" expanded="false" />
-                    <element signature="e#8135978#8136082#0" expanded="false" />
-                    <element signature="e#8136092#8136196#0" expanded="false" />
-                    <element signature="e#8136206#8136310#0" expanded="false" />
-                    <element signature="e#8136320#8136424#0" expanded="false" />
-                    <element signature="e#8136434#8136538#0" expanded="false" />
-                    <element signature="e#8136548#8136652#0" expanded="false" />
-                    <element signature="e#8136662#8136766#0" expanded="false" />
-                    <element signature="e#8136776#8136879#0" expanded="false" />
-                    <element signature="e#8136889#8136993#0" expanded="false" />
-                    <element signature="e#8137003#8137107#0" expanded="false" />
-                    <element signature="e#8137117#8137221#0" expanded="false" />
-                    <element signature="e#8137231#8137335#0" expanded="false" />
-                    <element signature="e#8137345#8137449#0" expanded="false" />
-                    <element signature="e#8137459#8137563#0" expanded="false" />
-                    <element signature="e#8137573#8137677#0" expanded="false" />
-                    <element signature="e#8137687#8137791#0" expanded="false" />
-                    <element signature="e#8137801#8137905#0" expanded="false" />
-                    <element signature="e#8137915#8138019#0" expanded="false" />
-                    <element signature="e#8138029#8138133#0" expanded="false" />
-                    <element signature="e#8138143#8138247#0" expanded="false" />
-                    <element signature="e#8138257#8138361#0" expanded="false" />
-                    <element signature="e#8138371#8138475#0" expanded="false" />
-                    <element signature="e#8138485#8138588#0" expanded="false" />
-                    <element signature="e#8138598#8138701#0" expanded="false" />
-                    <element signature="e#8138711#8138815#0" expanded="false" />
-                    <element signature="e#8138825#8138929#0" expanded="false" />
-                    <element signature="e#8138939#8139042#0" expanded="false" />
-                    <element signature="e#8139052#8139156#0" expanded="false" />
-                    <element signature="e#8139166#8139270#0" expanded="false" />
-                    <element signature="e#8139280#8139384#0" expanded="false" />
-                    <element signature="e#8139394#8139498#0" expanded="false" />
-                    <element signature="e#8139508#8139612#0" expanded="false" />
-                    <element signature="e#8139622#8139726#0" expanded="false" />
+                    <element signature="n#style#0;n#p#0;n#section#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <marker date="1548290266328" expanded="true" signature="5967:6018" ph="SELECT * FRO... takefeedback" />
+                    <marker date="1548290266328" expanded="true" signature="7978:8027" ph="SELECT * FRO... session_info" />
+                    <marker date="1548290266328" expanded="true" signature="101512:101519" ph="“" />
+                    <marker date="1548290266328" expanded="true" signature="101528:101535" ph="”" />
+                    <marker date="1548290266328" expanded="true" signature="101599:101606" ph="“" />
+                    <marker date="1548290266328" expanded="true" signature="101613:101620" ph="”" />
+                    <marker date="1548290266328" expanded="true" signature="102065:102072" ph="“" />
+                    <marker date="1548290266328" expanded="true" signature="102075:102082" ph="”" />
+                    <marker date="1548290266328" expanded="true" signature="102105:102112" ph="“" />
+                    <marker date="1548290266328" expanded="true" signature="102129:102136" ph="”" />
+                    <marker date="1548290266328" expanded="true" signature="107120:107134" ph="..." />
+                    <marker date="1548290266328" expanded="true" signature="107147:107155" ph="..." />
+                    <marker date="1548290266328" expanded="true" signature="111773:111787" ph="..." />
+                    <marker date="1548290266328" expanded="true" signature="111800:111808" ph="..." />
+                    <marker date="1548290266328" expanded="true" signature="116165:116179" ph="..." />
+                    <marker date="1548290266328" expanded="true" signature="116192:116200" ph="..." />
+                    <marker date="1548290266328" expanded="true" signature="120454:120468" ph="..." />
+                    <marker date="1548290266328" expanded="true" signature="120481:120489" ph="..." />
+                    <marker date="1548290266328" expanded="true" signature="124744:124758" ph="..." />
+                    <marker date="1548290266328" expanded="true" signature="124771:124779" ph="..." />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ecw1_v1.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/google_plat/geojson/ecw_maptest/ecw1_v1.html">
+          <file leaf-file-name="mapping_new_g2c.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/model/js/mapping_new_g2c.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="68">
-                  <caret line="16" column="87" lean-forward="true" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="87" />
+                <state relative-caret-position="91">
+                  <caret line="844" column="60" lean-forward="false" selection-start-line="844" selection-start-column="60" selection-end-line="844" selection-end-column="60" />
+                  <folding>
+                    <element signature="e#53848#54948#0" expanded="false" />
+                    <element signature="e#69200#71822#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="stream_g.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/model/data/stream_g.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="102">
+                  <caret line="6" column="35" lean-forward="false" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="35" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="g2.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/model/g2.php">
+          <file leaf-file-name="ecw4.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/model/data/ecw4.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="204">
-                  <caret line="1535" column="29" lean-forward="false" selection-start-line="1535" selection-start-column="16" selection-end-line="1535" selection-end-column="29" />
+                <state relative-caret-position="136">
+                  <caret line="209589" column="22" lean-forward="false" selection-start-line="209589" selection-start-column="13" selection-end-line="209589" selection-end-column="22" />
                   <folding>
-                    <element signature="e#28279#28284#0#PHP" expanded="false" />
-                    <marker date="1547370926182" expanded="false" signature="164:209" ph="..." />
-                    <marker date="1547370926182" expanded="true" signature="5662:5713" ph="SELECT * FRO... takefeedback" />
-                    <marker date="1547370926182" expanded="true" signature="7673:7722" ph="SELECT * FRO... session_info" />
-                    <marker date="1547370926182" expanded="false" signature="15209:15233" ph="..." />
-                    <marker date="1547370926182" expanded="true" signature="123168:123175" ph="“" />
-                    <marker date="1547370926182" expanded="true" signature="123184:123191" ph="”" />
-                    <marker date="1547370926182" expanded="true" signature="123255:123262" ph="“" />
-                    <marker date="1547370926182" expanded="true" signature="123269:123276" ph="”" />
-                    <marker date="1547370926182" expanded="true" signature="123721:123728" ph="“" />
-                    <marker date="1547370926182" expanded="true" signature="123731:123738" ph="”" />
-                    <marker date="1547370926182" expanded="true" signature="123761:123768" ph="“" />
-                    <marker date="1547370926182" expanded="true" signature="123785:123792" ph="”" />
-                    <marker date="1547370926182" expanded="true" signature="138756:138770" ph="..." />
-                    <marker date="1547370926182" expanded="true" signature="138783:138791" ph="..." />
-                    <marker date="1547370926182" expanded="true" signature="143409:143423" ph="..." />
-                    <marker date="1547370926182" expanded="true" signature="143436:143444" ph="..." />
-                    <marker date="1547370926182" expanded="true" signature="147801:147815" ph="..." />
-                    <marker date="1547370926182" expanded="true" signature="147828:147836" ph="..." />
-                    <marker date="1547370926182" expanded="true" signature="152090:152104" ph="..." />
-                    <marker date="1547370926182" expanded="true" signature="152117:152125" ph="..." />
-                    <marker date="1547370926182" expanded="true" signature="156380:156394" ph="..." />
-                    <marker date="1547370926182" expanded="true" signature="156407:156415" ph="..." />
+                    <element signature="e#66#7685888#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="mapping_new.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/model/js/mapping_new.js">
+          <file leaf-file-name="bargraphcpy_g2c.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/model/js/bargraphcpy_g2c.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-4009">
-                  <caret line="287" column="15" lean-forward="false" selection-start-line="287" selection-start-column="6" selection-end-line="287" selection-end-column="15" />
-                  <folding>
-                    <element signature="e#3378#3415#0" expanded="false" />
-                    <element signature="e#7883#8014#0" expanded="false" />
-                    <element signature="e#8506#8631#0" expanded="false" />
-                    <element signature="e#9082#9211#0" expanded="false" />
-                    <element signature="e#9710#9831#0" expanded="false" />
-                    <element signature="e#10348#10469#0" expanded="false" />
-                    <element signature="e#10977#11103#0" expanded="false" />
-                    <element signature="e#11575#11689#0" expanded="false" />
-                    <element signature="e#26662#26936#0" expanded="false" />
-                    <element signature="e#28331#32497#0" expanded="false" />
-                    <element signature="e#34179#38442#0" expanded="false" />
-                    <element signature="e#38824#39063#0" expanded="false" />
-                    <element signature="e#40216#44515#0" expanded="false" />
-                    <element signature="e#46516#47716#0" expanded="false" />
-                    <element signature="e#49684#49923#0" expanded="false" />
-                    <element signature="e#50898#51786#0" expanded="false" />
-                    <element signature="e#52087#52301#0" expanded="false" />
-                    <element signature="e#52443#52720#0" expanded="false" />
-                    <element signature="n#!!block;n#doConserveTillage#0;n#!!block;n#initialize#0" expanded="false" />
-                    <element signature="e#54276#54927#0" expanded="false" />
-                    <element signature="e#55193#55406#0" expanded="false" />
-                    <element signature="e#55548#55825#0" expanded="false" />
-                    <element signature="e#57910#61338#0" expanded="false" />
-                    <element signature="e#58204#60586#0" expanded="false" />
-                    <element signature="e#61591#61808#0" expanded="false" />
-                    <element signature="e#61983#62260#0" expanded="false" />
-                  </folding>
+                <state relative-caret-position="115">
+                  <caret line="202" column="85" lean-forward="false" selection-start-line="202" selection-start-column="85" selection-end-line="202" selection-end-column="85" />
+                  <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="mckay_data1.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/google_plat/geojson/Mckay_maptest/mckay_data1.js">
+          <file leaf-file-name="heatmapnew1_g2c.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/model/js/heatmapnew1_g2c.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="15" lean-forward="false" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
+                <state relative-caret-position="221">
+                  <caret line="424" column="37" lean-forward="false" selection-start-line="424" selection-start-column="37" selection-end-line="424" selection-end-column="37" />
                   <folding>
-                    <element signature="e#62#5255539#0" expanded="false" />
-                    <element signature="e#68#99398#0" expanded="false" />
-                    <element signature="e#165#99384#0" expanded="false" />
-                    <element signature="e#177#99374#0" expanded="false" />
-                    <element signature="e#99404#210998#0" expanded="false" />
-                    <element signature="e#99513#210974#0" expanded="false" />
-                    <element signature="e#211101#339725#0" expanded="false" />
+                    <element signature="e#3766#4215#0" expanded="false" />
+                    <element signature="e#6819#7267#0" expanded="false" />
+                    <element signature="e#9784#10232#0" expanded="false" />
+                    <element signature="e#12780#13228#0" expanded="false" />
+                    <element signature="e#17168#17923#0" expanded="false" />
+                    <element signature="e#17200#17292#0" expanded="false" />
+                    <element signature="e#17309#17380#0" expanded="false" />
+                    <element signature="e#17397#17488#0" expanded="false" />
+                    <element signature="e#17505#17596#0" expanded="false" />
+                    <element signature="e#17613#17704#0" expanded="false" />
+                    <element signature="e#17721#17793#0" expanded="false" />
+                    <element signature="e#17810#17870#0" expanded="false" />
+                    <element signature="e#21036#21769#0" expanded="false" />
+                    <element signature="e#24810#25536#0" expanded="false" />
+                    <element signature="e#28506#29232#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -410,36 +234,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>legendo</find>
-      <find>map_data</find>
-      <find>legend</find>
-      <find>getsu</find>
-      <find>gets</find>
-      <find>getsubbasins</find>
-      <find>doBack</find>
-      <find>&quot;grassedWaterways</find>
-      <find>step1_alter</find>
-      <find>step2collapse</find>
-      <find>heatmaps_frame1</find>
-      <find>wholeta</find>
-      <find>grassedWaterways</find>
-      <find>find</find>
-      <find>subbasinID</find>
-      <find>backArray</find>
-      <find>objInfo</find>
-      <find>step2_goals</find>
-      <find>infowindow</find>
-      <find>What do these numbers</find>
-      <find>infowindow2</find>
-      <find>console.log</find>
-      <find>What do these number</find>
-      <find>abc</find>
-      <find>coordinates</find>
-      <find>window_info</find>
-      <find>map1</find>
-      <find>whichNode</find>
-      <find>basemap_1</find>
-      <find>subBasinArray</find>
+      <find>obj</find>
+      <find>goToTimeMap1</find>
+      <find>JSONHolder</find>
+      <find>console</find>
+      <find>jso</find>
+      <find>subs</find>
+      <find>fn_obj</find>
+      <find>goToTimeBar</find>
+      <find>listofSubs</find>
+      <find>encodedQuery</find>
+      <find>ressssPF1</find>
+      <find>constructNewCoordinates</find>
+      <find>colorList</find>
+      <find>l.1146</find>
+      <find>strl</find>
+      <find>l.1401</find>
+      <find>with</find>
+      <find>tillIcon</find>
+      <find>geo</find>
+      <find>svg_to_img</find>
+      <find>L.1128</find>
+      <find>js</find>
+      <find>variable_area_wetlands</find>
+      <find>strlgth_mi</find>
+      <find>grassico</find>
+      <find>newCoordinates</find>
+      <find>--&gt;</find>
+      <find>l.1320</find>
+      <find>stream_mi</find>
+      <find>area_ac</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -447,6 +271,7 @@
     <dirStrings>
       <dir>C:\wamp64\www\wrestoreBCK2\google_plat\fusion_table</dir>
       <dir>C:\wamp64\www\wrestoreBCK2\model\js</dir>
+      <dir>C:\wamp64\www\wrestoreBCK2\model\css</dir>
       <dir>C:\wamp64\www\wrestoreBCK2\model</dir>
     </dirStrings>
   </component>
@@ -456,23 +281,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/google_plat/encoding/node001.js" />
-        <option value="$PROJECT_DIR$/google_plat/encoding/node002.js" />
-        <option value="$PROJECT_DIR$/google_plat/encoding/draw_line1.html" />
-        <option value="$PROJECT_DIR$/google_plat/geojson/data/datamap.js" />
-        <option value="$PROJECT_DIR$/google_plat/geojson/data/package.json" />
-        <option value="$PROJECT_DIR$/google_plat/geojson/data/tsconfig.json" />
-        <option value="$PROJECT_DIR$/google_plat/geojson/data/mc2_b.json" />
-        <option value="$PROJECT_DIR$/google_plat/geojson/data/mckey.json" />
-        <option value="$PROJECT_DIR$/google_plat/geojson/data/mc2_c.json" />
-        <option value="$PROJECT_DIR$/google_plat/geojson/data/mc2_d.json" />
-        <option value="$PROJECT_DIR$/google_plat/fusion_table/puzzle.html" />
-        <option value="$PROJECT_DIR$/google_plat/geojson/data/out.json" />
-        <option value="$PROJECT_DIR$/google_plat/geojson/package.json" />
-        <option value="$PROJECT_DIR$/google_plat/geojson/datos.json" />
-        <option value="$PROJECT_DIR$/google_plat/geojson/ajax_gjon_01.html" />
-        <option value="$PROJECT_DIR$/google_plat/geojson/ajax_gjon_02.html" />
-        <option value="$PROJECT_DIR$/google_plat/fusion_table/puzzle.json" />
         <option value="$PROJECT_DIR$/google_plat/fusion_table/puzzle3.html" />
         <option value="$PROJECT_DIR$/google_plat/encoding/encoding_002.html" />
         <option value="$PROJECT_DIR$/google_plat/encoding/node_modules/encoding_003.html" />
@@ -496,17 +304,34 @@
         <option value="$PROJECT_DIR$/model/css/map_legend.css" />
         <option value="$PROJECT_DIR$/model/css/basic.css" />
         <option value="$PROJECT_DIR$/model/css/gdropdown.css" />
-        <option value="$PROJECT_DIR$/model/js/heatmapnew1.js" />
-        <option value="$PROJECT_DIR$/model/css/style2.css" />
-        <option value="$PROJECT_DIR$/model/js/bargraphcpy.js" />
         <option value="$PROJECT_DIR$/model/css/star.css" />
         <option value="$PROJECT_DIR$/model/css/style1b.css" />
         <option value="$PROJECT_DIR$/google_plat/geojson/mckay_v1.html" />
         <option value="$PROJECT_DIR$/google_plat/geojson/Tualatin_Map_test/shp_to_gjson/tualatin2.js" />
         <option value="$PROJECT_DIR$/google_plat/geojson/Mckay_maptest/mckay_v1.html" />
-        <option value="$PROJECT_DIR$/model/js/mapping_new.js" />
+        <option value="$PROJECT_DIR$/model/js/mapping_new - Copy.js" />
+        <option value="$PROJECT_DIR$/model/js/mapping_new_g1.js" />
+        <option value="$PROJECT_DIR$/google_plat/geojson/gjon_window/gjson_w1.html" />
+        <option value="$PROJECT_DIR$/model/css/style2.css" />
         <option value="$PROJECT_DIR$/google_plat/geojson/ecw_maptest/ecw1_v1.html" />
+        <option value="$PROJECT_DIR$/model/js/mapping_new.js" />
+        <option value="$PROJECT_DIR$/model/js/graphing.js" />
+        <option value="$PROJECT_DIR$/model/js/heatmapnew1.js" />
+        <option value="$PROJECT_DIR$/model/js/bargraphcpy.js" />
+        <option value="$PROJECT_DIR$/model/g1.php" />
         <option value="$PROJECT_DIR$/model/g2.php" />
+        <option value="$PROJECT_DIR$/model/js/bargraphcpy_g2a.js" />
+        <option value="$PROJECT_DIR$/model/js/mapping_new_g2b.js" />
+        <option value="$PROJECT_DIR$/model/js/mapping_new_g2a.js" />
+        <option value="$PROJECT_DIR$/model/g2a.php" />
+        <option value="$PROJECT_DIR$/model/js/bargraphcpy_g2b.js" />
+        <option value="$PROJECT_DIR$/model/js/heatmapnew1_g2b.js" />
+        <option value="$PROJECT_DIR$/model/g2b.php" />
+        <option value="$PROJECT_DIR$/model/js/heatmapnew1_g2c.js" />
+        <option value="$PROJECT_DIR$/model/data/ecw_basemap.js" />
+        <option value="$PROJECT_DIR$/model/g2c.php" />
+        <option value="$PROJECT_DIR$/model/data/stream_g.js" />
+        <option value="$PROJECT_DIR$/model/js/mapping_new_g2c.js" />
       </list>
     </option>
   </component>
@@ -521,9 +346,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="391" />
+    <option name="x" value="369" />
     <option name="y" value="1" />
-    <option name="width" value="981" />
+    <option name="width" value="1003" />
     <option name="height" value="744" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -570,25 +395,19 @@
             <path>
               <item name="wrestoreBCK2" type="b2602c69:ProjectViewProjectNode" />
               <item name="wrestoreBCK2" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="google_plat" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="wrestoreBCK2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="wrestoreBCK2" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="google_plat" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="geojson" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="wrestoreBCK2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="wrestoreBCK2" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="google_plat" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="geojson" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Mckay_maptest" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="wrestoreBCK2" type="b2602c69:ProjectViewProjectNode" />
               <item name="wrestoreBCK2" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="data" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="wrestoreBCK2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wrestoreBCK2" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -638,21 +457,25 @@
       <workItem from="1546246398768" duration="151156000" />
       <workItem from="1546885761788" duration="31142000" />
       <workItem from="1546993182566" duration="40613000" />
-      <workItem from="1547296958585" duration="21059000" />
+      <workItem from="1547296958585" duration="63215000" />
+      <workItem from="1547614303233" duration="22176000" />
+      <workItem from="1547792732686" duration="53767000" />
+      <workItem from="1548002195153" duration="87943000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="313825000" />
+    <option name="totallyTimeSpent" value="519867000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="391" y="1" width="981" height="744" extended-state="0" />
+    <frame x="369" y="1" width="1003" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21594068" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2185297" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298791" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993197" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -664,7 +487,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32993197" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -680,183 +502,51 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/google_plat/geojson/ecw_maptest/shp_to_gjson/ecw1.js</url>
           <line>209879</line>
-          <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/google_plat/geojson/ecw_maptest/shp_to_gjson/ecw1.js</url>
           <line>210179</line>
-          <properties />
           <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="8" />
+      <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/google_plat/shp_to_gjson/tual_2.js" />
-    <entry file="file://$PROJECT_DIR$/google_plat/geojson/data/out.js">
+    <entry file="file://$PROJECT_DIR$/model/css/style1b.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="19" lean-forward="true" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+        <state relative-caret-position="-680">
+          <caret line="377" column="0" lean-forward="false" selection-start-line="377" selection-start-column="0" selection-end-line="377" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/google_plat/geojson/data/out.json">
+    <entry file="file://$PROJECT_DIR$/google_plat/geojson/Tualatin_Map_test/shp_to_gjson/tualatin1.js" />
+    <entry file="file://$PROJECT_DIR$/google_plat/geojson/Tualatin_Map_test/shp_to_gjson/tual_3.js" />
+    <entry file="file://$PROJECT_DIR$/google_plat/geojson/Tualatin_Map_test/shp_to_gjson/tualatin2.js" />
+    <entry file="file://$PROJECT_DIR$/google_plat/geojson/Tualatin_Map_test/shp_to_gjson/tualatin3.js" />
+    <entry file="file://$PROJECT_DIR$/google_plat/geojson/Tualatin_Map_test/tual_3.js" />
+    <entry file="file://$PROJECT_DIR$/google_plat/geojson/Tualatin_Map_test/gj.html" />
+    <entry file="file://$PROJECT_DIR$/model/js/mapping_new - Copy.js" />
+    <entry file="file://$PROJECT_DIR$/google_plat/geojson/gjon_window/gjson_w1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142052">
-          <caret line="8356" column="90" lean-forward="false" selection-start-line="8356" selection-start-column="90" selection-end-line="8356" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/google_plat/geojson/data/mc2_d222.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="9" lean-forward="true" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/google_plat/geojson/tsconfig.json" />
-    <entry file="file://$PROJECT_DIR$/google_plat/geojson/datos.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-123">
-          <caret line="7" column="22" lean-forward="true" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/google_plat/map_with_geojson/data/us2.js" />
-    <entry file="file://$PROJECT_DIR$/google_plat/geojson/data/mckey.json" />
-    <entry file="file://$PROJECT_DIR$/google_plat/encoding/package-lock.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2630">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/google_plat/geojson/ajax_gjon_03.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="36" column="77" lean-forward="false" selection-start-line="36" selection-start-column="77" selection-end-line="36" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/google_plat/fusion_table/puzzle2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="145" column="42" lean-forward="false" selection-start-line="145" selection-start-column="36" selection-end-line="145" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/google_plat/fusion_table/puzzle3.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="41" column="54" lean-forward="true" selection-start-line="41" selection-start-column="54" selection-end-line="41" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/google_plat/geojson/geojson_01.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="43" column="32" lean-forward="false" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/google_plat/map_with_geojson/map1.html" />
-    <entry file="file://$PROJECT_DIR$/google_plat/encoding/node_modules/encoding_003.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="60" column="36" lean-forward="false" selection-start-line="60" selection-start-column="36" selection-end-line="60" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/js/shadowbox/shadowbox.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="28" column="19563" lean-forward="false" selection-start-line="28" selection-start-column="19563" selection-end-line="28" selection-end-column="19563" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/js/shadowbox/shadowbox.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-431">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/data.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="7" lean-forward="true" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/js/stopwatch.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="37" column="22" lean-forward="false" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/js/mt_config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="37" column="22" lean-forward="true" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/google_plat/stopwatch_01.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="9" lean-forward="true" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/images/stars2_40x16_t2.png" />
-    <entry file="file://$PROJECT_DIR$/google_plat/encoding/encoding_002.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="64" column="26" lean-forward="false" selection-start-line="64" selection-start-column="26" selection-end-line="64" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/google_plat/geojson/tual_3.js" />
-    <entry file="file://$PROJECT_DIR$/google_plat/geojson/mckay_1.js" />
-    <entry file="file://$PROJECT_DIR$/google_plat/geojson/gj.html" />
-    <entry file="file://$USER_HOME$/Downloads/Save-595b40b85ba036ed117dc63d.svg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/css/map_legend.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1190">
-          <caret line="4" column="3" lean-forward="false" selection-start-line="0" selection-start-column="2" selection-end-line="4" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/infoBox.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="21" column="56" lean-forward="false" selection-start-line="21" selection-start-column="56" selection-end-line="21" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/google_plat/polygons/pol1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="35" column="26" lean-forward="false" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="26" />
+        <state relative-caret-position="215">
+          <caret line="108" column="24" lean-forward="false" selection-start-line="108" selection-start-column="24" selection-end-line="108" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/css/gdropdown.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
+        <state relative-caret-position="-1240">
           <caret line="114" column="24" lean-forward="true" selection-start-line="114" selection-start-column="24" selection-end-line="114" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/css/map_legend.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2583">
+          <caret line="6" column="8" lean-forward="true" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -867,89 +557,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/css/star.css">
+    <entry file="file://$PROJECT_DIR$/model/js/fda.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="23" column="45" lean-forward="false" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/js/heatmapnew1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2516">
-          <caret line="148" column="52" lean-forward="false" selection-start-line="148" selection-start-column="52" selection-end-line="148" selection-end-column="52" />
-          <folding>
-            <element signature="e#19720#20475#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/css/style1b.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-680">
-          <caret line="377" column="0" lean-forward="false" selection-start-line="377" selection-start-column="0" selection-end-line="377" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/css/style2.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9">
-          <caret line="26" column="18" lean-forward="false" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/js/bargraphcpy.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="385" column="29" lean-forward="false" selection-start-line="385" selection-start-column="29" selection-end-line="385" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/db_create.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/google_plat/geojson/Tualatin_Map_test/shp_to_gjson/tualatin1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="-547">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/google_plat/geojson/Tualatin_Map_test/shp_to_gjson/tual_3.js">
+    <entry file="file://$PROJECT_DIR$/model/js/legend_DOM.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="28038" column="6" lean-forward="true" selection-start-line="28038" selection-start-column="6" selection-end-line="28038" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/google_plat/geojson/Tualatin_Map_test/shp_to_gjson/tualatin2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-816">
+        <state relative-caret-position="-6697">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/google_plat/geojson/Tualatin_Map_test/shp_to_gjson/tualatin3.js">
+    <entry file="file://$PROJECT_DIR$/model/js/mt_config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="5" lean-forward="false" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+        <state relative-caret-position="-3025">
+          <caret line="37" column="22" lean-forward="true" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/google_plat/geojson/Tualatin_Map_test/tual_3.js">
+    <entry file="file://$PROJECT_DIR$/model/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="216026" column="1" lean-forward="true" selection-start-line="216026" selection-start-column="1" selection-end-line="216026" selection-end-column="1" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/abort.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-459">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -957,39 +599,169 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="15" lean-forward="false" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
-          <folding>
-            <element signature="e#62#5255539#0" expanded="false" />
-            <element signature="e#68#99398#0" expanded="false" />
-            <element signature="e#165#99384#0" expanded="false" />
-            <element signature="e#177#99374#0" expanded="false" />
-            <element signature="e#99404#210998#0" expanded="false" />
-            <element signature="e#99513#210974#0" expanded="false" />
-            <element signature="e#211101#339725#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/google_plat/geojson/Tualatin_Map_test/gj.html">
+    <entry file="file://$PROJECT_DIR$/google_plat/polygons/pol1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="36" column="38" lean-forward="true" selection-start-line="36" selection-start-column="38" selection-end-line="36" selection-end-column="38" />
+        <state relative-caret-position="34">
+          <caret line="35" column="29" lean-forward="true" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/js/bargraphcpy.js" />
+    <entry file="file://$PROJECT_DIR$/model/js/heatmapnew1.js" />
+    <entry file="file://$PROJECT_DIR$/model/js/mapping_new.js" />
+    <entry file="file://$PROJECT_DIR$/model/g2.php" />
+    <entry file="file://$PROJECT_DIR$/model/data.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="7" lean-forward="false" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/google_plat/geojson/Mckay_maptest/mckay_v1.html">
+    <entry file="file://$PROJECT_DIR$/model/js/bargraphcpy_g2b.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="44" column="15" lean-forward="false" selection-start-line="44" selection-start-column="15" selection-end-line="44" selection-end-column="15" />
+        <state relative-caret-position="-9">
+          <caret line="307" column="82" lean-forward="false" selection-start-line="307" selection-start-column="82" selection-end-line="307" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/js/heatmapnew1_g2b.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="27" lean-forward="true" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/g2b.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="1873" column="62" lean-forward="false" selection-start-line="1873" selection-start-column="56" selection-end-line="1873" selection-end-column="62" />
           <folding>
-            <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
+            <marker date="1548007592596" expanded="true" signature="5666:5717" ph="SELECT * FRO... takefeedback" />
+            <marker date="1548007592596" expanded="true" signature="7677:7726" ph="SELECT * FRO... session_info" />
+            <marker date="1548007592596" expanded="true" signature="126513:126520" ph="“" />
+            <marker date="1548007592596" expanded="true" signature="126529:126536" ph="”" />
+            <marker date="1548007592596" expanded="true" signature="126600:126607" ph="“" />
+            <marker date="1548007592596" expanded="true" signature="126614:126621" ph="”" />
+            <marker date="1548007592596" expanded="true" signature="127066:127073" ph="“" />
+            <marker date="1548007592596" expanded="true" signature="127076:127083" ph="”" />
+            <marker date="1548007592596" expanded="true" signature="127106:127113" ph="“" />
+            <marker date="1548007592596" expanded="true" signature="127130:127137" ph="”" />
+            <marker date="1548007592596" expanded="true" signature="142101:142115" ph="..." />
+            <marker date="1548007592596" expanded="true" signature="142128:142136" ph="..." />
+            <marker date="1548007592596" expanded="true" signature="146754:146768" ph="..." />
+            <marker date="1548007592596" expanded="true" signature="146781:146789" ph="..." />
+            <marker date="1548007592596" expanded="true" signature="151146:151160" ph="..." />
+            <marker date="1548007592596" expanded="true" signature="151173:151181" ph="..." />
+            <marker date="1548007592596" expanded="true" signature="155435:155449" ph="..." />
+            <marker date="1548007592596" expanded="true" signature="155462:155470" ph="..." />
+            <marker date="1548007592596" expanded="true" signature="159725:159739" ph="..." />
+            <marker date="1548007592596" expanded="true" signature="159752:159760" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/js/bargraphcpy_g2a.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="479" column="38" lean-forward="false" selection-start-line="479" selection-start-column="21" selection-end-line="479" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/js/mapping_new_g2a.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="425" column="84" lean-forward="false" selection-start-line="425" selection-start-column="84" selection-end-line="425" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/js/graphing.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="26" column="15" lean-forward="false" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/g2a.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="2037" column="15" lean-forward="false" selection-start-line="2037" selection-start-column="15" selection-end-line="2037" selection-end-column="15" />
+          <folding>
+            <marker date="1547975612791" expanded="true" signature="5748:5799" ph="SELECT * FRO... takefeedback" />
+            <marker date="1547975612791" expanded="true" signature="7480:7529" ph="SELECT * FRO... session_info" />
+            <marker date="1547975612791" expanded="true" signature="121958:121965" ph="“" />
+            <marker date="1547975612791" expanded="true" signature="121974:121981" ph="”" />
+            <marker date="1547975612791" expanded="true" signature="122045:122052" ph="“" />
+            <marker date="1547975612791" expanded="true" signature="122059:122066" ph="”" />
+            <marker date="1547975612791" expanded="true" signature="122511:122518" ph="“" />
+            <marker date="1547975612791" expanded="true" signature="122521:122528" ph="”" />
+            <marker date="1547975612791" expanded="true" signature="122551:122558" ph="“" />
+            <marker date="1547975612791" expanded="true" signature="122575:122582" ph="”" />
+            <marker date="1547975612791" expanded="true" signature="137546:137560" ph="..." />
+            <marker date="1547975612791" expanded="true" signature="137573:137581" ph="..." />
+            <marker date="1547975612791" expanded="true" signature="142199:142213" ph="..." />
+            <marker date="1547975612791" expanded="true" signature="142226:142234" ph="..." />
+            <marker date="1547975612791" expanded="true" signature="146591:146605" ph="..." />
+            <marker date="1547975612791" expanded="true" signature="146618:146626" ph="..." />
+            <marker date="1547975612791" expanded="true" signature="150880:150894" ph="..." />
+            <marker date="1547975612791" expanded="true" signature="150907:150915" ph="..." />
+            <marker date="1547975612791" expanded="true" signature="155170:155184" ph="..." />
+            <marker date="1547975612791" expanded="true" signature="155197:155205" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/js/mapping_new_g2b.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11356">
+          <caret line="668" column="23" lean-forward="false" selection-start-line="668" selection-start-column="23" selection-end-line="668" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/css/style2.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="628" column="24" lean-forward="false" selection-start-line="628" selection-start-column="17" selection-end-line="628" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/g1.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="871" column="58" lean-forward="false" selection-start-line="871" selection-start-column="58" selection-end-line="871" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/google_plat/geojson/ecw_maptest/ecw1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="209587" column="28" lean-forward="false" selection-start-line="209587" selection-start-column="28" selection-end-line="209587" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/google_plat/geojson/ecw_maptest/ecw1_v1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/google_plat/geojson/Mckay_maptest/mky3.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
+        <state relative-caret-position="17">
           <caret line="216026" column="13" lean-forward="false" selection-start-line="216026" selection-start-column="13" selection-end-line="216026" selection-end-column="13" />
           <folding>
             <element signature="e#66#8133793#0" expanded="false" />
@@ -1053,218 +825,167 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/google_plat/geojson/Mckay_maptest/mckay_v1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="44" column="15" lean-forward="false" selection-start-line="44" selection-start-column="15" selection-end-line="44" selection-end-column="15" />
+          <folding>
+            <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/google_plat/geojson/ecw_maptest/shp_to_gjson/ecw1.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#66#7685888#0" expanded="false" />
-            <element signature="e#21917#48743#0" expanded="false" />
-            <element signature="e#22042#48719#0" expanded="false" />
-            <element signature="e#7686073#7686217#0" expanded="false" />
-            <element signature="e#7686227#7686372#0" expanded="false" />
-            <element signature="e#7686382#7686527#0" expanded="false" />
-            <element signature="e#7686537#7686682#0" expanded="false" />
-            <element signature="e#7686692#7686836#0" expanded="false" />
-            <element signature="e#7686846#7686991#0" expanded="false" />
-            <element signature="e#7687001#7687146#0" expanded="false" />
-            <element signature="e#7687156#7687301#0" expanded="false" />
-            <element signature="e#7687311#7687457#0" expanded="false" />
-            <element signature="e#7687467#7687612#0" expanded="false" />
-            <element signature="e#7687622#7687767#0" expanded="false" />
-            <element signature="e#7687777#7687923#0" expanded="false" />
-            <element signature="e#7687933#7688079#0" expanded="false" />
-            <element signature="e#7688089#7688235#0" expanded="false" />
-            <element signature="e#7688245#7688391#0" expanded="false" />
-            <element signature="e#7688401#7688547#0" expanded="false" />
-            <element signature="e#7688557#7688703#0" expanded="false" />
-            <element signature="e#7688713#7688859#0" expanded="false" />
-            <element signature="e#7688869#7689015#0" expanded="false" />
-            <element signature="e#7689025#7689171#0" expanded="false" />
-            <element signature="e#7689181#7689326#0" expanded="false" />
-            <element signature="e#7689336#7689481#0" expanded="false" />
-            <element signature="e#7689491#7689636#0" expanded="false" />
-            <element signature="e#7689646#7689790#0" expanded="false" />
-            <element signature="e#7689800#7689946#0" expanded="false" />
-            <element signature="e#7689956#7690102#0" expanded="false" />
-            <element signature="e#7690112#7690257#0" expanded="false" />
-            <element signature="e#7690267#7690412#0" expanded="false" />
-            <element signature="e#7690422#7690568#0" expanded="false" />
-            <element signature="e#7690578#7690723#0" expanded="false" />
-            <element signature="e#7690733#7690878#0" expanded="false" />
-            <element signature="e#7690888#7691033#0" expanded="false" />
-            <element signature="e#7691043#7691189#0" expanded="false" />
-            <element signature="e#7691199#7691344#0" expanded="false" />
-            <element signature="e#7691354#7691499#0" expanded="false" />
-            <element signature="e#7691509#7691654#0" expanded="false" />
-            <element signature="e#7691664#7691810#0" expanded="false" />
-            <element signature="e#7691820#7691966#0" expanded="false" />
-            <element signature="e#7691976#7692121#0" expanded="false" />
-            <element signature="e#7692131#7692275#0" expanded="false" />
-            <element signature="e#7692285#7692429#0" expanded="false" />
-            <element signature="e#7692439#7692585#0" expanded="false" />
-            <element signature="e#7692595#7692740#0" expanded="false" />
-            <element signature="e#7692750#7692895#0" expanded="false" />
-            <element signature="e#7692905#7693050#0" expanded="false" />
-            <element signature="e#7693060#7693205#0" expanded="false" />
-            <element signature="e#7693215#7693360#0" expanded="false" />
-            <element signature="e#7693370#7693515#0" expanded="false" />
-            <element signature="e#7693525#7693670#0" expanded="false" />
-            <element signature="e#7693680#7693825#0" expanded="false" />
-            <element signature="e#7693835#7693980#0" expanded="false" />
-            <element signature="e#7693990#7694135#0" expanded="false" />
-            <element signature="e#7694145#7694289#0" expanded="false" />
-            <element signature="e#7694299#7694444#0" expanded="false" />
-            <element signature="e#7694454#7694598#0" expanded="false" />
-            <element signature="e#7694608#7694753#0" expanded="false" />
-            <element signature="e#7694763#7694908#0" expanded="false" />
-            <element signature="e#7694918#7695063#0" expanded="false" />
-            <element signature="e#7695073#7695217#0" expanded="false" />
-            <element signature="e#7695227#7695372#0" expanded="false" />
-            <element signature="e#7695382#7695527#0" expanded="false" />
-            <element signature="e#7695537#7695682#0" expanded="false" />
-            <element signature="e#7695692#7695837#0" expanded="false" />
-            <element signature="e#7695847#7695992#0" expanded="false" />
-            <element signature="e#7696002#7696147#0" expanded="false" />
-            <element signature="e#7696157#7696302#0" expanded="false" />
-            <element signature="e#7696312#7696457#0" expanded="false" />
-            <element signature="e#7696467#7696612#0" expanded="false" />
-            <element signature="e#7696622#7696767#0" expanded="false" />
-            <element signature="e#7696777#7696922#0" expanded="false" />
-            <element signature="e#7696932#7697077#0" expanded="false" />
-            <element signature="e#7697087#7697232#0" expanded="false" />
-            <element signature="e#7697242#7697387#0" expanded="false" />
-            <element signature="e#7697397#7697542#0" expanded="false" />
-            <element signature="e#7697552#7697697#0" expanded="false" />
-            <element signature="e#7697707#7697852#0" expanded="false" />
-            <element signature="e#7697862#7698007#0" expanded="false" />
-            <element signature="e#7698017#7698162#0" expanded="false" />
-            <element signature="e#7698172#7698317#0" expanded="false" />
-            <element signature="e#7698327#7698472#0" expanded="false" />
-            <element signature="e#7698482#7698627#0" expanded="false" />
-            <element signature="e#7698637#7698782#0" expanded="false" />
-            <element signature="e#7698792#7698935#0" expanded="false" />
-            <element signature="e#7698945#7699090#0" expanded="false" />
-            <element signature="e#7699100#7699245#0" expanded="false" />
-            <element signature="e#7699255#7699400#0" expanded="false" />
-            <element signature="e#7699410#7699555#0" expanded="false" />
-            <element signature="e#7699565#7699710#0" expanded="false" />
-            <element signature="e#7699720#7699865#0" expanded="false" />
-            <element signature="e#7699875#7700019#0" expanded="false" />
-            <element signature="e#7700029#7700174#0" expanded="false" />
-            <element signature="e#7700184#7700329#0" expanded="false" />
-            <element signature="e#7700339#7700483#0" expanded="false" />
-            <element signature="e#7700493#7700638#0" expanded="false" />
-            <element signature="e#7700648#7700793#0" expanded="false" />
-            <element signature="e#7700803#7700948#0" expanded="false" />
-            <element signature="e#7700958#7701101#0" expanded="false" />
-            <element signature="e#7701111#7701256#0" expanded="false" />
-            <element signature="e#7701266#7701412#0" expanded="false" />
-            <element signature="e#7701422#7701568#0" expanded="false" />
-            <element signature="e#7701578#7701724#0" expanded="false" />
-            <element signature="e#7701734#7701880#0" expanded="false" />
-            <element signature="e#7701890#7702036#0" expanded="false" />
-            <element signature="e#7702046#7702192#0" expanded="false" />
-            <element signature="e#7702202#7702348#0" expanded="false" />
-            <element signature="e#7702358#7702504#0" expanded="false" />
-            <element signature="e#7702514#7702660#0" expanded="false" />
-            <element signature="e#7702670#7702815#0" expanded="false" />
-            <element signature="e#7702825#7702971#0" expanded="false" />
-            <element signature="e#7702981#7703127#0" expanded="false" />
-            <element signature="e#7703137#7703283#0" expanded="false" />
-            <element signature="e#7703293#7703439#0" expanded="false" />
-            <element signature="e#7703449#7703595#0" expanded="false" />
-            <element signature="e#7703605#7703750#0" expanded="false" />
-            <element signature="e#7703760#7703906#0" expanded="false" />
-            <element signature="e#7703916#7704061#0" expanded="false" />
-            <element signature="e#7704071#7704217#0" expanded="false" />
-            <element signature="e#7704227#7704373#0" expanded="false" />
-            <element signature="e#7704383#7704529#0" expanded="false" />
-            <element signature="e#7704539#7704685#0" expanded="false" />
-            <element signature="e#7704695#7704840#0" expanded="false" />
-            <element signature="e#7704850#7704993#0" expanded="false" />
-            <element signature="e#7705003#7705148#0" expanded="false" />
-            <element signature="e#7705158#7705304#0" expanded="false" />
-            <element signature="e#7705314#7705459#0" expanded="false" />
-            <element signature="e#7705469#7705614#0" expanded="false" />
-            <element signature="e#7705624#7705768#0" expanded="false" />
-            <element signature="e#7705778#7705923#0" expanded="false" />
-            <element signature="e#7705933#7706077#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/google_plat/geojson/ecw_maptest/ecw1_v1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="16" column="87" lean-forward="true" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="87" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/g2.php">
+    <entry file="file://$PROJECT_DIR$/model/js/bargraphcpy_g2c.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="1535" column="29" lean-forward="false" selection-start-line="1535" selection-start-column="16" selection-end-line="1535" selection-end-column="29" />
+        <state relative-caret-position="115">
+          <caret line="202" column="85" lean-forward="false" selection-start-line="202" selection-start-column="85" selection-end-line="202" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/db_create.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="12" column="42" lean-forward="false" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/js/heatmapnew1_g2c.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="424" column="37" lean-forward="false" selection-start-line="424" selection-start-column="37" selection-end-line="424" selection-end-column="37" />
           <folding>
-            <element signature="e#28279#28284#0#PHP" expanded="false" />
-            <marker date="1547370926182" expanded="false" signature="164:209" ph="..." />
-            <marker date="1547370926182" expanded="true" signature="5662:5713" ph="SELECT * FRO... takefeedback" />
-            <marker date="1547370926182" expanded="true" signature="7673:7722" ph="SELECT * FRO... session_info" />
-            <marker date="1547370926182" expanded="false" signature="15209:15233" ph="..." />
-            <marker date="1547370926182" expanded="true" signature="123168:123175" ph="“" />
-            <marker date="1547370926182" expanded="true" signature="123184:123191" ph="”" />
-            <marker date="1547370926182" expanded="true" signature="123255:123262" ph="“" />
-            <marker date="1547370926182" expanded="true" signature="123269:123276" ph="”" />
-            <marker date="1547370926182" expanded="true" signature="123721:123728" ph="“" />
-            <marker date="1547370926182" expanded="true" signature="123731:123738" ph="”" />
-            <marker date="1547370926182" expanded="true" signature="123761:123768" ph="“" />
-            <marker date="1547370926182" expanded="true" signature="123785:123792" ph="”" />
-            <marker date="1547370926182" expanded="true" signature="138756:138770" ph="..." />
-            <marker date="1547370926182" expanded="true" signature="138783:138791" ph="..." />
-            <marker date="1547370926182" expanded="true" signature="143409:143423" ph="..." />
-            <marker date="1547370926182" expanded="true" signature="143436:143444" ph="..." />
-            <marker date="1547370926182" expanded="true" signature="147801:147815" ph="..." />
-            <marker date="1547370926182" expanded="true" signature="147828:147836" ph="..." />
-            <marker date="1547370926182" expanded="true" signature="152090:152104" ph="..." />
-            <marker date="1547370926182" expanded="true" signature="152117:152125" ph="..." />
-            <marker date="1547370926182" expanded="true" signature="156380:156394" ph="..." />
-            <marker date="1547370926182" expanded="true" signature="156407:156415" ph="..." />
+            <element signature="e#3766#4215#0" expanded="false" />
+            <element signature="e#6819#7267#0" expanded="false" />
+            <element signature="e#9784#10232#0" expanded="false" />
+            <element signature="e#12780#13228#0" expanded="false" />
+            <element signature="e#17168#17923#0" expanded="false" />
+            <element signature="e#17200#17292#0" expanded="false" />
+            <element signature="e#17309#17380#0" expanded="false" />
+            <element signature="e#17397#17488#0" expanded="false" />
+            <element signature="e#17505#17596#0" expanded="false" />
+            <element signature="e#17613#17704#0" expanded="false" />
+            <element signature="e#17721#17793#0" expanded="false" />
+            <element signature="e#17810#17870#0" expanded="false" />
+            <element signature="e#21036#21769#0" expanded="false" />
+            <element signature="e#24810#25536#0" expanded="false" />
+            <element signature="e#28506#29232#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/js/mapping_new.js">
+    <entry file="file://$PROJECT_DIR$/ecw_maptest/shp_to_gjson/ecw4.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4009">
-          <caret line="287" column="15" lean-forward="false" selection-start-line="287" selection-start-column="6" selection-end-line="287" selection-end-column="15" />
+        <state relative-caret-position="34">
+          <caret line="2" column="16" lean-forward="false" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
           <folding>
-            <element signature="e#3378#3415#0" expanded="false" />
-            <element signature="e#7883#8014#0" expanded="false" />
-            <element signature="e#8506#8631#0" expanded="false" />
-            <element signature="e#9082#9211#0" expanded="false" />
-            <element signature="e#9710#9831#0" expanded="false" />
-            <element signature="e#10348#10469#0" expanded="false" />
-            <element signature="e#10977#11103#0" expanded="false" />
-            <element signature="e#11575#11689#0" expanded="false" />
-            <element signature="e#26662#26936#0" expanded="false" />
-            <element signature="e#28331#32497#0" expanded="false" />
-            <element signature="e#34179#38442#0" expanded="false" />
-            <element signature="e#38824#39063#0" expanded="false" />
-            <element signature="e#40216#44515#0" expanded="false" />
-            <element signature="e#46516#47716#0" expanded="false" />
-            <element signature="e#49684#49923#0" expanded="false" />
-            <element signature="e#50898#51786#0" expanded="false" />
-            <element signature="e#52087#52301#0" expanded="false" />
-            <element signature="e#52443#52720#0" expanded="false" />
-            <element signature="n#!!block;n#doConserveTillage#0;n#!!block;n#initialize#0" expanded="false" />
-            <element signature="e#54276#54927#0" expanded="false" />
-            <element signature="e#55193#55406#0" expanded="false" />
-            <element signature="e#55548#55825#0" expanded="false" />
-            <element signature="e#57910#61338#0" expanded="false" />
-            <element signature="e#58204#60586#0" expanded="false" />
-            <element signature="e#61591#61808#0" expanded="false" />
-            <element signature="e#61983#62260#0" expanded="false" />
+            <element signature="e#66#7685888#0" expanded="false" />
+            <element signature="e#21917#48743#0" expanded="false" />
+            <element signature="e#21974#48733#0" expanded="false" />
+            <element signature="e#48753#66166#0" expanded="false" />
+            <element signature="e#48810#66156#0" expanded="false" />
+            <element signature="e#66176#81382#0" expanded="false" />
+            <element signature="e#81392#97927#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/data/ecw_basemap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/data/ewc_streams.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/js/mapping_new_g1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-10019">
+          <caret line="423" column="36" lean-forward="false" selection-start-line="423" selection-start-column="22" selection-end-line="423" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/data/ecw_streams.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="12" lean-forward="false" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/g2c.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="48" column="33" lean-forward="false" selection-start-line="48" selection-start-column="33" selection-end-line="48" selection-end-column="33" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#section#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1548290266328" expanded="true" signature="5967:6018" ph="SELECT * FRO... takefeedback" />
+            <marker date="1548290266328" expanded="true" signature="7978:8027" ph="SELECT * FRO... session_info" />
+            <marker date="1548290266328" expanded="true" signature="101512:101519" ph="“" />
+            <marker date="1548290266328" expanded="true" signature="101528:101535" ph="”" />
+            <marker date="1548290266328" expanded="true" signature="101599:101606" ph="“" />
+            <marker date="1548290266328" expanded="true" signature="101613:101620" ph="”" />
+            <marker date="1548290266328" expanded="true" signature="102065:102072" ph="“" />
+            <marker date="1548290266328" expanded="true" signature="102075:102082" ph="”" />
+            <marker date="1548290266328" expanded="true" signature="102105:102112" ph="“" />
+            <marker date="1548290266328" expanded="true" signature="102129:102136" ph="”" />
+            <marker date="1548290266328" expanded="true" signature="107120:107134" ph="..." />
+            <marker date="1548290266328" expanded="true" signature="107147:107155" ph="..." />
+            <marker date="1548290266328" expanded="true" signature="111773:111787" ph="..." />
+            <marker date="1548290266328" expanded="true" signature="111800:111808" ph="..." />
+            <marker date="1548290266328" expanded="true" signature="116165:116179" ph="..." />
+            <marker date="1548290266328" expanded="true" signature="116192:116200" ph="..." />
+            <marker date="1548290266328" expanded="true" signature="120454:120468" ph="..." />
+            <marker date="1548290266328" expanded="true" signature="120481:120489" ph="..." />
+            <marker date="1548290266328" expanded="true" signature="124744:124758" ph="..." />
+            <marker date="1548290266328" expanded="true" signature="124771:124779" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/data/stream_g.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="35" lean-forward="false" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/data/ecw4.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="209589" column="22" lean-forward="false" selection-start-line="209589" selection-start-column="13" selection-end-line="209589" selection-end-column="22" />
+          <folding>
+            <element signature="e#66#7685888#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/js/mapping_new_g2c.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="844" column="60" lean-forward="false" selection-start-line="844" selection-start-column="60" selection-end-line="844" selection-end-column="60" />
+          <folding>
+            <element signature="e#53848#54948#0" expanded="false" />
+            <element signature="e#69200#71822#0" expanded="false" />
           </folding>
         </state>
       </provider>

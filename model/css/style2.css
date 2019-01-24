@@ -1093,6 +1093,20 @@ label.error {
 	/*background-color: #afff1a;*/
 	background-color: transparent;
 }
+#save_box1_tr { /* For box of  option*/
+	display: none;
+	position: absolute;
+	top: 140px;
+	left: 400px;
+	z-index: 501;
+	height: 380px;
+	width: 500px;
+	margin: 0px auto 0px auto;
+	/*border: 1px solid #dd1254;*/
+	/*background-color: #afff1a;*/
+	background-color: transparent;
+}
+
 
 #inst_box1_in {
 	display: none;
