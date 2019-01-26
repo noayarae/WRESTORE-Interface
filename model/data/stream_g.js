@@ -1,4 +1,4 @@
-var map_streams = {
+var stream_json = {
     "type": "FeatureCollection",
     "features": [
         {

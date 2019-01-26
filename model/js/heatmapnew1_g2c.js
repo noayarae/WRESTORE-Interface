@@ -47,7 +47,9 @@ function heatinitialize() {
         return a.name;
     });
 
-    //  ------------------ Setting heatmaps with google.map ------  8 maps in total ----------------------
+    // ========================== Set BASE-MAPS google.map - 4 maps in total ===================== //
+    // ======================  ---------  Set and Add Base-Map for PFR  ------- ======================== //
+    // Draw the base-map for PFR
     heatmapPF1 = new google.maps.Map(document.getElementById('heatmap_canvasPF1'), {
         center: new google.maps.LatLng(39.9778, -86.2959),
         zoom: 10,
@@ -81,10 +83,9 @@ function heatinitialize() {
         }
     });
 
-    // ----------------- Start Setting PFR-Legend variables to send to g2.php --------------- //
-    // E: This part sets up a custom button into the heatmap to display the legend
-    // These code-lines calls the js script located around 2690 in g2.php
-    // var sttt;
+    // -------------- Start: Set variables and call the Function to build the PFR-Legend in heatmap ----------- //
+    // E: a) Set a custom button into the heatmap to display the legend
+    // E: b) Call the function "buttonControl_pfrs" located around 2044 in g2.php
     var buttonOptions_1 = {
         gmap: heatmapPF1,
         name: 'Legend ',
@@ -102,13 +103,12 @@ function heatinitialize() {
     var min_value = min_values[0];
     var max_value = max_values[0];
     // alert("Line:111-heatmapnew1.js: " + " map: " + mapa + "  min: " + min_value + "  max: " + max_value);
-    var button1 = new buttonControl_pfr(buttonOptions_1, colorList, mapa, min_value, max_value);
+    var button1 = new buttonControl_pfr(buttonOptions_1, colorList, mapa, min_value, max_value);//E: located around 2044 in g2.php
+    // --------------- End: Set vars and call the Function to build the PFR-Legend in heatmap ----------------- //
 
-    // --------------- End Legend setting for PFR ----------------- //
 
-
-    // ------------------------------------------------------------------------------ //
-
+    // ====================  ---------  (2) Set and Add Base-Map for PROFIT  ------------ ======================== //
+    // Draw the base-map for PROFIT
     heatmapRV1 = new google.maps.Map(document.getElementById('heatmap_canvasRV1'), {
         center: new google.maps.LatLng(39.9778, -86.2959),
         zoom: 10,
@@ -140,10 +140,9 @@ function heatinitialize() {
         }
     });
 
-
-    // ----------------- Start Legend setting (COST-RV) --------------- //
-    // E: This part sets up a custom button into the heatmap to display the legend
-    // These code-lines calls the js script located around 2690 in g2.php
+    // ----------------- Start: Set variables and call the Function to build the PROFIT-Legend in heatmap  -------- //
+    // E: 1) Set a custom button into the heatmap to display the legend
+    // E: 2) Call the function "buttonControl_cr" located around 2130 in g2.php
     var buttonOptions_1 = {
         gmap: heatmapRV1,
         name: 'Legend ',
@@ -160,12 +159,12 @@ function heatinitialize() {
     var min_value = min_values[1];
     var max_value = max_values[1];
     // alert("Line:111-heatmapnew1.js: " + " map: " + mapa + "  min: " + min_value + "  max: " + max_value);
-    var button1 = new buttonControl_cr(buttonOptions_1, colorList, mapa, min_value, max_value);
+    var button1 = new buttonControl_cr(buttonOptions_1, colorList, mapa, min_value, max_value);//E: located around 2130 in g2.php
+    // --------------- End: Set vars and call the Function for PROFIT-Legend in heatmap ----------------- //
 
-    // --------------- End Legend setting ----------------- //
 
-    // ---------------------------------  (3) Heat MAP SR  ---------------------------------------- //
-
+    // ======================  ---------  (3) Set and Add Base-Map for SR  ------------ ======================== //
+    // Draw the base-map for SR
     heatmapSR1 = new google.maps.Map(document.getElementById('heatmap_canvasSR1'), {
         center: new google.maps.LatLng(39.9778, -86.2959),
         zoom: 10,
@@ -197,9 +196,9 @@ function heatinitialize() {
         }
     });
 
-    // ----------------- Start Legend setting (SR) --------------- //
-    // E: This part sets up a custom button into the heatmap to display the legend
-    // These code-lines calls the js script located around 2690 in g2.php
+    // ------------- Start: Set vars and call the Function to build the SR-Legend in heatmap --------------- //
+    // E: 1) Set a custom button into the heatmap to display the legend
+    // E: 2) Call the function "buttonControl_sr" located around 2215 in g2.php
     var buttonOptions_1 = {
         gmap: heatmapSR1,
         name: 'Legend ',
@@ -216,12 +215,12 @@ function heatinitialize() {
     var min_value = min_values[2];
     var max_value = max_values[2];
     // alert("Line:111-heatmapnew1.js: " + " map: " + mapa + "  min: " + min_value + "  max: " + max_value);
-    var button1 = new buttonControl_sr(buttonOptions_1, colorList, mapa, min_value, max_value);
+    var button1 = new buttonControl_sr(buttonOptions_1, colorList, mapa, min_value, max_value);//E: located around 2215 in g2.php
 
-    // --------------- End Legend setting ----------------- //
+    // --------------- End: Set vars and call the Function for SR-Legend in heatmap ----------------- //
 
-    // -------------------------------------  (4) Heat MAP NR  ------------------------------------------ //
-
+    // ================  ---------  (4) Add Base-Map for NR  ------------ ======================== //
+    // Draw the base-map for NR
     heatmapNR1 = new google.maps.Map(document.getElementById('heatmap_canvasNR1'), {
         center: new google.maps.LatLng(39.9778, -86.2959),
         zoom: 10,
@@ -254,9 +253,9 @@ function heatinitialize() {
         }
     });
 
-    // ----------------- Start Legend setting (NR) --------------- //
-    // E: This part sets up a custom button into the heatmap to display the legend
-    // These code-lines calls the js script located around 2690 in g2.php
+    // ----------------- Start: Set vars and call the Function to build the NR-Legend in heatmap --------------- //
+    // E: a) Set a custom button into the heatmap to display the legend
+    // E: b) Call the function "buttonControl_nr" located around 2300 in g2.php
     var buttonOptions_1 = {
         gmap: heatmapNR1,
         name: 'Legend ',
@@ -272,20 +271,24 @@ function heatinitialize() {
     var min_value = min_values[3];
     var max_value = max_values[3];
     // alert("Line:111-heatmapnew1.js: " + " map: " + mapa + "  min: " + min_value + "  max: " + max_value);
-    var button1 = new buttonControl_nr(buttonOptions_1, colorList, mapa, min_value, max_value);
+    var button1 = new buttonControl_nr(buttonOptions_1, colorList, mapa, min_value, max_value);//E: located around 2300 in g2.php
+    // --------------- End: Set vars and call the Function for NR-Legend in heatmap ----------------- //
+    // ====================================================================================== //
 
-    // --------------- End Legend setting ----------------- //
-    // ------------------------------------------------------------------------------------ //
 
+    // =============================  do  doheatmaps  ============================= //
+    doheatPF1();
+    doheatRV1();
+    doheatSR1();
+    doheatNR1();
 
-    // -----------------------  set coordinates for maps ----------------------
+    // ----------------------- Start:  set coordinates for maps ---------------------- //
     function constructNewCoordinates(polygon) {
         var newCoordinates = [];
         var coordinates = null;
         if (polygon['coordinates']) coordinates = polygon['coordinates'];
         if (coordinates.length == 1) {
             coordinates = coordinates[0];
-            // alert("length = 1");
         }
         for (var i in coordinates) {
             newCoordinates.push(new google.maps.LatLng(coordinates[i][1], coordinates[i][0]));
@@ -293,12 +296,7 @@ function heatinitialize() {
         }
         return newCoordinates;
     }
-
-    // ------------  do  doheatmaps  -----------------
-    doheatPF1();
-    doheatRV1();
-    doheatSR1();
-    doheatNR1();
+    // ----------------------- End:  set coordinates for maps ----------------------
 
     // --------------  Start all related to "PF" (doheatPF1,"drawHeatPF1", doheatPF2, "drawHeatPF2") ----------------
     // ----------------  Start doheartPF1 ------------
@@ -319,27 +317,24 @@ function heatinitialize() {
     //     script.src = url.join('');
     //     var body = document.getElementsByTagName('body')[0];
     //     body.appendChild(script);
-    //     //alert("Wetlands1");
     // }
-    //
     //
     // drawHeatPF1 = function(data) {
     //     //End NOVA
 
-        // alert(data);
         // var rows = data['rows'];//EE: not needed when json data
         // for (var i in rows) {
-        for (var i = 0; i < map_data.features.length; i++) {//EE 'map_data.features.length' = 130 (# of subbasins)
+        for (var i = 0; i < subbasin_json.features.length; i++) {//EE 'map_data.features.length' = 130 (# of subbasins)
             var newCoordinates = [];
             var whichNode = "";
             //var geometries = rows[i][1]['geometry'];
             // var row = rows[i];//EE: not needed when json data
             // var whichNode = row[0];
-            var whichNode = map_data.properties[i]["Subbasin"].toString();
+            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();
 
             //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
             // var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
-            var newCoordinates = constructNewCoordinates(map_data.features[i].geometry);
+            var newCoordinates = constructNewCoordinates(subbasin_json.features[i].geometry);
             var indexx = ressssPF1.indexOf(Number(whichNode));
 
             switch (true) {
@@ -361,7 +356,7 @@ function heatinitialize() {
             }
 
             // var whichNode = row[0];
-            var whichNode = map_data.properties[i]["Subbasin"].toString();
+            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();
             Peakflow = new google.maps.Polygon({
                 path: newCoordinates,
                 //strokeColor: colors[0],
@@ -373,23 +368,12 @@ function heatinitialize() {
                 clickable: true
             });
 
-            // google.maps.event.addListener(Peakflow, 'click', function(event) {
-            //     $.ajax({
-            //         url: 'sendToTime.php',
-            //         type: 'post',
-            //         data: "JSONHolder=" + "heatmapPF1" + "," + page + "," + session + "," + ("Suggestion" + (parseInt(option) + 1) + " " + this.indexID),
-            //         success: function(data) {}
-            //     });
-            // });
-
             Peakflow.setMap(heatmapPF1);
         }
     };
-
-
     // --------------  End all related to "PF" (doheatPF1,"drawHeatPF1", doheatPF2, "drawHeatPF2") ----------------
 
-    // --------------  Start all related to "RV" (doheatRV1,"drawHeatRV1", doheatRV2, "drawHeatRV2") ----------------
+    // --------------  Start all related to "PROFIT" (doheatRV1,"drawHeatRV1", doheatRV2, "drawHeatRV2") ------------
     // ---------------------------------  Start doheatRV1() --------------------------------
     function doheatRV1() {
     //     // Inicio NO VA
@@ -407,27 +391,25 @@ function heatinitialize() {
     //     script.src = url.join('');
     //     var body = document.getElementsByTagName('body')[0];
     //     body.appendChild(script);
-    //     //alert("Wetlands1");
     // }
     //
     // drawHeatRV1 = function(data) {
     //     // End NO VA
 
-        // alert(data);
         // var rows = data['rows'];//EE: not needed when json data
         // for (var i in rows) {
-        for (var i = 0; i < map_data.features.length; i++) {//EE 'map_data.features.length' = 130 (# of subbasins)
+        for (var i = 0; i < subbasin_json.features.length; i++) {//EE 'map_data.features.length' = 130 (# of subbasins)
             var newCoordinates = [];
             var whichNode = "";
             //var geometries = rows[i][1]['geometry'];
             //alert (geometries)//newly added code...
             // var row = rows[i];//EE: not needed when json data
             // var whichNode = row[0];
-            var whichNode = map_data.properties[i]["Subbasin"].toString();
+            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();
 
             //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
             // var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
-            var newCoordinates = constructNewCoordinates(map_data.features[i].geometry);
+            var newCoordinates = constructNewCoordinates(subbasin_json.features[i].geometry);
             var indexx = ressssRV1.indexOf(Number(whichNode));
 
             switch (true) {
@@ -449,7 +431,7 @@ function heatinitialize() {
             }
 
             // var whichNode = row[0];
-            var whichNode = map_data.properties[i]["Subbasin"].toString();
+            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();
             ERevenue = new google.maps.Polygon({
                 path: newCoordinates,
                 //strokeColor: colors[0],
@@ -461,20 +443,10 @@ function heatinitialize() {
                 clickable: true
             });
 
-            // google.maps.event.addListener(ERevenue, 'click', function(event) {
-            //     $.ajax({
-            //         url: 'sendToTime.php',
-            //         type: 'post',
-            //         data: "JSONHolder=" + "HeatMap_ER" + "," + page + "," + session + "," + ("Suggestion" + (parseInt(option) + 1) + " " + this.indexID),
-            //         success: function(data) {}
-            //     });
-            // });
-
             ERevenue.setMap(heatmapRV1);
         } // JavaScript Document
     };
     // --------------  End all related to "RV" (doheatRV1,"drawHeatRV1", doheatRV2, "drawHeatRV2") ----------------
-
 
     // --------------  Start all related to "SR" (doheatSR1,"drawHeatSR1", doheatSR2, "drawHeatSR2") ----------------
     function doheatSR1() {
@@ -499,21 +471,20 @@ function heatinitialize() {
     // drawHeatSR1 = function(data) {
     //     // End NO VA
 
-        // alert(data);
         // var rows = data['rows'];//EE: not needed when json data
         // for (var i in rows) {
-        for (var i = 0; i < map_data.features.length; i++) {//EE 'map_data.features.length' = 130 (# of subbasins)
+        for (var i = 0; i < subbasin_json.features.length; i++) {//EE 'map_data.features.length' = 130 (# of subbasins)
             var newCoordinates = [];
             var whichNode = "";
             //var geometries = rows[i][1]['geometry'];
             //alert (geometries)//newly added code...
             // var row = rows[i];//EE: not needed when json data
             // var whichNode = row[0];
-            var whichNode = map_data.properties[i]["Subbasin"].toString();
+            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();
 
             //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
             // var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
-            var newCoordinates = constructNewCoordinates(map_data.features[i].geometry);
+            var newCoordinates = constructNewCoordinates(subbasin_json.features[i].geometry);
             var indexx = ressssSR1.indexOf(Number(whichNode));
 
             switch (true) {
@@ -535,7 +506,7 @@ function heatinitialize() {
             }
 
             // var whichNode = row[0];
-            var whichNode = map_data.properties[i]["Subbasin"].toString();
+            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();
             Sediments = new google.maps.Polygon({
                 path: newCoordinates,
                 //strokeColor: colors[0],
@@ -546,15 +517,6 @@ function heatinitialize() {
                 indexID: whichNode,
                 clickable: true
             });
-
-            // google.maps.event.addListener(Sediments, 'click', function(event) {
-            //     $.ajax({
-            //         url: 'sendToTime.php',
-            //         type: 'post',
-            //         data: "JSONHolder=" + "HeatMap_SRed" + "," + page + "," + session + "," + ("Suggestion" + (parseInt(option) + 1) + " " + this.indexID),
-            //         success: function(data) {}
-            //     });
-            // });
 
             Sediments.setMap(heatmapSR1);
         }
@@ -585,20 +547,19 @@ function heatinitialize() {
     // drawHeatNR1 = function(data) {
     //     // End NO VA
 
-        // alert(data);
         // var rows = data['rows'];//EE: not needed when json data
         // for (var i in rows) {
-        for (var i = 0; i < map_data.features.length; i++) {//EE 'map_data.features.length' = 130 (# of subbasins)
+        for (var i = 0; i < subbasin_json.features.length; i++) {//EE 'map_data.features.length' = 130 (# of subbasins)
             var newCoordinates = [];
             var whichNode = "";
             //var geometries = rows[i][1]['geometry'];
             // var row = rows[i];//EE: not needed when json data
             // var whichNode = row[0];
-            var whichNode = map_data.properties[i]["Subbasin"].toString();
+            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();
 
             //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
             // var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
-            var newCoordinates = constructNewCoordinates(map_data.features[i].geometry);
+            var newCoordinates = constructNewCoordinates(subbasin_json.features[i].geometry);
             var indexx = ressssNR1.indexOf(Number(whichNode));
 
             switch (true) {
@@ -620,7 +581,7 @@ function heatinitialize() {
             }
 
             // var whichNode = row[0];
-            var whichNode = map_data.properties[i]["Subbasin"].toString();
+            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();
             Nitrates = new google.maps.Polygon({
                 path: newCoordinates,
                 //strokeColor: colors[0],
@@ -631,16 +592,6 @@ function heatinitialize() {
                 indexID: whichNode,
                 clickable: true
             });
-
-            // google.maps.event.addListener(Nitrates, 'click', function(event) {
-            //     $.ajax({
-            //         url: 'sendToTime.php',
-            //         type: 'post',
-            //         data: "JSONHolder=" + "HeatMap_NRed" + "," + page + "," + session + "," + ("Suggestion" + (parseInt(option) + 1) + " " + this.indexID),
-            //         success: function(data) {}
-            //     });
-            // });
-
             Nitrates.setMap(heatmapNR1);
 
         }

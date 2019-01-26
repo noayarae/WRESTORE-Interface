@@ -43,10 +43,8 @@
     <script type='text/javascript' src='js/fda.js'></script>
     <script type='text/javascript' src='js/mt_config.js'></script>
 <!--    DATA    -->
-<!--    <script src="data/ecw_basemap.js"></script> <!-- Here goes the JS.File name. var "map_data" -->
-    <script src="data/ecw4.js"></script> <!-- Here goes the JS.File name. var "map_data" -->
-<!--    <script src="data/ecw_streams.js"></script> <!-- Here goes the JS.File name. var "map_data" -->-->
-    <script src="data/stream_g.js"></script> <!-- Here goes the JS.File name. var "map_data" -->
+    <script src="data/ecw4.js"></script> <!-- Here goes the JS.File name. var "subbasin_json" -->
+    <script src="data/stream_g.js"></script> <!-- Here goes the JS.File name. var "stream_json" -->
     
     <script type="text/javascript">
         //window.onload(heatinitialize);
@@ -54,13 +52,12 @@
         google.setOnLoadCallback(subBasinGraph1);
     </script>
     
-    <!--  Tracking module  -->
+    <!--  EE: Tracking module  -->
     <script type='text/javascript'>
-        /* The automaton is: s_start --one--> s_one --two--> s_two --three--> s_end
-		* In the transition between s_two and s_end, when three is clicked, we invoke the submitData()
-		* method, to store all collected data up to the moment.
-		*/
-        //	  alert ("hello again");
+        // The automaton is: s_start --one--> s_one --two--> s_two --three--> s_end
+		// In the transition between s_two and s_end, when three is clicked, we invoke the submitData()
+		// method, to store all collected data up to the moment.
+
         fda.addTransition('s_start', 'one', 's_one');
         fda.addTransition('s_one', 'two', 's_two');
         //fda.addTransition('s_two', 'three', 's_end', function() { submitData() });
@@ -68,16 +65,15 @@
 
         var myObj = JSON.stringify(fda.data.s_start);
 
-        // If we are also interested in knowing whether the browser window is resized, we set this to true.
+        //EE: If we are also interested in knowing whether the browser window is resized, we set this to true.
         mt_detect_resize = true;
 
-        // This function must be invoked, and it has to go last.
+        //EE: This function must be invoked, and it has to go last.
         $(document).ready(init);
     </script>
-
     
 </head>
-<!--  -------------------- START BODY -----------  -->
+<!--  -------------------- START BODY --------------------  -->
 <body name="body">
 <!--  E: This "WRAPPER" Div encloses the whole page, after "BODY" with out JavaScripts -->
 <div class="wrapper"> <!-- style="background:#e6ffcc;" #e6ffcc; #99ff66; #e6ff0c; -->
@@ -85,7 +81,6 @@
 <!--  E: This PHP reads/grabs the data from the DB and creates a "TABLE" Html-tag to save them on it -->
 <?php
 include ('data.php');
-//echo $yellow;
 
 //This is a simple script that checks to see the session userID is even active. If not, that means someone is trying
 // to access this page without loggin in and I throw them out.
@@ -212,9 +207,8 @@ else
         </header>
     </div>
 </div>
-<!--<div class="skip"></div>-->
 
-<!--  ================== LINE-2: "LET's VOTE" ================= -->
+<!--  ================== LINE-2: "MENU  BAR" ================= -->
 <div id="line2" class="wrapper1">
     <div id="mainFrame" class="wrapper2" >
         <div id="line2-col1">
@@ -243,21 +237,24 @@ else
 <!--                for a while" name="TakeRest" href="#" onclick="takeRest_function();return false;">Take a rest</a>-->
 
                 <!--    MENU BAR as ICONS   -->
+                <!--    "open_instruction()" function located at L.1884     -->
                 <button id="instructions" class="trackable mainbuttons2 submitFeedbackJon" onclick="open_instruction
-                ()" title="Option to view instructions" style="font-size:22px">
+                ()" title="View instructions" style="font-size:22px">
                     <i class="fa fa-info-circle"></i></button>
 
-                <button id="pause" class="trackable mainbuttons2 submitFeedbackJon" onclick="pause_function()"
-                        title="Option to pause the website for a while" style="font-size:22px">
-                    <i class="fa fa-pause"></i></button>
+                <!--    "pause_function()" function located at L.1906     -->
+<!--                <button id="pause" class="trackable mainbuttons2 submitFeedbackJon" onclick="pause_function()"-->
+<!--                        title="Option to pause the website for a while" style="font-size:22px">-->
+<!--                    <i class="fa fa-pause"></i></button>-->
 
-                <button id="save" class="trackable mainbuttons2 submitFeedbackJon" onclick="save_msg_function
-                ()" title="Option to save current design and come back later" style="font-size:22px">
+                <!--    "save_function()" function located at L.1938     -->
+                <button id="save" class="trackable mainbuttons2 submitFeedbackJon" onclick="save_function
+                ()" title="Save the current design and come back later" style="font-size:22px">
                     <i class="fa fa-save"></i></button>
 
 
                 <button id="quit" class="trackable mainbuttons2 submitFeedbackJon" onclick="exit_wrestore()"
-                        title="Option to quit current search experiment" style="font-size:22px">
+                        title="Quit the current search experiment" style="font-size:22px">
                     <i class="fa fa-sign-out"></i></button>
             </div>
         </div>
@@ -273,10 +270,6 @@ else
 
 <!--    ================ LINE-4: MAIN MAP (before STEP 1) ================================  -->
 <div id="line4" class="wrapper1 container-fluid" style="display: block;">
-<!--            <div class="displayStuffa">Click inside of any sub-basin to learn about practices proposed in a sub-basin.</div>-->
-            <!-- <div class="displayStuffb" name="What Do They Mean"><a href="infoBox.html" rel="shadowbox;height=640;width=620" name="What Do They Mean"><strong><em name="What Do They Mean">What do these numbers mean?</em></strong></a></div>-->
-            <!--pop up boxes will display this info-->
-            <!-- <div class="displayStuff"></div>-->
     
     <form id="form1" class="wrapper2" name="form1" method="post" action="sendToUsersFeedback.php?id=<? print $thisCSS;
     ?>">
@@ -299,7 +292,7 @@ the costs and benefits over the watershed landscape">STEP 1:
             <div id="mapHolderOne">
                 <div id="map_canvas1" name="map_canvas1"></div>
                 
-                <!--   ++++++++++++++   inserting in STEP1 HeatMaps   ++++++++++++++  -->
+                <!--   ++++++++++++++   inserting HeatMaps in STEP1 box  ++++++++++++++  -->
 <!--                <div class ="containerABC collapsed" name='step1_alter' style="position: relative; width: 250px;-->
 <!--                left: 2px; top: -464px; z-index: 100; background-color: #ffffff; height: 470px; border: 1px solid-->
 <!--                #999999;">-->
@@ -309,23 +302,18 @@ the costs and benefits over the watershed landscape">STEP 1:
 <!--                <div name='step2collapse' class ="containerABC collapsed" style="position: relative; width: 250px;-->
 <!--                left: 5px; top: 0px; z-index: 100; background-color: #ff9933; border: 2px solid black;">-->
 
-<!--                    <div class="graph" style="height: inherit; width: inherit;">-->
-<!--                    <div class="dropDownArea">-->
-<!--                        <label style="margin: 0px 0px 0px 3px;">Choose a catchment of interest to you</label>-->
-<!--                    </div>-->
-                    
-<!--                        <div class="altern_container">-->
                     <div id="tabs_hm" style="font-size: 12px; height: 450px; margin: 2px 0px 0px 0px;">
                         <ul class="tabs_heatmap">
                             <li><a id="step1_start" class="trackable" href="#info_heatmap">Start</a></li>
-                            <li><a id="step1_PFR_tab" class="trackable" href="#tabs-PF">PFR</a></li>
-                            <li style="width: 40px;"><a id="step1_P_tab" class="trackable" style="margin: 0px 0px 0px 4px;"
-                                                        href="#tabs-RV">P</a></li>
-                            <li><a id="step1_SR_tab" class="trackable" href="#tabs-SR">SR</a></li>
-                            <li><a id="step1_NR_tab" class="trackable" href="#tabs-NR">NR</a></li>
+                            <li><a id="step1_PFR_tab" class="trackable" title="Peak Flow Reduction in cubic
+meters per second (cms)" href="#tabs-PF">PFR</a></li>
+                            <li><a id="step1_SR_tab" class="trackable" title="Sediment Reduction in tons" href="#tabs-SR">SR</a></li>
+                            <li><a id="step1_NR_tab" class="trackable" title="Nitrate Reduction in kilograms (kg)" href="#tabs-NR">NR</a></li>
+                            <li style="width: 40px;"><a id="step1_P_tab" class="trackable" title="Profit (Revenue-Cost)
+in US Dollars" style="margin: 0px 0px 0px 4px;" href="#tabs-RV">P</a></li>
                         </ul>
                         <div class="tab_container2">
-                            <!--    ------------ (1b) tabs-Info of HeatMap  ------------   -->
+                            <!--    ------------ (1a) tab-Info of HeatMap  ------------   -->
                             <div id="info_heatmap" class='tab_content2' style="height: 345px; overflow: auto;">
 <!--                            <div id="info_heatmap" class='tab_content2' style="height: 345px; overflow: auto; border: 1px solid red;">-->
                                 <h4 style="font-size: 20px">Instructions </h4>
@@ -337,31 +325,22 @@ the costs and benefits over the watershed landscape">STEP 1:
                                     <li><p><b>PFR </b>is Peak Flow Reduction in cubic meters per second (cms)
                                             . This represents the benefit of reduced flooding in the
                                             landscape</p></li>
-                                    <li><p><b>P </b>is Profit (Revenue-Cost) in US Dollars. This represents the
-                                            expenses and revenue accrued from implementing proposed conservation
-                                            decisions on the landscape.
-                                        </p></li>
                                     <li><p><b>SR </b>is Sediment Reduction in tons. This represents the benefit of
                                             reduced erosion in the landscape.
                                         </p></li>
                                     <li><p><b>NR </b>is Nitrate Reduction in Kilograms (kg). This represents
                                             the benefit of reduced fertilizer loss in the landscape.</p></li>
+                                    <li><p><b>P </b>is Profit (Revenue-Cost) in US Dollars. This represents the
+                                            expenses and revenue accrued from implementing proposed conservation
+                                            decisions on the landscape.</p></li>
                                 </ul>
                             </div>
-                            <!--    ------------ (2b) tabs-PF  ------------   -->
+                            <!--    ------------ (2a) tabs-PFR heatmap ------------   -->
                             <div id="tabs-PF" class="map1">
                                 <div class="tab-header2">
                                     <h4>Alternative <span class="oneMap"></span></h4>
-                                    <!--                                    <div class="info1 trackable" id="tab_PF_map1_Legend"> Legend_*-->
-                                    <!--    ----     <img  title="click for additional information" alt="click
-									for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
-                                    <!--                                        <img id="imm1" class="playdown" title="click for additional information"-->
-                                    <!--                                             alt="click for additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>-->
-                                    <!--                                        <div id="oneMapPF" class="tip"></div>-->
-                                    <!--                                    </div>-->
                                     <input id="fullscreen_heatmap1" class="trackable" type="button"
                                            title="Click here to display a fullscreen map" value="fullscreen PFR"/>
-
                                 </div>
                                 <div id="heatMapHolderOne">
                                     <div id="oneMapPF" class="tip"></div>
@@ -371,38 +350,10 @@ the costs and benefits over the watershed landscape">STEP 1:
                             </div>
                             <div style="clear:both"></div>
 
-                            <!--    ------------ (3b) tabs-RV  --------   -->
-                            <div id="tabs-RV" class="map1">
-                                <div class="tab-header2">
-                                    <h4>Alternative <span class="oneMap"></span></h4>
-                                    <!--                                    <div class="info3 trackable" id="tab_RV_map1_Legend"> Legend-->
-                                    <!--                            <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
-                                    <!--                                        <img id="imm3" class="playdown" title="click for additional information" alt="click for-->
-                                    <!--                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>-->
-                                    <!--                                        <div id="oneMapRV" class="tip"></div>-->
-                                    <!--                                    </div>-->
-
-                                    <input id="fullscreen_heatmap2" class="trackable" type="button"
-                                           title="Click here to display a fullscreen map" value="fullscreen P"/>
-                                </div>
-                                <div id="heatMapHolderOne">
-                                    <div id="oneMapRV" class="tip"></div>
-                                    <!--  It draws them map1 -->
-                                    <div id="heatmap_canvasRV1" name="heatmap_canvasRV1"></div>
-                                </div>
-                            </div>
-                            <div style="clear:both"></div>
-
-                            <!--    ------------ (4b) tabs-SR  --------   -->
+                            <!--    ------------ (3a) tabs-SR heatmap --------   -->
                             <div id="tabs-SR" class="map1">
                                 <div class="tab-header2">
                                     <h4>Alternative <span class="oneMap"></span></h4>
-                                    <!--                                    <div class="info5 trackable" id="tab_SR_map1_Legend"> Legend-->
-                                    <!--                            <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
-                                    <!--                                        <img id="imm5" class="playdown" title="click for additional information" alt="click for-->
-                                    <!--                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>-->
-                                    <!--                                        <div id="oneMapSR" class="tip"></div>-->
-                                    <!--                                    </div>-->
 
                                     <input id="fullscreen_heatmap3" class="trackable" type="button"
                                            title="Click here to display a fullscreen map" value="fullscreen SR"/>
@@ -415,16 +366,10 @@ the costs and benefits over the watershed landscape">STEP 1:
                             </div>
                             <div style="clear:both"></div>
 
-                            <!--    -----------  (5b)  tabs-NR  ------   -->
+                            <!--    -----------  (4a)  tabs-NR heatmap ------   -->
                             <div id="tabs-NR" class="map1">
                                 <div class="tab-header2">
                                     <h4>Alternative <span class="oneMap"></span></h4>
-                                    <!--                                    <div class="info7 trackable" id="tab_NR_map1_Legend"> Legend-->
-                                    <!--                                <img title="click for additional information" alt="click for additional information" src="images/info.png" width="14" height="14" alt=""/>-->
-                                    <!--                                        <img id="imm7" class="playdown" title="click for additional information" alt="click for-->
-                                    <!--                                additional information" src="images/dropdown_arrow.png" width="14" height="14" alt=""/>-->
-                                    <!--                                        <div id="oneMapNR" class="tip"></div>-->
-                                    <!--                                    </div>-->
 
                                     <input id="fullscreen_heatmap4" class="trackable" type="button"
                                            title="Click here to display a fullscreen map" value="fullscreen NR"/>
@@ -436,9 +381,25 @@ the costs and benefits over the watershed landscape">STEP 1:
                                 </div>
                             </div>
                             <div style="clear:both"></div>
+
+                            <!--    ------------ (5a) tabs-RV heatmap --------   -->
+                            <div id="tabs-RV" class="map1">
+                                <div class="tab-header2">
+                                    <h4>Alternative <span class="oneMap"></span></h4>
+
+                                    <input id="fullscreen_heatmap2" class="trackable" type="button"
+                                           title="Click here to display a fullscreen map" value="fullscreen P"/>
+                                </div>
+                                <div id="heatMapHolderOne">
+                                    <div id="oneMapRV" class="tip"></div>
+                                    <!--  It draws them map1 -->
+                                    <div id="heatmap_canvasRV1" name="heatmap_canvasRV1"></div>
+                                </div>
+                            </div>
+                            <div style="clear:both"></div>
+
                         </div>
                     </div>
-
                     <!--                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    -->
                 </div>
                 <script>
@@ -446,13 +407,13 @@ the costs and benefits over the watershed landscape">STEP 1:
                         $("#tabs_bp").tabs();
                     } );
                 </script>
-                <!--   +++++++++++   finish HeatMaps in Step 1 +++++++++++ -->
+                <!--   +++++++++++   finish insert HeatMaps in Step 1 +++++++++++ -->
             
             </div>
         </div>
 
         <!--        =================================== STEP 2 ======================================  -->
-        <!--   ++++++++++++++   inserting Barplots STEP2  (before HeatMaps)  ++++++++++++++  -->
+        <!--   ++++++++++++++   inserting Barplots STEP2  ++++++++++++++  -->
         <!--        This 'div" is a false frame to positioning the 'heat-map' container    -->
         <div class="false_frame" style="margin: 4px 0px 4px 0px;">
             
@@ -460,7 +421,6 @@ the costs and benefits over the watershed landscape">STEP 1:
             <!--                width: 275px; height: 495px; right: 2px; top: -995px; z-index: 100; background-color: #ffffff;border:-->
             <!--                1px solid #999999;">-->
 
-<!--            <div id="heatmaps_frame" name='step2_goals' style="width: 23.3%; right: 5px; top: 0px;">-->
             <div class="panel_2" name='step2_goals' style="width: 23.3%; right: 5px; top: 0px;">
 <!--                <div class = "heatmap_header" style="height: 26px;">-->
                 <div class = "step_line" style="height: 26px; margin: 0px 0px 3px 0px;">
@@ -501,14 +461,19 @@ compare to those of other recommended alternatives
                     <div id="tabs_bp" style="font-size: 12px; height: 413px; /*; height: 87%*/">
                         <ul class="tabs_barplot">
                             <li><a id="step2-start" class="trackable" href="#start_barplot" > Start</a></li>
-                            <li><a id="step2-PFR" class="trackable" href="#PFR_barplot" > PFR</a></li>
-                            <li style="width: 40px;"><a id="step2-P" class="trackable" style="margin: 0px 0px 0px 4px;" href="#CR_barplot" >
+                            <li><a id="step2-PFR" class="trackable"  title="Peak Flow Reduction in cubic
+meters per second (cms)" href="#PFR_barplot" >PFR</a></li>
+                            <li><a id="step2-SR" class="trackable" title="Sediment Reduction in tons"
+                                   href="#SR_barplot" > SR</a></li>
+                            <li><a id="step2-NR" class="trackable" title="Nitrate Reduction in kilograms (kg)"
+                                   href="#NR_barplot"> NR</a></li>
+                            <li style="width: 40px;"><a id="step2-P" class="trackable" title="Profit (Revenue-Cost)
+in US Dollars" style="margin: 0px 0px 0px
+                            4px;" href="#CR_barplot" >
                                     P</a></li>
-                            <li><a id="step2-SR" class="trackable" href="#SR_barplot" > SR</a></li>
-                            <li><a id="step2-NR" class="trackable" href="#NR_barplot"> NR</a></li>
                         </ul>
                         <div class="tab_container1">
-                        <!--    ------------ (1a)  tabs-Info of HeatMap  ------------   -->
+                        <!--    ------------ (1b)  tabs-Info of HeatMap  ------------   -->
                         <div id="start_barplot" style="height: 370px; overflow: auto;">
 <!--                        <div id="start_barplot" style="height: 406px; overflow: auto; border: 1px solid red">-->
                             <h4 style="font-size: 20px">Instructions </h4>
@@ -526,34 +491,38 @@ compare to those of other recommended alternatives
                                         <li><p><b>PFR </b>is Peak Flow Reduction in cubic meters per second (cms)
                                                 . This represents the benefit of reduced flooding in the
                                                 landscape</p></li>
-                                        <li><p><b>P </b>is Profit (Revenue-Cost) in US Dollars. This represents the
-                                                expenses and revenue accrued from implementing proposed conservation
-                                                decisions on the landscape.
-                                            </p></li>
                                         <li><p><b>SR </b>is Sediment Reduction in tons. This represents the benefit of
                                                 reduced erosion in the landscape.
                                             </p></li>
                                         <li><p><b>NR </b>is Nitrate Reduction in Kilograms (kg). This represents
                                                 the benefit of reduced fertilizer loss in the landscape.</p></li>
+                                        <li><p><b>P </b>is Profit (Revenue-Cost) in US Dollars. This represents the
+                                                expenses and revenue accrued from implementing proposed conservation
+                                                decisions on the landscape.</p></li>
                                     </ul>
                                 </li>
                             </ol>
                         </div>
-                        <!--    ------------ (2a)  tabs-PFR  ------------   -->
+                        <!--    ------------ (2b)  tabs-PFR Barplot ------------   -->
                         <div id="PFR_barplot">
                             <div id="chart_div1"></div>
+                            <div style="position:absolute; top:395px; left:75px;"> Cubic meters per second (cms)</div>
                         </div>
-                        <!--    ------------ (3a)  tabs-Cost  ------------   -->
+                        <!--    ------------ (3b)  tabs-Cost Barplot ------------   -->
                         <div id="CR_barplot">
                             <div id="chart_div2"></div>
+                            <div style="position: absolute; top: 395px; left:80px;"> Profit in US Dollars</div>
                         </div>
-                        <!--    ------------ (4a)  tabs-Sed. Reduction  ------------   -->
+                        <!--    ------------ (4b)  tabs-Sed. Red. Barplot  ------------   -->
                         <div id="SR_barplot">
                             <div id="chart_div3"></div>
+                            <div style="position: absolute; top: 395px; left:75px;">Sediment Reduction in tons</div>
                         </div>
-                        <!--    ------------ (5a)  tabs-Nit. Reduction  ------------   -->
+                        <!--    ------------ (5b)  tabs-Nit. Red Barplot  ------------   -->
                         <div id="NR_barplot">
                             <div id="chart_div4"></div>
+                            <div style="position: absolute; top: 395px; left:65px;">Nitrate Reduction in kilograms
+                                (kg)</div>
                         </div>
                     </div>
                     </div>
@@ -634,7 +603,6 @@ compare to those of other recommended alternatives
     </div>
 </div>
     <!--   **************    Finish inserting RATING  ********  -->
-
 
 
 <!--    ==========================================  STEP 5  ==========================================    -->
@@ -718,7 +686,7 @@ compare to those of other recommended alternatives
         <circle cx="7.5" cy="7.5" r="7.5" fill="#ff3300" />
         Sorry, your browser does not support inline SVG.
     </svg>
-    <!--  End SVG  -->
+    <!--  End SVG - Voladizo (3) -->
 
     <!--  (4) Voladizo 4: Instructions BOX -->
     <!--  Start Instructions Box  -->
@@ -753,14 +721,14 @@ compare to those of other recommended alternatives
     <script type="text/javascript">
         function close_instruction(){
 //            alert ("hello instruction open");
-            document.getElementById("shade_frame").style.display = "none";
+            document.getElementById("shade_frame").style.display = "none";//EE: 'shade_frame' located at Voladizo 4
             document.getElementById("inst_box1").style.display = "none";
         }
     </script>
-    <!--  End Instructions Box  -->
+    <!--  End Instructions Box - voladiizo 4 -->
 
-    <!--  (5) Voladizo 5: Take-Rest BOX -->
-    <!--  Start Take-Rest Box  -->
+    <!--  (5) Voladizo 5: PAUSE BOX -->
+    <!--  Start PAUSE Box  -->
     <div id="shade_frame">
     </div>
     <div id="inst_box1_tr">
@@ -787,11 +755,11 @@ compare to those of other recommended alternatives
             document.getElementById("inst_box1_tr").style.display = "none";
         }
     </script>
-    <!--  End Take-Rest Box  -->
+    <!--  End Pause Box - Voladizo 5 -->
 
 
-    <!--  (6a) Voladizo 6: Save-msg-function BOX -->
-    <!--  Start Save-msg-function Box  -->
+    <!--  (6) Voladizo 6: Save-function BOX -->
+    <!--  Start Save-function Box  -->
     <div id="shade_frame">
     </div>
     <div id="save_box1_tr">
@@ -818,10 +786,10 @@ compare to those of other recommended alternatives
             document.getElementById("save_box1_tr").style.display = "none";
         }
     </script>
-    <!--  End Save-msg-function Box  -->
+    <!--  End Save-function Box - Voladizo (6) -->
 
-    <!--  (6b) Voladizo 6: Inactive-time -->
-    <!--  Start Inactive-time Box  -->
+    <!--  (7) Voladizo 7: Inactive-time -->
+    <!--  Start Inactive-time Box - These tags connect with the Inactive-time script at L.1965 (search: timeoutID) -->
     <div id="shade_frame">
     </div>
     <div id="inst_box1_in">
@@ -849,12 +817,12 @@ compare to those of other recommended alternatives
             document.getElementById("inst_box1_in").style.display = "none";
         }
     </script>
-    <!--  End Inactive-time Box Box  -->
+    <!--  End Inactive-time Box - Voladizo (7) -->
 
-    <!--  (7) Voladizo 7:  -->
+    <!--  (8) Voladizo 8:  -->
     <!--  Start   -->
 
-    <!--  End   -->
+    <!--  End  Voladizo (8) -->
 
     <!--  End VOLADIZOS -->
 </div>
@@ -1555,7 +1523,7 @@ compare to those of other recommended alternatives
 
 
         //setting up grassedWaterways radio (CP5)
-        jQuery('input:radio[name=grassedWaterways1]').change(function(){
+        jQuery('input:radio[name = grassedWaterways1]').change(function(){
             //var id = $(this).attr("value");
             $("#grassedWaterways1").val(function () {
                 return document.querySelector('input[name="grassedWaterways1"]:checked').value;
@@ -1565,7 +1533,7 @@ compare to those of other recommended alternatives
 
 
         //setting up conservationTillage radio (CP6)
-        jQuery('input:radio[name=conservationTillage1]').change(function(){
+        jQuery('input:radio[name = conservationTillage1]').change(function(){
             //var id = $(this).attr("value");
             $("#conservationTillage1").val(function () {
                 return document.querySelector('input[name="conservationTillage1"]:checked').value;
@@ -1575,7 +1543,7 @@ compare to those of other recommended alternatives
 
 
         //setting up wetlands radio (CP7)
-        jQuery('input:radio[name=Wetlands1]').change(function(){
+        jQuery('input:radio[name = Wetlands1]').change(function(){
             //var id = $(this).attr("value");
             $("#Wetlands1").val(function () {
                 return document.querySelector('input[name="Wetlands1"]:checked').value;
@@ -1599,20 +1567,6 @@ compare to those of other recommended alternatives
                 }
             });
             $( "#confidence1" ).val(answersArray[oneMap].CONFIDENCE + "%");
-
-//            $( "#slider1" ).slider({
-//                range: "min",
-//                value: answersArray[twoMap].CONFIDENCE,
-//                min: 0,
-//                max: 100,
-//                slide: function( event, ui ) {
-//                    $( "#confidence2" ).val( ui.value + "%" );
-//                },
-//                stop: function( event, ui ) {
-//                    goToTime("slider2");
-//                }
-//            });
-//            $( "#confidence2" ).val(answersArray[twoMap].CONFIDENCE + "%");
         });
 
 // ====================  Start Setting 'slider' measurement  ======== //
@@ -1686,17 +1640,15 @@ compare to those of other recommended alternatives
 //            var value2 = $( "#slider1" ).slider( "option", "value" );
 //            answersArray[twoMap].CONFIDENCE=value2;
 
-            answersArray[oneMap].stripCropping=$("#stripCropping1").val();
-//            answersArray[twoMap].stripCropping=$("#stripCropping2").val();
-//            alert ("stripCropping1: " + answersArray[oneMap].stripCropping);// E: Alert()
-            console.log("L.2155 stripCropping1: " + answersArray[oneMap].stripCropping);
-            
             answersArray[oneMap].cropRotation=$("#cropRotation1").val();
 //            answersArray[twoMap].cropRotation=$("#cropRotation2").val();
 //            alert ("cropRotation: " + answersArray[oneMap].cropRotation);// E: Alert()
             console.log("L.2160 cropRotation: " + answersArray[oneMap].cropRotation);
-            
             answersArray[oneMap].coverCrops=$("#coverCrops1").val();
+            answersArray[oneMap].stripCropping=$("#stripCropping1").val();
+//            answersArray[twoMap].stripCropping=$("#stripCropping2").val();
+//            alert ("stripCropping1: " + answersArray[oneMap].stripCropping);// E: Alert()
+            console.log("L.2155 stripCropping1: " + answersArray[oneMap].stripCropping);
             answersArray[oneMap].filterStrips=$("#filterStrips1").val();
             answersArray[oneMap].grassedWaterways=$("#grassedWaterways1").val();
             answersArray[oneMap].conservationTillage=$("#conservationTillage1").val();
@@ -1726,7 +1678,7 @@ compare to those of other recommended alternatives
 //                bmpArray=array[page-1].CHOSENBMP;
 //                alert("new 'bmpArray' to display: ["+ (page-1) +"]: " + bmpArray);//E: it provides the CHESENBMP from DDBB
 //                oneMap=oneMap+2;
-                oneMap=oneMap+1; // <---------------------------    oneMap = oneMap + 1
+                oneMap = oneMap+1; // <---------------------------    oneMap = oneMap + 1
 //                alert("new 'page': " + page);//E: 'page' was increased into 1 above
 //                alert("move-Next: next 'bmpArray' index: " + oneMap);//E:
 //                //twoMap=twoMap+2;
@@ -1743,7 +1695,7 @@ compare to those of other recommended alternatives
 
                 $("#rating1").val(answersArray[oneMap].RATING);
                 $("#confidence1").val(answersArray[oneMap].CONFIDENCE);
-                $( "#slider" ).slider("option","value",(answersArray[oneMap].CONFIDENCE));
+                $("#slider" ).slider("option","value",(answersArray[oneMap].CONFIDENCE));
 
                 $("#stripCropping1").val(answersArray[oneMap].stripCropping);
                 $("#cropRotation1").val(answersArray[oneMap].cropRotation);
@@ -1759,8 +1711,6 @@ compare to those of other recommended alternatives
                 setUpRadio();
                 $(".map1").hide();
                 $(".map1").fadeIn("slow");
-//                $(".map2").hide();
-//                $(".map2").fadeIn("slow");
                 subBasinGraph1();
                 
                 //alert(JSON.stringify(bmpArray));
@@ -1903,8 +1853,8 @@ compare to those of other recommended alternatives
 
         ////   WAY 2
             // alert ("Open instruction");
-            document.getElementById("shade_frame").style.display = "block";
-            document.getElementById("inst_box1").style.display = "block";
+            document.getElementById("shade_frame").style.display = "block";//EE: call to tags in Voladizo (4)
+            document.getElementById("inst_box1").style.display = "block";//EE: call to tags in Voladizo (4)
     }
 
     function pause_function() {
@@ -1934,27 +1884,28 @@ compare to those of other recommended alternatives
 
         ////   WAY 3
 //        alert ("Open Take rest");
-        document.getElementById("shade_frame").style.display = "block";
-        document.getElementById("inst_box1_tr").style.display = "block";
+        document.getElementById("shade_frame").style.display = "block";//EE: call to "tags" in Voladizo (5)
+        document.getElementById("inst_box1_tr").style.display = "block";//EE: call to "tags" in Voladizo (5)
     }
 
-    function save_msg_function() {
-        document.getElementById("shade_frame").style.display = "block";
-        document.getElementById("save_box1_tr").style.display = "block";
+    function save_function() {
+        document.getElementById("shade_frame").style.display = "block";//EE: call to "tags" in Voladizo (6)
+        document.getElementById("save_box1_tr").style.display = "block";//EE: call to "tags" in Voladizo (6)
     }
 
-    function instruct1() {
-        // open a welcome message as soon as the window loads
-        Shadowbox.open({
-            content:'<div id="welcome-msg"><h2>The Progress Bar</h2><p><img src="images/table.jpg"></p><p>The  ' +
-            'progress ' +
-            'bar shows you at what step of WRESTORE&#39s <strong>search-learn</strong> process  you currently are in. The <strong>search-learn</strong> process is divided into  consecutive sessions of interaction, during which you will get to see and  compare multiple alternatives. A colored box in the progress bar shows you  which session you currently are in. <strong>If you are in</strong> –</p><ul><li>an <strong>Introspection</strong> session, then you will get to see all of the  previously found alternatives that you have seen before and have rated as &ldquo;favorably&rdquo; solutions (except for Introspection session 1 that consist of  &ldquo;initial&rdquo; alternatives to help you become familiar with the designs). In the  introspection session you should reflect on why you liked the solutions that  you rated highly and whether you need to change your criteria for comparing or  rating alternatives.</li><li> a <strong>Human-guided Search (HS)</strong> session, then you are now actively involved  in helping the underlying WRESTORE tools to search for better alternatives. So,  you will see some &ldquo;bad&rdquo; alternatives and some &ldquo;good alternatives&rdquo;. Please use  your most current understanding of preferences and priorities to compare and  rate alternatives as they appear.</li><li><p> an <strong>Automated Search</strong> session, then the underlying WRESTORE tools  are searching for alternatives in an automated manner. In this session, you  will <strong><u>not</u></strong> be asked to compare and rate alternatives. Instead, the  feedbacks you gave in earlier sessions will be used to mechanically estimate  the ratings of the alternatives. <em>Note, that even though Automated Search is  currently shown to occur between the 4th and 5th  introspection sessions, it could also unexpectedly occur between any other  introspections sessions. But when that occurs in real-time, you will be  notified in the progress bar!</em></p></li></ul></div>',
-            player:     "html",
-            title:      "WRESTORE Visualization Tool ",
-            height:     550,
-            width:      920
-        });
-    }
+//    function instruct1() {
+//        // open a welcome message as soon as the window loads
+//        Shadowbox.open({
+//            content:'<div id="welcome-msg"><h2>The Progress Bar</h2><p><img src="images/table.jpg"></p><p>The  ' +
+//            'progress ' +
+//            'bar shows you at what step of WRESTORE&#39s <strong>search-learn</strong> process  you currently are in. The <strong>search-learn</strong> process is divided into  consecutive sessions of interaction, during which you will get to see and  compare multiple alternatives. A colored box in the progress bar shows you  which session you currently are in. <strong>If you are in</strong> –</p><ul><li>an <strong>Introspection</strong> session, then you will get to see all of the  previously found alternatives that you have seen before and have rated as &ldquo;favorably&rdquo; solutions (except for Introspection session 1 that consist of  &ldquo;initial&rdquo; alternatives to help you become familiar with the designs). In the  introspection session you should reflect on why you liked the solutions that  you rated highly and whether you need to change your criteria for comparing or  rating alternatives.</li><li> a <strong>Human-guided Search (HS)</strong> session, then you are now actively involved  in helping the underlying WRESTORE tools to search for better alternatives. So,  you will see some &ldquo;bad&rdquo; alternatives and some &ldquo;good alternatives&rdquo;. Please use  your most current understanding of preferences and priorities to compare and  rate alternatives as they appear.</li><li><p> an <strong>Automated Search</strong> session, then the underlying WRESTORE tools  are searching for alternatives in an automated manner. In this session, you  will <strong><u>not</u></strong> be asked to compare and rate alternatives. Instead, the  feedbacks you gave in earlier sessions will be used to mechanically estimate  the ratings of the alternatives. <em>Note, that even though Automated Search is  currently shown to occur between the 4th and 5th  introspection sessions, it could also unexpectedly occur between any other  introspections sessions. But when that occurs in real-time, you will be  notified in the progress bar!</em></p></li></ul></div>',
+//            player:     "html",
+//            title:      "WRESTORE Visualization Tool ",
+//            height:     550,
+//            width:      920
+//        });
+//    }
+
 </script>
 
 <script type="text/javascript">
@@ -1962,8 +1913,8 @@ compare to those of other recommended alternatives
 </script>
 
 
-<!--  #######################################################################  -->
-<!--  ######## This js script detects the inactive time of the user ######### -->
+<!--  #########################################################################################  -->
+<!--  ######## This js script detects the inactive time of the user - connection with Voladizo (7) ######### -->
 <script>
     var timeoutID;
 
@@ -1989,32 +1940,24 @@ compare to those of other recommended alternatives
     function goInactive() {
         // do something
         report('m-clk* ', 'Wrestore page inactive');
-        document.getElementById("shade_frame").style.display = "block";
-        document.getElementById("inst_box1_in").style.display = "block";
-
-//        alert("It appears you are inactive on this page."+"\n"+
-//            "Press 'Ok' to keep working?");
-
-//            var txt;
-//            if (confirm("It appears you are inactive on this page."+"\n"+
-//                "Press 'Ok' to keep working on this page?")) {
-//                txt = "You pressed OK!";
-//            } else {
-//                txt = "You pressed Cancel!";
-//            }
-//            document.getElementById("demo").innerHTML = txt;
+        document.getElementById("shade_frame").style.display = "block";//EE: call to "tags" in Voladizo (7)
+        document.getElementById("inst_box1_in").style.display = "block";//EE: call to "tags" in Voladizo (7)
+        // alert("It appears you are inactive on this page."+"\n"+"Press 'Ok' to keep working?");
     }
     function goActive() {
         // do something
         startTimer();
     }
 </script>
+<!--  ######## End:  Detect the inactive-time script of the user ######### -->
 
-<!--  #####################  For buttons into map pannel  #######################  -->
+
+<!--  #############  Functions for Legends in the MAIN-MAP and HeatMaps tabs - 5 in total  ############  -->
 <script>
+    // ==================== ----------- Start: (1) For Legend in Main-Map ------------- ====================== //
     // E: This js script creates the button icon for LEGEND in the main map. This button displays even in fullscreen.
-    // This works with code-lines from 86, after "map1 = new google.maps.Map(document.getElementById('map_canvas1')"
-    // in mapping_new.js
+    // This works with code-lines from 86, after "basemap_1 = new google.maps.Map(document.getElementById
+    // ('map_canvas1')" in mapping_new.js
     
     // ---- Function for button 'legend' into main map ----- //
     function buttonControl(options) {
@@ -2078,7 +2021,7 @@ compare to those of other recommended alternatives
         return mainMapLegend_frame;
     }
 
-    // ---------------------------------------------------------------------------- //
+    // ===================== ---------------- Start: (2) For Legend in PFR-Heatmap ------------- ==================== //
     // ---------------- These LEGEND works for legend in heat-maps ---------------- //
     //  /////////////  FUNCTION for PFR-LEGEND button into the heat-map  ///////////
     function buttonControl_pfr(options, colorList, map, min_v, max_v) {
@@ -2103,11 +2046,22 @@ compare to those of other recommended alternatives
         var heatMapLegend_container_pfr = document.createElement('DIV'); //E: container of labels and square boxes
         heatMapLegend_container_pfr.className = "heatMapLegend_container_pfr"; //E: class name for the created DIV
         heatMapLegend_container_pfr.style.display="none";// Delete this to start displayind the leyend.
+        heatMapLegend_container_pfr.title = 'Peak Flow Reduction in cubic meters per second';//E:adding TITLE
 
         // Level 1.a.1
         var heatMapLeg_title = document.createElement('DIV'); //E: legend-header (title) DIV is created here
         heatMapLeg_title.innerHTML = options.name;
         heatMapLeg_title.className = 'heatMapLegend_title';
+
+        // New DIV
+        var box_for_units = document.createElement('DIV'); //E: This DIV will host the units description
+        box_for_units.innerHTML = "Peak Flow Reduction in Cubic meters per second";
+        box_for_units.className = 'box_for_units';
+        box_for_units.style.fontSize = "10.5px";
+        box_for_units.style.border = "1px solid #d9d9d9";
+        box_for_units.style.marginBottom = "2px";
+        box_for_units.style.backgroundColor = "#ffeecc";
+        heatMapLegend_container_pfr.appendChild(box_for_units);
 
         // Level 1.b.1
         var len_arr = Object.keys(colorList).length;
@@ -2129,6 +2083,7 @@ compare to those of other recommended alternatives
 //            label.innerHTML = range_inf2 + ' to ' + range_sup2;// + ' cfs';
             label.innerHTML = range_inf2 + ' - ' + range_sup2;// + ' cfs';
             label.className = "label";
+
             box.className = "box";
             box.style.backgroundColor = colorList[key];
 //            boxContainer.id = "box_container";
@@ -2165,7 +2120,8 @@ compare to those of other recommended alternatives
         });
         return hml_extraFrame;
     }
-    
+
+    // ===================== ------------ Start: (3) For Legend in PROFIT-Heatmap ------------- ================== //
 //  /////////////  FUNCTION for CR-LEGEND button into the heat-map  ///////////
     function buttonControl_cr(options, colorList, map, min_v, max_v) {
         min_v = Math.trunc(min_v);
@@ -2189,11 +2145,22 @@ compare to those of other recommended alternatives
         var heatMapLegend_container_cr = document.createElement('DIV'); //E: container of labels and square boxes
         heatMapLegend_container_cr.className = "heatMapLegend_container_cr"; //E: class name for the created DIV
         heatMapLegend_container_cr.style.display="none";// Delete this to start displayind the leyend.
+        heatMapLegend_container_cr.title = 'Profit in US Dollars';//E:adding TITLE
         
         // Level 1.a.1
         var heatMapLeg_title = document.createElement('DIV'); //E: legend-header (title) DIV is created here
         heatMapLeg_title.innerHTML = options.name;
         heatMapLeg_title.className = 'heatMapLegend_title';
+
+        // New DIV
+        var box_for_units = document.createElement('DIV'); //E: This DIV will host the units description
+        box_for_units.innerHTML = "Profit in US Dollars";
+        box_for_units.className = 'box_for_units';
+        box_for_units.style.fontSize = "10.5px";
+        box_for_units.style.border = "1px solid #d9d9d9";
+        box_for_units.style.marginBottom = "2px";
+        box_for_units.style.backgroundColor = "#ffeecc";
+        heatMapLegend_container_cr.appendChild(box_for_units);
 
         // Level 1.b.1
         var len_arr = Object.keys(colorList).length;
@@ -2250,7 +2217,8 @@ compare to those of other recommended alternatives
         
         return hml_extraFrame;
     }
-    
+
+    // =================== ---------------- Start: (4) For Legend in SR-Heatmap -------------- ================= //
     //   /////////////   FUNCTION for SR-LEGEND button into the heat-map  /////////////
     function buttonControl_sr(options, colorList, map, min_v, max_v) {
         min_v = Math.trunc(min_v);
@@ -2274,11 +2242,22 @@ compare to those of other recommended alternatives
         var heatMapLegend_container_sr = document.createElement('DIV'); //E: container of labels and square boxes
         heatMapLegend_container_sr.className = "heatMapLegend_container_sr"; //E: class name for the created DIV
         heatMapLegend_container_sr.style.display="none";// Delete this to start displayind the leyend.
+        heatMapLegend_container_sr.title = 'Sediment Reduction in tons';//E:adding TITLE
 
         // Level 1.a.1
         var heatMapLeg_title = document.createElement('DIV'); //E: legend-header (title) DIV is created here
         heatMapLeg_title.innerHTML = options.name;
         heatMapLeg_title.className = 'heatMapLegend_title';
+
+        // New DIV
+        var box_for_units = document.createElement('DIV'); //E: This DIV will host the units description
+        box_for_units.innerHTML = "Sediment Reduction in tons";
+        box_for_units.className = 'box_for_units';
+        box_for_units.style.fontSize = "10.5px";
+        box_for_units.style.border = "1px solid #d9d9d9";
+        box_for_units.style.marginBottom = "2px";
+        box_for_units.style.backgroundColor = "#ffeecc";
+        heatMapLegend_container_sr.appendChild(box_for_units);
 
         // Level 1.b.1
         var len_arr = Object.keys(colorList).length;
@@ -2336,6 +2315,7 @@ compare to those of other recommended alternatives
         return hml_extraFrame;
     }
 
+    // ==================== ------------- Start: (5) For Legend in NR-Heatmap ------------- ==================== //
     //  /////////////  FUNCTION for NR-LEGEND button into the heat-map  /////////////
     function buttonControl_nr(options, colorList, map, min_v, max_v) {
         min_v = Math.trunc(min_v);
@@ -2359,11 +2339,22 @@ compare to those of other recommended alternatives
         var heatMapLegend_container_nr = document.createElement('DIV'); //E: container of labels and square boxes
         heatMapLegend_container_nr.className = "heatMapLegend_container_nr"; //E: class name for the created DIV
         heatMapLegend_container_nr.style.display="none";// Delete this to start displayind the leyend.
+        heatMapLegend_container_nr.title = 'Nitrate Reduction in kilograms';//E:adding TITLE
         
         // Level 1.a.1
         var heatMapLeg_title = document.createElement('DIV'); //E: legend-header (title) DIV is created here
         heatMapLeg_title.innerHTML = options.name;
         heatMapLeg_title.className = 'heatMapLegend_title';
+
+        // New DIV
+        var box_for_units = document.createElement('DIV'); //E: This DIV will host the units description
+        box_for_units.innerHTML = "Nitrate Reduction in kilograms";
+        box_for_units.className = 'box_for_units';
+        box_for_units.style.fontSize = "10.5px";
+        box_for_units.style.border = "1px solid #d9d9d9";
+        box_for_units.style.marginBottom = "2px";
+        box_for_units.style.backgroundColor = "#ffeecc";
+        heatMapLegend_container_nr.appendChild(box_for_units);
 
         // Level 1.b.1
         var len_arr = Object.keys(colorList).length;
@@ -2420,8 +2411,8 @@ compare to those of other recommended alternatives
         });
         return hml_extraFrame;
     }
-    
-    // ------------------  End setting functions for PFR, CR, SR, NR, legend-buttons ------
+    // ===================== ------------ End: (5) For Legend in NR-Heatmap ------------- =================== //
+    // ========================  End setting functions for MainMap, PFR, CR, SR, NR, legend-buttons ============== //
     
     // $$$$$$$$$$$$$$$$$$$$$$$$$$$  Start  CHECK BOXES in the main map $$$$$$$$$$$$$$$$$$$$$$$$
 
@@ -2626,7 +2617,7 @@ compare to those of other recommended alternatives
         return container;
     }
     
-    //E: (6)Function for No Tillage checkbox (Conservation Tillage)
+    //E: (6)Function for No-Tillage checkbox (Conservation Tillage)
     function checkBox_NoTillage(options) { //E: Function for checkbox No Tillage
         var container = document.createElement('DIV'); //first make the outer container
         container.className = "checkboxContainer";
@@ -2760,7 +2751,4 @@ compare to those of other recommended alternatives
 </script>
 
 </body>
-<!-- not used
-<i style="font-size:20px;color:red" class="fa">&#xf103;</i>
--->
 </html>
