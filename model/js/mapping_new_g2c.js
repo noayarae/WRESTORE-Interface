@@ -388,7 +388,7 @@
               var newCoordinates = [];
               var whichNode = "";
 
-                  // if (i==1) alert("geometry "+i+":"+ "\n" +rows[i][1]['geometry']['coordinates']);
+              // if (i==12) console.log("L.392 geometry "+i+":"+ "\n"+JSON.stringify(subbasin_json.features[i].geometry));
               // var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);//E: Function is Set at 1069
               var newCoordinates = constructNewCoordinates(subbasin_json.features[i].geometry);//EE: Function is Set at 1069
                   //answersArray[oneMap].RATING
@@ -396,7 +396,8 @@
                   // var whichNode = row[0];
 
               //EE:It is converted to string to be in the 'find' function (see some lines below)
-              var whichNode = subbasin_json.properties[i]["Subbasin"].toString();
+              var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//E: For "ecw"
+              // var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
               // if (i==0) alert ("which subbasin Background: \n" + typeof whichNode);//E: 'whichNode' tells which sub-basin
                   /////////You will put your acreage here///////////
                   // var acres = parseFloat(row[2]).toFixed(1);
@@ -422,7 +423,7 @@
 
                   // background.setMap(map1);//E: IT SETS THE POLYGONS over the BASEMAP
               background.setMap(basemap_1);//E: IT SETS THE POLYGONS over the BASEMAP
-                  // console.log("L.445 Sub-Basin Background (subBasinArray): \n" + JSON.stringify(subBasinArray));
+              console.log("L.445 Sub-Basin Background (subBasinArray): \n" + JSON.stringify(subBasinArray));
 
                   //SubBasin="WhichNode", "SubBasinArray" involves DATA from Optimization, from DDBB (Mysql)
               var sb_match = find(subBasinArray, 'subbasinID', whichNode);
@@ -1035,7 +1036,7 @@
       // ======================= End 'FILTER STRIP' totally ===================== //
 
 
-      ///////////////This is used to parse out the long lats for all the polygons////////////////////////
+      // ++++++++++++++  This is used to parse out the long lats for all the polygons +++++++++++++++++//
 
       function constructNewCoordinates(polygon) {
           var newCoordinates = [];

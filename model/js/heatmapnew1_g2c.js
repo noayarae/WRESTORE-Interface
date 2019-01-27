@@ -330,7 +330,8 @@ function heatinitialize() {
             //var geometries = rows[i][1]['geometry'];
             // var row = rows[i];//EE: not needed when json data
             // var whichNode = row[0];
-            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();
+            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//E: For "ecw" needs to convert to string
+            // var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
 
             //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
             // var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
@@ -356,7 +357,8 @@ function heatinitialize() {
             }
 
             // var whichNode = row[0];
-            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();
+            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//E:For "ecw" needs to converto string
+            // var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-McKay"
             Peakflow = new google.maps.Polygon({
                 path: newCoordinates,
                 //strokeColor: colors[0],
@@ -405,7 +407,8 @@ function heatinitialize() {
             //alert (geometries)//newly added code...
             // var row = rows[i];//EE: not needed when json data
             // var whichNode = row[0];
-            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();
+            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//E: For "ecw" needs to convert to string
+            // var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
 
             //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
             // var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
@@ -431,7 +434,8 @@ function heatinitialize() {
             }
 
             // var whichNode = row[0];
-            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();
+            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//E: "ecw" needs to convert to string
+            // var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
             ERevenue = new google.maps.Polygon({
                 path: newCoordinates,
                 //strokeColor: colors[0],
@@ -480,7 +484,8 @@ function heatinitialize() {
             //alert (geometries)//newly added code...
             // var row = rows[i];//EE: not needed when json data
             // var whichNode = row[0];
-            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();
+            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//E: For "ecw" needs to convert to string
+            // var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
 
             //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
             // var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
@@ -506,7 +511,8 @@ function heatinitialize() {
             }
 
             // var whichNode = row[0];
-            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();
+            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//E:"ecw" needs to converto string
+            // var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
             Sediments = new google.maps.Polygon({
                 path: newCoordinates,
                 //strokeColor: colors[0],
@@ -555,7 +561,8 @@ function heatinitialize() {
             //var geometries = rows[i][1]['geometry'];
             // var row = rows[i];//EE: not needed when json data
             // var whichNode = row[0];
-            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();
+            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//EE:For "ecw" needs to convert to string
+            // var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
 
             //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
             // var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
@@ -581,7 +588,8 @@ function heatinitialize() {
             }
 
             // var whichNode = row[0];
-            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();
+            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//EE:For "ecw" needs to convert to string
+            // var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
             Nitrates = new google.maps.Polygon({
                 path: newCoordinates,
                 //strokeColor: colors[0],

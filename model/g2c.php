@@ -45,6 +45,8 @@
 <!--    DATA    -->
     <script src="data/ecw4.js"></script> <!-- Here goes the JS.File name. var "subbasin_json" -->
     <script src="data/stream_g.js"></script> <!-- Here goes the JS.File name. var "stream_json" -->
+<!--    <script src="data/dmw.js"></script> <!-- Here goes the JS.File name. var "subbasin_json" -->
+<!--    <script src="data/dm_stream.js"></script> <!-- Here goes the JS.File name. var "stream_json" -->
     
     <script type="text/javascript">
         //window.onload(heatinitialize);
@@ -103,7 +105,8 @@ $count = 0;
 
 //E: I am grabbing the massive amount of data from the 'takefeedback' table. I actually am going to write it out on the
 // page in a table.
-$query =("SELECT * FROM takefeedback where USERID = '$USERID'");
+$query =("SELECT * FROM takefeedback where USERID = '$USERID'");//E: DB for "ecw"
+//$query =("SELECT * FROM dmk_db1 where USERID = '$USERID'");//E: DB for Dairy-Mckay
 $result = mysqli_query($connection, $query); //  ???
 $row = mysqli_fetch_assoc($result); // E: Fetches (busca) a result row as an associative array.
 $tableSize = mysqli_num_rows($result)+1; // E: Returns the 'number of rows + 1' from the result set
@@ -1342,12 +1345,13 @@ in US Dollars" style="margin: 0px 0px 0px
                 //This one shows all the subbasins for the each bmp
                 count2=count2+1;
             });
-//            console.log("L.1639 forMapArray: \n"+ JSON.stringify(forMapArray));
+            console.log("L.1348 forMapArray: \n"+ JSON.stringify(forMapArray));
 
             //Now that I have all the data arranged for the incoming dataset (multiple arrays labeled 1 and 2)  I
             // initialize mapping. It is on mapping.js
 //            initialize();//E: Original WRESTORE
-            google.maps.event.addDomListener(window, 'load', initialize);
+//            google.maps.event.addDomListener(window, 'load', initialize);
+            initialize();
         }
         ////////////////////////////////END GET SUBBASINS////////////////////////////////////////////////
         
