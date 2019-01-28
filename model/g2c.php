@@ -43,7 +43,7 @@
     <script type='text/javascript' src='js/fda.js'></script>
     <script type='text/javascript' src='js/mt_config.js'></script>
 <!--    DATA    -->
-    <script src="data/ecw4.js"></script> <!-- Here goes the JS.File name. var "subbasin_json" -->
+    <script src="data/ecw4b.js"></script> <!-- Here goes the JS.File name. var "subbasin_json" -->
     <script src="data/stream_g.js"></script> <!-- Here goes the JS.File name. var "stream_json" -->
 <!--    <script src="data/dmw.js"></script> <!-- Here goes the JS.File name. var "subbasin_json" -->
 <!--    <script src="data/dm_stream.js"></script> <!-- Here goes the JS.File name. var "stream_json" -->
@@ -689,6 +689,11 @@ in US Dollars" style="margin: 0px 0px 0px
         <circle cx="7.5" cy="7.5" r="7.5" fill="#ff3300" />
         Sorry, your browser does not support inline SVG.
     </svg>
+    <svg id="label_rect" width="25" height="15">
+        <rect x="1" y="1" rx="2" ry="2" width="23" height="13" style="fill:yellow;stroke:black;stroke-width:1;
+        fill-opacity:0;stroke-opacity:0" />
+        Sorry, your browser does not support inline SVG.
+    </svg>
     <!--  End SVG - Voladizo (3) -->
 
     <!--  (4) Voladizo 4: Instructions BOX -->
@@ -854,7 +859,7 @@ in US Dollars" style="margin: 0px 0px 0px
 </script>
 
 <!--  Start TOOLTIP TOOL TIP -->
-<!--  This 'script' sets a message on some icons when hovering  -->
+<!--  E: This 'script' sets a message on some icons when hovering  -->
 <script type="text/javascript">
     $(document).ready(function() {
         // Tooltip only Text
@@ -880,16 +885,6 @@ in US Dollars" style="margin: 0px 0px 0px
 </script>
 <!--  End TOOLTIP TOOL TIP -->
 
-<?php /*?><?
-            //This grabs the incoming test type from Vidya and uses php to write out the jquery needed to style the progress bar. From Line 150 or so above
-            echo "
-            <script type=\"text/javascript\">
-             $('".$thisCSS."').css('background','#e2e2e2');
-             $('".$thisCSS."').css('color','".$color."');
-             $('".$thisCSS."').css('font-weight','bold');
-             $('.skip').html(".$writeThis.");
-            </script>";
-            ?><?php */?>
 
 <script type="text/javascript">
 
@@ -902,8 +897,7 @@ in US Dollars" style="margin: 0px 0px 0px
     var array_fullvalues = [];//EE: It'll store all values of 'wholeTable'
     var headers = [];//EE: It'll store all header of 'wholeTable'
     var answersArray =[];//EE: It'll store RATING and CONFIDENCE (answer) values of 'wholeTable' of 20 alternatives
-    var fn_obj_array =[];//EE: It'll store values of F0,F1,F2,F3,F4,F5 (objective functions) of 'wholeTable' of 20
-    // altern
+    var fn_obj_array =[];//EE: It'll store values of F0,F1,F2,F3,F4,F5 (objective functions) of 'wholeTable' of 20 alt
 
     $('#wholeTable th').each(function(index, item) {
         headers[index] = $(item).html();
@@ -942,13 +936,13 @@ in US Dollars" style="margin: 0px 0px 0px
 
 //        array.push(arrayItem);
         array_fullvalues.push(arrayItem);//E:It merges or appends ALL the 'wholeTable' values into one array
-        answersArray.push(arrayItemAnswers);
-        fn_obj_array.push(fn_obj_arrayItems);
+        answersArray.push(arrayItemAnswers);//EE: store RATING and CONFIDENCE (answer) values of 'wholeTable' of 20 alt
+        fn_obj_array.push(fn_obj_arrayItems);//E: store F0,F1,...,F5 values (objective functions)of 'wholeTable' of 20 alt
     });
     //    //EE:This console.log shows all values from 'wholeTable' saved as array named 'array_fullvalues'
 //        console.log("L.969 full values of 'wholeTable': \n" + JSON.stringify (array_fullvalues));
     //    console.log("L969 length of 'array_fullvalues': \n" + array_fullvalues.length);//E:It gives 20 (because of 20 alternatives)
-//    console.log("L.972 full values of 'answersArray': \n" + JSON.stringify (answersArray));//EE:Give answer of
+//    console.log("L.972 full values of 'answersArr[ay': \n" + JSON.stringify (answersArray));//EE:Give answer of
 //    // RATING, CONFIDENCE, and attributes USERID, INDVID, and "stripCropping=0", "cropRotation=0", so on of 20 Alt.
 //    console.log("L.974 full values of 'fn_obj_array': \n" + JSON.stringify (fn_obj_array));//EE: Give MEAN, MIN and
     // MAX values of F0,F1,F2,F3,F4,F5 (objective functions) for all the 20 Alternatives
@@ -962,8 +956,8 @@ in US Dollars" style="margin: 0px 0px 0px
 //    var heatera = new Array();//E: To save mean values of Cost of each subbasin (108 in total) as Array
 //    var heatseda = new Array();//E: To save mean values of SR of each subbasin (108 in total) as Array
 //    var heatnita = new Array();//E: To save mean values of NR of each subbasin (108 in total) as Array
-    var PFR_meanVals_array = new Array();//E: To save mean values of PFR of each subbasin (108 in total) as Array
-    // for building the HeatMap
+    var PFR_meanVals_array = new Array();//E: Save PFR mean-values of each subbasin (108 total) as Array for building
+    // the HeatMap
     var Cost_meanVals_array = new Array();//E: To save mean values of Cost of each subbasin (108 in total) as Array
     var SR_meanVals_array = new Array();//E: To save mean values of SR of each subbasin (108 in total) as Array
     var NR_meanVals_array = new Array();//E: To save mean values of NR of each subbasin (108 in total) as Array
@@ -990,7 +984,6 @@ in US Dollars" style="margin: 0px 0px 0px
             SR_mean_value.push({name:heatiter, val:-subarr[3][0]});
             NR_mean_value.push({name:heatiter, val:-subarr[4][0]});
             heatiter++;
-
         });
 
         PFR_mean_value.sort(function (a, b) {
@@ -1037,14 +1030,15 @@ in US Dollars" style="margin: 0px 0px 0px
         Cost_meanVals_array.push({name:heatitera, val:Cost_mean_value});//E: Before heatera
         SR_meanVals_array.push({name:heatitera, val:SR_mean_value});//E: Before heatseda
         NR_meanVals_array.push({name:heatitera, val:NR_mean_value});//E: Bedfore heatnita
+
         heatitera++;
     });
 //    console.log("L.1064 PFR_meanVals_array: \n"+ JSON.stringify(PFR_meanVals_array));
 
-    // These two lines get the number of subbasins where 'PFR_meanVals_array' is applied
+    // These two lines get the subbasins' IDs with PFR values (127 in total) and store as 'PFR_meanVals_array'
     var subbasins_with_PFR = new Array();//E: Before: ressss
     subbasins_with_PFR = PFR_meanVals_array[0].val.map(function(a) { return a.name;});
-//    console.log("L.1071 subbasins_with_PFR: \n" + JSON.stringify(subbasins_with_PFR));
+//    console.log("L.1036 subbasins_with_PFR: \n" + JSON.stringify(subbasins_with_PFR));
     //subbasins_with_PFR= PFR_meanVals_array[1].val.map(function(a) { return a.name;});
     //console.log(heatpfra[1].val[0].val);//console.log(heatpfra[1].val[0].name);
 
@@ -1075,7 +1069,7 @@ in US Dollars" style="margin: 0px 0px 0px
     var subBMP=[];
 //    subBMP = array[0].CHOSENBMP.split(','); //E: 'CHOSENBMP' is the binary number of ChosenBMP from the DDBB
     subBMP = array_fullvalues[0].CHOSENBMP.split(','); //E: 'CHOSENBMP' is the binary number of ChosenBMP from the DDBB
-    console.log("L.1103 subBMP: " + subBMP);// E: It shows the BMP selection, ex: 1,1,1,1,1,1,0,1,1,0
+    console.log("L.1067 subBMP: " + subBMP);// E: It shows the BMP selection, ex: 1,1,1,1,1,1,0,1,1,0
     
 //    if(subBMP[0] != 1){$('#stripCropping.commentBoxQ').hide();}
 //    if(subBMP[1] != 1){$('#cropRotation.commentBoxQ').hide();}
@@ -1085,7 +1079,7 @@ in US Dollars" style="margin: 0px 0px 0px
 //    if(subBMP[5] != 1){$('#conservationTillage.commentBoxQ').hide();}
 //    if(subBMP[7] != 1){$('#Wetlands.commentBoxQ').hide();}
     
-    //for star rating hover
+    //for star rating hover ???? //E:no identified yet
     $('.rating input[type="radio"]').hover(function() {
         $(this).nextAll('span').removeClass().addClass('jshoverNext');
         $(this).next('span').removeClass().addClass('jshover');
@@ -1096,7 +1090,7 @@ in US Dollars" style="margin: 0px 0px 0px
 
 /////////////////////////////////////////////
     var totalLength = array_fullvalues.length;//E: it gives 20, because of 20 alternatives
-    console.log("L.1128 length of (array_fullvalues): \n"+ array_fullvalues.length);
+//    console.log("L.1128 length of (array_fullvalues): "+ array_fullvalues.length);
 
     var totalPages = Math.floor(totalLength);
     var page = 1;
@@ -1106,8 +1100,7 @@ in US Dollars" style="margin: 0px 0px 0px
     var subBasinArray=[];
 //    var subBasinArray2=[];
     //Shows what maps we are on. oneMap and twoMap are important variables.
-    $( ".oneMap" ).html(oneMap+1);
-//    $( ".twoMap" ).html(twoMap+1);
+    $( ".oneMap" ).html(oneMap+1);//EE: This is mainly for setting the number of the current alternative in webpage
 
     var map1;
     ///BEGIN FUNCTION FOR MAPPING IT IS CALLING THE MAPPING JS
@@ -1283,7 +1276,7 @@ in US Dollars" style="margin: 0px 0px 0px
 
             //E: 'bmpArray' gets the 'CHOSENBMP' of the current alternative starting from alternative 0 to 20
             bmpArray = array_fullvalues[oneMap].CHOSENBMP.split(',');
-            console.log("L.1313 oneMap = "+ oneMap +",  bmpArray: \n"+ bmpArray);
+            console.log("L.1274 bmpArray for oneMap = "+ oneMap +",  bmpArray: \n"+ bmpArray);
 
             //E: 'subBasinArrayStart' gets the 'REGIONSUBBASINID' of the current alternative starting from 0 to 20
             //E: For example for ecw 'REGIONSUBBASINID' is 108 for each alternative
@@ -1296,14 +1289,15 @@ in US Dollars" style="margin: 0px 0px 0px
 
 
             //E: 'subBasinArray' = 'subBasinArrayStart' but as dictionary
-//            var count = 0;
+            var count = 0;
             $.each(subBasinArrayStart, function(index, value) {
                 var subArrayItem={};
                 subArrayItem["subbasinID"] = value;
                 subBasinArray.push(subArrayItem);
-//                count = count + 1;
+                count = count + 1;
             });
-            // console.log("L.1602 subBasinArray - "+count+": \n"+ JSON.stringify(subBasinArray));//E: 'subBasinArray' = 'subBasinArrayStart' but as dictionary
+//            console.log("L.1294 subBasinArray - "+count+": \n"+ JSON.stringify(subBasinArray));//E: 'subBasinArray' =
+            // 'subBasinArrayStart' but as dictionary
 
             //E 'bmpArray' containing 'CHOSENBMP' number is converted as name of BMP (array of BMP names)
             $.each(bmpArray, function(index, value) {
@@ -1311,9 +1305,10 @@ in US Dollars" style="margin: 0px 0px 0px
                     bmpArray[index] = bmpArrayNames[index];
                 }
             });
-//            console.log("L.1340 bmpArray: \n"+ bmpArray);//E 'bmpArray' gets the 'CHOSENBMP' of the current alternative
+//            console.log("L.1302 bmpArray: \n"+ bmpArray);//E 'bmpArray' gets the 'CHOSENBMP' of the current alternative
+
             bmpArray = jQuery.removeFromArray("0", bmpArray);//E: BMPs no applies are removed
-//            console.log("L.1342 bmpArray: \n"+ bmpArray);
+//            console.log("L.1305 bmpArray: \n"+ bmpArray);//EE: 'bmpArray' by names with no Zeros
 
             //E: Push all the subbasins that need to be mapped into one spot 'forMapArray'
             var count1=0;
@@ -1345,7 +1340,8 @@ in US Dollars" style="margin: 0px 0px 0px
                 //This one shows all the subbasins for the each bmp
                 count2=count2+1;
             });
-            console.log("L.1348 forMapArray: \n"+ JSON.stringify(forMapArray));
+//            console.log("L.1337 subBasinArray: \n"+ JSON.stringify(subBasinArray));
+//            console.log("L.1348 forMapArray: \n"+ JSON.stringify(forMapArray));
 
             //Now that I have all the data arranged for the incoming dataset (multiple arrays labeled 1 and 2)  I
             // initialize mapping. It is on mapping.js
@@ -1355,14 +1351,15 @@ in US Dollars" style="margin: 0px 0px 0px
         }
         ////////////////////////////////END GET SUBBASINS////////////////////////////////////////////////
         
-        // ??????????????????????????????? start
-        //use this to remove all the 0s in the array above
+        //E: Start: This a sub-function to remove all the 0s in the array above.
+        //E: This is called above (L.1304) to remove all 0s from 'bmpArray'
         jQuery.removeFromArray = function(value, arr) {
             return jQuery.grep(arr, function(elem, index) {
                 return elem !== value;
             });
         };
-        // ??????????????????????????????? End
+        // End Sub-function
+
 
         //This grabs the information needed to get the radio buttons set up with new data
         function setUpRadio(){
@@ -1619,7 +1616,7 @@ in US Dollars" style="margin: 0px 0px 0px
         $("#Wetlands1").val(answersArray[oneMap].Wetlands);
 
         //$("#confidence1").val(answersArray[oneMap].CONFIDENCE);
-        $("#JSONHolder").val(JSON.stringify(answersArray));
+        $("#JSONHolder").val(JSON.stringify(answersArray));//EE: Show the 'answerArray' at the bottom of webpage
         setUpRadio();   //
         getSubBasins();
         // ====================  End Setting 'slider' measurement  ======== //
@@ -1682,12 +1679,14 @@ in US Dollars" style="margin: 0px 0px 0px
 //                bmpArray=array[page-1].CHOSENBMP;
 //                alert("new 'bmpArray' to display: ["+ (page-1) +"]: " + bmpArray);//E: it provides the CHESENBMP from DDBB
 //                oneMap=oneMap+2;
-                oneMap = oneMap+1; // <---------------------------    oneMap = oneMap + 1
+                alert("OneMap-before: "+ oneMap);//EE: 'oneMap' starts as zero
+                oneMap = oneMap+1;//EE: 'oneMap' starts as 0. Here, it is set as 1 (or current alternative)
+                alert("OneMap-after: "+ oneMap);
 //                alert("new 'page': " + page);//E: 'page' was increased into 1 above
 //                alert("move-Next: next 'bmpArray' index: " + oneMap);//E:
-//                //twoMap=twoMap+2;
-                $( ".oneMap" ).html(oneMap+1);
+                $( ".oneMap" ).html(oneMap+1);//E: As 'moveNext' was clicked, 'oneMap' is set as 2 or next alternative
 //                //$( ".twoMap" ).html(twoMap+1);
+
                 //this next line will get new data and then map
                 //Maps are still being created with new data
                 getSubBasins();

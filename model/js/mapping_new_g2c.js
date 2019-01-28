@@ -291,6 +291,7 @@
       //  ==================  Start: Draw Conservation Practices (Main Part) ============================ //
       //E: Call 'Background' function to draw the base map (subbasins map)
       doBackground();
+      dolabels();
 
       //E: In Next lines, The conservation practice is checked if it is applied into the optimization. True =>
       // execute the corresponding function. Not => The function is not executed. Background doesnt neet it
@@ -385,21 +386,25 @@
 
           // for (var i in rows) {
           for (var i = 0; i < subbasin_json.features.length; i++) {//EE 'subbasin_json.features.length' = 130 (# of subbasins)
-              var newCoordinates = [];
+              var newCoordinates = [];//EE: For polygons or sub-basins
+              var newCoordinates_labels = [];//EE: For labels on each sub-basin
               var whichNode = "";
-
-              // if (i==12) console.log("L.392 geometry "+i+":"+ "\n"+JSON.stringify(subbasin_json.features[i].geometry));
-              // var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);//E: Function is Set at 1069
-              var newCoordinates = constructNewCoordinates(subbasin_json.features[i].geometry);//EE: Function is Set at 1069
-                  //answersArray[oneMap].RATING
-                  // var row = rows[i];//EE: not needed when json data
-                  // var whichNode = row[0];
-
               //EE:It is converted to string to be in the 'find' function (see some lines below)
               var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//E: For "ecw"
               // var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
               // if (i==0) alert ("which subbasin Background: \n" + typeof whichNode);//E: 'whichNode' tells which sub-basin
-                  /////////You will put your acreage here///////////
+
+              // if (i==12) console.log("L.392 geometry "+i+":"+ "\n"+JSON.stringify(subbasin_json.features[i].geometry));
+              var newCoordinates = constructNewCoordinates(subbasin_json.features[i].geometry);//EE: Function is Set at 1069
+
+              var x_label = parseFloat(subbasin_json.properties[i].label_x);
+              var y_label = parseFloat(subbasin_json.properties[i].label_y);
+              // var newCoordinates_labels = constructNewCoordinatesLabel(x_label,y_label,whichNode);//EE: Function is Set at 1069
+                  //answersArray[oneMap].RATING
+                  // var row = rows[i];//EE: not needed when json data
+                  // var whichNode = row[0];
+
+              /////////You will put your acreage here///////////
                   // var acres = parseFloat(row[2]).toFixed(1);
               var acres = subbasin_json.properties[i]["area_ac"];//EE:
               var acres = Math.round(acres * 100) / 100;
@@ -407,7 +412,7 @@
               // var rivers = subbasin_json.properties[i]["strlgth_mi"];//EE:
               var rivers = subbasin_json.properties[i]["stream_mi"];//EE:
               var rivers = Math.round(rivers * 1000) / 1000;
-              if (i<5) console.log ("L407 river: \n" + typeof rivers);//E:
+              if (i<3) console.log ("L.410 river: \n" + typeof rivers);//E:
               // sub-basin
 
               var background = new google.maps.Polygon({//E: Watershed (background) features
@@ -421,10 +426,10 @@
                   indexID: whichNode
               });
 
-                  // background.setMap(map1);//E: IT SETS THE POLYGONS over the BASEMAP
               background.setMap(basemap_1);//E: IT SETS THE POLYGONS over the BASEMAP
-              console.log("L.445 Sub-Basin Background (subBasinArray): \n" + JSON.stringify(subBasinArray));
+              // ------ basemap_done
 
+              // ------ Assigning list of attributes to subbasins
                   //SubBasin="WhichNode", "SubBasinArray" involves DATA from Optimization, from DDBB (Mysql)
               var sb_match = find(subBasinArray, 'subbasinID', whichNode);
               // if (i<5) alert("obj: \n"+ JSON.stringify(obj, null, 4));
@@ -482,7 +487,6 @@
                   // alert("backgound: "+ background);//E: It gives "[object Object]" 130 times
 
               google.maps.event.addListener(background, 'click', function(event) {
-                  console.log("L517: in background");
 
                   $('.displayStuff').html(this.objInfo.list);
                       // alert("objInfo: " +"\n"+ this.objInfo.list);
@@ -518,7 +522,7 @@
               // var listofSubs = listofSubs.slice(0, strLen - 1);//E: List of subbasin's IDs
               var listofSubs = JSON.parse("["+ listofSubs.slice(0, strLen - 1) +"]");//E: List of subbasin's IDs
               //E: above, JSON.parse convert a string into an array of number
-              // console.log("L.531 listofSubs (Crop-Rotation): "+ listofSubs);
+              console.log("L.531 listofSubs (Crop-Rotation): "+ listofSubs);
           }
 
       //     // Inicio de se VA
@@ -559,24 +563,23 @@
           var cr_yes = 0;
           var cr_no = 0;
           // for (var i in rows) {
-          for (var i =0; i< subbasin_json.features.length; i++) {
+          for (var i =0; i< subbasin_json.features.length; i++) {//EE: it gives: 130 times
               if (listofSubs.includes(subbasin_json.properties[i]["Subbasin"])) {
                   var newCoordinates = [];
                   var whichNode = "";
+                  // var row = rows[i];//EE: not needed when json data
+                  // var whichNode = row[0];
+                  var whichNode = subbasin_json.properties[i]["Subbasin"].toString();
 
               //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
               // var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
                   var newCoordinates = constructNewCoordinates(subbasin_json.features[i].geometry);
 
-              // var row = rows[i];//EE: not needed when json data
-              // var whichNode = row[0];
-                  var whichNode = subbasin_json.properties[i]["Subbasin"].toString();
-              /////////You will put your acreage here///////////
-              // var acres = parseFloat(row[2]).toFixed(1);
-              // var rivers = parseFloat(row[3]).toFixed(1);
+                  /////////You will put your acreage here///////////
+                  // var acres = parseFloat(row[2]).toFixed(1);
+                  // var rivers = parseFloat(row[3]).toFixed(1);
                   var acres = subbasin_json.properties[i]["area_ac"];
                   var acres = Math.round(acres * 100) / 100;
-                  // var rivers = subbasin_json.properties[i]["strlgth_mi"];
                   var rivers = subbasin_json.properties[i]["stream_mi"];
                   var rivers = Math.round(rivers * 1000) / 1000;
               /////////You will put your stream miles here/////////
@@ -1055,7 +1058,32 @@
           }
           return newCoordinates;
       }
-      ////////// ----- end 'constructNewCoordinates(polygon)'  /////////
+
+      function constructNewCoordinatesLabel(x,y,sb) {
+          // if (i<5) console.log("i =  "+i+": "+ polygon);
+          // console.log("i = "+i+" ; subbasin: "+subbasin_json.properties[i]["Subbasin"]+" cont:"+ JSON.stringify(polygon));
+          var geoOptions = {
+              strokeColor: colors[0],
+              strokeOpacity: 0.8,
+              strokeWeight: 1,
+              fillColor: colors[0],
+              fillOpacity: 0.3,
+              label: "xxx"
+              // icon: grassIcon
+          };
+          var opts = geoOptions;
+          var newCoordinates_labels = [];
+          var coordinates = null;
+          // if (polygon['coordinates']) {
+          //     var coordinates = polygon['coordinates'];
+          var coordinates = [x,y];
+          var options = opts || {};
+          options.position = new google.maps.LatLng(coordinates[1], coordinates[0]);
+          geo = new google.maps.Marker(options);
+          return geo;
+          // }
+      }
+      // +++++++++++ end 'constructNewCoordinates(polygon)'- and - constructNewCoordinatesLabel(label) ++++++++++++ //
 
 
       // ===================== (5)  Begin GRASS-WATERWAYS Markers  ====================== //
@@ -1140,6 +1168,7 @@
               strokeWeight: 1,
               fillColor: colors[0],
               fillOpacity: 0.3,
+              // label: "abc",
               icon: grassIcon
           };
           var opts = geoOptions;
@@ -1428,6 +1457,78 @@
       // ------- end 'constructNewCoordinatesWet(polygon)'
 
       // =====================  End WETLANDS totally ===================== //
+
+
+      // ===================== (0-b)  Begin Markers  ====================== //
+
+      function dolabels() {
+          var obj = find(forMapArray, 'Title', 'grassed_waterway');
+          if (obj) {
+              var listofSubs = obj.subs;
+              var strLen = listofSubs.length;
+              // var listofSubs = listofSubs.slice(0, strLen - 1);
+              var listofSubs = JSON.parse("[" +listofSubs.slice(0, strLen - 1)+ "]");
+              //E: above, JSON.parse convert a string into an array of number
+              // console.log("L.1109 listofSubs (grassed_waterway): "+ listofSubs);
+          }
+          //EE: function to convert SVG To Image(SVG) {
+          function svg_to_img2(arg1){
+              var svg = document.getElementById(arg1);
+              var xml = new XMLSerializer().serializeToString(svg);
+              var svg64 = btoa(xml); //for utf8: btoa(unescape(encodeURIComponent(xml)))
+              var b64start = 'data:image/svg+xml;base64,';
+              var image64 = b64start + svg64;
+              return image64;
+          }
+
+          var lb_yes = 0;
+          var lb_no = 0;
+          for (var i =0; i< subbasin_json.features.length; i++) {
+              // if (listofSubs.includes(subbasin_json.properties[i]["Subbasin"])) {
+              var newCoordinates = [];
+              var whichNode = "";
+              var whichNode = subbasin_json.properties[i]["Subbasin"].toString();
+              label_icon = svg_to_img2('label_rect');
+
+              var x_label = parseFloat(subbasin_json.properties[i].label_x);
+              var y_label = parseFloat(subbasin_json.properties[i].label_y);
+              // console.log("L.1158 coord grass: "+ x_grass+ " , "+ y_grass);
+              var newCoordinates = constructNewCoordinatesLabel(x_label, y_label, whichNode);
+
+              grass = geo;
+              grass.setMap(basemap_1);
+              grassArray.push(grass);
+              lb_yes = lb_yes + 1;
+              // }
+          }
+          console.log("L.1514 YES Labels: "+ lb_yes + "  NO Labels: "+lb_no);
+      };
+
+      // ------- Construction of coordinates for LABELS
+      function constructNewCoordinatesLabel(x,y,node) {
+          var geoOptions = {
+              label:{text: node,color: '#666666',fontSize: "11px"},
+              icon: label_icon
+          };
+          // var opts = geoOptions;
+          var newCoordinates = [];
+          var coordinates = null;
+          var coordinates = [x,y];
+          // var options = opts || {};
+          // options.position = new google.maps.LatLng(coordinates[1], coordinates[0]);
+          geoOptions.position = new google.maps.LatLng(coordinates[1], coordinates[0]);
+          geo = new google.maps.Marker(geoOptions);
+          return geo;
+      }
+      // ------ end 'constructNewCoordinatesLabel'
+
+      // ======================= END LABEL (----) totally ==================== //
+
+
+
+
+
+
 
   } ///END MAPPING FUNCTIONs
 
