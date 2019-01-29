@@ -824,7 +824,11 @@ in US Dollars" style="margin: 0px 0px 0px
 
     <!--  (8) Voladizo 8:  -->
     <!--  Start   -->
+    <div id="dairy_name" style="position: relative; top: -790px; left: 385px; width: 200px; border: 1px solid #80ff00;
+    border-radius: 5px; background-color: #d9ffb3; font-size: 25px; font-family: auto; text-align: center">
+        Dairy Mckay
 
+    </div>
     <!--  End  Voladizo (8) -->
 
     <!--  End VOLADIZOS -->
@@ -1321,7 +1325,7 @@ in US Dollars" style="margin: 0px 0px 0px
             forMapArray=[];
             var wholeList="";
             $.each(bmpArray, function(index1, value1) {
-                alert ("BMP-array: index= "+ index1+ "  value = "+value1);
+//                alert ("L.1323 BMP-array: index= "+ index1+ "  value = "+value1);
                 var words="";
                 //Now I am going to push all the subbasins that need to be mapped into one spot
                 var arrayItemMap={};

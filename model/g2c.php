@@ -218,7 +218,7 @@ else
             <section id="content">
                 <p name="suggestionsNumberHeader" style="display: inline-block; font-size: 17px;">
                     Total number of <font color="#7d110c"><b>alternatives</b></font> (i.e., conservation
-                    plans) recommended in this session: 20 | <font color="#7d110c"><strong>Page
+                    plans) recommended in this session: 20 | <font color="#7d110c"><strong>Alternative
                     <span class="currentPage">1</span> of <span class="totalPages">20</span></strong></font>
                 </p>
             </section>
@@ -660,6 +660,7 @@ in US Dollars" style="margin: 0px 0px 0px
     <!--  Start SVG  -->
     <!--  (width, height, cx,cy,r) = (box_width, box_height, coord_x, coord_y, radius)  -->
     <div id="div1">wetlands' Circles: r = 3.5, 4.5, 5.0, 5.5, 6.0, 7.0, 7.5</div>
+    <div id="div1">wetlands' Ranges: r = [<2], [2-6], [6-11], [11-15], [15-29], [29-40], [>40]</div>
     <svg id="svg1" width="7" height="7">
         <circle cx="3.5" cy="3.5" r="3.5" fill="#336699" />
         Sorry, your browser does not support inline SVG.
@@ -829,7 +830,11 @@ in US Dollars" style="margin: 0px 0px 0px
 
     <!--  (8) Voladizo 8:  -->
     <!--  Start   -->
-
+<!--    <div id="eagle_creek" style="position: relative; top: -790px; left: 385px; width: 200px; border: 1px solid #80ff00;-->
+<!--    border-radius: 5px; background-color: #d9ffb3; font-size: 25px; font-family: auto; text-align: center">-->
+<!--        Eagle Creek-->
+<!---->
+<!--    </div>-->
     <!--  End  Voladizo (8) -->
 
     <!--  End VOLADIZOS -->
@@ -1276,7 +1281,7 @@ in US Dollars" style="margin: 0px 0px 0px
 
             //E: 'bmpArray' gets the 'CHOSENBMP' of the current alternative starting from alternative 0 to 20
             bmpArray = array_fullvalues[oneMap].CHOSENBMP.split(',');
-            console.log("L.1274 bmpArray for oneMap = "+ oneMap +",  bmpArray: \n"+ bmpArray);
+//            alert("L.1274 bmpArray for oneMap = "+ oneMap +",  bmpArray: \n"+ bmpArray);
 
             //E: 'subBasinArrayStart' gets the 'REGIONSUBBASINID' of the current alternative starting from 0 to 20
             //E: For example for ecw 'REGIONSUBBASINID' is 108 for each alternative
@@ -1305,10 +1310,10 @@ in US Dollars" style="margin: 0px 0px 0px
                     bmpArray[index] = bmpArrayNames[index];
                 }
             });
-//            console.log("L.1302 bmpArray: \n"+ bmpArray);//E 'bmpArray' gets the 'CHOSENBMP' of the current alternative
+//            alert("L.1302 bmpArray: \n"+ bmpArray);//E 'bmpArray' gets the 'CHOSENBMP' of the current alternative
 
             bmpArray = jQuery.removeFromArray("0", bmpArray);//E: BMPs no applies are removed
-//            console.log("L.1305 bmpArray: \n"+ bmpArray);//EE: 'bmpArray' by names with no Zeros
+//            alert("L.1305 bmpArray: \n"+ bmpArray);//EE: 'bmpArray' by names with no Zeros
 
             //E: Push all the subbasins that need to be mapped into one spot 'forMapArray'
             var count1=0;
@@ -1322,6 +1327,7 @@ in US Dollars" style="margin: 0px 0px 0px
                 arrayItemMap["Title"] = value1;
                 forMapArray.push(arrayItemMap);
                 //alert("arrayItemMap"+arrayItemMap);
+//                alert("L.1330 subBasinArray Length: "+ JSON.stringify(subBasinArray[0]));
 
                 //build the whole SubBasinArray
                 $.each(subBasinArray, function(index, value) {
@@ -1340,7 +1346,7 @@ in US Dollars" style="margin: 0px 0px 0px
                 //This one shows all the subbasins for the each bmp
                 count2=count2+1;
             });
-//            console.log("L.1337 subBasinArray: \n"+ JSON.stringify(subBasinArray));
+            console.log("L.1337 subBasinArray: \n"+ JSON.stringify(subBasinArray));
 //            console.log("L.1348 forMapArray: \n"+ JSON.stringify(forMapArray));
 
             //Now that I have all the data arranged for the incoming dataset (multiple arrays labeled 1 and 2)  I
@@ -1679,9 +1685,10 @@ in US Dollars" style="margin: 0px 0px 0px
 //                bmpArray=array[page-1].CHOSENBMP;
 //                alert("new 'bmpArray' to display: ["+ (page-1) +"]: " + bmpArray);//E: it provides the CHESENBMP from DDBB
 //                oneMap=oneMap+2;
-                alert("OneMap-before: "+ oneMap);//EE: 'oneMap' starts as zero
+//                alert("L.1687 OneMap-before: "+ oneMap);//EE: 'oneMap' starts as zero
                 oneMap = oneMap+1;//EE: 'oneMap' starts as 0. Here, it is set as 1 (or current alternative)
-                alert("OneMap-after: "+ oneMap);
+//                alert("L.1689 OneMap-after: "+ oneMap);
+                console.log("L.1690 Alternative: "+ oneMap+1);
 //                alert("new 'page': " + page);//E: 'page' was increased into 1 above
 //                alert("move-Next: next 'bmpArray' index: " + oneMap);//E:
                 $( ".oneMap" ).html(oneMap+1);//E: As 'moveNext' was clicked, 'oneMap' is set as 2 or next alternative

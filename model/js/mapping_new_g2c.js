@@ -1,15 +1,3 @@
-  // // JavaScript Document
-  // var subbasin_id = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,71,76,77,78,80,82,83,85,86,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,110,111,112,115,117,119,121,122,123,124,125,126,127];
-  // var strip_crop = [1,1,1,0,0,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,0,1,1,1,0,1,0,1,0,1,1,0,1,1,1,1,1,1,1,0,1,1,1,0,1,0,0,1,1,0,0,1,1,1,0,1,1,1,1,0,1,0,1,0,0,0,1,1,0,0,1,0,0,0,1,0,1,1,0,1,1,1,0,0,0,1,1,1,0,0,1,0,0,1,0,0,0,1,1,1,0,0,1];
-  // var crop_rot = [1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,0,0,0,1,1,1,1,0,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,0,1,1,0,0,1,0,1,0,0,1,0,1,1,1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,0,1,1,1,0,1,1,0,1,0,1,0,1,1,0,0,0,0,0,0,1,0,0,1,0,1,1,1,1,0,1,1,1,0,0,1,1,1];
-  // var cover_crop = [1,1,0,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,1,1,0,0,1,1,1,0,1,1,0,0,1,1,0,0,0,1,0,0,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1,1,0,0,0,0,0,1,0,0,0,1,0,0,1,1,0,1,1,1,1,1,1,1,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,1,1,1,1,1,0,1];
-  // var filter_str = [14.55,6.01,1.79,8.13,15.78,13.45,7.36,13.14,4.65,12.23,14.43,1.45,12.82,16.14,7.17,5.66,5.43,10.37,12.13,9.79,9.25,5.2,6.31,8.54,15.68,11.92,11.58,9.03,5.96,14.59,12.57,9.27,6.63,12.47,2.81,8.93,8.57,10.4,0.57,13.14,13.3,16.1,3.73,8.92,3.05,15.74,4.09,0.66,9.54,13.46,11.57,2.25,10.23,7.24,6.13,15.22,4.91,6.24,14.59,3.56,5.57,14.61,2.34,1.59,1.01,14.8,14.27,11.53,9.57,8.01,2,0.7,9.05,8.82,7.03,7.25,5.36,1.91,15.77,1.26,15.07,0.78,3.17,16.31,4.16,4.3,15.16,11.32,13.3,13.08,8.05,15.46,12.27,4.17,3.46,10.56,16.02,8.96,2.4,5.87,5.86,6.92,15.48,14.16,1.25,13.79,12.63,14.09];
-  // var grass_wat = [0,0,1,0,1,0,1,1,0,0,0,1,0,1,1,1,1,0,1,1,1,1,1,1,1,0,0,1,0,0,1,1,1,0,1,0,1,0,0,0,0,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,0,1,1,0,1,0,1,0,1,1,0,1,0,1,1,1,0,1,0,1,0,0,1,1,1,0,0,1,0,1,1,0,1,1,0,1,0,1,0,0,0,1,1,1,0,1,0,1,0,0,1];
-  // var consv_till = [1,1,0,0,1,1,0,1,1,1,1,1,0,1,1,1,0,0,1,1,0,0,1,0,1,1,1,1,1,1,0,0,1,0,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,0,1,0,1,0,1,0,0,1,0,1,0,1,1,1,0,0,0,1,1,0,1,1,0,0,0,0,1,0,0,0,0,1,0,1,0,1,0,0,1,1,0,0,0,1,0,1,0,0,1,0,0,0,1,0,0,0];
-  // var wet_area = [9.93,52.76,15.16,22.6,15.58,17.85,13.93,25.33,8.33,19.28,1.08,24.86,7.29,10.4,12.44,4.65,3.95,27.27,16.81,10.83,5.38,0.2,3.66,1.21,53.18,18.11,19.65,38.81,20.19,2.35,0.35,23.49,0.04,3.13,18.07,9.06,16.88,1.93,0.25,10.11,1.79,4.97,10.67,0.97,0.24,6.39,0.38,0.65,0.08,21.53,11.82,7.5,15.7,7.67,4.42,0.8,7.54,9.11,10.68,4.82,10.73,3.53,7.46,8.13,0.23,0.44,2.52,0.22,1.02,0.6,0,0.19,2.1,8.99,0.42,0.18,18.16,14.04,1.18,3.42,13.41,6.06,13.03,3.51,0.13,1.4,1.04,2.1,0.27,0.1,0.24,0.25,0.33,0.85,0.68,0.15,3.11,4.87,2.12,1.12,0.13,30.29,11.01,12.79,15.06,10.11,2.66,0.01];
-  // var wet_fr = [0.407081662,0.326754982,0.655418021,0.431092121,0.530378902,0.27941144,0.052330514,0.338612429,0.301332822,0.345618574,0.182353289,0.338266086,0.273899192,0.20153536,0.224729685,0.434690622,0.162208531,0.370231571,0.373189143,0.290569726,0.300226122,0.073247831,0.099502322,0.224443202,0.404071929,0.532560196,0.349057269,2.778925809,7.57E-04,0.183427871,0.069005018,0.262017366,0.018400102,0.131484822,0.37817306,0.330734986,0.217806545,0.094428591,0.034151753,0.1583067,0.33241404,0.23904476,0.213782909,0.019177612,0.050983344,0.210286276,0.027609072,0.105915577,0.028590703,0.428097849,0.228456146,0.382954305,0.26510924,0.152997389,0.250836976,0.057088076,0.11092051,0.379552169,0.277128146,0.220637817,0.257976424,0.077206542,0.227438363,0.180740618,0.004961615,0.040536129,0.029353087,0.001470284,0.10070889,0.011782932,4.09E-04,0.00307335,0.103825444,0.002524193,0.004393169,0.048686605,0.34886623,0.284183791,0.156028342,0.311622389,0.313522435,0.134658917,0.136344375,0.24375574,0.004731548,0.096227183,0.099969294,0.029249691,0.010369053,4.00E-05,0.006634126,0.134101748,0.012645516,0.126330541,0.042649606,0.055356999,0.09215494,0.202321873,0.007930894,0.013900467,0.005826857,0.107649311,0.126616083,0.35463429,0.037355045,0.028838797,0.037261401,7.98E-04];
-
-  // var data_with_cp = subbasin_json;
 
   var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
   var backArray = [];
@@ -666,7 +654,7 @@
               // var listofSubs = listofSubs.slice(0, strLen - 1);
               var listofSubs = JSON.parse("[" + listofSubs.slice(0, strLen - 1) + "]");
               //E: above, JSON.parse convert a string into an array of number
-              // console.log("L.682 listofSubs (cover_crops): "+ listofSubs);
+              console.log("L.657 listofSubs (cover_crops): "+ listofSubs);
           }
 
       //     // Inicio SE VA
@@ -903,11 +891,9 @@
                       infowindow2 = new google.maps.InfoWindow({
                           content: window_info,
                           position: event.latLng
-
                       });
                       infowindow2.open(basemap_1);
                       report('m-clk+', 'Sug:' + (+oneMap + +1) + '  Sub-basin:' + this.indexID + ';'); // trackable
-
                   });
                   stripArray.push(strip);
                   sc_yes = sc_yes + 1;
@@ -1096,7 +1082,7 @@
               // var listofSubs = listofSubs.slice(0, strLen - 1);
               var listofSubs = JSON.parse("[" +listofSubs.slice(0, strLen - 1)+ "]");
               //E: above, JSON.parse convert a string into an array of number
-              // console.log("L.1109 listofSubs (grassed_waterway): "+ listofSubs);
+              console.log("L.1085 listofSubs (grassed_waterway): "+ listofSubs);
           }
 
       //     // Inicio SE VA
@@ -1154,7 +1140,7 @@
               }
           }
           //map.fitBounds(bounds);
-          console.log("L.1118 YES grasswaterways: "+ gw_yes + "  NO grasswaterways: "+gw_no);
+          console.log("L.1143 YES grasswaterways: "+ gw_yes + "  NO grasswaterways: "+gw_no);
       };
 
       // ------- Construction of coordinates for GRASSWATERWAYS
@@ -1199,7 +1185,7 @@
               var listofSubs = listofSubs.slice(0, strLen - 1);
               var listofSubs_num = JSON.parse("[" +listofSubs.slice(0, strLen - 1)+ "]");
               //E: above, JSON.parse convert a string into an array of number
-              // console.log("L.1231 listofSubs (conservation_tillage): "+ listofSubs);
+              console.log("L.1188 listofSubs (conservation_tillage): "+ listofSubs);
           }
 
           //Query to create a new JSON of No-Till just with basins with this cons.practice
@@ -1262,7 +1248,7 @@
           }
 
           //map.fitBounds(bounds);
-          console.log("L.1225 YES Conservation-tillage: "+ nt_yes + "  NO Conservation-tillage: "+nt_no);
+          console.log("L.1251 YES Conservation-tillage: "+ nt_yes + "  NO Conservation-tillage: "+nt_no);
       };
       //   ------- end 'drawTill1'
 
@@ -1304,35 +1290,8 @@
               // var listofSubs = listofSubs.slice(0, strLen - 1);
               var listofSubs = JSON.parse("[" +listofSubs.slice(0, strLen - 1)+ "]");
               // //E: above, JSON.parse convert a string into an array of number
-              // console.log("L.1320 listofSubs (Wetlands): "+ listofSubs);
+              console.log("L.1293 listofSubs (Wetlands): "+ listofSubs);
           }
-
-          //////   ininico //////////////////////
-      //     //  Inicio SE VA
-      //     // Initialize JSONP request
-      //     var script = document.createElement('script');
-      //     var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
-      //     url.push('sql=');
-      //     //Streams
-      //     var query = 'SELECT GRID_CODE, geometry FROM ' +
-      //         '1h0Pw3awyHJC1Eal7QHyP_FQZ6r7PpC5aUU0ybD0 Where GRID_CODE in (' + listofSubs + ')';
-      //     // var query = 'SELECT GRID_CODE, geometry FROM 1h0Pw3awyHJC1Eal7QHyP_FQZ6r7PpC5aUU0ybD0';
-      //     var encodedQuery = encodeURIComponent(query);
-      //     url.push(encodedQuery);
-      //     url.push('&callback=drawWet1');//E:Here, the function 'drawWet1' is called.  <===
-      //     url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
-      //     script.src = url.join('');
-      //     var body = document.getElementsByTagName('body')[0];
-      //     body.appendChild(script);
-      // }
-      // // -------------- end 'dowetlands1()'
-      //
-      // // -------------- start 'drawWet1'
-      // drawWet1 = function(data) {
-      //     var rows = data['rows'];
-      //     //var whichNode=100;
-      //     //End SE VA
-
 
           //EE: function to convert SVG To Image(SVG) {
           function svg_to_img(arg1){
@@ -1352,54 +1311,45 @@
               if (listofSubs.includes(subbasin_json.properties[i]["Subbasin"])) {
                   var newCoordinates = [];
                   var whichNode = "";
-                  // var row = rows[i];//EE: not needed when json data
-                  // var whichNode = row[0];
                   var whichNode = subbasin_json.properties[i]["Subbasin"].toString();
 
                   var sb_wet_match = find(subBasinArray, 'subbasinID', whichNode);
+                  if (i<10) console.log("L.1317 sb_wet_match: "+ JSON.stringify(sb_wet_match));
                   // alert(JSON.stringify(subBasinArray));
-                  // if (obj) {
                   if (sb_wet_match) {
                       // wetlandsize = obj.variable_area_wetlands;
                       wetlandsize = sb_wet_match.variable_area_wetlands;
-                      //alert (wetlandsize);
+                      if (i<10) console.log ("L.1322 wetlandsize: "+ wetlandsize);
                       switch (true) {
                           case (wetlandsize == 0):
                               wetlandsIcon = "";
                               break;
 
                           case (wetlandsize < 2):
-                              // wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands1.png";
                               wetlandsIcon = svg_to_img('svg1');
                               break;
 
                           case ((wetlandsize >= 2) && (wetlandsize < 6)):
-                              // wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands2.png";
                               wetlandsIcon = svg_to_img('svg2');
                               break;
 
                           case ((wetlandsize >= 6) && (wetlandsize < 11)):
-                              // wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands3.png";
                               wetlandsIcon = svg_to_img('svg3');
                               break;
 
                           case ((wetlandsize >= 11) && (wetlandsize < 15)):
-                              // wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands4.png";
                               wetlandsIcon = svg_to_img('svg4');
                               break;
 
                           case ((wetlandsize >= 15) && (wetlandsize < 29)):
-                              // wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands5.png";
                               wetlandsIcon = svg_to_img('svg5');
                               break;
 
                           case ((wetlandsize >= 29) && (wetlandsize < 40)):
-                              // wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands6.png";
                               wetlandsIcon = svg_to_img('svg6');
                               break;
 
                           case ((wetlandsize >= 40)):
-                              // wetlandsIcon = "http://wrestore.iupui.edu/model/images/wetlands7.png";
                               wetlandsIcon = svg_to_img('svg7');
                               break;
 
