@@ -14,6 +14,7 @@ $(".graphTable3").visualize({type: 'bar', width: '180px', height: '250px', barMa
 $(".graphTable4").visualize({type: 'bar', width: '180px', height: '250px', barMargin: '20', barGroupMargin:'20',colors:['#d85a1a','#d8c41a','#92d5ea','#ee8310','#8d10ee','#5a3b16','#26a4ed','#f45a90','#e9e744']});
 
 }
+
 //Color change function to alternate colored bars as you move through data
 function colorChangeGraphIt(instance) {
 //$.getScript("visualize.jQuery.js",function(){
