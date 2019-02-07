@@ -44,3 +44,7 @@ UPDATE users SET spent_time_sec = spent_time/1000;
 /* Note: the 'id' column is 'AUTO-INCREMENT' type that is why it is set as 'NULL' */
 INSERT INTO user10 (id, usercod, pid, name,time,all_act)
 VALUES (NULL, 'usercode', 'pi20','name20','time20','click all 20');
+
+/* +++++++  other queries ++++++++++++++ */
+/* Rename a tabale */
+RENAME TABLE `tb1` TO `tb2`, tb3 TO tb4;

@@ -1,11 +1,5 @@
 
-
-
-
-
-//****************************************
-
-var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
+  var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
   var backArray = [];
   var cropArray = [];
   var stripArray = [];
@@ -42,8 +36,8 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
   function initialize() {
       // ////// START Drawing MAIN MAP //////////////
       basemap_1 = new google.maps.Map(document.getElementById('map_canvas1'),{
-          center: new google.maps.LatLng(39.9778, -86.44),//E: center for "Eagle creek"
-          // center: new google.maps.LatLng(45.65, -123.1),//E: center for "Dairy-Mckay"
+          // center: new google.maps.LatLng(39.9778, -86.44),//E: center for "Eagle creek"
+          center: new google.maps.LatLng(45.65, -123.1),//E: center for "Dairy-Mckay"
           zoom: 10.5,
           disableDefaultUI: true, //E:it disables all default icons from google map
           mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -384,8 +378,8 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
               var newCoordinates_labels = [];//EE: For labels on each sub-basin
               var whichNode = "";
               //EE:It is converted to string to be in the 'find' function (see some lines below)
-              var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//E: For "ecw"
-              // var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
+              // var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//E: For "ecw"
+              var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
               // if (i==0) alert ("which subbasin Background: \n" + typeof whichNode);//E: 'whichNode' tells which sub-basin
 
               // if (i==12) console.log("L.392 geometry "+i+":"+ "\n"+JSON.stringify(subbasin_json.features[i].geometry));
@@ -519,41 +513,6 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
               console.log("L.531 listofSubs (Crop-Rotation): "+ listofSubs);
           }
 
-      //     // Inicio de se VA
-      //     // listOfSubs=forMapArray1["crop_rotation"];
-      //     //alert(listOfSubs);
-      //     // Initialize JSONP request
-      //     var script = document.createElement('script');
-      //     var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
-      //     url.push('sql=');
-      //     //Streams
-      //     var query = 'SELECT GRIDCODE, geometry, Area_Acres,Length_mil FROM ' +
-      //         '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA Where GRIDCODE in (' + listofSubs + ')';
-      //     var encodedQuery = encodeURIComponent(query);
-      //     url.push(encodedQuery);
-      //     url.push('&callback=drawCrop1');//E:Here, the function 'drawCrop1' is called.  <===
-      //     url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
-      //     // url.push('&key=1ZBdUCcDAjB0w94aiSRybOvnbtUxHYrvaMmeljHaD');
-      //     // 1ZBdUCcDAjB0w94aiSRybOvnbtUxHYrvaMmeljHaD
-      //     // https://fusiontables.google.com/DataSource?docid=1ZBdUCcDAjB0w94aiSRybOvnbtUxHYrvaMmeljHaD#map:id=3
-      //     script.src = url.join('');
-      //     var body = document.getElementsByTagName('body')[0];
-      //     body.appendChild(script);
-      // }//Close function
-      //
-      // // ------------  end 'docrop1'
-      //
-      // // ------------  start 'drawCrop1'
-      // //  wwwwwwwwwwwwwwwwww
-      // drawCrop1 = function(data) {
-      //     //function drawWet1(data) {
-      //     //alert("ON");
-      //     var rows = data['rows'];
-      //     console.log("L-561 rows CropRot: "+ "\n" + rows);//E:It show the list of sub-basins with CR
-      //     //var whichNode=100;
-      //     //  fin de se van
-
-
           var cr_yes = 0;
           var cr_no = 0;
           // for (var i in rows) {
@@ -663,32 +622,6 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
               console.log("L.657 listofSubs (cover_crops): "+ listofSubs);
           }
 
-      //     // Inicio SE VA
-      //     // Initialize JSONP request
-      //     var script = document.createElement('script');
-      //     var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
-      //     url.push('sql=');
-      //     //Streams
-      //     var query = 'SELECT GRIDCODE, geometry, Area_Acres,Length_mil FROM ' +
-      //         '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA Where GRIDCODE in (' + listofSubs + ')';
-      //     var encodedQuery = encodeURIComponent(query);
-      //     url.push(encodedQuery);
-      //     url.push('&callback=drawCover1');//E:Here, the function 'drawCover1' is called.  <===
-      //     url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
-      //     script.src = url.join('');
-      //     var body = document.getElementsByTagName('body')[0];
-      //     body.appendChild(script);
-      // }
-      // // ------------  end 'docover1'
-      //
-      // // ------------  start 'drawCover1'
-      //
-      // drawCover1 = function(data) {
-      //     //function drawWet1(data) {
-      //     //alert("ON");
-      //     var rows = data['rows'];
-      //     //var whichNode=100;
-      //     // Fin SE VA  COVER CROP
 
           var cc_yes = 0;
           var cc_no = 0;
@@ -796,31 +729,7 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
               console.log("L.790 listofSubs (strip_cropping): "+ listofSubs);
           }
 
-      //     // Inicio SE VA
-      //     // Initialize JSONP request
-      //     var script = document.createElement('script');
-      //     var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
-      //     url.push('sql=');
-      //     //Streams
-      //     var query = 'SELECT GRIDCODE, geometry, Area_Acres,Length_mil FROM ' +
-      //         '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA Where GRIDCODE in (' + listofSubs + ')';
-      //     var encodedQuery = encodeURIComponent(query);
-      //     url.push(encodedQuery);
-      //     url.push('&callback=drawStrip1');//E:Here, the function 'drawStrip1' is called.  <===
-      //     url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
-      //     script.src = url.join('');
-      //     // alert("script.src: " + url);
-      //     var body = document.getElementsByTagName('body')[0];
-      //     body.appendChild(script);
-      // }
-      // // ----------------  end 'dostrip1()'
-      //
-      // // ----------------  start 'drawStrip1' --------------------- /GREEN/
-      // drawStrip1 = function(data) {
-      //     //function drawWet1(data) {
-      //     var rows = data['rows'];
-      //     //var whichNode=100;
-      //     //Fin SE VA STRIP CROP
+
 
           var sc_yes = 0;
           var sc_no = 0;
@@ -938,40 +847,18 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
               // if (i < 5) console.log("L.980 - " + JSON.stringify(streams_for_fs.features[i]));//EE: to see the first coordinates
           }
 
-      //     //inicio SE VA
-      //     // Initialize JSONP request
-      //     var script = document.createElement('script');
-      //     var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
-      //     url.push('sql=');
-      //     //Streams
-      //     var query = 'SELECT GRID_CODE, geometry FROM ' +
-      //         '15rPfCYXIoquDLpunT66cvEz2yaqw7R6BRKptqBQ Where GRID_CODE in (' + listofSubs + ')';
-      //     var encodedQuery = encodeURIComponent(query);
-      //     url.push(encodedQuery);
-      //     url.push('&callback=drawFilter1'); //E:Here, the function 'drawFilter1' is called.  <===
-      //     url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
-      //     script.src = url.join('');
-      //     var body = document.getElementsByTagName('body')[0];
-      //     body.appendChild(script);
-      // }
-      // // -----------  end 'dofilter1'
-      //
-      // // -----------  start 'drawfilter1'
-      //
-      // drawFilter1 = function(data) {
-      //     var rows = data['rows'];
-      //     // // END SE VA
 
           var fs_yes = 0;
           var fs_no = 0;
           // for (var i in rows) {
           for (var i =0; i< streams_for_fs.features.length; i++) {
-              if (listofSubs.includes(streams_for_fs.properties[i]["Subbasin"])) {
+              // if (listofSubs.includes(streams_for_fs.properties[i]["subbasin"])){//E: "Subbasin" for "ecw"
+              if (listofSubs.includes(streams_for_fs.properties[i]["subbasin"])){//E: "subbasin" for "Dairy-Mckay"
                   var newCoordinates = [];
                   var whichNode = "";
-                  // var row = rows[i];//EE: not needed when json data
-                  // var whichNode  =row[0];
-                  var whichNode = stream_json.properties[i]["Subbasin"].toString();
+
+                  // var whichNode = stream_json.properties[i]["subbasin"].toString();//E: "subbasin" for "ecw"
+                  var whichNode = stream_json.properties[i]["subbasin"].toString();//E: "subbasin" for "Dairy-Mckay"
 
                   var sb_filter_match = find(subBasinArray, 'subbasinID', whichNode);
                   if (sb_filter_match) {

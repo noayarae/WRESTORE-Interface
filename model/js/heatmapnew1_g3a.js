@@ -7,22 +7,22 @@ function heatinitialize() {
     $('#oneMapPF').empty();
     // $('#oneMapPF').append('Range+: (' + heatpfra[oneMap].val[0].val + ' to ' + heatpfra[oneMap].val[126].val +') cfs');
     var min_value_PF1 = PFR_meanVals_array[oneMap].val[0].val;//mk: Get the min value of mean values of PFR
-    var max_value_PF1 = PFR_meanVals_array[oneMap].val[126].val;//mk: Get the max value of mean values of PFR
+    var max_value_PF1 = PFR_meanVals_array[oneMap].val[51].val;//mk: Get the max value of mean values of PFR
 
     $('#oneMapRV').empty();
     // $('#oneMapRV').append('Range: (' + heatera[oneMap].val[0].val + ' to ' + heatera[oneMap].val[126].val +') Dollars');
     var min_value_RV1 = Cost_meanVals_array[oneMap].val[0].val;//mk
-    var max_value_RV1 = Cost_meanVals_array[oneMap].val[126].val;//mk
+    var max_value_RV1 = Cost_meanVals_array[oneMap].val[51].val;//mk
 
     $('#oneMapSR').empty();
     // $('#oneMapSR').append('Range: (' + heatseda[oneMap].val[0].val + ' to ' + heatseda[oneMap].val[126].val +') tons');
     var min_value_SR1 = SR_meanVals_array[oneMap].val[0].val;//mk
-    var max_value_SR1 = SR_meanVals_array[oneMap].val[126].val;//mk
+    var max_value_SR1 = SR_meanVals_array[oneMap].val[51].val;//mk
 
     $('#oneMapNR').empty();
     // $('#oneMapNR').append('Range: (' + heatnita[oneMap].val[0].val + ' to ' + heatnita[oneMap].val[126].val +') kilograms');
     var min_value_NR1 = NR_meanVals_array[oneMap].val[0].val;//mk
-    var max_value_NR1 = NR_meanVals_array[oneMap].val[126].val;//mk
+    var max_value_NR1 = NR_meanVals_array[oneMap].val[51].val;//mk
 
     //// --------------  These new variables are setup for building the map-legend  --------------------
     //
@@ -32,7 +32,6 @@ function heatinitialize() {
 
     ////  ---------------  These variables are used to set ranges for maps  -----------------------
     var ressssPF1 = PFR_meanVals_array[oneMap].val.map(function(a) {
-        console.log ("L.38 ressssPF1: "+ JSON.stringify(ressssPF1));
         return a.name;
     });
 
@@ -52,8 +51,9 @@ function heatinitialize() {
     // ======================  ---------  Set and Add Base-Map for PFR  ------- ======================== //
     // Draw the base-map for PFR
     heatmapPF1 = new google.maps.Map(document.getElementById('heatmap_canvasPF1'), {
-        center: new google.maps.LatLng(39.9778, -86.2959),
-        zoom: 10,
+        // center: new google.maps.LatLng(39.9778, -86.2959),//E: center for "Eagle creek"
+        center: new google.maps.LatLng(45.65, -123.1),//E: center for "Dairy-Mckay"
+        zoom: 9.5,
         disableDefaultUI: true, // it disables all default icons from google map
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
@@ -111,7 +111,8 @@ function heatinitialize() {
     // ====================  ---------  (2) Set and Add Base-Map for PROFIT  ------------ ======================== //
     // Draw the base-map for PROFIT
     heatmapRV1 = new google.maps.Map(document.getElementById('heatmap_canvasRV1'), {
-        center: new google.maps.LatLng(39.9778, -86.2959),
+        // center: new google.maps.LatLng(39.9778, -86.2959),//E: center for "Eagle creek"
+        center: new google.maps.LatLng(45.65, -123.1),//E: center for "Dairy-Mckay"
         zoom: 10,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         disableDefaultUI: true // it disables all default icons from google map
@@ -167,7 +168,8 @@ function heatinitialize() {
     // ======================  ---------  (3) Set and Add Base-Map for SR  ------------ ======================== //
     // Draw the base-map for SR
     heatmapSR1 = new google.maps.Map(document.getElementById('heatmap_canvasSR1'), {
-        center: new google.maps.LatLng(39.9778, -86.2959),
+        // center: new google.maps.LatLng(39.9778, -86.2959),//E: center for "Eagle creek"
+        center: new google.maps.LatLng(45.65, -123.1),//E: center for "Dairy-Mckay"
         zoom: 10,
         disableDefaultUI: true, // it disables all default icons from google map
         mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -223,7 +225,8 @@ function heatinitialize() {
     // ================  ---------  (4) Add Base-Map for NR  ------------ ======================== //
     // Draw the base-map for NR
     heatmapNR1 = new google.maps.Map(document.getElementById('heatmap_canvasNR1'), {
-        center: new google.maps.LatLng(39.9778, -86.2959),
+        // center: new google.maps.LatLng(39.9778, -86.2959),//E: center for "Eagle creek"
+        center: new google.maps.LatLng(45.65, -123.1),//E: center for "Dairy-Mckay"
         zoom: 10,
         disableDefaultUI: true, // it disables all default icons from google map
         mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -302,34 +305,57 @@ function heatinitialize() {
     // --------------  Start all related to "PF" (doheatPF1,"drawHeatPF1", doheatPF2, "drawHeatPF2") ----------------
     // ----------------  Start doheartPF1 ------------
     function doheatPF1() {
+    //     // Inicio No VA
+    //     // Initialize JSONP request
+    //     var script = document.createElement('script');
+    //     var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
+    //     url.push('sql=');
+    //     //Streams
+    //     var query = 'SELECT GRIDCODE, geometry, Area_Acres,Length_mil FROM ' +
+    //         '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA ';
+    //     var encodedQuery = encodeURIComponent(query);
+    //     url.push(encodedQuery);
+    //     url.push('&callback=drawHeatPF1');
+    //     url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+    //     // url.push('&key=IzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+    //     script.src = url.join('');
+    //     var body = document.getElementsByTagName('body')[0];
+    //     body.appendChild(script);
+    // }
+    //
+    // drawHeatPF1 = function(data) {
+    //     //End NOVA
 
+        // var rows = data['rows'];//EE: not needed when json data
+        // for (var i in rows) {
         for (var i = 0; i < subbasin_json.features.length; i++) {//EE 'map_data.features.length' = 130 (# of subbasins)
             var newCoordinates = [];
             var whichNode = "";
-
-            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//E: For "ecw" needs to convert to string
-            // var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
+            //var geometries = rows[i][1]['geometry'];
+            // var row = rows[i];//EE: not needed when json data
+            // var whichNode = row[0];
+            // var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//E: For "ecw" needs to convert to string
+            var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
 
             //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
             // var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
             var newCoordinates = constructNewCoordinates(subbasin_json.features[i].geometry);
             var indexx = ressssPF1.indexOf(Number(whichNode));
-            // console.log ("L.317 node (sb): "+ whichNode +"   indexx: "+ indexx);
 
             switch (true) {
-                case (indexx < 0):filterColor = "#ffffff";//"#000000"; // #ffffff// 3 subbasins
+                case (indexx < 0):filterColor = "#ffffff";//"#000000"; // #ffffff
                     break;
-                case (indexx < 20): filterColor = "#ffff00";//20 subbasins
+                case (indexx < 20): filterColor = "#ffff00";
                     break;
-                case ((indexx >= 20) && (indexx < 40)): filterColor = "#0033cc";//"#ffcc00";//20 subbasins
+                case ((indexx >= 20) && (indexx < 40)): filterColor = "#ffcc00";
                     break;
-                case ((indexx >= 40) && (indexx < 70)): filterColor = "#33cc33";//"#ff9900";//30 subabsins
+                case ((indexx >= 40) && (indexx < 70)): filterColor = "#ff9900";
                     break;
-                case ((indexx >= 70) && (indexx < 90)): filterColor = "#00ffff";//"#ff6600";//20 subbasins
+                case ((indexx >= 70) && (indexx < 90)): filterColor = "#ff6600";
                     break;
-                case (indexx >= 90): filterColor = "#ff3388";//"#ff3300";//37 subbasins
+                case (indexx >= 90): filterColor = "#ff3300";
                     break;
-                default: filterColor = "#aa9999";//"#ff0000";
+                default: filterColor = "#ff0000";
                     break;
                 //return wetlandsIcon;
             }
@@ -356,6 +382,25 @@ function heatinitialize() {
     // --------------  Start all related to "PROFIT" (doheatRV1,"drawHeatRV1", doheatRV2, "drawHeatRV2") ------------
     // ---------------------------------  Start doheatRV1() --------------------------------
     function doheatRV1() {
+    //     // Inicio NO VA
+    //     // Initialize JSONP request
+    //     var script = document.createElement('script');
+    //     var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
+    //     url.push('sql=');
+    //     //Streams
+    //     var query = 'SELECT GRIDCODE, geometry, Area_Acres,Length_mil FROM ' +
+    //         '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA ';
+    //     var encodedQuery = encodeURIComponent(query);
+    //     url.push(encodedQuery);
+    //     url.push('&callback=drawHeatRV1');
+    //     url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+    //     script.src = url.join('');
+    //     var body = document.getElementsByTagName('body')[0];
+    //     body.appendChild(script);
+    // }
+    //
+    // drawHeatRV1 = function(data) {
+    //     // End NO VA
 
         // var rows = data['rows'];//EE: not needed when json data
         // for (var i in rows) {
@@ -366,8 +411,8 @@ function heatinitialize() {
             //alert (geometries)//newly added code...
             // var row = rows[i];//EE: not needed when json data
             // var whichNode = row[0];
-            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//E: For "ecw" needs to convert to string
-            // var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
+            // var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//E: For "ecw" needs to convert to string
+            var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
 
             //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
             // var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
@@ -393,8 +438,8 @@ function heatinitialize() {
             }
 
             // var whichNode = row[0];
-            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//E: "ecw" needs to convert to string
-            // var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
+            // var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//E: "ecw" needs to convert to string
+            var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
             ERevenue = new google.maps.Polygon({
                 path: newCoordinates,
                 //strokeColor: colors[0],
@@ -413,15 +458,38 @@ function heatinitialize() {
 
     // --------------  Start all related to "SR" (doheatSR1,"drawHeatSR1", doheatSR2, "drawHeatSR2") ----------------
     function doheatSR1() {
+    //     //Inicio NO VA
+    //     // Initialize JSONP request
+    //     var script = document.createElement('script');
+    //     var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
+    //     url.push('sql=');
+    //     //Streams
+    //     var query = 'SELECT GRIDCODE, geometry, Area_Acres,Length_mil FROM ' +
+    //         '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA ';
+    //     var encodedQuery = encodeURIComponent(query);
+    //     url.push(encodedQuery);
+    //     url.push('&callback=drawHeatSR1');
+    //     url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+    //     script.src = url.join('');
+    //     var body = document.getElementsByTagName('body')[0];
+    //     body.appendChild(script);
+    //     //alert("Wetlands1");
+    // }
+    //
+    // drawHeatSR1 = function(data) {
+    //     // End NO VA
 
+        // var rows = data['rows'];//EE: not needed when json data
+        // for (var i in rows) {
         for (var i = 0; i < subbasin_json.features.length; i++) {//EE 'map_data.features.length' = 130 (# of subbasins)
             var newCoordinates = [];
             var whichNode = "";
             //var geometries = rows[i][1]['geometry'];
             //alert (geometries)//newly added code...
-
-            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//E: For "ecw" needs to convert to string
-            // var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
+            // var row = rows[i];//EE: not needed when json data
+            // var whichNode = row[0];
+            // var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//E: For "ecw" needs to convert to string
+            var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
 
             //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
             // var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
@@ -447,8 +515,8 @@ function heatinitialize() {
             }
 
             // var whichNode = row[0];
-            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//E:"ecw" needs to converto string
-            // var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
+            // var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//E:"ecw" needs to converto string
+            var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
             Sediments = new google.maps.Polygon({
                 path: newCoordinates,
                 //strokeColor: colors[0],
@@ -466,14 +534,39 @@ function heatinitialize() {
 
     // --------------  End all related to "SR" (doheatSR1,"drawHeatSR1", doheatSR2, "drawHeatSR2") ----------------
 
-    // =============  Start all related to "NR" (doheatNR1,"drawHeatNR1", doheatNR2, "drawHeatNR2") ----------------
+    // --------------  Start all related to "NR" (doheatNR1,"drawHeatNR1", doheatNR2, "drawHeatNR2") ----------------
     function doheatNR1() {
+    //     // Inicio NO VA
+    //     // Initialize JSONP request
+    //     var script = document.createElement('script');
+    //     var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
+    //     url.push('sql=');
+    //     //Streams
+    //     var query = 'SELECT GRIDCODE, geometry, Area_Acres,Length_mil FROM ' +
+    //         '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA ';
+    //     var encodedQuery = encodeURIComponent(query);
+    //     url.push(encodedQuery);
+    //     url.push('&callback=drawHeatNR1');
+    //     url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
+    //     script.src = url.join('');
+    //     var body = document.getElementsByTagName('body')[0];
+    //     body.appendChild(script);
+    //     //alert("Wetlands1");
+    // }
+    //
+    // drawHeatNR1 = function(data) {
+    //     // End NO VA
+
+        // var rows = data['rows'];//EE: not needed when json data
+        // for (var i in rows) {
         for (var i = 0; i < subbasin_json.features.length; i++) {//EE 'map_data.features.length' = 130 (# of subbasins)
             var newCoordinates = [];
             var whichNode = "";
-
-            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//EE:For "ecw" needs to convert to string
-            // var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
+            //var geometries = rows[i][1]['geometry'];
+            // var row = rows[i];//EE: not needed when json data
+            // var whichNode = row[0];
+            // var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//EE:For "ecw" needs to convert to string
+            var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
 
             //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
             // var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
@@ -498,8 +591,9 @@ function heatinitialize() {
                 //return wetlandsIcon;
             }
 
-            var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//EE:For "ecw" needs to convert to string
-            // var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
+            // var whichNode = row[0];
+            // var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//EE:For "ecw" needs to convert to string
+            var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
             Nitrates = new google.maps.Polygon({
                 path: newCoordinates,
                 //strokeColor: colors[0],
@@ -511,6 +605,7 @@ function heatinitialize() {
                 clickable: true
             });
             Nitrates.setMap(heatmapNR1);
+
         }
     };
 

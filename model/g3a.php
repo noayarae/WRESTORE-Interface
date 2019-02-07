@@ -6,19 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=8" />
     <title>WRESTORE - Watershed REstoration using Spatio-Temporal Optimization of REsources</title>
 
-    <!--  Style libraries created for this webpage  -->
     <link rel="stylesheet" type="text/css" href="css/basic.css"/>
     <link rel="stylesheet" type="text/css" href="css/gdropdown.css"/>
+    <!-- 'css/map_legend.css' was created for editing map-legends in STEP-3 -->
     <link rel="stylesheet" type="text/css" href="css/map_legend.css">
     <link rel="stylesheet" type="text/css" href="css/star.css"/>
+    <!-- 'style1a.css' file encloses styles setup at the begginig of this file -->
     <link rel="stylesheet" type="text/css" href="css/style1a.css"/>
     <!-- 'style.css' file was renamed as 'css/style1b.css' -->
     <link rel="stylesheet" type="text/css" href="css/style1b.css"/>
+    <!-- 'new/style.css' was moved to 'css/style2.css'  -->
     <link rel="stylesheet" type="text/css" href="css/style2.css"/>
     <link rel='stylesheet' type='text/css' href='css/styles.css'/>
     <link rel="stylesheet" type="text/css" href="css/visualize.css"/>
-
-    <!--  Style-libraries retrieved from the web  -->
     <link rel="stylesheet" type="text/css" href="js/shadowbox/shadowbox.css"/>
 
 <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
@@ -39,15 +39,14 @@
     <script type="text/javascript" src="js/legend_DOM.js"></script>
     <script type="text/javascript" src="js/json2.js"></script>
 <!--    <script type="text/javascript" src="js/jquery.collapsible.js"></script>-->
-    <script type="text/javascript" src="js/bargraphcpy_g2c.js"></script>
+    <script type="text/javascript" src="js/bargraphcpy_g3a.js"></script>
     <script type='text/javascript' src='js/fda.js'></script>
     <script type='text/javascript' src='js/mt_config.js'></script>
 <!--    DATA    -->
-    <script src="data/ecw4b.js"></script> <!-- Here goes the JS.File name. var "subbasin_json" -->
-    <script src="data/stream_g.js"></script> <!-- Here goes the JS.File name. var "stream_json" -->
-    <script src="data/takefeedback2.js"></script> <!-- Here goes the JS.File name. var "stream_json" -->
-<!--    <script src="data/dmw.js"></script> <!-- Here goes the JS.File name. var "subbasin_json" -->
-<!--    <script src="data/dm_stream.js"></script> <!-- Here goes the JS.File name. var "stream_json" -->
+<!--    <script src="data/ecw4b.js"></script> <!-- Here goes the JS.File name. var "subbasin_json" -->
+<!--    <script src="data/stream_g.js"></script> <!-- Here goes the JS.File name. var "stream_json" -->
+    <script src="data/dmw.js"></script> <!-- Here goes the JS.File name. var "subbasin_json" -->
+    <script src="data/dm_stream.js"></script> <!-- Here goes the JS.File name. var "stream_json" -->
     
     <script type="text/javascript">
         //window.onload(heatinitialize);
@@ -78,7 +77,7 @@
 </head>
 <!--  -------------------- START BODY --------------------  -->
 <body name="body">
-<!--  E: This "WRAPPER" Div encloses the whole page, after "BODY" without js Scripts -->
+<!--  E: This "WRAPPER" Div encloses the whole page, after "BODY" with out JavaScripts -->
 <div class="wrapper"> <!-- style="background:#e6ffcc;" #e6ffcc; #99ff66; #e6ff0c; -->
 
 <!--  E: This PHP reads/grabs the data from the DB and creates a "TABLE" Html-tag to save them on it -->
@@ -106,8 +105,8 @@ $count = 0;
 
 //E: I am grabbing the massive amount of data from the 'takefeedback' table. I actually am going to write it out on the
 // page in a table.
-$query =("SELECT * FROM takefeedback where USERID = '$USERID'");//E: DB for "ecw"
-//$query =("SELECT * FROM dmk_db1 where USERID = '$USERID'");//E: DB for Dairy-Mckay
+//$query =("SELECT * FROM takefeedback where USERID = '$USERID'");//E: DB for "ecw"
+$query =("SELECT * FROM dmk_db where USERID = '$USERID'");//E: DB for Dairy-Mckay
 $result = mysqli_query($connection, $query); //  ???
 $row = mysqli_fetch_assoc($result); // E: Fetches (busca) a result row as an associative array.
 $tableSize = mysqli_num_rows($result)+1; // E: Returns the 'number of rows + 1' from the result set
@@ -202,19 +201,11 @@ else
     <div class="wrapper2">
         <header id="siteHeader">
             <hgroup>
-                <div style="display: inline-block">
-                    <h1 id='back-main-page' name="site_header1">WRESTORE</h1>
-                    <div id="eagle_creek" style="width: 200px; border: 1px solid #80ff00; border-radius: 5px; background-color: #d9ffb3; font-size: 25px; font-family: auto; text-align: center">
-                                Eagle Creek watershed
-                    </div>
-                </div>
-<!--                <h1 id='back-main-page' name="site_header1">WRESTORE</h1>-->
-                <div style="display: block; width: 640px">
-                    <h2 name="site_header2" style="padding-top: 5px; color: black;">
-                        Watershed Restoration using Spatio-Temporal Optimization of Resources
-                    </h2>
-                    <h3 name="site_header3" style="letter-spacing: 2px;">Visualize & Design Your Watershed Landscape</h3>
-                </div>
+                <h1 id='back-main-page' name="site_header1">WRESTORE</h1>
+                <h2 name="site_header2" style="padding-top: 5px; color: black;">
+                    Watershed Restoration using Spatio-Temporal Optimization of Resources
+                </h2>
+                <h3 name="site_header3" style="letter-spacing: 2px;">Visualize & Design Your Watershed Landscape</h3>
             </hgroup>
         </header>
     </div>
@@ -839,11 +830,10 @@ in US Dollars" style="margin: 0px 0px 0px
 
     <!--  (8) Voladizo 8:  -->
     <!--  Start   -->
-<!--    <div id="eagle_creek" style="position: relative; top: -790px; left: 385px; width: 200px; border: 1px solid #80ff00;-->
-<!--    border-radius: 5px; background-color: #d9ffb3; font-size: 25px; font-family: auto; text-align: center">-->
-<!--        Eagle Creek-->
-
-<!--    </div>-->
+    <div id="dairy-mckay" style="position: relative; top: -810px; left: 385px; width: 200px; border: 1px solid #80ff00;
+    border-radius: 5px; background-color: #d9ffb3; font-size: 25px; font-family: auto; text-align: center">
+        Dairy McKay
+    </div>
     <!--  End  Voladizo (8) -->
 
     <!--  End VOLADIZOS -->
@@ -861,8 +851,8 @@ in US Dollars" style="margin: 0px 0px 0px
 <script type="text/javascript" src="js/jquery.maskedinput.js"></script>
 <script type="text/javascript" src="js/jquery.keyfilter.js"></script>
 <script type="text/javascript" src="js/shadowbox/shadowbox.js"></script>
-<script type="text/javascript" src="js/mapping_new_g2c.js"></script>
-<script type="text/javascript" src="js/heatmapnew1_g2c.js"></script>
+<script type="text/javascript" src="js/mapping_new_g3a.js"></script>
+<script type="text/javascript" src="js/heatmapnew1_g3a.js"></script>
 <script type="text/javascript" src="js/visualize.jQuery.js"></script>
 <script type="text/javascript" src="js/excanvas.js"></script>
 <script type="text/javascript" src="js/graphing.js"></script>
@@ -913,114 +903,54 @@ in US Dollars" style="margin: 0px 0px 0px
     var answersArray =[];//EE: It'll store RATING and CONFIDENCE (answer) values of 'wholeTable' of 20 alternatives
     var fn_obj_array =[];//EE: It'll store values of F0,F1,F2,F3,F4,F5 (objective functions) of 'wholeTable' of 20 alt
 
-    //EE: ****************************** MySQL or JSON ************************************
-    //EE: .............................. Headers using MySQL  .........................
-//    //E: it gets the headers of the 'WholeTable' and saves as 'headers'
-//    //E: Way (1)
-//    //E: This way works when the data comes from MySQL format
-//    $('#wholeTable th').each(function(index, item) {
-//        headers[index] = $(item).html();
-//    });
-//    console.log ("L-918 headers: \n" + JSON.stringify (headers));//EE: Show the headers of 'wholeTable'
+    $('#wholeTable th').each(function(index, item) {
+        headers[index] = $(item).html();
+    });
+    //console.log ("L-934 headers: \n" + JSON.stringify (headers));//EE: Show the headers of 'wholeTable'
 
-    //EE: .............................. Headers using JSON  .........................
-    //E: Way (2)
-    //E: This way works when the data comes from JSON format
-    var nsga2_values = nsga2_values_as_json;//EE: Values obtained from optimization process by NSGA2 algorithm
-    var headers = Object.keys(nsga2_values[0]);
-    console.log ("L.931 headers: \n" + headers);//E: console.log ("L.927 keys: \n" + headers.length);
+    $('#wholeTable tr').has('td').each(function() {//EE: Return all (tr) elements that have a (td) element inside them
+        var arrayItem = {};
+        var arrayItemAnswers = {};
+//        var chartArrayItems={};
+        var fn_obj_arrayItems={};
 
-    //EE: Get list of headers of subbasins only. For ecw it goes from 15 to 145 (145-15=130 subbasins)
-    var list_header_subbasins = Object.values(headers).slice(15, 142);//EE: Get list of headers of subbasins
-    console.log ("L.934 List of Headers of subbasins only: \n" +list_header_subbasins);//E: important,for looping below
-
-
-    //EE: ...................  array_fullvalues, answersArray, fn_obj_array (MySQL) ..................
-//    //E: it gets all values of the 'WholeTable' and saves 'array_fullvalues'
-//    //E: Way (1)
-//    $('#wholeTable tr').has('td').each(function() {//EE: Return all (tr) elements that have a (td) element inside them
-//        var arrayItem = {};
-//        var arrayItemAnswers = {};
-////        var chartArrayItems={};
-//        var fn_obj_arrayItems={};
-//
-//        $('td', $(this)).each(function(index, item) {
-//            arrayItem[headers[index]] = $(item).html();
-//            //alert(JSON.stringify(headers[index]));
-//            //I am grabbing the incoming information to create the answers array. I will be replacing these numbers as they fill them out
-//            //themselves but for now we need all the originals.
-//            if(headers[index]=="USERID" || headers[index]=="INDVID" || headers[index]=="RATING"  || headers[index]=="CONFIDENCE" ){
-//                arrayItemAnswers[headers[index]] = $(item).html();
-//            }
-//
-//
-//            if(headers[index]=="F0" || headers[index]=="F1" || headers[index]=="F2"  || headers[index]=="F3"  || headers[index]=="F4"  || headers[index]=="F5" ){
-////                chartArrayItems[headers[index]] = $(item).html();
-//                fn_obj_arrayItems[headers[index]] = $(item).html();
-//            }
-//        });
-//
-//        arrayItemAnswers["stripCropping"]="0";
-//        arrayItemAnswers["cropRotation"]="0";
-//        arrayItemAnswers["coverCrops"]="0";
-//        arrayItemAnswers["filterStrips"]="0";
-//        arrayItemAnswers["grassedWaterways"]="0";
-//        arrayItemAnswers["conservationTillage"]="0";
-//        arrayItemAnswers["Wetlands"]="0";
-//
-//        //array.push(arrayItem);
-//        array_fullvalues.push(arrayItem);//E:It merges or appends ALL the 'wholeTable' values into one array
-//        answersArray.push(arrayItemAnswers);//EE: store RATING and CONFIDENCE (answer) values of 'wholeTable' of 20 alt
-//        fn_obj_array.push(fn_obj_arrayItems);//E: store F0,F1,...,F5 values (objective functions)of 'wholeTable' of 20 alt
-//    });
-//
-//    //EE:This console.log shows all values from 'wholeTable' saved as array named 'array_fullvalues'
-////    console.log("L.969 full values of 'wholeTable': \n" + JSON.stringify (array_fullvalues));
-////    console.log("L969 length of 'array_fullvalues': \n" + array_fullvalues.length);//E:It gives 20 (because of 20 alternatives)
-////    console.log("L.972 full values of 'answersArray': \n" + JSON.stringify (answersArray));//EE:Give answer of RATING, CONFIDENCE, and attributes USERID, INDVID, and "stripCropping=0", "cropRotation=0", so on of 20 Alt.
-////    console.log("L.974 full values of 'fn_obj_array': \n" + JSON.stringify (fn_obj_array));//EE: Give MEAN, MIN and MAX values of F0,F1,F2,F3,F4,F5 (objective functions) for all the 20 Alternatives
-//    //EE: ................... End: array_fullvalues, answersArray, fn_obj_array (using MySQL) ..................
+        $('td', $(this)).each(function(index, item) {
+            arrayItem[headers[index]] = $(item).html();
+            //alert(JSON.stringify(headers[index]));
+            //I am grabbing the incoming information to create the answers array. I will be replacing these numbers as they fill them out
+            //themselves but for now we need all the originals.
+            if(headers[index]=="USERID" || headers[index]=="INDVID" || headers[index]=="RATING"  || headers[index]=="CONFIDENCE" ){
+                arrayItemAnswers[headers[index]] = $(item).html();
+            }
 
 
-    //EE: ................... Start: array_fullvalues, answersArray, fn_obj_array (using JSON) ..................
-    //E: Way (2)
-    var array_fullvalues = nsga2_values_as_json;
-    console.log("L.982 full values of 'wholeTable' using JSON file: \n" + array_fullvalues.length);
-//    console.log("L.983 full values of 'wholeTable': \n" + JSON.stringify (array_fullvalues));
+            if(headers[index]=="F0" || headers[index]=="F1" || headers[index]=="F2"  || headers[index]=="F3"  || headers[index]=="F4"  || headers[index]=="F5" ){
+//                chartArrayItems[headers[index]] = $(item).html();
+                fn_obj_arrayItems[headers[index]] = $(item).html();
+            }
+        });
 
-    var answersArray =[];
-    var fn_obj_array =[];//EE: To store values of F0,F1,F2,F3,F4,F5 (objective functions) of 20 alt
-    for (var i = 0; i < array_fullvalues.length; i++){
-        var arrayItemAnswers_js = {};
-        var fn_obj_arrayItems_js = {};
+        arrayItemAnswers["stripCropping"]="0";
+        arrayItemAnswers["cropRotation"]="0";
+        arrayItemAnswers["coverCrops"]="0";
+        arrayItemAnswers["filterStrips"]="0";
+        arrayItemAnswers["grassedWaterways"]="0";
+        arrayItemAnswers["conservationTillage"]="0";
+        arrayItemAnswers["Wetlands"]="0";
 
-        arrayItemAnswers_js["USERID"]= array_fullvalues[i].USERID.toString();
-        arrayItemAnswers_js["INDVID"]= array_fullvalues[i].INDVID.toString();
-        arrayItemAnswers_js["RATING"]= array_fullvalues[i].RATING.toString();
-        arrayItemAnswers_js["CONFIDENCE"]= array_fullvalues[i].CONFIDENCE.toString();
-        arrayItemAnswers_js["stripCropping"]="0";
-        arrayItemAnswers_js["cropRotation"]="0";
-        arrayItemAnswers_js["coverCrops"]="0";
-        arrayItemAnswers_js["filterStrips"]="0";
-        arrayItemAnswers_js["grassedWaterways"]="0";
-        arrayItemAnswers_js["conservationTillage"]="0";
-        arrayItemAnswers_js["Wetlands"]="0";
-
-        fn_obj_arrayItems_js["F0"]= array_fullvalues[i].F0;
-        fn_obj_arrayItems_js["F1"]= array_fullvalues[i].F1;
-        fn_obj_arrayItems_js["F2"]= array_fullvalues[i].F2;
-        fn_obj_arrayItems_js["F3"]= array_fullvalues[i].F3;
-        fn_obj_arrayItems_js["F4"]= array_fullvalues[i].F4;
-        fn_obj_arrayItems_js["F5"]= array_fullvalues[i].F5;
-
-        answersArray.push(arrayItemAnswers_js);
-        fn_obj_array.push(fn_obj_arrayItems_js);
-    }
-//    console.log("L.1013 answersArray using JSON file: \n"+ JSON.stringify(answersArray));
-//    console.log("L.1014 fn_obj_array using JSON file: \n"+ JSON.stringify(fn_obj_array));
-//    //EE: ................... End: array_fullvalues, answersArray, fn_obj_array (using JSON) ..................
-
-    // =============================   End   SAVING the "wholeTable" as array   ============================== //
+//        array.push(arrayItem);
+        array_fullvalues.push(arrayItem);//E:It merges or appends ALL the 'wholeTable' values into one array
+        answersArray.push(arrayItemAnswers);//EE: store RATING and CONFIDENCE (answer) values of 'wholeTable' of 20 alt
+        fn_obj_array.push(fn_obj_arrayItems);//E: store F0,F1,...,F5 values (objective functions)of 'wholeTable' of 20 alt
+    });
+    //    //EE:This console.log shows all values from 'wholeTable' saved as array named 'array_fullvalues'
+//        console.log("L.969 full values of 'wholeTable': \n" + JSON.stringify (array_fullvalues));
+    //    console.log("L969 length of 'array_fullvalues': \n" + array_fullvalues.length);//E:It gives 20 (because of 20 alternatives)
+//    console.log("L.972 full values of 'answersArr[ay': \n" + JSON.stringify (answersArray));//EE:Give answer of
+//    // RATING, CONFIDENCE, and attributes USERID, INDVID, and "stripCropping=0", "cropRotation=0", so on of 20 Alt.
+//    console.log("L.974 full values of 'fn_obj_array': \n" + JSON.stringify (fn_obj_array));//EE: Give MEAN, MIN and
+    // MAX values of F0,F1,F2,F3,F4,F5 (objective functions) for all the 20 Alternatives
+    // =============================   End   SAVING the "wholeTable" in some arrays   ============================== //
 
 
     // =========  Start: SAVING Function-objectives values of each Subbasin (right part of wholeTable)  ============= //
@@ -1035,40 +965,32 @@ in US Dollars" style="margin: 0px 0px 0px
     var Cost_meanVals_array = new Array();//E: To save mean values of Cost of each subbasin (108 in total) as Array
     var SR_meanVals_array = new Array();//E: To save mean values of SR of each subbasin (108 in total) as Array
     var NR_meanVals_array = new Array();//E: To save mean values of NR of each subbasin (108 in total) as Array
-//    var heatitera = 1;
-    var iter_altern = 1;
-//    var heatiter = 1;
-    var iter_subbasins = 1;
+    var heatitera = 1;
+    var heatiter = 1;
 
-    //E: ****************************** Start: Saving Using JSON DATA *******************************
-    //EE: iteration through the '20 ALTERNATIVES' - JSON Data
-    for (var i = 0; i < array_fullvalues.length; i++){
-//        heatiter = 1;
-        var iter_subbasins = 1;
-        var PFR_mean_value_js = new Array();
-        var Cost_mean_value_js = new Array();
-        var SR_mean_value_js = new Array();
-        var NR_mean_value_js = new Array();
+    $('#wholeTable tbody tr').has('td').each(function() {//EE: Return all (tr) elements that have(td) element inside them
+        heatiter=1;
+        var PFR_mean_value = new Array();
+        var Cost_mean_value = new Array();
+        var SR_mean_value = new Array();
+        var NR_mean_value = new Array();
+        
+        //		$('td:nth-child(15)').nextUntil('td:nth-child(143)').each(function() {
+        $('td:gt(14):lt(127)',$(this)).each(function() {
+            var subarr=[];
 
-        //EE: iteration through the '130 SUBBAINS' - JSON Data
-        //EE: 'list_header_subbasins' is setup above
-        list_header_subbasins.forEach(function(item){
-            var key = item;//E: The 'item' (S1,S2,S3, etc) is saved as 'key' at each loop
-            //EE: The value of 'array_fullvalues[i]' is searched by its 'key' value (for example: by S1).
-            var my_target = array_fullvalues[i][key];//EE: it returns [0,0,0],[...],[...],[...],[...],[0,0,0]
-            var aux2 = JSON.parse("["+my_target+"]");//EE: the previous result is converted in array of 6 items
-            // if (i<1) console.log("L.1052: \n"+ typeof aux2+ " ; "+ aux2.length+ " ; "+ JSON.stringify(aux2));
-
-            PFR_mean_value_js.push({name:iter_subbasins,val:-aux2[1][0]});//E:the second bracket i.e.[0] gives the mean value
-            Cost_mean_value_js.push({name:iter_subbasins, val:-aux2[2][0]});
-            SR_mean_value_js.push({name:iter_subbasins, val:-aux2[3][0]});
-            NR_mean_value_js.push({name:iter_subbasins, val:-aux2[4][0]});
-            iter_subbasins++;
+            subarr = JSON.parse("["+$(this).html()+"]");
+            //   subarr=($(this).html()).split(',');
+            //   console.log("************************************************")
+            //   console.log(JSON.stringify(subarr[1][0]))
+            PFR_mean_value.push({name:heatiter, val:-subarr[1][0]});//E: the second bracket i.e.[0] gives the mean value
+            Cost_mean_value.push({name:heatiter, val:-subarr[2][0]});
+            SR_mean_value.push({name:heatiter, val:-subarr[3][0]});
+            NR_mean_value.push({name:heatiter, val:-subarr[4][0]});
+            heatiter++;
         });
-        if (i<1) console.log("L.1064: PFR_mean_value_js ; #items: "+PFR_mean_value_js.length);
-        if (i<1) console.log("L.1065: PFR_mean_value_js: \n"+ JSON.stringify(PFR_mean_value_js));
 
-        PFR_mean_value_js.sort(function (a, b) {
+        PFR_mean_value.sort(function (a, b) {
             if ((typeof b.val === 'undefined' && typeof a.val !== 'undefined') || a.val < b.val) {
                 return -1;
             }
@@ -1078,7 +1000,7 @@ in US Dollars" style="margin: 0px 0px 0px
             return 0;
         });
 
-        Cost_mean_value_js.sort(function (a, b) {
+        Cost_mean_value.sort(function (a, b) {
             if ((typeof b.val === 'undefined' && typeof a.val !== 'undefined') || a.val < b.val) {
                 return -1;
             }
@@ -1088,7 +1010,7 @@ in US Dollars" style="margin: 0px 0px 0px
             return 0;
         });
 
-        SR_mean_value_js.sort(function (a, b) {
+        SR_mean_value.sort(function (a, b) {
             if ((typeof b.val === 'undefined' && typeof a.val !== 'undefined') || a.val < b.val) {
                 return -1;
             }
@@ -1098,7 +1020,7 @@ in US Dollars" style="margin: 0px 0px 0px
             return 0;
         });
 
-        NR_mean_value_js.sort(function (a, b) {
+        NR_mean_value.sort(function (a, b) {
             if ((typeof b.val === 'undefined' && typeof a.val !== 'undefined') || a.val < b.val) {
                 return -1;
             }
@@ -1108,93 +1030,14 @@ in US Dollars" style="margin: 0px 0px 0px
             return 0;
         });
 
-        PFR_meanVals_array.push({name:iter_altern, val:PFR_mean_value_js});
-        Cost_meanVals_array.push({name:iter_altern, val:Cost_mean_value_js});
-        SR_meanVals_array.push({name:iter_altern, val:SR_mean_value_js});
-        NR_meanVals_array.push({name:iter_altern, val:NR_mean_value_js});
+        PFR_meanVals_array.push({name:heatitera, val:PFR_mean_value});//E: Before heatpfra
+        Cost_meanVals_array.push({name:heatitera, val:Cost_mean_value});//E: Before heatera
+        SR_meanVals_array.push({name:heatitera, val:SR_mean_value});//E: Before heatseda
+        NR_meanVals_array.push({name:heatitera, val:NR_mean_value});//E: Bedfore heatnita
 
-//        heatitera++;
-        iter_altern++
-    }
-    //E: ****************************** End: Saving Using JSON DATA *******************************
-
-    //E: ****************************** Start: Saving using MySQL DATA *******************************
-//    //EE: Iteration through  the '20 ALTERNATIVES' - MySQL Data
-//    $('#wholeTable tbody tr').has('td').each(function() {//EE: Return all (tr) elements that have(td) element inside them
-////        heatiter=1;
-//        iter_subbasins = 1;
-//        var PFR_mean_value = new Array();
-//        var Cost_mean_value = new Array();
-//        var SR_mean_value = new Array();
-//        var NR_mean_value = new Array();
-//
-//        //EE: iteration through the '130 SUBBAINS' - MySQL Data
-//        //$('td:nth-child(15)').nextUntil('td:nth-child(143)').each(function() {
-//        $('td:gt(14):lt(127)',$(this)).each(function() {
-//            var subarr=[];
-//
-//            subarr = JSON.parse("["+$(this).html()+"]");
-//            //   subarr=($(this).html()).split(',');
-//            //   console.log(JSON.stringify(subarr[1][0]))
-//            PFR_mean_value.push({name:iter_subbasins, val:-subarr[1][0]});//E: the second bracket i.e.[0] gives the mean value
-//            Cost_mean_value.push({name:iter_subbasins, val:-subarr[2][0]});
-//            SR_mean_value.push({name:iter_subbasins, val:-subarr[3][0]});
-//            NR_mean_value.push({name:iter_subbasins, val:-subarr[4][0]});
-////            heatiter++;
-//            iter_subbasins++;
-//        });
-////        console.log("L.1058 mean values of PFR 'PFR_mean_value': \n"+ JSON.stringify(PFR_mean_value));
-//
-//        PFR_mean_value.sort(function (a, b) {
-//            if ((typeof b.val === 'undefined' && typeof a.val !== 'undefined') || a.val < b.val) {
-//                return -1;
-//            }
-//            if ((typeof a.val === 'undefined' && typeof b.val !== 'undefined') || a.val > b.val) {
-//                return 1;
-//            }
-//            return 0;
-//        });
-//
-//        Cost_mean_value.sort(function (a, b) {
-//            if ((typeof b.val === 'undefined' && typeof a.val !== 'undefined') || a.val < b.val) {
-//                return -1;
-//            }
-//            if ((typeof a.val === 'undefined' && typeof b.val !== 'undefined') || a.val > b.val) {
-//                return 1;
-//            }
-//            return 0;
-//        });
-//
-//        SR_mean_value.sort(function (a, b) {
-//            if ((typeof b.val === 'undefined' && typeof a.val !== 'undefined') || a.val < b.val) {
-//                return -1;
-//            }
-//            if ((typeof a.val === 'undefined' && typeof b.val !== 'undefined') || a.val > b.val) {
-//                return 1;
-//            }
-//            return 0;
-//        });
-//
-//        NR_mean_value.sort(function (a, b) {
-//            if ((typeof b.val === 'undefined' && typeof a.val !== 'undefined') || a.val < b.val) {
-//                return -1;
-//            }
-//            if ((typeof a.val === 'undefined' && typeof b.val !== 'undefined') || a.val > b.val) {
-//                return 1;
-//            }
-//            return 0;
-//        });
-//
-//        PFR_meanVals_array.push({name:iter_altern, val:PFR_mean_value});//E: Before heatpfra
-//        Cost_meanVals_array.push({name:iter_altern, val:Cost_mean_value});//E: Before heatera
-//        SR_meanVals_array.push({name:iter_altern, val:SR_mean_value});//E: Before heatseda
-//        NR_meanVals_array.push({name:iter_altern, val:NR_mean_value});//E: Bedfore heatnita
-//
-////        heatitera++;
-//        iter_altern++
-//    });
-//    //    console.log("L.1064 PFR_meanVals_array: \n"+ JSON.stringify(PFR_meanVals_array));
-//    //E: ****************************** End: Saving Using MySQL DATA *******************************
+        heatitera++;
+    });
+//    console.log("L.1064 PFR_meanVals_array: \n"+ JSON.stringify(PFR_meanVals_array));
 
     // These two lines get the subbasins' IDs with PFR values (127 in total) and store as 'PFR_meanVals_array'
     var subbasins_with_PFR = new Array();//E: Before: ressss
@@ -1490,20 +1333,22 @@ in US Dollars" style="margin: 0px 0px 0px
                     subBasinArray[index][value1]=assArray[count1];
                     count1=count1+1;
                 });
+//                alert ("count1: "+ count1);
 
                 //Here I am looping and finding out which values do not equal 0. I put them in an string and will stick that string into an Array. (BELOW)
                 $.each(subBasinArray, function(index2, value2) {
-                    if (subBasinArray[index2][value1]!=="0.0"){
+//                    if (subBasinArray[index2][value1]!=="0.0"){//EE: For "ecw"
+                    if (subBasinArray[index2][value1]!=="0"){//EE: For "Dairy-Mckay"
                         words=words + subBasinArray[index2]["subbasinID"] + ",";
                     }
                 });
-
+//                alert("L.1346 words: "+ words);
                 forMapArray[count2]["subs"]=words;
                 //This one shows all the subbasins for the each bmp
                 count2=count2+1;
             });
-            console.log("L.1337 subBasinArray: \n"+ JSON.stringify(subBasinArray));
-            console.log("L.1348 forMapArray: \n"+ JSON.stringify(forMapArray));
+//            console.log("L.1337 subBasinArray: \n"+ JSON.stringify(subBasinArray));
+//            console.log("L.1348 forMapArray: \n"+ JSON.stringify(forMapArray));
 
             //Now that I have all the data arranged for the incoming dataset (multiple arrays labeled 1 and 2)  I
             // initialize mapping. It is on mapping.js
