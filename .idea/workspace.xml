@@ -13,35 +13,14 @@
     <splitter split-orientation="vertical" split-proportion="0.22797927">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="g2c.php" pinned="false" current-in-tab="false">
+          <file leaf-file-name="g2c.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/model/g2c.php">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="-11360">
                   <caret line="194" column="16" lean-forward="true" selection-start-line="194" selection-start-column="16" selection-end-line="194" selection-end-column="16" />
                   <folding>
-                    <marker date="1549534035671" expanded="true" signature="4968:8831" ph="//..." />
                     <marker date="1549534035671" expanded="true" signature="5926:5977" ph="SELECT * FRO... takefeedback" />
                     <marker date="1549534035671" expanded="true" signature="8037:8086" ph="SELECT * FRO... session_info" />
-                    <marker date="1549534035671" expanded="true" signature="54331:55594" ph="{...}" />
-                    <marker date="1549534035671" expanded="true" signature="55597:55896" ph="//..." />
-                    <marker date="1549534035671" expanded="true" signature="56713:56800" ph="//..." />
-                    <marker date="1549534035671" expanded="true" signature="57465:60944" ph="{...}" />
-                    <marker date="1549534035671" expanded="true" signature="57727:57836" ph="//..." />
-                    <marker date="1549534035671" expanded="true" signature="57891:58841" ph="{...}" />
-                    <marker date="1549534035671" expanded="true" signature="57922:58092" ph="//..." />
-                    <marker date="1549534035671" expanded="true" signature="58260:58433" ph="//..." />
-                    <marker date="1549534035671" expanded="false" signature="59093:59421" ph="{...}" />
-                    <marker date="1549534035671" expanded="true" signature="59194:59240" ph="{...}" />
-                    <marker date="1549534035671" expanded="true" signature="59340:59385" ph="{...}" />
-                    <marker date="1549534035671" expanded="false" signature="59477:59805" ph="{...}" />
-                    <marker date="1549534035671" expanded="true" signature="59578:59624" ph="{...}" />
-                    <marker date="1549534035671" expanded="true" signature="59724:59769" ph="{...}" />
-                    <marker date="1549534035671" expanded="false" signature="59859:60187" ph="{...}" />
-                    <marker date="1549534035671" expanded="true" signature="59960:60006" ph="{...}" />
-                    <marker date="1549534035671" expanded="true" signature="60106:60151" ph="{...}" />
-                    <marker date="1549534035671" expanded="false" signature="60241:60569" ph="{...}" />
-                    <marker date="1549534035671" expanded="true" signature="60342:60388" ph="{...}" />
-                    <marker date="1549534035671" expanded="true" signature="60488:60533" ph="{...}" />
                     <marker date="1549534035671" expanded="true" signature="113020:113034" ph="..." />
                     <marker date="1549534035671" expanded="true" signature="113047:113055" ph="..." />
                     <marker date="1549534035671" expanded="true" signature="118356:118370" ph="..." />
@@ -57,35 +36,6 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="out.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/google_plat/geojson/data/out.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding>
-                    <element signature="e#98#98436#0" expanded="false" />
-                    <element signature="e#151#98418#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="map1.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/../cs540/search1/map_with_geojson/us/map1.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3400">
-                  <caret line="200" column="22" lean-forward="false" selection-start-line="200" selection-start-column="22" selection-end-line="200" selection-end-column="22" />
-                  <folding>
-                    <marker date="1549005114244" expanded="true" signature="8095:8106" ph="..." />
-                    <marker date="1549005114244" expanded="true" signature="8165:8171" ph=" " />
-                    <marker date="1549005114244" expanded="true" signature="8171:8177" ph=" " />
-                    <marker date="1549005114244" expanded="true" signature="8181:8187" ph=" " />
-                    <marker date="1549005114244" expanded="true" signature="8187:8193" ph=" " />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="mapping_new_g2c.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/model/js/mapping_new_g2c.js">
               <provider selected="true" editor-type-id="text-editor">
@@ -95,16 +45,6 @@
                     <element signature="e#36557#38048#0" expanded="false" />
                     <element signature="e#50253#51353#0" expanded="false" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="style2.css" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/model/css/style2.css">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3536">
-                  <caret line="208" column="11" lean-forward="false" selection-start-line="208" selection-start-column="1" selection-end-line="208" selection-end-column="11" />
-                  <folding />
                 </state>
               </provider>
             </entry>
@@ -125,7 +65,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="bargraphcpy_g2c.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="bargraphcpy_g2c.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/model/js/bargraphcpy_g2c.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="85">
@@ -171,48 +111,6 @@
                     <element signature="e#36557#38048#0" expanded="false" />
                     <element signature="e#50253#51353#0" expanded="false" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="datos.json" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/google_plat/geojson/Mckay_maptest/datos.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="takefeedback2.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/model/data/takefeedback2.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="442">
-                  <caret line="344" column="40" lean-forward="false" selection-start-line="344" selection-start-column="36" selection-end-line="344" selection-end-column="40" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="stream_g.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/model/data/stream_g.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="34">
-                  <caret line="84615" column="6" lean-forward="true" selection-start-line="84615" selection-start-column="6" selection-end-line="84615" selection-end-column="6" />
-                  <folding>
-                    <element signature="e#69#2746631#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="takefeedback - Copy.json" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/model/data/takefeedback - Copy.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
                 </state>
               </provider>
             </entry>
@@ -344,7 +242,7 @@
     <handled-path value="$PROJECT_DIR$/google_plat/encoding/node_modules" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="416" />
     <option name="y" value="2" />
     <option name="width" value="957" />
@@ -465,15 +363,15 @@
       <workItem from="1548578974412" duration="3182000" />
       <workItem from="1548620039537" duration="73009000" />
       <workItem from="1549049620643" duration="4900000" />
-      <workItem from="1549406852846" duration="53021000" />
+      <workItem from="1549406852846" duration="53047000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="699711000" />
+    <option name="totallyTimeSpent" value="699737000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="416" y="2" width="957" height="735" extended-state="1" />
+    <frame x="416" y="2" width="957" height="735" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29549718" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -794,17 +692,6 @@
     </entry>
     <entry file="file://F:/OSU/20_Winter_2019/GEOG_571_Web_Mapping/map_geojson_lab03/map_test/assets/us-states.geojson" />
     <entry file="file://F:/OSU/20_Winter_2019/GEOG_571_Web_Mapping/map_geojson_lab03/map_test/ecw5.geojson" />
-    <entry file="file://$PROJECT_DIR$/google_plat/geojson/data/out.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#98#98436#0" expanded="false" />
-            <element signature="e#151#98418#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/css/style2.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3536">
@@ -909,6 +796,17 @@
         <state relative-caret-position="85">
           <caret line="419" column="51" lean-forward="false" selection-start-line="419" selection-start-column="51" selection-end-line="419" selection-end-column="51" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/google_plat/geojson/data/out.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#98#98436#0" expanded="false" />
+            <element signature="e#151#98418#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
