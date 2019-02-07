@@ -1,5 +1,6 @@
 // JavaScript Document
 function subBasinGraph1() {
+    var numberOf_alternatives = array_fullvalues.length; //EE: Give 20, because of 20 alterantives ('array_fullvalues' was obtained at L.987 g2.php)
     var option = document.getElementById('subDrop').value;
     //alert(option);
     var rowlen;
@@ -57,9 +58,11 @@ function subBasinGraph1() {
 
     if (option == "Watershed") {
         // alert ("wholeTable: " + wholeTable);
-        //alert ("numebr of row in DDBB: " + document.getElementById('wholeTable').rows.length); // E: gets the number
+        //alert ("number of rows in DDBB: " + document.getElementById('wholeTable').rows.length); // E: gets the number
         // of rows o the DDBB, in this case 21 (header is one row)
-        for (rowlen = 0; rowlen < document.getElementById('wholeTable').rows.length - 1; rowlen++) {
+
+        // for (rowlen = 0; rowlen < document.getElementById('wholeTable').rows.length - 1; rowlen++) {
+        for (rowlen = 0; rowlen < numberOf_alternatives; rowlen++) {
             // E: Through this for-loop all data F1,F2, F3, and F4 in read
             //JSON.parse(chartArray[rowlen].F1)[0]
             var m11 = Number(parseFloat(Math.abs(JSON.parse(fn_obj_array[rowlen].F1)[0])));
@@ -119,8 +122,11 @@ function subBasinGraph1() {
             // Use an HTML tooltip.
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
+            // vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+            //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1}, direction: -1},
             vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
-                gridlines: {count: document.getElementById('wholeTable').rows.length - 1}, direction: -1},
+                gridlines: {count: numberOf_alternatives}, direction: -1},
+
             intervals: {style: 'bars',color: '#fff'},
             // interval: {max: {style: 'bars', lineWidth:1, fillOpacity: 1,color: '#ab1ab1'},// Added by E.N.
             //     min: {style: 'bars',lineWidth:1, fillOpacity: 1, color: '#000000'}}, // Added by E.N.
@@ -139,8 +145,11 @@ function subBasinGraph1() {
             // Use an HTML tooltip.
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
+            // vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+            //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
             vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
-                gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
+                gridlines: {count: numberOf_alternatives},direction: -1},
+
             // intervals: {style: 'bars',color: '#fff'},
             // interval: {max: {style: 'bars', lineWidth:1, fillOpacity: 1,color: '#ab1ab1'},// Added by E.N.
             //     min: {style: 'bars',lineWidth:2, fillOpacity: 1, color: '#000000'}}, // Added by E.N.
@@ -159,8 +168,11 @@ function subBasinGraph1() {
             // Use an HTML tooltip.
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
+            // vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+            //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
             vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
-                gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
+                gridlines: {count: numberOf_alternatives},direction: -1},
+
             // intervals: {style: 'bars',color: '#fff'},
             // interval: {max: {style: 'boxes', lineWidth:0.1, fillOpacity: 0.6,color: '#ab1ab1'},// Added by E.N.
             //     min: {style: 'boxes',lineWidth:0.1, fillOpacity: 0.6, color: '#000000'}}, // Added by E.N.
@@ -179,8 +191,11 @@ function subBasinGraph1() {
             // Use an HTML tooltip.
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
+            // vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+            //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
             vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
-                gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
+                gridlines: {count: numberOf_alternatives},direction: -1},
+
             // intervals: {style: 'bars',color: '#fff'},
             // interval: {max: {style: 'points', lineWidth:1, fillOpacity: 1,color: '#ab1ab1'},// Added by E.N.
             //     min: {style: 'points',lineWidth:1, fillOpacity: 1, color: '#000000'}}, // Added by E.N.
@@ -268,7 +283,8 @@ function subBasinGraph1() {
     }
 // ---------------------- else
     else { // else means "option == 'subbasin'"
-        for (rowlen = 0; rowlen < document.getElementById('wholeTable').rows.length - 1; rowlen++) {
+        // for (rowlen = 0; rowlen < document.getElementById('wholeTable').rows.length - 1; rowlen++) {
+        for (rowlen = 0; rowlen < numberOf_alternatives; rowlen++) {
             var subChart = [];
             // $.each(array[rowlen], function(key, value) {
             $.each(array_fullvalues[rowlen], function(key, value) {
@@ -339,8 +355,11 @@ function subBasinGraph1() {
             // Use an HTML tooltip.
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
+            // vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+            //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
             vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
-                gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
+                gridlines: {count: numberOf_alternatives},direction: -1},
+
             intervals: {style: 'bars',color: '#fff'},
             // hAxis: {textPosition: 'none'},
             hAxis:{title:'Discharge in cubic feet per second', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
@@ -357,8 +376,11 @@ function subBasinGraph1() {
             // Use an HTML tooltip.
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
+            // vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+            //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
             vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
-                gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
+                gridlines: {count: numberOf_alternatives},direction: -1},
+
             intervals: {style: 'bars',color: '#fff'},
             // hAxis: {textPosition: 'none'},
             hAxis:{title:'Cost in US Dollars', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
@@ -375,8 +397,10 @@ function subBasinGraph1() {
             // Use an HTML tooltip.
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
+            // vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+            //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
             vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
-                gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
+                gridlines: {count: numberOf_alternatives},direction: -1},
             intervals: {style: 'bars',color: '#fff'},
             // hAxis: {textPosition: 'none'},
             hAxis:{title:'Sediment Reduction in Tons', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
@@ -393,8 +417,10 @@ function subBasinGraph1() {
             // Use an HTML tooltip.
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
+            // vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+            //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
             vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
-                gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
+                gridlines: {count: numberOf_alternatives},direction: -1},
             intervals: {style: 'bars',color: '#fff'},
             // hAxis: {textPosition: 'none'},
             hAxis:{title:'Nitrate Reduction in Kg', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,

@@ -1,0 +1,12 @@
+# .idea is creted by PhpStorm
+.idea
+
+# ignore folders
+control_in_googleMap/*
+ecw_maptest/*
+google_plat/*
+mt_2/*
+
+
+# ignore all pdf files
+*.pdf

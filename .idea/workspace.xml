@@ -10,31 +10,48 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.68911916">
+    <splitter split-orientation="vertical" split-proportion="0.22797927">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="g2c.php" pinned="false" current-in-tab="true">
+          <file leaf-file-name="g2c.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/model/g2c.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-165">
-                  <caret line="1193" column="23" lean-forward="true" selection-start-line="1193" selection-start-column="23" selection-end-line="1193" selection-end-column="23" />
+                <state relative-caret-position="-11360">
+                  <caret line="194" column="16" lean-forward="true" selection-start-line="194" selection-start-column="16" selection-end-line="194" selection-end-column="16" />
                   <folding>
-                    <element signature="e#58905#59217#0#HTML" expanded="false" />
-                    <element signature="e#59269#59581#0#HTML" expanded="false" />
-                    <element signature="e#59631#59943#0#HTML" expanded="false" />
-                    <element signature="e#59993#60305#0#HTML" expanded="false" />
-                    <marker date="1549529597407" expanded="true" signature="5926:5977" ph="SELECT * FRO... takefeedback" />
-                    <marker date="1549529597407" expanded="true" signature="8039:8088" ph="SELECT * FRO... session_info" />
-                    <marker date="1549529597407" expanded="true" signature="112830:112844" ph="..." />
-                    <marker date="1549529597407" expanded="true" signature="112857:112865" ph="..." />
-                    <marker date="1549529597407" expanded="true" signature="118166:118180" ph="..." />
-                    <marker date="1549529597407" expanded="true" signature="118193:118201" ph="..." />
-                    <marker date="1549529597407" expanded="true" signature="123266:123280" ph="..." />
-                    <marker date="1549529597407" expanded="true" signature="123293:123301" ph="..." />
-                    <marker date="1549529597407" expanded="true" signature="128273:128287" ph="..." />
-                    <marker date="1549529597407" expanded="true" signature="128300:128308" ph="..." />
-                    <marker date="1549529597407" expanded="true" signature="133293:133307" ph="..." />
-                    <marker date="1549529597407" expanded="true" signature="133320:133328" ph="..." />
+                    <marker date="1549534035671" expanded="true" signature="4968:8831" ph="//..." />
+                    <marker date="1549534035671" expanded="true" signature="5926:5977" ph="SELECT * FRO... takefeedback" />
+                    <marker date="1549534035671" expanded="true" signature="8037:8086" ph="SELECT * FRO... session_info" />
+                    <marker date="1549534035671" expanded="true" signature="54331:55594" ph="{...}" />
+                    <marker date="1549534035671" expanded="true" signature="55597:55896" ph="//..." />
+                    <marker date="1549534035671" expanded="true" signature="56713:56800" ph="//..." />
+                    <marker date="1549534035671" expanded="true" signature="57465:60944" ph="{...}" />
+                    <marker date="1549534035671" expanded="true" signature="57727:57836" ph="//..." />
+                    <marker date="1549534035671" expanded="true" signature="57891:58841" ph="{...}" />
+                    <marker date="1549534035671" expanded="true" signature="57922:58092" ph="//..." />
+                    <marker date="1549534035671" expanded="true" signature="58260:58433" ph="//..." />
+                    <marker date="1549534035671" expanded="false" signature="59093:59421" ph="{...}" />
+                    <marker date="1549534035671" expanded="true" signature="59194:59240" ph="{...}" />
+                    <marker date="1549534035671" expanded="true" signature="59340:59385" ph="{...}" />
+                    <marker date="1549534035671" expanded="false" signature="59477:59805" ph="{...}" />
+                    <marker date="1549534035671" expanded="true" signature="59578:59624" ph="{...}" />
+                    <marker date="1549534035671" expanded="true" signature="59724:59769" ph="{...}" />
+                    <marker date="1549534035671" expanded="false" signature="59859:60187" ph="{...}" />
+                    <marker date="1549534035671" expanded="true" signature="59960:60006" ph="{...}" />
+                    <marker date="1549534035671" expanded="true" signature="60106:60151" ph="{...}" />
+                    <marker date="1549534035671" expanded="false" signature="60241:60569" ph="{...}" />
+                    <marker date="1549534035671" expanded="true" signature="60342:60388" ph="{...}" />
+                    <marker date="1549534035671" expanded="true" signature="60488:60533" ph="{...}" />
+                    <marker date="1549534035671" expanded="true" signature="113020:113034" ph="..." />
+                    <marker date="1549534035671" expanded="true" signature="113047:113055" ph="..." />
+                    <marker date="1549534035671" expanded="true" signature="118356:118370" ph="..." />
+                    <marker date="1549534035671" expanded="true" signature="118383:118391" ph="..." />
+                    <marker date="1549534035671" expanded="true" signature="123456:123470" ph="..." />
+                    <marker date="1549534035671" expanded="true" signature="123483:123491" ph="..." />
+                    <marker date="1549534035671" expanded="true" signature="128463:128477" ph="..." />
+                    <marker date="1549534035671" expanded="true" signature="128490:128498" ph="..." />
+                    <marker date="1549534035671" expanded="true" signature="133483:133497" ph="..." />
+                    <marker date="1549534035671" expanded="true" signature="133510:133518" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -72,8 +89,8 @@
           <file leaf-file-name="mapping_new_g2c.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/model/js/mapping_new_g2c.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="56">
-                  <caret line="408" column="22" lean-forward="false" selection-start-line="408" selection-start-column="14" selection-end-line="408" selection-end-column="22" />
+                <state relative-caret-position="566">
+                  <caret line="408" column="22" lean-forward="false" selection-start-line="408" selection-start-column="22" selection-end-line="408" selection-end-column="22" />
                   <folding>
                     <element signature="e#36557#38048#0" expanded="false" />
                     <element signature="e#50253#51353#0" expanded="false" />
@@ -108,11 +125,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="bargraphcpy_g2c.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="bargraphcpy_g2c.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/model/js/bargraphcpy_g2c.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-9">
-                  <caret line="47" column="25" lean-forward="false" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="25" />
+                <state relative-caret-position="85">
+                  <caret line="419" column="51" lean-forward="false" selection-start-line="419" selection-start-column="51" selection-end-line="419" selection-end-column="51" />
                   <folding />
                 </state>
               </provider>
@@ -125,25 +142,21 @@
           <file leaf-file-name="g2c.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/model/g2c.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-638">
-                  <caret line="1043" column="25" lean-forward="false" selection-start-line="1043" selection-start-column="25" selection-end-line="1043" selection-end-column="25" />
+                <state relative-caret-position="1339">
+                  <caret line="1194" column="18" lean-forward="false" selection-start-line="1194" selection-start-column="18" selection-end-line="1194" selection-end-column="18" />
                   <folding>
-                    <element signature="e#58905#59217#0#HTML" expanded="false" />
-                    <element signature="e#59269#59581#0#HTML" expanded="false" />
-                    <element signature="e#59631#59943#0#HTML" expanded="false" />
-                    <element signature="e#59993#60305#0#HTML" expanded="false" />
-                    <marker date="1549529597407" expanded="true" signature="5926:5977" ph="SELECT * FRO... takefeedback" />
-                    <marker date="1549529597407" expanded="true" signature="8039:8088" ph="SELECT * FRO... session_info" />
-                    <marker date="1549529597407" expanded="true" signature="112830:112844" ph="..." />
-                    <marker date="1549529597407" expanded="true" signature="112857:112865" ph="..." />
-                    <marker date="1549529597407" expanded="true" signature="118166:118180" ph="..." />
-                    <marker date="1549529597407" expanded="true" signature="118193:118201" ph="..." />
-                    <marker date="1549529597407" expanded="true" signature="123266:123280" ph="..." />
-                    <marker date="1549529597407" expanded="true" signature="123293:123301" ph="..." />
-                    <marker date="1549529597407" expanded="true" signature="128273:128287" ph="..." />
-                    <marker date="1549529597407" expanded="true" signature="128300:128308" ph="..." />
-                    <marker date="1549529597407" expanded="true" signature="133293:133307" ph="..." />
-                    <marker date="1549529597407" expanded="true" signature="133320:133328" ph="..." />
+                    <marker date="1549534035671" expanded="true" signature="5926:5977" ph="SELECT * FRO... takefeedback" />
+                    <marker date="1549534035671" expanded="true" signature="8037:8086" ph="SELECT * FRO... session_info" />
+                    <marker date="1549534035671" expanded="true" signature="113020:113034" ph="..." />
+                    <marker date="1549534035671" expanded="true" signature="113047:113055" ph="..." />
+                    <marker date="1549534035671" expanded="true" signature="118356:118370" ph="..." />
+                    <marker date="1549534035671" expanded="true" signature="118383:118391" ph="..." />
+                    <marker date="1549534035671" expanded="true" signature="123456:123470" ph="..." />
+                    <marker date="1549534035671" expanded="true" signature="123483:123491" ph="..." />
+                    <marker date="1549534035671" expanded="true" signature="128463:128477" ph="..." />
+                    <marker date="1549534035671" expanded="true" signature="128490:128498" ph="..." />
+                    <marker date="1549534035671" expanded="true" signature="133483:133497" ph="..." />
+                    <marker date="1549534035671" expanded="true" signature="133510:133518" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -220,7 +233,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>forMapArray</find>
       <find>1348</find>
       <find>1022</find>
       <find>words</find>
@@ -237,19 +249,20 @@
       <find>fill</find>
       <find>header</find>
       <find>siteHeader</find>
-      <find>wholeTable</find>
       <find>wholet</find>
       <find>918</find>
       <find>XMLHttpRequest</find>
       <find>stream_g</find>
       <find>317</find>
       <find>push</find>
-      <find>xmlhttp</find>
       <find>headers</find>
       <find>wholeta</find>
       <find>1058</find>
       <find>i&lt;</find>
       <find>heatiter</find>
+      <find>xmlhttp</find>
+      <find>wholetable</find>
+      <find>wholeTable</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -312,11 +325,11 @@
         <option value="$PROJECT_DIR$/model/css/style2.css" />
         <option value="$PROJECT_DIR$/model/js/heatmapnew1_g2c.js" />
         <option value="$PROJECT_DIR$/model/data/takefeedback2.json" />
-        <option value="$PROJECT_DIR$/model/js/bargraphcpy_g2c.js" />
         <option value="$PROJECT_DIR$/google_plat/geojson/ajax_gjon_03.html" />
         <option value="$PROJECT_DIR$/google_plat/geojson/ajax_gjon_01.html" />
         <option value="$PROJECT_DIR$/model/js/mapping_new_g2c.js" />
         <option value="$PROJECT_DIR$/model/data/takefeedback2.js" />
+        <option value="$PROJECT_DIR$/model/js/bargraphcpy_g2c.js" />
         <option value="$PROJECT_DIR$/model/g2c.php" />
       </list>
     </option>
@@ -332,9 +345,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="271" />
+    <option name="x" value="416" />
     <option name="y" value="2" />
-    <option name="width" value="1102" />
+    <option name="width" value="957" />
     <option name="height" value="735" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -452,15 +465,15 @@
       <workItem from="1548578974412" duration="3182000" />
       <workItem from="1548620039537" duration="73009000" />
       <workItem from="1549049620643" duration="4900000" />
-      <workItem from="1549406852846" duration="48834000" />
+      <workItem from="1549406852846" duration="52424000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="695524000" />
+    <option name="totallyTimeSpent" value="699114000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="271" y="2" width="1102" height="735" extended-state="0" />
+    <frame x="416" y="2" width="957" height="735" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29549718" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -800,28 +813,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/js/bargraphcpy_g2c.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9">
-          <caret line="47" column="25" lean-forward="false" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/js/heatmapnew1_g2c.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="327" column="51" lean-forward="false" selection-start-line="327" selection-start-column="50" selection-end-line="327" selection-end-column="51" />
-          <folding>
-            <element signature="e#3971#4420#0" expanded="false" />
-            <element signature="e#7163#7611#0" expanded="false" />
-            <element signature="e#10290#10738#0" expanded="false" />
-            <element signature="e#20028#20761#0" expanded="false" />
-            <element signature="e#22569#23295#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/data/takefeedback - Copy.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -888,10 +879,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/model/js/heatmapnew1_g2c.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="67">
+          <caret line="327" column="51" lean-forward="false" selection-start-line="327" selection-start-column="50" selection-end-line="327" selection-end-column="51" />
+          <folding>
+            <element signature="e#3971#4420#0" expanded="false" />
+            <element signature="e#7163#7611#0" expanded="false" />
+            <element signature="e#10290#10738#0" expanded="false" />
+            <element signature="e#20028#20761#0" expanded="false" />
+            <element signature="e#22569#23295#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/model/js/mapping_new_g2c.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="408" column="22" lean-forward="false" selection-start-line="408" selection-start-column="14" selection-end-line="408" selection-end-column="22" />
+        <state relative-caret-position="85">
+          <caret line="18" column="15" lean-forward="false" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
           <folding>
             <element signature="e#36557#38048#0" expanded="false" />
             <element signature="e#50253#51353#0" expanded="false" />
@@ -899,27 +904,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/model/js/bargraphcpy_g2c.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="419" column="51" lean-forward="false" selection-start-line="419" selection-start-column="51" selection-end-line="419" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/model/g2c.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-165">
-          <caret line="1193" column="23" lean-forward="true" selection-start-line="1193" selection-start-column="23" selection-end-line="1193" selection-end-column="23" />
+        <state relative-caret-position="1339">
+          <caret line="1194" column="18" lean-forward="false" selection-start-line="1194" selection-start-column="18" selection-end-line="1194" selection-end-column="18" />
           <folding>
-            <element signature="e#58905#59217#0#HTML" expanded="false" />
-            <element signature="e#59269#59581#0#HTML" expanded="false" />
-            <element signature="e#59631#59943#0#HTML" expanded="false" />
-            <element signature="e#59993#60305#0#HTML" expanded="false" />
-            <marker date="1549529597407" expanded="true" signature="5926:5977" ph="SELECT * FRO... takefeedback" />
-            <marker date="1549529597407" expanded="true" signature="8039:8088" ph="SELECT * FRO... session_info" />
-            <marker date="1549529597407" expanded="true" signature="112830:112844" ph="..." />
-            <marker date="1549529597407" expanded="true" signature="112857:112865" ph="..." />
-            <marker date="1549529597407" expanded="true" signature="118166:118180" ph="..." />
-            <marker date="1549529597407" expanded="true" signature="118193:118201" ph="..." />
-            <marker date="1549529597407" expanded="true" signature="123266:123280" ph="..." />
-            <marker date="1549529597407" expanded="true" signature="123293:123301" ph="..." />
-            <marker date="1549529597407" expanded="true" signature="128273:128287" ph="..." />
-            <marker date="1549529597407" expanded="true" signature="128300:128308" ph="..." />
-            <marker date="1549529597407" expanded="true" signature="133293:133307" ph="..." />
-            <marker date="1549529597407" expanded="true" signature="133320:133328" ph="..." />
+            <marker date="1549534035671" expanded="true" signature="5926:5977" ph="SELECT * FRO... takefeedback" />
+            <marker date="1549534035671" expanded="true" signature="8037:8086" ph="SELECT * FRO... session_info" />
+            <marker date="1549534035671" expanded="true" signature="113020:113034" ph="..." />
+            <marker date="1549534035671" expanded="true" signature="113047:113055" ph="..." />
+            <marker date="1549534035671" expanded="true" signature="118356:118370" ph="..." />
+            <marker date="1549534035671" expanded="true" signature="118383:118391" ph="..." />
+            <marker date="1549534035671" expanded="true" signature="123456:123470" ph="..." />
+            <marker date="1549534035671" expanded="true" signature="123483:123491" ph="..." />
+            <marker date="1549534035671" expanded="true" signature="128463:128477" ph="..." />
+            <marker date="1549534035671" expanded="true" signature="128490:128498" ph="..." />
+            <marker date="1549534035671" expanded="true" signature="133483:133497" ph="..." />
+            <marker date="1549534035671" expanded="true" signature="133510:133518" ph="..." />
           </folding>
         </state>
       </provider>

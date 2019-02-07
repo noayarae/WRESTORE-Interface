@@ -123,7 +123,7 @@ if (mysqli_num_rows($result)>0){
 		print "<th>$name</th>";
 	}
 	print '</tr>';
-	
+
 	while($row) {
 		$ColCount=0;
 		print '<tr>';
@@ -140,7 +140,7 @@ if (mysqli_num_rows($result)>0){
 		$row = mysqli_fetch_assoc($result);
 		$count = $count + 1;
 	}
-	
+
 	// I am looking to see if we are left with an odd number of maps. If so, I add one line of fake data so that the
     // maps load properly on the last page.
     // E: If the number of rows (coming from mysql) is odd, the last map will not load properly. That is why, here a
@@ -914,110 +914,110 @@ in US Dollars" style="margin: 0px 0px 0px
     var fn_obj_array =[];//EE: It'll store values of F0,F1,F2,F3,F4,F5 (objective functions) of 'wholeTable' of 20 alt
 
     //EE: ****************************** MySQL or JSON ************************************
-    //EE: .............................. Headers using MySQL  .........................
-//    //E: it gets the headers of the 'WholeTable' and saves as 'headers'
-//    //E: Way (1)
-//    //E: This way works when the data comes from MySQL format
-//    $('#wholeTable th').each(function(index, item) {
-//        headers[index] = $(item).html();
-//    });
-//    console.log ("L-918 headers: \n" + JSON.stringify (headers));//EE: Show the headers of 'wholeTable'
+    //EE: .............................. (1) Headers using MySQL  .........................
+    //E: it gets the headers of the 'WholeTable' and saves as 'headers'
+    //E: Way (1)
+    //E: This way works when the data comes from MySQL format
+    $('#wholeTable th').each(function(index, item) {
+        headers[index] = $(item).html();
+    });
+    console.log ("L-918 headers: \n" + JSON.stringify (headers));//EE: Show the headers of 'wholeTable'
 
-    //EE: .............................. Headers using JSON  .........................
-    //E: Way (2)
-    //E: This way works when the data comes from JSON format
-    var nsga2_values = nsga2_values_as_json;//EE: Values obtained from optimization process by NSGA2 algorithm
-    var headers = Object.keys(nsga2_values[0]);
-    console.log ("L.931 headers: \n" + headers);//E: console.log ("L.927 keys: \n" + headers.length);
+    //EE: .............................. Start:(1) Headers using JSON  .........................
+//    //E: Way (2)
+//    //E: This way works when the data comes from JSON format
+//    var nsga2_values = nsga2_values_as_json;//EE: Values obtained from optimization process by NSGA2 algorithm
+//    var headers = Object.keys(nsga2_values[0]);
+//    console.log ("L.931 headers: \n" + headers);//E: console.log ("L.927 keys: \n" + headers.length);
+//
+//    //EE: Get list of headers of subbasins only. For ecw it goes from 15 to 145 (145-15=130 subbasins)
+//    var list_header_subbasins = Object.values(headers).slice(15, 142);//EE: Get list of headers of subbasins
+//    console.log ("L.934 List of Headers of subbasins only: \n" +list_header_subbasins);//E: important,for looping below
+//    //EE: .............................. End:(1) Headers using JSON  .........................
 
-    //EE: Get list of headers of subbasins only. For ecw it goes from 15 to 145 (145-15=130 subbasins)
-    var list_header_subbasins = Object.values(headers).slice(15, 142);//EE: Get list of headers of subbasins
-    console.log ("L.934 List of Headers of subbasins only: \n" +list_header_subbasins);//E: important,for looping below
+    //EE: ................... (2) array_fullvalues, answersArray, fn_obj_array (MySQL) ..................
+    //E: it gets all values of the 'WholeTable' and saves 'array_fullvalues'
+    //E: Way (1)
+    $('#wholeTable tr').has('td').each(function() {//EE: Return all (tr) elements that have a (td) element inside them
+        var arrayItem = {};
+        var arrayItemAnswers = {};
+//        var chartArrayItems={};
+        var fn_obj_arrayItems={};
+
+        $('td', $(this)).each(function(index, item) {
+            arrayItem[headers[index]] = $(item).html();
+            //alert(JSON.stringify(headers[index]));
+            //I am grabbing the incoming information to create the answers array. I will be replacing these numbers as they fill them out
+            //themselves but for now we need all the originals.
+            if(headers[index]=="USERID" || headers[index]=="INDVID" || headers[index]=="RATING"  || headers[index]=="CONFIDENCE" ){
+                arrayItemAnswers[headers[index]] = $(item).html();
+            }
 
 
-    //EE: ...................  array_fullvalues, answersArray, fn_obj_array (MySQL) ..................
-//    //E: it gets all values of the 'WholeTable' and saves 'array_fullvalues'
-//    //E: Way (1)
-//    $('#wholeTable tr').has('td').each(function() {//EE: Return all (tr) elements that have a (td) element inside them
-//        var arrayItem = {};
-//        var arrayItemAnswers = {};
-////        var chartArrayItems={};
-//        var fn_obj_arrayItems={};
-//
-//        $('td', $(this)).each(function(index, item) {
-//            arrayItem[headers[index]] = $(item).html();
-//            //alert(JSON.stringify(headers[index]));
-//            //I am grabbing the incoming information to create the answers array. I will be replacing these numbers as they fill them out
-//            //themselves but for now we need all the originals.
-//            if(headers[index]=="USERID" || headers[index]=="INDVID" || headers[index]=="RATING"  || headers[index]=="CONFIDENCE" ){
-//                arrayItemAnswers[headers[index]] = $(item).html();
-//            }
-//
-//
-//            if(headers[index]=="F0" || headers[index]=="F1" || headers[index]=="F2"  || headers[index]=="F3"  || headers[index]=="F4"  || headers[index]=="F5" ){
-////                chartArrayItems[headers[index]] = $(item).html();
-//                fn_obj_arrayItems[headers[index]] = $(item).html();
-//            }
-//        });
-//
-//        arrayItemAnswers["stripCropping"]="0";
-//        arrayItemAnswers["cropRotation"]="0";
-//        arrayItemAnswers["coverCrops"]="0";
-//        arrayItemAnswers["filterStrips"]="0";
-//        arrayItemAnswers["grassedWaterways"]="0";
-//        arrayItemAnswers["conservationTillage"]="0";
-//        arrayItemAnswers["Wetlands"]="0";
-//
-//        //array.push(arrayItem);
-//        array_fullvalues.push(arrayItem);//E:It merges or appends ALL the 'wholeTable' values into one array
-//        answersArray.push(arrayItemAnswers);//EE: store RATING and CONFIDENCE (answer) values of 'wholeTable' of 20 alt
-//        fn_obj_array.push(fn_obj_arrayItems);//E: store F0,F1,...,F5 values (objective functions)of 'wholeTable' of 20 alt
-//    });
-//
-//    //EE:This console.log shows all values from 'wholeTable' saved as array named 'array_fullvalues'
-////    console.log("L.969 full values of 'wholeTable': \n" + JSON.stringify (array_fullvalues));
-////    console.log("L969 length of 'array_fullvalues': \n" + array_fullvalues.length);//E:It gives 20 (because of 20 alternatives)
-////    console.log("L.972 full values of 'answersArray': \n" + JSON.stringify (answersArray));//EE:Give answer of RATING, CONFIDENCE, and attributes USERID, INDVID, and "stripCropping=0", "cropRotation=0", so on of 20 Alt.
-////    console.log("L.974 full values of 'fn_obj_array': \n" + JSON.stringify (fn_obj_array));//EE: Give MEAN, MIN and MAX values of F0,F1,F2,F3,F4,F5 (objective functions) for all the 20 Alternatives
-//    //EE: ................... End: array_fullvalues, answersArray, fn_obj_array (using MySQL) ..................
+            if(headers[index]=="F0" || headers[index]=="F1" || headers[index]=="F2"  || headers[index]=="F3"  || headers[index]=="F4"  || headers[index]=="F5" ){
+//                chartArrayItems[headers[index]] = $(item).html();
+                fn_obj_arrayItems[headers[index]] = $(item).html();
+            }
+        });
+
+        arrayItemAnswers["stripCropping"]="0";
+        arrayItemAnswers["cropRotation"]="0";
+        arrayItemAnswers["coverCrops"]="0";
+        arrayItemAnswers["filterStrips"]="0";
+        arrayItemAnswers["grassedWaterways"]="0";
+        arrayItemAnswers["conservationTillage"]="0";
+        arrayItemAnswers["Wetlands"]="0";
+
+        //array.push(arrayItem);
+        array_fullvalues.push(arrayItem);//E:It merges or appends ALL the 'wholeTable' values into one array
+        answersArray.push(arrayItemAnswers);//EE: store RATING and CONFIDENCE (answer) values of 'wholeTable' of 20 alt
+        fn_obj_array.push(fn_obj_arrayItems);//E: store F0,F1,...,F5 values (objective functions)of 'wholeTable' of 20 alt
+    });
+
+    //EE:This console.log shows all values from 'wholeTable' saved as array named 'array_fullvalues'
+//    console.log("L.969 full values of 'wholeTable': \n" + JSON.stringify (array_fullvalues));
+//    console.log("L969 length of 'array_fullvalues': \n" + array_fullvalues.length);//E:It gives 20 (because of 20 alternatives)
+//    console.log("L.972 full values of 'answersArray': \n" + JSON.stringify (answersArray));//EE:Give answer of RATING, CONFIDENCE, and attributes USERID, INDVID, and "stripCropping=0", "cropRotation=0", so on of 20 Alt.
+//    console.log("L.974 full values of 'fn_obj_array': \n" + JSON.stringify (fn_obj_array));//EE: Give MEAN, MIN and MAX values of F0,F1,F2,F3,F4,F5 (objective functions) for all the 20 Alternatives
+    //EE: ................... End: array_fullvalues, answersArray, fn_obj_array (using MySQL) ..................
 
 
     //EE: ................... Start: array_fullvalues, answersArray, fn_obj_array (using JSON) ..................
-    //E: Way (2)
-    var array_fullvalues = nsga2_values_as_json;
-    console.log("L.982 full values of 'wholeTable' using JSON file: \n" + array_fullvalues.length);
-//    console.log("L.983 full values of 'wholeTable': \n" + JSON.stringify (array_fullvalues));
-
-    var answersArray =[];
-    var fn_obj_array =[];//EE: To store values of F0,F1,F2,F3,F4,F5 (objective functions) of 20 alt
-    for (var i = 0; i < array_fullvalues.length; i++){
-        var arrayItemAnswers_js = {};
-        var fn_obj_arrayItems_js = {};
-
-        arrayItemAnswers_js["USERID"]= array_fullvalues[i].USERID.toString();
-        arrayItemAnswers_js["INDVID"]= array_fullvalues[i].INDVID.toString();
-        arrayItemAnswers_js["RATING"]= array_fullvalues[i].RATING.toString();
-        arrayItemAnswers_js["CONFIDENCE"]= array_fullvalues[i].CONFIDENCE.toString();
-        arrayItemAnswers_js["stripCropping"]="0";
-        arrayItemAnswers_js["cropRotation"]="0";
-        arrayItemAnswers_js["coverCrops"]="0";
-        arrayItemAnswers_js["filterStrips"]="0";
-        arrayItemAnswers_js["grassedWaterways"]="0";
-        arrayItemAnswers_js["conservationTillage"]="0";
-        arrayItemAnswers_js["Wetlands"]="0";
-
-        fn_obj_arrayItems_js["F0"]= array_fullvalues[i].F0;
-        fn_obj_arrayItems_js["F1"]= array_fullvalues[i].F1;
-        fn_obj_arrayItems_js["F2"]= array_fullvalues[i].F2;
-        fn_obj_arrayItems_js["F3"]= array_fullvalues[i].F3;
-        fn_obj_arrayItems_js["F4"]= array_fullvalues[i].F4;
-        fn_obj_arrayItems_js["F5"]= array_fullvalues[i].F5;
-
-        answersArray.push(arrayItemAnswers_js);
-        fn_obj_array.push(fn_obj_arrayItems_js);
-    }
-//    console.log("L.1013 answersArray using JSON file: \n"+ JSON.stringify(answersArray));
-//    console.log("L.1014 fn_obj_array using JSON file: \n"+ JSON.stringify(fn_obj_array));
+//    //E: Way (2)
+//    var array_fullvalues = nsga2_values_as_json;//EE: This is also used in 'bargraphcpy.js'
+//    console.log("L.982 full values of 'wholeTable' using JSON file: \n" + array_fullvalues.length);
+////    console.log("L.983 full values of 'wholeTable': \n" + JSON.stringify (array_fullvalues));
+//
+//    var answersArray =[];
+//    var fn_obj_array =[];//EE: To store values of F0,F1,F2,F3,F4,F5 (objective functions) of 20 alt
+//    for (var i = 0; i < array_fullvalues.length; i++){
+//        var arrayItemAnswers_js = {};
+//        var fn_obj_arrayItems_js = {};
+//
+//        arrayItemAnswers_js["USERID"]= array_fullvalues[i].USERID.toString();
+//        arrayItemAnswers_js["INDVID"]= array_fullvalues[i].INDVID.toString();
+//        arrayItemAnswers_js["RATING"]= array_fullvalues[i].RATING.toString();
+//        arrayItemAnswers_js["CONFIDENCE"]= array_fullvalues[i].CONFIDENCE.toString();
+//        arrayItemAnswers_js["stripCropping"]="0";
+//        arrayItemAnswers_js["cropRotation"]="0";
+//        arrayItemAnswers_js["coverCrops"]="0";
+//        arrayItemAnswers_js["filterStrips"]="0";
+//        arrayItemAnswers_js["grassedWaterways"]="0";
+//        arrayItemAnswers_js["conservationTillage"]="0";
+//        arrayItemAnswers_js["Wetlands"]="0";
+//
+//        fn_obj_arrayItems_js["F0"]= array_fullvalues[i].F0;
+//        fn_obj_arrayItems_js["F1"]= array_fullvalues[i].F1;
+//        fn_obj_arrayItems_js["F2"]= array_fullvalues[i].F2;
+//        fn_obj_arrayItems_js["F3"]= array_fullvalues[i].F3;
+//        fn_obj_arrayItems_js["F4"]= array_fullvalues[i].F4;
+//        fn_obj_arrayItems_js["F5"]= array_fullvalues[i].F5;
+//
+//        answersArray.push(arrayItemAnswers_js);
+//        fn_obj_array.push(fn_obj_arrayItems_js);
+//    }
+////    console.log("L.1013 answersArray using JSON file: \n"+ JSON.stringify(answersArray));
+////    console.log("L.1014 fn_obj_array using JSON file: \n"+ JSON.stringify(fn_obj_array));
 //    //EE: ................... End: array_fullvalues, answersArray, fn_obj_array (using JSON) ..................
 
     // =============================   End   SAVING the "wholeTable" as array   ============================== //
@@ -1030,8 +1030,7 @@ in US Dollars" style="margin: 0px 0px 0px
 //    var heatera = new Array();//E: To save mean values of Cost of each subbasin (108 in total) as Array
 //    var heatseda = new Array();//E: To save mean values of SR of each subbasin (108 in total) as Array
 //    var heatnita = new Array();//E: To save mean values of NR of each subbasin (108 in total) as Array
-    var PFR_meanVals_array = new Array();//E: Save PFR mean-values of each subbasin (108 total) as Array for building
-    // the HeatMap
+    var PFR_meanVals_array = new Array();//E: Save PFR mean-values of each subbasin (108 total) asArray for building the HeatMap
     var Cost_meanVals_array = new Array();//E: To save mean values of Cost of each subbasin (108 in total) as Array
     var SR_meanVals_array = new Array();//E: To save mean values of SR of each subbasin (108 in total) as Array
     var NR_meanVals_array = new Array();//E: To save mean values of NR of each subbasin (108 in total) as Array
@@ -1041,111 +1040,34 @@ in US Dollars" style="margin: 0px 0px 0px
     var iter_subbasins = 1;
 
     //E: ****************************** Start: Saving Using JSON DATA *******************************
-    //EE: iteration through the '20 ALTERNATIVES' - JSON Data
-    for (var i = 0; i < array_fullvalues.length; i++){
-//        heatiter = 1;
-        var iter_subbasins = 1;
-        var PFR_mean_value_js = new Array();
-        var Cost_mean_value_js = new Array();
-        var SR_mean_value_js = new Array();
-        var NR_mean_value_js = new Array();
-
-        //EE: iteration through the '130 SUBBAINS' - JSON Data
-        //EE: 'list_header_subbasins' is setup above
-        list_header_subbasins.forEach(function(item){
-            var key = item;//E: The 'item' (S1,S2,S3, etc) is saved as 'key' at each loop
-            //EE: The value of 'array_fullvalues[i]' is searched by its 'key' value (for example: by S1).
-            var my_target = array_fullvalues[i][key];//EE: it returns [0,0,0],[...],[...],[...],[...],[0,0,0]
-            var aux2 = JSON.parse("["+my_target+"]");//EE: the previous result is converted in array of 6 items
-            // if (i<1) console.log("L.1052: \n"+ typeof aux2+ " ; "+ aux2.length+ " ; "+ JSON.stringify(aux2));
-
-            PFR_mean_value_js.push({name:iter_subbasins,val:-aux2[1][0]});//E:the second bracket i.e.[0] gives the mean value
-            Cost_mean_value_js.push({name:iter_subbasins, val:-aux2[2][0]});
-            SR_mean_value_js.push({name:iter_subbasins, val:-aux2[3][0]});
-            NR_mean_value_js.push({name:iter_subbasins, val:-aux2[4][0]});
-            iter_subbasins++;
-        });
-        if (i<1) console.log("L.1064: PFR_mean_value_js ; #items: "+PFR_mean_value_js.length);
-        if (i<1) console.log("L.1065: PFR_mean_value_js: \n"+ JSON.stringify(PFR_mean_value_js));
-
-        PFR_mean_value_js.sort(function (a, b) {
-            if ((typeof b.val === 'undefined' && typeof a.val !== 'undefined') || a.val < b.val) {
-                return -1;
-            }
-            if ((typeof a.val === 'undefined' && typeof b.val !== 'undefined') || a.val > b.val) {
-                return 1;
-            }
-            return 0;
-        });
-
-        Cost_mean_value_js.sort(function (a, b) {
-            if ((typeof b.val === 'undefined' && typeof a.val !== 'undefined') || a.val < b.val) {
-                return -1;
-            }
-            if ((typeof a.val === 'undefined' && typeof b.val !== 'undefined') || a.val > b.val) {
-                return 1;
-            }
-            return 0;
-        });
-
-        SR_mean_value_js.sort(function (a, b) {
-            if ((typeof b.val === 'undefined' && typeof a.val !== 'undefined') || a.val < b.val) {
-                return -1;
-            }
-            if ((typeof a.val === 'undefined' && typeof b.val !== 'undefined') || a.val > b.val) {
-                return 1;
-            }
-            return 0;
-        });
-
-        NR_mean_value_js.sort(function (a, b) {
-            if ((typeof b.val === 'undefined' && typeof a.val !== 'undefined') || a.val < b.val) {
-                return -1;
-            }
-            if ((typeof a.val === 'undefined' && typeof b.val !== 'undefined') || a.val > b.val) {
-                return 1;
-            }
-            return 0;
-        });
-
-        PFR_meanVals_array.push({name:iter_altern, val:PFR_mean_value_js});
-        Cost_meanVals_array.push({name:iter_altern, val:Cost_mean_value_js});
-        SR_meanVals_array.push({name:iter_altern, val:SR_mean_value_js});
-        NR_meanVals_array.push({name:iter_altern, val:NR_mean_value_js});
-
-//        heatitera++;
-        iter_altern++
-    }
-    //E: ****************************** End: Saving Using JSON DATA *******************************
-
-    //E: ****************************** Start: Saving using MySQL DATA *******************************
-//    //EE: Iteration through  the '20 ALTERNATIVES' - MySQL Data
-//    $('#wholeTable tbody tr').has('td').each(function() {//EE: Return all (tr) elements that have(td) element inside them
-////        heatiter=1;
-//        iter_subbasins = 1;
-//        var PFR_mean_value = new Array();
-//        var Cost_mean_value = new Array();
-//        var SR_mean_value = new Array();
-//        var NR_mean_value = new Array();
+//    //EE: iteration through the '20 ALTERNATIVES' - JSON Data
+//    for (var i = 0; i < array_fullvalues.length; i++){
+////        heatiter = 1;
+//        var iter_subbasins = 1;
+//        var PFR_mean_value_js = new Array();
+//        var Cost_mean_value_js = new Array();
+//        var SR_mean_value_js = new Array();
+//        var NR_mean_value_js = new Array();
 //
-//        //EE: iteration through the '130 SUBBAINS' - MySQL Data
-//        //$('td:nth-child(15)').nextUntil('td:nth-child(143)').each(function() {
-//        $('td:gt(14):lt(127)',$(this)).each(function() {
-//            var subarr=[];
+//        //EE: iteration through the '130 SUBBAINS' - JSON Data
+//        //EE: 'list_header_subbasins' is setup above
+//        list_header_subbasins.forEach(function(item){
+//            var key = item;//E: The 'item' (S1,S2,S3, etc) is saved as 'key' at each loop
+//            //EE: The value of 'array_fullvalues[i]' is searched by its 'key' value (for example: by S1).
+//            var my_target = array_fullvalues[i][key];//EE: it returns [0,0,0],[...],[...],[...],[...],[0,0,0]
+//            var aux2 = JSON.parse("["+my_target+"]");//EE: the previous result is converted in array of 6 items
+//            // if (i<1) console.log("L.1052: \n"+ typeof aux2+ " ; "+ aux2.length+ " ; "+ JSON.stringify(aux2));
 //
-//            subarr = JSON.parse("["+$(this).html()+"]");
-//            //   subarr=($(this).html()).split(',');
-//            //   console.log(JSON.stringify(subarr[1][0]))
-//            PFR_mean_value.push({name:iter_subbasins, val:-subarr[1][0]});//E: the second bracket i.e.[0] gives the mean value
-//            Cost_mean_value.push({name:iter_subbasins, val:-subarr[2][0]});
-//            SR_mean_value.push({name:iter_subbasins, val:-subarr[3][0]});
-//            NR_mean_value.push({name:iter_subbasins, val:-subarr[4][0]});
-////            heatiter++;
+//            PFR_mean_value_js.push({name:iter_subbasins,val:-aux2[1][0]});//E:the second bracket i.e.[0] gives the mean value
+//            Cost_mean_value_js.push({name:iter_subbasins, val:-aux2[2][0]});
+//            SR_mean_value_js.push({name:iter_subbasins, val:-aux2[3][0]});
+//            NR_mean_value_js.push({name:iter_subbasins, val:-aux2[4][0]});
 //            iter_subbasins++;
 //        });
-////        console.log("L.1058 mean values of PFR 'PFR_mean_value': \n"+ JSON.stringify(PFR_mean_value));
+//        if (i<1) console.log("L.1064: PFR_mean_value_js ; #items: "+PFR_mean_value_js.length);
+//        if (i<1) console.log("L.1065: PFR_mean_value_js: \n"+ JSON.stringify(PFR_mean_value_js));
 //
-//        PFR_mean_value.sort(function (a, b) {
+//        PFR_mean_value_js.sort(function (a, b) {
 //            if ((typeof b.val === 'undefined' && typeof a.val !== 'undefined') || a.val < b.val) {
 //                return -1;
 //            }
@@ -1155,7 +1077,7 @@ in US Dollars" style="margin: 0px 0px 0px
 //            return 0;
 //        });
 //
-//        Cost_mean_value.sort(function (a, b) {
+//        Cost_mean_value_js.sort(function (a, b) {
 //            if ((typeof b.val === 'undefined' && typeof a.val !== 'undefined') || a.val < b.val) {
 //                return -1;
 //            }
@@ -1165,7 +1087,7 @@ in US Dollars" style="margin: 0px 0px 0px
 //            return 0;
 //        });
 //
-//        SR_mean_value.sort(function (a, b) {
+//        SR_mean_value_js.sort(function (a, b) {
 //            if ((typeof b.val === 'undefined' && typeof a.val !== 'undefined') || a.val < b.val) {
 //                return -1;
 //            }
@@ -1175,7 +1097,7 @@ in US Dollars" style="margin: 0px 0px 0px
 //            return 0;
 //        });
 //
-//        NR_mean_value.sort(function (a, b) {
+//        NR_mean_value_js.sort(function (a, b) {
 //            if ((typeof b.val === 'undefined' && typeof a.val !== 'undefined') || a.val < b.val) {
 //                return -1;
 //            }
@@ -1185,17 +1107,95 @@ in US Dollars" style="margin: 0px 0px 0px
 //            return 0;
 //        });
 //
-//        PFR_meanVals_array.push({name:iter_altern, val:PFR_mean_value});//E: Before heatpfra
-//        Cost_meanVals_array.push({name:iter_altern, val:Cost_mean_value});//E: Before heatera
-//        SR_meanVals_array.push({name:iter_altern, val:SR_mean_value});//E: Before heatseda
-//        NR_meanVals_array.push({name:iter_altern, val:NR_mean_value});//E: Bedfore heatnita
+//        PFR_meanVals_array.push({name:iter_altern, val:PFR_mean_value_js});
+//        Cost_meanVals_array.push({name:iter_altern, val:Cost_mean_value_js});
+//        SR_meanVals_array.push({name:iter_altern, val:SR_mean_value_js});
+//        NR_meanVals_array.push({name:iter_altern, val:NR_mean_value_js});
 //
 ////        heatitera++;
 //        iter_altern++
-//    });
-//    //    console.log("L.1064 PFR_meanVals_array: \n"+ JSON.stringify(PFR_meanVals_array));
-//    //E: ****************************** End: Saving Using MySQL DATA *******************************
+//    }
+//    //E: ****************************** End: Saving Using JSON DATA *******************************
 
+    //E: ****************************** Start: Saving using MySQL DATA *******************************
+    //EE: Iteration through  the '20 ALTERNATIVES' - MySQL Data
+    $('#wholeTable tbody tr').has('td').each(function() {//EE: Return all (tr) elements that have(td) element inside them
+//        heatiter=1;
+        iter_subbasins = 1;
+        var PFR_mean_value = new Array();
+        var Cost_mean_value = new Array();
+        var SR_mean_value = new Array();
+        var NR_mean_value = new Array();
+
+        //EE: iteration through the '130 SUBBAINS' - MySQL Data
+        //$('td:nth-child(15)').nextUntil('td:nth-child(143)').each(function() {
+        $('td:gt(14):lt(127)',$(this)).each(function() {
+            var subarr=[];
+
+            subarr = JSON.parse("["+$(this).html()+"]");
+            //   subarr=($(this).html()).split(',');
+            //   console.log(JSON.stringify(subarr[1][0]))
+            PFR_mean_value.push({name:iter_subbasins, val:-subarr[1][0]});//E: the second bracket i.e.[0] gives the mean value
+            Cost_mean_value.push({name:iter_subbasins, val:-subarr[2][0]});
+            SR_mean_value.push({name:iter_subbasins, val:-subarr[3][0]});
+            NR_mean_value.push({name:iter_subbasins, val:-subarr[4][0]});
+//            heatiter++;
+            iter_subbasins++;
+        });
+//        console.log("L.1058 mean values of PFR 'PFR_mean_value': \n"+ JSON.stringify(PFR_mean_value));
+
+        PFR_mean_value.sort(function (a, b) {
+            if ((typeof b.val === 'undefined' && typeof a.val !== 'undefined') || a.val < b.val) {
+                return -1;
+            }
+            if ((typeof a.val === 'undefined' && typeof b.val !== 'undefined') || a.val > b.val) {
+                return 1;
+            }
+            return 0;
+        });
+
+        Cost_mean_value.sort(function (a, b) {
+            if ((typeof b.val === 'undefined' && typeof a.val !== 'undefined') || a.val < b.val) {
+                return -1;
+            }
+            if ((typeof a.val === 'undefined' && typeof b.val !== 'undefined') || a.val > b.val) {
+                return 1;
+            }
+            return 0;
+        });
+
+        SR_mean_value.sort(function (a, b) {
+            if ((typeof b.val === 'undefined' && typeof a.val !== 'undefined') || a.val < b.val) {
+                return -1;
+            }
+            if ((typeof a.val === 'undefined' && typeof b.val !== 'undefined') || a.val > b.val) {
+                return 1;
+            }
+            return 0;
+        });
+
+        NR_mean_value.sort(function (a, b) {
+            if ((typeof b.val === 'undefined' && typeof a.val !== 'undefined') || a.val < b.val) {
+                return -1;
+            }
+            if ((typeof a.val === 'undefined' && typeof b.val !== 'undefined') || a.val > b.val) {
+                return 1;
+            }
+            return 0;
+        });
+
+        PFR_meanVals_array.push({name:iter_altern, val:PFR_mean_value});//E: Before heatpfra
+        Cost_meanVals_array.push({name:iter_altern, val:Cost_mean_value});//E: Before heatera
+        SR_meanVals_array.push({name:iter_altern, val:SR_mean_value});//E: Before heatseda
+        NR_meanVals_array.push({name:iter_altern, val:NR_mean_value});//E: Bedfore heatnita
+
+//        heatitera++;
+        iter_altern++
+    });
+    //    console.log("L.1064 PFR_meanVals_array: \n"+ JSON.stringify(PFR_meanVals_array));
+    //E: ****************************** End: Saving Using MySQL DATA *******************************
+
+    // --------------------------------------------------
     // These two lines get the subbasins' IDs with PFR values (127 in total) and store as 'PFR_meanVals_array'
     var subbasins_with_PFR = new Array();//E: Before: ressss
     subbasins_with_PFR = PFR_meanVals_array[0].val.map(function(a) { return a.name;});
