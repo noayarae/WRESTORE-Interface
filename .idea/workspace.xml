@@ -344,7 +344,7 @@
     <handled-path value="$PROJECT_DIR$/google_plat/encoding/node_modules" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="416" />
     <option name="y" value="2" />
     <option name="width" value="957" />
@@ -465,15 +465,15 @@
       <workItem from="1548578974412" duration="3182000" />
       <workItem from="1548620039537" duration="73009000" />
       <workItem from="1549049620643" duration="4900000" />
-      <workItem from="1549406852846" duration="52429000" />
+      <workItem from="1549406852846" duration="53021000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="699119000" />
+    <option name="totallyTimeSpent" value="699711000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="416" y="2" width="957" height="735" extended-state="0" />
+    <frame x="416" y="2" width="957" height="735" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29549718" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />

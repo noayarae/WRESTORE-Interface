@@ -1,9 +1,12 @@
 /control_in_googleMap/*
+/control_in_googleMap
+control_in_googleMap/*
+control_in_googleMap/
 /ecw_maptest/*
 /google_plat/*
+google_plat/
 
-
-
+*.html
 *.pdf
 *.exe
 
