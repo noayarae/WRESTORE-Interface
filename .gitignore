@@ -6,4 +6,4 @@ googlePlat/
 *.pdf
 *.exe
 
-.idea
+.idea/*
