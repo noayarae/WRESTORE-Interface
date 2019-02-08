@@ -2109,7 +2109,7 @@ in US Dollars" style="margin: 0px 0px 0px
         goActive();
     }
     function goInactive() {
-        // do something
+        // do something when inactive
         report('m-clk* ', 'Wrestore page inactive');
         document.getElementById("shade_frame").style.display = "block";//EE: call to "tags" in Voladizo (7)
         document.getElementById("inst_box1_in").style.display = "block";//EE: call to "tags" in Voladizo (7)
