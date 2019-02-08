@@ -1,0 +1,170 @@
+/*body{*/
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    /*font-size: 17px;*/
+    /*line-height: 1.6;*/
+/*}*/
+
+.button{
+    background: coral;
+    padding: 1em 2em; /* top and bottom, and left and right*/
+    color: #fff;
+    border: 0;
+}
+
+.button:hover{
+    background: #71b1d1;
+}
+
+.modal{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(102,102,153,0.5);
+}
+
+.modal-content{
+    background-color: #ff66ff;/*#f4f4f4;*/
+
+    margin: 20% auto;
+    /*padding: 20px;*/
+    /*width: 70%; !* not fixed sidth *!*/
+    width: 200px;
+    /*height: 150px;*/
+    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
+    animation-name: modalopen;
+    animation-duration: 1s;
+}
+
+.modal_header h3, .modal_footer h4{
+    margin: 0;
+}
+
+.modal_header{
+    background: #f87e20;
+    padding: 15px;
+    color: #000000;
+}
+
+.modal_body{
+    padding: 10px 20px;
+    /*width: 100px;*/
+    height: 140px;
+}
+
+.modal_footer{
+    background: #f87e20;
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+}
+
+.close_btn{
+    float: right;
+    font-size: 30px;
+    color: #000000; /* added last */
+}
+
+.close_btn:hover,.close_btn:focus{
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@keyframes modalopen {
+    from{opacity: 0}
+    to {opacity: 1}
+}
+
+/* ----------------------------------------------- */
+/* info1 class contains 'Map legend' */
+.info1, .info3, .info5, .info7 {
+    /*display: inline-block;*/
+    display: none; /* None was set up to hide the old legend button */
+    font-size: 70%;
+    border: 1px solid #f77008;/*#000000; /* to verify border*/
+    border-radius: 5px;
+    width: 120px;
+    position: relative;
+    left: 0px;
+}
+
+.info2, .info4, .info6, .info8 {
+    display: inline-block;
+    font-size: 70%;
+    border: 1px solid #afff1a;/*#000000; /* to verify border*/
+    border-radius: 5px;
+    width: 130px;
+    position: relative;
+    left: 0px;
+}
+
+.tip{
+    display: none;
+    position: absolute;
+    border: 1px solid #333;
+    border-radius: 2px;
+    padding: 3px;
+    background-color : #FaF8C4;
+}
+
+.playdown, .playup {
+    background-color: #afff1a;/*#df6407;/*greenyellow;/*#ff9900; /*#3498DB;*/
+    /*color: #000000; !*white;*! !* button text color *!*/
+    padding: 2px 2px 2px 2px;
+    /*border: 1px solid #000000;*/
+    border-radius: 2px;
+    width: 16px; /* box width */
+    cursor: pointer;
+    float: right;
+}
+
+#imm1.playdown, #imm1.playup, #imm3.playdown, #imm3.playup, #imm5.playdown, #imm5.playup, #imm7.playdown, #imm7.playup {
+    background-color: #df6407;/*greenyellow;/*#ff9900; /*#3498DB;*/
+    /*color: #000000; !*white;*! !* button text color *!*/
+    padding: 2px 2px 2px 2px;
+    /*border: 1px solid #000000;*/
+    border-radius: 2px;
+    width: 16px; /* box width */
+    cursor: pointer;
+    float: right;
+}
+
+.playdown:hover, .playup:hover {
+    background-color: #ebd27f;/*#fcc69c; /*yellow;/*#2980B9;*/
+}
+
+/* ----------------------------------------------- */
+/* retrieved from test3.html */
+#container {
+    margin: 0;
+    margin-bottom: 5px;
+    padding: 0;
+    width: 100px;
+    float: left;
+    list-style: none;
+}
+
+.box_container {
+    font-size: 90%;
+    list-style: none;
+    margin-left: 0;
+    line-height: 15px; /* space between rows */
+    margin-bottom: 2px;
+}
+
+.box {
+    display: block;
+    float: left;
+    height: 13px; /* box height */
+    width: 20px; /* box width */
+    margin-right: 5px;
+    margin-left: 0;
+    border: 1px solid #000000;
+}
+
+

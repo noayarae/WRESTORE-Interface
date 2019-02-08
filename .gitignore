@@ -1,0 +1,9 @@
+controlGoogleMap/
+ecwMaptest/
+googlePlat/
+
+
+*.pdf
+*.exe
+
+.idea

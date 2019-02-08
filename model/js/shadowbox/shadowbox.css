@@ -17,7 +17,10 @@
 #sb-body,#sb-loading{background-color:#060606;}
 #sb-title,#sb-info{position:relative;margin:0;padding:0;overflow:hidden;}
 #sb-title,#sb-title-inner{height:26px;line-height:26px;}
-#sb-title-inner{font-size:16px;}
+#sb-title-inner{
+	font-size:16px;
+}
+
 #sb-info,#sb-info-inner{height:20px;line-height:20px;}
 #sb-info-inner{font-size:12px;}
 #sb-nav{float:right;height:16px;padding:2px 0;width:45%;}
@@ -34,6 +37,6 @@ div.sb-message{font-size:12px;padding:10px;text-align:center;}
 div.sb-message a:link,div.sb-message a:visited{color:#fff;text-decoration:underline;}
 #sb_content {background-color:#ffffff;}
 #sb_body_inner {background-color:#ffffff;}
-#welcome-msg {
+#welcome-msg, #takeRest-msg {
 	margin: 30px;
 }
