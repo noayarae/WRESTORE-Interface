@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Maps V3 style controls</title>
+    <style type="text/css">
+        html, body, #map {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        #terrainCheck, #myCheck{
+            display: none;
+        }
+
+
+    </style>
+    <!--<link rel="stylesheet" type="text/css" href="gdropdown.css" />-->
+    <link rel="stylesheet" type="text/css" href="css/gdropdown.css" />
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <!--<script type="text/javascript" src="gdropdown.js"></script>-->
+    <script type="text/javascript">
+
+        function initialize() {
+            //set up the map
+            var mapDiv = document.getElementById('map');
+            var myOptions = {
+                zoom: 12,
+                center: new google.maps.LatLng(41.850033, -87.6500523),
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeControl: true,
+                mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU}
+            };
+            var map = new google.maps.Map(mapDiv, myOptions);
+
+            //set up custom buttons
+            var buttonOptions = {
+                gmap: map,
+                name: 'Sydney',
+                position: google.maps.ControlPosition.TOP_RIGHT,
+                action: function(){map.panTo(new google.maps.LatLng(-33.9, 151.2));}
+            };
+            var button1 = new buttonControl(buttonOptions);
+
+            var buttonOptions = {
+                gmap: map,
+                name: 'Home',
+                position: google.maps.ControlPosition.TOP_RIGHT,
+                action: function(){map.panTo(new google.maps.LatLng(43.136957, -70.937392));}
+            };
+            var button2 = new buttonControl(buttonOptions);
+
+            //start process to set up custom drop down
+            //create the options that respond to click
+            var divOptions = {
+                gmap: map,
+                name: 'Option1',
+                title: "This acts like a button or click event",
+                id: "mapOpt",
+                action: function(){alert('option1');}
+            };
+            var optionDiv1 = new optionDiv(divOptions);
+
+            var divOptions2 = {
+                gmap: map,
+                name: 'Option2',
+                title: "This acts like a button or click event",
+                id: "satelliteOpt",
+                action: function(){alert('option2');}
+            };
+
+            var optionDiv2 = new optionDiv(divOptions2);
+
+            //create the check box items
+            var checkOptions = {
+                gmap: map,
+                title: "This allows for multiple selection/toggling on/off",
+                id: "terrainCheck",
+                label: "On/Off",
+                action: function(){alert('you clicked check 1');}
+            };
+            var check1 = new checkBox(checkOptions);
+
+            var checkOptions2 = {
+                gmap: map,
+                title: "This allows for multiple selection/toggling on/off",
+                id: "myCheck",
+                label: "my On/Off",
+                action: function(){alert('you clicked check 2');}
+            };
+            var check2 = new checkBox(checkOptions2);
+
+            //create the input box items
+
+            //possibly add a separator between controls
+            var sep = new separator();
+
+            //put them all together to create the drop down
+            var ddDivOptions = {
+                items: [optionDiv1, optionDiv2, sep, check1, check2],
+                id: "myddOptsDiv"
+            };
+            //alert(ddDivOptions.items[1]);
+            var dropDownDiv = new dropDownOptionsDiv(ddDivOptions);
+
+            var dropDownOptions = {
+                gmap: map,
+                name: 'My Box',
+                id: 'ddControl',
+                title: 'A custom drop down select with mixed elements',
+                position: google.maps.ControlPosition.TOP_RIGHT,
+                dropDown: dropDownDiv
+            };
+
+            var dropDown1 = new dropDownControl(dropDownOptions);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+    <script type="text/javascript">
+
+//        var _gaq = _gaq || [];
+//        _gaq.push(['_setAccount', 'UA-31807274-1']);
+//        _gaq.push(['_setDomainName', 'vislab-ccom.unh.edu']);
+//        _gaq.push(['_trackPageview']);
+//
+//        (function() {
+//            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+//            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+//            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+//        })();
+
+    </script>
+
+    <script>
+        /************
+         Classes to set up the drop-down control
+         ************/
+        function optionDiv(options){
+            var control = document.createElement('DIV');
+            control.className = "dropDownItemDiv";
+            control.title = options.title;
+            control.id = options.id;
+            control.innerHTML = options.name;
+            google.maps.event.addDomListener(control,'click',options.action);
+            return control;
+        }
+
+        function checkBox(options){
+            //first make the outer container
+            var container = document.createElement('DIV');
+            container.className = "checkboxContainer";
+            container.title = options.title;
+
+            var span = document.createElement('SPAN');
+            span.role = "checkbox";
+            span.className = "checkboxSpan";
+
+            var bDiv = document.createElement('DIV');
+            bDiv.className = "blankDiv";
+            bDiv.id = options.id;
+
+            var image = document.createElement('IMG');
+            image.className = "blankImg";
+            image.src = "http://maps.gstatic.com/mapfiles/mv/imgs8.png";
+
+            var label = document.createElement('LABEL');
+            label.className = "checkboxLabel";
+            label.innerHTML = options.label;
+
+            bDiv.appendChild(image);
+            span.appendChild(bDiv);
+            container.appendChild(span);
+            container.appendChild(label);
+
+            google.maps.event.addDomListener(container,'click',function(){
+                (document.getElementById(bDiv.id).style.display == 'block') ? document.getElementById(bDiv.id).style.display = 'none' : document.getElementById(bDiv.id).style.display = 'block';
+                options.action();
+            });
+            return container;
+        }
+        function separator(){
+            var sep = document.createElement('DIV');
+            sep.className = "separatorDiv";
+            return sep;
+        }
+
+        function dropDownOptionsDiv(options){
+            //alert(options.items[1]);
+            var container = document.createElement('DIV');
+            container.className = "dropDownOptionsDiv";
+            container.id = options.id;
+
+
+            for(i=0; i<options.items.length; i++){
+                //alert(options.items[i]);
+                container.appendChild(options.items[i]);
+            }
+
+            //for(item in options.items){
+            //container.appendChild(item);
+            //alert(item);
+            //}
+            return container;
+        }
+
+        function dropDownControl(options){
+            var container = document.createElement('DIV');
+            container.className = 'container';
+
+            var control = document.createElement('DIV');
+            control.className = 'dropDownControl';
+            control.innerHTML = options.name;
+            control.id = options.name;
+            var arrow = document.createElement('IMG');
+            arrow.src = "http://maps.gstatic.com/mapfiles/arrow-down.png";
+            arrow.className = 'dropDownArrow';
+            control.appendChild(arrow);
+            container.appendChild(control);
+            container.appendChild(options.dropDown);
+
+            options.gmap.controls[options.position].push(container);
+            google.maps.event.addDomListener(container,'click',function(){
+                (document.getElementById('myddOptsDiv').style.display == 'block') ? document.getElementById('myddOptsDiv').style.display = 'none' : document.getElementById('myddOptsDiv').style.display = 'block';
+                setTimeout( function(){
+                    document.getElementById('myddOptsDiv').style.display = 'none';
+                }, 10000);
+            })
+        }
+
+        function buttonControl(options) {
+            var control = document.createElement('DIV');
+            control.innerHTML = options.name;
+            control.className = 'button';
+            control.index = 1;
+
+            // Add the control to the map
+            options.gmap.controls[options.position].push(control);
+
+            // When the button is clicked pan to sydney
+            google.maps.event.addDomListener(control, 'click', options.action);
+            return control;
+        }
+    </script>
+
+</head>
+<body>
+<!-- hard coded version...if needed/desired
+
+<div class="container">
+    <div class="dropDownControl" id="mddControl" title="A custom drop down select with mixed elements" onclick="(document.getElementById('mddOptsDiv').style.display == 'block') ? document.getElementById('mddOptsDiv').style.display = 'none' : document.getElementById('mddOptsDiv').style.display = 'block';"">
+        My Box
+        <img class="dropDownArrow" src="http://maps.gstatic.com/mapfiles/arrow-down.png">
+    </div>
+    <div class = "dropDownOptionsDiv" id="mddOptsDiv">
+        <div class = "dropDownItemDiv" id="mOpt"  title="This acts like a button or click event" onClick="alert('option1')">
+            Option 1
+        </div>
+        <div class = "dropDownItemDiv" id="sOpt" title="This acts like a button or click event" onClick="alert('option2')">
+            Option 2
+        </div>
+        <div class="separatorDiv"></div>
+        <div class="checkboxContainer" title="This allows for multiple selection/toggling on/off" onclick="(document.getElementById('tCheck').style.display == 'block') ? document.getElementById('tCheck').style.display = 'none' : document.getElementById('tCheck').style.display = 'block';">
+            <span role="checkbox" class="checkboxSpan ">
+                <div class="blankDiv" id="tCheck">
+                    <img class="blankImg" src="http://maps.gstatic.com/mapfiles/mv/imgs8.png" />
+                </div>
+            </span>
+            <label class="checkboxLabel">On/Off</label>
+        </div>
+        <div style="margin-top: 1px; margin-right: 0px; margin-bottom: 1px; margin-left: 0px; border-top-width: 1px; border-top-style: solid; border-top-color: rgb(235, 235, 235); display: none; "></div>
+    </div>
+</div>
+ -->
+<div id="map"></div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>#mymap {width: 90%; height: 600px;} </style>
+    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script>
+    function init() {
+        alert ("hello");
+        var mapDiv = document.getElementById("mymap");
+        var mapOptions = {
+            center: new google.maps.LatLng(37.09024, -100.4179324),
+            zoom: 4,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(mapDiv, mapOptions);
+
+        var destinations = [];
+        destinations.push(new google.maps.LatLng(36.778261, -119.4179324));
+        destinations.push(new google.maps.LatLng(40.7143528, -74.00597309999));
+        destinations.push(new google.maps.LatLng(23.634501, -102.552784));
+
+        var polylineOptions = {path: destinations,
+        strokeColor: "#ff0000", strokeWeight: 5};
+        var polyline = new google.maps.Polyline (polylineOptions);
+        polyline.setMap(map);
+
+//        var c_code = google.maps.geometry.encoding.encodePath(destinations);
+        alert ("Coord in CODE: ");
+    }
+
+//    var c_string = "_p~iF~ps|U_ulLnnqC_mqNvxq`@";
+//    var c_xy = google.maps.geometry.encoding.decodePath(c_string);
+//    alert ("Chile in XY coordinates: "+ c_xy);
+//    console.log(c_xy);
+
+
+
+
+    window.onload = init;
+    </script>
+</head>
+
+<body>
+<h2>Drawing Shapes - Polylines and Polygons</h2>
+<div id="mymap"></div>
+<div id="info"></div>
+
+</body>
+</html>

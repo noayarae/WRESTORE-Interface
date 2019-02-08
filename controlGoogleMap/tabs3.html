@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>tabs demo</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+
+<div id="tabs1">
+    <ul>
+        <li><a href="#fragment-1a"><span>One</span></a></li>
+        <li><a href="#fragment-2a"><span>Two</span></a></li>
+        <li><a href="#fragment-3a"><span>Three</span></a></li>
+    </ul>
+    <div class="ccc" id="fragment-1a">
+        <p>TAB 1a. First tab is active by default:</p>
+    </div>
+    <div class="ccc" id="fragment-2a">
+        TAB 2a. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.
+    </div>
+    <div class="ccc" id="fragment-3a">
+        TAB 3a. Lorem ipsum dolor sit amet, consectetuer diam nonummy nibh euismod tincidunt.
+    </div>
+</div>
+
+<script>
+    $( "#tabs1" ).tabs();
+    $(document).ready(function() {
+        var $tabs = $('#tabs1'),
+            $tabsA = $tabs.find('a'),
+            $tabsC = $('.ccc');
+//            start = '#fragment-2a';
+//            start = window.location.hash || '#fragment-1a';
+
+        function deactivate() {
+            $tabsA.removeClass('active');
+            $tabsC.hide();
+        }
+        function activate(href) {
+            $tabsA.filter('[href=' + href + ']').addClass('active');
+            $(href).fadeIn();
+        }
+
+        function clicked(e) {
+            var href = $(e.target).attr('href');
+            deactivate();
+            activate(href);
+        }
+
+        deactivate();
+        activate('#fragment-3a');
+        $tabs.on('click', 'a', clicked);
+    });
+
+
+//    $( "#tabs1" ).tabs();
+//    $( "#tabs2" ).tabs({disabled: [ 0, 2 ]});
+
+//    $(function() {
+//        $( "#tabs1" ).tabs({ active: 1 });
+//        $( "#tabs2" ).tabs({ active: 0 });
+//    });
+
+
+
+</script>
+
+</body>
+</html>

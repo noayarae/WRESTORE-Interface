@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--  This Script tests inactive time of an user  -->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <!--<link rel="shortcut icon" href="" type="image/x-icon" />-->
+    <!--<script type="text/javascript">-->
+    <!--</script>-->
+</head>
+
+<body>
+
+<h2> This session is a test</h2>
+<p>This paragraph show you some text to test this small page</p>
+<!--<input type="button" id="fullscreen" value="Fullscreen" style="position: relative;-->
+        <!--top: 100px; left: 300px; z-index: 50" />-->
+
+<h2>JavaScript Alert</h2>
+<button onclick="rest_function()">Take a rest</button>
+
+<script>
+    function rest_function() {
+        alert("Press ok to keep working!");
+    }
+</script>
+
+<script>
+    // This js script detects the inactive time of the user
+    var timeoutID;
+
+    function setup() {
+        this.addEventListener("mousemove", resetTimer, false);
+        this.addEventListener("mousedown", resetTimer, false);
+        this.addEventListener("keypress", resetTimer, false);
+        this.addEventListener("DOMMouseScroll", resetTimer, false);
+        this.addEventListener("mousewheel", resetTimer, false);
+        this.addEventListener("touchmove", resetTimer, false);
+        this.addEventListener("MSPointerMove", resetTimer, false);
+        startTimer();
+    }
+    setup();
+    function startTimer() {
+        // wait 2 seconds before calling goInactive
+        timeoutID = window.setTimeout(goInactive, 2000);
+    }
+    function resetTimer(e) {
+        window.clearTimeout(timeoutID);
+        goActive();
+    }
+    function goInactive() {
+        // do something
+        alert("It appears you are inactive on this page."+"\n"+
+                "Press 'Ok' to keep working?");
+
+//            var txt;
+//            if (confirm("It appears you are inactive on this page."+"\n"+
+//                "Press 'Ok' to keep working on this page?")) {
+//                txt = "You pressed OK!";
+//            } else {
+//                txt = "You pressed Cancel!";
+//            }
+//            document.getElementById("demo").innerHTML = txt;
+    }
+    function goActive() {
+        // do something
+        startTimer();
+    }
+</script>
+
+</body>
+</html>

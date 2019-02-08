@@ -1,0 +1,151 @@
+html {
+  height: 100%;
+  font-size: 100%;
+}
+
+body {
+  background-color: #DBE4AF;
+  font: 14px/20px Arial, Tahoma, Verdana, sans-serif;
+  width: 100%;
+  height: 100%;
+  color: #000;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.masonry {
+  width: 900px;
+  margin: 0 auto;
+}
+
+.tabs {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  border-bottom: 1px solid #999;
+}
+
+/*.tabs li {*/
+  /*float: left;*/
+  /*border: 1px solid #999;*/
+  /*border-bottom: none;*/
+  /*background: #e0e0e0;*/
+/*}*/
+
+/*.tabs li a {*/
+  /*display: block;*/
+  /*padding: 10px 20px;*/
+  /*font-size: 16px;*/
+  /*color: #000;*/
+  /*text-decoration: none;*/
+/*}*/
+
+/*.tabs li a:hover {*/
+  /*background: #ccc;*/
+/*}*/
+
+/*.tabs li.active,*/
+/*.tabs li.active a:hover {*/
+  /*font-weight: bold;*/
+  /*background: #fff;*/
+/*}*/
+
+.tab_container1 {
+  border: 1px solid #999;
+  border-top: none;
+  background: #fff;
+}
+
+.tab_content {
+  padding: 20px;
+  font-size: 16px;
+}
+
+/*  -----------------  modifications  --------------- */
+
+.tabs_barplot {
+   margin: 0;
+   padding: 0;
+   list-style: none;
+   overflow: hidden;
+   border-bottom: 1px solid #999;
+ }
+
+.tabs_barplot li {
+  float: left;
+  border: 1px solid #999;
+  border-bottom: none;
+  background: #e0e0e0;
+}
+
+.tabs_barplot li a {
+  display: block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #000;
+  text-decoration: none;
+}
+
+.tabs_barplot li a:hover {
+  background: #ccc;
+}
+
+.tabs_barplot li.active,
+.tabs_barplot li.active a:hover {
+  font-weight: bold;
+  background: #fff;
+}
+
+/*  -------- for heat map -------  */
+.tabs_heatmap {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  border-bottom: 1px solid #999;
+}
+
+.tabs_heatmap li {
+  float: left;
+  border: 1px solid #999;
+  border-bottom: none;
+  background: #e0e0e0;
+}
+
+.tabs_heatmap li a {
+  display: block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #000;
+  text-decoration: none;
+}
+
+.tabs_heatmap li a:hover {
+  background: #ccc;
+}
+
+.tabs_heatmap li.active,
+.tabs_heatmap li.active a:hover {
+  font-weight: bold;
+  background: #fff;
+}
+
+/* Additional for heat map */
+.tab_container2 {
+  border: 1px solid #999;
+  border-top: none;
+  background: #fff;
+}
+
+.tab_content2 {
+  padding: 20px;
+  font-size: 16px;
+}
+
+

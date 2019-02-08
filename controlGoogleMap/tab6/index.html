@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Easy Tabs (Jquery)</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tabs</title>
+  <style>
+    li.ui-state-default.ui-state-hidden[role=tab]:not(.ui-tabs-active) {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+<div class="masonry">
+  <br />
+  <ul class="tabs_barplot">
+    <li><a class="trackable" href="#c0">Start</a></li>
+    <li><a class="trackable" href="#c1">PFR</a></li>
+      <li><a class="trackable" href="#c2">ER</a></li>
+      <li><a class="trackable" href="#c3">SR</a></li>
+      <li><a class="trackable" href="#c4">NR</a></li>
+  </ul>
+  <div class="tab_container1">
+    <div class="trackable tab_content" id="c0">
+      <h4 style="font-size: 20px">Instructions </h4>
+      <p>Instructions go here+</p>
+    </div>
+    <div class="trackable tab_content" id="c1">pfr
+      <div id="chart_div1"></div>
+    </div>
+    <div class="trackable tab_content" id="c2">er
+      <div id="chart_div2"></div>
+    </div>
+    <div class='trackable tab_content' id="c3">sr
+      <div id="chart_div3"></div>
+    </div>
+    <div class='trackable tab_content' id="c4">nr
+      <div id="chart_div4"></div>
+    </div>
+  </div>
+
+  <br />
+
+  <ul class="tabs_heatmap">
+    <!--<li><a class="trackable" href="#infor_heatmap">Start</a></li>-->
+    <!--<li><a class="trackable" id="step3_tab_PF" href="#tabs-PF">PFR</a></li>-->
+    <!--<li><a class="trackable" id="step3_tab_RV" href="#tabs-RV">ER</a></li>-->
+    <!--<li><a class="trackable" id="step3_tab_SR" href="#tabs-SR"> SR</a></li>-->
+    <!--<li><a class="trackable" id="step3_tab_NR" href="#tabs-NR"> NR</a></li>-->
+  </ul>
+  <div class="tab_container2">
+    <!--<div class="trackable tab_content2" id="infor_heatmap">-->
+      <!--<h4 style="font-size: 20px">Instructions </h4>-->
+      <!--<p>Instructions go here</p>-->
+    <!--</div>-->
+    <!--<div id="tabs-PF" class="tab_content2">-->
+    <!--</div>-->
+    <!--<div id="tabs-RV" class="tab_content2">Heat Map CR</div>-->
+    <!--<div id="tabs-SR" class="tab_content2">Heat Map CR</div>-->
+    <!--<div id="tabs-NR" class="tab_content2">Heat Map CR</div>-->
+  </div>
+</div>
+
+<div id='MyTabSelector' class="tabs">
+  <ul>
+    <li><a href="#tabs-1">Tab 0</a></li>
+    <li><a href="#tabs-2">Tab 1</a></li>
+    <li><a href="#tabs-3">Tab 2</a></li>
+  </ul>
+  <div id="tabs-1">
+    <a href="#" onclick="$('#MyTabSelector').disableTab(1);">Disable Tab 1</a><br />
+    <a href="#" onclick="$('#MyTabSelector').disableTab(1, true);">Hide Tab 1</a>
+    <br />
+    <a href="#" onclick="$('#MyTabSelector').enableTab(1);">Show/Enable Tab 1</a>
+  </div>
+  <div id="tabs-2">
+    <p>Why is everyone hiding and disabling me?</p>
+  </div>
+  <div id="tabs-3">
+    <p>Tab 2 content</p>
+  </div>
+</div>
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <!--<script  src="js/index.js"></script>-->
+<script>
+    $(document).ready(function($) {
+        $('.tab_content').hide();
+        $('.tab_content:first').show();
+        $('.tabs_barplot li:first').addClass('active');
+
+        $('.tabs_barplot li').click(function(event) {
+            $('.tabs_barplot li').removeClass('active');
+            $(this).addClass('active');
+            $('.tab_content').hide();
+
+//            $('.tab_content2').hide();
+//            $('.tab_content2:first').show();
+//            $('.tabs_heatmap li').removeClass('active');
+//            $('.tabs_heatmap li:first').addClass('active');
+
+            var selectTab = $(this).find('a').attr("href");
+
+            $(selectTab).fadeIn();
+        });
+    });
+
+    $(document).ready(function($) {
+        $('.tab_content2').hide();
+        $('.tab_content2:first').show();
+        $('.tabs_heatmap li:first').addClass('active');
+        $('.tabs_heatmap li').click(function(event) {
+            $('.tabs_heatmap li').removeClass('active');
+            $(this).addClass('active');
+            $('.tab_content2').hide();
+
+//            $('.tab_content').hide();
+//            $('.tab_content:first').show();
+//            $('.tabs_barplot li').removeClass('active');
+//            $('.tabs_barplot li:first').addClass('active');
+
+
+            var selectTab = $(this).find('a').attr("href");
+
+            $(selectTab).fadeIn();
+        });
+    });
+</script>
+<script>
+    (function ($) {
+        $.fn.disableTab = function (tabIndex, hide) {
+            // Get the array of disabled tabs, if any
+            var disabledTabs = this.tabs("option", "disabled");
+
+            if ($.isArray(disabledTabs)) {
+                var pos = $.inArray(tabIndex, disabledTabs);
+
+                if (pos < 0) {
+                    disabledTabs.push(tabIndex);
+                }
+            }
+            else {
+                disabledTabs = [tabIndex];
+            }
+            this.tabs("option", "disabled", disabledTabs);
+
+            if (hide === true) {
+                $(this).find('li:eq(' + tabIndex + ')').addClass('ui-state-hidden');
+            }
+            // Enable chaining
+            return this;
+        };
+
+        $.fn.enableTab = function (tabIndex) {
+            $(this).find('li:eq(' + tabIndex + ')').removeClass('ui-state-hidden');
+            this.tabs("enable", tabIndex);
+            return this;
+        };
+    })(jQuery);
+    $('#MyTabSelector').tabs();
+</script>
+
+</body>
+
+</html>

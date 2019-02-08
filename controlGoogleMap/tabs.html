@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Case</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script data-require="jquery@3.0.0" data-semver="3.0.0" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
+    <link data-require="bootstrap-css@3.3.6" data-semver="3.3.6" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <h2>Dynamic Tabs</h2>
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+        <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+        <li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+            <h3>HOME</h3>
+            <p> This is HOME 1 form the first group of TABs.</p>
+        </div>
+        <div id="menu2" class="tab-pane fade">
+            <h3>Menu 2</h3>
+            <p> Menu 2 from TAB 1</p>
+            <a class="next btn btn-default" href="#">Next</a>
+        </div>
+        <div id="menu3" class="tab-pane fade">
+            <h3>Menu 3</h3>
+            <p> Menu 3  from TAB 1 </p>
+        </div>
+    </div>
+</div>
+<!--   Here: Second gourp of TABS  -->
+<div class="container">
+    <h2>Dynamic Tabs 2</h2>
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#home2">Home2</a></li>
+        <li><a data-toggle="tab" href="#menu2b">Menu 2b</a></li>
+        <li><a data-toggle="tab" href="#menu3b">Menu 3b</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="home2" class="tab-pane fade in active">
+            <h3>HOME2</h3>
+            <p>This second group of tabs represents the heat map tabs in WRESTORE.</p>
+        </div>
+        <div id="menu2b" class="tab-pane fade">
+            <h3>Menu 2b</h3>
+            <p>This es a menu 2b.</p>
+            <!--<a class="next btn btn-default" href="#">Next_2</a>-->
+        </div>
+        <div id="menu3b" class="tab-pane fade">
+            <h3>Menu 3b</h3>
+            <p>This es a menu 3b.</p>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function(){
+        $('.next').click(function(){
+            $('.nav-tabs a[href="#menu3"]').tab('show');
+        });
+    });
+</script>
+</body>
+
+</html>

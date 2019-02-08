@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- This code finds the lowest age of a list of persons stored into a JSON format -->
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<!-- this button executes the 'ajax_get_json()' function -->
+<button type="button" onclick = "ajax_get_json()">Mostrar datos</button>
+<!-- This 'div' is used to show the JSON's info -->
+<div id="info"></div>
+
+<script type="text/javascript">
+
+    var resultado = document.getElementById("info");// Get 'info' div as reference an store into 'resultado' variable
+
+//    var val1 = function ajax_get_json(){
+    function ajax_get_json(){
+
+        var xmlhttp; // variable to request the data
+        // Verify the type of navigator
+        if(window.XMLHttpRequest){
+            xmlhttp = new XMLHttpRequest(); // For new navigator
+        }else {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); // For IE
+        }
+
+        xmlhttp.onreadystatechange = function () { //This property processes the answer sent by the server
+            if(xmlhttp.readyState === 4 && xmlhttp.status === 200){//(4) The request has been done, (200) The status was success
+                // By 'xmlhttp.responseText' we get the server's answer as String byut we need to convert as JSON object
+                var datos = JSON.parse(xmlhttp.responseText);//By 'parse' method we convert into JSON object and it is stored as 'datos'
+                console.log(datos); // By 'concole' we see the 'datos' results
+                var edadMenor = encontrarEdadmenor (datos);// By 'encontrarEdadmenor' function, this var finds the lowest age from JSON object
+                resultado.innerHTML += "La edad menor es: "+ edadMenor; // The 'edadMenor' is inserted into the 'resultado'
+            }
+        };
+        xmlhttp.open("GET", "datos.json", true);//'GET' because we are obtaining information. 'datos.json' name where the information is coming. 'true' asynchronomous request
+        xmlhttp.send();//The request is sent
+
+    };
+
+    function encontrarEdadmenor (objetoJSON){// This function passes as parametes a JSON object
+        var arreglo = []; // Set an empty array
+
+        for (var i in objetoJSON){ // Iteration of JSON object through each JSON's object value
+            var persona = objetoJSON[i];
+            arreglo.push(persona.edad); // Get 'edad' of each person and push into the 'arreglo' var
+        }
+//        return arreglo; // This function returns the values of 'arreglo' which contains 'edades'
+        var edadMenor = Math.min.apply(null,arreglo);
+
+        return edadMenor;
+    }
+
+
+</script>
+
+
+</body>
+</html>

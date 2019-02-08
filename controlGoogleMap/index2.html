@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- This code add new button into the google map or doing some actions -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        #new_icon {
+            width: 500px;
+            height: 300px;
+        }
+        #new_icon div.gm-style > button[title="Toggle fullscreen view"] {
+            display: none;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtjlTdtC-oZ_MqQgsNmTTOzBkFsms4aFc&callback=initMap" async="" defer=""></script>
+
+</head>
+
+<body>
+<input type="button" id="fullscreen" value="Fullscreen" style="position: relative;
+    top: 100px; left: 300px; z-index: 50" />
+<div id="new_icon"></div>
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtjlTdtC-oZ_MqQgsNmTTOzBkFsms4aFc&callback=initMap" async="" defer=""></script>-->
+
+<script>
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('new_icon'), {
+            center: {lat: -39.000, lng: -60.000},
+            zoom: 3,
+            disableDefaultUI: true,
+            fullscreenControl: true
+        });
+
+        $('#fullscreen').click(function() {
+            $('#new_icon div.gm-style button[title="Toggle fullscreen view"]').trigger('click');
+        });
+    }
+</script>
+</body>
+</html>
