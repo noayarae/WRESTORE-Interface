@@ -1,4 +1,4 @@
-var nsga2_values_as_json = [
+var optimized_values = [
  {
    "ID": 0,
    "USERID": 111,

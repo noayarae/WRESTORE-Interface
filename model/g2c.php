@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" style="height: 100vh; overflow: hidden; width: 100%;">
-<!--<html xmlns="http://www.w3.org/1999/xhtml" style="height: 100vh">-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml" style="height: 100vh; overflow: hidden; width: 100%;">-->
+<html xmlns="http://www.w3.org/1999/xhtml" style="height: 100vh">
 <head>
     <meta charset=utf-8>
     <meta http-equiv="X-UA-Compatible" content="IE=8" />
@@ -83,118 +83,126 @@
 
 <!--  E: This PHP reads/grabs the data from the DB and creates a "TABLE" Html-tag to save them on it -->
 <?php
-include ('data.php');
-
-//This is a simple script that checks to see the session userID is even active. If not, that means someone is trying
-// to access this page without loggin in and I throw them out.
-/*session_set_cookie_params(3600);
-session_start();
-if ( $_SESSION['USERID']=="" ) {
-    header('Location: login.php');
-    }*/
-// You can always override the session by just declaring it like I can do below if I wanted to test with userid=2.
-$_SESSION['USERID']=111;
-//$USERID = $_SESSION['USERID'];
-$USERID = 111;
-
-// E: This code tries to connect to the server. Arguments are called from 'data.php' included above in L-103.
-$connection = mysqli_connect (DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME, 3306)
-or die("Unable to connect to server<br>\n");
-//echo "Connected to database!<br><br>";
-
-$count = 0;
-
-//E: I am grabbing the massive amount of data from the 'takefeedback' table. I actually am going to write it out on the
-// page in a table.
-$query =("SELECT * FROM takefeedback where USERID = '$USERID'");//E: DB for "ecw"
-//$query =("SELECT * FROM dmk_db1 where USERID = '$USERID'");//E: DB for Dairy-Mckay
-$result = mysqli_query($connection, $query); //  ???
-$row = mysqli_fetch_assoc($result); // E: Fetches (busca) a result row as an associative array.
-$tableSize = mysqli_num_rows($result)+1; // E: Returns the 'number of rows + 1' from the result set
-//E: I am writing out the entire table of data.  I have it hid (escondido) with css where the id 'wholeTable' is hidden.
-// You can always turn that css to not hide if you want to see it.
-//echo mysqli_num_rows($result); ???
-
-if (mysqli_num_rows($result)>0){
-	print '<table border="2" id="wholeTable"><tr>';
-	// E: these lines read and set the names in the table
-	print "<th>ID</th>";
-	foreach($row as $name => $value) {
-		print "<th>$name</th>";
-	}
-	print '</tr>';
-
-	while($row) {
-		$ColCount=0;
-		print '<tr>';
-		print "<td>$count</td>";
-		foreach($row as $value) {
-			$ColCount=$ColCount+1;
-			if ( $value ==''  ) {
-				print "<td></td>";
-			} else {
-				print "<td>$value</td>";
-			}
-		}
-		print '</tr>';
-		$row = mysqli_fetch_assoc($result);
-		$count = $count + 1;
-	}
-
-	// I am looking to see if we are left with an odd number of maps. If so, I add one line of fake data so that the
-    // maps load properly on the last page.
-    // E: If the number of rows (coming from mysql) is odd, the last map will not load properly. That is why, here a
-    // row with data mostly zeros is added to have NO problems loading the last map.
-	if ( $count%2 ){
-		print '<tr>';
-		print '<td>'.$count.'</td>';
-		print '<td>'.$USERID.'</td>';
-		print '<td>-1</td>';
-		print '<td>0</td>';
-		print '<td>0</td>';
-		print '<td>0,0,0,0,0,0,0</td>';
-		print '<td>1</td>';
-		print '<td>0,0,0,0,0,0,0,0,0,0</td>';
-		print '<td>0</td>';
-		$i=0;
-		while($i<=($ColCount-8)){
-			print '<td>0,0,0,0,0,0</td>';
-			$i++;
-		}
-		print '</tr>';
-		//print $ColCount;
-	};
-	print '</table>';
-}
-
-// Looking in the session table so I can find out what session type they are in and color in the needed div in the
-// Progress Bar.
-$query1 =("SELECT * FROM session_info where USERID='$USERID'");
-$result1 = mysqli_query($connection,$query1);
-$row1 = mysqli_fetch_assoc($result1);
-$session_type=$row1['SESSION_TYPE'];
-$searchid=$row1['SEARCHID'];
-$current_session=$row1['CURRENT_SESSION'];
-$jump=$row1['JUMP'];
-$writeThis=NULL;
-//Write out the auto search has happend!
-if ($jump==1){
-	$writeThis='An automated search has occurred and this is why you have jumped one human guided search process';
-};
-mysqli_close($connection);
-if ($session_type=="0")
-{$thisCSS=".i".$current_session;
-	$color="green";
-}
-else
-{$thisCSS=".s".$searchid.$current_session;
-	$color="yellow";
-}
-//You can echo the variable above if you want to see it value. I take the var color and write out some css
-// using javascript in line 550 or so below.
-//echo $thisCSS;
+include ('read_database.php');
+//include ('read_db.php');
+//include ('data.php');
+//
+////This is a simple script that checks to see the session userID is even active. If not, that means someone is trying
+//// to access this page without loggin in and I throw them out.
+///*session_set_cookie_params(3600);
+//session_start();
+//if ( $_SESSION['USERID']=="" ) {
+//    header('Location: login.php');
+//    }*/
+//// You can always override the session by just declaring it like I can do below if I wanted to test with userid=2.
+//$_SESSION['USERID']=111;
+////$USERID = $_SESSION['USERID'];
+//$USERID = 111;
+//
+//// E: This code tries to connect to the server. Arguments are called from 'data.php' included above in L-103.
+//$connection = mysqli_connect (DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME, 3306)
+//or die("Unable to connect to server<br>\n");
+////echo "Connected to database!<br><br>";
+//
+//$count = 0;
+//
+////E: I am grabbing the massive amount of data from the 'takefeedback' table. I actually am going to write it out on the
+//// page in a table.
+//$query =("SELECT * FROM takefeedback where USERID = '$USERID'");//E: DB for "ecw"
+////$query =("SELECT * FROM dmk_db1 where USERID = '$USERID'");//E: DB for Dairy-Mckay
+//$result = mysqli_query($connection, $query); //  ???
+//$row = mysqli_fetch_assoc($result); // E: Fetches (busca) a result row as an associative array.
+//$tableSize = mysqli_num_rows($result)+1; // E: Returns the 'number of rows + 1' from the result set
+////E: I am writing out the entire table of data.  I have it hid (escondido) with css where the id 'wholeTable' is hidden.
+//// You can always turn that css to not hide if you want to see it.
+////echo mysqli_num_rows($result); ???
+//
+//if (mysqli_num_rows($result)>0){
+//	print '<table border="2" id="wholeTable"><tr>';
+//	// E: these lines read and set the names in the table
+//	print "<th>ID</th>";
+//	foreach($row as $name => $value) {
+//		print "<th>$name</th>";
+//	}
+//	print '</tr>';
+//
+//	while($row) {
+//		$ColCount=0;
+//		print '<tr>';
+//		print "<td>$count</td>";
+//		foreach($row as $value) {
+//			$ColCount=$ColCount+1;
+//			if ( $value ==''  ) {
+//				print "<td></td>";
+//			} else {
+//				print "<td>$value</td>";
+//			}
+//		}
+//		print '</tr>';
+//		$row = mysqli_fetch_assoc($result);
+//		$count = $count + 1;
+//	}
+//
+//	// I am looking to see if we are left with an odd number of maps. If so, I add one line of fake data so that the
+//    // maps load properly on the last page.
+//    // E: If the number of rows (coming from mysql) is odd, the last map will not load properly. That is why, here a
+//    // row with data mostly zeros is added to have NO problems loading the last map.
+//	if ( $count%2 ){
+//		print '<tr>';
+//		print '<td>'.$count.'</td>';
+//		print '<td>'.$USERID.'</td>';
+//		print '<td>-1</td>';
+//		print '<td>0</td>';
+//		print '<td>0</td>';
+//		print '<td>0,0,0,0,0,0,0</td>';
+//		print '<td>1</td>';
+//		print '<td>0,0,0,0,0,0,0,0,0,0</td>';
+//		print '<td>0</td>';
+//		$i=0;
+//		while($i<=($ColCount-8)){
+//			print '<td>0,0,0,0,0,0</td>';
+//			$i++;
+//		}
+//		print '</tr>';
+//		//print $ColCount;
+//	};
+//	print '</table>';
+//}
+//
+//// Looking in the session table so I can find out what session type they are in and color in the needed div in the
+//// Progress Bar.
+//$query1 =("SELECT * FROM session_info where USERID='$USERID'");
+//$result1 = mysqli_query($connection,$query1);
+//$row1 = mysqli_fetch_assoc($result1);
+//$session_type=$row1['SESSION_TYPE'];
+//$searchid=$row1['SEARCHID'];
+//$current_session=$row1['CURRENT_SESSION'];
+//$jump=$row1['JUMP'];
+//$writeThis=NULL;
+////Write out the auto search has happend!
+//if ($jump==1){
+//	$writeThis='An automated search has occurred and this is why you have jumped one human guided search process';
+//};
+//mysqli_close($connection);
+//if ($session_type=="0")
+//{$thisCSS=".i".$current_session;
+//	$color="green";
+//}
+//else
+//{$thisCSS=".s".$searchid.$current_session;
+//	$color="yellow";
+//}
+////You can echo the variable above if you want to see it value. I take the var color and write out some css
+//// using javascript in line 550 or so below.
+////echo $thisCSS;
 
 ?>
+    <script type="text/javascript">
+//        var javaScriptVar = "<?php //echo $row; ?>//";
+//        var ress = <?php //echo $result; ?>//;
+//        console.log ("javaScriptVar: \n"+javaScriptVar);
+//        console.log ("result: \n"+ress);
+    </script>
 
 <!--[if lte IE 6]><script src="js/ie6/warning.js"></script><script>window.onload=function(){e("js/ie6/")}</script><![endif]-->
 <!--  ================= LINE-1: WRESTORE TITTLE  ===================== -->
@@ -873,6 +881,15 @@ in US Dollars" style="margin: 0px 0px 0px
 <script type="text/javascript" src="js/graphing.js"></script>
 <script type="text/javascript" src="js/graphingSub.js"></script>
 
+<!--  This js.script retrieves the data from MySQL in JSON format -->
+<script type="text/javascript">
+    var wholeData_json = json_from_mysql;
+    //E: console.log ("L.889 data coming from PHP: \n"+ aux1);
+    console.log ("L.888 test 1: \n"+ Object.keys(wholeData_json[0]).length);//E: get number of JSON objects
+    console.log ("L.889 test 1: \n"+ JSON.stringify(wholeData_json[0]));
+    //    console.log ("L.889 test 1: \n"+ JSON.stringify(auxjs1));
+</script>
+
 <script type="text/javascript">
     Shadowbox.init();
 </script>
@@ -906,6 +923,11 @@ in US Dollars" style="margin: 0px 0px 0px
 
 
 <script type="text/javascript">
+    var database = 1;//EE: MySQL(as-html) = 1; JSON = 2; MySQL(as-json) = 3
+    var debug = 1;//EE: for debugging set 1
+
+    var nsga2_values_as_json = optimized_values;//EE: 'optimized_values' comes from 'data/takefeedback' file
+//    var nsga2_values_as_json = wholeData_json;//EE: 'optimized_values' comes from 'data/takefeedback' file
 
     // ====================            start   SAVING the "wholeTable" in some arrays        ====================== //
     //E:The next chunk of code saves all the data from the table ("wholeTable") at the top of the page in Arrays that
@@ -918,12 +940,12 @@ in US Dollars" style="margin: 0px 0px 0px
     var answersArray =[];//EE: It'll store RATING and CONFIDENCE (answer) values of 'wholeTable' of 20 alternatives
     var fn_obj_array =[];//EE: It'll store values of F0,F1,F2,F3,F4,F5 (objective functions) of 'wholeTable' of 20 alt
 
-    var database = 1;//EE: JSON: database = 2
+
     //EE: ****************************** MySQL or JSON ************************************
     if (database != 2) {
         //EE: .............................. (1) Headers using MySQL  .........................
         //E: it gets the headers of the 'WholeTable' and saves as 'headers'
-//        alert ("L.922 Databse: MySQL");
+        if (debug == 1) alert ("L.922 Databse: MySQL");
         $('#wholeTable th').each(function (index, item) {
             headers[index] = $(item).html();
         });
@@ -933,10 +955,12 @@ in US Dollars" style="margin: 0px 0px 0px
     else {
         //EE: .............................. Start:(1) Headers using JSON  .........................
         //E: This way works when the data comes from JSON format
-        alert ("L.933 Databse: JSON");
+        if (debug == 1) alert ("L.933 Databse: JSON");
         var nsga2_values = nsga2_values_as_json;//EE: Values obtained from optimization process by NSGA2 algorithm
         var headers = Object.keys(nsga2_values[0]);
-        console.log("L.931 headers: \n" + headers);//E: console.log ("L.927 keys: \n" + headers.length);
+//        console.log("L.954 nsga2_values: \n" + JSON.stringify(nsga2_values));//E: show full data
+        console.log ("L.889 test 1: \n"+ Object.keys(nsga2_values[0]).length);//E: get number of JSON objects
+        console.log("L.955 headers: \n" + headers);//E: console.log ("L.927 keys: \n" + headers.length);
 
         //EE: Get list of headers of subbasins only. For ecw it goes from 15 to 145 (145-15=130 subbasins)
         var list_header_subbasins = Object.values(headers).slice(15, 142);//EE: Get list of headers of subbasins
@@ -947,7 +971,7 @@ in US Dollars" style="margin: 0px 0px 0px
     if (database != 2){    //E: Way (1)
         //EE: ................... (2) array_fullvalues, answersArray, fn_obj_array (MySQL) ..................
         //E: it gets all values of the 'WholeTable' and saves 'array_fullvalues'
-//        alert ("L.945 Databse: MySQL");
+        if (debug == 1) alert ("L.945 Databse: MySQL");
         $('#wholeTable tr').has('td').each(function() {//EE: Return all (tr) elements that have a (td) element inside them
             var arrayItem = {};
             var arrayItemAnswers = {};
@@ -988,7 +1012,7 @@ in US Dollars" style="margin: 0px 0px 0px
     }
     else {//E: Way (2)
         //EE: ................... Start: array_fullvalues, answersArray, fn_obj_array (using JSON) ..................
-        alert ("L.986 Databse: JSON");
+        if (debug == 1) alert ("L.986 Databse: JSON");
         var array_fullvalues = nsga2_values_as_json;//EE: This is also used in 'bargraphcpy.js'
         console.log("L.982 full values of 'wholeTable' using JSON file: \n" + array_fullvalues.length);
 //    console.log("L.983 full values of 'wholeTable': \n" + JSON.stringify (array_fullvalues));
@@ -1048,7 +1072,7 @@ in US Dollars" style="margin: 0px 0px 0px
     //EE: ****************************** MySQL or JSON ************************************
     if (database != 2){
         //E: ****************************** Start: Saving using MySQL DATA *******************************
-//        alert ("L.1046 Databse from MySQL");
+        if (debug == 1) alert ("L.1046 Databse from MySQL");
         //EE: Iteration through  the '20 ALTERNATIVES' - MySQL Data
         $('#wholeTable tbody tr').has('td').each(function() {//EE: Return all (tr) elements that have(td) element inside them
 //        heatiter=1;
@@ -1124,7 +1148,7 @@ in US Dollars" style="margin: 0px 0px 0px
     }
     else {
         //E: ****************************** Start: Saving Using JSON DATA *******************************
-        alert ("L.1122 Databse from JSON");
+        if (debug == 1) alert ("L.1151 Databse from JSON");
         //EE: iteration through the '20 ALTERNATIVES' - JSON Data
         for (var i = 0; i < array_fullvalues.length; i++) {
 //        heatiter = 1;

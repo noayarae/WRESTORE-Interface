@@ -1,9 +1,5 @@
-
-
-
-
-
-//****************************************
+// Mapping new js file
+//
 
 var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
   var backArray = [];
