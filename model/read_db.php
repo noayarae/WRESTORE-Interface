@@ -5,7 +5,7 @@
  * This code read the data from MySQL. The data is converted in JSON format to send to javascript code (g2.php)
  */
 
-//include ('data.php');
+include ('data.php');//EE: Here, 'data.php' is not needed, because 'read_database.php' is also calling it
 
 //This is a simple script that checks to see the session userID is even active. If not, that means someone is trying
 // to access this page without loggin in and I throw them out.
