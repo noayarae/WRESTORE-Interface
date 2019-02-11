@@ -17,15 +17,15 @@
 .step_line {/*This works for SETEP 1, 2, 3 line*/
 	width: 100%;
 	display: inline-flex;
-	height: 26px;
+	/*height: 26px;*/
 }
-.step_box {display: block;width: 100px;text-align: center;border: 1px solid #285971;border-radius: 3px;
+.step_box {display: block;width: 100px;text-align: center;border: 1px solid #285971;border-radius: 5px;
 	background-color: #2e6884;font-size: 16px;color: #fff;
 	cursor: help;
 }
 
 .step_title_text {
-	padding: 0px 5px 0px 8px;
+	padding: 0px 5px 0px 5px;
 	color: #000;
 	font-size: 18px;
 }
@@ -432,7 +432,7 @@ label.error {
 	padding: 15px;
 }
 .mapHolder1 {
-	width: 75.5%;/*1055px;*/ /*100%;*/
+	width: 100%;/*1055px;*/ /*100%;*/
 	height: 495px; /*505px;*/
 	float: left;
 	background-color: #faa96b; /*#FA9A50*/
@@ -473,7 +473,7 @@ label.error {
 	padding: 15px;
 }
 .innerMapLines {
-	/*padding: 4px 0px 0px 0px;*/
+	padding: 0px 0px 0px 10px;
 	/*display: block;*/
 	/*font-weight: normal;*/
 	height: 25px;
@@ -701,7 +701,7 @@ label.error {
 /*  *********** VOTE SECTION *********** */
 .vote_section {
 	display: block;
-	width: 684px;/*725px;/*800px;*/
+	/*width: 684px;!*725px;!*800px;*!*/
 	height: inherit;/*height: 60px;*/
 	position: relative;
 	z-index: 100;
@@ -738,7 +738,7 @@ label.error {
 /* Father - LEVEL 1 */
 .mainMapLegend_container{
 	width: 140px;
-	margin: 21px 0px 0px 0px; /* CHANGE the margin-top to control the Y-position. Margin-top=0px sticks at the top*/
+	margin: 27px 0px 0px 0px; /* CHANGE the margin-top to control the Y-position. Margin-top=0px sticks at the top*/
 	background-color: white;
 	border: 1px solid #8c8c8c; /*#666666;*/
 	border-radius: 1px;
@@ -912,7 +912,7 @@ label.error {
 /* heatmap */
 /*#heatmaps_frame {*/
 .panel_2 {
-	width: 275px;
+	/*width: 275px;*/
 	height: 495px;
 	/*position: relative;*/
 	float: right;
@@ -959,7 +959,7 @@ label.error {
 
 /* Line2*/
 #line2-col1{
-	width:65%;/*width:800px;*/
+	/*width:65%;!*width:800px;*!*/
 	height: inherit;/*height: 100%;*/
 	float:left;
 	display:inline;
@@ -967,7 +967,7 @@ label.error {
 	padding:0px 0 0px 0;
 }
 #line2-col2{
-	width: 35%;/*width: 400px;*/
+	/*width: 35%;!*width: 400px;*!*/
 	height: inherit;
 	display: inline-block;
 	text-align: right;
@@ -1141,8 +1141,38 @@ label.error {
 	cursor: pointer;
 }
 
+/* ====================================== ============================= ================================ */
+/* Style after bootstrap implementation */
 
+.debug {
+	/*background-color: #b1dfbb;*/
+	/*border: 1px solid blue;*/
+}
 
+/* row 1 */
+.row1-box1 {float:left; display:inline; font-family:'BandaRegularRegular', Arial, Helvetica, sans-serif; line-height:1; font-size: 50px; font-weight:normal; color:#2f2f2f;}
+.row1-box2 {
+    width: 200px;
+    margin:auto; padding:0;
+    border: 1px solid #80ff00;
+    border-radius: 5px;
+    background-color: #d9ffb3;
+    font-family: auto; /*'BandaRegularRegular', Arial, Helvetica, sans-serif;*/
+    line-height:22px; text-align:center; font-size:24px; color:#2f2f2f; text-transform:none;
+}
+.row1-box3a{float:right; display:inline; font-family:'BandaRegularRegular', Arial, Helvetica, sans-serif; line-height:16px; text-align:right; font-size:16px; color:#2f2f2f; margin:0; padding:0; text-transform:none;}
+.row1-box3b{float:right; display:inline; font-family:'Oswald', sans-serif; font-size:27px; text-align:right; text-transform:uppercase; font-weight: 300; line-height:30px; margin:0; padding:0; color:#2d637f;}
 
+@media only screen and (max-width: 1200px) {
+    #row1-box2a {
+        display: none !important;
+    }
+}
+
+.fontStepTitle {
+	font-family: 'Oswald', Arial, Helvetica, sans-serif;
+	font-size:17px;
+	font-weight: 200;
+}
 
 

@@ -99,12 +99,6 @@ function subBasinGraph1() {
             data3.addRow([rowlen+1,m14,min14,max14,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
             'line {stroke-color:'+'#000066'+'; stroke-width:'+1+'}'
                 ,createCustomHTMLContent1(rowlen+1,'NRed',m14.toExponential(2),min14.toExponential(2),max14.toExponential(2))]);
-
-            // ----- Old code-lines --------
-            // data.addRow([rowlen + 1,m11, min11, max11,colors[rowlen],createCustomHTMLContent1(rowlen + 1, 'PFR', m11.toExponential(2), min11.toExponential(2), max11.toExponential(2))]);
-            // data1.addRow([rowlen + 1,m12, min12, max12,colors[rowlen],createCustomHTMLContent1(rowlen + 1, 'ER$', m12.toExponential(2), min12.toExponential(2), max12.toExponential(2))]);
-            // data2.addRow([rowlen + 1,m13, min13, max13,colors[rowlen],createCustomHTMLContent1(rowlen + 1, 'SRed', m13.toExponential(2), min13.toExponential(2), max13.toExponential(2))]);
-            // data3.addRow([rowlen + 1,m14, min14, max14,colors[rowlen],createCustomHTMLContent1(rowlen + 1, 'NRed', m14.toExponential(2), min14.toExponential(2), max14.toExponential(2))]);
         }
 
         var options = {
@@ -124,7 +118,7 @@ function subBasinGraph1() {
             tooltip: {trigger: 'selection'},
             // vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
             //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1}, direction: -1},
-            vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+            vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
                 gridlines: {count: numberOf_alternatives}, direction: -1},
 
             intervals: {style: 'bars',color: '#fff'},
@@ -147,7 +141,7 @@ function subBasinGraph1() {
             tooltip: {trigger: 'selection'},
             // vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
             //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
-            vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+            vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
                 gridlines: {count: numberOf_alternatives},direction: -1},
 
             // intervals: {style: 'bars',color: '#fff'},
@@ -170,7 +164,7 @@ function subBasinGraph1() {
             tooltip: {trigger: 'selection'},
             // vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
             //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
-            vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+            vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
                 gridlines: {count: numberOf_alternatives},direction: -1},
 
             // intervals: {style: 'bars',color: '#fff'},
@@ -193,7 +187,7 @@ function subBasinGraph1() {
             tooltip: {trigger: 'selection'},
             // vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
             //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
-            vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+            vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
                 gridlines: {count: numberOf_alternatives},direction: -1},
 
             // intervals: {style: 'bars',color: '#fff'},
@@ -337,12 +331,6 @@ function subBasinGraph1() {
             data3.addRow([rowlen+1,m14,min14,max14,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
             'line {stroke-color:'+'#000066'+'; stroke-width:'+1+'}'
                 ,createCustomHTMLContent(rowlen+1,'NRed',m14.toExponential(2),min14.toExponential(2),max14.toExponential(2),'NRed wrt Watershed',perm14.toExponential(2))]);
-
-            // ----- Old code-lines for Sub-basins
-            // data.addRow([rowlen + 1,m11, min11, max11,colors[rowlen],createCustomHTMLContent(rowlen + 1, 'PFR', m11.toExponential(2), min11.toExponential(2), max11.toExponential(2),'PFR wrt Watershed', perm11.toExponential(2))]);
-            // data1.addRow([rowlen + 1,m12, min12, max12,colors[rowlen],createCustomHTMLContent(rowlen + 1, 'ER$', m12.toExponential(2), min12.toExponential(2), max12.toExponential(2),'ER$ wrt Watershed', perm12.toExponential(2))]);
-            // data2.addRow([rowlen + 1,m13, min13, max13,colors[rowlen],createCustomHTMLContent(rowlen + 1, 'SRed', m13.toExponential(2), min13.toExponential(2), max13.toExponential(2),'SRed wrt Watershed', perm13.toExponential(2))]);
-            // data3.addRow([rowlen + 1,m14, min14, max14,colors[rowlen],createCustomHTMLContent(rowlen + 1, 'NRed', m14.toExponential(2), min14.toExponential(2), max14.toExponential(2),'NRed wrt Watershed', perm14.toExponential(2))]);
         }
 
         var options = {
@@ -357,7 +345,7 @@ function subBasinGraph1() {
             tooltip: {trigger: 'selection'},
             // vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
             //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
-            vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+            vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
                 gridlines: {count: numberOf_alternatives},direction: -1},
 
             intervals: {style: 'bars',color: '#fff'},
@@ -378,7 +366,7 @@ function subBasinGraph1() {
             tooltip: {trigger: 'selection'},
             // vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
             //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
-            vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+            vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
                 gridlines: {count: numberOf_alternatives},direction: -1},
 
             intervals: {style: 'bars',color: '#fff'},
@@ -399,7 +387,7 @@ function subBasinGraph1() {
             tooltip: {trigger: 'selection'},
             // vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
             //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
-            vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+            vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
                 gridlines: {count: numberOf_alternatives},direction: -1},
             intervals: {style: 'bars',color: '#fff'},
             // hAxis: {textPosition: 'none'},
@@ -419,7 +407,7 @@ function subBasinGraph1() {
             tooltip: {trigger: 'selection'},
             // vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
             //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
-            vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+            vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
                 gridlines: {count: numberOf_alternatives},direction: -1},
             intervals: {style: 'bars',color: '#fff'},
             // hAxis: {textPosition: 'none'},

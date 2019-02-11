@@ -42,7 +42,7 @@ body {
 
 #chart_div1 {
     float: left;
-    width: 100%;
+    width: 235px;
     height: 100%;
     /*display:block;*/
     boarder: 1px solid yellow;
