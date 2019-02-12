@@ -906,7 +906,7 @@ in US Dollars" style="margin: 0px 0px 0px
 </div>
 <!-- E: end the "wrapper" Div which holds the all page after "BODY" Div -->
 
-<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 <link href="js/shadowbox/shadowbox.css" rel="stylesheet" type="text/css"/>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
@@ -2689,7 +2689,7 @@ in US Dollars" style="margin: 0px 0px 0px
 
         var image = document.createElement('IMG'); //E:It creates a tag "IMG" with the check symbol v.
         image.className = "blankImg";
-        image.src = "http://maps.gstatic.com/mapfiles/mv/imgs8.png";
+        image.src = "https://maps.gstatic.com/mapfiles/mv/imgs8.png";
 
         var label = document.createElement('LABEL'); //E:It creates a tag "LABEL" with the name Label.
         label.className = "checkboxLabel";
@@ -2730,7 +2730,7 @@ in US Dollars" style="margin: 0px 0px 0px
 
         var image = document.createElement('IMG'); //E:It creates a tag "IMG" with the check symbol v.
         image.className = "blankImg";
-        image.src = "http://maps.gstatic.com/mapfiles/mv/imgs8.png";
+        image.src = "https://maps.gstatic.com/mapfiles/mv/imgs8.png";
 
         var label = document.createElement('LABEL'); //E:It creates a tag "LABEL" with the name Label.
         label.className = "checkboxLabel";
@@ -2770,7 +2770,7 @@ in US Dollars" style="margin: 0px 0px 0px
 
         var image = document.createElement('IMG'); //E:It creates a tag "IMG" with the check symbol v.
         image.className = "blankImg";
-        image.src = "http://maps.gstatic.com/mapfiles/mv/imgs8.png";
+        image.src = "https://maps.gstatic.com/mapfiles/mv/imgs8.png";
 
         var label = document.createElement('LABEL'); //E:It creates a tag "LABEL" with the name Label.
         label.className = "checkboxLabel";
@@ -2810,7 +2810,7 @@ in US Dollars" style="margin: 0px 0px 0px
 
         var image = document.createElement('IMG'); //E:It creates a tag "IMG" with the check symbol v.
         image.className = "blankImg";
-        image.src = "http://maps.gstatic.com/mapfiles/mv/imgs8.png";
+        image.src = "https://maps.gstatic.com/mapfiles/mv/imgs8.png";
 
         var label = document.createElement('LABEL'); //E:It creates a tag "LABEL" with the name Label.
         label.className = "checkboxLabel";
@@ -2850,7 +2850,7 @@ in US Dollars" style="margin: 0px 0px 0px
 
         var image = document.createElement('IMG'); //E:It creates a tag "IMG" with the check symbol v.
         image.className = "blankImg";
-        image.src = "http://maps.gstatic.com/mapfiles/mv/imgs8.png";
+        image.src = "https://maps.gstatic.com/mapfiles/mv/imgs8.png";
 
         var label = document.createElement('LABEL'); //E:It creates a tag "LABEL" with the name Label.
         label.className = "checkboxLabel";
@@ -2890,7 +2890,7 @@ in US Dollars" style="margin: 0px 0px 0px
 
         var image = document.createElement('IMG'); //E:It creates a tag "IMG" with the check symbol v.
         image.className = "blankImg";
-        image.src = "http://maps.gstatic.com/mapfiles/mv/imgs8.png";
+        image.src = "https://maps.gstatic.com/mapfiles/mv/imgs8.png";
 
         var label = document.createElement('LABEL'); //E:It creates a tag "LABEL" with the name Label.
         label.className = "checkboxLabel";
@@ -2930,7 +2930,7 @@ in US Dollars" style="margin: 0px 0px 0px
 
         var image = document.createElement('IMG'); //E:It creates a tag "IMG" with the check symbol v.
         image.className = "blankImg";
-        image.src = "http://maps.gstatic.com/mapfiles/mv/imgs8.png";
+        image.src = "https://maps.gstatic.com/mapfiles/mv/imgs8.png";
 
         var label = document.createElement('LABEL'); //E:It creates a tag "LABEL" with the name Label.
         label.className = "checkboxLabel";
@@ -2986,7 +2986,7 @@ in US Dollars" style="margin: 0px 0px 0px
 //
         var image = document.createElement('IMG'); //E:It creates a tag "IMG" with the check symbol v.
         image.className = "blankImg";
-        image.src = "http://maps.gstatic.com/mapfiles/mv/imgs8.png";
+        image.src = "https://maps.gstatic.com/mapfiles/mv/imgs8.png";
 //
         controlUI.appendChild(controlText);
         
