@@ -248,7 +248,7 @@
 suggestion by clicking inside each sub-basin in the map.
 The left panel shows maps of how this suggestion effects
 the costs and benefits over the watershed landscape">STEP 1:
-                </div>
+                    </div>
                     <div>
                         <h4 class="step_title_text fontStepTitle">Learn about <font color="#7d110c"><strong>Suggestion <span
                                     class="oneMap"></span></strong></font>
@@ -258,6 +258,122 @@ the costs and benefits over the watershed landscape">STEP 1:
                            value="Full-screen" style="position: relative; top: 55px;
      left: 20px; z-index: 200; width: 90px; height: 26px;/*background-color: #fcd4b5;*/ cursor: pointer" />
                     </div>
+
+                    <!--   ++++++++++++++   inserting HeatMaps in STEP1 box  ++++++++++++++  -->
+                    <!--                <div class ="containerABC collapsed" name='step1_alter' style="position: relative; width: 250px;-->
+                    <!--                left: 2px; top: -464px; z-index: 100; background-color: #ffffff; height: 470px; border: 1px solid-->
+                    <!--                #999999;">-->
+                    <!--                <div class ="heatmaps_frame1 collapsed" name='step1_alter'>-->
+                    <div class ="panel_1 collapsed" name='step1_alter'>
+                        <!--                For testing   -->
+                        <!--                <div name='step2collapse' class ="containerABC collapsed" style="position: relative; width: 250px;-->
+                        <!--                left: 5px; top: 0px; z-index: 100; background-color: #ff9933; border: 2px solid black;">-->
+
+                        <div id="tabs_hm" style="font-size: 12px; height: 100%;">
+                            <ul class="tabs_heatmap">
+                                <li><a id="step1_start" class="trackable" href="#info_heatmap">Start</a></li>
+                                <li><a id="step1_PFR_tab" class="trackable" title="Peak Flow Reduction in cubic
+meters per second (cms)" href="#tabs-PF">PFR</a></li>
+                                <li><a id="step1_SR_tab" class="trackable" title="Sediment Reduction in tons" href="#tabs-SR">SR</a></li>
+                                <li><a id="step1_NR_tab" class="trackable" title="Nitrate Reduction in kilograms (kg)" href="#tabs-NR">NR</a></li>
+                                <li style="width: 40px;"><a id="step1_P_tab" class="trackable" title="Profit (Revenue-Cost)
+in US Dollars" style="margin: 0px 0px 0px 4px;" href="#tabs-RV">P</a></li>
+                            </ul>
+                            <div class="tab_container2">
+                                <!--    ------------ (1a) tab-Info of HeatMap  ------------   -->
+                                <div id="info_heatmap" class='tab_content2' style="height: 97%; overflow: auto;">
+                                    <!--                            <div id="info_heatmap" class='tab_content2' style="height: 345px; overflow: auto; border: 1px solid red;">-->
+                                    <h4 style="font-size: 20px">Instructions </h4>
+                                    <p>Click on tabs to view how the performance (i.e., benefits and costs) of this
+                                        suggestion spatially varies over the landscape. </p>
+                                    <p>Acronyms stand for:</p>
+                                    <ul>
+                                        <li><p><b>PFR </b>is Peak Flow Reduction in cubic meters per second (cms)
+                                                . This represents the benefit of reduced flooding in the
+                                                landscape</p></li>
+                                        <li><p><b>SR </b>is Sediment Reduction in tons. This represents the benefit of
+                                                reduced erosion in the landscape.
+                                            </p></li>
+                                        <li><p><b>NR </b>is Nitrate Reduction in Kilograms (kg). This represents
+                                                the benefit of reduced fertilizer loss in the landscape.</p></li>
+                                        <li><p><b>P </b>is Profit (Revenue-Expenses) in US Dollars. This represents the
+                                                monetary benefits minus costs accrued from implementing proposed conservation
+                                                decisions on the landscape.</p></li>
+                                    </ul>
+                                </div>
+                                <!--    ------------ (2a) tabs-PFR heatmap ------------   -->
+                                <div id="tabs-PF" class="map1">
+                                    <div class="tab-header2">
+                                        <h4 class="fontStepTitle">Suggestion <span class="oneMap"></span></h4>
+                                        <input id="fullscreen_heatmap1" class="trackable" type="button" style="display: none"
+                                               title="Click here to display a fullscreen map" value="fullscreen PFR"/>
+                                    </div>
+                                    <div id="heatMapHolderOne">
+                                        <div id="oneMapPF" class="tip"></div>
+                                        <!--  It draws them map1 -->
+                                        <div id="heatmap_canvasPF1" name="heatmap_canvasPF1"></div>
+                                    </div>
+                                </div>
+                                <div style="clear:both"></div>
+
+                                <!--    ------------ (3a) tabs-SR heatmap --------   -->
+                                <div id="tabs-SR" class="map1">
+                                    <div class="tab-header2">
+                                        <h4 class="fontStepTitle">Suggestion <span class="oneMap"></span></h4>
+
+                                        <input id="fullscreen_heatmap3" class="trackable" type="button" style="display: none"
+                                               title="Click here to display a fullscreen map" value="fullscreen SR"/>
+                                    </div>
+                                    <div id="heatMapHolderOne">
+                                        <div id="oneMapSR" class="tip"></div>
+                                        <!--  It draws them map1 -->
+                                        <div id="heatmap_canvasSR1" name="heatmap_canvasSR1"></div>
+                                    </div>
+                                </div>
+                                <div style="clear:both"></div>
+
+                                <!--    -----------  (4a)  tabs-NR heatmap ------   -->
+                                <div id="tabs-NR" class="map1">
+                                    <div class="tab-header2">
+                                        <h4 class="fontStepTitle">Suggestion <span class="oneMap"></span></h4>
+
+                                        <input id="fullscreen_heatmap4" class="trackable" type="button" style="display: none"
+                                               title="Click here to display a fullscreen map" value="fullscreen NR"/>
+                                    </div>
+                                    <div id="heatMapHolderOne">
+                                        <div id="oneMapNR" class="tip"></div>
+                                        <!--  It draws them map1 -->
+                                        <div id="heatmap_canvasNR1" name="heatmap_canvasNR1"></div>
+                                    </div>
+                                </div>
+                                <div style="clear:both"></div>
+
+                                <!--    ------------ (5a) tabs-RV heatmap (Profit) --------   -->
+                                <div id="tabs-RV" class="map1">
+                                    <div class="tab-header2">
+                                        <h4 class="fontStepTitle">Suggestion <span class="oneMap"></span></h4>
+
+                                        <input id="fullscreen_heatmap2" class="trackable" type="button" style="display: none"
+                                               title="Click here to display a fullscreen map" value="fullscreen P"/>
+                                    </div>
+                                    <div id="heatMapHolderOne">
+                                        <div id="oneMapRV" class="tip"></div>
+                                        <!--  It draws them map1 -->
+                                        <div id="heatmap_canvasRV1" name="heatmap_canvasRV1"></div>
+                                    </div>
+                                </div>
+                                <div style="clear:both"></div>
+
+                            </div>
+                        </div>
+                        <!--                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    -->
+                    </div>
+                    <script>
+                        $( function() {
+                            $("#tabs_bp").tabs();
+                        } );
+                    </script>
+                    <!--   +++++++++++   finish insert HeatMaps in Step 1 +++++++++++ -->
                 </div>
             
                 <div id="mapHolderOne">
@@ -271,7 +387,7 @@ the costs and benefits over the watershed landscape">STEP 1:
 <!--                left: 2px; top: -464px; z-index: 100; background-color: #ffffff; height: 470px; border: 1px solid-->
 <!--                #999999;">-->
 <!--                <div class ="heatmaps_frame1 collapsed" name='step1_alter'>-->
-                    <div class ="panel_1 collapsed" name='step1_alter'>
+                    <div class ="panel_1 collapsed" name='step1_alter' style="display: none">
 <!--                For testing   -->
 <!--                <div name='step2collapse' class ="containerABC collapsed" style="position: relative; width: 250px;-->
 <!--                left: 5px; top: 0px; z-index: 100; background-color: #ff9933; border: 2px solid black;">-->
