@@ -19,9 +19,8 @@
 	display: inline-flex;
 	/*height: 26px;*/
 }
-.step_box {display: block;width: 100px;text-align: center;border: 1px solid #285971;border-radius: 5px;
-	background-color: #2e6884;font-size: 16px;color: #fff;
-	cursor: help;
+.step_box {display: block; width:100px; text-align:center; border:1px solid #285971; border-radius: 5px;
+	background-color:#2e6884; font-size: 16px; color: #fff; cursor: help;
 }
 
 .step_title_text {
@@ -526,13 +525,15 @@ label.error {
 	margin-top: 15px;
 }
 #mapHolderOne, #mapHolderTwo {
-	height: 470px;
+	/*height: 470px;*/
+	height: calc(100% - 26px);/* 26px must be changed according to the height of the above div */
 	margin: 0px 0px 3px 0px;
 	padding: 2px;
 }
 #map_canvas1, #map_canvas2 {
 	border: 1px solid #999;
-	height: 464px;/*475px;*/
+	height: 100%;
+	/*height: 464px;!*475px;*!*/
 }
 
 .submitButtonHolder {
@@ -678,9 +679,10 @@ label.error {
 }
 
 .graph {
-	background-color: #ffffff;
+	height: calc(100% - 26px);/* 26px must be changed according to the height of the above div */
 	border: 1px solid #b3b3b3;
 	border-radius: 4px;
+	background-color: #ffffff;
 }
 
 .graphTable {
@@ -913,7 +915,7 @@ label.error {
 /*#heatmaps_frame {*/
 .panel_2 {
 	/*width: 275px;*/
-	height: 495px;
+	height: 100%;/*495px;*/
 	/*position: relative;*/
 	float: right;
 	/*right: 5px; !* it is controled at element-style *!*/
@@ -1010,7 +1012,7 @@ label.error {
 	width: 40px;
 	height: 26px;
 	cursor: pointer;
-	background-color: #b3b3b3;/*red;*/
+	background-color: #b3b3b3 /*#8ebfd7; #68a9ca; red;*/
 }
 
 .fa-info-circle{color: #000000;/*blue;*/position: relative;left: 9px;}
@@ -1175,4 +1177,34 @@ label.error {
 	font-weight: 200;
 }
 
+/*  Responsive with media query  */
+/* row4 */
+.row4 {
+	height: 482px; /*480px; 420px;*/
+}
 
+@media only screen and (min-height: 800px) {/* For screen-heights > 800: */
+	.row4 {height: 514px;} /*[482 + (800-768) = 514] (height laptop = 768)*/
+}
+@media only screen and (min-height: 900px) {/* For screen-heights > 900: */
+	.row4 {height: 614px;}
+}
+@media only screen and (min-height: 1024px) {/* For screen-heights > 1024: */
+	.row4 {height: 738px;}
+}
+@media only screen and (min-height: 1080px) {/* For screen-heights > 1080: */
+	.row4 {height: 790px;}
+}
+@media only screen and (min-height: 1200px) {/* For screen-heights > 1200: */
+	.row4 {height: 910px;}
+}
+
+/* media query for check boxes */
+/* It does not work */
+@media only screen and (max-width: 1200px) {/* For screen-heights > 800: */
+	.BMP_checkboxes_container1 {width: 620px;}
+}
+
+.checkboxLabel {
+	margin: 0px;
+}

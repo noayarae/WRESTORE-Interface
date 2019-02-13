@@ -105,7 +105,7 @@ function subBasinGraph1() {
             title: 'Peak Flow Reduction in cfs', //E: title is not shown because it fits outside of frame
             // height: 500, width: 270, //E:These two parameters define the window's size of the bar-plot
             // height: 550, width: 290, //E:These two parameters define the window's size of the barplot
-            height: 510, width: 300,
+            height: 505, width: 300,
             chartArea: {top:0},//E: It is the gap distance of the plot from the top border
             // chartArea:{left:40,top:0,width:"100%",height:"100%"},
             // backgroundColor: '#ffff80',
@@ -130,7 +130,7 @@ function subBasinGraph1() {
 
         var options1 = {
             // title: 'Economic Revenue in Dollars (ER)',
-            height: 510, width: 300,//height: 550, width: 290,//height: 500, width: 270,
+            height: 505, width: 300,//height: 550, width: 290,//height: 500, width: 270,
             chartArea: {top:0},
             // backgroundColor: 'green',
             legend: {position: 'none'},
@@ -153,7 +153,7 @@ function subBasinGraph1() {
 
         var options2 = {
             // title: 'In-stream sediment reduction in tons (SRed)',
-            height: 510, width: 300,//height: 550, width: 290,//height: 500, width: 270,
+            height: 505, width: 300,//height: 550, width: 290,//height: 500, width: 270,
             chartArea: {top:0},
             // backgroundColor: 'green',
             legend: {position: 'none'},
@@ -176,7 +176,7 @@ function subBasinGraph1() {
 
         var options3 = {
             // title: 'In-stream nitrate reduction in kilograms (NRed)',
-            height: 510, width: 300,//height: 550, width: 290,//height: 500, width: 270,
+            height: 505, width: 300,//height: 550, width: 290,//height: 500, width: 270,
             chartArea: {top:0},
             // backgroundColor: 'green',
             legend: {position: 'none'},
@@ -335,7 +335,7 @@ function subBasinGraph1() {
 
         var options = {
             title: 'Peak Flow Reduction in cfs',
-            height: 510, width: 300,//height: 550, width: 290,//height: 500, width: 270,
+            height: 505, width: 300,//height: 550, width: 290,//height: 500, width: 270,
             chartArea: {top:0},
             legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
@@ -356,7 +356,7 @@ function subBasinGraph1() {
 
         var options1 = {
             title: 'Economic Revenue in Dollars (ER$)',
-            height: 510, width: 300,//height: 550, width: 290,//height: 500, width: 270,
+            height: 505, width: 300,//height: 550, width: 290,//height: 500, width: 270,
             chartArea: {top:0},
             legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
@@ -377,7 +377,7 @@ function subBasinGraph1() {
 
         var options2 = {
             title: 'In-stream sediment reduction in tons (SRed)',
-            height: 510, width: 300,//height: 550, width: 290,//height: 500, width: 270,
+            height: 505, width: 300,//height: 550, width: 290,//height: 500, width: 270,
             chartArea: {top:0},
             legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
@@ -397,7 +397,7 @@ function subBasinGraph1() {
 
         var options3 = {
             title: 'In-stream nitrate reduction in kilograms (NRed)',
-            height: 510, width: 300,//height: 550, width: 290,//height: 500, width: 270,
+            height: 505, width: 300,//height: 550, width: 290,//height: 500, width: 270,
             chartArea: {top:0},//
             legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
