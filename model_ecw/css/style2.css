@@ -1183,19 +1183,19 @@ label.error {
 	height: 482px; /*480px; 420px;*/
 }
 
-@media only screen and (min-height: 800px) {/* For screen-heights > 800: */
+@media (min-height: 768px) and (max-height: 800px) {/* For screen-heights > 800: */
 	.row4 {height: 514px;} /*[482 + (800-768) = 514] (height laptop = 768)*/
 }
-@media only screen and (min-height: 900px) {/* For screen-heights > 900: */
+@media (min-height: 800px) and (max-height: 900px) {/* For screen-heights > 900: */
 	.row4 {height: 614px;}
 }
-@media only screen and (min-height: 1024px) {/* For screen-heights > 1024: */
+@media (min-height: 900px) and (max-height: 1024px) {/* For screen-heights > 1024: */
 	.row4 {height: 738px;}
 }
-@media only screen and (min-height: 1080px) {/* For screen-heights > 1080: */
+@media (min-height: 1024px) and (max-height: 1080px) {/* For screen-heights > 1080: */
 	.row4 {height: 790px;}
 }
-@media only screen and (min-height: 1200px) {/* For screen-heights > 1200: */
+@media (min-height: 1080px) and (max-height: 1200px) {/* For screen-heights > 1200: */
 	.row4 {height: 910px;}
 }
 
