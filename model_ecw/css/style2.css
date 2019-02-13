@@ -941,7 +941,7 @@ label.error {
 .panel_1{
 	/*width: 250px;*/
 	width: 280px;
-	height: 460px;
+	/*height: 460px;*/
 	position: relative;
 	left: 2px; top: -464px; z-index: 100;
 	background-color: #ffffff;
@@ -1179,24 +1179,32 @@ label.error {
 
 /*  Responsive with media query  */
 /* row4 */
-.row4 {
-	height: 482px; /*480px; 420px;*/
-}
+.row4 {height: 482px; /*480px; 420px;*/}
+.panel_1 {top: -447px; height: 444px;}
+.tab_content2 {height: 390px;}
 
 @media only screen and (min-height: 770px) {/* For screen-heights > 800: */
 	.row4 {height: 514px;} /*[482 + (800-768) = 514] (height laptop = 768)*/
+	.panel_1 {top: -478px; height: 475px;}
+	.tab_content2 {height: 430px;}
 }
 @media only screen and (min-height: 800px) {/* For screen-heights > 900: */
 	.row4 {height: 614px;}
+	.panel_1 {top: -580px; height: 575px;}
+	.tab_content2 {height: 528px;}
 }
 @media only screen and (min-height: 900px) {/* For screen-heights > 1024: */
 	.row4 {height: 738px;}
+	.panel_1 {top: -701px; height: 630px;}
+	.tab_content2 {height: 595px;}
 }
 @media only screen and (min-height: 1024px) {/* For screen-heights > 1080: */
 	.row4 {height: 790px;}
+	.panel_1 {top: -755px;}
 }
 @media only screen and (min-height: 1080px) {/* For screen-heights > 1200: */
 	.row4 {height: 910px;}
+	.panel_1 {top: -873px;}
 }
 
 /* media query for check boxes */
