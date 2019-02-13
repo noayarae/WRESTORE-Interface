@@ -823,8 +823,9 @@ label.error {
 
 /* ------------------  CSS for heat-maps by Enoa  ------------------- */
 #tabs-PF, #tabs-RV, #tabs-SR, #tabs-NR {
-	height: 410px;/*370px; /*355px;*/
-	padding: 2px 4px 2px 2px;
+	/*height: 410px;!*370px; !*355px;*!*/
+	height: 100%;
+	padding: 1px 0px 1px 1px;
 }
 
 /* ---------------- Start:  CSS for legend button in the HEAT MAP -------- */
@@ -878,7 +879,8 @@ label.error {
 }
 
 #heatMapHolderOne {
-	height: 384px;/*342px; /*393px;*/
+	/*height: 384px;!*342px; !*393px;*!*/
+	height: calc(100% - 25px);
 }
 .heatMapLegend_container { /* Same as 'feat_content. See above*/
 	display: none;
