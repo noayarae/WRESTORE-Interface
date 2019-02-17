@@ -91,7 +91,7 @@
 //// EE: For Option 1, Turn-on 'read_database.php', but NOT 'read_db.php'.
 //// EE: For Option 3, Turn-on 'read_db.php', but NOT 'read_database.php'.
 
-include ('read_database.php');//EE: Turn-Off when 'database_option' is 2 or 3.
+//include ('read_database.php');//EE: Turn-Off when 'database_option' is 2 or 3.
 //include ('read_db.php');//EE: TurnOff when 'database_option' is 1 or 2
 
 ?>
@@ -1107,7 +1107,7 @@ in US Dollars" style="margin: 0px 0px 0px
 
 
 <script type="text/javascript">
-    var database_option = 1;//EE: MySQL(as-html) = 1; JSON = 2; MySQL(as-json) = 3
+    var database_option = 2;//EE: MySQL(as-html) = 1; JSON = 2; MySQL(as-json) = 3
     var debug = 0;//EE: for debugging set 1
 
     if (database_option == 2) {
@@ -1162,7 +1162,7 @@ in US Dollars" style="margin: 0px 0px 0px
         console.log("L.955 headers: \n" + headers);//E: console.log ("L.927 keys: \n" + headers.length);
 
         //EE: Get list of headers of subbasins only. For ecw it goes from 15 to 145 (145-15=130 subbasins)
-        var list_header_subbasins = Object.values(headers).slice(15, 142);//EE: Get list of headers of subbasins
+        var list_header_subbasins = Object.values(headers).slice(15, 145);//EE: Get list of headers of subbasins
         console.log("L.934 List of Headers of subbasins only: \n" + list_header_subbasins);//E: important,for looping below
         //EE: .............................. End:(1) Headers using JSON  .........................
     }
@@ -1343,7 +1343,7 @@ in US Dollars" style="margin: 0px 0px 0px
             NR_meanVals_array.push({name:iter_altern, val:NR_mean_value});//E: Bedfore heatnita
             iter_altern++
         });
-        //    console.log("L.1064 PFR_meanVals_array: \n"+ JSON.stringify(PFR_meanVals_array));
+//            console.log("L.1064 PFR_meanVals_array: \n"+ JSON.stringify(PFR_meanVals_array));
         //E: ****************************** End: Saving Using MySQL DATA *******************************
     }
     else {
