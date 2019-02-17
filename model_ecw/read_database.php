@@ -27,7 +27,8 @@ or die("Unable to connect to server<br>\n");
 $count = 0;
 
 //E: The massive data from 'takefeedback' table is retrieved. I actually am going to write it out on the page in a table.
-$query =("SELECT * FROM takefeedback where USERID = '$USERID'");//E: DB for "ecw"
+//$query =("SELECT * FROM takefeedback where USERID = '$USERID'");//E: DB for "ecw"
+$query =("SELECT * FROM takefeedback2 where USERID = '$USERID'");//E: DB for "ecw"
 //$query =("SELECT * FROM dmk_db1 where USERID = '$USERID'");//E: DB for Dairy-Mckay
 $result = mysqli_query($connection, $query); //  ???
 $row = mysqli_fetch_assoc($result); // E: Fetches (busca) a result row as an associative array.

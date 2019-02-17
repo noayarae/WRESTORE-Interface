@@ -87,7 +87,11 @@
 
 <!--  E: This PHP reads/grabs the data from the DB and creates a "TABLE" Html-tag to save them on it -->
 <?php
-//include ('read_database.php');//EE: Turn-Off when 'database_option' is 2 or 3
+////EE: For option 2, Turn-off both, because JSON does not need non of them
+//// EE: For Option 1, Turn-on 'read_database.php', but NOT 'read_db.php'.
+//// EE: For Option 3, Turn-on 'read_db.php', but NOT 'read_database.php'.
+
+include ('read_database.php');//EE: Turn-Off when 'database_option' is 2 or 3.
 //include ('read_db.php');//EE: TurnOff when 'database_option' is 1 or 2
 
 ?>
@@ -566,7 +570,7 @@ in US Dollars" style="margin: 0px 0px 0px
                         </ul>
                         <div class="tab_container1" style="height: calc(100% - 37px);">
                         <!--    ------------ (1b)  tabs-Info of HeatMap  ------------   -->
-                        <div id="start_barplot" style="height: 350px; overflow: auto;">
+                        <div id="start_barplot" style="height: 99%; overflow: auto;">
 <!--                        <div id="start_barplot" style="height: 406px; overflow: auto; border: 1px solid red">-->
                             <h4 style="font-size: 20px">Instructions </h4>
                             <p>Click on tabs to view bar plots that assess the performance (i.e., benefits and costs) of
@@ -595,25 +599,61 @@ in US Dollars" style="margin: 0px 0px 0px
                             </ol>
                         </div>
                         <!--    ------------ (2b)  tabs-PFR Barplot ------------   -->
-                        <div id="PFR_barplot">
+                        <div id="PFR_barplot" style="height: 100%; overflow-x: hidden; overflow-y: overlay;">
                             <div id="chart_div1"></div>
-                            <div style="position:absolute; top:385px; left:75px;"> Cubic meters per second (cms)</div>
+<!--                            <div style="position:absolute; top:385px; left:75px;"> Cubic meters per second (cms)</div>-->
+<!--                            <div style="position:absolute; top:38px; left:75px;"> Cubic meters per second (cms)</div>-->
+                            <div style="position: absolute; width: 80px; top: 60px; left:220px; padding: 0px 5px;
+                            background-color: #fde3ce; border:1px solid #f77e22; border-radius: 3px">
+                                PFR in Cubic meters per second (cms)
+                            </div>
+<!--                            <div id="xlabel_PFR" style="position:absolute; top:38px; left:75px;"> </div>-->
+<!--                            <script>-->
+<!--                                document.getElementById("xlabel_PFR").innerHTML = "Cubic meters per second (cms)";-->
+<!--                            </script>-->
+                            <div style="position: absolute; transform: rotate(270deg); top: 200px; left:-20px;">
+                                Suggestions
+                            </div>
                         </div>
                         <!--    ------------ (3b)  tabs-Cost Barplot ------------   -->
-                        <div id="CR_barplot">
+                        <div id="CR_barplot" style="height: 100%; overflow-x: hidden; overflow-y: overlay;">
                             <div id="chart_div2"></div>
-                            <div style="position: absolute; top: 385px; left:80px;"> Profit in US Dollars</div>
+<!--                            <div style="position: absolute; top: 385px; left:80px;"> Profit in US Dollars</div>-->
+<!--                            <div style="position: absolute; top: 38px; left:80px;"> Profit in US Dollars</div>-->
+                            <div style="position: absolute; width: 80px; top: 60px; left:220px; padding: 0px 5px;
+                            background-color: #fde3ce; border:1px solid #f77e22; border-radius: 3px">
+                                Profit in US Dollars
+                            </div>
+                            <div style="position: absolute; transform: rotate(270deg); top: 200px; left:-20px;">
+                                Suggestions
+                            </div>
                         </div>
                         <!--    ------------ (4b)  tabs-Sed. Red. Barplot  ------------   -->
-                        <div id="SR_barplot">
+                        <div id="SR_barplot" style="height: 100%; overflow-x: hidden; overflow-y: overlay;">
                             <div id="chart_div3"></div>
-                            <div style="position: absolute; top: 385px; left:75px;">Sediment Reduction in tons</div>
+<!--                            <div style="position: absolute; top: 385px; left:75px;">Sediment Reduction in tons</div>-->
+<!--                            <div style="position: absolute; top: 38px; left:75px;">Sediment Reduction in tons</div>-->
+                            <div style="position: absolute; width: 80px; top: 60px; left:220px; padding: 0px 5px;
+                            background-color: #fde3ce; border:1px solid #f77e22; border-radius: 3px">
+                                Sediment Reduction in tons
+                            </div>
+                            <div style="position: absolute; transform: rotate(270deg); top: 200px; left:-20px;">
+                                Suggestions
+                            </div>
+
                         </div>
                         <!--    ------------ (5b)  tabs-Nit. Red Barplot  ------------   -->
-                        <div id="NR_barplot">
+                        <div id="NR_barplot" style="height: 100%; overflow-x: hidden; overflow-y: overlay;">
                             <div id="chart_div4"></div>
-                            <div style="position: absolute; top: 385px; left:65px;">Nitrate Reduction in kilograms
-                                (kg)</div>
+<!--                            <div style="position: absolute; top: 385px; left:65px;">Nitrate Reduction in kilograms(kg)</div>-->
+<!--                            <div style="position: absolute; top: 38px; left:65px;">Nitrate Reduction in kilograms(kg)</div>-->
+                            <div style="position: absolute; width: 80px; top: 60px; left:220px; padding: 0px 5px;
+                            background-color: #fde3ce; border:1px solid #f77e22; border-radius: 3px">
+                                Nitrate Reduction in kilograms (kg)
+                            </div>
+                            <div style="position: absolute; transform: rotate(270deg); top: 200px; left:-20px;">
+                                Suggestions
+                            </div>
                         </div>
                     </div>
                     </div>
@@ -1005,6 +1045,7 @@ in US Dollars" style="margin: 0px 0px 0px
 
 <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 <link href="js/shadowbox/shadowbox.css" rel="stylesheet" type="text/css"/>
+<link href="https://ajax.googleapis.com/ajax/static/modules/gviz/1.0/core/tooltip.css" rel="stylesheet" type="text/css"/>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
@@ -1066,7 +1107,7 @@ in US Dollars" style="margin: 0px 0px 0px
 
 
 <script type="text/javascript">
-    var database_option = 2;//EE: MySQL(as-html) = 1; JSON = 2; MySQL(as-json) = 3
+    var database_option = 1;//EE: MySQL(as-html) = 1; JSON = 2; MySQL(as-json) = 3
     var debug = 0;//EE: for debugging set 1
 
     if (database_option == 2) {
@@ -1242,7 +1283,7 @@ in US Dollars" style="margin: 0px 0px 0px
 
             //EE: iteration through the '130 SUBBAINS' - MySQL Data
             //$('td:nth-child(15)').nextUntil('td:nth-child(143)').each(function() {
-            $('td:gt(14):lt(127)',$(this)).each(function() {
+            $('td:gt(14):lt(130)',$(this)).each(function() {
                 var subarr=[];
 
                 subarr = JSON.parse("["+$(this).html()+"]");
@@ -1253,7 +1294,8 @@ in US Dollars" style="margin: 0px 0px 0px
                 NR_mean_value.push({name:iter_subbasins, val:-subarr[4][0]});
                 iter_subbasins++;
             });
-//        console.log("L.1058 mean values of PFR 'PFR_mean_value': \n"+ JSON.stringify(PFR_mean_value));
+            console.log("L.1058 altern: "+iter_altern+ "  'PFR_mean_value' length: "+ JSON.stringify(PFR_mean_value.length));
+//            console.log("L.1058 mean values of PFR 'PFR_mean_value': \n"+ JSON.stringify(PFR_mean_value));
 
             PFR_mean_value.sort(function (a, b) {
                 if ((typeof b.val === 'undefined' && typeof a.val !== 'undefined') || a.val < b.val) {
@@ -2377,7 +2419,7 @@ in US Dollars" style="margin: 0px 0px 0px
     // ===================== ---------------- Start: (2) For Legend in PFR-Heatmap ------------- ==================== //
     // ---------------- These LEGEND works for legend in heat-maps ---------------- //
     //  /////////////  FUNCTION for PFR-LEGEND button into the heat-map  ///////////
-    function buttonControl_pfr(options, colorList, map, min_v, max_v) {
+    function buttonControl_pfr(options, colorList, map, min_v, max_v,rg_pfr) {
         min_v = Math.trunc(min_v);
 //        alert("Line:2694-g2.php: " + "colors: " + Object.keys(colors).length + " map: " + map + "  min: " + min_v + "  max: " + max_v);
         
@@ -2419,15 +2461,17 @@ in US Dollars" style="margin: 0px 0px 0px
         // Level 1.b.1
         var len_arr = Object.keys(colorList).length;
         var range2 = (max_v-min_v)/len_arr;
-        var i = 0;
+        var ii = 0;
         
         for (var key in colorList) {
             var boxContainer = document.createElement("DIV");
             var box = document.createElement("DIV");
             var label = document.createElement("SPAN");
 
-            var range_inf2 = min_v + Math.ceil(i*range2); // Get the low value of range
-            var range_sup2 = min_v + Math.ceil((i+1)*range2); // Get the high value of range
+//            var range_inf2 = min_v + Math.ceil(ii*range2); // Get the low value of range
+//            var range_sup2 = min_v + Math.ceil((ii+1)*range2); // Get the high value of range
+            var range_inf2 = rg_pfr[ii]; // Get the low value of range
+            var range_sup2 = rg_pfr[ii+1]; // Get the high value of range
 
             boxContainer.appendChild(box);
             boxContainer.appendChild(label);
@@ -2441,7 +2485,7 @@ in US Dollars" style="margin: 0px 0px 0px
             box.style.backgroundColor = colorList[key];
 //            boxContainer.id = "box_container";
             boxContainer.className = "box_container";
-            i += 1;
+            ii += 1;
         }
 
         //Level 1.a.2
@@ -2476,7 +2520,7 @@ in US Dollars" style="margin: 0px 0px 0px
 
     // ===================== ------------ Start: (3) For Legend in PROFIT-Heatmap ------------- ================== //
 //  /////////////  FUNCTION for CR-LEGEND button into the heat-map  ///////////
-    function buttonControl_cr(options, colorList, map, min_v, max_v) {
+    function buttonControl_cr(options, colorList, map, min_v, max_v,rg_pr) {
         min_v = Math.trunc(min_v);
 //        alert("Line:2694-g2.php: " + "colors: " + Object.keys(colors).length + " map: " + map + "  min: " + min_v + "  max: " + max_v);
 
@@ -2518,15 +2562,17 @@ in US Dollars" style="margin: 0px 0px 0px
         // Level 1.b.1
         var len_arr = Object.keys(colorList).length;
         var range2 = (max_v-min_v)/len_arr;
-        var i = 0;
+        var ii = 0;
 
         for (var key in colorList) {
             var boxContainer = document.createElement("DIV");
             var box = document.createElement("DIV");
             var label = document.createElement("SPAN");
 
-            var range_inf2 = min_v + Math.ceil(i*range2); // Get the low value of range
-            var range_sup2 = min_v + Math.ceil((i+1)*range2); // Get the high value of range
+//            var range_inf2 = min_v + Math.ceil(i*range2); // Get the low value of range
+//            var range_sup2 = min_v + Math.ceil((i+1)*range2); // Get the high value of range
+            var range_inf2 = rg_pr[ii]; // Get the low value of range
+            var range_sup2 = rg_pr[ii+1]; // Get the high value of range
 
             boxContainer.appendChild(box);
             boxContainer.appendChild(label);
@@ -2539,7 +2585,7 @@ in US Dollars" style="margin: 0px 0px 0px
             box.style.backgroundColor = colorList[key];
 //            boxContainer.id = "box_container";
             boxContainer.className = "box_container";
-            i += 1;
+            ii += 1;
         }
 
         //Level 1.a.2
@@ -2573,7 +2619,7 @@ in US Dollars" style="margin: 0px 0px 0px
 
     // =================== ---------------- Start: (4) For Legend in SR-Heatmap -------------- ================= //
     //   /////////////   FUNCTION for SR-LEGEND button into the heat-map  /////////////
-    function buttonControl_sr(options, colorList, map, min_v, max_v) {
+    function buttonControl_sr(options, colorList, map, min_v, max_v, rg_sr) {
         min_v = Math.trunc(min_v);
 //        alert("Line:2694-g2.php: " + "colors: " + Object.keys(colors).length + " map: " + map + "  min: " + min_v + "  max: " + max_v);
 
@@ -2615,15 +2661,17 @@ in US Dollars" style="margin: 0px 0px 0px
         // Level 1.b.1
         var len_arr = Object.keys(colorList).length;
         var range2 = (max_v-min_v)/len_arr;
-        var i = 0;
+        var ii = 0;
 
         for (var key in colorList) {
             var boxContainer = document.createElement("DIV");
             var box = document.createElement("DIV");
             var label = document.createElement("SPAN");
 
-            var range_inf2 = min_v + Math.ceil(i*range2); // Get the low value of range
-            var range_sup2 = min_v + Math.ceil((i+1)*range2); // Get the high value of range
+//            var range_inf2 = min_v + Math.ceil(i*range2); // Get the low value of range
+//            var range_sup2 = min_v + Math.ceil((i+1)*range2); // Get the high value of range
+            var range_inf2 = rg_sr[ii]; // Get the low value of range
+            var range_sup2 = rg_sr[ii+1]; // Get the high value of range
 
             boxContainer.appendChild(box);
             boxContainer.appendChild(label);
@@ -2636,7 +2684,7 @@ in US Dollars" style="margin: 0px 0px 0px
             box.style.backgroundColor = colorList[key];
 //            boxContainer.id = "box_container";
             boxContainer.className = "box_container";
-            i += 1;
+            ii += 1;
         }
 
         //Level 1.a.2
@@ -2670,7 +2718,7 @@ in US Dollars" style="margin: 0px 0px 0px
 
     // ==================== ------------- Start: (5) For Legend in NR-Heatmap ------------- ==================== //
     //  /////////////  FUNCTION for NR-LEGEND button into the heat-map  /////////////
-    function buttonControl_nr(options, colorList, map, min_v, max_v) {
+    function buttonControl_nr(options, colorList, map, min_v, max_v,rg_nr) {
         min_v = Math.trunc(min_v);
 //        alert("Line:2694-g2.php: " + "colors: " + Object.keys(colors).length + " map: " + map + "  min: " + min_v + "  max: " + max_v);
 
@@ -2712,15 +2760,17 @@ in US Dollars" style="margin: 0px 0px 0px
         // Level 1.b.1
         var len_arr = Object.keys(colorList).length;
         var range2 = (max_v-min_v)/len_arr;
-        var i = 0;
+        var ii = 0;
 
         for (var key in colorList) {
             var boxContainer = document.createElement("DIV");
             var box = document.createElement("DIV");
             var label = document.createElement("SPAN");
 
-            var range_inf2 = min_v + Math.ceil(i*range2); // Get the low value of range
-            var range_sup2 = min_v + Math.ceil((i+1)*range2); // Get the high value of range
+//            var range_inf2 = min_v + Math.ceil(i*range2); // Get the low value of range
+//            var range_sup2 = min_v + Math.ceil((i+1)*range2); // Get the high value of range
+            var range_inf2 = rg_nr[ii]; // Get the low value of range
+            var range_sup2 = rg_nr[ii+1]; // Get the high value of range
 
             boxContainer.appendChild(box);
             boxContainer.appendChild(label);
@@ -2733,7 +2783,7 @@ in US Dollars" style="margin: 0px 0px 0px
             box.style.backgroundColor = colorList[key];
 //            boxContainer.id = "box_container";
             boxContainer.className = "box_container";
-            i += 1;
+            ii += 1;
         }
 
         //Level 1.a.2

@@ -189,7 +189,7 @@ li{line-height:1.5; margin:0 0 7px 0; padding:0;}
 /***** Common Addative Classes *****/
 .left, .float_left  { float:left;}
 .right, .float_right { float:right;}
-.clear { clear:both; display:block; overflow:hidden; visibility:hidden; height:0px;}
+/*.clear { clear:both; display:block; overflow:hidden; visibility:hidden; height:0px;}*/
 .clear-left, .clear_left { clear:left; } .clear-right, .clear_right { clear:right; }
 .hide  { display:none	} .block {display:block !important;} .inline {display:inline !important;}
 
@@ -351,21 +351,21 @@ text-align:left;
 margin-left:5px;
 }
 
-#rss a{
-height: 30px;
-width: 31px;
-display: block;
-text-indent: -9999px;
-overflow:hidden;
-background-position:bottom;
-background-repeat:no-repeat;
-opacity:0;
--webkit-transition: all .4s ease;
-		-moz-transition: all .4s ease;
-        -ms-transition: all .4s ease;
-        -o-transition: all .4s ease;
-		transition: all .4s ease;
-}
+/*#rss a{*/
+/*height: 30px;*/
+/*width: 31px;*/
+/*display: block;*/
+/*text-indent: -9999px;*/
+/*!*overflow:hidden;*!*/
+/*background-position:bottom;*/
+/*background-repeat:no-repeat;*/
+/*opacity:0;*/
+/*-webkit-transition: all .4s ease;*/
+		/*-moz-transition: all .4s ease;*/
+        /*-ms-transition: all .4s ease;*/
+        /*-o-transition: all .4s ease;*/
+		/*transition: all .4s ease;*/
+/*}*/
 
 #rss a:hover{ background-position:bottom; opacity:1;}
 #rss a, #rss{background-image: url(images/rss.gif);}
@@ -916,7 +916,7 @@ label.error {
 /* heatmap */
 /*#heatmaps_frame {*/
 .panel_2 {
-	/*width: 275px;*/
+	width: 100%;/*275px;*/
 	height: 100%;/*495px;*/
 	/*position: relative;*/
 	float: right;
@@ -953,8 +953,8 @@ label.error {
 
 /* Bar plot */
 .tab_container1 {
-	height: 377px;/*429px;*/
-	overflow: hidden;
+	/*height: 377px;!*429px;*!*/
+	/*overflow: hidden;*/
 }
 
 .tab_container2 {
@@ -985,7 +985,7 @@ label.error {
 }
 
 .topnav {
-	overflow: hidden;
+	/*overflow: hidden;*/
 }
 
 .topnav a {
@@ -1218,4 +1218,12 @@ label.error {
 
 .checkboxLabel {
 	margin: 0px;
+}
+
+
+/* Tooltip google chart */
+/*.google-visualization-tooltip {z-index:500 !important;}*/
+
+.google-visualization-tooltip{
+	z-index: 1000 !important;
 }

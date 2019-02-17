@@ -101,12 +101,16 @@ function subBasinGraph1() {
                 ,createCustomHTMLContent1(rowlen+1,'NRed',m14.toExponential(2),min14.toExponential(2),max14.toExponential(2))]);
         }
 
+        var hbp = 505;
+        var wbp = 300;
         var options = {
-            title: 'Peak Flow Reduction in cfs', //E: title is not shown because it fits outside of frame
+            // title: 'Peak Flow Reduction in cfs', //E: title is not shown because it fits outside of frame
             // height: 500, width: 270, //E:These two parameters define the window's size of the bar-plot
             // height: 550, width: 290, //E:These two parameters define the window's size of the barplot
             height: 505, width: 300,
-            chartArea: {top:0},//E: It is the gap distance of the plot from the top border
+            // height: hbp, width: wbp,
+            //E: This controls the gap distance of the plot from the top border
+            chartArea: {top:0, left:35},//chartArea: {top:25, left:50},
             // chartArea:{left:40,top:0,width:"100%",height:"100%"},
             // backgroundColor: '#ffff80',
             legend: {position: 'none'},
@@ -114,47 +118,59 @@ function subBasinGraph1() {
             // This line makes the entire category's tooltip active.
             focusTarget: 'category',
             // Use an HTML tooltip.
+            // tooltip: { trigger: 'selection', isHtml: true},
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
-            // vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
-            //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1}, direction: -1},
-            vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+
+            // vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+            //     gridlines: {count: numberOf_alternatives}, direction: -1},
+            vAxis: {titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
                 gridlines: {count: numberOf_alternatives}, direction: -1},
 
             intervals: {style: 'bars',color: '#fff'},
             // interval: {max: {style: 'bars', lineWidth:1, fillOpacity: 1,color: '#ab1ab1'},// Added by E.N.
             //     min: {style: 'bars',lineWidth:1, fillOpacity: 1, color: '#000000'}}, // Added by E.N.
-            hAxis: {title:'Discharge in cubic feet per second', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
+
+            //E: The below title was turned off, because there is no way to customize its position.
+            // hAxis: {title:'Discharge in cubic feet per second', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
+            //     bold: false, italic: true}, textPosition: 'out', format: 'short', textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
+            hAxis: {titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
                 bold: false, italic: true}, textPosition: 'out', format: 'short', textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
         };
 
         var options1 = {
             // title: 'Economic Revenue in Dollars (ER)',
+            // titlePosition: 'in',
             height: 505, width: 300,//height: 550, width: 290,//height: 500, width: 270,
-            chartArea: {top:0},
+            chartArea: {top:0, left:35},//chartArea: {top:25, left:50},
             // backgroundColor: 'green',
             legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
             focusTarget: 'category',
             // Use an HTML tooltip.
+            // tooltip: { trigger: 'selection', isHtml: true },
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
-            // vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
-            //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
-            vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+
+            // vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+            //     gridlines: {count: numberOf_alternatives},direction: -1},
+            vAxis: {titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
                 gridlines: {count: numberOf_alternatives},direction: -1},
 
             // intervals: {style: 'bars',color: '#fff'},
             // interval: {max: {style: 'bars', lineWidth:1, fillOpacity: 1,color: '#ab1ab1'},// Added by E.N.
             //     min: {style: 'bars',lineWidth:2, fillOpacity: 1, color: '#000000'}}, // Added by E.N.
-            hAxis: {title:'Cost in US Dollars', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
+
+            // hAxis: {title:'Profit in US Dollars', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
+            //     bold: false, italic: true}, textPosition: 'out', format: 'short', textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
+            hAxis: {titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
                 bold: false, italic: true}, textPosition: 'out',format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
         };
 
         var options2 = {
             // title: 'In-stream sediment reduction in tons (SRed)',
             height: 505, width: 300,//height: 550, width: 290,//height: 500, width: 270,
-            chartArea: {top:0},
+            chartArea: {top:0, left:35},
             // backgroundColor: 'green',
             legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
@@ -162,22 +178,27 @@ function subBasinGraph1() {
             // Use an HTML tooltip.
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
-            // vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
-            //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
-            vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+
+            // vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+            //     gridlines: {count: numberOf_alternatives},direction: -1},
+            vAxis: {titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
                 gridlines: {count: numberOf_alternatives},direction: -1},
 
             // intervals: {style: 'bars',color: '#fff'},
             // interval: {max: {style: 'boxes', lineWidth:0.1, fillOpacity: 0.6,color: '#ab1ab1'},// Added by E.N.
             //     min: {style: 'boxes',lineWidth:0.1, fillOpacity: 0.6, color: '#000000'}}, // Added by E.N.
-            hAxis: {title:'Sediment Reduction in Tons', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
+
+            // hAxis: {title:'Sediment Reduction in tons', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
+            //     bold: false, italic: true}, textPosition: 'out', format: 'short', textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
+            hAxis: {titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
                 bold: false, italic: true}, textPosition: 'out',format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
         };
 
+        // ---- For Nitrate Reduction
         var options3 = {
             // title: 'In-stream nitrate reduction in kilograms (NRed)',
             height: 505, width: 300,//height: 550, width: 290,//height: 500, width: 270,
-            chartArea: {top:0},
+            chartArea: {top:0, left:35},
             // backgroundColor: 'green',
             legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
@@ -185,15 +206,20 @@ function subBasinGraph1() {
             // Use an HTML tooltip.
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
-            // vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
-            //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
-            vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+
+            //E: The below title was turned off, because there is no way to customize its position.
+            // vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+            //     gridlines: {count: numberOf_alternatives},direction: -1},
+            vAxis: {titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
                 gridlines: {count: numberOf_alternatives},direction: -1},
 
             // intervals: {style: 'bars',color: '#fff'},
             // interval: {max: {style: 'points', lineWidth:1, fillOpacity: 1,color: '#ab1ab1'},// Added by E.N.
             //     min: {style: 'points',lineWidth:1, fillOpacity: 1, color: '#000000'}}, // Added by E.N.
-            hAxis: {title:'Nitrate Reduction in Kg', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
+
+            // hAxis: {title:'Nitrate Reduction in kilograms(kg)', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
+            //     bold: false, italic: true}, textPosition: 'out', format: 'short', textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
+            hAxis: {titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
                 bold: false, italic: true}, textPosition: 'out',format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
         };
 
@@ -334,84 +360,98 @@ function subBasinGraph1() {
         }
 
         var options = {
-            title: 'Peak Flow Reduction in cfs',
+            // title: 'Peak Flow Reduction in cfs',
             height: 505, width: 300,//height: 550, width: 290,//height: 500, width: 270,
-            chartArea: {top:0},
+            chartArea: {top:0, left:35},
             legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
             focusTarget: 'category',
             // Use an HTML tooltip.
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
-            // vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+
+            // vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
             //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
-            vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+            vAxis: {titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
                 gridlines: {count: numberOf_alternatives},direction: -1},
 
             intervals: {style: 'bars',color: '#fff'},
             // hAxis: {textPosition: 'none'},
-            hAxis:{title:'Discharge in cubic feet per second', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
+
+            // hAxis:{title:'Discharge in cubic feet per second', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
+            //     bold: false, italic: true}, textPosition: 'out', format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
+            hAxis:{titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
                 bold: false, italic: true}, textPosition: 'out', format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
         };
 
         var options1 = {
-            title: 'Economic Revenue in Dollars (ER$)',
+            // title: 'Economic Revenue in Dollars (ER$)',
             height: 505, width: 300,//height: 550, width: 290,//height: 500, width: 270,
-            chartArea: {top:0},
+            chartArea: {top:0, left:35},
             legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
             focusTarget: 'category',
             // Use an HTML tooltip.
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
-            // vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+
+            // vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
             //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
-            vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+            vAxis: {titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
                 gridlines: {count: numberOf_alternatives},direction: -1},
 
             intervals: {style: 'bars',color: '#fff'},
             // hAxis: {textPosition: 'none'},
-            hAxis:{title:'Cost in US Dollars', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
+
+            // hAxis:{title:'Cost in US Dollars', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
+            //     bold: false, italic: true}, textPosition: 'out', format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
+            hAxis:{titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
                 bold: false, italic: true}, textPosition: 'out', format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
         };
 
         var options2 = {
-            title: 'In-stream sediment reduction in tons (SRed)',
+            // title: 'In-stream sediment reduction in tons (SRed)',
             height: 505, width: 300,//height: 550, width: 290,//height: 500, width: 270,
-            chartArea: {top:0},
+            chartArea: {top:0, left:35},
             legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
             focusTarget: 'category',
             // Use an HTML tooltip.
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
-            // vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+
+            // vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
             //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
-            vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+            vAxis: {titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
                 gridlines: {count: numberOf_alternatives},direction: -1},
             intervals: {style: 'bars',color: '#fff'},
             // hAxis: {textPosition: 'none'},
-            hAxis:{title:'Sediment Reduction in Tons', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
+
+            // hAxis:{title:'Sediment Reduction in Tons', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
+            //     bold: false, italic: true}, textPosition: 'out', format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
+            hAxis:{titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
                 bold: false, italic: true}, textPosition: 'out', format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
         };
 
         var options3 = {
-            title: 'In-stream nitrate reduction in kilograms (NRed)',
+            // title: 'In-stream nitrate reduction in kilograms (NRed)',
             height: 505, width: 300,//height: 550, width: 290,//height: 500, width: 270,
-            chartArea: {top:0},//
+            chartArea: {top:0, left:35},//
             legend: {position: 'none'},
             // This line makes the entire category's tooltip active.
             focusTarget: 'category',
             // Use an HTML tooltip.
             tooltip: {isHtml: true},
             tooltip: {trigger: 'selection'},
-            // vAxis: {title:'Alternatives', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+
+            // vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
             //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
-            vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+            vAxis: {titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
                 gridlines: {count: numberOf_alternatives},direction: -1},
             intervals: {style: 'bars',color: '#fff'},
             // hAxis: {textPosition: 'none'},
-            hAxis:{title:'Nitrate Reduction in Kg', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
+
+            hAxis:{titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 11,
                 bold: false, italic: true}, textPosition: 'out', format: 'short',textStyle: {color: '#000000',fontSize: 10}},//Modified by E.N.
         };
 

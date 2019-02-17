@@ -26,9 +26,10 @@ or die("Unable to connect to server<br>\n");
 
 $count = 0;
 
-//E: I am grabbing the massive amount of data from the 'takefeedback' table. I actually am going to write it out on the
+//E: Grabbing the massive amount of data from 'takefeedback' table. I actually am going to write it out on the
 // page in a table.
-$query2 =("SELECT * FROM takefeedback where USERID = '$USERID'");//E: DB for "ecw"
+//$query2 =("SELECT * FROM takefeedback where USERID = '$USERID'");//E: DB for "ecw"
+$query2 =("SELECT * FROM takefeedback2 where USERID = '$USERID'");//E: DB for "ecw"
 //$query =("SELECT * FROM dmk_db1 where USERID = '$USERID'");//E: DB for Dairy-Mckay
 $result2 = mysqli_query($connection, $query2); //  ???
 $jsonn_array = array();

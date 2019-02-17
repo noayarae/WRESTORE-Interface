@@ -7,22 +7,24 @@ function heatinitialize() {
     $('#oneMapPF').empty();
     // $('#oneMapPF').append('Range+: (' + heatpfra[oneMap].val[0].val + ' to ' + heatpfra[oneMap].val[126].val +') cfs');
     var min_value_PF1 = PFR_meanVals_array[oneMap].val[0].val;//mk: Get the min value of mean values of PFR
-    var max_value_PF1 = PFR_meanVals_array[oneMap].val[126].val;//mk: Get the max value of mean values of PFR
+    var max_value_PF1 = PFR_meanVals_array[oneMap].val[129].val;//mk: Get the max value of mean values of PFR
+    console.log("L.11 'min_value_PF1': "+ min_value_PF1);
+    console.log("L.12 'max_value_PF1': "+ max_value_PF1);
 
     $('#oneMapRV').empty();
     // $('#oneMapRV').append('Range: (' + heatera[oneMap].val[0].val + ' to ' + heatera[oneMap].val[126].val +') Dollars');
     var min_value_RV1 = Cost_meanVals_array[oneMap].val[0].val;//mk
-    var max_value_RV1 = Cost_meanVals_array[oneMap].val[126].val;//mk
+    var max_value_RV1 = Cost_meanVals_array[oneMap].val[129].val;//mk
 
     $('#oneMapSR').empty();
     // $('#oneMapSR').append('Range: (' + heatseda[oneMap].val[0].val + ' to ' + heatseda[oneMap].val[126].val +') tons');
     var min_value_SR1 = SR_meanVals_array[oneMap].val[0].val;//mk
-    var max_value_SR1 = SR_meanVals_array[oneMap].val[126].val;//mk
+    var max_value_SR1 = SR_meanVals_array[oneMap].val[129].val;//mk
 
     $('#oneMapNR').empty();
     // $('#oneMapNR').append('Range: (' + heatnita[oneMap].val[0].val + ' to ' + heatnita[oneMap].val[126].val +') kilograms');
     var min_value_NR1 = NR_meanVals_array[oneMap].val[0].val;//mk
-    var max_value_NR1 = NR_meanVals_array[oneMap].val[126].val;//mk
+    var max_value_NR1 = NR_meanVals_array[oneMap].val[129].val;//mk
 
     //// --------------  These new variables are setup for building the map-legend  --------------------
     //
@@ -31,6 +33,7 @@ function heatinitialize() {
     var max_values = [max_value_PF1, max_value_RV1, max_value_SR1, max_value_NR1];
 
     ////  ---------------  These variables are used to set ranges for maps  -----------------------
+    //E: These 4 code-pieces extract only the number corresponding to subbasin number from 'PFR_meanVals_array'
     var ressssPF1 = PFR_meanVals_array[oneMap].val.map(function(a) {
         console.log ("L.38 ressssPF1: "+ JSON.stringify(ressssPF1));
         return a.name;
@@ -99,12 +102,26 @@ function heatinitialize() {
         // }
     };
 
-    var colorList = {color1: '#ffffff', color2: '#ffff00', color3: '#ffcc00', color4: '#ff9900', color5: '#ff6600', color6: '#ff3300', color7: '#ff0000'};
+    //EE: Definition of Ranges and colors
+    var rg_pfr= [0,1,10,50,100,200,500,1600];
+    var rg_sr = [0,100,500,1000,2500,5000,10000,18000];
+    var rg_nr = [-350,0,1000,5000,15000,30000,100000,800000];
+    var rg_pr = [-450000,0,1000,50000,500000,1000000,2000000,4800000];
+    var colorList = {
+        color1: '#ffffff',
+        color2: '#ffff00',
+        color3: '#ffcc00',
+        color4: '#ff9900',
+        color5: '#ff6600',//'#ff6600',//'#66ff33',//'#ff6600', test '#66ff33'
+        color6: '#ff0000',//'#e60000',//'#ff3300',//#e60000
+        color7: '#cc0000'//'#cc0000'//'#990000'//'#ff0000', test '#0066ff'
+    };
     var mapa = maps[0];
     var min_value = min_values[0];
     var max_value = max_values[0];
     // alert("Line:111-heatmapnew1.js: " + " map: " + mapa + "  min: " + min_value + "  max: " + max_value);
-    var button1 = new buttonControl_pfr(buttonOptions_1, colorList, mapa, min_value, max_value);//E: located around 2044 in g2.php
+    var button1 = new buttonControl_pfr(buttonOptions_1, colorList, mapa, min_value, max_value, rg_pfr);//E: located around
+    // 2044 in g2.php
     // --------------- End: Set vars and call the Function to build the PFR-Legend in heatmap ----------------- //
 
 
@@ -155,12 +172,13 @@ function heatinitialize() {
         // }
     };
 
-    var colorList = {color1: '#ffffff', color2: '#ffff00', color3: '#ffcc00', color4: '#ff9900', color5: '#ff6600', color6: '#ff3300', color7: '#ff0000'};
+    // var colorList = {color1: '#ffffff', color2: '#ffff00', color3: '#ffcc00', color4: '#ff9900', color5: '#ff6600', color6: '#ff3300', color7: '#ff0000'};
     var mapa = maps[1];
     var min_value = min_values[1];
     var max_value = max_values[1];
     // alert("Line:111-heatmapnew1.js: " + " map: " + mapa + "  min: " + min_value + "  max: " + max_value);
-    var button1 = new buttonControl_cr(buttonOptions_1, colorList, mapa, min_value, max_value);//E: located around 2130 in g2.php
+    var button1 = new buttonControl_cr(buttonOptions_1, colorList, mapa, min_value, max_value, rg_pr);//E: located around
+    // 2130 in g2.php
     // --------------- End: Set vars and call the Function for PROFIT-Legend in heatmap ----------------- //
 
 
@@ -211,12 +229,13 @@ function heatinitialize() {
         // }
     };
 
-    var colorList = {color1: '#ffffff', color2: '#ffff00', color3: '#ffcc00', color4: '#ff9900', color5: '#ff6600', color6: '#ff3300', color7: '#ff0000'};
+    // var colorList = {color1: '#ffffff', color2: '#ffff00', color3: '#ffcc00', color4: '#ff9900', color5: '#ff6600', color6: '#ff3300', color7: '#ff0000'};
     var mapa = maps[2];
     var min_value = min_values[2];
     var max_value = max_values[2];
     // alert("Line:111-heatmapnew1.js: " + " map: " + mapa + "  min: " + min_value + "  max: " + max_value);
-    var button1 = new buttonControl_sr(buttonOptions_1, colorList, mapa, min_value, max_value);//E: located around 2215 in g2.php
+    var button1 = new buttonControl_sr(buttonOptions_1, colorList, mapa, min_value, max_value,rg_sr);//E: located around
+    // 2215 in g2.php
 
     // --------------- End: Set vars and call the Function for SR-Legend in heatmap ----------------- //
 
@@ -267,12 +286,13 @@ function heatinitialize() {
         // }
     };
 
-    var colorList = {color1: '#ffffff', color2: '#ffff00', color3: '#ffcc00', color4: '#ff9900', color5: '#ff6600', color6: '#ff3300', color7: '#ff0000'};
+    // var colorList = {color1: '#ffffff', color2: '#ffff00', color3: '#ffcc00', color4: '#ff9900', color5: '#ff6600', color6: '#ff3300', color7: '#ff0000'};
     var mapa = maps[3];
     var min_value = min_values[3];
     var max_value = max_values[3];
     // alert("Line:111-heatmapnew1.js: " + " map: " + mapa + "  min: " + min_value + "  max: " + max_value);
-    var button1 = new buttonControl_nr(buttonOptions_1, colorList, mapa, min_value, max_value);//E: located around 2300 in g2.php
+    var button1 = new buttonControl_nr(buttonOptions_1, colorList, mapa, min_value, max_value, rg_nr);//E: located around
+    // 2300 in g2.php
     // --------------- End: Set vars and call the Function for NR-Legend in heatmap ----------------- //
     // ====================================================================================== //
 
@@ -314,27 +334,51 @@ function heatinitialize() {
             // var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
             var newCoordinates = constructNewCoordinates(subbasin_json.features[i].geometry);
             var indexx = ressssPF1.indexOf(Number(whichNode));
-            // console.log ("L.317 node (sb): "+ whichNode +"   indexx: "+ indexx);
+            var pfr_val_current_sb_and_alt = PFR_meanVals_array[oneMap].val[indexx].val;
+            console.log("L.319 Checking the current # of suggestion: "+ (oneMap+1));
+            console.log ("L.317 'sb': "+ whichNode +"  indexx: "+ indexx+" value: "+JSON.stringify(PFR_meanVals_array[oneMap].val[indexx].val));
+            // console.log("L.318 :\n"+ JSON.stringify(PFR_meanVals_array.length));
+            //E: below shows PFR_meanVals_array for the current suggestion (alternative)
+            // console.log("L.322 :\n"+ JSON.stringify(PFR_meanVals_array[oneMap]));
+            // console.log("L.323 'PFR_meanVals_array[oneMap][\"val\"]' length :"+ JSON.stringify(PFR_meanVals_array[oneMap]["val"].length));//E:
 
+            // switch (true) {
+            //     case (indexx < 0):filterColor = "#ffffff";//"#000000"; // #ffffff// 3 subbasins
+            //         break;
+            //     case (indexx < 20): filterColor = "#ffff00";//20 subbasins
+            //         break;
+            //     case ((indexx >= 20) && (indexx < 40)): filterColor = "#ffcc00";//"#0033cc";//"#ffcc00";//20 subbasins
+            //         break;
+            //     case ((indexx >= 40) && (indexx < 70)): filterColor = "#ff9900";//"#33cc33";//"#ff9900";//30 subabsins
+            //         break;
+            //     case ((indexx >= 70) && (indexx < 90)): filterColor = "#ff6600";//"#00ffff";//"#ff6600";//20 subbasins
+            //         break;
+            //     case (indexx >= 90): filterColor = "#ff3300";//"#ff3388";//"#ff3300";//37 subbasins
+            //         break;
+            //     default: filterColor = "#ff0000";//"#aa9999";//"#ff0000";//
+            //         break;
+            // }
+
+            // var rg_pfr = [1,10,50,100,200,500,1000];
             switch (true) {
-                case (indexx < 0):filterColor = "#ffffff";//"#000000"; // #ffffff// 3 subbasins
+                case ((pfr_val_current_sb_and_alt >= rg_pfr[0])&&(pfr_val_current_sb_and_alt < rg_pfr[1])):filterColor = colorList["color1"];//"#ffffff";//
                     break;
-                case (indexx < 20): filterColor = "#ffff00";//20 subbasins
+                case ((pfr_val_current_sb_and_alt >= rg_pfr[1])&&(pfr_val_current_sb_and_alt < rg_pfr[2])): filterColor = colorList["color2"];//"#ffff00";
                     break;
-                case ((indexx >= 20) && (indexx < 40)): filterColor = "#ffcc00";//"#0033cc";//"#ffcc00";//20 subbasins
+                case ((pfr_val_current_sb_and_alt >= rg_pfr[2])&&(pfr_val_current_sb_and_alt < rg_pfr[3])): filterColor = colorList["color3"];//"#ffcc00";
                     break;
-                case ((indexx >= 40) && (indexx < 70)): filterColor = "#ff9900";//"#33cc33";//"#ff9900";//30 subabsins
+                case ((pfr_val_current_sb_and_alt >= rg_pfr[3])&&(pfr_val_current_sb_and_alt < rg_pfr[4])): filterColor = colorList["color4"];//"#ff9900";
                     break;
-                case ((indexx >= 70) && (indexx < 90)): filterColor = "#ff6600";//"#00ffff";//"#ff6600";//20 subbasins
+                case ((pfr_val_current_sb_and_alt >= rg_pfr[4])&&(pfr_val_current_sb_and_alt < rg_pfr[5])): filterColor = colorList.color5;//"#ff6600";
                     break;
-                case (indexx >= 90): filterColor = "#ff3300";//"#ff3388";//"#ff3300";//37 subbasins
+                case ((pfr_val_current_sb_and_alt >= rg_pfr[5])&&(pfr_val_current_sb_and_alt < rg_pfr[6])): filterColor = colorList["color6"];//"#ff3300";
                     break;
-                default: filterColor = "#ff0000";//"#aa9999";//"#ff0000";//
+                case ((pfr_val_current_sb_and_alt >= rg_pfr[6])&&(pfr_val_current_sb_and_alt < rg_pfr[7])): filterColor = colorList["color7"];//"#ff0000";
                     break;
-                //return wetlandsIcon;
+                default: filterColor = "#aa9999";//"#ff0000";//"#aa9999";//"#ff0000";//
+                    break;
             }
 
-            // var whichNode = row[0];
             var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//E:For "ecw" needs to converto string
             // var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-McKay"
             Peakflow = new google.maps.Polygon({
@@ -373,23 +417,43 @@ function heatinitialize() {
             // var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
             var newCoordinates = constructNewCoordinates(subbasin_json.features[i].geometry);
             var indexx = ressssRV1.indexOf(Number(whichNode));
+            var c_val_current_sb_and_alt = Cost_meanVals_array[oneMap].val[indexx].val;
+
+            // switch (true) {
+            //     case (indexx < 0): filterColor = "#ffffff";
+            //         break;
+            //     case (indexx < 20): filterColor = "#ffff00";
+            //         break;
+            //     case ((indexx >= 20) && (indexx < 40)): filterColor = "#ffcc00";
+            //         break;
+            //     case ((indexx >= 40) && (indexx < 70)): filterColor = "#ff9900";
+            //         break;
+            //     case ((indexx >= 70) && (indexx < 90)): filterColor = "#ff6600";
+            //         break;
+            //     case (indexx >= 90): filterColor = "#ff3300";
+            //         break;
+            //     default: filterColor = "#aa9999";//"#ff0000";
+            //         break;
+            //     //return wetlandsIcon;
+            // }
 
             switch (true) {
-                case (indexx < 0): filterColor = "#ffffff";
+                case ((c_val_current_sb_and_alt >= rg_pr[0])&&(c_val_current_sb_and_alt < rg_pr[1])):filterColor = colorList["color1"];//"#ffffff";//
                     break;
-                case (indexx < 20): filterColor = "#ffff00";
+                case ((c_val_current_sb_and_alt >= rg_pr[1])&&(c_val_current_sb_and_alt < rg_pr[2])): filterColor = colorList["color2"];//"#ffff00";
                     break;
-                case ((indexx >= 20) && (indexx < 40)): filterColor = "#ffcc00";
+                case ((c_val_current_sb_and_alt >= rg_pr[2])&&(c_val_current_sb_and_alt < rg_pr[3])): filterColor = colorList["color3"];//"#ffcc00";
                     break;
-                case ((indexx >= 40) && (indexx < 70)): filterColor = "#ff9900";
+                case ((c_val_current_sb_and_alt >= rg_pr[3])&&(c_val_current_sb_and_alt < rg_pr[4])): filterColor = colorList["color4"];//"#ff9900";
                     break;
-                case ((indexx >= 70) && (indexx < 90)): filterColor = "#ff6600";
+                case ((c_val_current_sb_and_alt >= rg_pr[4])&&(c_val_current_sb_and_alt < rg_pr[5])): filterColor = colorList.color5;//"#ff6600";
                     break;
-                case (indexx >= 90): filterColor = "#ff3300";
+                case ((c_val_current_sb_and_alt >= rg_pr[5])&&(c_val_current_sb_and_alt < rg_pr[6])): filterColor = colorList["color6"];//"#ff3300";
                     break;
-                default: filterColor = "#ff0000";
+                case ((c_val_current_sb_and_alt >= rg_pr[6])&&(c_val_current_sb_and_alt < rg_pr[7])): filterColor = colorList["color7"];//"#ff0000";
                     break;
-                //return wetlandsIcon;
+                default: filterColor = "#aa9999";//"#ff0000";//"#aa9999";//"#ff0000";//
+                    break;
             }
 
             // var whichNode = row[0];
@@ -427,23 +491,43 @@ function heatinitialize() {
             // var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
             var newCoordinates = constructNewCoordinates(subbasin_json.features[i].geometry);
             var indexx = ressssSR1.indexOf(Number(whichNode));
+            var sr_val_current_sb_and_alt = SR_meanVals_array[oneMap].val[indexx].val;
+
+            // switch (true) {
+            //     case (indexx < 0):filterColor = "#ffffff";
+            //         break;
+            //     case (indexx < 20):filterColor = "#ffff00";
+            //         break;
+            //     case ((indexx >= 20) && (indexx < 40)):filterColor = "#ffcc00";
+            //         break;
+            //     case ((indexx >= 40) && (indexx < 70)):filterColor = "#ff9900";
+            //         break;
+            //     case ((indexx >= 70) && (indexx < 90)):filterColor = "#ff6600";
+            //         break;
+            //     case (indexx >= 90):filterColor = "#ff3300";
+            //         break;
+            //     default:filterColor = "#ff0000";
+            //         break;
+            //     //return wetlandsIcon;
+            // }
 
             switch (true) {
-                case (indexx < 0):filterColor = "#ffffff";
+                case ((sr_val_current_sb_and_alt >= rg_sr[0])&&(sr_val_current_sb_and_alt < rg_sr[1])):filterColor = colorList["color1"];//"#ffffff";//
                     break;
-                case (indexx < 20):filterColor = "#ffff00";
+                case ((sr_val_current_sb_and_alt >= rg_sr[1])&&(sr_val_current_sb_and_alt < rg_sr[2])): filterColor = colorList["color2"];//"#ffff00";
                     break;
-                case ((indexx >= 20) && (indexx < 40)):filterColor = "#ffcc00";
+                case ((sr_val_current_sb_and_alt >= rg_sr[2])&&(sr_val_current_sb_and_alt < rg_sr[3])): filterColor = colorList["color3"];//"#ffcc00";
                     break;
-                case ((indexx >= 40) && (indexx < 70)):filterColor = "#ff9900";
+                case ((sr_val_current_sb_and_alt >= rg_sr[3])&&(sr_val_current_sb_and_alt < rg_sr[4])): filterColor = colorList["color4"];//"#ff9900";
                     break;
-                case ((indexx >= 70) && (indexx < 90)):filterColor = "#ff6600";
+                case ((sr_val_current_sb_and_alt >= rg_sr[4])&&(sr_val_current_sb_and_alt < rg_sr[5])): filterColor = colorList.color5;//"#ff6600";
                     break;
-                case (indexx >= 90):filterColor = "#ff3300";
+                case ((sr_val_current_sb_and_alt >= rg_sr[5])&&(sr_val_current_sb_and_alt < rg_sr[6])): filterColor = colorList["color6"];//"#ff3300";
                     break;
-                default:filterColor = "#ff0000";
+                case ((sr_val_current_sb_and_alt >= rg_sr[6])&&(sr_val_current_sb_and_alt < rg_sr[7])): filterColor = colorList["color7"];//"#ff0000";
                     break;
-                //return wetlandsIcon;
+                default: filterColor = "#aa9999";//"#ff0000";//"#aa9999";//"#ff0000";//
+                    break;
             }
 
             // var whichNode = row[0];
@@ -479,23 +563,42 @@ function heatinitialize() {
             // var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
             var newCoordinates = constructNewCoordinates(subbasin_json.features[i].geometry);
             var indexx = ressssNR1.indexOf(Number(whichNode));
+            var nr_val_current_sb_and_alt = NR_meanVals_array[oneMap].val[indexx].val;
+
+            // switch (true) {
+            //     case (indexx < 0):filterColor = "#ffffff";
+            //         break;
+            //     case (indexx < 20):filterColor = "#ffff00";
+            //         break;
+            //     case ((indexx >= 20) && (indexx < 40)):filterColor = "#ffcc00";
+            //         break;
+            //     case ((indexx >= 40) && (indexx < 70)):filterColor = "#ff9900";
+            //         break;
+            //     case ((indexx >= 70) && (indexx < 90)):filterColor = "#ff6600";
+            //         break;
+            //     case (indexx >= 90):filterColor = "#ff3300";
+            //         break;
+            //     default:filterColor = "#ff0000";
+            //         break;
+            // }
 
             switch (true) {
-                case (indexx < 0):filterColor = "#ffffff";
+                case ((nr_val_current_sb_and_alt >= rg_nr[0])&&(nr_val_current_sb_and_alt < rg_nr[1])):filterColor = colorList["color1"];//"#ffffff";//
                     break;
-                case (indexx < 20):filterColor = "#ffff00";
+                case ((nr_val_current_sb_and_alt >= rg_nr[1])&&(nr_val_current_sb_and_alt < rg_nr[2])): filterColor = colorList["color2"];//"#ffff00";
                     break;
-                case ((indexx >= 20) && (indexx < 40)):filterColor = "#ffcc00";
+                case ((nr_val_current_sb_and_alt >= rg_nr[2])&&(nr_val_current_sb_and_alt < rg_nr[3])): filterColor = colorList["color3"];//"#ffcc00";
                     break;
-                case ((indexx >= 40) && (indexx < 70)):filterColor = "#ff9900";
+                case ((nr_val_current_sb_and_alt >= rg_nr[3])&&(nr_val_current_sb_and_alt < rg_nr[4])): filterColor = colorList["color4"];//"#ff9900";
                     break;
-                case ((indexx >= 70) && (indexx < 90)):filterColor = "#ff6600";
+                case ((nr_val_current_sb_and_alt >= rg_nr[4])&&(nr_val_current_sb_and_alt < rg_nr[5])): filterColor = colorList.color5;//"#ff6600";
                     break;
-                case (indexx >= 90):filterColor = "#ff3300";
+                case ((nr_val_current_sb_and_alt >= rg_nr[5])&&(nr_val_current_sb_and_alt < rg_nr[6])): filterColor = colorList["color6"];//"#ff3300";
                     break;
-                default:filterColor = "#ff0000";
+                case ((nr_val_current_sb_and_alt >= rg_nr[6])&&(nr_val_current_sb_and_alt < rg_nr[7])): filterColor = colorList["color7"];//"#ff0000";
                     break;
-                //return wetlandsIcon;
+                default: filterColor = "#aa9999";//"#ff0000";//"#aa9999";//"#ff0000";//
+                    break;
             }
 
             var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//EE:For "ecw" needs to convert to string
@@ -518,7 +621,7 @@ function heatinitialize() {
 
 
     // ================= E: START: This part creates the heatmap-legend  ======================= //
-    // -------------  F3: This appears into the heatmap but not when it fullscreens ---------------//
+    // -------------  F3: This appears into the heatmap but not when it fullscreens (deprecated) ---------------//
     var colorList = {color1: '#ffffff', color2: '#ffff00', color3: '#ffcc00', color4: '#ff9900', color5: '#ff6600', color6: '#ff3300', color7: '#ff0000'};
 
     colorize = function(colorList, min_v, max_v, map_s) {
