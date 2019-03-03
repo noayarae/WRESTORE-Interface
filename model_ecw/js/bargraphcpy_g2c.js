@@ -2,7 +2,7 @@
 function subBasinGraph1() {
     var numberOf_alternatives = array_fullvalues.length; //EE: Give 20, because of 20 alterantives ('array_fullvalues' was obtained at L.987 g2.php)
     var option = document.getElementById('subDrop').value;
-    //alert(option);
+    // alert("L.5 Option of subbasin: "+ option);
     var rowlen;
     var border = [];
     var data = new google.visualization.DataTable();
@@ -303,6 +303,7 @@ function subBasinGraph1() {
     }
 // ---------------------- else
     else { // else means "option == 'subbasin'"
+        // alert ();
         // for (rowlen = 0; rowlen < document.getElementById('wholeTable').rows.length - 1; rowlen++) {
         for (rowlen = 0; rowlen < numberOf_alternatives; rowlen++) {
             var subChart = [];

@@ -335,8 +335,8 @@ function heatinitialize() {
             var newCoordinates = constructNewCoordinates(subbasin_json.features[i].geometry);
             var indexx = ressssPF1.indexOf(Number(whichNode));
             var pfr_val_current_sb_and_alt = PFR_meanVals_array[oneMap].val[indexx].val;
-            console.log("L.319 Checking the current # of suggestion: "+ (oneMap+1));
-            console.log ("L.317 'sb': "+ whichNode +"  indexx: "+ indexx+" value: "+JSON.stringify(PFR_meanVals_array[oneMap].val[indexx].val));
+            // console.log("L.319 Checking the current # of suggestion: "+ (oneMap+1));
+            // console.log ("L.317 'sb': "+ whichNode +"  indexx: "+ indexx+" value: "+JSON.stringify(PFR_meanVals_array[oneMap].val[indexx].val));
             // console.log("L.318 :\n"+ JSON.stringify(PFR_meanVals_array.length));
             //E: below shows PFR_meanVals_array for the current suggestion (alternative)
             // console.log("L.322 :\n"+ JSON.stringify(PFR_meanVals_array[oneMap]));

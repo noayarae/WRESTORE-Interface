@@ -1,5 +1,4 @@
 // Mapping new js file
-//
 
 var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
   var backArray = [];
@@ -36,11 +35,11 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
   // This is firing off around 800 of tools.php	
 
   function initialize() {
-      // ////// START Drawing MAIN MAP //////////////
+      // ============================= START Drawing MAIN MAP ============================= //
       basemap_1 = new google.maps.Map(document.getElementById('map_canvas1'),{
           center: new google.maps.LatLng(39.9778, -86.44),//E: center for "Eagle creek"
           // center: new google.maps.LatLng(45.65, -123.1),//E: center for "Dairy-Mckay"
-          zoom: 10.5,
+          zoom: 10.5,//10.5
           disableDefaultUI: true, //E:it disables all default icons from google map
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           mapTypeControl: false, //E: It disables type of map option
@@ -48,6 +47,7 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
               style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR
           //     position: google.maps.ControlPosition.TOP_CENTER
           },
+          gestureHandling: 'cooperative',//'auto',// 'cooperative',//'greedy',
           zoomControl: false,
           zoomControlOptions: {
               position: google.maps.ControlPosition.TOP_CENTER
@@ -60,7 +60,65 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
           },
           scaleControl: false
       });
+
       // =============================  END Drawing MAIN MAP ========================  //
+
+      // ============================= Start: creating new polygons =================== //
+      var sb0 = [
+          {lat: 40.072, lng: -86.484},//1
+          {lat: 39.991, lng: -86.484},//2
+          {lat: 39.991, lng: -86.421},//3
+          {lat: 40.072, lng: -86.457}//4
+      ];
+
+
+      var sb1 = constructNewCoordinates(subbasin_json.features[0].geometry);
+      var sb2 = constructNewCoordinates(subbasin_json.features[1].geometry);
+      var sb3 = constructNewCoordinates(subbasin_json.features[2].geometry);
+      // var j;
+      // for (j=1; j<3; j++){
+      //     var nc = constructNewCoordinates(subbasin_json.features[0].geometry);
+      //     // eval("sb" + j + "= "+nc);
+      //     eval("sb" + j + "="+nc);
+      // }
+
+      console.log("L.72 sb0: \n"+ typeof (sb1));
+      console.log("L.74 sb0: \n"+ JSON.stringify(sb1));
+      // var sb1 = [
+      //     {lat: 40.08, lng: -86.454},
+      //     {lat: 40.021, lng: -86.454},
+      //     {lat: 40.021, lng: -86.411},
+      //     {lat: 40.08, lng: -86.411}
+      // ];
+      // var sb2 = [
+      //     {lat: 40.1, lng: -86.533},
+      //     {lat: 40.05, lng: -86.533},
+      //     {lat: 40.05, lng: -86.427},
+      //     {lat: 40.1, lng: -86.427}
+      // ];
+
+      var i;
+      // var ssbb = [sb0,sb1,sb2,sb3,sb4,sb5,sb6,sb7,sb8,sb9,sb10,sb11,sb12,sb13,sb14,sb15,sb16,sb17,sb18,sb19,sb20,sb21,sb22,sb23,sb24,sb25,sb26,sb27,sb28,sb29,sb30,sb31,sb32,sb33,sb34,sb35,sb36,sb37,sb38,sb39,sb40,sb41,sb42,sb43,sb44,sb45,sb46,sb47,sb48,sb49,sb50,sb51,sb52,sb53,sb54,sb55,sb56,sb57,sb58,sb59,sb60,sb61,sb62,sb63,sb64,
+      //     sb65,sb66,sb67,sb68,sb69,sb70,sb71,sb72,sb73,sb74,sb75,sb76,sb77,sb78,sb79,sb80,sb81,sb82,sb83,sb84,sb84,sb85,sb86,sb87,sb88,sb89,sb90,sb91,sb92,sb93,sb94,sb95,sb96,sb97,sb98,sb99,sb100,sb101,sb102,sb103,sb104,sb105,sb106,sb107,sb108,sb109,sb110,sb111,sb112,sb113,sb114,sb115,sb116,sb117,sb118,sb119,sb120,sb121,sb122,sb123,sb124,sb125,sb126,sb127,sb128,sb129,sb130];
+      var ssbb = [sb0,sb1,sb2,sb3];
+      // var poly_sb = [];
+      set_polygons_paths(ssbb);
+
+      function set_polygons_paths(ssbb) {
+          for (i=0; i<4; i++){
+              eval("poly_sb" + i + "=new google.maps.Polygon({\n" +
+                  "              path: ssbb["+i+"],\n" +
+                  "//            strokeColor: '#FF0000',\n" +
+                  "              strokeOpacity: 1.0,\n" +
+                  "              strokeWeight: 3\n" +
+                  "          })");
+          }
+      }
+
+      add_sb0();
+
+      // ============================= End: creating new polygons ========================== //
+
 
       // ==================== Start NEW Legend into the Main map ==================== //
       // E: This part sets up a custom button into the map to display the legend
@@ -277,6 +335,8 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
       });
       // ---------------------  End: Tracking when clicking outside of watershed  -------------------- //
 
+      // var option = document.getElementById('subDrop').value;
+      // alert("L.281 option of sb: "+option);
 
       //  ==================  Start: Draw Conservation Practices (Main Part) ============================ //
       //E: Call 'Background' function to draw the base map (subbasins map)
@@ -343,38 +403,8 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
 
       //////////////////////// (0)  Begin BACKGROUND  ////////////////////////////////
       // ///Lay background map
-      // function doBackground() {
-      //     // Initialize JSONP request
-      //     var script = document.createElement('script');
-      //     var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
-      //     url.push('sql=');
-      //     //Streams
-      //     // var query = 'SELECT GRIDCODE, Area_Acres,Length_mil FROM ' +
-		// 	//  '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA';
-         //  var query = 'SELECT GRIDCODE, geometry, Area_Acres,Length_mil FROM ' +
-         //      '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA';
-      //     var encodedQuery = encodeURIComponent(query);
-      //     url.push(encodedQuery);
-      //     url.push('&callback=drawBack'); //E:Here, the function 'drawBack' is called.  <===
-      //     url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
-      //     // url.push('&key=IzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
-      //     script.src = url.join('');
-      //     var body = document.getElementsByTagName('body')[0];
-      //     body.appendChild(script);
-      // }
-      // // ----------- end of 'doBack'
-
-      // ----------- start 'drawBack'
-      // drawBack = function(data) {
       function doBackground() {
-              //function drawWet1(data) {
 
-          // var rows = data['rows'];//EE: not needed when json data
-          // alert("L-407 row[0]: " + rows[0]);//E:alert. 'row[0]' is string and shows the sub-basin 129
-          // alert("row[0]: " + rows[0].length);// alert("Type row[0]: " + typeof 'rows[0]');//E:alert
-          // alert("row[0][1]['geometry']: " + rows[0][1]['geometry']);//E:alert
-
-          // for (var i in rows) {
           for (var i = 0; i < subbasin_json.features.length; i++) {//EE 'subbasin_json.features.length' = 130 (# of subbasins)
               var newCoordinates = [];//EE: For polygons or sub-basins
               var newCoordinates_labels = [];//EE: For labels on each sub-basin
@@ -382,10 +412,12 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
               //EE:It is converted to string to be in the 'find' function (see some lines below)
               var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//E: For "ecw"
               // var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
-              // if (i==0) alert ("which subbasin Background: \n" + typeof whichNode);//E: 'whichNode' tells which sub-basin
+              if (i==0) console.log ("which subbasin Background: " + whichNode);//E: 'whichNode' tells which sub-basin
 
-              // if (i==12) console.log("L.392 geometry "+i+":"+ "\n"+JSON.stringify(subbasin_json.features[i].geometry));
+              // if (i==0) console.log("L.392 geometry "+i+":"+ "\n"+JSON.stringify(subbasin_json.features[i].geometry));
+              //E: "subbasin_json" comes from 'data/ecw4b.js'
               var newCoordinates = constructNewCoordinates(subbasin_json.features[i].geometry);//EE: Function is Set at 1069
+              if (i==0) console.log("L.407 geometry "+i+":"+ "\n"+ typeof(newCoordinates));
 
               var x_label = parseFloat(subbasin_json.properties[i].label_x);
               var y_label = parseFloat(subbasin_json.properties[i].label_y);
@@ -515,41 +547,6 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
               console.log("L.531 listofSubs (Crop-Rotation): "+ listofSubs);
           }
 
-      //     // Inicio de se VA
-      //     // listOfSubs=forMapArray1["crop_rotation"];
-      //     //alert(listOfSubs);
-      //     // Initialize JSONP request
-      //     var script = document.createElement('script');
-      //     var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
-      //     url.push('sql=');
-      //     //Streams
-      //     var query = 'SELECT GRIDCODE, geometry, Area_Acres,Length_mil FROM ' +
-      //         '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA Where GRIDCODE in (' + listofSubs + ')';
-      //     var encodedQuery = encodeURIComponent(query);
-      //     url.push(encodedQuery);
-      //     url.push('&callback=drawCrop1');//E:Here, the function 'drawCrop1' is called.  <===
-      //     url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
-      //     // url.push('&key=1ZBdUCcDAjB0w94aiSRybOvnbtUxHYrvaMmeljHaD');
-      //     // 1ZBdUCcDAjB0w94aiSRybOvnbtUxHYrvaMmeljHaD
-      //     // https://fusiontables.google.com/DataSource?docid=1ZBdUCcDAjB0w94aiSRybOvnbtUxHYrvaMmeljHaD#map:id=3
-      //     script.src = url.join('');
-      //     var body = document.getElementsByTagName('body')[0];
-      //     body.appendChild(script);
-      // }//Close function
-      //
-      // // ------------  end 'docrop1'
-      //
-      // // ------------  start 'drawCrop1'
-      // //  wwwwwwwwwwwwwwwwww
-      // drawCrop1 = function(data) {
-      //     //function drawWet1(data) {
-      //     //alert("ON");
-      //     var rows = data['rows'];
-      //     console.log("L-561 rows CropRot: "+ "\n" + rows);//E:It show the list of sub-basins with CR
-      //     //var whichNode=100;
-      //     //  fin de se van
-
-
           var cr_yes = 0;
           var cr_no = 0;
           // for (var i in rows) {
@@ -659,33 +656,6 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
               console.log("L.657 listofSubs (cover_crops): "+ listofSubs);
           }
 
-      //     // Inicio SE VA
-      //     // Initialize JSONP request
-      //     var script = document.createElement('script');
-      //     var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
-      //     url.push('sql=');
-      //     //Streams
-      //     var query = 'SELECT GRIDCODE, geometry, Area_Acres,Length_mil FROM ' +
-      //         '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA Where GRIDCODE in (' + listofSubs + ')';
-      //     var encodedQuery = encodeURIComponent(query);
-      //     url.push(encodedQuery);
-      //     url.push('&callback=drawCover1');//E:Here, the function 'drawCover1' is called.  <===
-      //     url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
-      //     script.src = url.join('');
-      //     var body = document.getElementsByTagName('body')[0];
-      //     body.appendChild(script);
-      // }
-      // // ------------  end 'docover1'
-      //
-      // // ------------  start 'drawCover1'
-      //
-      // drawCover1 = function(data) {
-      //     //function drawWet1(data) {
-      //     //alert("ON");
-      //     var rows = data['rows'];
-      //     //var whichNode=100;
-      //     // Fin SE VA  COVER CROP
-
           var cc_yes = 0;
           var cc_no = 0;
           // for (var i in rows) {
@@ -791,32 +761,6 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
               //E: above, JSON.parse convert a string into an array of number
               console.log("L.790 listofSubs (strip_cropping): "+ listofSubs);
           }
-
-      //     // Inicio SE VA
-      //     // Initialize JSONP request
-      //     var script = document.createElement('script');
-      //     var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
-      //     url.push('sql=');
-      //     //Streams
-      //     var query = 'SELECT GRIDCODE, geometry, Area_Acres,Length_mil FROM ' +
-      //         '1pU7pdW8h9zLV6VUSdsrmmX47zAvF6BPVjYiShGA Where GRIDCODE in (' + listofSubs + ')';
-      //     var encodedQuery = encodeURIComponent(query);
-      //     url.push(encodedQuery);
-      //     url.push('&callback=drawStrip1');//E:Here, the function 'drawStrip1' is called.  <===
-      //     url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
-      //     script.src = url.join('');
-      //     // alert("script.src: " + url);
-      //     var body = document.getElementsByTagName('body')[0];
-      //     body.appendChild(script);
-      // }
-      // // ----------------  end 'dostrip1()'
-      //
-      // // ----------------  start 'drawStrip1' --------------------- /GREEN/
-      // drawStrip1 = function(data) {
-      //     //function drawWet1(data) {
-      //     var rows = data['rows'];
-      //     //var whichNode=100;
-      //     //Fin SE VA STRIP CROP
 
           var sc_yes = 0;
           var sc_no = 0;
@@ -933,30 +877,6 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
               streams_for_fs.features[i].geometry.type = "Polyline";
               // if (i < 5) console.log("L.980 - " + JSON.stringify(streams_for_fs.features[i]));//EE: to see the first coordinates
           }
-
-      //     //inicio SE VA
-      //     // Initialize JSONP request
-      //     var script = document.createElement('script');
-      //     var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
-      //     url.push('sql=');
-      //     //Streams
-      //     var query = 'SELECT GRID_CODE, geometry FROM ' +
-      //         '15rPfCYXIoquDLpunT66cvEz2yaqw7R6BRKptqBQ Where GRID_CODE in (' + listofSubs + ')';
-      //     var encodedQuery = encodeURIComponent(query);
-      //     url.push(encodedQuery);
-      //     url.push('&callback=drawFilter1'); //E:Here, the function 'drawFilter1' is called.  <===
-      //     url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
-      //     script.src = url.join('');
-      //     var body = document.getElementsByTagName('body')[0];
-      //     body.appendChild(script);
-      // }
-      // // -----------  end 'dofilter1'
-      //
-      // // -----------  start 'drawfilter1'
-      //
-      // drawFilter1 = function(data) {
-      //     var rows = data['rows'];
-      //     // // END SE VA
 
           var fs_yes = 0;
           var fs_no = 0;
@@ -1087,31 +1007,6 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
               console.log("L.1085 listofSubs (grassed_waterway): "+ listofSubs);
           }
 
-      //     // Inicio SE VA
-      //     // Initialize JSONP request
-      //     var script = document.createElement('script');
-      //     var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
-      //     url.push('sql=');
-      //     //Streams
-      //     var query = 'SELECT GRIDCODE, geometry FROM ' +
-      //         '1iRLpYHfW4L9ncVMvhL5HD5Pwcuu63MVmRBWtn7Y Where GRIDCODE in (' + listofSubs + ')';
-      //     // var query = 'SELECT GRIDCODE, geometry FROM 1iRLpYHfW4L9ncVMvhL5HD5Pwcuu63MVmRBWtn7Y';
-      //     var encodedQuery = encodeURIComponent(query);
-      //     url.push(encodedQuery);
-      //     url.push('&callback=drawGrass1');
-      //     url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
-      //     script.src = url.join('');
-      //     var body = document.getElementsByTagName('body')[0];
-      //     body.appendChild(script);
-      // }
-      // // -------------------------------- end 'dograss1()'
-      //
-      // // ---------------------------------- start 'drawGrass1'
-      // drawGrass1 = function(data) {
-      //     var rows = data['rows'];
-      //     //var whichNode=100;
-      //     // Fin SE VA GRASS
-
           var gw_yes = 0;
           var gw_no = 0;
           // for (var i in rows) {
@@ -1204,28 +1099,6 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
           }
       //     // console.log("sb_with_nt_only: "+ JSON.stringify(sb_with_nt_only.properties));
       //     console.log(sb_with_nt_only.properties.length);
-
-
-      // //     //  Inicio  SE VA
-      //     var script = document.createElement('script');
-      //     var url = ['https://www.googleapis.com/fusiontables/v1/query?'];
-      //     url.push('sql=');
-      //     var query = 'SELECT GRIDCODE, geometry FROM ' +
-      //         '1iRLpYHfW4L9ncVMvhL5HD5Pwcuu63MVmRBWtn7Y Where GRIDCODE in (' + listofSubs + ')';
-      //     var encodedQuery = encodeURIComponent(query);
-      //     url.push(encodedQuery);
-      //     url.push('&callback=drawTill1');
-      //     url.push('&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ');
-      //     script.src = url.join('');
-      //     var body = document.getElementsByTagName('body')[0];
-      //     body.appendChild(script);
-      // }
-      // // // ------- end 'dotill1()'
-      // //
-      // // //   ------- start 'drawTill1'
-      // drawTill1 = function(data) {
-      //     var rows = data['rows'];
-      // //     //End SE VA  NO-TILLAGE
 
           var nt_yes = 0;
           var nt_no = 0;
@@ -1411,6 +1284,57 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
       // =====================  End WETLANDS totally ===================== //
 
 
+
+//       //////////////////////// (0)  Begin highlight Sub-basin  ////////////////////////////////
+// // ///Lay highlight Sub-basin
+//       function highlight_sub_basin(sb) {
+//           var newCoordinates = [];//EE: For polygons or sub-basins
+//           var which_sb = parseInt(sb.match(/\d+/));//E:it extracts onlythe number of "S1" to get just the numberof subbasin
+//
+//           var subbasin_properties = subbasin_json.properties;
+//           // console.log(JSON.stringify(subbasin_json.properties));//E: it shows properties of all 130 subbasins
+//           var subbasin_index1 = subbasin_properties.map(function(d) { return d['Subbasin']; }).indexOf(which_sb);
+//           alert("L.1431 sub-basin: "+ which_sb+"  index: "+subbasin_index1);//E:alert
+//
+//           var newCoordinates = constructNewCoordinates(subbasin_json.features[subbasin_index1].geometry);//EE: Function is Set at 1069
+//           console.log("L.1442 sub-basin (which_sb): "+which_sb);
+//           console.log("L.1442 geometry: \n"+JSON.stringify(subbasin_json.features[subbasin_index1].geometry));
+//
+//           var sb_background = new google.maps.Polygon({//E: Watershed (background) features
+//               path: newCoordinates,
+//               strokeColor: "#0033cc",//colors[0],
+//               strokeOpacity: .6,
+//               strokeWeight: 1,
+//               fillOpacity: 0,
+//               fillColor: "#ff0000",//"#ffffff",
+//               clickable: true,
+//               indexID: which_sb
+//           });
+//           //
+//           sb_background.setMap(basemap_1);//E: IT SETS THE POLYGONS over the BASEMAP
+//           //     // ------ sb-basemap_done
+//
+//           function constructNewCoordinates(polygon) {
+//               var newCoordinates = [];
+//               var coordinates = null;
+//               if (polygon['coordinates'])
+//                   coordinates = polygon['coordinates'];
+//               if (coordinates.length == 1) {
+//                   coordinates = coordinates[0];
+//               }
+//               // alert(coordinates);
+//               for (var i in coordinates) {
+//                   newCoordinates.push(
+//                       new google.maps.LatLng(coordinates[i][1], coordinates[i][0]));
+//               }
+//               return newCoordinates;
+//           }
+//
+//       }
+//       // ===================================  End draw highlight Sub-basin  =============================//
+
+
+
       // ===================== (0-b)  Begin Markers  ====================== //
 
       function dolabels() {
@@ -1475,12 +1399,6 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
       // ------ end 'constructNewCoordinatesLabel'
 
       // ======================= END LABEL (----) totally ==================== //
-
-
-
-
-
-
 
   } ///END MAPPING FUNCTIONs
 
@@ -1603,3 +1521,40 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
 // ================== END ->  FUNCTION FOR TRACKING CHECKBOXS in LEGEND = (Added by E.Noa) =================== //
 
 
+// //////////////////////// (0)  Begin highlight Sub-basin  ////////////////////////////////
+//E: This function activates by default the whole watershed border (Subbasin 0)
+function add_sb0() {
+    for (i=0; i<3;i++){
+        var sb_null = eval("poly_sb"+i);//E: convert a string into a variable name
+        sb_null.setMap(null);
+    }
+    poly_sb0.setMap(basemap_1);
+}
+
+//E: This function activates the selected subbasin (from 1-130 for ecw)
+function select_sb(){
+    var selected_sb = subDrop[subDrop.selectedIndex].value;
+    if (selected_sb == "Watershed") {
+        // alert("Selected: ----- "+ selected_sb);
+        for (i=0; i<3;i++){
+            var sb_null = eval("poly_sb"+i);//E: convert a string into a variable name
+            sb_null.setMap(null);//E: turn-off all subbasins
+        }
+        // var sb_act = eval("poly_sb"+number_sb);//E: turn-on the selected subbasin
+        // alert("L.1536: "+ number_sb);
+        poly_sb0.setMap(basemap_1);
+    }
+    else {
+        var number_sb = selected_sb.match(/\d/g);//E: Get the number part of the string for ex. "subbasin 1", get 1
+        for (i=0; i<3;i++){
+            var sb_null = eval("poly_sb"+i);//E: convert a string into a variable name
+            sb_null.setMap(null);//E: turn-off all subbasins
+        }
+        var sb_act = eval("poly_sb"+number_sb);//E: turn-on the selected subbasin
+        // alert("L.1536: "+ number_sb);
+        sb_act.setMap(basemap_1);
+    }
+
+}
+
+// ===================================  End highlight Sub-basin  =============================//

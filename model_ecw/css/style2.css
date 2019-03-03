@@ -162,7 +162,7 @@ p{margin:0 0 0px 0;}
 a{color:#d85a1a; text-decoration:none;}
 a:hover{color:#7d110c; text-decoration:none;}
 
-h1, h2, h3, h4, h5, h6{ font-family: 'Oswald', Arial, Helvetica, sans-serif; line-height:1.2; font-weight:normal; color:#7d110c;}
+h1, h2, h3, h4, h5, h6{font-family: 'Oswald', Arial, Helvetica, sans-serif; line-height:1.2; font-weight:normal; color:#7d110c;}
 h1{font-size:30px; font-weight:300; text-transform:uppercase; color:#2d637f;}
 h2{
 	font-size:20px;
@@ -1076,7 +1076,8 @@ label.error {
 	z-index: 500;
 }
 
-#inst_box1 { /* For instructions box */
+/*#inst_box1 { !* For instructions box *!*/
+#instruction_box1 { /* For instructions box */
 	display: none;
 	position: absolute;
 	top: 120px;
@@ -1090,7 +1091,8 @@ label.error {
 	background-color: transparent;
 }
 
-#inst_box1_tr { /* For box of 'take rest' option*/
+/*#inst_box1_tr { !* For box of 'take rest' option*!*/
+#pause_box { /* For box of 'take rest' option*/
 	display: none;
 	position: absolute;
 	top: 140px;
@@ -1117,8 +1119,21 @@ label.error {
 	background-color: transparent;
 }
 
+#inactive_box {
+	display: none;
+	position: absolute;
+	top: 140px;
+	left: 400px;
+	z-index: 501;
+	height: 380px;
+	width: 500px;
+	margin: 0px auto 0px auto;
+	/*border: 1px solid #dd1254;*/
+	/*background-color: #afff1a;*/
+	background-color: transparent;
+}
 
-#inst_box1_in {
+#end_experiment_box {
 	display: none;
 	position: absolute;
 	top: 140px;
@@ -1135,6 +1150,7 @@ label.error {
 #message_box {
 	background-color: #ffffff;
 }
+
 
 #ints_welcome-msg {
 	/*margin: 10px;*/
