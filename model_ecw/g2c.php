@@ -54,8 +54,9 @@
 
 <!--    DATA    -->
     <script src="data/ecw4b.js"></script> <!-- Here goes the JS.File name. var "subbasin_json" -->
+    <script src="data/ecw_border.js"></script> <!-- JS.File name. var "Watershed border" -->
     <script src="data/stream_g.js"></script> <!-- Here goes the JS.File name. var "stream_json" -->
-    <script src="data/takefeedback2.js"></script> <!-- Here goes the JS.File name. var "stream_json" -->
+    <script src="data/takefeedback2.js"></script> <!-- Here goes the JS.File name. var "optimiz_json" -->
     
     <script type="text/javascript">
         //window.onload(heatinitialize);
@@ -190,7 +191,7 @@ include ('read_db.php');//EE: TurnOff when 'database_option' is 1 or 2
                 <section id="content">
                     <p name="suggestionsNumberHeader" style="display: inline-block; padding: 0px 5px; font-size:17px;
                      margin: 0px;">
-                        Total number of <font color="#7d110c"><b>suggestions</b></font> (i.e., conservation
+                        Total number of <font color="#7d110c"><b>suggested plans</b></font> (i.e., conservation
                         plans) recommended in this session: 20 | <font color="#7d110c"><strong>Page
                                 <span class="currentPage">1</span> of <span class="totalPages">20</span></strong></font>
                     </p>
@@ -212,15 +213,21 @@ include ('read_db.php');//EE: TurnOff when 'database_option' is 1 or 2
                 <div class="step_line" style="height: 26px;">
                     <div id="step1" class="step_box"
                      title="Lear about recommended conservation decisions in this
-suggestion by clicking inside each sub-basin in the map.
+suggested plan by clicking inside each sub-basin in the map.
 The left panel shows maps of how this suggestion effects
 the costs and benefits over the watershed landscape">STEP 1:
                     </div>
                     <div>
-                        <h4 class="step_title_text fontStepTitle">Learn about <font color="#7d110c"><strong>Suggestion <span
+                        <h4 class="step_title_text fontStepTitle">Learn about <font
+                                    color="#7d110c"><strong>Suggestion Plan P<span
                                     class="oneMap"></span></strong></font>
                         </h4>
-                    <!--  Full-screen buttom for main map  -->
+                    <!--  Selection of Type-MAP (Not in use)  -->
+                        <div style="display: none; position: relative; top: 30px; left: 50px; z-index: 200;">
+                            <button onclick="basemap_1.setMapTypeId(google.maps.MapTypeId.ROADMAP);">ROADMAP</button>
+                            <button onclick="basemap_1.setMapTypeId(google.maps.MapTypeId.SATELLITE);">SATELLITE</button>
+                        </div>
+                        <!--  Full-screen buttom for main map  -->
                         <input id="fullscreen" class="trackable" title="Click here to display a fullscreen map" type="button"
                            value="Full-screen" style="position: relative; top: 55px;
      left: 20px; z-index: 200; width: 90px; height: 26px;/*background-color: #fcd4b5;*/ cursor: pointer" />
@@ -249,7 +256,7 @@ in US Dollars" style="margin: 0px 0px 0px 4px;" href="#tabs-RV">P</a></li>
                                     <!--                            <div id="info_heatmap" class='tab_content2' style="height: 345px; overflow: auto; border: 1px solid red;">-->
                                     <h4 style="font-size: 20px">Instructions </h4>
                                     <p>Click on tabs to view how the performance (i.e., benefits and costs) of this
-                                        suggestion spatially varies over the landscape. </p>
+                                        suggested plan spatially varies over the landscape. </p>
                                     <p>Acronyms stand for:</p>
                                     <ul>
                                         <li><p><b>PFR </b>is Peak Flow Reduction in cubic meters per second (cms)
@@ -268,7 +275,7 @@ in US Dollars" style="margin: 0px 0px 0px 4px;" href="#tabs-RV">P</a></li>
                                 <!--    ------------ (2a) tabs-PFR heatmap ------------   -->
                                 <div id="tabs-PF" class="map1">
                                     <div class="tab-header2">
-                                        <h4 class="fontStepTitle">Suggestion <span class="oneMap"></span></h4>
+                                        <h4 class="fontStepTitle">Suggestion Plan P<span class="oneMap"></span></h4>
                                         <input id="fullscreen_heatmap1" class="trackable" type="button" style="display: none"
                                                title="Click here to display a fullscreen map" value="fullscreen PFR"/>
                                     </div>
@@ -283,7 +290,7 @@ in US Dollars" style="margin: 0px 0px 0px 4px;" href="#tabs-RV">P</a></li>
                                 <!--    ------------ (3a) tabs-SR heatmap --------   -->
                                 <div id="tabs-SR" class="map1">
                                     <div class="tab-header2">
-                                        <h4 class="fontStepTitle">Suggestion <span class="oneMap"></span></h4>
+                                        <h4 class="fontStepTitle">Suggestion Plan P<span class="oneMap"></span></h4>
 
                                         <input id="fullscreen_heatmap3" class="trackable" type="button" style="display: none"
                                                title="Click here to display a fullscreen map" value="fullscreen SR"/>
@@ -299,7 +306,7 @@ in US Dollars" style="margin: 0px 0px 0px 4px;" href="#tabs-RV">P</a></li>
                                 <!--    -----------  (4a)  tabs-NR heatmap ------   -->
                                 <div id="tabs-NR" class="map1">
                                     <div class="tab-header2">
-                                        <h4 class="fontStepTitle">Suggestion <span class="oneMap"></span></h4>
+                                        <h4 class="fontStepTitle">Suggestion Plan P<span class="oneMap"></span></h4>
 
                                         <input id="fullscreen_heatmap4" class="trackable" type="button" style="display: none"
                                                title="Click here to display a fullscreen map" value="fullscreen NR"/>
@@ -315,7 +322,7 @@ in US Dollars" style="margin: 0px 0px 0px 4px;" href="#tabs-RV">P</a></li>
                                 <!--    ------------ (5a) tabs-RV heatmap (Profit) --------   -->
                                 <div id="tabs-RV" class="map1">
                                     <div class="tab-header2">
-                                        <h4 class="fontStepTitle">Suggestion <span class="oneMap"></span></h4>
+                                        <h4 class="fontStepTitle">Suggestion Plan P<span class="oneMap"></span></h4>
 
                                         <input id="fullscreen_heatmap2" class="trackable" type="button" style="display: none"
                                                title="Click here to display a fullscreen map" value="fullscreen P"/>
@@ -345,6 +352,20 @@ in US Dollars" style="margin: 0px 0px 0px 4px;" href="#tabs-RV">P</a></li>
 <!--                       value="Full-screen" style="position: relative; top: 50px;-->
 <!--     left: 296px; z-index: 200; width: 90px; height: 25px;background-color: #ff9999; cursor: pointer" />-->
                     <div id="map_canvas1" name="map_canvas1"></div>
+
+<!--                    <div style="display:none">-->
+<!--                    <button onclick="basemap_1.setMapTypeId(google.maps.MapTypeId.ROADMAP);">Show ROADMAP</button>-->
+<!--                    <button onclick="basemap_1.setMapTypeId(google.maps.MapTypeId.SATELLITE);">Show SATELLITE</button>-->
+
+                    <!--  This try was not succesfull, instead see above.    -->
+                    <!--  This worked with 'initMapTypeControl(basemap_1)' function (L.1584 of 'mapping_new.js'), but
+                    they didn't work -->
+                    <!--                    <div>-->
+<!--                        <div id="mtc" class="controls maptype-control maptype-control-is-map">-->
+<!--                            <button class="maptype-control-map" title="Show road map">Map</button>-->
+<!--                            <button class="maptype-control-satellite" title="Show satellite imagery">Satellite</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 
                     <!--   ++++++++++++++   inserting HeatMaps in STEP1 box  ++++++++++++++  -->
                     <div class ="panel_1 collapsed" name='step1_alter' style="display: none">
@@ -363,12 +384,12 @@ meters per second (cms)" href="#tabs-PF">PFR</a></li>
 in US Dollars" style="margin: 0px 0px 0px 4px;" href="#tabs-RV">P</a></li>
                             </ul>
                             <div class="tab_container2">
-                            <!--    ------------ (1a) tab-Info of HeatMap  ------------   -->
+                            <!--    ------------ (1a) tab-Info of HeatMap (display: none)  ------------   -->
                                 <div id="info_heatmap" class='tab_content2' style="/*height: 390px;*/ overflow: auto;">
 <!--                            <div id="info_heatmap" class='tab_content2' style="height: 345px; overflow: auto; border: 1px solid red;">-->
                                     <h4 style="font-size: 20px">Instructions </h4>
                                     <p>Click on tabs to view how the performance (i.e., benefits and costs) of this
-                                    suggestion spatially varies over the landscape. </p>
+                                    suggested plan spatially varies over the landscape. </p>
                                     <p>Acronyms stand for:</p>
                                     <ul>
                                         <li><p><b>PFR </b>is Peak Flow Reduction in cubic meters per second (cms)
@@ -384,7 +405,7 @@ in US Dollars" style="margin: 0px 0px 0px 4px;" href="#tabs-RV">P</a></li>
                                             decisions on the landscape.</p></li>
                                     </ul>
                                 </div>
-                            <!--    ------------ (2a) tabs-PFR heatmap ------------   -->
+                            <!--    ------------ (2a) tabs-PFR heatmap (display: none) ------------   -->
                                 <div id="tabs-PF" class="map1">
                                     <div class="tab-header2">
                                         <h4 class="fontStepTitle">Suggestion <span class="oneMap"></span></h4>
@@ -399,7 +420,7 @@ in US Dollars" style="margin: 0px 0px 0px 4px;" href="#tabs-RV">P</a></li>
                                 </div>
                                 <div style="clear:both"></div>
 
-                            <!--    ------------ (3a) tabs-SR heatmap --------   -->
+                            <!--    ------------ (3a) tabs-SR heatmap (display: none) --------   -->
                                 <div id="tabs-SR" class="map1">
                                     <div class="tab-header2">
                                         <h4 class="fontStepTitle">Suggestion <span class="oneMap"></span></h4>
@@ -415,7 +436,7 @@ in US Dollars" style="margin: 0px 0px 0px 4px;" href="#tabs-RV">P</a></li>
                                 </div>
                                 <div style="clear:both"></div>
 
-                            <!--    -----------  (4a)  tabs-NR heatmap ------   -->
+                            <!--    -----------  (4a)  tabs-NR heatmap (display: none) ------   -->
                                 <div id="tabs-NR" class="map1">
                                     <div class="tab-header2">
                                         <h4 class="fontStepTitle">Suggestion <span class="oneMap"></span></h4>
@@ -431,7 +452,7 @@ in US Dollars" style="margin: 0px 0px 0px 4px;" href="#tabs-RV">P</a></li>
                                 </div>
                                 <div style="clear:both"></div>
 
-                            <!--    ------------ (5a) tabs-RV heatmap (Profit) --------   -->
+                            <!--    ------------ (5a) tabs-RV heatmap (Profit)(display:none) --------   -->
                                 <div id="tabs-RV" class="map1">
                                     <div class="tab-header2">
                                         <h4 class="fontStepTitle">Suggestion <span class="oneMap"></span></h4>
@@ -470,13 +491,14 @@ in US Dollars" style="margin: 0px 0px 0px 4px;" href="#tabs-RV">P</a></li>
 <!--                <div class = "heatmap_header" style="height: 26px;">-->
                 <div class = "step_line" style="height: 26px; margin: 0px 0px 3px 0px;">
                     <div id='step2' class="step_box" name="step2" style="width: 75px;"
-                         title="Learn about how costs and benefits of this suggestion
-compare to those of other recommended suggestions
+                         title="Learn about how costs and benefits of this suggested plan
+compare to those of other recommended suggested-plans
 (on previous or following pages of this session)">
                         STEP 2:
                     </div>
                     <div>
-                        <h4 class="step_title_text fontStepTitle">Assess <font color="#7d110c"><strong>Suggestion <span
+                        <h4 class="step_title_text fontStepTitle">Evaluate <font color="#7d110c"><strong>Suggestion
+                                    Plan P<span
                                 class="oneMap"></span></strong></font> </h4>
                     </div>
                 </div>
@@ -529,10 +551,10 @@ in US Dollars" style="margin: 0px 0px 0px
 <!--                        <div id="start_barplot" style="height: 406px; overflow: auto; border: 1px solid red">-->
                             <h4 style="font-size: 20px">Instructions </h4>
                             <p>Click on tabs to view bar plots that assess the performance (i.e., benefits and costs) of
-                                this suggestion in comparison to others.</p>
+                                this suggested plan in comparison to others.</p>
                             <p>Also, note the following about the bar plots:</p>
                             <ol>
-                                <li>The orange colored bar corresponds to the suggestion you see on this page.</li>
+                                <li>The orange colored bar corresponds to the suggested plan you see on this page.</li>
                                 <li>The length of the bar corresponds to an average value of the benefit.
                                     When thin lines are present with the bars, they indicate the range (i.e.,
                                     minimum and maximum values) of the cost or benefit.</li>
@@ -567,7 +589,7 @@ in US Dollars" style="margin: 0px 0px 0px
 <!--                                document.getElementById("xlabel_PFR").innerHTML = "Cubic meters per second (cms)";-->
 <!--                            </script>-->
                             <div style="position: absolute; transform: rotate(270deg); top: 200px; left:-20px;">
-                                Suggestions
+                                Suggested plans
                             </div>
                         </div>
                         <!--    ------------ (3b)  tabs-Cost Barplot ------------   -->
@@ -580,7 +602,7 @@ in US Dollars" style="margin: 0px 0px 0px
                                 Profit in US Dollars
                             </div>
                             <div style="position: absolute; transform: rotate(270deg); top: 200px; left:-20px;">
-                                Suggestions
+                                Suggested plans
                             </div>
                         </div>
                         <!--    ------------ (4b)  tabs-Sed. Red. Barplot  ------------   -->
@@ -593,7 +615,7 @@ in US Dollars" style="margin: 0px 0px 0px
                                 Sediment Reduction in tons
                             </div>
                             <div style="position: absolute; transform: rotate(270deg); top: 200px; left:-20px;">
-                                Suggestions
+                                Suggested plans
                             </div>
 
                         </div>
@@ -607,7 +629,7 @@ in US Dollars" style="margin: 0px 0px 0px
                                 Nitrate Reduction in kilograms (kg)
                             </div>
                             <div style="position: absolute; transform: rotate(270deg); top: 200px; left:-20px;">
-                                Suggestions
+                                Suggested plans
                             </div>
                         </div>
                     </div>
@@ -652,9 +674,10 @@ in US Dollars" style="margin: 0px 0px 0px
 
                             <div class="map1" style="display: inline-flex; margin: 5px;">
                                 <div>
-                                    <h4 class="step_title_text fontStepTitle">Rate <font color="#7d110c"><strong>Suggestion <span
-                                                        class="oneMap"></span></strong></font> based on its performance and
-                                        feasibility</h4>
+                                    <h4 class="step_title_text fontStepTitle">Rate <font color="#7d110c">
+                                            <strong>Suggestion Plan P<span class="oneMap"></span></strong></font>
+                                        based on its performance
+                                    </h4>
                                 </div>
 
                                 <div class="innerMapLines" style="min-width: 120px;">
@@ -671,6 +694,10 @@ in US Dollars" style="margin: 0px 0px 0px
                                                type="radio" value="4" /><span></span>
                                         <input id='step3_star5' class="trackable" name="rating1"
                                                type="radio" value="5" /><span></span>
+                                        <input id='step3_star6' class="trackable" name="rating1"
+                                               type="radio" value="6" /><span></span>
+                                        <input id='step3_star7' class="trackable" name="rating1"
+                                               type="radio" value="7" /><span></span>
                                         <input name="rating1" type="text" class="padInput" id="rating1" size="2" />
                                     </div>
                                 </div>
@@ -697,7 +724,7 @@ in US Dollars" style="margin: 0px 0px 0px
 <!--                <div class="rating_backnext debug">-->
                     <div style="/*border: 1px solid; border-radius: 5px*/">
                         <input id="Next" class="trackable barBlue moveNext" type="button" name="Next"
-                               title="Click here to move to the next suggestion" style="position:
+                               title="Click here to move to the next suggestion plan" style="position:
                 relative; float: right;" value="Next Suggestion &gt;&gt;" />
                     </div>
 <!--                </div>-->
@@ -708,7 +735,8 @@ in US Dollars" style="margin: 0px 0px 0px
                 <div class="rating_backnext debug">
                     <div class="l6_box" style="/*border: 1px solid; border-radius: 5px*/">
                         <input id="Back" class="trackable barBlue moveBack" type="button" name="Back"
-                               title="Click here to back to the previous suggestion" value="&lt;&lt; Previous Suggestion" />
+                               title="Click here to back to the previous suggestion plan" value="&lt;&lt; Previous
+                               Suggestion" />
                     </div>
                 </div>
             </div>
@@ -872,17 +900,18 @@ in US Dollars" style="margin: 0px 0px 0px
                 <p>In this session, you will see multiple options for implementing new
                     conservation practices on the watershed landscape.</p>
                 <div style="line-height:30%;"><br></div>
-                <p>In WRESTORE, an option is also called an <b>suggestion</b> or a
-                    <b>conservation plan</b>. Every suggestion consists of multiple conservation decisions
+                <p>In WRESTORE, an option is also called an <b>suggestion plan</b> or a
+                    <b>conservation plan</b>. Every suggestion plan consists of multiple conservation decisions
                     distributed over the landscape. Each conservation decision describes the type of recommended
                     conservation practice, location where the practice is implemented, and other attributes such as
                     size, etc.</p>
                 <div style="line-height:30%;"><br></div>
-                <p>You are advise to first learn about decisions recommended by an suggestion (i.e. <b>Step 1</b>),
-                    then assess it (i.e. <b>Step 2</b>), and then finally evaluate the suggestion based on its
+                <p>You are advise to first learn about decisions recommended by an suggestion plan (i.e. <b>Step
+                        1</b>),
+                    then assess it (i.e. <b>Step 2</b>), and then finally evaluate the suggested plan based on its
                     overall performance, feasibility, and your own personal preferences (i.e. <b>Step 3</b>).</p>
                 <div style="line-height:30%;"><br></div>
-                <p>Your feedback will help WRESTORE to identify how to create new suggestions that best meet your
+                <p>Your feedback will help WRESTORE to identify how to create new suggestion plans that best meet your
                     preferences and constraints.</p>
             </div>
         </div>
@@ -1046,7 +1075,7 @@ in US Dollars" style="margin: 0px 0px 0px
 <script type="text/javascript" src="js/jquery.maskedinput.js"></script>
 <script type="text/javascript" src="js/jquery.keyfilter.js"></script>
 <script type="text/javascript" src="js/shadowbox/shadowbox.js"></script>
-<script type="text/javascript" src="js/set_polygons.js"></script>
+<!--<script type="text/javascript" src="js/set_polygons.js"></script>-->
 <script type="text/javascript" src="js/mapping_new_g2c.js"></script>
 <script type="text/javascript" src="js/heatmapnew1_g2c.js"></script>
 <script type="text/javascript" src="js/visualize.jQuery.js"></script>
@@ -2215,15 +2244,16 @@ in US Dollars" style="margin: 0px 0px 0px
             'Instructions</h2><br>' +
             '<p>In this session, you will see multiple options for implementing new conservation practices on the ' +
             'watershed landscape.</p>' + '<div style="line-height:30%;"><br></div>' +
-            '<p>In WRESTORE, an option is also called a <b>suggestion</b> or a <b>conservation plan</b>. Every ' +
-            'suggestion consists of multiple conservation decisions distributed over the landscape. Each ' +
+            '<p>In WRESTORE, an option is also called a <b>suggestion plan</b> or a <b>conservation plan</b>. Every ' +
+            'suggestion plan consists of multiple conservation decisions distributed over the landscape. Each ' +
             'conservation decision describes the type of recommended conservation practice, location where the ' +
             'practice is implemented, and other attributes such as size, etc.</p>' + '<div style="line-height:30%;"><br></div>' +
-            '<p>You are advise to first learn about decisions recommended by an suggestion (i.e. <b>Step 1</b>), ' +
+            '<p>You are advise to first learn about decisions recommended by an suggestion plan (i.e. <b>Step 1</b>),' +
+            ' ' +
             'then assess it (i.e. <b>Step 2</b>), and then finally evaluate the suggestion '+
             'based on its overall performance, feasibility, and your own personal preferences (i.e. <b>Step 3</b>).</p>'+
             '<div style="line-height:30%;"><br></div>' +
-            '<p>Your feedback will help WRESTORE to identify how to create new suggestions that best meet your ' +
+            '<p>Your feedback will help WRESTORE to identify how to create new suggestion plans that best meet your ' +
             'preferences and constraints.</p></div>',
             player:     "html",
             title:      "WRESTORE Visualization Tool ",
@@ -2371,6 +2401,7 @@ in US Dollars" style="margin: 0px 0px 0px
         // Level 0
         var mainMapLegend_frame = document.createElement('DIV'); //E: main container of the main-map-legend pannel
         mainMapLegend_frame.className = "mainMapLegend_frame"; //E: class name for the created DIV
+//        mainMapLegend_frame.style.zIndex = "100";
         
         // Level 1
         var mainMapLegend_container = document.createElement('DIV'); //E: main container of the main-map-legend pannel
@@ -2399,18 +2430,58 @@ in US Dollars" style="margin: 0px 0px 0px
         var dropdown_arrow = document.createElement('DIV'); //E: DIV is created the dropdown arrow
         dropdown_arrow.className = "dropdown_img"; //E: class name for the created DIV
         dropdown_arrow.innerHTML = '<i style="font-size:20px" class="fa">&#xf103;</i>';
-        
+
+        // Start: Create DOM For Map-Type //
+        var maptype_container = document.createElement('DIV'); //E: ***
+        maptype_container.className = 'maptype_container';
+        maptype_container.title = 'Click here to On/Off';
+        maptype_container.index = 1;
+        maptype_container.style.display = 'flex';
+
+        var container_maptype1 = document.createElement('DIV'); //E: ***
+        container_maptype1.type = 'button';
+        container_maptype1.className = 'container_maptype1';
+        container_maptype1.style.width = '50%';
+        var container_maptype2 = document.createElement('DIV'); //E: ***
+        container_maptype2.type = 'button';
+        container_maptype2.className = 'container_maptype2';
+        container_maptype2.style.width = '50%';
+
+        var node1 = document.createElement('div');
+//        node1.innerHTML = '<input type="checkbox" id="check1" name="check1" checked onclick="basemap_1.setMapTypeId(google' +
+//            '.maps.MapTypeId.ROADMAP);"><label for="check1"> Roadmap </label>';
+        node1.innerHTML = '<input type="checkbox" id="check1" name="check1" checked onclick="checkbox_Function1(this' +
+            '.id)"><label for="check1"> Roadmap </label>';
+        container_maptype1.appendChild(node1);
+        var node2 = document.createElement('div');
+//        node2.innerHTML = '<input type="checkbox" id="check2" name="check2" onclick="basemap_1.setMapTypeId(google' +
+//            '.maps.MapTypeId.SATELLITE);"><label for="check2"> Satellite </label>';
+        node2.innerHTML = '<input type="checkbox" id="check2" name="check2" onclick="checkbox_Function2(this.id)' +
+            '"><label for="check2"> Satellite </label>';
+        container_maptype2.appendChild(node2);
+
+        maptype_container.appendChild(container_maptype1);
+        maptype_container.appendChild(container_maptype2);
+        // --------- End: Create DOM For Map-Type ---------- //
+
         //E: Links between DOM's created above
         mainMapLegend_frame.appendChild(mainMapLegend_container);
+        mainMapLegend_frame.appendChild(maptype_container);
         
         mainMapLegend_container.appendChild(mainMapLeg_button);
         mainMapLegend_container.appendChild(legend_contend);
+//        mainMapLegend_container.appendChild(checkbox_maptype);//E: ***
 
         mainMapLeg_button.appendChild(mainMapLeg_title);
         mainMapLeg_button.appendChild(dropdown_arrow);
+
+
+//        function myFunction(){
+//            alert("checkit**");
+//        }
+
         
         // Add the control to the map
-        
         // options.gmap.controls[options.position].push(mainMapLeg_button);
         options.gmap.controls[options.position].push(mainMapLegend_frame);
         
@@ -2418,7 +2489,9 @@ in US Dollars" style="margin: 0px 0px 0px
         var mm_leg = 0;
         // When the button is clicked pan to sydney
 //        google.maps.event.addDomListener(mainMapLegend_frame, 'click', options.action);
-        google.maps.event.addDomListener(mainMapLegend_frame, 'click', function () {
+        //EE: Here 'mainMapLegend_frame' is added to the google.map Div
+//        google.maps.event.addDomListener(mainMapLegend_frame, 'click', function () {
+        google.maps.event.addDomListener(mainMapLeg_button, 'click', function () {
 //            report('m-clk*** ' , 'PFR Legend ');
             jQuery('.feat_content').toggle('show');
             var cond=(mm_leg%2) ? report('m-clk**','MM Legend NOactivated'):report('m-clk**','MM Legend activated');
@@ -2427,6 +2500,23 @@ in US Dollars" style="margin: 0px 0px 0px
         });
         return mainMapLegend_frame;
     }
+
+    // ---- Start: Functions for selecting TypeMap --- //
+    //E: These two functions are set to select the typeMap of the base map
+    //E: These two functions are called at L.2434 (above: create DOM for Type-Map)
+    //E: See another way: http://www-db.deis.unibo.it/courses/TW/DOCS/w3schools/googleapi/tryit.asp-filename=tryhtml_ref_setmaptypeid.html
+    function checkbox_Function1(id){
+    // alert("checkit ROADMAP"+ JSON.stringify(id));
+        document.getElementById("check2").checked = false;
+        basemap_1.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+    }
+    function checkbox_Function2(id){
+    // alert("checkit**"+ JSON.stringify(id));
+        document.getElementById("check1").checked = false;
+        basemap_1.setMapTypeId(google.maps.MapTypeId.SATELLITE);
+    }
+    // ---- End: Functions for selecting TypeMap --- //
+
 
     // ===================== ---------------- Start: (2) For Legend in PFR-Heatmap ------------- ==================== //
     // ---------------- These LEGEND works for legend in heat-maps ---------------- //
@@ -2529,6 +2619,7 @@ in US Dollars" style="margin: 0px 0px 0px
         });
         return hml_extraFrame;
     }
+    // ============= -------- End: (2) For Legend in PFR-Heatmap
 
     // ===================== ------------ Start: (3) For Legend in PROFIT-Heatmap ------------- ================== //
 //  /////////////  FUNCTION for CR-LEGEND button into the heat-map  ///////////
@@ -3161,8 +3252,9 @@ in US Dollars" style="margin: 0px 0px 0px
     }
     // ---------------------  End Function for Second way -------------------
     
-    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$  End  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-    
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$  End: Check boxes $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
 </script>
 
 </body>

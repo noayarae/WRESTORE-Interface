@@ -36,88 +36,99 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
 
   function initialize() {
       // ============================= START Drawing MAIN MAP ============================= //
-      basemap_1 = new google.maps.Map(document.getElementById('map_canvas1'),{
-          center: new google.maps.LatLng(39.9778, -86.44),//E: center for "Eagle creek"
-          // center: new google.maps.LatLng(45.65, -123.1),//E: center for "Dairy-Mckay"
-          zoom: 10.5,//10.5
-          disableDefaultUI: true, //E:it disables all default icons from google map
-          mapTypeId: google.maps.MapTypeId.ROADMAP,
-          mapTypeControl: false, //E: It disables type of map option
-          mapTypeControlOptions: {
-              style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR
-          //     position: google.maps.ControlPosition.TOP_CENTER
-          },
-          gestureHandling: 'cooperative',//'auto',// 'cooperative',//'greedy',
-          zoomControl: false,
-          zoomControlOptions: {
-              position: google.maps.ControlPosition.TOP_CENTER
-          },
-          // streetViewControl: false,
-          // streetViewControlOptions: { position: google.maps.ControlPosition.LEFT_TOP},
-          fullscreenControl: true,
-          fullscreenControl: {
-              position: google.maps.ControlPosition.BOTTOM_RIGHT
-          },
-          scaleControl: false
-      });
+
+      var type_map =  'satellite';//'roadmap';
+      // function initMap(){
+          basemap_1 = new google.maps.Map(document.getElementById('map_canvas1'),{
+              center: new google.maps.LatLng(39.9778, -86.44),//E: center for "Eagle creek"
+              // center: new google.maps.LatLng(45.65, -123.1),//E: center for "Dairy-Mckay"
+              zoom: 10.5,//10.5
+              disableDefaultUI: true, //E:it disables all default icons from google map
+              mapTypeId: google.maps.MapTypeId.ROADMAP,
+              // mapTypeId: 'satellite',
+              // mapTypeId: type_map,
+
+              mapTypeControl: false,//true,//false,//E: It disables type of map option
+              //EE: 'mapTypeControlOptions' was set BY a function, see below 'initMapTypeControl(basemap_1)' at L.77
+              mapTypeControlOptions: {
+                  // style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+                  position: google.maps.ControlPosition.RIGHT_BOTTOM,//BOTTOM_RIGHT//TOP_CENTER
+                  style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+                  mapTypeIds: [
+                      google.maps.MapTypeId.ROADMAP,
+                      google.maps.MapTypeId.SATELLITE
+                  ]
+              },
+              // gestureHandling: 'cooperative',//'auto',// 'cooperative',//'greedy',
+              zoomControl: false,
+              zoomControlOptions: {
+                  position: google.maps.ControlPosition.TOP_CENTER
+              },
+              // streetViewControl: false,
+              // streetViewControlOptions: { position: google.maps.ControlPosition.LEFT_TOP},
+              fullscreenControl: true,
+              fullscreenControl: {
+                  position: google.maps.ControlPosition.BOTTOM_RIGHT
+              },
+              scaleControl: false
+          });
+
+          //E: new functions for 'Replacing Default Controls' in google map
+          //E: retrieved from: https://developers.google.com/maps/documentation/javascript/examples/control-replacement
+          // initZoomControl(map);
+          // initMapTypeControl(basemap_1);
+          // initFullscreenControl(map);
+      // }
 
       // =============================  END Drawing MAIN MAP ========================  //
 
-      // ============================= Start: creating new polygons =================== //
-      var sb0 = [
-          {lat: 40.072, lng: -86.484},//1
-          {lat: 39.991, lng: -86.484},//2
-          {lat: 39.991, lng: -86.421},//3
-          {lat: 40.072, lng: -86.457}//4
-      ];
+      // ============================= Start: Creating new polygons to highlight sub-basins =================== //
+      //EE: it sets coordinates for all watershed (border) and saved as sb0
+      //EE: This part works with two other functions ('add_sb0' and 'select_sb') located at the end of this file
 
+      //E: Build coordinates for the watershed border
+      var sb0 = constructNewCoordinates(border_json.features[0].geometry);
 
-      var sb1 = constructNewCoordinates(subbasin_json.features[0].geometry);
-      var sb2 = constructNewCoordinates(subbasin_json.features[1].geometry);
-      var sb3 = constructNewCoordinates(subbasin_json.features[2].geometry);
-      // var j;
-      // for (j=1; j<3; j++){
-      //     var nc = constructNewCoordinates(subbasin_json.features[0].geometry);
-      //     // eval("sb" + j + "= "+nc);
-      //     eval("sb" + j + "="+nc);
-      // }
+      var ssbb = [sb0];
+      var n_sb = 131;//E: for ecw (130 subbasin but for looping we add 1)
 
-      console.log("L.72 sb0: \n"+ typeof (sb1));
-      console.log("L.74 sb0: \n"+ JSON.stringify(sb1));
-      // var sb1 = [
-      //     {lat: 40.08, lng: -86.454},
-      //     {lat: 40.021, lng: -86.454},
-      //     {lat: 40.021, lng: -86.411},
-      //     {lat: 40.08, lng: -86.411}
-      // ];
-      // var sb2 = [
-      //     {lat: 40.1, lng: -86.533},
-      //     {lat: 40.05, lng: -86.533},
-      //     {lat: 40.05, lng: -86.427},
-      //     {lat: 40.1, lng: -86.427}
-      // ];
+      //EE: it sets coordinates for all subasins (border) and saved as sb1, sb2, sb3,...,s130 (ecw)
+      // var sb1 = constructNewCoordinates(subbasin_json.features[0].geometry);
+      // var sb2 = constructNewCoordinates(subbasin_json.features[1].geometry);
+      // var sb3 = constructNewCoordinates(subbasin_json.features[2].geometry);
+      // var ssbb = [sb0,sb1,sb2,sb3];
+      for (var j = 1; j < n_sb; j++) {
+          //E: It gets the index of subbasin sb1,sb2,etc. from "ecw4b.js" data-file
+          var indexx = subbasin_json.properties.map(function(e) { return e.Subbasin; }).indexOf(j);
+          // if (j==1) alert ("L.86 index: "+ indexx);
 
-      var i;
-      // var ssbb = [sb0,sb1,sb2,sb3,sb4,sb5,sb6,sb7,sb8,sb9,sb10,sb11,sb12,sb13,sb14,sb15,sb16,sb17,sb18,sb19,sb20,sb21,sb22,sb23,sb24,sb25,sb26,sb27,sb28,sb29,sb30,sb31,sb32,sb33,sb34,sb35,sb36,sb37,sb38,sb39,sb40,sb41,sb42,sb43,sb44,sb45,sb46,sb47,sb48,sb49,sb50,sb51,sb52,sb53,sb54,sb55,sb56,sb57,sb58,sb59,sb60,sb61,sb62,sb63,sb64,
-      //     sb65,sb66,sb67,sb68,sb69,sb70,sb71,sb72,sb73,sb74,sb75,sb76,sb77,sb78,sb79,sb80,sb81,sb82,sb83,sb84,sb84,sb85,sb86,sb87,sb88,sb89,sb90,sb91,sb92,sb93,sb94,sb95,sb96,sb97,sb98,sb99,sb100,sb101,sb102,sb103,sb104,sb105,sb106,sb107,sb108,sb109,sb110,sb111,sb112,sb113,sb114,sb115,sb116,sb117,sb118,sb119,sb120,sb121,sb122,sb123,sb124,sb125,sb126,sb127,sb128,sb129,sb130];
-      var ssbb = [sb0,sb1,sb2,sb3];
-      // var poly_sb = [];
+          this["sb"+j] = constructNewCoordinates(subbasin_json.features[indexx].geometry);
+          ssbb.push(this["sb"+j]);//E: add new item to the 'ssbb' object-array
+          // if (j > 9 && j < 15) alert ("L.90 variable created: "+ this["sb"+j]);
+      }
+      // console.log ("L.86: "+ typeof ssbb + "  length: "+ ssbb.length);
+      // console.log ("L.86: \n"+ JSON.stringify(ssbb));
+      // console.log("L.74 sb0: \n"+ JSON.stringify(sb1));
+
       set_polygons_paths(ssbb);
-
+      var i;
       function set_polygons_paths(ssbb) {
-          for (i=0; i<4; i++){
-              eval("poly_sb" + i + "=new google.maps.Polygon({\n" +
+          for (i=0; i < n_sb; i++){
+              // eval("poly_sb" + i + "=new google.maps.Polygon({\n" +
+              eval("poly_sb" + i + "=new google.maps.Polyline({\n" +
                   "              path: ssbb["+i+"],\n" +
-                  "//            strokeColor: '#FF0000',\n" +
-                  "              strokeOpacity: 1.0,\n" +
-                  "              strokeWeight: 3\n" +
+                  "              strokeColor: '#000000',\n" +//Black(default):#000000, Red: #FF0000, Maroon: #800000
+                  "              strokeOpacity: 1.0,\n" +//E: 1.0 by default (dark)
+                  "              strokeWeight: 3,\n" +
+                  // "              fillOpacity: 0.0,\n" +//E: not for polyline
+                  "              zIndex: 100\n" +
                   "          })");
           }
       }
+      // fillOpacity: 0.35
+      add_sb0(n_sb);//E: add the 'watershed' border into the main map as default.
 
-      add_sb0();
-
-      // ============================= End: creating new polygons ========================== //
+      // ========================== End: Creating new polygons to highlight sub-bains  ========================== //
 
 
       // ==================== Start NEW Legend into the Main map ==================== //
@@ -342,26 +353,32 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
       //E: Call 'Background' function to draw the base map (subbasins map)
       doBackground();
       dolabels();
+      var color_croprot = "#ffff00";//"#8da1bf";//Red: #ff0000; Yellow: "#ffff00"
+      var color_covercrop = "#ff6600";//"#99c9ba";//Green: #00ff00
+      var color_stripcrop = "#00ccff";//"#87b07e";//Blue: #0000FF
+      var poly_opacity = 0.35;
+
 
       //E: In Next lines, The conservation practice is checked if it is applied into the optimization. True =>
       // execute the corresponding function. Not => The function is not executed. Background doesnt neet it
       // because the background is the basemap.
       $.each(forMapArray, function(index, value) {
           if (forMapArray[index]["Title"] == "crop_rotation") {
-              doCropRotation();
+              doCropRotation(color_croprot, poly_opacity);
+              // alert ("L.348 opacity: "+ poly_opacity);
           }
       });
 
       $.each(forMapArray, function(index, value) {
           if (forMapArray[index]["Title"] == "cover_crops") {
               // alert("Cover crop value: \n"+ value);
-              doCoverCrops();
+              doCoverCrops(color_covercrop, poly_opacity);
           }
       });
 
       $.each(forMapArray, function(index, value) {
           if (forMapArray[index]["Title"] == "strip_cropping") {
-              doStripCropping();
+              doStripCropping(color_stripcrop, poly_opacity);
           }
       });
 
@@ -529,13 +546,13 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
                   // alert(backArray.length);//E: is starts at 1 ends at 130
           }
               //map.fitBounds(bounds);
-      };
+      }
       // ===================================  End BACKGROUND =============================//
 
 
       // ===================================== (1)  Begin Crop Rotation ========================================== //
 
-      function doCropRotation() {
+      function doCropRotation(color_croprot, poly_opacity) {
           var obj = find(forMapArray, 'Title', 'crop_rotation');//E: obj gets subbasins-with-CR
           if (obj) {
               // console.log("L.526 do CropRotation: "+ JSON.stringify(obj)+ " \n obj.subs= "+ obj.subs);
@@ -549,13 +566,11 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
 
           var cr_yes = 0;
           var cr_no = 0;
-          // for (var i in rows) {
           for (var i =0; i< subbasin_json.features.length; i++) {//EE: it gives: 130 times
               if (listofSubs.includes(subbasin_json.properties[i]["Subbasin"])) {
-                  var newCoordinates = [];
-                  var whichNode = "";
-                  // var row = rows[i];//EE: not needed when json data
-                  // var whichNode = row[0];
+                  // var newCoordinates = [];
+                  // var whichNode = "";
+
                   var whichNode = subbasin_json.properties[i]["Subbasin"].toString();
 
               //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
@@ -574,11 +589,12 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
                   crop = new google.maps.Polygon({
                       path: newCoordinates,
                       //strokeColor: colors[0],
-                      strokeOpacity: .4,
+                      strokeOpacity: 0.4,
                       strokeWeight: 1,
-                      fillOpacity: 1,
-                      fillColor: "#8da1bf",
-                      indexID: whichNode
+                      fillColor: color_croprot,//"#ff0000",//"#8da1bf",#FF9933
+                      fillOpacity: poly_opacity,//0.3,//E: By default 1.0 (dark)
+                      indexID: whichNode,
+                      zIndex: 99
                   });
                   crop.setMap(basemap_1);
 
@@ -645,7 +661,7 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
 
       // ================================= (2) Begin COVER CROPS  ============================== //
 
-      function doCoverCrops() {
+      function doCoverCrops(color_covercrop, poly_opacity) {
           var obj = find(forMapArray, 'Title', 'cover_crops');//E: obj gets subbasins-with-CC
           if (obj) {
               var listofSubs = obj.subs;
@@ -685,9 +701,10 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
                       //strokeColor: colors[0],
                       strokeOpacity: .4,
                       strokeWeight: 1,
-                      fillOpacity: 1,
-                      fillColor: "#99c9ba",
-                      indexID: whichNode
+                      fillColor: color_covercrop,//"#ff6600",//"#00ff00",//"#99c9ba",
+                      fillOpacity: poly_opacity,//0.3,//E: By default 1.0 (dark)
+                      indexID: whichNode,
+                      zIndex: 99
                   });
                   cover.setMap(basemap_1);
 
@@ -751,7 +768,7 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
 
       // ========================= (3) Begin STRIP CROPPING ===================== //
 
-      function doStripCropping() {
+      function doStripCropping(color_stripcrop, poly_opacity) {
           var obj = find(forMapArray, 'Title', 'strip_cropping');
           if (obj) {
               var listofSubs = obj.subs;
@@ -791,9 +808,10 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
                       //strokeColor: colors[0],
                       strokeOpacity: .4,
                       strokeWeight: 1,
-                      fillOpacity: 1,
-                      fillColor: "#87b07e",
-                      indexID: whichNode
+                      fillColor: color_stripcrop,//"#00ccff",//"#0000FF",//"#87b07e",
+                      fillOpacity: poly_opacity,//0.3,//E: By default 1.0 (dark)
+                      indexID: whichNode,
+                      zIndex: 99
                   });
                   // strip.setMap(map1);
                   strip.setMap(basemap_1);
@@ -932,7 +950,8 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
                       strokeColor: filterColor,
                       strokeOpacity: 1,
                       strokeWeight: 2,
-                      fillColor: "#daca43"
+                      // fillColor: "#daca43",
+                      zIndex: 100
                   });
 
                   filter.setMap(basemap_1);
@@ -1521,22 +1540,25 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
 // ================== END ->  FUNCTION FOR TRACKING CHECKBOXS in LEGEND = (Added by E.Noa) =================== //
 
 
-// //////////////////////// (0)  Begin highlight Sub-basin  ////////////////////////////////
-//E: This function activates by default the whole watershed border (Subbasin 0)
-function add_sb0() {
-    for (i=0; i<3;i++){
+// =================//////// (*)  Begin highlight Sub-basin  ============/////////
+//E: This function activates by default the whole watershed border (called Subbasin 0)
+function add_sb0(n_sb) {//E: n_sb=131 (because of ecw has 130 subbasins)
+    for (i=0; i < n_sb; i++){
         var sb_null = eval("poly_sb"+i);//E: convert a string into a variable name
         sb_null.setMap(null);
     }
     poly_sb0.setMap(basemap_1);
 }
 
-//E: This function activates the selected subbasin (from 1-130 for ecw)
+//E: This function deactivates all subbasins, and activates the selected subbasin (from 1-130 for ecw)
+//E: This function is called from g2.php (L.488)
 function select_sb(){
+    var n_sb = 131;//EE: 130 for ecw
+
     var selected_sb = subDrop[subDrop.selectedIndex].value;
     if (selected_sb == "Watershed") {
         // alert("Selected: ----- "+ selected_sb);
-        for (i=0; i<3;i++){
+        for (i=0; i < n_sb; i++){
             var sb_null = eval("poly_sb"+i);//E: convert a string into a variable name
             sb_null.setMap(null);//E: turn-off all subbasins
         }
@@ -1545,16 +1567,41 @@ function select_sb(){
         poly_sb0.setMap(basemap_1);
     }
     else {
-        var number_sb = selected_sb.match(/\d/g);//E: Get the number part of the string for ex. "subbasin 1", get 1
-        for (i=0; i<3;i++){
+        // var number_sb = selected_sb.match(/\d/g);//E: Get the number part of the string for ex. "subbasin 1", get 1
+        var number_sb = selected_sb.match(/\d/g).join("");
+        for (i=0; i<n_sb;i++){
             var sb_null = eval("poly_sb"+i);//E: convert a string into a variable name
             sb_null.setMap(null);//E: turn-off all subbasins
         }
         var sb_act = eval("poly_sb"+number_sb);//E: turn-on the selected subbasin
-        // alert("L.1536: "+ number_sb);
+        // alert("L.1536: sub-basin selected:  "+ number_sb);
         sb_act.setMap(basemap_1);
     }
-
 }
+// =================================== (*) End highlight Sub-basin  =============================//
 
-// ===================================  End highlight Sub-basin  =============================//
+// =======================  Start: control of Map-type  ===================== //
+// This try didn't work
+function initMapTypeControl(basemap_1) {
+    // var mapTypeControlDiv = document.querySelector('.maptype-control');//document.getElementsByClassName("example");
+    // var mapTypeControlDiv = document.getElementsByClassName('maptype-control');
+    var mapTypeControlDiv = document.getElementById('mtc');
+
+    // document.querySelector('.maptype-control-map').onclick =
+    //     function() {
+    //         mapTypeControlDiv.classList.add('maptype-control-is-map');
+    //         mapTypeControlDiv.classList.remove('maptype-control-is-satellite');
+    //         basemap_1.setMapTypeId('roadmap');
+    // };
+    // document.querySelector('.maptype-control-satellite').onclick =
+    //     function() {
+    //         mapTypeControlDiv.classList.remove('maptype-control-is-map');
+    //         mapTypeControlDiv.classList.add('maptype-control-is-satellite');
+    //         basemap_1.setMapTypeId('satellite');
+    //     };
+
+    basemap_1.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
+        mapTypeControlDiv);
+}
+// =======================  End: control of Map-type  ===================== //
+
