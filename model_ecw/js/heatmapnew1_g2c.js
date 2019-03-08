@@ -51,8 +51,9 @@ function heatinitialize() {
         return a.name;
     });
 
+
     // ========================== Set BASE-MAPS google.map - 4 maps in total ===================== //
-    // ======================  ---------  Set and Add Base-Map for PFR  ------- ======================== //
+    // ======================  (1) Start: Add Base-Map for PFR  ======================= //
     // Draw the base-map for PFR
     heatmapPF1 = new google.maps.Map(document.getElementById('heatmap_canvasPF1'), {
         center: new google.maps.LatLng(39.9778, -86.2959),
@@ -61,7 +62,8 @@ function heatinitialize() {
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
-    // These three lines add an icon over the map (heatmap) to make zoom out(Fullscreen)
+    // ------------------- Start: PFR-FULLSCREEN button ------------------------- //
+    // --------- These lines add an icon on the heatmap to make zoom out(Fullscreen) ------ //
     $('#fullscreen_heatmap1').click(function() {
         // document.getElementById("fullscreen_heatmap2").style.display = "none";
         $('#heatmap_canvasPF1 div.gm-style button[title="Toggle fullscreen view"]').trigger('click');
@@ -86,8 +88,9 @@ function heatinitialize() {
             }
         }
     });
+    // ------------------- End: PFR-FULLSCREEN button ------------------------- //
 
-    // -------------- Start: Set variables and call the Function to build the PFR-Legend in heatmap ----------- //
+    // -------------- Start: PFR-Legend (heatmap) ----------- //
     // E: a) Set a custom button into the heatmap to display the legend
     // E: b) Call the function "buttonControl_pfrs" located around 2044 in g2.php
     var buttonOptions_1 = {
@@ -122,10 +125,62 @@ function heatinitialize() {
     // alert("Line:111-heatmapnew1.js: " + " map: " + mapa + "  min: " + min_value + "  max: " + max_value);
     var button1 = new buttonControl_pfr(buttonOptions_1, colorList, mapa, min_value, max_value, rg_pfr);//E: located around
     // 2044 in g2.php
-    // --------------- End: Set vars and call the Function to build the PFR-Legend in heatmap ----------------- //
+    // --------------- End: PFR-Legend (heatmap) ----------------- //
 
 
-    // ====================  ---------  (2) Set and Add Base-Map for PROFIT  ------------ ======================== //
+    // ----------------- Start: New polygons to highlight sub-basins in PFR-heatmap ------------------- //
+    //EE: it sets coordinates for all watershed (border) and saved as sb0
+    //EE: This part works with two other functions ('add_sb0' and 'select_sb') located at the end of this file
+
+    highlight_subbasin_pfr(heatmapPF1);
+    function highlight_subbasin_pfr(hm){
+        //E: Build coordinates for the watershed border
+        var sbhm0 = constructNewCoordinates(border_json.features[0].geometry);
+        // var ssbb_hm = [sbhm0];
+        var ssbb_pfr = [sbhm0];
+
+        var n_sb = 131;//E: for ecw (130 subbasin but for looping we add 1)
+        // EE: it sets coordinates for all subasins (border) and saved as sb1, sb2, sb3,...,s130 (ecw)
+        // var ssbb_pfr = [sbhm0,sbhm1,sbhm2,sbhm3,...];
+        for (var j = 1; j < n_sb; j++) {
+            //E: It gets the index of subbasin sb1,sb2,etc. from "ecw4b.js" data-file
+            var indexx = subbasin_json.properties.map(function(e) { return e.Subbasin; }).indexOf(j);
+            // if (j==1) alert ("L.143 index: "+ indexx);
+
+            this["sbhm"+j] = constructNewCoordinates(subbasin_json.features[indexx].geometry);
+            ssbb_pfr.push(this["sbhm"+j]);//E: add new item to the 'ssbb' object-array
+            // if (j > 9 && j < 15) alert ("L.90 variable created: "+ this["sb"+j]);
+        }
+        // alert("done!");
+        console.log ("L.149: "+ typeof ssbb_pfr + "  length: "+ ssbb_pfr.length);
+        // console.log ("L.150: \n"+ JSON.stringify(ssbb_pfr));
+        // console.log("L.151 sb0: \n"+ JSON.stringify(sb1));
+
+        set_polygons_paths(ssbb_pfr);
+        function set_polygons_paths(ssbb_pfr) {
+            for (var i = 0; i < n_sb; i++){
+                // eval("poly_sb" + i + "=new google.maps.Polygon({\n" +
+                eval("polyg_pfr" + i + "=new google.maps.Polyline({\n" +
+                    "              path: ssbb_pfr["+i+"],\n" +
+                    "              strokeColor: '#000000',\n" +//Black(default):#000000, Red: #FF0000, Maroon: #800000
+                    "              strokeOpacity: 1.0,\n" +//E: 1.0 by default (dark)
+                    "              strokeWeight: 3,\n" +
+                    // "              fillOpacity: 0.0,\n" +//E: not for polyline
+                    "              zIndex: 100\n" +
+                    "          })");
+            }
+        }
+        // //E: add_sb0() is placed at the end of this code (L.1543)
+        // add_sb0_pfrhm(n_sb,hm);//E: add the 'watershed' border into the main map as default.
+        // polyg_pfr0.setMap(hm);
+        polyg_pfr0.setMap(heatmapPF1);
+    }
+    // ----------------- End: New polygons to highlight sub-basins in PFR-heatmap ------------------- //
+
+    // ======================= (1) End: Add Base-Map for PFR  ===================== //
+
+
+    // =========================  (2) Start: Add Base-Map for RV PROFIT  ========================== //
     // Draw the base-map for PROFIT
     heatmapRV1 = new google.maps.Map(document.getElementById('heatmap_canvasRV1'), {
         center: new google.maps.LatLng(39.9778, -86.2959),
@@ -134,7 +189,9 @@ function heatinitialize() {
         disableDefaultUI: true // it disables all default icons from google map
     });
 
-    // This three lines add an icon over the map (heatmap)
+
+    // ------------------- Start: RV-FULLSCREEN button ------------------------- //
+    // This three lines add an icon over the map (heatmap) for FULLSCREEN
     $('#fullscreen_heatmap2').click(function() {
         $('#heatmap_canvasRV1 div.gm-style button[title="Toggle fullscreen view"]').trigger('click');
 
@@ -157,8 +214,9 @@ function heatinitialize() {
             }
         }
     });
+    // ------------------- End: RV-FULLSCREEN button ------------------------- //
 
-    // ----------------- Start: Set variables and call the Function to build the PROFIT-Legend in heatmap  -------- //
+    // ----------------- Start: RV-Legend (heatmap)  ------------------- //
     // E: 1) Set a custom button into the heatmap to display the legend
     // E: 2) Call the function "buttonControl_cr" located around 2130 in g2.php
     var buttonOptions_1 = {
@@ -179,10 +237,61 @@ function heatinitialize() {
     // alert("Line:111-heatmapnew1.js: " + " map: " + mapa + "  min: " + min_value + "  max: " + max_value);
     var button1 = new buttonControl_cr(buttonOptions_1, colorList, mapa, min_value, max_value, rg_pr);//E: located around
     // 2130 in g2.php
-    // --------------- End: Set vars and call the Function for PROFIT-Legend in heatmap ----------------- //
+    // --------------- End: RV-Legend (heatmap) ----------------- //
 
 
-    // ======================  ---------  (3) Set and Add Base-Map for SR  ------------ ======================== //
+    // ----------------- Start: New polygons to highlight sub-basins in RV-heatmap ------------------- //
+    //EE: it sets coordinates for all watershed (border) and saved as sb0
+    //EE: This part works with two other functions ('add_sb0' and 'select_sb') located at the end of this file
+
+    highlight_subbasin_rv(heatmapRV1);
+    function highlight_subbasin_rv(hm){
+        //E: Build coordinates for the watershed border
+        var sbhm0 = constructNewCoordinates(border_json.features[0].geometry);
+        var ssbb_rv = [sbhm0];//E: Change this variable for each objective (PF,RV,SR,NR)
+
+        var n_sb = 131;//E: for ecw (130 subbasin but for looping we add 1)
+        // EE: it sets coordinates for all subasins (border) and saved as sb1, sb2, sb3,...,s130 (ecw)
+        // var ssbb_hm = [sbhm0,sbhm1,sbhm2,sbhm3,...];
+        for (var j = 1; j < n_sb; j++) {
+            //E: It gets the index of subbasin sb1,sb2,etc. from "ecw4b.js" data-file
+            var indexx = subbasin_json.properties.map(function(e) { return e.Subbasin; }).indexOf(j);
+            // if (j==1) alert ("L.143 index: "+ indexx);
+
+            this["sbhm"+j] = constructNewCoordinates(subbasin_json.features[indexx].geometry);
+            ssbb_rv.push(this["sbhm"+j]);//E: add new item to the 'ssbb' object-array
+            // if (j > 9 && j < 15) alert ("L.90 variable created: "+ this["sb"+j]);
+        }
+        // alert("done!");
+        console.log ("L.149: "+ typeof ssbb_rv + "  length: "+ ssbb_rv.length);
+        // console.log ("L.150: \n"+ JSON.stringify(ssbb_rv));
+        // console.log("L.151 sb0: \n"+ JSON.stringify(sb1));
+
+        set_polygons_paths(ssbb_rv);
+        function set_polygons_paths(ssbb_rv) {
+            for (var i = 0; i < n_sb; i++){
+                // eval("poly_sb" + i + "=new google.maps.Polygon({\n" +
+                eval("polyg_rv" + i + "=new google.maps.Polyline({\n" +
+                    "              path: ssbb_rv["+i+"],\n" +//E: CHANGE
+                    "              strokeColor: '#000000',\n" +//Black(default):#000000, Red: #FF0000, Maroon: #800000
+                    "              strokeOpacity: 1.0,\n" +//E: 1.0 by default (dark)
+                    "              strokeWeight: 3,\n" +
+                    // "              fillOpacity: 0.0,\n" +//E: not for polyline
+                    "              zIndex: 100\n" +
+                    "          })");
+            }
+        }
+        //E: add_sb0() is placed at the end of this code (L.1543)
+        //         add_sb0_pfrhm(n_sb,hm);//E: add the 'watershed' border into the main map as default.
+        //         polyg_rv0.setMap(hm);
+        polyg_rv0.setMap(heatmapRV1);
+    }
+    // ----------------- End: New polygons to highlight sub-basins in RV-heatmap ------------------- //
+
+    // ======================= (2) End: Add Base-Map for RV  ===================== //
+
+
+    // ========================  (3) Start: Add Base-Map for SR  ======================= //
     // Draw the base-map for SR
     heatmapSR1 = new google.maps.Map(document.getElementById('heatmap_canvasSR1'), {
         center: new google.maps.LatLng(39.9778, -86.2959),
@@ -191,7 +300,8 @@ function heatinitialize() {
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
-    // These three lines add an icon over the map (heatmap) Fullscreen
+    // ------------------- Start: SR-FULLSCREEN button ------------------------- //
+    // These lines add an icon over the SR-heatmap for FULLSCREEN
     $('#fullscreen_heatmap3').click(function() {
         $('#heatmap_canvasSR1 div.gm-style button[title="Toggle fullscreen view"]').trigger('click');
 
@@ -214,8 +324,9 @@ function heatinitialize() {
             }
         }
     });
+    // ------------------- End: SR-FULLSCREEN button ------------------------- //
 
-    // ------------- Start: Set vars and call the Function to build the SR-Legend in heatmap --------------- //
+    // ------------- Start: SR-Legend (heatmap) --------------- //
     // E: 1) Set a custom button into the heatmap to display the legend
     // E: 2) Call the function "buttonControl_sr" located around 2215 in g2.php
     var buttonOptions_1 = {
@@ -236,11 +347,61 @@ function heatinitialize() {
     // alert("Line:111-heatmapnew1.js: " + " map: " + mapa + "  min: " + min_value + "  max: " + max_value);
     var button1 = new buttonControl_sr(buttonOptions_1, colorList, mapa, min_value, max_value,rg_sr);//E: located around
     // 2215 in g2.php
+    // --------------- End: SR-Legend (heatmap) ----------------- //
 
-    // --------------- End: Set vars and call the Function for SR-Legend in heatmap ----------------- //
+    // ----------------- Start: New polygons to highlight sub-basins in SR-heatmap ------------------- //
+    //EE: it sets coordinates for all watershed (border) and saved as sb0
+    //EE: This part works with two other functions ('add_sb0' and 'select_sb') located at the end of this file
 
-    // ================  ---------  (4) Add Base-Map for NR  ------------ ======================== //
-    // Draw the base-map for NR
+    highlight_subbasin_sr(heatmapSR1);
+    function highlight_subbasin_sr(hm){
+        //E: Build coordinates for the watershed border
+        var sbhm0 = constructNewCoordinates(border_json.features[0].geometry);
+        var ssbb_sr = [sbhm0];//E: Change this variable for each objective (PF,RV,SR,NR)
+
+        var n_sb = 131;//E: for ecw (130 subbasin but for looping we add 1)
+        // EE: it sets coordinates for all subasins (border) and saved as sb1, sb2, sb3,...,s130 (ecw)
+        // var ssbb_hm = [sbhm0,sbhm1,sbhm2,sbhm3,...];
+        for (var j = 1; j < n_sb; j++) {
+            //E: It gets the index of subbasin sb1,sb2,etc. from "ecw4b.js" data-file
+            var indexx = subbasin_json.properties.map(function(e) { return e.Subbasin; }).indexOf(j);
+            // if (j==1) alert ("L.143 index: "+ indexx);
+
+            this["sbhm"+j] = constructNewCoordinates(subbasin_json.features[indexx].geometry);
+            ssbb_sr.push(this["sbhm"+j]);//E: add new item to the 'ssbb' object-array
+            // if (j > 9 && j < 15) alert ("L.90 variable created: "+ this["sb"+j]);
+        }
+        // alert("done!");
+        console.log ("L.149: "+ typeof ssbb_sr + "  length: "+ ssbb_sr.length);
+        // console.log ("L.150: \n"+ JSON.stringify(ssbb_hm));
+        // console.log("L.151 sb0: \n"+ JSON.stringify(sb1));
+
+        set_polygons_paths(ssbb_sr);
+        function set_polygons_paths(ssbb_sr) {
+            for (var i = 0; i < n_sb; i++){
+                // eval("poly_sb" + i + "=new google.maps.Polygon({\n" +
+                eval("polyg_sr" + i + "=new google.maps.Polyline({\n" +
+                    "              path: ssbb_sr["+i+"],\n" +//E: CHANGE
+                    "              strokeColor: '#000000',\n" +//Black(default):#000000, Red: #FF0000, Maroon: #800000
+                    "              strokeOpacity: 1.0,\n" +//E: 1.0 by default (dark)
+                    "              strokeWeight: 3,\n" +
+                    // "              fillOpacity: 0.0,\n" +//E: not for polyline
+                    "              zIndex: 100\n" +
+                    "          })");
+            }
+        }
+        //E: add_sb0() is placed at the end of this code (L.1543)
+        //         add_sb0_pfrhm(n_sb,hm);//E: add the 'watershed' border into the main map as default.
+        //         polyg_sr0.setMap(hm);
+        polyg_sr0.setMap(heatmapSR1);
+    }
+    // ----------------- End: New polygons to highlight sub-basins in SR-heatmap ------------------- //
+
+    // ======================= (3) End: Add Base-Map for SR  ===================== //
+
+
+    // ======================= (4) Start: Add Base-Map for NR  ===================== //
+    // Draw base-map for NR
     heatmapNR1 = new google.maps.Map(document.getElementById('heatmap_canvasNR1'), {
         center: new google.maps.LatLng(39.9778, -86.2959),
         zoom: 10,
@@ -248,7 +409,8 @@ function heatinitialize() {
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
-    // These three lines add an icon over the map (heatmap)
+    // ------------------- Start: FULLSCREEN NR ------------------------- //
+    // These lines add an icon over the NR-heatmap for FULLSCREEN
     $('#fullscreen_heatmap4').click(function() {
         // $("#heatmap_canvasSR1").hide()
         $('#heatmap_canvasNR1 div.gm-style button[title="Toggle fullscreen view"]').trigger('click');
@@ -272,8 +434,9 @@ function heatinitialize() {
             }
         }
     });
+    // ------------------- End: FULLSCREEN NR ------------------------- //
 
-    // ----------------- Start: Set vars and call the Function to build the NR-Legend in heatmap --------------- //
+    // ----------------- Start: NR-Legend (heatmap) --------------- //
     // E: a) Set a custom button into the heatmap to display the legend
     // E: b) Call the function "buttonControl_nr" located around 2300 in g2.php
     var buttonOptions_1 = {
@@ -293,8 +456,59 @@ function heatinitialize() {
     // alert("Line:111-heatmapnew1.js: " + " map: " + mapa + "  min: " + min_value + "  max: " + max_value);
     var button1 = new buttonControl_nr(buttonOptions_1, colorList, mapa, min_value, max_value, rg_nr);//E: located around
     // 2300 in g2.php
-    // --------------- End: Set vars and call the Function for NR-Legend in heatmap ----------------- //
-    // ====================================================================================== //
+    // --------------- End: NR-Legend (heatmap) ----------------- //
+
+
+    // ----------------- Start: New polygons to highlight sub-basins in NR-heatmap ------------------- //
+    //EE: it sets coordinates for all watershed (border) and saved as sb0
+    //EE: This part works with two other functions ('add_sb0' and 'select_sb') located at the end of this file
+
+    highlight_subbasin_nr(heatmapNR1);
+    function highlight_subbasin_nr(hm){
+        //E: Build coordinates for the watershed border
+        var sbhm0 = constructNewCoordinates(border_json.features[0].geometry);
+        var ssbb_nr = [sbhm0];//E: Change this variable for each objective (PF,RV,SR,NR)
+
+        var n_sb = 131;//E: for ecw (130 subbasin but for looping we add 1)
+        // EE: it sets coordinates for all subasins (border) and saved as sb1, sb2, sb3,...,s130 (ecw)
+        // var ssbb_hm = [sbhm0,sbhm1,sbhm2,sbhm3,...];
+        for (var j = 1; j < n_sb; j++) {
+            //E: It gets the index of subbasin sb1,sb2,etc. from "ecw4b.js" data-file
+            var indexx = subbasin_json.properties.map(function(e) { return e.Subbasin; }).indexOf(j);
+            // if (j==1) alert ("L.143 index: "+ indexx);
+
+            this["sbhm"+j] = constructNewCoordinates(subbasin_json.features[indexx].geometry);
+            ssbb_nr.push(this["sbhm"+j]);//E: add new item to the 'ssbb' object-array
+            // if (j > 9 && j < 15) alert ("L.90 variable created: "+ this["sb"+j]);
+        }
+        // alert("done!");
+        console.log ("L.149: "+ typeof ssbb_nr + "  length: "+ ssbb_nr.length);
+        // console.log ("L.150: \n"+ JSON.stringify(ssbb_hm));
+        // console.log("L.151 sb0: \n"+ JSON.stringify(sb1));
+
+        set_polygons_paths(ssbb_nr);
+        function set_polygons_paths(ssbb_nr) {
+            for (var i = 0; i < n_sb; i++){
+                // eval("poly_sb" + i + "=new google.maps.Polygon({\n" +
+                eval("polyg_nr" + i + "=new google.maps.Polyline({\n" +
+                    "              path: ssbb_nr["+i+"],\n" +//E: CHANGE
+                    "              strokeColor: '#000000',\n" +//Black(default):#000000, Red: #FF0000, Maroon: #800000
+                    "              strokeOpacity: 1.0,\n" +//E: 1.0 by default (dark)
+                    "              strokeWeight: 3,\n" +
+                    // "              fillOpacity: 0.0,\n" +//E: not for polyline
+                    "              zIndex: 100\n" +
+                    "          })");
+            }
+        }
+        //E: add_sb0() is placed at the end of this code (L.1543)
+        //         add_sb0_pfrhm(n_sb,hm);//E: add the 'watershed' border into the main map as default.
+        //         polyg_nr0.setMap(hm);
+        polyg_nr0.setMap(heatmapNR1);
+    }
+    // ----------------- End: New polygons to highlight sub-basins in NR-heatmap ------------------- //
+
+    // ======================= (4) End: Add Base-Map for NR  ===================== //
+    // ======================= End: Set BASE-MAPS google.map - 4 maps in total ===================== //
 
 
     // =============================  do  doheatmaps  ============================= //
@@ -319,8 +533,8 @@ function heatinitialize() {
     }
     // ----------------------- End:  set coordinates for maps ----------------------
 
-    // --------------  Start all related to "PF" (doheatPF1,"drawHeatPF1", doheatPF2, "drawHeatPF2") ----------------
-    // ----------------  Start doheartPF1 ------------
+    // ===============  Start: Draw (doheatPF1,"drawHeatPF1", doheatPF2, "drawHeatPF2") ===============
+    // ----------------  Start: doheartPF1() ------------
     function doheatPF1() {
 
         for (var i = 0; i < subbasin_json.features.length; i++) {//EE 'map_data.features.length' = 130 (# of subbasins)
@@ -394,11 +608,10 @@ function heatinitialize() {
 
             Peakflow.setMap(heatmapPF1);
         }
-    };
-    // --------------  End all related to "PF" (doheatPF1,"drawHeatPF1", doheatPF2, "drawHeatPF2") ----------------
+    }
+    // ----------------  End: doheartPF1() ----------------
 
-    // --------------  Start all related to "PROFIT" (doheatRV1,"drawHeatRV1", doheatRV2, "drawHeatRV2") ------------
-    // ---------------------------------  Start doheatRV1() --------------------------------
+    // ---------------  Start: doheatRV1() -------------------
     function doheatRV1() {
 
         // var rows = data['rows'];//EE: not needed when json data
@@ -414,7 +627,6 @@ function heatinitialize() {
             // var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
 
             //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
-            // var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
             var newCoordinates = constructNewCoordinates(subbasin_json.features[i].geometry);
             var indexx = ressssRV1.indexOf(Number(whichNode));
             var c_val_current_sb_and_alt = Cost_meanVals_array[oneMap].val[indexx].val;
@@ -456,7 +668,6 @@ function heatinitialize() {
                     break;
             }
 
-            // var whichNode = row[0];
             var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//E: "ecw" needs to convert to string
             // var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
             ERevenue = new google.maps.Polygon({
@@ -472,23 +683,21 @@ function heatinitialize() {
 
             ERevenue.setMap(heatmapRV1);
         } // JavaScript Document
-    };
-    // --------------  End all related to "RV" (doheatRV1,"drawHeatRV1", doheatRV2, "drawHeatRV2") ----------------
+    }
+    // --------------  End: doheatRV1() ----------------
 
-    // --------------  Start all related to "SR" (doheatSR1,"drawHeatSR1", doheatSR2, "drawHeatSR2") ----------------
+    // --------------  Start: doheatSR1() ----------------
     function doheatSR1() {
 
         for (var i = 0; i < subbasin_json.features.length; i++) {//EE 'map_data.features.length' = 130 (# of subbasins)
             var newCoordinates = [];
             var whichNode = "";
-            //var geometries = rows[i][1]['geometry'];
             //alert (geometries)//newly added code...
 
             var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//E: For "ecw" needs to convert to string
             // var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
 
             //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
-            // var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
             var newCoordinates = constructNewCoordinates(subbasin_json.features[i].geometry);
             var indexx = ressssSR1.indexOf(Number(whichNode));
             var sr_val_current_sb_and_alt = SR_meanVals_array[oneMap].val[indexx].val;
@@ -530,7 +739,6 @@ function heatinitialize() {
                     break;
             }
 
-            // var whichNode = row[0];
             var whichNode = subbasin_json.properties[i]["Subbasin"].toString();//E:"ecw" needs to converto string
             // var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
             Sediments = new google.maps.Polygon({
@@ -546,11 +754,10 @@ function heatinitialize() {
 
             Sediments.setMap(heatmapSR1);
         }
-    };
+    }
+    // --------------  End: doheatSR1() ----------------
 
-    // --------------  End all related to "SR" (doheatSR1,"drawHeatSR1", doheatSR2, "drawHeatSR2") ----------------
-
-    // =============  Start all related to "NR" (doheatNR1,"drawHeatNR1", doheatNR2, "drawHeatNR2") ----------------
+    // -------------- Start: doheatNR1() ----------------
     function doheatNR1() {
         for (var i = 0; i < subbasin_json.features.length; i++) {//EE 'map_data.features.length' = 130 (# of subbasins)
             var newCoordinates = [];
@@ -560,7 +767,6 @@ function heatinitialize() {
             // var whichNode = subbasin_json.properties[i]["Subbasin"];//E: For "Dairy-Mckay"
 
             //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
-            // var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
             var newCoordinates = constructNewCoordinates(subbasin_json.features[i].geometry);
             var indexx = ressssNR1.indexOf(Number(whichNode));
             var nr_val_current_sb_and_alt = NR_meanVals_array[oneMap].val[indexx].val;
@@ -615,12 +821,12 @@ function heatinitialize() {
             });
             Nitrates.setMap(heatmapNR1);
         }
-    };
+    }
+    // -------------- End: doheatNR1() ----------------
+    // ============== End: Draw (doheatPF1,"drawHeatPF1", doheatPF2, "drawHeatPF2") ============
 
-    // --------------  End all related to "NR" (doheatNR1,"drawHeatNR1", doheatNR2, "drawHeatNR2") ----------------
 
-
-    // ================= E: START: This part creates the heatmap-legend  ======================= //
+    // ================= E: START: This part creates heatmap-LEGENDS  ======================= //
     // -------------  F3: This appears into the heatmap but not when it fullscreens (deprecated) ---------------//
     var colorList = {color1: '#ffffff', color2: '#ffff00', color3: '#ffcc00', color4: '#ff9900', color5: '#ff6600', color6: '#ff3300', color7: '#ff0000'};
 
@@ -658,7 +864,147 @@ function heatinitialize() {
     for (i = 0; i < min_values.length; i++) {
         colorize(colorList, min_values[i], max_values[i],maps[i]);
     }
-    //----------------    END: heat-map legend funtions              -----------------------//
+    // ====================   END: heat-map legend funtions  ==================== //
+
 
 }
+// ======================== E: End: heatinitialize () function ==================== //
+
+
+
+// // ========================= (*)  Begin highlight Sub-basin  ============/////////
+// //E: This function activates by default the whole watershed border (called Subbasin 0)
+
+// function add_sb0_pfrhm(n_sb,hm) {//E: n_sb=131 (because of ecw has 130 subbasins)
+//     for (i=0; i < n_sb; i++){
+//         var sb_null = eval("poly_sbhm"+i);//E: convert a string into a variable name
+//         sb_null.setMap(null);
+//     }
+//     polyg_pfr0.setMap(hm);
+// }
+
+
+// --------------- Start: PFR function to highlight the sub-basin when selected ------------- //
+//E: This function deactivates all subbasins, and activates the selected subbasin (from 1-130 for ecw)
+//E: This function is called from g2.php (L.510)
+
+function select_sb_heatmap_pfr(){
+    var n_sb = 131;//EE: 130 for ecw
+
+    var selected_sb = subDrop[subDrop.selectedIndex].value;
+    if (selected_sb == "Watershed") {
+        // alert("Selected pfr: ----- "+ selected_sb);
+        for (i=0; i < n_sb; i++){
+            var sb_null = eval("polyg_pfr"+i);//E: convert a string into a variable name
+            sb_null.setMap(null);//E: turn-off all subbasins
+        }
+        // var sb_act = eval("poly_sb"+number_sb);//E: turn-on the selected subbasin
+        // alert("L.764: "+ selected_sb);
+        polyg_pfr0.setMap(heatmapPF1);
+    }
+    else {
+        var number_sb = selected_sb.match(/\d/g).join("");//E: Get number part of the string for ex. "subbasin 1", get 1
+        for (i=0; i<n_sb;i++){
+            var sb_null = eval("polyg_pfr"+i);//E: convert a string into a variable name
+            sb_null.setMap(null);//E: turn-off all subbasins
+        }
+        var sb_act = eval("polyg_pfr"+number_sb);//E: turn-on the selected subbasin
+        // alert("L.1536: sub-basin selected:  "+ number_sb);
+        sb_act.setMap(heatmapPF1);
+    }
+}
+// --------------- End: PFR function to highlight the sub-basin when selected ------------- //
+
+// --------------- Start: RV function to highlight the sub-basin when selected ------------- //
+//E: this function is called from "g2.php (L.510)"
+function select_sb_heatmap_rv(){
+    var n_sb = 131;//EE: 130 for ecw
+
+    var selected_sbrv = subDrop[subDrop.selectedIndex].value;
+    if (selected_sbrv == "Watershed") {
+        // alert("Selected rv: ----- "+ selected_sb);
+        for (i=0; i < n_sb; i++){
+            var sb_null = eval("polyg_rv"+i);//E: convert a string into a variable name
+            sb_null.setMap(null);//E: turn-off all subbasins
+        }
+        polyg_rv0.setMap(heatmapRV1);
+    }
+    else {
+        var number_sb = selected_sbrv.match(/\d/g).join("");//E: Get number part of the string for ex. "subbasin 1", get 1
+        for (i=0; i<n_sb;i++){
+            var sb_null = eval("polyg_rv"+i);//E: convert a string into a variable name
+            sb_null.setMap(null);//E: turn-off all subbasins
+        }
+        var sb_actrv = eval("polyg_rv"+number_sb);//E: turn-on the selected subbasin
+        // alert("L.1536: sub-basin selected:  "+ number_sb);
+        sb_actrv.setMap(heatmapRV1);
+    }
+}
+// --------------- End: RV function to highlight the sub-basin when selected ------------- //
+
+
+// --------------- Start: SR function to highlight the sub-basin when selected ------------- //
+//E: This function deactivates all subbasins, and activates the selected subbasin (from 1-130 for ecw)
+//E: This function is called from g2.php (L.510)
+
+function select_sb_heatmap_sr(){
+    var n_sb = 131;//EE: 130 for ecw
+
+    var selected_sb = subDrop[subDrop.selectedIndex].value;
+    if (selected_sb == "Watershed") {
+        // alert("Selected pfr: ----- "+ selected_sb);
+        for (i=0; i < n_sb; i++){
+            var sb_null = eval("polyg_sr"+i);//E: convert a string into a variable name
+            sb_null.setMap(null);//E: turn-off all subbasins
+        }
+        // var sb_act = eval("poly_sb"+number_sb);//E: turn-on the selected subbasin
+        // alert("L.764: "+ selected_sb);
+        polyg_sr0.setMap(heatmapSR1);
+    }
+    else {
+        var number_sb = selected_sb.match(/\d/g).join("");//E: Get number part of the string for ex. "subbasin 1", get 1
+        for (i=0; i<n_sb;i++){
+            var sb_null = eval("polyg_sr"+i);//E: convert a string into a variable name
+            sb_null.setMap(null);//E: turn-off all subbasins
+        }
+        var sb_act = eval("polyg_sr"+number_sb);//E: turn-on the selected subbasin
+        // alert("L.1536: sub-basin selected:  "+ number_sb);
+        sb_act.setMap(heatmapSR1);
+    }
+}
+// --------------- End: SR function to highlight the sub-basin when selected ------------- //
+
+
+// --------------- Start: NR function to highlight the sub-basin when selected ------------- //
+//E: This function deactivates all subbasins, and activates the selected subbasin (from 1-130 for ecw)
+//E: This function is called from g2.php (L.510)
+
+function select_sb_heatmap_nr(){
+    var n_sb = 131;//EE: 130 for ecw
+
+    var selected_sb = subDrop[subDrop.selectedIndex].value;
+    if (selected_sb == "Watershed") {
+        // alert("Selected pfr: ----- "+ selected_sb);
+        for (i=0; i < n_sb; i++){
+            var sb_null = eval("polyg_nr"+i);//E: convert a string into a variable name
+            sb_null.setMap(null);//E: turn-off all subbasins
+        }
+        // var sb_act = eval("poly_sb"+number_sb);//E: turn-on the selected subbasin
+        // alert("L.764: "+ selected_sb);
+        polyg_nr0.setMap(heatmapNR1);
+    }
+    else {
+        var number_sb = selected_sb.match(/\d/g).join("");//E: Get number part of the string for ex. "subbasin 1", get 1
+        for (i=0; i<n_sb;i++){
+            var sb_null = eval("polyg_nr"+i);//E: convert a string into a variable name
+            sb_null.setMap(null);//E: turn-off all subbasins
+        }
+        var sb_act = eval("polyg_nr"+number_sb);//E: turn-on the selected subbasin
+        // alert("L.1536: sub-basin selected:  "+ number_sb);
+        sb_act.setMap(heatmapNR1);
+    }
+}
+// --------------- End: NR function to highlight the sub-basin when selected ------------- //
+
+// =================================== (*) End highlight Sub-basin  =============================//
 

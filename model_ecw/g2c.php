@@ -507,7 +507,12 @@ compare to those of other recommended suggested-plans
                     <div class="dropDownArea">
                         <label style="margin: 0px 0px 0px 3px;">Choose a catchment of interest to you</label>
                         <select id="subDrop" title="Click here to select a sub-basin" name="subDrop"
-                            style="margin: 0px 0px 0px 3px;" onchange='subBasinGraph1();selected_option();select_sb();'>
+                            style="margin: 0px 0px 0px 3px;" onchange='subBasinGraph1();selected_option();select_sb();
+                            select_sb_heatmap_pfr();
+                            select_sb_heatmap_rv();
+                            select_sb_heatmap_sr();
+                            select_sb_heatmap_nr();
+                            '>
                             <option id="watershed" value="Watershed" selected="selected">Full Watershed</option>
                             <?php
                             $y=1;
@@ -2431,7 +2436,9 @@ in US Dollars" style="margin: 0px 0px 0px
         dropdown_arrow.className = "dropdown_img"; //E: class name for the created DIV
         dropdown_arrow.innerHTML = '<i style="font-size:20px" class="fa">&#xf103;</i>';
 
-        // Start: Create DOM For Map-Type //
+        // Start: Create DOM For Map-Type. I make a parenthesis within MainMapLegend to create these DOMs //
+        //E: The check and uncheck function is controlated by 2 functions: 'checkbox_Function1' and 'checkbox_Function2'
+        //E: located at L.2506 aprox. (at the end of these session)
         var maptype_container = document.createElement('DIV'); //E: ***
         maptype_container.className = 'maptype_container';
         maptype_container.title = 'Click here to On/Off';

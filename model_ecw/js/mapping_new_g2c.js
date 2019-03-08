@@ -38,7 +38,6 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
       // ============================= START Drawing MAIN MAP ============================= //
 
       var type_map =  'satellite';//'roadmap';
-      // function initMap(){
           basemap_1 = new google.maps.Map(document.getElementById('map_canvas1'),{
               center: new google.maps.LatLng(39.9778, -86.44),//E: center for "Eagle creek"
               // center: new google.maps.LatLng(45.65, -123.1),//E: center for "Dairy-Mckay"
@@ -73,18 +72,12 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
               scaleControl: false
           });
 
-          //E: new functions for 'Replacing Default Controls' in google map
-          //E: retrieved from: https://developers.google.com/maps/documentation/javascript/examples/control-replacement
-          // initZoomControl(map);
-          // initMapTypeControl(basemap_1);
-          // initFullscreenControl(map);
-      // }
-
       // =============================  END Drawing MAIN MAP ========================  //
+
 
       // ============================= Start: Creating new polygons to highlight sub-basins =================== //
       //EE: it sets coordinates for all watershed (border) and saved as sb0
-      //EE: This part works with two other functions ('add_sb0' and 'select_sb') located at the end of this file
+      //EE: This part works with two other functions ('add_sb0' and 'select_sb') located at the end of this file L.1545
 
       //E: Build coordinates for the watershed border
       var sb0 = constructNewCoordinates(border_json.features[0].geometry);
@@ -113,7 +106,7 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
       set_polygons_paths(ssbb);
       var i;
       function set_polygons_paths(ssbb) {
-          for (i=0; i < n_sb; i++){
+          for (var i = 0; i < n_sb; i++){
               // eval("poly_sb" + i + "=new google.maps.Polygon({\n" +
               eval("poly_sb" + i + "=new google.maps.Polyline({\n" +
                   "              path: ssbb["+i+"],\n" +
@@ -125,7 +118,7 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
                   "          })");
           }
       }
-      // fillOpacity: 0.35
+      //E: add_sb0() is placed at the end of this code (L.1543)
       add_sb0(n_sb);//E: add the 'watershed' border into the main map as default.
 
       // ========================== End: Creating new polygons to highlight sub-bains  ========================== //
@@ -1548,10 +1541,11 @@ function add_sb0(n_sb) {//E: n_sb=131 (because of ecw has 130 subbasins)
         sb_null.setMap(null);
     }
     poly_sb0.setMap(basemap_1);
+    // poly_sb0.setMap(heatmapPF1);
 }
 
 //E: This function deactivates all subbasins, and activates the selected subbasin (from 1-130 for ecw)
-//E: This function is called from g2.php (L.488)
+//E: This function is called from g2.php (L.510)
 function select_sb(){
     var n_sb = 131;//EE: 130 for ecw
 
@@ -1580,28 +1574,5 @@ function select_sb(){
 }
 // =================================== (*) End highlight Sub-basin  =============================//
 
-// =======================  Start: control of Map-type  ===================== //
-// This try didn't work
-function initMapTypeControl(basemap_1) {
-    // var mapTypeControlDiv = document.querySelector('.maptype-control');//document.getElementsByClassName("example");
-    // var mapTypeControlDiv = document.getElementsByClassName('maptype-control');
-    var mapTypeControlDiv = document.getElementById('mtc');
 
-    // document.querySelector('.maptype-control-map').onclick =
-    //     function() {
-    //         mapTypeControlDiv.classList.add('maptype-control-is-map');
-    //         mapTypeControlDiv.classList.remove('maptype-control-is-satellite');
-    //         basemap_1.setMapTypeId('roadmap');
-    // };
-    // document.querySelector('.maptype-control-satellite').onclick =
-    //     function() {
-    //         mapTypeControlDiv.classList.remove('maptype-control-is-map');
-    //         mapTypeControlDiv.classList.add('maptype-control-is-satellite');
-    //         basemap_1.setMapTypeId('satellite');
-    //     };
-
-    basemap_1.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
-        mapTypeControlDiv);
-}
-// =======================  End: control of Map-type  ===================== //
 
