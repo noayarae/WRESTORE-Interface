@@ -88,7 +88,10 @@ function mm_legend(){
     var b5 = document.createElement('DIV');
     b5.className = "square_box";
     b5.style.height = "9px"; b5.style.width = "9px";
-    b5.style.border = "1px solid #333333";
+    // b5.style.border = "1px solid #333333";//E: Activated for square Icon. Deactivated for Acronym
+    b5.innerHTML = "(NT)";//E: De-Activated for square Icon. Activated for acronym
+    b5.style.fontSize = "9px";//E: De-Activated for square Icon. Activated for acronym
+    b5.style.color = "#000099";//E: De-Activated for square Icon. Activated for acronym
 
     var labelB5 = document.createElement('DIV');
     labelB5.className = "sq_label";

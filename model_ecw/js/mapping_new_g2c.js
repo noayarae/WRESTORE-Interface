@@ -358,7 +358,7 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
       $.each(forMapArray, function(index, value) {
           if (forMapArray[index]["Title"] == "crop_rotation") {
               doCropRotation(color_croprot, poly_opacity);
-              // alert ("L.348 opacity: "+ poly_opacity);
+              doCropRotation_markers();
           }
       });
 
@@ -366,12 +366,14 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
           if (forMapArray[index]["Title"] == "cover_crops") {
               // alert("Cover crop value: \n"+ value);
               doCoverCrops(color_covercrop, poly_opacity);
+              doCoverCrop_markers();
           }
       });
 
       $.each(forMapArray, function(index, value) {
           if (forMapArray[index]["Title"] == "strip_cropping") {
               doStripCropping(color_stripcrop, poly_opacity);
+              doConserveTillage_markers();
           }
       });
 
@@ -646,7 +648,87 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
           //map.fitBounds(bounds);
           console.log("L.641 YES crop rotation: "+ cr_yes + "  NO crop rotation: "+cr_no)
       };
-      // ------------  end 'drawCrop1'
+      // ------------  end 'drawCrop1' as polygon (CropRotation)
+
+      // -------------Start 'draw-CropRotation1' as markers
+      function doCropRotation_markers() {
+          var obj = find(forMapArray, 'Title', 'crop_rotation');
+          if (obj) {
+              var listofSubs = obj.subs;
+              var strLen = listofSubs.length;
+              var listofSubs = listofSubs.slice(0, strLen - 1);
+              var listofSubs_num = JSON.parse("[" +listofSubs.slice(0, strLen - 1)+ "]");
+              //E: above, JSON.parse convert a string into an array of number
+              console.log("L.872 listofSubs (crop_rotation): "+ listofSubs);
+          }
+
+          //Query to create a new JSON of No-Till just with basins with this cons.practice
+          var sb_with_cr_only = {};
+          sb_with_cr_only.properties = new Array();
+          for (var i = 0; i< subbasin_json.features.length; i++) {
+              if (listofSubs_num.includes(subbasin_json.properties[i]["Subbasin"])) {
+                  sb_with_cr_only.properties.push({
+                      "subbasin" : subbasin_json.properties[i]["Subbasin"],
+                      "coord_x"  : JSON.parse(subbasin_json.properties[i]["grass_x"]),
+                      "coord_y"  : JSON.parse(subbasin_json.properties[i]["grass_y"])
+                  });
+              }
+          }
+          //     // console.log("sb_with_nt_only: "+ JSON.stringify(sb_with_nt_only.properties));
+          //     console.log(sb_with_nt_only.properties.length);
+
+          var cr_marker_yes = 0;
+          var cr_marker_no = 0;
+          // for (var i in rows) {
+          for (var i =0; i< sb_with_cr_only.properties.length; i++) {
+              var newCoordinates = [];
+              var whichNode = "";
+              // var row = rows[i];//EE: not needed when json data
+              // var whichNode = row[0];
+              var whichNode = sb_with_cr_only.properties[i]["subbasin"];
+
+              // var x_stripcrop = (sb_with_cc_only.properties[i]["coord_x"]);
+              var x_croprot = (sb_with_cr_only.properties[i]["coord_x"]-0.006);
+              var y_croprot = (sb_with_cr_only.properties[i]["coord_y"]);
+              console.log("L.1126 coord grass: "+ typeof x_croprot + " , "+ typeof y_croprot);
+              console.log("L.1127 coord grass: "+ x_croprot + " , "+ y_croprot);
+
+              var newCoordinates = constructNewCoordinatesCropRotation(x_croprot, y_croprot);
+
+              croprot = geo;
+              croprot.setMap(basemap_1);
+              conserveArray.push(croprot);
+              cr_marker_yes = cr_marker_yes + 1;//sc_marker_yes
+          }
+
+          //map.fitBounds(bounds);
+          console.log("L.1251 YES crop_rotation_M: "+ cr_marker_yes + "  NO crop_rotation_M: "+cr_marker_no);
+      }
+      // ------------- end 'drawCover1' as markers
+
+      // ------------This piece takes the markers and not shapes for No Till
+      function constructNewCoordinatesCropRotation(x, y) {
+          var geoOptions = {
+              label:{text: "(CC)",color: '#9900cc',fontSize: "9px"},
+              // strokeColor: colors[0],
+              // strokeOpacity: 0.8,
+              // strokeWeight: 1,
+              // fillColor: colors[0],
+              // fillOpacity: 0.3,
+              icon: label_icon//tillIcon
+          };
+          var opts = geoOptions;
+          var newCoordinates = [];
+          var coordinates = null;
+          // if (polygon['coordinates']) {
+          // var coordinates = polygon['coordinates'];
+          var coordinates = [x,y];
+          var options = opts || {};
+          options.position = new google.maps.LatLng(coordinates[1], coordinates[0]);
+          geo = new google.maps.Marker(options);
+          return geo;
+      }
+      // ------ end 'constructNewCoordinatesCropRotation(markers)'
 
       ////////////////////////////////End Crop Rotation totally ////////////////////////
 
@@ -676,12 +758,8 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
                   //if (i==1) alert("geometry "+i+":"+rows[i][1]['geometry']['coordinates']);
                   // var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
                   var newCoordinates = constructNewCoordinates(subbasin_json.features[i].geometry);
-                  // var row = rows[i];//EE: not needed when json data
-                  // var whichNode = row[0];
                   var whichNode = subbasin_json.properties[i]["Subbasin"].toString();
                   /////////You will put your acreage here///////////
-                  // var acres = parseFloat(row[2]).toFixed(1);
-                  // var rivers = parseFloat(row[3]).toFixed(1);
                   var acres = subbasin_json.properties[i]["area_ac"];
                   var acres = Math.round(acres * 100) / 100;
                   // var rivers = subbasin_json.properties[i]["strlgth_mi"];
@@ -753,8 +831,88 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
           }//E: end for
           //map.fitBounds(bounds);
           console.log("L.773 YES cover crop: "+ cc_yes + "  NO cover crop: "+cc_no)
-      };
-      // ------------  end 'drawCover1'
+      }
+      // ------------  end 'drawCover1' as polygons
+
+      // -------------Start 'drawCover1' as markers
+      function doCoverCrop_markers() {
+          var obj = find(forMapArray, 'Title', 'cover_crops');
+          if (obj) {
+              var listofSubs = obj.subs;
+              var strLen = listofSubs.length;
+              var listofSubs = listofSubs.slice(0, strLen - 1);
+              var listofSubs_num = JSON.parse("[" +listofSubs.slice(0, strLen - 1)+ "]");
+              //E: above, JSON.parse convert a string into an array of number
+              console.log("L.872 listofSubs (cover_crops): "+ listofSubs);
+          }
+
+          //Query to create a new JSON of No-Till just with basins with this cons.practice
+          var sb_with_cc_only = {};
+          sb_with_cc_only.properties = new Array();
+          for (var i = 0; i< subbasin_json.features.length; i++) {
+              if (listofSubs_num.includes(subbasin_json.properties[i]["Subbasin"])) {
+                  sb_with_cc_only.properties.push({
+                      "subbasin" : subbasin_json.properties[i]["Subbasin"],
+                      "coord_x"  : JSON.parse(subbasin_json.properties[i]["grass_x"]),
+                      "coord_y"  : JSON.parse(subbasin_json.properties[i]["grass_y"])
+                  });
+              }
+          }
+          //     // console.log("sb_with_nt_only: "+ JSON.stringify(sb_with_nt_only.properties));
+          //     console.log(sb_with_nt_only.properties.length);
+
+          var cc_marker_yes = 0;
+          var cc_marker_no = 0;
+          // for (var i in rows) {
+          for (var i =0; i< sb_with_cc_only.properties.length; i++) {
+              var newCoordinates = [];
+              var whichNode = "";
+              // var row = rows[i];//EE: not needed when json data
+              // var whichNode = row[0];
+              var whichNode = sb_with_cc_only.properties[i]["subbasin"];
+
+              // var x_stripcrop = (sb_with_cc_only.properties[i]["coord_x"]);
+              var x_covercrop = (sb_with_cc_only.properties[i]["coord_x"]+0.006);
+              var y_covercrop = (sb_with_cc_only.properties[i]["coord_y"]);
+              console.log("L.1126 coord grass: "+ typeof x_covercrop + " , "+ typeof y_covercrop);
+              console.log("L.1127 coord grass: "+ x_covercrop + " , "+ y_covercrop);
+
+              var newCoordinates = constructNewCoordinatesCoverCrop(x_covercrop, y_covercrop);
+
+              covercrop = geo;
+              covercrop.setMap(basemap_1);
+              conserveArray.push(covercrop);
+              cc_marker_yes = cc_marker_yes + 1;//sc_marker_yes
+          }
+
+          //map.fitBounds(bounds);
+          console.log("L.1251 YES Conservation-tillage: "+ cc_marker_yes + "  NO Conservation-tillage: "+cc_marker_no);
+      }
+      // ------------- end 'drawCover1' as markers
+
+      // ------------This piece takes the markers and not shapes for No Till
+      function constructNewCoordinatesCoverCrop(x, y) {
+          var geoOptions = {
+              label:{text: "(CC)",color: '#cc0000',fontSize: "9px"},
+              // strokeColor: colors[0],
+              // strokeOpacity: 0.8,
+              // strokeWeight: 1,
+              // fillColor: colors[0],
+              // fillOpacity: 0.3,
+              icon: label_icon//tillIcon
+          };
+          var opts = geoOptions;
+          var newCoordinates = [];
+          var coordinates = null;
+          // if (polygon['coordinates']) {
+          // var coordinates = polygon['coordinates'];
+          var coordinates = [x,y];
+          var options = opts || {};
+          options.position = new google.maps.LatLng(coordinates[1], coordinates[0]);
+          geo = new google.maps.Marker(options);
+          return geo;
+      }
+      // ------ end 'constructNewCoordinatesCoverCrop(markers)'
 
       //////////////////////////  End COVER CROPS totally ////////////////////////
 
@@ -861,8 +1019,89 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
           }
           //map.fitBounds(bounds);
           console.log("L.906 YES strip cropping: "+ sc_yes + "  NO strip cropping: "+sc_no);
-      };
-      // ---------------  end 'drawStrip1'
+      }
+      // ----- End 'drawStrip1' as polygons
+
+      // ---------------  Start 'drawStrip1' as markers
+      function doConserveTillage_markers() {
+          var obj = find(forMapArray, 'Title', 'strip_cropping');
+          if (obj) {
+              var listofSubs = obj.subs;
+              var strLen = listofSubs.length;
+              var listofSubs = listofSubs.slice(0, strLen - 1);
+              var listofSubs_num = JSON.parse("[" +listofSubs.slice(0, strLen - 1)+ "]");
+              //E: above, JSON.parse convert a string into an array of number
+              console.log("L.872 listofSubs (strip_cropping): "+ listofSubs);
+          }
+
+          //Query to create a new JSON of No-Till just with basins with this cons.practice
+          var sb_with_sc_only = {};
+          sb_with_sc_only.properties = new Array();
+          for (var i = 0; i< subbasin_json.features.length; i++) {
+              if (listofSubs_num.includes(subbasin_json.properties[i]["Subbasin"])) {
+                  sb_with_sc_only.properties.push({
+                      "subbasin" : subbasin_json.properties[i]["Subbasin"],
+                      "coord_x"  : JSON.parse(subbasin_json.properties[i]["grass_x"]),
+                      "coord_y"  : JSON.parse(subbasin_json.properties[i]["grass_y"])
+                  });
+              }
+          }
+          //     // console.log("sb_with_nt_only: "+ JSON.stringify(sb_with_nt_only.properties));
+          //     console.log(sb_with_nt_only.properties.length);
+
+          var sc_marker_yes = 0;
+          var sc_marker_no = 0;
+          // for (var i in rows) {
+          for (var i =0; i< sb_with_sc_only.properties.length; i++) {
+              var newCoordinates = [];
+              var whichNode = "";
+              // var row = rows[i];//EE: not needed when json data
+              // var whichNode = row[0];
+              var whichNode = sb_with_sc_only.properties[i]["subbasin"];
+
+              // var x_stripcrop = (sb_with_nt_only.properties[i]["coord_x"]);
+              var x_stripcrop = (sb_with_sc_only.properties[i]["coord_x"]);
+              var y_stripcrop = (sb_with_sc_only.properties[i]["coord_y"]-0.003);
+              console.log("L.1126 coord grass: "+ typeof x_stripcrop + " , "+ typeof y_stripcrop);
+              console.log("L.1127 coord grass: "+ x_stripcrop + " , "+ y_stripcrop);
+
+              var newCoordinates = constructNewCoordinatesStripCropping(x_stripcrop, y_stripcrop);
+
+              notill = geo;
+              notill.setMap(basemap_1);
+              conserveArray.push(notill);
+              sc_marker_yes = sc_marker_yes + 1;//sc_marker_yes
+          }
+
+          //map.fitBounds(bounds);
+          console.log("L.1251 YES Conservation-tillage: "+ sc_marker_yes + "  NO Conservation-tillage: "+sc_marker_no);
+      }
+      // ---------------  end 'drawStrip1' as markers
+
+      // ------------This piece takes the markers and not shapes for 'Strip-Cropping'
+      // function constructNewCoordinatesTill(x, y) {
+      function constructNewCoordinatesStripCropping(x, y) {
+          var geoOptions = {
+              label:{text: "(SC)",color: '#009933',fontSize: "9px"},
+              // strokeColor: colors[0],
+              // strokeOpacity: 0.8,
+              // strokeWeight: 1,
+              // fillColor: colors[0],
+              // fillOpacity: 0.3,
+              icon: label_icon//tillIcon
+          };
+          var opts = geoOptions;
+          var newCoordinates = [];
+          var coordinates = null;
+          // if (polygon['coordinates']) {
+          // var coordinates = polygon['coordinates'];
+          var coordinates = [x,y];
+          var options = opts || {};
+          options.position = new google.maps.LatLng(coordinates[1], coordinates[0]);
+          geo = new google.maps.Marker(options);
+          return geo;
+      }
+      // ------ end 'constructNewCoordinatesStripCropping(Markers)'
 
       ///////////////////////// End STRIP CROPPING totally ////////////////////////////////
 
@@ -1032,7 +1271,8 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
               //     var newCoordinates = constructNewCoordinatesGrass(rows[i][1]['geometry']);
                   var x_grass = parseFloat(subbasin_json.properties[i].grass_x);
                   var y_grass = parseFloat(subbasin_json.properties[i].grass_y);
-              // console.log("L.1158 coord grass: "+ x_grass+ " , "+ y_grass);
+                  // console.log("L.1031 coord grass: "+ typeof x_grass + " , "+ typeof y_grass);
+                  // console.log("L.1032 coord grass: "+ x_grass+ " , "+ y_grass);
                   var newCoordinates = constructNewCoordinatesGrass(x_grass,y_grass);
                   // var row = rows[i];//EE: not needed when json data
                   // var whichNode = row[0];
@@ -1050,7 +1290,7 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
           }
           //map.fitBounds(bounds);
           console.log("L.1143 YES grasswaterways: "+ gw_yes + "  NO grasswaterways: "+gw_no);
-      };
+      }
 
       // ------- Construction of coordinates for GRASSWATERWAYS
       // function constructNewCoordinatesGrass(polygon) {
@@ -1058,13 +1298,14 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
           // if (i<5) console.log("i =  "+i+": "+ polygon);
           // console.log("i = "+i+" ; subbasin: "+subbasin_json.properties[i]["Subbasin"]+" cont:"+ JSON.stringify(polygon));
           var geoOptions = {
-              strokeColor: colors[0],
-              strokeOpacity: 0.8,
-              strokeWeight: 1,
-              fillColor: colors[0],
-              fillOpacity: 0.3,
+              label:{text: "(GW)",color: '#666666',fontSize: "9px"},
+              // strokeColor: colors[0],//E: Turn-off for 'text' label
+              // strokeOpacity: 0.8,
+              // strokeWeight: 1,
+              // fillColor: colors[0],
+              // fillOpacity: 0.3,
               // label: "abc",
-              icon: grassIcon
+              icon: label_icon//grassIcon//E: toggle for circle Icon
           };
           var opts = geoOptions;
           var newCoordinates = [];
@@ -1121,10 +1362,12 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
               // var row = rows[i];//EE: not needed when json data
               // var whichNode = row[0];
               var whichNode = sb_with_nt_only.properties[i]["subbasin"];
-              // var x_notill = parseFloat(rows[i][1]['geometry']['coordinates'][0]);
-              // var y_notill = parseFloat(rows[i][1]['geometry']['coordinates'][1]);
-              var x_notill = sb_with_nt_only.properties[i]["coord_x"];
-              var y_notill = sb_with_nt_only.properties[i]["coord_y"];
+
+              // var x_notill = (sb_with_nt_only.properties[i]["coord_x"]);
+              var x_notill = (sb_with_nt_only.properties[i]["coord_x"]);
+              var y_notill = (sb_with_nt_only.properties[i]["coord_y"]+0.003);
+              console.log("L.1126 coord grass: "+ typeof x_notill + " , "+ typeof y_notill);
+              console.log("L.1127 coord grass: "+ x_notill+ " , "+ y_notill);
 
               var newCoordinates = constructNewCoordinatesTill(x_notill, y_notill);
 
@@ -1136,19 +1379,19 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
 
           //map.fitBounds(bounds);
           console.log("L.1251 YES Conservation-tillage: "+ nt_yes + "  NO Conservation-tillage: "+nt_no);
-      };
+      }
       //   ------- end 'drawTill1'
 
-      // ------------This is the new piece that takes the markers and not shapes for No Till
+      // ------------This piece takes the markers and not shapes for No Till
       function constructNewCoordinatesTill(x, y) {
-      // function constructNewCoordinatesTill(x,y) {
           var geoOptions = {
-              strokeColor: colors[0],
-              strokeOpacity: 0.8,
-              strokeWeight: 1,
-              fillColor: colors[0],
-              fillOpacity: 0.3,
-              icon: tillIcon
+              label:{text: "(NT)",color: '#cc33ff',fontSize: "9px"},
+              // strokeColor: colors[0],
+              // strokeOpacity: 0.8,
+              // strokeWeight: 1,
+              // fillColor: colors[0],
+              // fillOpacity: 0.3,
+              icon: label_icon//tillIcon
           };
           var opts = geoOptions;
           var newCoordinates = [];
@@ -1296,57 +1539,6 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
       // =====================  End WETLANDS totally ===================== //
 
 
-
-//       //////////////////////// (0)  Begin highlight Sub-basin  ////////////////////////////////
-// // ///Lay highlight Sub-basin
-//       function highlight_sub_basin(sb) {
-//           var newCoordinates = [];//EE: For polygons or sub-basins
-//           var which_sb = parseInt(sb.match(/\d+/));//E:it extracts onlythe number of "S1" to get just the numberof subbasin
-//
-//           var subbasin_properties = subbasin_json.properties;
-//           // console.log(JSON.stringify(subbasin_json.properties));//E: it shows properties of all 130 subbasins
-//           var subbasin_index1 = subbasin_properties.map(function(d) { return d['Subbasin']; }).indexOf(which_sb);
-//           alert("L.1431 sub-basin: "+ which_sb+"  index: "+subbasin_index1);//E:alert
-//
-//           var newCoordinates = constructNewCoordinates(subbasin_json.features[subbasin_index1].geometry);//EE: Function is Set at 1069
-//           console.log("L.1442 sub-basin (which_sb): "+which_sb);
-//           console.log("L.1442 geometry: \n"+JSON.stringify(subbasin_json.features[subbasin_index1].geometry));
-//
-//           var sb_background = new google.maps.Polygon({//E: Watershed (background) features
-//               path: newCoordinates,
-//               strokeColor: "#0033cc",//colors[0],
-//               strokeOpacity: .6,
-//               strokeWeight: 1,
-//               fillOpacity: 0,
-//               fillColor: "#ff0000",//"#ffffff",
-//               clickable: true,
-//               indexID: which_sb
-//           });
-//           //
-//           sb_background.setMap(basemap_1);//E: IT SETS THE POLYGONS over the BASEMAP
-//           //     // ------ sb-basemap_done
-//
-//           function constructNewCoordinates(polygon) {
-//               var newCoordinates = [];
-//               var coordinates = null;
-//               if (polygon['coordinates'])
-//                   coordinates = polygon['coordinates'];
-//               if (coordinates.length == 1) {
-//                   coordinates = coordinates[0];
-//               }
-//               // alert(coordinates);
-//               for (var i in coordinates) {
-//                   newCoordinates.push(
-//                       new google.maps.LatLng(coordinates[i][1], coordinates[i][0]));
-//               }
-//               return newCoordinates;
-//           }
-//
-//       }
-//       // ===================================  End draw highlight Sub-basin  =============================//
-
-
-
       // ===================== (0-b)  Begin Markers  ====================== //
 
       function dolabels() {
@@ -1390,7 +1582,7 @@ var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00'];
               // }
           }
           console.log("L.1514 YES Labels: "+ lb_yes + "  NO Labels: "+lb_no);
-      };
+      }
 
       // ------- Construction of coordinates for LABELS
       function constructNewCoordinatesLabel(x,y,node) {

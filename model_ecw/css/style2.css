@@ -807,7 +807,7 @@ label.error {
 .rectangle_box {width: 60px;height: 3px; margin: 5px 0px 5px 0px}
 .circle {border-radius: 50%; margin: 3px auto 0px auto;}
 .caja_c {width: 50px;}
-.sq_label {width: 108px;}
+.sq_label {width: 105px;}
 .filter_label {width: 56px; text-align: center;}
 .circle_label {width: 60px; text-align: center;}
 .labelAndBox {display: inline-flex}

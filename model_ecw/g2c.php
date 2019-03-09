@@ -593,7 +593,7 @@ in US Dollars" style="margin: 0px 0px 0px
 <!--                            <script>-->
 <!--                                document.getElementById("xlabel_PFR").innerHTML = "Cubic meters per second (cms)";-->
 <!--                            </script>-->
-                            <div style="position: absolute; transform: rotate(270deg); top: 200px; left:-20px;">
+                            <div style="position: absolute; transform: rotate(270deg); top: 200px; left:-38px;">
                                 Suggested plans
                             </div>
                         </div>
@@ -606,7 +606,7 @@ in US Dollars" style="margin: 0px 0px 0px
                             background-color: #fde3ce; border:1px solid #f77e22; border-radius: 3px">
                                 Profit in US Dollars
                             </div>
-                            <div style="position: absolute; transform: rotate(270deg); top: 200px; left:-20px;">
+                            <div style="position: absolute; transform: rotate(270deg); top: 200px; left:-38px;">
                                 Suggested plans
                             </div>
                         </div>
@@ -619,7 +619,7 @@ in US Dollars" style="margin: 0px 0px 0px
                             background-color: #fde3ce; border:1px solid #f77e22; border-radius: 3px">
                                 Sediment Reduction in tons
                             </div>
-                            <div style="position: absolute; transform: rotate(270deg); top: 200px; left:-20px;">
+                            <div style="position: absolute; transform: rotate(270deg); top: 200px; left:-38px;">
                                 Suggested plans
                             </div>
 
@@ -633,7 +633,7 @@ in US Dollars" style="margin: 0px 0px 0px
                             background-color: #fde3ce; border:1px solid #f77e22; border-radius: 3px">
                                 Nitrate Reduction in kilograms (kg)
                             </div>
-                            <div style="position: absolute; transform: rotate(270deg); top: 200px; left:-20px;">
+                            <div style="position: absolute; transform: rotate(270deg); top: 200px; left:-38px;">
                                 Suggested plans
                             </div>
                         </div>

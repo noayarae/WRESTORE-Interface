@@ -1,12 +1,12 @@
 // JavaScript Document
 function subBasinGraph1() {
-    var numberOf_alternatives = array_fullvalues.length; //EE: Give 20, because of 20 alterantives ('array_fullvalues' was obtained at L.987 g2.php)
+    var numberOf_alternatives = array_fullvalues.length; //EE: Give 20, because of 20 alternatives ('array_fullvalues' was obtained at L.987 g2.php)
     var option = document.getElementById('subDrop').value;
     // alert("L.5 Option of subbasin: "+ option);
     var rowlen;
     var border = [];
     var data = new google.visualization.DataTable();
-    data.addColumn('number', 'Individual');
+    data.addColumn('string', 'Individual');//data.addColumn('number', 'Individual');
     data.addColumn('number', 'Peak- Flow');
     data.addColumn({id: 'min',type: 'number',role: 'interval'});
     data.addColumn({id: 'max',type: 'number',role: 'interval'});
@@ -15,7 +15,7 @@ function subBasinGraph1() {
     //data.addColumn({type: 'number', role: 'annotation'});
 
     var data1 = new google.visualization.DataTable();
-    data1.addColumn('number', 'Individual');
+    data1.addColumn('string', 'Individual');//data1.addColumn('number', 'Individual');
     data1.addColumn('number', 'Revenue in $');
     data1.addColumn({id: 'min',type: 'number',role: 'interval'});
     data1.addColumn({id: 'max',type: 'number',role: 'interval'});
@@ -24,7 +24,7 @@ function subBasinGraph1() {
     //data1.addColumn({type: 'number', role: 'annotation'});
 
     var data2 = new google.visualization.DataTable();
-    data2.addColumn('number', 'Individual');
+    data2.addColumn('string', 'Individual');//data2.addColumn('number', 'Individual');
     data2.addColumn('number', 'sediment red in tons');
     data2.addColumn({id: 'min',type: 'number',role: 'interval'});
     data2.addColumn({id: 'max',type: 'number',role: 'interval'});
@@ -33,7 +33,7 @@ function subBasinGraph1() {
     //data2.addColumn({type: 'number', role: 'annotation'});
 
     var data3 = new google.visualization.DataTable();
-    data3.addColumn('number', 'Individual');
+    data3.addColumn('string', 'Individual');//data3.addColumn('number', 'Individual');
     data3.addColumn('number', 'nitrate red in kilograms');
     data3.addColumn({id: 'min',type: 'number',role: 'interval'});
     data3.addColumn({id: 'max',type: 'number',role: 'interval'});
@@ -62,7 +62,11 @@ function subBasinGraph1() {
         // of rows o the DDBB, in this case 21 (header is one row)
 
         // for (rowlen = 0; rowlen < document.getElementById('wholeTable').rows.length - 1; rowlen++) {
-        for (rowlen = 0; rowlen < numberOf_alternatives; rowlen++) {
+        // for (rowlen = 0; rowlen < numberOf_alternatives; rowlen++) {
+        for (i = numberOf_alternatives; i--;) {
+            var rowlen = i;
+            var v_label = 'SP'+(i+1).toString();//E: Implemented to re-label the vAxis
+            // alert(v_label);
             // E: Through this for-loop all data F1,F2, F3, and F4 in read
             //JSON.parse(chartArray[rowlen].F1)[0]
             var m11 = Number(parseFloat(Math.abs(JSON.parse(fn_obj_array[rowlen].F1)[0])));
@@ -87,16 +91,19 @@ function subBasinGraph1() {
 
             //need to edit the tooltip for min and max
             // -----------------  These four lines were developed by Efrain Noa-Yarasca
-            data.addRow([rowlen+1,m11,min11,max11,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
+            // data.addRow([rowlen+1,m11,min11,max11,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
+            // 'line {stroke-color:'+'#000066'+'; stroke-width:'+1+'}'
+            //     ,createCustomHTMLContent1(rowlen+1,'PFR',m11.toExponential(2),min11.toExponential(2),max11.toExponential(2))]);
+            data.addRow([v_label,m11,min11,max11,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
             'line {stroke-color:'+'#000066'+'; stroke-width:'+1+'}'
                 ,createCustomHTMLContent1(rowlen+1,'PFR',m11.toExponential(2),min11.toExponential(2),max11.toExponential(2))]);
-            data1.addRow([rowlen+1,m12,min12,max12,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
+            data1.addRow([v_label,m12,min12,max12,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
             'line {stroke-color:'+'#000066'+'; stroke-width:'+1+'}'
                 ,createCustomHTMLContent1(rowlen+1,'ER$',m12.toExponential(2),min12.toExponential(2),max12.toExponential(2))]);
-            data2.addRow([rowlen+1,m13,min13,max13,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
+            data2.addRow([v_label,m13,min13,max13,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
             'line {stroke-color:'+'#000066'+'; stroke-width:'+1+'}'
                 ,createCustomHTMLContent1(rowlen+1,'SRed',m13.toExponential(2),min13.toExponential(2),max13.toExponential(2))]);
-            data3.addRow([rowlen+1,m14,min14,max14,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
+            data3.addRow([v_label,m14,min14,max14,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
             'line {stroke-color:'+'#000066'+'; stroke-width:'+1+'}'
                 ,createCustomHTMLContent1(rowlen+1,'NRed',m14.toExponential(2),min14.toExponential(2),max14.toExponential(2))]);
         }
@@ -124,8 +131,10 @@ function subBasinGraph1() {
 
             // vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
             //     gridlines: {count: numberOf_alternatives}, direction: -1},
-            vAxis: {titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
-                gridlines: {count: numberOf_alternatives}, direction: -1},
+            // vAxis: {titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
+            //     gridlines: {count: numberOf_alternatives}, direction: -1},
+            vAxis: {titleTextStyle:{fontName: 'Arial', color: 'red', fontSize: 13,bold: false, italic: true},
+                textStyle:{color:"#404040", fontName:'Arial',fontSize:10}, gridlines: {count: numberOf_alternatives}, direction: -1},
 
             intervals: {style: 'bars',color: '#fff'},
             // interval: {max: {style: 'bars', lineWidth:1, fillOpacity: 1,color: '#ab1ab1'},// Added by E.N.
@@ -155,7 +164,7 @@ function subBasinGraph1() {
             // vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
             //     gridlines: {count: numberOf_alternatives},direction: -1},
             vAxis: {titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
-                gridlines: {count: numberOf_alternatives},direction: -1},
+                textStyle:{color:"#404040", fontName:'Arial',fontSize:10}, gridlines: {count: numberOf_alternatives},direction: -1},
 
             // intervals: {style: 'bars',color: '#fff'},
             // interval: {max: {style: 'bars', lineWidth:1, fillOpacity: 1,color: '#ab1ab1'},// Added by E.N.
@@ -182,7 +191,7 @@ function subBasinGraph1() {
             // vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
             //     gridlines: {count: numberOf_alternatives},direction: -1},
             vAxis: {titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
-                gridlines: {count: numberOf_alternatives},direction: -1},
+                textStyle:{color:"#404040", fontName:'Arial',fontSize:10}, gridlines: {count: numberOf_alternatives},direction: -1},
 
             // intervals: {style: 'bars',color: '#fff'},
             // interval: {max: {style: 'boxes', lineWidth:0.1, fillOpacity: 0.6,color: '#ab1ab1'},// Added by E.N.
@@ -211,7 +220,7 @@ function subBasinGraph1() {
             // vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
             //     gridlines: {count: numberOf_alternatives},direction: -1},
             vAxis: {titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
-                gridlines: {count: numberOf_alternatives},direction: -1},
+                textStyle:{color:"#404040", fontName:'Arial',fontSize:10}, gridlines: {count: numberOf_alternatives},direction: -1},
 
             // intervals: {style: 'bars',color: '#fff'},
             // interval: {max: {style: 'points', lineWidth:1, fillOpacity: 1,color: '#ab1ab1'},// Added by E.N.
@@ -305,8 +314,12 @@ function subBasinGraph1() {
     else { // else means "option == 'subbasin'"
         // alert ();
         // for (rowlen = 0; rowlen < document.getElementById('wholeTable').rows.length - 1; rowlen++) {
-        for (rowlen = 0; rowlen < numberOf_alternatives; rowlen++) {
+        // for (rowlen = 0; rowlen < numberOf_alternatives; rowlen++) {
+        for (i = numberOf_alternatives; i--;) {
             var subChart = [];
+            var rowlen = i;
+            var v_label = 'SP'+(i+1).toString();//E: Implemented to re-label the vAxis
+            // alert(v_label);
             // $.each(array[rowlen], function(key, value) {
             $.each(array_fullvalues[rowlen], function(key, value) {
                 if (key == option) {
@@ -346,16 +359,19 @@ function subBasinGraph1() {
             //var mm14=String("Alternative:"+(rowlen+1)+"\nPeakFlow:"+parseString(m14)+"\nPercentage:"+perm14)
 
             // ---------------------  These four lines were developed by Efrain Noa-Yarasca
-            data.addRow([rowlen+1,m11,min11,max11,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
+            // data.addRow([rowlen+1,m11,min11,max11,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
+            // 'line {stroke-color:'+'#000066'+'; stroke-width:'+1+'}'
+            //     ,createCustomHTMLContent(rowlen+1,'PFR',m11.toExponential(2),min11.toExponential(2),max11.toExponential(2),'PFR wrt Watershed',perm11.toExponential(2))]);
+            data.addRow([v_label,m11,min11,max11,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
             'line {stroke-color:'+'#000066'+'; stroke-width:'+1+'}'
                 ,createCustomHTMLContent(rowlen+1,'PFR',m11.toExponential(2),min11.toExponential(2),max11.toExponential(2),'PFR wrt Watershed',perm11.toExponential(2))]);
-            data1.addRow([rowlen+1,m12,min12,max12,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
+            data1.addRow([v_label,m12,min12,max12,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
             'line {stroke-color:'+'#000066'+'; stroke-width:'+1+'}'
                 ,createCustomHTMLContent(rowlen+1,'ER$',m12.toExponential(2),min12.toExponential(2),max12.toExponential(2),'ER$ wrt Watershed',perm12.toExponential(2))]);
-            data2.addRow([rowlen+1,m13,min13,max13,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
+            data2.addRow([v_label,m13,min13,max13,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
             'line {stroke-color:'+'#000066'+'; stroke-width:'+1+'}'
                 ,createCustomHTMLContent(rowlen+1,'SRed',m13.toExponential(2),min13.toExponential(2),max13.toExponential(2),'SRed wrt Watershed',perm13.toExponential(2))]);
-            data3.addRow([rowlen+1,m14,min14,max14,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
+            data3.addRow([v_label,m14,min14,max14,'bar {fill-color:'+colors[rowlen]+';fill-opacity:'+1+'; stroke-color:'+border[rowlen]+';stroke-width:'+2+'},'+
             'line {stroke-color:'+'#000066'+'; stroke-width:'+1+'}'
                 ,createCustomHTMLContent(rowlen+1,'NRed',m14.toExponential(2),min14.toExponential(2),max14.toExponential(2),'NRed wrt Watershed',perm14.toExponential(2))]);
         }
@@ -374,7 +390,7 @@ function subBasinGraph1() {
             // vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
             //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
             vAxis: {titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
-                gridlines: {count: numberOf_alternatives},direction: -1},
+                textStyle:{color: "#404040", fontName: 'Arial',fontSize: 10},gridlines: {count: numberOf_alternatives},direction: -1},
 
             intervals: {style: 'bars',color: '#fff'},
             // hAxis: {textPosition: 'none'},
@@ -399,7 +415,7 @@ function subBasinGraph1() {
             // vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
             //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
             vAxis: {titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
-                gridlines: {count: numberOf_alternatives},direction: -1},
+                textStyle:{color: "#404040", fontName: 'Arial',fontSize: 10},gridlines: {count: numberOf_alternatives},direction: -1},
 
             intervals: {style: 'bars',color: '#fff'},
             // hAxis: {textPosition: 'none'},
@@ -424,7 +440,7 @@ function subBasinGraph1() {
             // vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
             //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
             vAxis: {titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
-                gridlines: {count: numberOf_alternatives},direction: -1},
+                textStyle:{color: "#404040", fontName: 'Arial',fontSize: 10},gridlines: {count: numberOf_alternatives},direction: -1},
             intervals: {style: 'bars',color: '#fff'},
             // hAxis: {textPosition: 'none'},
 
@@ -448,7 +464,7 @@ function subBasinGraph1() {
             // vAxis: {title:'Suggestions', titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
             //     gridlines: {count: document.getElementById('wholeTable').rows.length - 1},direction: -1},
             vAxis: {titleTextStyle:{fontName: 'Arial', color: 'black', fontSize: 13,bold: false, italic: true},
-                gridlines: {count: numberOf_alternatives},direction: -1},
+                textStyle:{color: "#404040", fontName: 'Arial',fontSize: 10}, gridlines: {count: numberOf_alternatives},direction: -1},
             intervals: {style: 'bars',color: '#fff'},
             // hAxis: {textPosition: 'none'},
 
