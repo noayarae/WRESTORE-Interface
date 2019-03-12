@@ -28,6 +28,17 @@ ALTER TABLE users
   DROP COLUMN login_time,
   DROP COLUMN spent_time_sec;
 
+/* Query to INSERT a column into an existing DB */
+ALTER TABLE `takefeedback2`
+    ADD COLUMN `RATING1` INT(10) AFTER `firstCol`;
+
+ALTER TABLE `takefeedback2`
+    ADD COLUMN `RATING1` tinyint(4) AFTER `RATING`;
+
+/* Query to CHANGE a column-NAME in a exiting TABLE */
+ALTER TABLE TABLE_NAME CHANGE old_name new_name COLUMN_TYPE;
+ALTER TABLE `takefeedback2` CHANGE RATING1 RATING2 tinyint;
+
 /* QUERY to GET Login_time (Login_time) */
 ALTER TABLE users ADD COLUMN (calc DECIMAL);
 UPDATE users SET calc=login/1000;
@@ -46,5 +57,5 @@ INSERT INTO user10 (id, usercod, pid, name,time,all_act)
 VALUES (NULL, 'usercode', 'pi20','name20','time20','click all 20');
 
 /* +++++++  other queries ++++++++++++++ */
-/* Rename a tabale */
+/* Rename a table */
 RENAME TABLE `tb1` TO `tb2`, tb3 TO tb4;

@@ -22,6 +22,7 @@
     <link rel="stylesheet" type="text/css" href="css/style2.css"/>
     <link rel='stylesheet' type='text/css' href='css/styles.css'/>
     <link rel="stylesheet" type="text/css" href="css/visualize.css"/>
+<!--    <link rel="stylesheet" type="text/css" href="css/SimpleStarRating.css"/>-->
 
     <!--  Style-libraries retrieved from the web  -->
     <link rel="stylesheet" type="text/css" href="js/shadowbox/shadowbox.css"/>
@@ -663,142 +664,222 @@ in US Dollars" style="margin: 0px 0px 0px
 
 
 <!--    =================================  STEP 3 (before step4)  ====================================    -->
-    <!--     *******  Inserting RATING (STEP 3)  *********  -->
+    <!--     *******  Inserting RATING (STEP 3) (ONE Question)  *********  -->
     <!--  Start "container-fluid" (2) -->
-<div class="container-fluid px-2 mt-2">
+
+<!--<div class="container-fluid px-2 mt-2" >-->
+<!--    <div class="row no-gutters">-->
+<!--            <!--  Rating  -->
+<!--            <div class="col-lg-8 order-lg-2 col-md-12 order-md-1 col-sm-12 order-sm-1 debug">-->
+<!--                <div class="rating_backnext debug">-->
+<!--                    <div class="vote_section" style="position: relative; /*left: 345px; top: -515px;*/ z-index: 100;">-->
+<!--                        -->
+<!--                        <div class="step_line">-->
+<!--                            <div class="step_box" name="step3" title="Let's Vote!" style="height: 26px;">STEP 3:</div>-->
+<!---->
+<!--                            <div class="map1" style="display: inline-flex; margin: 5px;">-->
+<!--                                <div>-->
+<!--                                    <h4 class="step_title_text fontStepTitle">Rate <font color="#7d110c">-->
+<!--                                            <strong>Suggestion Plan P<span class="oneMap"></span></strong></font>-->
+<!--                                        based on its performance*-->
+<!--                                    </h4>-->
+<!--                                </div>-->
+<!---->
+<!--                                <div class="innerMapLines" style="min-width: 120px;">-->
+<!--                                    <div class="rating">-->
+<!--                                        <input id='step3_star0' class="trackable" name="rating1" type="radio" value="0" checked />-->
+<!--                                        <span id="hide"></span>-->
+<!--                                        <input id='step3_star1' class="trackable" name="rating1" type="radio" value="1" /><span></span>-->
+<!--                                        <input id='step3_star2' class="trackable" name="rating1" type="radio" value="2" /><span></span>-->
+<!--                                        <input id='step3_star3' class="trackable" name="rating1" type="radio" value="3" /><span></span>-->
+<!--                                        <input id='step3_star4' class="trackable" name="rating1" type="radio" value="4" /><span></span>-->
+<!--                                        <input id='step3_star5' class="trackable" name="rating1" type="radio" value="5" /><span></span>-->
+<!--                                        <input name="rating1" type="text" class="padInput" id="rating1" size="2" />-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div style="clear:both"></div>-->
+<!--                                <div class="innerMapLinesHead1">-->
+<!--                                    <h4>How confident are you about your rating? (%)</h4>-->
+<!--                                </div>-->
+<!--                                <div class="innerMapLines1">-->
+<!--                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">-->
+<!--                                        <tr>-->
+<!--                                            <td width="22%"><input name="confidence1" type="text" id="confidence1" size="3" readonly="readonly"/></td>-->
+<!--                                            <td width="78%"><div id="slider"></div></td>-->
+<!--                                        </tr>-->
+<!--                                    </table>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!---->
+<!--            <!--  Next Suggestion  -->
+<!--            <div class="col-lg-2 order-lg-8 col-md-6 order-md-12 col-sm-6 order-sm-12 debug">-->
+<!--                    <div style="/*border: 1px solid; border-radius: 5px*/">-->
+<!--                        <input id="Next" class="trackable barBlue moveNext" type="button" name="Next"-->
+<!--                               title="Click here to move to the next suggestion plan" style="position:-->
+<!--                relative; float: right;" value="Next Suggestion &gt;&gt;" />-->
+<!--                    </div>-->
+<!--            </div>-->
+<!---->
+<!--            <!--  Back Suggestion  -->
+<!--            <div class="col-lg-2 order-lg-1 col-md-6 order-md-1 col-sm-6 order-sm-1 debug">-->
+<!--                <div class="rating_backnext debug">-->
+<!--                    <div class="l6_box" style="/*border: 1px solid; border-radius: 5px*/">-->
+<!--                        <input id="Back" class="trackable barBlue moveBack" type="button" name="Back"-->
+<!--                               title="Click here to back to the previous suggestion plan"-->
+<!--                               value="&lt;&lt; Previous Suggestion" />-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--</div> -->
+    <!--  End "container-fluid" (2) -->
+
+
+
+    <!--     *******  Inserting RATING (STEP 3) (TWO Questions)  *********  -->
+    <!--  Start "container-fluid" (2) -->
+<!--    <div class="container-fluid px-2 mt-2" style="display:none;">-->
+    <div class="container-fluid px-2 mt-2">
         <div class="row no-gutters">
+
+            <!--  Back Suggestion  -->
+            <div class="debug" style="width: 13%">
+                <div class="rating_backnext debug">
+                    <div class="l6_box" style="/*border: 1px solid; border-radius: 5px*/">
+                        <input id="Back" class="trackable barBlue moveBack" type="button" name="Back"
+                               title="Click here to back to the previous suggestion plan"
+                               value="&lt;&lt; Previous Suggestion" />
+                    </div>
+                </div>
+            </div>
+
             <!--  Rating  -->
-            <div class="col-lg-8 order-lg-2 col-md-12 order-md-1 col-sm-12 order-sm-1 debug">
+            <div class="debug" style="width: 74%">
                 <div class="rating_backnext debug">
                     <div class="vote_section" style="position: relative; /*left: 345px; top: -515px;*/ z-index: 100;">
-
-                        <!--            <h2 name="step4">STEP 3: Time to vote! Provide a rating for the suggestion shown above.</h2>-->
                         <div class="step_line">
                             <div class="step_box" name="step3" title="Let's Vote!" style="height: 26px;">STEP 3:</div>
                             <!--                <div class="displayStuffa">Provide a rating for the <b>alternative</b> shown above</div>-->
 
-                            <div class="map1" style="display: inline-flex; margin: 5px;">
-                                <div>
-                                    <h4 class="step_title_text fontStepTitle">Rate <font color="#7d110c">
-                                            <strong>Suggestion Plan P<span class="oneMap"></span></strong></font>
-                                        based on its performance
-                                    </h4>
-                                </div>
+                            <!--  ---------- QUESTION 1 ------------- -->
+                            <div>
+                                <div class="map1" style="height:25px; display: inline-flex; margin: 5px;">
+                                    <div>
+                                        <h4 class="step_title_text fontStepTitle">Rate <font color="#7d110c">
+                                                <strong>Suggestion Plan P<span class="oneMap"></span></strong></font>
+                                            based on its performance
+                                        </h4>
+                                    </div>
 
-                                <div class="innerMapLines" style="min-width: 120px;">
-                                    <div class="rating">
-                                        <input id='step3_star0' class="trackable" name="rating1"
-                                               type="radio" value="0" checked /><span id="hide"></span>
-                                        <input id='step3_star1' class="trackable" name="rating1"
-                                               type="radio" value="1" /><span></span>
-                                        <input id='step3_star2' class="trackable" name="rating1"
-                                               type="radio" value="2" /><span></span>
-                                        <input id='step3_star3' class="trackable" name="rating1"
-                                               type="radio" value="3" /><span></span>
-                                        <input id='step3_star4' class="trackable" name="rating1"
-                                               type="radio" value="4" /><span></span>
-                                        <input id='step3_star5' class="trackable" name="rating1"
-                                               type="radio" value="5" /><span></span>
-                                        <input id='step3_star6' class="trackable" name="rating1"
-                                               type="radio" value="6" /><span></span>
-                                        <input id='step3_star7' class="trackable" name="rating1"
-                                               type="radio" value="7" /><span></span>
-                                        <input name="rating1" type="text" class="padInput" id="rating1" size="2" />
+                                    <div class="innerMapLines" style="min-width: 120px;">
+                                        <div class="rating">
+                                            <input id='step3_star0' class="trackable" name="rating1"
+                                                   type="radio" value="0" checked /><span id="hide"></span>
+                                            <input id='step3_star1' class="trackable" name="rating1"
+                                                   type="radio" value="1" /><span></span>
+                                            <input id='step3_star2' class="trackable" name="rating1"
+                                                   type="radio" value="2" /><span></span>
+                                            <input id='step3_star3' class="trackable" name="rating1"
+                                                   type="radio" value="3" /><span></span>
+                                            <input id='step3_star4' class="trackable" name="rating1"
+                                                   type="radio" value="4" /><span></span>
+                                            <input id='step3_star5' class="trackable" name="rating1"
+                                                   type="radio" value="5" /><span></span>
+                                            <input id='step3_star6' class="trackable" name="rating1"
+                                                   type="radio" value="6" /><span></span>
+                                            <input id='step3_star7' class="trackable" name="rating1"
+                                                   type="radio" value="7" /><span></span>
+
+                                            <input name="rating1" type="text" class="padInput" id="rating1" size="2" />
+                                        </div>
+                                    </div>
+
+                                    <div class="innerMapLinesHead1">
+                                        <h4>How confident are you about your rating? (%)</h4>
+                                    </div>
+                                    <div class="innerMapLines1">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td width="22%"><input name="confidence1" type="text" id="confidence1" size="3" readonly="readonly"/></td>
+                                                <td width="78%"><div id="slider"></div></td>
+                                            </tr>
+                                        </table>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="innerMapLinesHead1">
-                                    <h4>How confident are you about your rating? (%)</h4>
-                                </div>
-                                <div class="innerMapLines1">
-                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                        <tr>
-                                            <td width="22%"><input name="confidence1" type="text" id="confidence1" size="3" readonly="readonly"/></td>
-                                            <td width="78%"><div id="slider"></div></td>
-                                        </tr>
-                                    </table>
+
+                            <!--  ---------- QUESTION 2 ------------- -->
+                            <div>
+                                <div class="map1" style="display: inline-flex; margin: 5px;">
+                                    <div>
+                                        <h4 class="step_title_text fontStepTitle">
+                                            based on its feasibility
+                                        </h4>
+                                    </div>
+
+                                    <div class="innerMapLines" style="min-width: 120px;">
+                                        <div class="rating">
+                                            <input id='step3_star0' class="trackable" name="rating2"
+                                                   type="radio" value="0" checked /><span id="hide"></span>
+                                            <input id='step3_star1' class="trackable" name="rating2"
+                                                   type="radio" value="1" /><span></span>
+                                            <input id='step3_star2' class="trackable" name="rating2"
+                                                   type="radio" value="2" /><span></span>
+                                            <input id='step3_star3' class="trackable" name="rating2"
+                                                   type="radio" value="3" /><span></span>
+                                            <input id='step3_star4' class="trackable" name="rating2"
+                                                   type="radio" value="4" /><span></span>
+                                            <input id='step3_star5' class="trackable" name="rating2"
+                                                   type="radio" value="5" /><span></span>
+                                            <input id='step3_star6' class="trackable" name="rating2"
+                                                   type="radio" value="6" /><span></span>
+                                            <input id='step3_star7' class="trackable" name="rating2"
+                                                   type="radio" value="7" /><span></span>
+                                            <input name="rating2" type="text" class="padInput" id="rating2" size="2" />
+                                        </div>
+                                    </div>
+
+                                    <div class="innerMapLinesHead1">
+                                        <h4>How confident are you about your rating? (%)</h4>
+                                    </div>
+                                    <div class="innerMapLines1">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td width="22%"><input name="confidence1" type="text" id="confidence1" size="3" readonly="readonly"/></td>
+                                                <td width="78%"><div id="slider"></div></td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
+
+
+
                         </div>
                     </div>
                 </div>
             </div>
 
             <!--  Next Suggestion  -->
-            <div class="col-lg-2 order-lg-8 col-md-6 order-md-12 col-sm-6 order-sm-12 debug">
-<!--                <div class="rating_backnext debug">-->
-                    <div style="/*border: 1px solid; border-radius: 5px*/">
-                        <input id="Next" class="trackable barBlue moveNext" type="button" name="Next"
-                               title="Click here to move to the next suggestion plan" style="position:
+            <div class="debug" style="width: 13%">
+                <!--                <div class="rating_backnext debug">-->
+                <div style="/*border: 1px solid; border-radius: 5px*/">
+                    <input id="Next" class="trackable barBlue moveNext" type="button" name="Next"
+                           title="Click here to move to the next suggestion plan" style="position:
                 relative; float: right;" value="Next Suggestion &gt;&gt;" />
-                    </div>
-<!--                </div>-->
-            </div>
-
-            <!--  Back Suggestion  -->
-            <div class="col-lg-2 order-lg-1 col-md-6 order-md-1 col-sm-6 order-sm-1 debug">
-                <div class="rating_backnext debug">
-                    <div class="l6_box" style="/*border: 1px solid; border-radius: 5px*/">
-                        <input id="Back" class="trackable barBlue moveBack" type="button" name="Back"
-                               title="Click here to back to the previous suggestion plan" value="&lt;&lt; Previous
-                               Suggestion" />
-                    </div>
                 </div>
+                <!--                </div>-->
             </div>
+
+
         </div>
-</div> <!--  End "container-fluid" (2) -->
+    </div> <!--  End "container-fluid" (2) -->
 
-
-
-<!--<div id="line5" class="wrapper1">-->
-<!--    <div class="wrapper2">-->
-<!--        <div class="vote_section" style="position: relative; /*left: 345px; top: -515px;*/ z-index: 100;">-->
-<!--            -->
-<!--            <div class="step_line">-->
-<!--                <div class="step_box" name="step3" title="Let's Vote!">STEP 3:</div>-->
-<!---->
-<!--                <div class="map1" style="display: inline-flex; margin: 5px;">-->
-<!--                    <div>-->
-<!--                        <h4 class="step_title_text">Rate <font color="#7d110c"><strong>Suggestion <span-->
-<!--                                            class="oneMap"></span></strong></font> based on its performance and-->
-<!--                            feasibility</h4>-->
-<!--                    </div>-->
-<!---->
-<!--                    <div class="innerMapLines">-->
-<!--                        <div class="rating">-->
-<!--                            <input id='step3_star0' class="trackable" name="rating1"-->
-<!--                               type="radio" value="0" checked /><span id="hide"></span>-->
-<!--                            <input id='step3_star1' class="trackable" name="rating1"-->
-<!--                               type="radio" value="1" /><span></span>-->
-<!--                            <input id='step3_star2' class="trackable" name="rating1"-->
-<!--                               type="radio" value="2" /><span></span>-->
-<!--                            <input id='step3_star3' class="trackable" name="rating1"-->
-<!--                               type="radio" value="3" /><span></span>-->
-<!--                            <input id='step3_star4' class="trackable" name="rating1"-->
-<!--                               type="radio" value="4" /><span></span>-->
-<!--                            <input id='step3_star5' class="trackable" name="rating1"-->
-<!--                               type="radio" value="5" /><span></span>-->
-<!--                            <input name="rating1" type="text" class="padInput" id="rating1" size="2" />-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!---->
-<!--                    <div class="innerMapLinesHead1">-->
-<!--                        <h4>How confident are you about your rating? (%)</h4>-->
-<!--                    </div>-->
-<!--                    <div class="innerMapLines1">-->
-<!--                        <table width="100%" border="0" cellspacing="0" cellpadding="0">-->
-<!--                            <tr>-->
-<!--                                <td width="22%"><input name="confidence1" type="text" id="confidence1" size="3" readonly="readonly"/></td>-->
-<!--                                <td width="78%"><div id="slider"></div></td>-->
-<!--                            </tr>-->
-<!--                        </table>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-    <!--   **************    Finish inserting RATING  ********  -->
 
 
 <!--    ==========================================  STEP 5  ==========================================    -->
@@ -829,15 +910,9 @@ in US Dollars" style="margin: 0px 0px 0px
 <!-- ===================================  END  STEP 5  =================================== -->
 
     <!--  VOLADIZOS  -->
-    <!--  (1) Voladizo 1: Fullscreen Button (It was moved to class "step_line" L.272) -->
-    <!--    This lines add new icon in the main map for fullscreen -->
-    <!--  For RIGHT side  -->
-    <!--    <input type="button" id="fullscreen" value="Fullscreen" style="position: relative; top: -618px; left: 965px;-->
-    <!--    z-index: 200; width: 90px; height: 25px; background-color: #ff9999; cursor: pointer" />-->
-    <!--  For LEFT side  -->
-<!--    <input id="fullscreen" class="trackable" title="Click here to display a fullscreen map" type="button"-->
-<!--           value="Fullscreen" style="position: relative; top: -587px;-->
-<!--     left: 296px; z-index: 200; width: 90px; height: 25px;/* background-color: #ff9999*/; cursor: pointer" />-->
+    <!--  (1) Voladizo 1: TEST -->
+
+
 
     <!--  (2) Voladizo 2: DataBase  -->
     <textarea name="JSONHolder" id="JSONHolder" cols="45" rows="5" style="display: none;"></textarea>
@@ -847,43 +922,55 @@ in US Dollars" style="margin: 0px 0px 0px
     <!--  Start SVG  -->
     <!--  (width, height, cx,cy,r) = (box_width, box_height, coord_x, coord_y, radius)  -->
     <div style="display: none">
+<!--    <div>-->
         <div id="div1">wetlands' Circles: r = 3.5, 4.5, 5.0, 5.5, 6.0, 7.0, 7.5</div>
         <div id="div1">wetlands' Ranges: r = [<2], [2-6], [6-11], [11-15], [15-29], [29-40], [>40]</div>
 
         <svg id="svg1" width="7" height="7">
-            <circle cx="3.5" cy="3.5" r="3.5" fill="#336699" />
+<!--            <circle cx="3.5" cy="3.5" r="3.5" fill="#336699" />-->
+            <circle cx="3.0" cy="3.0" r="3.0" stroke="#001141" stroke-width="1" fill="#001141" />
             Sorry, your browser does not support inline SVG.
         </svg>
         <svg id="svg2" width="9" height="9">
-            <circle cx="4.5" cy="4.5" r="4.5" fill="#e600e6" />
+<!--            <circle cx="4.5" cy="4.5" r="4.5" fill="#e600e6" />-->
+            <circle cx="4.0" cy="4.0" r="4.0" stroke="#001141" stroke-width="1" fill="#00258d" />
             Sorry, your browser does not support inline SVG.
         </svg>
         <svg id="svg3" width="10" height="10">
-            <circle cx="5" cy="5" r="5" fill="#ff6666" />
+<!--            <circle cx="5" cy="5" r="5" fill="#ff6666" />-->
+            <circle cx="4.5" cy="4.5" r="4.5" stroke="#001141" stroke-width="1" fill="#003be0" />
             Sorry, your browser does not support inline SVG.
         </svg>
         <svg id="svg4" width="11" height="11">
-            <circle cx="5.5" cy="5.5" r="5.5" fill="#00b300" />
+<!--            <circle cx="5.5" cy="5.5" r="5.5" fill="#00b300" />-->
+            <circle cx="5" cy="5" r="5" stroke="#00258d" stroke-width="1" fill="#1d68eb" />
             Sorry, your browser does not support inline SVG.
         </svg>
         <svg id="svg5" width="12" height="12">
-            <circle cx="6" cy="6" r="6" fill="#e6b800" />
+<!--            <circle cx="6" cy="6" r="6" fill="#e6b800"/>-->
+            <circle cx="5.5" cy="5.5" r="5.5" stroke="#003be0" stroke-width="1" fill="#3891eb"/>
             Sorry, your browser does not support inline SVG.
         </svg>
         <svg id="svg6" width="14" height="14">
-            <circle cx="7" cy="7" r="7" fill="#1ad1ff" />
+<!--            <circle cx="7" cy="7" r="7" fill="#1ad1ff" />-->
+            <circle cx="6" cy="6" r="6" stroke="#1d68eb" stroke-width="1" fill="#51b6eb" />
             Sorry, your browser does not support inline SVG.
         </svg>
         <svg id="svg7" width="16" height="16">
-            <!--        <circle cx="7.5" cy="7.5" r="7.5" stroke="black" stroke-width="1" fill="#ff3300" />-->
-            <circle cx="7.5" cy="7.5" r="7.5" fill="#ff3300" />
+<!--            <circle cx="7.5" cy="7.5" r="7.5" fill="#ff3300" />-->
+            <circle cx="6.5" cy="6.5" r="6.5" stroke="#3891eb" stroke-width="1" fill="#6bdceb" />
             Sorry, your browser does not support inline SVG.
         </svg>
+
         <svg id="label_rect" width="25" height="15">
+            <!-- create a rectangle with rounded corners. Retrieved from: https://www.w3schools.com/graphics/svg_rect.asp -->
+<!-- Set "fill-opacity:0; stroke-opacity:0" to not see the DOM box -->
             <rect x="1" y="1" rx="2" ry="2" width="23" height="13" style="fill:yellow;stroke:black;stroke-width:1;
-            fill-opacity:0;stroke-opacity:0" />
+            fill-opacity:0; stroke-opacity:0"/>
             Sorry, your browser does not support inline SVG.
         </svg>
+
+
     </div>
     <!--  End SVG - Voladizo (3) -->
 
@@ -923,6 +1010,7 @@ in US Dollars" style="margin: 0px 0px 0px
         <div class="cross"><img id="close_instruction" class="trackable cross_img"  onclick="close_instruction();"
                                 title="Close" src="images/cross_img_15.png" alt=""/></div>
     </div>
+
     <script type="text/javascript">
         function close_instruction(){
 //            alert ("hello instruction open");
@@ -1087,6 +1175,8 @@ in US Dollars" style="margin: 0px 0px 0px
 <script type="text/javascript" src="js/excanvas.js"></script>
 <script type="text/javascript" src="js/graphing.js"></script>
 <script type="text/javascript" src="js/graphingSub.js"></script>
+<!--<script type="text/javascript" src="js/SimpleStarRating.js"></script>-->
+
 
 <!--  This js.script retrieves the data from MySQL in JSON format. This works with option (3) L.926 -->
 <script type="text/javascript">
@@ -1289,9 +1379,8 @@ in US Dollars" style="margin: 0px 0px 0px
     var Cost_meanVals_array = new Array();//E: To save mean values of Cost of each subbasin (108 in total) as Array
     var SR_meanVals_array = new Array();//E: To save mean values of SR of each subbasin (108 in total) as Array
     var NR_meanVals_array = new Array();//E: To save mean values of NR of each subbasin (108 in total) as Array
-//    var heatitera = 1;
+
     var iter_altern = 1;
-//    var heatiter = 1;
     var iter_subbasins = 1;
 
     //EE: ****************************** MySQL or JSON ************************************
@@ -1465,7 +1554,7 @@ in US Dollars" style="margin: 0px 0px 0px
 
     //********************************** trying to enter the heatmap code (2) ***************************
 
-//    $(".tools").click(function () {
+//    $(".tools").click(function () { //E: Not identify yet ?????
 //
 //        $tools = $(this);
 //        //getting the next element
@@ -1494,8 +1583,10 @@ in US Dollars" style="margin: 0px 0px 0px
 //    if(subBMP[4] != 1){$('#grassedWaterways.commentBoxQ').hide();}
 //    if(subBMP[5] != 1){$('#conservationTillage.commentBoxQ').hide();}
 //    if(subBMP[7] != 1){$('#Wetlands.commentBoxQ').hide();}
-    
+
+
     //for star rating hover ???? //E:no identified yet
+    //E: It was identified. It changes star' color on rating box, when hovering. See 'css/star.css'
     $('.rating input[type="radio"]').hover(function() {
         $(this).nextAll('span').removeClass().addClass('jshoverNext');
         $(this).next('span').removeClass().addClass('jshover');
@@ -1668,7 +1759,7 @@ in US Dollars" style="margin: 0px 0px 0px
 //            // Do whatever you want; the event that'd fire if the "special" element has been clicked on has been cancelled.
 //        });
 
-        function goToTime(incoming) {
+        function goToTime(incoming) { //E: ------------------------> 1199 in 'googletool_ron1_1'
             session = session+1;
             //session= session+1;
             //alert(session);
@@ -1757,8 +1848,8 @@ in US Dollars" style="margin: 0px 0px 0px
                 //This one shows all the subbasins for the each bmp
                 count2=count2+1;
             });
-            console.log("L.1337 subBasinArray: \n"+ JSON.stringify(subBasinArray));
-            console.log("L.1348 forMapArray: \n"+ JSON.stringify(forMapArray));
+//            console.log("L.1337 subBasinArray: \n"+ JSON.stringify(subBasinArray));
+//            console.log("L.1348 forMapArray: \n"+ JSON.stringify(forMapArray));
 
             //Now that I have all the data arranged for the incoming dataset (multiple arrays labeled 1 and 2)  I
             // initialize mapping. It is on mapping.js
@@ -1780,22 +1871,24 @@ in US Dollars" style="margin: 0px 0px 0px
 
         //This grabs the information needed to get the radio buttons set up with new data
         function setUpRadio(){
-            //Setting up the radio buttons
+            //Setting up the radio buttons - General Rating1
             var $radios = $('input:radio[name=rating1]');
             //alert(answersArray[oneMap].RATING);
             var ratingAnswer=answersArray[oneMap].RATING;
+            alert("L.1878 alert 1: oneMap = "+oneMap+"  r1= "+ ratingAnswer);
             $('input[name=rating1]').attr('checked', false);
             $radios.filter('[value='+ratingAnswer+']').attr('checked', true);
-            //alert(rating1a);
-            /*if(ratingAnswer !== "0") {
-              $radios.filter('[value='+ratingAnswer+']').attr('checked', true);
-              //$radios.filter('[rating1]').attr('checked', true);
-          }*/
+
+            var $radios2 = $('input:radio[name=rating2]');
+            var ratingAnswer2=answersArray[oneMap].RATING;//E: @@@
+            alert("L.1883 alert 1: oneMap = "+oneMap+"  r2= "+ ratingAnswer2);
+            $('input[name=rating2]').attr('checked', false);
+            $radios2.filter('[value='+ratingAnswer2+']').attr('checked', true);
 
 
             //  ----------------------------------------------------------------------------------
 
-            //setting up cropRotation one (CP1)
+            //setting up Crop-Rotation one (CR)
             var $radios5 = $('input:radio[name=cropRotation1]');
             //alert(answersArray[oneMap].RATING);
             var cropRotationAnswer1=answersArray[oneMap].cropRotation;
@@ -1804,11 +1897,10 @@ in US Dollars" style="margin: 0px 0px 0px
             //alert(rating1a);
             if(cropRotationAnswer1 !== "0") {
                 $radios5.filter('[value='+cropRotationAnswer1+']').attr('checked', true);
-                //$radios.filter('[rating1]').attr('checked', true);
             }
 
 
-            //setting up coverCrops one (CP2)
+            //setting up Cover-Crops one (CC)
             var $radios7 = $('input:radio[name=coverCrops1]');
             //alert(answersArray[oneMap].RATING);
             var coverCropsAnswer1=answersArray[oneMap].coverCrops;
@@ -1821,7 +1913,7 @@ in US Dollars" style="margin: 0px 0px 0px
             }
 
 
-            //setting up stripcropping one (CP3)
+            //setting up Strip-Cropping one (SC)
             var $radios3 = $('input:radio[name=stripCropping1]');
             //alert(answersArray[oneMap].RATING);
             var stripCroppingAnswer1=answersArray[oneMap].stripCropping;
@@ -1834,7 +1926,7 @@ in US Dollars" style="margin: 0px 0px 0px
             }
 
 
-            //setting up filterStrips one (CP4)
+            //setting up Filter-Strips one (FS)
             var $radios9 = $('input:radio[name = filterStrips1]');
             //alert(answersArray[oneMap].RATING);
             var filterStripsAnswer1=answersArray[oneMap].filterStrips;
@@ -1847,7 +1939,7 @@ in US Dollars" style="margin: 0px 0px 0px
             }
 
 
-            //setting up grassedWaterways one (CP5)
+            //setting up Grassed-Waterways one (GW)
             var $radios11 = $('input:radio[name=grassedWaterways1]');
             //alert(answersArray[oneMap].RATING);
             var grassedWaterwaysAnswer1=answersArray[oneMap].grassedWaterways;
@@ -1860,7 +1952,7 @@ in US Dollars" style="margin: 0px 0px 0px
             }
 
 
-            //setting up conservationTillage one (CP6)
+            //setting up Conservation-Tillage one (CT)
             var $radios13 = $('input:radio[name=conservationTillage1]');
             //alert(answersArray[oneMap].RATING);
             var conservationTillageAnswer1=answersArray[oneMap].conservationTillage;
@@ -1873,7 +1965,7 @@ in US Dollars" style="margin: 0px 0px 0px
             }
 
 
-            //setting up Wetlands one (CP7)
+            //setting up Wetlands one (WT)
             var $radios15 = $('input:radio[name=Wetlands1]');
             //alert(answersArray[oneMap].RATING);
             var WetlandsAnswer1=answersArray[oneMap].Wetlands;
@@ -1889,25 +1981,29 @@ in US Dollars" style="margin: 0px 0px 0px
         }
         //  -----------------------------  END setting up radio buttons  ------------------------------//
 
-        //  ----------------------------  Start setting radio(s)  ---------------------------
-        //Putting radio button values in text area
+        //  -----------------  Start: Putting radio button values in text area ---------------------- //
         jQuery('input:radio[name=rating1]').change(function(){
             //var id = $(this).attr("value");
             $("#rating1").val(function () {
                 return document.querySelector('input[name="rating1"]:checked').value;
             });
-            alert("L.1825 text area: \n"+ $(this).val());
-            if (oneMap == oneMap){
-                if (debug_js == 0) alert ("L.1828 : Current Suggestion: "+ (oneMap+1));
-                if (oneMap == 2) {//E: 19 corresponds to the last alternative
-                    end_experiment ()
-                    //$radios.filter('[rating1]').attr('checked', true);
-                }
-            }
+//            alert("L.1825 text area: \n"+ $(this).val());
+//            if (oneMap == oneMap){
+//                if (debug_js == 0) alert ("L.1828 : Current Suggestion: "+ (oneMap+1));
+////                if (oneMap == 2) {//E: 19 corresponds to the last alternative
+////                    end_experiment ()
+//                    //$radios.filter('[rating1]').attr('checked', true);
+////                }
+//            }
+        });
+        jQuery('input:radio[name=rating2]').change(function(){
+            //var id = $(this).attr("value");
+            $("#rating2").val(function () {
+                return document.querySelector('input[name="rating2"]:checked').value;
+            });
         });
 
-
-        //setting up cropRotation radio (CP1)
+        //setting up Crop-Rotation radio (CP1)
         jQuery('input:radio[name = cropRotation1]').change(function(){
             //var id = $(this).attr("value");
             $("#cropRotation1").val(function () {
@@ -1917,7 +2013,7 @@ in US Dollars" style="margin: 0px 0px 0px
         });
 
 
-        //setting up coverCrops radio (CP2)
+        //setting up Cover-Crops radio (CP2)
         jQuery('input:radio[name=coverCrops1]').change(function(){
             //var id = $(this).attr("value");
             $("#coverCrops1").val(function () {
@@ -1927,7 +2023,7 @@ in US Dollars" style="margin: 0px 0px 0px
         });
 
 
-        //setting up stripcropping radio (CP3)
+        //setting up Strip Cropping radio (CP3)
         jQuery('input:radio[name=stripCropping1]').change(function(){
             //var id = $(this).attr("value");
             $("#stripCropping1").val(function () {
@@ -1937,7 +2033,7 @@ in US Dollars" style="margin: 0px 0px 0px
         });
 
 
-        //setting up filterStrips radio (CP4)
+        //setting up Filter-Strips radio (CP4)
         jQuery('input:radio[name=filterStrips1]').change(function(){
             //var id = $(this).attr("value");
             $("#filterStrips1").val(function () {
@@ -1947,7 +2043,7 @@ in US Dollars" style="margin: 0px 0px 0px
         });
 
 
-        //setting up grassedWaterways radio (CP5)
+        //setting up Grassed-Waterways radio (CP5)
         jQuery('input:radio[name = grassedWaterways1]').change(function(){
             //var id = $(this).attr("value");
             $("#grassedWaterways1").val(function () {
@@ -1957,7 +2053,7 @@ in US Dollars" style="margin: 0px 0px 0px
         });
 
 
-        //setting up conservationTillage radio (CP6)
+        //setting up Conservation-Tillage radio (CP6)
         jQuery('input:radio[name = conservationTillage1]').change(function(){
             //var id = $(this).attr("value");
             $("#conservationTillage1").val(function () {
@@ -1967,7 +2063,7 @@ in US Dollars" style="margin: 0px 0px 0px
         });
 
 
-        //setting up wetlands radio (CP7)
+        //setting up Wetlands radio (CP7)
         jQuery('input:radio[name = Wetlands1]').change(function(){
             //var id = $(this).attr("value");
             $("#Wetlands1").val(function () {
@@ -1975,7 +2071,7 @@ in US Dollars" style="margin: 0px 0px 0px
             });
             //alert($(this).val());
         });
-        //  ----------------------------  End setting radio(s)  --------------
+        //  -----------------  End: Putting radio button values in text area ---------------------- //
 
         // -------------------------Setting up the slider bar to measure the confidence of the user. ----------- //
         $(function() {
@@ -2031,6 +2127,7 @@ in US Dollars" style="margin: 0px 0px 0px
         $('.totalPages').text(totalPages);
         $('.currentPage').text(page);
         $("#rating1").val(answersArray[oneMap].RATING);
+        $("#rating2").val(answersArray[oneMap].RATING);//E: @@@
         $("#stripCropping1").val(answersArray[oneMap].stripCropping);
         $("#cropRotation1").val(answersArray[oneMap].cropRotation);
         $("#coverCrops1").val(answersArray[oneMap].coverCrops);
@@ -2055,10 +2152,11 @@ in US Dollars" style="margin: 0px 0px 0px
             $(".moveBack").fadeTo(1000,1);
             //$(".moveBack").show();
             answersArray[oneMap].RATING=$("#rating1").val();
-//            alert ("last rate: " + answersArray[oneMap].RATING);// E: shows the last rating
-            console.log("L.2143 last-rate: " + answersArray[oneMap].RATING);
+            alert("L.2154 alert 3: oneMap = "+oneMap+"  r1= "+ answersArray[oneMap].RATING);// E: shows the last rating
+//            console.log("L.2143 last-rate: " + answersArray[oneMap].RATING);
             //answersArray[oneMap].CONFIDENCE=$("#confidence1").val();
-//            answersArray[twoMap].RATING=$("#rating2").val();
+            answersArray[oneMap].RATING=$("#rating2").val();//E: @@@
+            alert("L.2158 alert 3: oneMap = "+oneMap+"  r2= "+ answersArray[oneMap].RATING);
             //answersArray[twoMap].CONFIDENCE=$("#confidence2").val();
             var value1 = $( "#slider" ).slider( "option", "value" );
 //            answersArray[oneMap].CONFIDENCE=value1;
@@ -2122,6 +2220,8 @@ in US Dollars" style="margin: 0px 0px 0px
                 heatinitialize();
 
                 $("#rating1").val(answersArray[oneMap].RATING);
+                $("#rating2").val(answersArray[oneMap].RATING);//E: @@@
+                alert("L.2223 a4: oneMap= "+oneMap+" - r2= "+ $("#rating2").val(answersArray[oneMap].RATING));
                 $("#confidence1").val(answersArray[oneMap].CONFIDENCE);
                 $("#slider" ).slider("option","value",(answersArray[oneMap].CONFIDENCE));
 
@@ -2161,6 +2261,9 @@ in US Dollars" style="margin: 0px 0px 0px
             $(".moveNext").fadeTo(1000,1);
             answersArray[oneMap].RATING=$("#rating1").val();
             //answersArray[oneMap].CONFIDENCE=$("#confidence1").val();
+            answersArray[oneMap].RATING=$("#rating2").val();//E: @@@
+
+            //answersArray[twoMap].CONFIDENCE=$("#confidence2").val();
             var value1 = $( "#slider" ).slider( "option", "value" );
             answersArray[oneMap].CONFIDENCE=value1;
 //            var value2 = $( "#slider1" ).slider( "option", "value" );
@@ -2198,6 +2301,7 @@ in US Dollars" style="margin: 0px 0px 0px
                 heatinitialize();
 
                 $("#rating1").val(answersArray[oneMap].RATING);
+                $("#rating2").val(answersArray[oneMap].RATING);//E: @@@
                 $( "#slider" ).slider("option","value",(answersArray[oneMap].CONFIDENCE));
                 $("#confidence1").val(answersArray[oneMap].CONFIDENCE);
 
@@ -2229,7 +2333,7 @@ in US Dollars" style="margin: 0px 0px 0px
         //This sends all the data. I move the answers data into the id JSONHolder and then submit the form.
         $(".submitAll").click(function() {
             answersArray[oneMap].RATING=$("#rating1").val();
-//            answersArray[twoMap].RATING=$("#rating2").val();
+            answersArray[oneMap].RATING=$("#rating2").val();//E: @@@
             var value1 = $( "#slider" ).slider( "option", "value" );
             answersArray[oneMap].CONFIDENCE=value1;
             var value2 = $( "#slider1" ).slider( "option", "value" );
@@ -2350,9 +2454,7 @@ in US Dollars" style="margin: 0px 0px 0px
 
 </script>
 
-<script type="text/javascript">
-// Elininated
-</script>
+
 
 
 <!--  #########################################################################################  -->
@@ -2962,7 +3064,8 @@ in US Dollars" style="margin: 0px 0px 0px
         google.maps.event.addDomListener(container,'click',function(){
             (document.getElementById(bDiv.id).style.display == 'none') ? document.getElementById(bDiv.id).style
                 .display = 'block' : document.getElementById(bDiv.id).style.display = 'none';
-            toggleLayerNew(cropArray, crop);
+            //EE: 'cropArray & crop' conect to "mapping_new.js/doCropRotation_markers()" (L.698) to on/off on the map
+            toggleLayerNew(cropArray, crop);////////E: important to change for each BMP
 //            toggleLayerNew(arg1, arg2);
             //alert(this.id); // option to add some alert
             options.action(); // option to add some other function
@@ -3084,6 +3187,7 @@ in US Dollars" style="margin: 0px 0px 0px
             (document.getElementById(bDiv.id).style.display == 'none') ? document.getElementById(bDiv.id).style
                 .display = 'block' : document.getElementById(bDiv.id).style.display = 'none';
             toggleLayerNew(filterArray, filter);
+            //EE: 'filter' conects to 'mapping_new.js/doFilterStrips()/filter' to on/off by its check-button
 //            alert(this.id); // option to add some alert
             options.action(); // option to add some other function
         });
@@ -3260,9 +3364,26 @@ in US Dollars" style="margin: 0px 0px 0px
     // ---------------------  End Function for Second way -------------------
     
     // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$  End: Check boxes $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-
-
 </script>
+
+
+<!--  This 'scrip' performs the rating process. It needs also "SimpleStarRating.js"  -->
+<script>
+//    // This 'scrip' performs the rating process. It needs also "SimpleStarRating.js"
+//    //            var ratings = document.getElementsByClassName('rating');
+//    var ratings = document.getElementById('rating_q1');
+//    var r = new SimpleStarRating(ratings);
+//    ratings.addEventListener('rate', function(e) {
+//        console.log('Rating: ' + e.detail);
+//    });
+//
+//    var ratings = document.getElementById('rating_q2');
+//    var r = new SimpleStarRating(ratings);
+//    ratings.addEventListener('rate', function(e) {
+//        console.log('Rating: ' + e.detail);
+//    });
+</script>
+
 
 </body>
 </html>

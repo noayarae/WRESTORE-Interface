@@ -4,30 +4,34 @@
 
 .rating input {
     position:absolute;
-    filter:alpha(opacity=0);
+    filter:alpha(opacity=0);/* 1: Dark*/
     -moz-opacity:0;
     -khtml-opacity:0;
     opacity:0;
     cursor:pointer;
     width:17px;
+    border: 1px solid red;
 }
 
 .rating span {
     width:24px;
     height:16px;
     line-height:16px;
-    padding:1px 22px 1px 0; /* 1px FireFox fix */
+    padding:1px 22px 1px 0; /* 1px FireFox fix */  /* Change 22px to get more space between stars */
     /*background:url(../images/stars1.png) no-repeat -22px 0;*/
     /*background:url(../images/stars1_50.png) no-repeat -22px 0;*/
     /*background:url(../images/stars1_100.png) no-repeat -22px 0;*/
     /*background:url(../images/stars2_40x20_t.png) no-repeat -22px 0;*/
+    /*background:url(../images/stars3_42x18.png) no-repeat -22px 0;*/
     background:url(../images/stars3_42x18.png) no-repeat -22px 0;
+    /*border: 1px solid blue;*/
 }
 
 /* Change span immediately following the checked radio */
 
 .rating input:checked + span {
     background-position:-22px 0;
+    /*border: 1px solid green;*/
 }
 
 /* Reset all remaining stars back to default background.
@@ -35,12 +39,14 @@
 
 .rating input:checked + span ~ span {
     background-position:0 0;
+    /*border: 1px solid yellow;*/
 }
 
 .jshover {
     background-position:-22px 0 !important;
+    /*border: 1px solid magenta;*/
 }
-
 .jshoverNext {
     background-position:0 0 !important;
+    /*border: 1px solid cyan;*/
 }

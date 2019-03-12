@@ -35,7 +35,7 @@ function heatinitialize() {
     ////  ---------------  These variables are used to set ranges for maps  -----------------------
     //E: These 4 code-pieces extract only the number corresponding to subbasin number from 'PFR_meanVals_array'
     var ressssPF1 = PFR_meanVals_array[oneMap].val.map(function(a) {
-        console.log ("L.38 ressssPF1: "+ JSON.stringify(ressssPF1));
+        // console.log ("L.38 ressssPF1: "+ JSON.stringify(ressssPF1));
         return a.name;
     });
 
@@ -106,19 +106,25 @@ function heatinitialize() {
     };
 
     //EE: Definition of Ranges and colors
-    var rg_pfr= [0,1,10,50,100,200,500,1600];
-    var rg_sr = [0,100,500,1000,2500,5000,10000,18000];
-    var rg_nr = [-350,0,1000,5000,15000,30000,100000,800000];
-    var rg_pr = [-450000,0,1000,50000,500000,1000000,2000000,4800000];
-    var colorList = {
-        color1: '#ffffff',
-        color2: '#ffff00',
-        color3: '#ffcc00',
-        color4: '#ff9900',
-        color5: '#ff6600',//'#ff6600',//'#66ff33',//'#ff6600', test '#66ff33'
-        color6: '#ff0000',//'#e60000',//'#ff3300',//#e60000
-        color7: '#cc0000'//'#cc0000'//'#990000'//'#ff0000', test '#0066ff'
+    var rg_pfr= [0,500,1000,1600];//[0,1,10,50,100,200,500,1600];
+    var rg_sr = [0,6000,12000,18000];//[0,100,500,1000,2500,5000,10000,18000];
+    var rg_nr = [-350,250000,500000,800000];//[-350,0,1000,5000,15000,30000,100000,800000];
+    var rg_pr = [-450000,1500000,3000000,4800000];//[-450000,0,1000,50000,500000,1000000,2000000,4800000];
+    var colorList = {//E: For 7 intervals
+        // color1: '#ffffff',
+        // color2: '#ffff00',
+        // color3: '#ffcc00',
+        // color4: '#ff9900',
+        // color5: '#ff6600',//'#ff6600',//'#66ff33',//'#ff6600', test '#66ff33'
+        // color6: '#ff0000',//'#e60000',//'#ff3300',//#e60000
+        // color7: '#cc0000'//'#cc0000'//'#990000'//'#ff0000', test '#0066ff'
     };
+    var colorList = {//E: For 3 intervals
+        color1: '#ffff00',
+        color2: '#ff6600',
+        color3: '#d72007',
+    };
+
     var mapa = maps[0];
     var min_value = min_values[0];
     var max_value = max_values[0];
@@ -573,21 +579,37 @@ function heatinitialize() {
             //         break;
             // }
 
-            // var rg_pfr = [1,10,50,100,200,500,1000];
+            // // --------------- For 7 intervals (1,10,50,100,200,500,1000)
+
+            // // var rg_pfr = [1,10,50,100,200,500,1000];
+            // switch (true) {
+            //     case ((pfr_val_current_sb_and_alt >= rg_pfr[0])&&(pfr_val_current_sb_and_alt < rg_pfr[1])):filterColor = colorList["color1"];//"#ffffff";//
+            //         break;
+            //     case ((pfr_val_current_sb_and_alt >= rg_pfr[1])&&(pfr_val_current_sb_and_alt < rg_pfr[2])): filterColor = colorList["color2"];//"#ffff00";
+            //         break;
+            //     case ((pfr_val_current_sb_and_alt >= rg_pfr[2])&&(pfr_val_current_sb_and_alt < rg_pfr[3])): filterColor = colorList["color3"];//"#ffcc00";
+            //         break;
+            //     case ((pfr_val_current_sb_and_alt >= rg_pfr[3])&&(pfr_val_current_sb_and_alt < rg_pfr[4])): filterColor = colorList["color4"];//"#ff9900";
+            //         break;
+            //     case ((pfr_val_current_sb_and_alt >= rg_pfr[4])&&(pfr_val_current_sb_and_alt < rg_pfr[5])): filterColor = colorList.color5;//"#ff6600";
+            //         break;
+            //     case ((pfr_val_current_sb_and_alt >= rg_pfr[5])&&(pfr_val_current_sb_and_alt < rg_pfr[6])): filterColor = colorList["color6"];//"#ff3300";
+            //         break;
+            //     case ((pfr_val_current_sb_and_alt >= rg_pfr[6])&&(pfr_val_current_sb_and_alt < rg_pfr[7])): filterColor = colorList["color7"];//"#ff0000";
+            //         break;
+            //     default: filterColor = "#aa9999";//"#ff0000";//"#aa9999";//"#ff0000";//
+            //         break;
+            // }
+
+            // --------- For 3 intervals (high, medium, low)
+
+            // var rg_pfr = [high, medium, low];
             switch (true) {
                 case ((pfr_val_current_sb_and_alt >= rg_pfr[0])&&(pfr_val_current_sb_and_alt < rg_pfr[1])):filterColor = colorList["color1"];//"#ffffff";//
                     break;
                 case ((pfr_val_current_sb_and_alt >= rg_pfr[1])&&(pfr_val_current_sb_and_alt < rg_pfr[2])): filterColor = colorList["color2"];//"#ffff00";
                     break;
                 case ((pfr_val_current_sb_and_alt >= rg_pfr[2])&&(pfr_val_current_sb_and_alt < rg_pfr[3])): filterColor = colorList["color3"];//"#ffcc00";
-                    break;
-                case ((pfr_val_current_sb_and_alt >= rg_pfr[3])&&(pfr_val_current_sb_and_alt < rg_pfr[4])): filterColor = colorList["color4"];//"#ff9900";
-                    break;
-                case ((pfr_val_current_sb_and_alt >= rg_pfr[4])&&(pfr_val_current_sb_and_alt < rg_pfr[5])): filterColor = colorList.color5;//"#ff6600";
-                    break;
-                case ((pfr_val_current_sb_and_alt >= rg_pfr[5])&&(pfr_val_current_sb_and_alt < rg_pfr[6])): filterColor = colorList["color6"];//"#ff3300";
-                    break;
-                case ((pfr_val_current_sb_and_alt >= rg_pfr[6])&&(pfr_val_current_sb_and_alt < rg_pfr[7])): filterColor = colorList["color7"];//"#ff0000";
                     break;
                 default: filterColor = "#aa9999";//"#ff0000";//"#aa9999";//"#ff0000";//
                     break;
@@ -649,20 +671,36 @@ function heatinitialize() {
             //     //return wetlandsIcon;
             // }
 
+            // // --------- For 7 intervals (1,10,50,100,200,500,1000)
+
+            // switch (true) {
+            //     case ((c_val_current_sb_and_alt >= rg_pr[0])&&(c_val_current_sb_and_alt < rg_pr[1])):filterColor = colorList["color1"];//"#ffffff";//
+            //         break;
+            //     case ((c_val_current_sb_and_alt >= rg_pr[1])&&(c_val_current_sb_and_alt < rg_pr[2])): filterColor = colorList["color2"];//"#ffff00";
+            //         break;
+            //     case ((c_val_current_sb_and_alt >= rg_pr[2])&&(c_val_current_sb_and_alt < rg_pr[3])): filterColor = colorList["color3"];//"#ffcc00";
+            //         break;
+            //     case ((c_val_current_sb_and_alt >= rg_pr[3])&&(c_val_current_sb_and_alt < rg_pr[4])): filterColor = colorList["color4"];//"#ff9900";
+            //         break;
+            //     case ((c_val_current_sb_and_alt >= rg_pr[4])&&(c_val_current_sb_and_alt < rg_pr[5])): filterColor = colorList.color5;//"#ff6600";
+            //         break;
+            //     case ((c_val_current_sb_and_alt >= rg_pr[5])&&(c_val_current_sb_and_alt < rg_pr[6])): filterColor = colorList["color6"];//"#ff3300";
+            //         break;
+            //     case ((c_val_current_sb_and_alt >= rg_pr[6])&&(c_val_current_sb_and_alt < rg_pr[7])): filterColor = colorList["color7"];//"#ff0000";
+            //         break;
+            //     default: filterColor = "#aa9999";//"#ff0000";//"#aa9999";//"#ff0000";//
+            //         break;
+            // }
+
+
+            // --------- For 3 intervals (high, medium, low)
+
             switch (true) {
                 case ((c_val_current_sb_and_alt >= rg_pr[0])&&(c_val_current_sb_and_alt < rg_pr[1])):filterColor = colorList["color1"];//"#ffffff";//
                     break;
                 case ((c_val_current_sb_and_alt >= rg_pr[1])&&(c_val_current_sb_and_alt < rg_pr[2])): filterColor = colorList["color2"];//"#ffff00";
                     break;
                 case ((c_val_current_sb_and_alt >= rg_pr[2])&&(c_val_current_sb_and_alt < rg_pr[3])): filterColor = colorList["color3"];//"#ffcc00";
-                    break;
-                case ((c_val_current_sb_and_alt >= rg_pr[3])&&(c_val_current_sb_and_alt < rg_pr[4])): filterColor = colorList["color4"];//"#ff9900";
-                    break;
-                case ((c_val_current_sb_and_alt >= rg_pr[4])&&(c_val_current_sb_and_alt < rg_pr[5])): filterColor = colorList.color5;//"#ff6600";
-                    break;
-                case ((c_val_current_sb_and_alt >= rg_pr[5])&&(c_val_current_sb_and_alt < rg_pr[6])): filterColor = colorList["color6"];//"#ff3300";
-                    break;
-                case ((c_val_current_sb_and_alt >= rg_pr[6])&&(c_val_current_sb_and_alt < rg_pr[7])): filterColor = colorList["color7"];//"#ff0000";
                     break;
                 default: filterColor = "#aa9999";//"#ff0000";//"#aa9999";//"#ff0000";//
                     break;
@@ -720,20 +758,35 @@ function heatinitialize() {
             //     //return wetlandsIcon;
             // }
 
+            // // --------- For 7 intervals (1,10,50,100,200,500,1000)
+
+            // switch (true) {
+            //     case ((sr_val_current_sb_and_alt >= rg_sr[0])&&(sr_val_current_sb_and_alt < rg_sr[1])):filterColor = colorList["color1"];//"#ffffff";//
+            //         break;
+            //     case ((sr_val_current_sb_and_alt >= rg_sr[1])&&(sr_val_current_sb_and_alt < rg_sr[2])): filterColor = colorList["color2"];//"#ffff00";
+            //         break;
+            //     case ((sr_val_current_sb_and_alt >= rg_sr[2])&&(sr_val_current_sb_and_alt < rg_sr[3])): filterColor = colorList["color3"];//"#ffcc00";
+            //         break;
+            //     case ((sr_val_current_sb_and_alt >= rg_sr[3])&&(sr_val_current_sb_and_alt < rg_sr[4])): filterColor = colorList["color4"];//"#ff9900";
+            //         break;
+            //     case ((sr_val_current_sb_and_alt >= rg_sr[4])&&(sr_val_current_sb_and_alt < rg_sr[5])): filterColor = colorList.color5;//"#ff6600";
+            //         break;
+            //     case ((sr_val_current_sb_and_alt >= rg_sr[5])&&(sr_val_current_sb_and_alt < rg_sr[6])): filterColor = colorList["color6"];//"#ff3300";
+            //         break;
+            //     case ((sr_val_current_sb_and_alt >= rg_sr[6])&&(sr_val_current_sb_and_alt < rg_sr[7])): filterColor = colorList["color7"];//"#ff0000";
+            //         break;
+            //     default: filterColor = "#aa9999";//"#ff0000";//"#aa9999";//"#ff0000";//
+            //         break;
+            // }
+
+            // --------- For 3 intervals (high, medium, low)
+
             switch (true) {
                 case ((sr_val_current_sb_and_alt >= rg_sr[0])&&(sr_val_current_sb_and_alt < rg_sr[1])):filterColor = colorList["color1"];//"#ffffff";//
                     break;
                 case ((sr_val_current_sb_and_alt >= rg_sr[1])&&(sr_val_current_sb_and_alt < rg_sr[2])): filterColor = colorList["color2"];//"#ffff00";
                     break;
                 case ((sr_val_current_sb_and_alt >= rg_sr[2])&&(sr_val_current_sb_and_alt < rg_sr[3])): filterColor = colorList["color3"];//"#ffcc00";
-                    break;
-                case ((sr_val_current_sb_and_alt >= rg_sr[3])&&(sr_val_current_sb_and_alt < rg_sr[4])): filterColor = colorList["color4"];//"#ff9900";
-                    break;
-                case ((sr_val_current_sb_and_alt >= rg_sr[4])&&(sr_val_current_sb_and_alt < rg_sr[5])): filterColor = colorList.color5;//"#ff6600";
-                    break;
-                case ((sr_val_current_sb_and_alt >= rg_sr[5])&&(sr_val_current_sb_and_alt < rg_sr[6])): filterColor = colorList["color6"];//"#ff3300";
-                    break;
-                case ((sr_val_current_sb_and_alt >= rg_sr[6])&&(sr_val_current_sb_and_alt < rg_sr[7])): filterColor = colorList["color7"];//"#ff0000";
                     break;
                 default: filterColor = "#aa9999";//"#ff0000";//"#aa9999";//"#ff0000";//
                     break;
@@ -788,20 +841,35 @@ function heatinitialize() {
             //         break;
             // }
 
+            // // --------- For 7 intervals (1,10,50,100,200,500,1000)
+
+            // switch (true) {
+            //     case ((nr_val_current_sb_and_alt >= rg_nr[0])&&(nr_val_current_sb_and_alt < rg_nr[1])):filterColor = colorList["color1"];//"#ffffff";//
+            //         break;
+            //     case ((nr_val_current_sb_and_alt >= rg_nr[1])&&(nr_val_current_sb_and_alt < rg_nr[2])): filterColor = colorList["color2"];//"#ffff00";
+            //         break;
+            //     case ((nr_val_current_sb_and_alt >= rg_nr[2])&&(nr_val_current_sb_and_alt < rg_nr[3])): filterColor = colorList["color3"];//"#ffcc00";
+            //         break;
+            //     case ((nr_val_current_sb_and_alt >= rg_nr[3])&&(nr_val_current_sb_and_alt < rg_nr[4])): filterColor = colorList["color4"];//"#ff9900";
+            //         break;
+            //     case ((nr_val_current_sb_and_alt >= rg_nr[4])&&(nr_val_current_sb_and_alt < rg_nr[5])): filterColor = colorList.color5;//"#ff6600";
+            //         break;
+            //     case ((nr_val_current_sb_and_alt >= rg_nr[5])&&(nr_val_current_sb_and_alt < rg_nr[6])): filterColor = colorList["color6"];//"#ff3300";
+            //         break;
+            //     case ((nr_val_current_sb_and_alt >= rg_nr[6])&&(nr_val_current_sb_and_alt < rg_nr[7])): filterColor = colorList["color7"];//"#ff0000";
+            //         break;
+            //     default: filterColor = "#aa9999";//"#ff0000";//"#aa9999";//"#ff0000";//
+            //         break;
+            // }
+
+            // --------- For 3 intervals (high, medium, low)
+
             switch (true) {
                 case ((nr_val_current_sb_and_alt >= rg_nr[0])&&(nr_val_current_sb_and_alt < rg_nr[1])):filterColor = colorList["color1"];//"#ffffff";//
                     break;
                 case ((nr_val_current_sb_and_alt >= rg_nr[1])&&(nr_val_current_sb_and_alt < rg_nr[2])): filterColor = colorList["color2"];//"#ffff00";
                     break;
                 case ((nr_val_current_sb_and_alt >= rg_nr[2])&&(nr_val_current_sb_and_alt < rg_nr[3])): filterColor = colorList["color3"];//"#ffcc00";
-                    break;
-                case ((nr_val_current_sb_and_alt >= rg_nr[3])&&(nr_val_current_sb_and_alt < rg_nr[4])): filterColor = colorList["color4"];//"#ff9900";
-                    break;
-                case ((nr_val_current_sb_and_alt >= rg_nr[4])&&(nr_val_current_sb_and_alt < rg_nr[5])): filterColor = colorList.color5;//"#ff6600";
-                    break;
-                case ((nr_val_current_sb_and_alt >= rg_nr[5])&&(nr_val_current_sb_and_alt < rg_nr[6])): filterColor = colorList["color6"];//"#ff3300";
-                    break;
-                case ((nr_val_current_sb_and_alt >= rg_nr[6])&&(nr_val_current_sb_and_alt < rg_nr[7])): filterColor = colorList["color7"];//"#ff0000";
                     break;
                 default: filterColor = "#aa9999";//"#ff0000";//"#aa9999";//"#ff0000";//
                     break;
