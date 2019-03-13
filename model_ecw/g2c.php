@@ -2146,7 +2146,7 @@ in US Dollars" style="margin: 0px 0px 0px
         //  ============== Start moveNext =============== //
         //This fires off each time someone hits the next button. It moves the data 2 spots and runs through the
         //new arrays that are created. The "if" statement stops it from doing anything if at the end of the set.
-        // ----- 'page' goes from 1 to 20; 'oneMap' goes from 0 to 19 ----- //
+        // ----- E: 'page' goes from 1 to 20; 'oneMap' goes from 0 to 19 ----- //
         $(".moveNext").click(function() {
             $('.displayStuff').html("");
             // Load the answers into the answers array //
