@@ -98,7 +98,7 @@
 //// EE: For Option 3, Turn-on 'read_db.php', but NOT 'read_database.php'.
 
 //include ('read_database.php');//EE: Turn-Off when 'database_option' is 2 or 3.
-include ('read_db.php');//EE: TurnOff when 'database_option' is 1 or 2
+//include ('read_db.php');//EE: TurnOff when 'database_option' is 1 or 2
 
 ?>
 
@@ -1223,7 +1223,8 @@ in US Dollars" style="margin: 0px 0px 0px
 
 
 <script type="text/javascript">
-    var database_option = 3;//EE: MySQL(as-html) = 1; JSON = 2; MySQL(as-json) = 3
+    //    After selecting "database_option", set the corresponding files in L.95
+    var database_option = 2;//EE: MySQL(as-html) = 1; JSON = 2; MySQL(as-json) = 3
     var debug_js = 0;//EE: for debugging set 1
 
     if (database_option == 2) {
