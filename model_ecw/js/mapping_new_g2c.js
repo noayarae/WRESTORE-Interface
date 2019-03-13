@@ -363,16 +363,16 @@ function initialize() {
     // because the background is the basemap.
     $.each(forMapArray, function (index, value) {
         if (forMapArray[index]["Title"] == "crop_rotation") {
-            doCropRotation(color_croprot, poly_opacity);
-            // doCropRotation_markers();
+            // doCropRotation(color_croprot, poly_opacity);//E: For polygons
+            doCropRotation_markers();//E: For Markers
         }
     });
 
     $.each(forMapArray, function (index, value) {
         if (forMapArray[index]["Title"] == "cover_crops") {
             // alert("Cover crop value: \n"+ value);
-            doCoverCrops(color_covercrop, poly_opacity);
-            // doCoverCrop_markers();
+            // doCoverCrops(color_covercrop, poly_opacity);
+            doCoverCrop_markers();
         }
     });
 
@@ -460,8 +460,8 @@ function initialize() {
                 //strokeColor: colors[0],
                 strokeOpacity: .6,
                 strokeWeight: 1,
-                fillOpacity: 0,
-                fillColor: "#ffffff",
+                fillOpacity: 0.5,
+                fillColor: "#ffff99",//"#ffb366",// "#ff99cc",// "#aaff80",// "#ffff99",//"#ffffff",
                 clickable: true,
                 indexID: whichNode
             });
@@ -686,28 +686,54 @@ function initialize() {
 
         var cr_marker_yes = 0;
         var cr_marker_no = 0;
-        // for (var i in rows) {
+        var CropRotation_markers = [];//E: This variable is below used to show label when zoom in/out
+        var CropRotation_markers1 = [];//E: This variable for small labels. Above for large labels
+
         for (var i = 0; i < sb_with_cr_only.properties.length; i++) {
             var newCoordinates = [];
             var whichNode = "";
             // var row = rows[i];//EE: not needed when json data
-            // var whichNode = row[0];
             var whichNode = sb_with_cr_only.properties[i]["subbasin"];
 
-            // var x_stripcrop = (sb_with_cc_only.properties[i]["coord_x"]);
-            var x_croprot = (sb_with_cr_only.properties[i]["coord_x"] - 0.006);
+            // var x_croprot = (sb_with_cr_only.properties[i]["coord_x"]);
+            var x_croprot = (sb_with_cr_only.properties[i]["coord_x"] - 0.0045);
             var y_croprot = (sb_with_cr_only.properties[i]["coord_y"]);
             console.log("L.693 coord grass: " + typeof x_croprot + " , " + typeof y_croprot);
             console.log("L.694 coord grass: " + x_croprot + " , " + y_croprot);
 
             var newCoordinates = constructNewCoordinatesCropRotation(x_croprot, y_croprot);
+            var geosss = newCoordinates;
+            var geop = geosss[0];
+            var geop1 = geosss[1];
+
+            CropRotation_markers.push(geop);
+            CropRotation_markers1.push(geop1);
 
             //EE: 'crop' conects to 'g2.php/checkBox_CropRotation(options)' to on/off by its check-button
-            crop = geo;
+            crop = geop;//geo;
             crop.setMap(basemap_1);
             cropArray.push(crop);
+            crop1 = geop1;//geo;
+            crop1.setMap(basemap_1);
+            cropArray.push(crop1);
             cr_marker_yes = cr_marker_yes + 1;//sc_marker_yes
         }
+
+        //E: These events make visible the 'CropRotation' markers when zooming
+        google.maps.event.addListener(basemap_1, 'zoom_changed', function() {
+            var zoom = basemap_1.getZoom();
+            // iterate over markers and call setVisible
+            for (i = 0; i < CropRotation_markers.length; i++) {
+                CropRotation_markers[i].setVisible(zoom >= 11.5);
+            }
+        });
+        google.maps.event.addListener(basemap_1, 'zoom_changed', function() {
+            var zoom = basemap_1.getZoom();
+            // iterate over markers and call setVisible
+            for (i = 0; i < CropRotation_markers1.length; i++) {
+                CropRotation_markers1[i].setVisible(zoom < 11.5);
+            }
+        });
 
         //map.fitBounds(bounds);
         console.log("L.1251 YES crop_rotation_M: " + cr_marker_yes + "  NO crop_rotation_M: " + cr_marker_no);
@@ -715,7 +741,7 @@ function initialize() {
 
     // ------------- end 'drawCover1' as markers
 
-    // ------------This piece takes the markers and not shapes for No Till
+    // ------------This piece takes the MARKERS and not shapes for Crop-Rotation
     function constructNewCoordinatesCropRotation(x, y) {
         var geoOptions = {
             // --------------------  For square 'Icon' (icon from tillIcon)
@@ -726,19 +752,29 @@ function initialize() {
             // fillOpacity: 0.3,
             // icon: tillIcon
             // --------------------  For 'text' (CR) as acronym
-            label: {text: "(CR)", color: '#666666', fontSize: "9px"},
+            label: {text: "(R)", color: '#008000', fontSize: "10px", fontWeight: "bold"},
             icon: label_icon
         };
-        var opts = geoOptions;
+        var geoOptions1 = {
+            label: {text: "(R)", color: '#008000', fontSize: "5px"},
+            icon: label_icon
+        };
+
+        // var opts = geoOptions;
+        // var opts1 = geoOptions1;
         var newCoordinates = [];
         var coordinates = null;
-        // if (polygon['coordinates']) {
         // var coordinates = polygon['coordinates'];
         var coordinates = [x, y];
-        var options = opts || {};
+        var options = geoOptions || {};//opts || {};
+        var options1 = geoOptions1 || {};
         options.position = new google.maps.LatLng(coordinates[1], coordinates[0]);
+        options1.position = new google.maps.LatLng(coordinates[1], coordinates[0]);
+
         geo = new google.maps.Marker(options);
-        return geo;
+        geo1 = new google.maps.Marker(options1);
+        // return geo;
+        return [geo,geo1];
     }
 
     // ------ end 'constructNewCoordinatesCropRotation(markers)'
@@ -876,28 +912,56 @@ function initialize() {
 
         var cc_marker_yes = 0;
         var cc_marker_no = 0;
-        // for (var i in rows) {
+        var CoverCrop_markers = [];//E: This variable is below used to show label when zoom in/out
+        var CoverCrop_markers1 = [];//E: This variable for small labels. Above for large labels
+
         for (var i = 0; i < sb_with_cc_only.properties.length; i++) {
             var newCoordinates = [];
             var whichNode = "";
             // var row = rows[i];//EE: not needed when json data
-            // var whichNode = row[0];
+
             var whichNode = sb_with_cc_only.properties[i]["subbasin"];
 
-            // var x_stripcrop = (sb_with_cc_only.properties[i]["coord_x"]);
-            var x_covercrop = (sb_with_cc_only.properties[i]["coord_x"] + 0.006);
+            // var x_covercrop = (sb_with_cc_only.properties[i]["coord_x"]);
+            var x_covercrop = (sb_with_cc_only.properties[i]["coord_x"] + 0.0045);
             var y_covercrop = (sb_with_cc_only.properties[i]["coord_y"]);
             // console.log("L.889 coord grass: " + typeof x_covercrop + " , " + typeof y_covercrop);
             // console.log("L.890 coord grass: " + x_covercrop + " , " + y_covercrop);
 
             var newCoordinates = constructNewCoordinatesCoverCrop(x_covercrop, y_covercrop);
+            var geosss = newCoordinates;
+            var geop = geosss[0];
+            var geop1 = geosss[1];
+
+            CoverCrop_markers.push(geop);
+            CoverCrop_markers1.push(geop1);
 
             //EE: 'covercrop' conects to 'g2.php/checkBox_CoverCrop(options)' to on/off by its check-button
             cover = geo;
             cover.setMap(basemap_1);
             coverArray.push(cover);
+            cover1 = geo1;//geo;
+            cover1.setMap(basemap_1);
+            coverArray.push(cover1);
             cc_marker_yes = cc_marker_yes + 1;//sc_marker_yes
         }
+
+        //E: This event makes visible the 'StripCropping' markers when zoom>=12
+        google.maps.event.addListener(basemap_1, 'zoom_changed', function() {
+            var zoom = basemap_1.getZoom();
+            // iterate over markers and call setVisible
+            for (i = 0; i < CoverCrop_markers.length; i++) {
+                CoverCrop_markers[i].setVisible(zoom >= 11.5);
+            }
+        });
+        google.maps.event.addListener(basemap_1, 'zoom_changed', function() {
+            var zoom = basemap_1.getZoom();
+            // iterate over markers and call setVisible
+            for (i = 0; i < CoverCrop_markers1.length; i++) {
+                CoverCrop_markers1[i].setVisible(zoom < 11.5);
+            }
+        });
+
 
         //map.fitBounds(bounds);
         console.log("L.1251 YES Conservation-tillage: " + cc_marker_yes + "  NO Conservation-tillage: " + cc_marker_no);
@@ -919,25 +983,36 @@ function initialize() {
             // -------------------------- For 'Text' as acronym
             // //E: This 'label_icon' comes from 'dolabels()' which retrieves a DOM (box) from g2.php. Without this
             // // Box, the label is shown with balloons.
-            // label: {text: "(CC)", color: '#cc0000', fontSize: "9px"},
-            // icon: label_icon//E: It comes from converting 'svg_to_img2('label_rect')'
+            label: {text: "(C)", color: '#cc0000', fontSize: "10px", fontWeight: "bold"},
+            icon: label_icon//E: It comes from converting 'svg_to_img2('label_rect')'
 
             // --------------- 'Icon' by drawing using coordinates (CoverCrop)
-            icon: {//E: square coordiantes
-                path: 'M 50,1 50,50 1,50 1,1 z', fillColor: '#ffffff',
-                fillOpacity: 0.5, scale: 0.18, strokeColor: '#404040', strokeWeight: 1
-            }
+            // icon: {//E: square coordiantes
+            //     path: 'M 50,1 50,50 1,50 1,1 z', fillColor: '#ffffff',
+            //     fillOpacity: 0.5, scale: 0.18, strokeColor: '#404040', strokeWeight: 1
+            // }
         };
-        var opts = geoOptions;
+        var geoOptions1 = {
+            label: {text: "(C)", color: '#ff0000', fontSize: "5px"},
+            icon: label_icon//E: It comes from converting 'svg_to_img2('label_rect')'
+        };
+
+        // var opts = geoOptions;
+        // var opts1 = geoOptions1;
         var newCoordinates = [];
         var coordinates = null;
         // if (polygon['coordinates']) {
         // var coordinates = polygon['coordinates'];
         var coordinates = [x, y];
-        var options = opts || {};
+        var options = geoOptions;//opts || {};
+        var options1 = geoOptions1 || {};
         options.position = new google.maps.LatLng(coordinates[1], coordinates[0]);
+        options1.position = new google.maps.LatLng(coordinates[1], coordinates[0]);
+
         geo = new google.maps.Marker(options);
-        return geo;
+        geo1 = new google.maps.Marker(options1);
+        // return geo;
+        return [geo,geo1];
     }
 
     // ------ end 'constructNewCoordinatesCoverCrop(markers)'
@@ -1077,7 +1152,9 @@ function initialize() {
 
         var sc_marker_yes = 0;
         var sc_marker_no = 0;
-        var StripCropping_markers = [];
+        var StripCropping_markers = [];//E: This variable is below used to show label when zoom in/out
+        var StripCropping_markers1 = [];//E: This variable for small labels. Above for large labels
+
         for (var i = 0; i < sb_with_sc_only.properties.length; i++) {
             var newCoordinates = [];
             var whichNode = "";
@@ -1085,18 +1162,26 @@ function initialize() {
 
             // var x_stripcrop = (sb_with_nt_only.properties[i]["coord_x"]);
             var x_stripcrop = (sb_with_sc_only.properties[i]["coord_x"]);
-            // var y_stripcrop = (sb_with_sc_only.properties[i]["coord_y"]-0.003);
-            var y_stripcrop = (sb_with_sc_only.properties[i]["coord_y"]);
+            // var y_stripcrop = (sb_with_sc_only.properties[i]["coord_y"]);
+            var y_stripcrop = (sb_with_sc_only.properties[i]["coord_y"]-0.003);
             // console.log("L.1090 coord grass: " + typeof x_stripcrop + " , " + typeof y_stripcrop);
             // console.log("L.1091 coord grass: " + x_stripcrop + " , " + y_stripcrop);
 
             var newCoordinates = constructNewCoordinatesStripCropping(x_stripcrop, y_stripcrop);
-            StripCropping_markers.push(geo);
+            var geosss = newCoordinates;
+            var geop = geosss[0];
+            var geop1 = geosss[1];
+
+            StripCropping_markers.push(geop);
+            StripCropping_markers1.push(geop1);
 
             //EE: 'strip' conects to 'g2.php/checkBox_StripCropping(options)' to on/off by its check-button
-            strip = geo;
+            strip = geop;//geo;
             strip.setMap(basemap_1);
             stripArray.push(strip);
+            strip1 = geop1;//geo;
+            strip1.setMap(basemap_1);
+            stripArray.push(strip1);
             sc_marker_yes = sc_marker_yes + 1;//sc_marker_yes
         }
 
@@ -1105,9 +1190,17 @@ function initialize() {
             var zoom = basemap_1.getZoom();
             // iterate over markers and call setVisible
             for (i = 0; i < StripCropping_markers.length; i++) {
-                StripCropping_markers[i].setVisible(zoom >= 12);
+                StripCropping_markers[i].setVisible(zoom >= 11.5);
             }
         });
+        google.maps.event.addListener(basemap_1, 'zoom_changed', function() {
+            var zoom = basemap_1.getZoom();
+            // iterate over markers and call setVisible
+            for (i = 0; i < StripCropping_markers1.length; i++) {
+                StripCropping_markers1[i].setVisible(zoom < 11.5);
+            }
+        });
+
 
         //map.fitBounds(bounds);
         console.log("L.1078 YES strip_cropping: " + sc_marker_yes + "  NO strip_cropping: " + sc_marker_no);
@@ -1127,29 +1220,38 @@ function initialize() {
             // fillOpacity: 0.3,
             // icon: tillIcon//E: square 'icon'
             // --------------- For 'text' (SC) as acronym
-            // label:{text: "(SC)",color: '#009933',fontSize: "9px"},
-            // icon: label_icon
+            label:{text: "(S)",color: '#990000',fontSize: "10px", fontWeight: "bold"},
+            icon: label_icon
             // --------------- For 'Icon' from SVG (StripCropping)
-            icon: {
-                path: 'M 25,1 31,18 49,18 35,29 40,46 25,36 10,46 15,29 1,18 19,18 z',//Star
-                fillColor: '#666666',fillOpacity: 0.8, scale: 0.18, strokeColor: '#404040', strokeWeight: 1,
-                zIndex: 100
-            },
+            // icon: {
+            //     path: 'M 25,1 31,18 49,18 35,29 40,46 25,36 10,46 15,29 1,18 19,18 z',//Star
+            //     fillColor: '#666666',fillOpacity: 0.8, scale: 0.18, strokeColor: '#404040', strokeWeight: 1,
+            //     zIndex: 100
+            // },
             // ----------------- Icon from image.png from localhost
             // icon: star1,
-            visible:false
+            // visible:false
         };
-        var opts = geoOptions;
+        var geoOptions1 = {
+            label:{text: "(S)",color: '#990000',fontSize: "5px"},
+            icon: label_icon
+        };
+
+        // var opts = geoOptions;
+        // var opts1 = geoOptions1;
         var newCoordinates = [];
         var coordinates = null;
-        // if (polygon['coordinates']) {
         // var coordinates = polygon['coordinates'];
         var coordinates = [x, y];
-        var options = opts || {};
+        var options = geoOptions || {};//opts || {};
+        var options1 = geoOptions1 || {};
         options.position = new google.maps.LatLng(coordinates[1], coordinates[0]);
+        options1.position = new google.maps.LatLng(coordinates[1], coordinates[0]);
 
         geo = new google.maps.Marker(options);
-        return geo;
+        geo1 = new google.maps.Marker(options1);
+        // return geo;
+        return [geo,geo1];
     }
 
     // ------ end 'constructNewCoordinatesStripCropping(Markers)'
@@ -1200,23 +1302,23 @@ function initialize() {
                             break;
 
                         case ((filterAcre > 0) && (filterAcre < 3)):
-                            filterColor = "#7cb468";//"#e927c2";
+                            filterColor = "#fcb0b0";// "#7cb468";//"#e927c2";
                             break;
 
                         case ((filterAcre >= 3) && (filterAcre < 6)):
-                            filterColor = "#559547";//"#bf8811";
+                            filterColor = "#fc7575";// "#559547";//"#bf8811";
                             break;
 
                         case ((filterAcre >= 6) && (filterAcre < 10)):
-                            filterColor = "#107c10";//"#7da569";
+                            filterColor = "#fc5050";//"#107c10";//"#7da569";
                             break;
 
                         case ((filterAcre >= 10) && (filterAcre < 13)):
-                            filterColor = "#045605";//"#602288";
+                            filterColor = "#fc0909";// "#045605";//"#602288";
                             break;
 
                         case (filterAcre >= 13):
-                            filterColor = "#003301";//"#b10c0c";
+                            filterColor = "#d20000";// "#003301";//"#b10c0c";
                             break;
                         default:
                             filterColor = "";
@@ -1312,7 +1414,9 @@ function initialize() {
 
         var gw_yes = 0;
         var gw_no = 0;
-        // for (var i in rows) {
+        var GrassWaterway_markers = [];//E: This variable is below used to show label when zoom in/out
+        var GrassWaterway_markers1 = [];//E: This variable for small labels. Above for large labels
+
         for (var i = 0; i < subbasin_json.features.length; i++) {
             if (listofSubs.includes(subbasin_json.properties[i]["Subbasin"])) {
                 var newCoordinates = [];
@@ -1320,20 +1424,28 @@ function initialize() {
 
                 // console.log("L.1146  sb: "+rows[i]+": \n"+ JSON.stringify(rows[i][1]['geometry']));
                 // if (i<5) console.log("i = "+i+" ; subbasin: "+subbasin_json.properties[i]["Subbasin"]+" cont:"+ JSON.stringify(polygon));
-                //     var newCoordinates = constructNewCoordinatesGrass(rows[i][1]['geometry']);
+
                 var x_grass = parseFloat(subbasin_json.properties[i].grass_x);
                 var y_grass = parseFloat(subbasin_json.properties[i].grass_y);
                 // console.log("L.1031 coord grass: "+ typeof x_grass + " , "+ typeof y_grass);
                 // console.log("L.1032 coord grass: "+ x_grass+ " , "+ y_grass);
                 var newCoordinates = constructNewCoordinatesGrass(x_grass, y_grass);
-                // var row = rows[i];//EE: not needed when json data
-                // var whichNode = row[0];
+                var geosss = newCoordinates;
+                var geop = geosss[0];
+                var geop1 = geosss[1];
+
+                GrassWaterway_markers.push(geop);
+                GrassWaterway_markers1.push(geop1);
+
                 var whichNode = subbasin_json.properties[i]["Subbasin"].toString();
 
                 //EE: 'grass' conects to 'g2.php/checkBox_Grasswaterways(options)' to on/off by its check-button
-                grass = geo;
+                grass = geop;//geo;
                 grass.setMap(basemap_1);
                 grassArray.push(grass);
+                grass1 = geop1;
+                grass1.setMap(basemap_1);
+                grassArray.push(grass1);
                 gw_yes = gw_yes + 1;
             }
             else {
@@ -1341,6 +1453,24 @@ function initialize() {
                 // console.log("L.656 subbasin "+ subbasin_json.properties[i]["Subbasin"]+ " does not include CR")
             }
         }
+
+        //E: This event makes visible the 'StripCropping' markers when zoom>=12
+        google.maps.event.addListener(basemap_1, 'zoom_changed', function() {
+            var zoom = basemap_1.getZoom();
+            // iterate over markers and call setVisible
+            for (i = 0; i < GrassWaterway_markers.length; i++) {
+                GrassWaterway_markers[i].setVisible(zoom >= 11.5);
+            }
+        });
+        google.maps.event.addListener(basemap_1, 'zoom_changed', function() {
+            var zoom = basemap_1.getZoom();
+            // iterate over markers and call setVisible
+            for (i = 0; i < GrassWaterway_markers1.length; i++) {
+                GrassWaterway_markers1[i].setVisible(zoom < 11.5);
+            }
+        });
+
+
         //map.fitBounds(bounds);
         console.log("L.1143 YES grasswaterways: " + gw_yes + "  NO grasswaterways: " + gw_no);
     }
@@ -1359,30 +1489,39 @@ function initialize() {
             // fillOpacity: 0.3,
             // icon: grassIcon
             // ---------------------- For 'Text' (acronym)
-            // label:{text: "(GW)",color: '#000000',fontSize: "9px"},
+            label:{text: "(G)",color: '#000000',fontSize: "10px", fontWeight: "bold"},
             // // // label: "abc",
-            // icon: label_icon
+            icon: label_icon
             // ---------------------- For 'Icon' from SVG
-            icon: {
+            // icon: {
                 // path: 'M 50,1 50,50 1,50 1,1 z',//E: path for square
-                path:'M 50,25 47.5,35.9 45,40 40,45 30,49.5 25,50 20,49.5 15,47.9 10,45 5,40 2.5,35.9 0,25 2.5,14.1' +
-                ' 5,10 10,5 15,2.1 20,0.5 25,0 30,0.5 40,5 45,10 47.5,14.1 z',//E: path for circle
-                fillColor: '#ffffff',
-                fillOpacity: 0.2, scale: 0.25, strokeColor: '#737373', strokeWeight: 1,
-                zIndex: 1
-            }
+                // path:'M 50,25 47.5,35.9 45,40 40,45 30,49.5 25,50 20,49.5 15,47.9 10,45 5,40 2.5,35.9 0,25 2.5,14.1' +
+                // ' 5,10 10,5 15,2.1 20,0.5 25,0 30,0.5 40,5 45,10 47.5,14.1 z',//E: path for circle
+                // fillColor: '#ffffff',
+                // fillOpacity: 0.2, scale: 0.25, strokeColor: '#737373', strokeWeight: 1,
+                // zIndex: 1
+            // }
         };
-        var opts = geoOptions;
+        var geoOptions1 = {
+            label:{text: "(G)",color: '#000000',fontSize: "5px"},
+            icon: label_icon
+        };
+
+        // var opts = geoOptions;
+        // var opts1 = geoOptions1;
         var newCoordinates = [];
         var coordinates = null;
-        // if (polygon['coordinates']) {
         //     var coordinates = polygon['coordinates'];
         var coordinates = [x, y];
-        var options = opts || {};
+        var options = geoOptions || {};//opts || {};
+        var options1 = geoOptions1 || {};
         options.position = new google.maps.LatLng(coordinates[1], coordinates[0]);
+        options1.position = new google.maps.LatLng(coordinates[1], coordinates[0]);
+
         geo = new google.maps.Marker(options);
-        return geo;
-        // }
+        geo1 = new google.maps.Marker(options1);
+        // return geo;
+        return [geo,geo1];
     }
 
     // ------ end 'constructNewCoordinatesGrass(polygon)'
@@ -1420,27 +1559,56 @@ function initialize() {
 
         var nt_yes = 0;
         var nt_no = 0;
-        // for (var i in rows) {
+        var ConserveTillage_markers = [];//E: This variable is below used to show label when zoom in/out
+        var ConserveTillage_markers1 = [];//E: This variable for small labels. Above for large labels
+
         for (var i = 0; i < sb_with_nt_only.properties.length; i++) {
             var newCoordinates = [];
             var whichNode = "";
             // var row = rows[i];//EE: not needed when json data
-            // var whichNode = row[0];
+
             var whichNode = sb_with_nt_only.properties[i]["subbasin"];
 
-            // var x_notill = (sb_with_nt_only.properties[i]["coord_x"]);
             var x_notill = (sb_with_nt_only.properties[i]["coord_x"]);
+            // var y_notill = (sb_with_nt_only.properties[i]["coord_y"]);
             var y_notill = (sb_with_nt_only.properties[i]["coord_y"] + 0.003);
             // console.log("L.1423 coord grass: " + typeof x_notill + " , " + typeof y_notill);
             // console.log("L.1424 coord grass: " + x_notill + " , " + y_notill);
 
             var newCoordinates = constructNewCoordinatesTill(x_notill, y_notill);
+            var geosss = newCoordinates;
+            var geop = geosss[0];
+            var geop1 = geosss[1];
 
-            notill = geo;
+            ConserveTillage_markers.push(geop);
+            ConserveTillage_markers1.push(geop1);
+
+            notill = geop;
+            notill.setMap(basemap_1);
+            conserveArray.push(notill);
+            notill = geop1;
             notill.setMap(basemap_1);
             conserveArray.push(notill);
             nt_yes = nt_yes + 1;
         }
+
+
+        //E: This event makes visible the 'StripCropping' markers when zoom>=12
+        google.maps.event.addListener(basemap_1, 'zoom_changed', function() {
+            var zoom = basemap_1.getZoom();
+            // iterate over markers and call setVisible
+            for (i = 0; i < ConserveTillage_markers.length; i++) {
+                ConserveTillage_markers[i].setVisible(zoom >= 11.5);
+            }
+        });
+        google.maps.event.addListener(basemap_1, 'zoom_changed', function() {
+            var zoom = basemap_1.getZoom();
+            // iterate over markers and call setVisible
+            for (i = 0; i < ConserveTillage_markers1.length; i++) {
+                ConserveTillage_markers1[i].setVisible(zoom < 11.5);
+            }
+        });
+
 
         //map.fitBounds(bounds);
         console.log("L.1251 YES Conservation-tillage: " + nt_yes + "  NO Conservation-tillage: " + nt_no);
@@ -1459,29 +1627,40 @@ function initialize() {
             // fillOpacity: 0.3,
             // icon: tillIcon
             // ---------------------- For 'text' acronym
-            // label: {text: "(CT)", color: '#cc33ff', fontSize: "9px"},
-            // //E: This 'label_icon' comes from 'dolabels()' which retrieves a DOM (box) from g2.php. Without this
-            // // Box, the label is shown with balloons.
-            // icon: label_icon//E: It comes from converting 'svg_to_img2('label_rect')'
+            label: {text: "(T)", color: '#0033cc', fontSize: "10px", fontWeight: "bold"},
+            //E: This 'label_icon' comes from 'dolabels()' which retrieves a DOM (box) from g2.php. Without this
+            // Box, the label is shown with balloons.
+            icon: label_icon//E: It comes from converting 'svg_to_img2('label_rect')'
 
             // --------------- 'Icon' by drawing using coordinates (NoTill)
-            icon: {
-                path: 'M 50,1 50,50 1,50 1,1 z',//E: Square
-                fillColor: '#ffffff',fillOpacity: 0.5, scale: 0.18, strokeColor: '#404040', strokeWeight: 1,
-                zIndex: 1
-            }
+            // icon: {
+            //     path: 'M 50,1 50,50 1,50 1,1 z',//E: Square
+            //     fillColor: '#ffffff',fillOpacity: 0.5, scale: 0.18, strokeColor: '#404040', strokeWeight: 1,
+            //     zIndex: 1
+            // }
 
         };
-        var opts = geoOptions;
+        var geoOptions1 = {
+            label: {text: "(T)", color: '#0033cc', fontSize: "5px"},
+            icon: label_icon//E: It comes from converting 'svg_to_img2('label_rect')'
+        };
+
+        // var opts = geoOptions;
+        // var opts1 = geoOptions1;
         var newCoordinates = [];
         var coordinates = null;
         // if (polygon['coordinates']) {
         // var coordinates = polygon['coordinates'];
         var coordinates = [x, y];
-        var options = opts || {};
+        var options = geoOptions || {};//opts || {};
+        var options1 = geoOptions1 || {};
         options.position = new google.maps.LatLng(coordinates[1], coordinates[0]);
+        options1.position = new google.maps.LatLng(coordinates[1], coordinates[0]);
+
         geo = new google.maps.Marker(options);
-        return geo;
+        geo1 = new google.maps.Marker(options1);
+        // return geo;
+        return [geo,geo1];
     }
 
     // ------ end 'constructNewCoordinatesTill(polygon)'

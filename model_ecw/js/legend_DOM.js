@@ -28,9 +28,10 @@ function mm_legend(){
     var b1 = document.createElement('DIV');
     b1.className = "square_box";
     // b1.style.backgroundColor = "#8da1bf";
-    b1.innerHTML = "(CR)";//E: De-Activated for square Icon. Activated for acronym
+    b1.innerHTML = "(R)";//E: De-Activated for square Icon. Activated for acronym
     b1.style.fontSize = "9px";//E: De-Activated for square Icon. Activated for acronym
-    b1.style.color = "#666666";//E: De-Activated for square Icon. Activated for acronym
+    b1.style.fontWeight = 'bold';
+    b1.style.color = "#008000";//E: De-Activated for square Icon. Activated for acronym
 
     var labelB1 = document.createElement('DIV');
     labelB1.className = "sq_label";
@@ -48,9 +49,10 @@ function mm_legend(){
     var b2 = document.createElement('DIV');
     b2.className = "square_box";
     // b2.style.backgroundColor = "#99c9ba";
-    b2.innerHTML = "(CC)";//E: De-Activated for square Icon. Activated for acronym
+    b2.innerHTML = "(C)";//E: De-Activated for square Icon. Activated for acronym
     b2.style.fontSize = "9px";//E: De-Activated for square Icon. Activated for acronym
-    b2.style.color = "#cc0000";//E: De-Activated for square Icon. Activated for acronym
+    b2.style.fontWeight = 'bold';
+    b2.style.color = "#ff0000";//E: De-Activated for square Icon. Activated for acronym
 
     var labelB2 = document.createElement('DIV');
     labelB2.className = "sq_label";
@@ -70,9 +72,10 @@ function mm_legend(){
     // --------------- For 'Icon'
     // b3.style.backgroundColor = "#87b07e";
     // --------------- For 'text' acronym
-    b3.innerHTML = "(SC)";//E: De-Activated for square Icon. Activated for acronym
+    b3.innerHTML = "(S)";//E: De-Activated for square Icon. Activated for acronym
     b3.style.fontSize = "9px";//E: De-Activated for square Icon. Activated for acronym
-    b3.style.color = "#009933";//E: De-Activated for square Icon. Activated for acronym
+    b3.style.fontWeight = 'bold';
+    b3.style.color = "#990000";//E: De-Activated for square Icon. Activated for acronym
     // --------------- For 'HTML symbol'
     // b3.innerHTML = "&#9733";
     // b3.style.fontSize = "14px";//E: De-Activated for square Icon. Activated for acronym
@@ -96,8 +99,9 @@ function mm_legend(){
     // For Icon
     // b4.style.border = "1px solid #333333";//E: Activated for square Icon. Deactivated for Acronym
     // For 'text' acronym
-    b4.innerHTML = "(GW)";//E: De-Activated for square Icon. Activated for acronym
+    b4.innerHTML = "(G)";//E: De-Activated for square Icon. Activated for acronym
     b4.style.fontSize = "9px";//E: De-Activated for square Icon. Activated for acronym
+    b4.style.fontWeight = 'bold';
     b4.style.color = "#000000";//E: De-Activated for square Icon. Activated for acronym
 
     var labelB4 = document.createElement('DIV');
@@ -117,9 +121,10 @@ function mm_legend(){
     b5.className = "square_box";
     b5.style.height = "9px"; b5.style.width = "9px";
     // b5.style.border = "1px solid #333333";//E: Activated for square Icon. Deactivated for Acronym
-    b5.innerHTML = "(CT)";//E: De-Activated for square Icon. Activated for acronym
+    b5.innerHTML = "(T)";//E: De-Activated for square Icon. Activated for acronym
     b5.style.fontSize = "9px";//E: De-Activated for square Icon. Activated for acronym
-    b5.style.color = "#cc33ff";//E: De-Activated for square Icon. Activated for acronym
+    b5.style.fontWeight = 'bold';
+    b5.style.color = "#0033cc";//E: De-Activated for square Icon. Activated for acronym
 
     var labelB5 = document.createElement('DIV');
     labelB5.className = "sq_label";
@@ -153,7 +158,7 @@ function mm_legend(){
     // function mmfilter_legend(){
     var filt_1 = document.createElement('DIV');
     filt_1.className = "rectangle_box";
-    filt_1.style.backgroundColor = "#7cb468";//"#e927c2";
+    filt_1.style.backgroundColor = "#fcb0b0";//"#7cb468";//"#e927c2";
 
     var label_f1 = document.createElement('DIV');
     label_f1.className = "filter_label";
@@ -168,7 +173,7 @@ function mm_legend(){
 
     var filt_2 = document.createElement('DIV');
     filt_2.className = "rectangle_box";
-    filt_2.style.backgroundColor = "#559547";//"#bf8811";
+    filt_2.style.backgroundColor = "#fc7575";//"#559547";//"#bf8811";
 
     var label_f2 = document.createElement('DIV');
     label_f2.className = "filter_label";
@@ -184,7 +189,7 @@ function mm_legend(){
 
     var filt_3 = document.createElement('DIV');
     filt_3.className = "rectangle_box";
-    filt_3.style.backgroundColor = "#107c10";//"#7da569";
+    filt_3.style.backgroundColor = "#fc5050";//"#107c10";//"#7da569";
 
     var label_f3 = document.createElement('DIV');
     label_f3.className = "filter_label";
@@ -200,7 +205,7 @@ function mm_legend(){
 
     var filt_4 = document.createElement('DIV');
     filt_4.className = "rectangle_box";
-    filt_4.style.backgroundColor = "#045605";//"#602288";
+    filt_4.style.backgroundColor = "#fc0909";//"#045605";//"#602288";
 
     var label_f4 = document.createElement('DIV');
     label_f4.className = "filter_label";
@@ -216,7 +221,7 @@ function mm_legend(){
 
     var filt_5 = document.createElement('DIV');
     filt_5.className = "rectangle_box";
-    filt_5.style.backgroundColor = "#003301";//"#b10c0c";
+    filt_5.style.backgroundColor = "#d20000";//"#003301";//"#b10c0c";
 
     var label_f5 = document.createElement('DIV');
     label_f5.className = "filter_label";
