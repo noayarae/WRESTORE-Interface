@@ -1876,13 +1876,13 @@ in US Dollars" style="margin: 0px 0px 0px
             var $radios = $('input:radio[name=rating1]');
             //alert(answersArray[oneMap].RATING);
             var ratingAnswer=answersArray[oneMap].RATING;
-            alert("L.1878 alert 1: oneMap = "+oneMap+"  r1= "+ ratingAnswer);
+//            alert("L.1878 alert 1: oneMap = "+oneMap+"  r1= "+ ratingAnswer);
             $('input[name=rating1]').attr('checked', false);
             $radios.filter('[value='+ratingAnswer+']').attr('checked', true);
 
             var $radios2 = $('input:radio[name=rating2]');
             var ratingAnswer2=answersArray[oneMap].RATING;//E: @@@
-            alert("L.1883 alert 1: oneMap = "+oneMap+"  r2= "+ ratingAnswer2);
+//            alert("L.1883 alert 1: oneMap = "+oneMap+"  r2= "+ ratingAnswer2);
             $('input[name=rating2]').attr('checked', false);
             $radios2.filter('[value='+ratingAnswer2+']').attr('checked', true);
 
