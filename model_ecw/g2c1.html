@@ -34,7 +34,7 @@
 
     <!-- JS: Javascript libraries -->
     <!-- (4 - no) http  -->
-    <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
+    <script src='//maps.googleapis.com/maps/api/js'></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVNzONb19t-556kuu-ebT5DUF0wCpEt-g&callback=initMap"
             type="text/javascript"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -57,7 +57,7 @@
     <script src="data/ecw4b.js"></script> <!-- Here goes the JS.File name. var "subbasin_json" -->
     <script src="data/ecw_border.js"></script> <!-- JS.File name. var "Watershed border" -->
     <script src="data/stream_g.js"></script> <!-- Here goes the JS.File name. var "stream_json" -->
-    <script src="data/takefeedback2.js"></script> <!-- Here goes the JS.File name. var "optimiz_json" -->
+    <script src="data/takefeedback2b.js"></script> <!-- It brings the JS.File name. var "optimiz_json" -->
     
     <script type="text/javascript">
         //window.onload(heatinitialize);
@@ -93,6 +93,7 @@
 
 <!--  E: This PHP reads/grabs the data from the DB and creates a "TABLE" Html-tag to save them on it -->
 <?php
+////EE: Options for DATA-BASE (L.1218 database_option = 2)
 ////EE: For option 2, Turn-off both, because JSON does not need non of them
 //// EE: For Option 1, Turn-on 'read_database.php', but NOT 'read_db.php'.
 //// EE: For Option 3, Turn-on 'read_db.php', but NOT 'read_database.php'.
@@ -750,7 +751,7 @@ in US Dollars" style="margin: 0px 0px 0px
             <div class="debug" style="width: 13%">
                 <div class="rating_backnext debug">
                     <div class="l6_box" style="/*border: 1px solid; border-radius: 5px*/">
-                        <input id="Back" class="trackable barBlue moveBack" type="button" name="Back"
+                        <input id="Back" class="barBlue moveBack" type="button" name="Back"
                                title="Click here to back to the previous suggestion plan"
                                value="&lt;&lt; Previous Suggestion" />
                     </div>
@@ -869,7 +870,7 @@ in US Dollars" style="margin: 0px 0px 0px
             <div class="debug" style="width: 13%">
                 <!--                <div class="rating_backnext debug">-->
                 <div style="/*border: 1px solid; border-radius: 5px*/">
-                    <input id="Next" class="trackable barBlue moveNext" type="button" name="Next"
+                    <input id="Next" class="barBlue moveNext" type="button" name="Next"
                            title="Click here to move to the next suggestion plan" style="position:
                 relative; float: right;" value="Next Suggestion &gt;&gt;" />
                 </div>
@@ -1175,17 +1176,7 @@ in US Dollars" style="margin: 0px 0px 0px
 <script type="text/javascript" src="js/excanvas.js"></script>
 <script type="text/javascript" src="js/graphing.js"></script>
 <script type="text/javascript" src="js/graphingSub.js"></script>
-<!--<script type="text/javascript" src="js/SimpleStarRating.js"></script>-->
-
-
-<!--  This js.script retrieves the data from MySQL in JSON format. This works with option (3) L.926 -->
-<script type="text/javascript">
-//    var wholeData_json = json_from_mysql;
-//    //E: console.log ("L.889 data coming from PHP: \n"+ aux1);
-//    console.log ("L.888 test 1: \n"+ Object.keys(wholeData_json[0]).length);//E: get number of JSON objects
-//    console.log ("L.889 test 1: \n"+ JSON.stringify(wholeData_json[0]));
-//    //    console.log ("L.889 test 1: \n"+ JSON.stringify(auxjs1));
-</script>
+<script type="text/javascript" src="js/shuffling.js"></script>
 
 <script type="text/javascript">
     Shadowbox.init();
@@ -1226,20 +1217,23 @@ in US Dollars" style="margin: 0px 0px 0px
     //    After selecting "database_option", set the corresponding files in L.95
     var database_option = 2;//EE: MySQL(as-html) = 1; JSON = 2; MySQL(as-json) = 3
     var debug_js = 0;//EE: for debugging set 1
+//    var testing = json_from_mysql;
+//    alert("testing:" + testing);
 
     if (database_option == 2) {
         var nsga2_values_as_json = optimized_values;//EE: 'optimized_values' comes from 'data/takefeedback' file
         if (debug_js == 1) alert ("L.821 Database_option: "+ database_option + "  data from JS file as JSON");
     }
     else if (database_option == 3) {
-        //E: This js.script retrieves the data from MySQL in JSON format. This works with option (3) L.926
+        //E: 'json_from_mysql' comes from "read_db.php". It was obtained by encoding the MySQL database into JSON
+        // format. Check "read_db.php" for more detail
         var nsga2_values_as_json = json_from_mysql;
         //E: console.log ("L.889 data coming from PHP: \n"+ aux1);
         console.log ("L.888 test 1: \n"+ Object.keys(nsga2_values_as_json[0]).length);//E: get number of JSON objects
         console.log ("L.889 test 1: \n"+ JSON.stringify(nsga2_values_as_json[0]));
         if (debug_js == 1) alert ("L.827 Database_option: "+ database_option + "  data from MySQL as JSON");
     }
-    else {
+    else {//E: If database_option == 1, or acidentally another value is given
         database_option = 1//EE: By default 'database_option' is set as 1
         if (debug_js == 1) alert ("L.830 Database_option: "+ database_option + "  data from MySQL as html");
     }
@@ -1257,6 +1251,7 @@ in US Dollars" style="margin: 0px 0px 0px
     var fn_obj_array =[];//EE: It'll store values of F0,F1,F2,F3,F4,F5 (objective functions) of 'wholeTable' of 20 alt
 
 
+    //EE: .............................. Start:(1) HEADERS  .........................
     //EE: ****************************** MySQL or JSON ************************************
     if (database_option == 1) {
         //EE: .............................. (1) Headers using MySQL  .........................
@@ -1268,26 +1263,33 @@ in US Dollars" style="margin: 0px 0px 0px
         console.log("L-918 headers: \n" + JSON.stringify(headers));//EE: Show the headers of 'wholeTable'
         //EE: .............................. End:(1) Headers using MySQL  .........................
     }
-    else {
+    else {//E: This is for "database_option == 2" and "database_option == 3"
         //EE: .............................. Start:(1) Headers using JSON  .........................
-        //E: This way works when the data comes from JSON format
-        if (debug_js == 1) alert ("L.933 Databse: JSON");
+        // E: This works when the data comes in JSON format either for "database_option == 2" or "database_option == 3"
+        // E: Above "nsga2_values_as_json" takes "optimized_values" for "database_option == 2"
+        // E: Above "nsga2_values_as_json" takes "json_from_mysql" for "database_option == 3"
+//        if (debug_js == 1) alert ("L.1268 Databse: JSON");
         var nsga2_values = nsga2_values_as_json;//EE: Values obtained from optimization process by NSGA2 algorithm
+
         var headers = Object.keys(nsga2_values[0]);
 //        console.log("L.954 nsga2_values: \n" + JSON.stringify(nsga2_values));//E: show full data
-        console.log ("L.889 test 1: \n"+ Object.keys(nsga2_values[0]).length);//E: get number of JSON objects
-        console.log("L.955 headers: \n" + headers);//E: console.log ("L.927 keys: \n" + headers.length);
+        console.log ("L.1273 test 1: \n"+ Object.keys(nsga2_values[0]).length);//E: get number of JSON objects
+        console.log("L.1274 headers: \n" + headers);//E: console.log ("L.927 keys: \n" + headers.length);
 
         //EE: Get list of headers of subbasins only. For ecw it goes from 15 to 145 (145-15=130 subbasins)
-        var list_header_subbasins = Object.values(headers).slice(15, 145);//EE: Get list of headers of subbasins
-        console.log("L.934 List of Headers of subbasins only: \n" + list_header_subbasins);//E: important,for looping below
+        var list_header_subbasins = Object.values(headers).slice(19, 149);//EE: Get list of headers of subbasins
+        console.log("L.1278 List of Headers of subbasins only: \n" + list_header_subbasins);//E: It is important for
+        // looping below
         //EE: .............................. End:(1) Headers using JSON  .........................
     }
+    //EE: .............................. End:(1) Headers  .........................
 
+    //EE: Start: Saving Fullvalues
     if (database_option == 1){    //E: Way (1)
         //EE: ................... (2) array_fullvalues, answersArray, fn_obj_array (MySQL) ..................
         //E: it gets all values of the 'WholeTable' and saves 'array_fullvalues'
         if (debug_js == 1) alert ("L.945 Databse: MySQL");
+
         $('#wholeTable tr').has('td').each(function() {//EE: Return all (tr) elements that have a (td) element inside them
             var arrayItem = {};
             var arrayItemAnswers = {};
@@ -1298,7 +1300,9 @@ in US Dollars" style="margin: 0px 0px 0px
                 //alert(JSON.stringify(headers[index]));
                 //I am grabbing the incoming information to create the answers array. I will be replacing these numbers as they fill them out
                 //themselves but for now we need all the originals.
-                if(headers[index]=="USERID" || headers[index]=="INDVID" || headers[index]=="RATING"  || headers[index]=="CONFIDENCE" ){
+//                if(headers[index]=="USERID" || headers[index]=="INDVID" || headers[index]=="RATING"  ||
+                if(headers[index]=="USERID" || headers[index]=="INDVID" || headers[index]=="RATING1"  ||
+                    headers[index]=="CONFIDENCE" ){
                     arrayItemAnswers[headers[index]] = $(item).html();
                 }
 
@@ -1324,14 +1328,26 @@ in US Dollars" style="margin: 0px 0px 0px
 //        console.log("L969 length of 'array_fullvalues': \n" + array_fullvalues.length);//E:It gives 20 (because of 20 alternatives)
 //        console.log("L.972 full values of 'answersArray': \n" + JSON.stringify (answersArray));//EE:Give answer of RATING, CONFIDENCE, and attributes USERID, INDVID, and "stripCropping=0", "cropRotation=0", so on of 20 Alt.
 //        console.log("L.974 full values of 'fn_obj_array': \n" + JSON.stringify (fn_obj_array));//EE: Give MEAN, MIN and MAX values of F0,F1,F2,F3,F4,F5 (objective functions) for all the 20 Alternatives
+        console.log("L.1328 'answersArray': \n" + JSON.stringify (answersArray));//EE: Give RATING and CONFIDENCE from for all the 20 Alternatives
 //        //EE: ................... End: array_fullvalues, answersArray, fn_obj_array (using MySQL) ..................
     }
     else {//E: Way (2)
         //EE: ................... Start: array_fullvalues, answersArray, fn_obj_array (using JSON) ..................
         if (debug_js == 1) alert ("L.986 Databse: JSON");
+        //E: For "database_option == 2", nsga2_values_as_json = "optimized_values" from 'data/takefeedback', see L.1224
+        //E: For "database_option == 3", nsga2_values_as_json = "json_from_mysql" from "read_db.php", see L.1228
+        ///////////////////////////////////////////  RANDOMIZATION  ////////////////////////////////////////
+        var nsga2_values_as_json_shuffled;
+//        nsga2_values_as_json_shuffled = shuffle1(nsga2_values_as_json);
+        if (nsga2_values_as_json_shuffled) {
+            nsga2_values_as_json = nsga2_values_as_json_shuffled;
+            alert ("L.1344  Shuffling...");
+        }
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
+
         var array_fullvalues = nsga2_values_as_json;//EE: This is also used in 'bargraphcpy.js'
-        console.log("L.982 full values of 'wholeTable' using JSON file: \n" + array_fullvalues.length);
-//    console.log("L.983 full values of 'wholeTable': \n" + JSON.stringify (array_fullvalues));
+        console.log("L.1344 full values of 'wholeTable' using JSON file: \n" + array_fullvalues.length);
+        console.log("L.1345 array_fullvalues = 'wholeTable': \n" + JSON.stringify (array_fullvalues));
 
         var answersArray = [];
         var fn_obj_array = [];//EE: To store values of F0,F1,F2,F3,F4,F5 (objective functions) of 20 alt
@@ -1341,7 +1357,9 @@ in US Dollars" style="margin: 0px 0px 0px
 
             arrayItemAnswers_js["USERID"] = array_fullvalues[i].USERID.toString();
             arrayItemAnswers_js["INDVID"] = array_fullvalues[i].INDVID.toString();
-            arrayItemAnswers_js["RATING"] = array_fullvalues[i].RATING.toString();
+//            arrayItemAnswers_js["ID2"] = array_fullvalues[i].ID2.toString();
+            arrayItemAnswers_js["RATING1"] = array_fullvalues[i].RATING1.toString();
+            arrayItemAnswers_js["RATING2"] = array_fullvalues[i].RATING2.toString();
             arrayItemAnswers_js["CONFIDENCE"] = array_fullvalues[i].CONFIDENCE.toString();
             arrayItemAnswers_js["stripCropping"] = "0";
             arrayItemAnswers_js["cropRotation"] = "0";
@@ -1361,7 +1379,7 @@ in US Dollars" style="margin: 0px 0px 0px
             answersArray.push(arrayItemAnswers_js);
             fn_obj_array.push(fn_obj_arrayItems_js);
         }
-//    console.log("L.1013 answersArray using JSON file: \n"+ JSON.stringify(answersArray));
+//    console.log("L.1370 answersArray using JSON file: \n"+ JSON.stringify(answersArray));
 //    console.log("L.1014 fn_obj_array using JSON file: \n"+ JSON.stringify(fn_obj_array));
         //EE: ................... End: array_fullvalues, answersArray, fn_obj_array (using JSON) ..................
     }
@@ -1392,6 +1410,7 @@ in US Dollars" style="margin: 0px 0px 0px
         $('#wholeTable tbody tr').has('td').each(function() {//EE: Return all (tr) elements that have(td) element inside them
 //        heatiter=1;
             iter_subbasins = 1;
+
             var PFR_mean_value = new Array();
             var Cost_mean_value = new Array();
             var SR_mean_value = new Array();
@@ -1399,7 +1418,13 @@ in US Dollars" style="margin: 0px 0px 0px
 
             //EE: iteration through the '130 SUBBAINS' - MySQL Data
             //$('td:nth-child(15)').nextUntil('td:nth-child(143)').each(function() {
-            $('td:gt(14):lt(130)',$(this)).each(function() {
+
+            //E: It apears 'td:gt(14)' works rather than 'td:gt(14):lt(140)'. I mean adding ":lt(140)" does not make
+            // any effect for bounding the last element into the loop. In other words, it doesn't matter if we set ":lt(130)" or ":lt(140)"
+            //E: I tested it at https://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_sel_gt
+            //E: At column 18 in the DB (MySQL), the assignation of Conservation Practices for each sub-basin start.
+            $('td:gt(18):lt(140)',$(this)).each(function() {
+//                console.log("L.1401 iter_subbasins: " + iter_subbasins);
                 var subarr=[];
 
                 subarr = JSON.parse("["+$(this).html()+"]");
@@ -1410,8 +1435,8 @@ in US Dollars" style="margin: 0px 0px 0px
                 NR_mean_value.push({name:iter_subbasins, val:-subarr[4][0]});
                 iter_subbasins++;
             });
-            console.log("L.1058 altern: "+iter_altern+ "  'PFR_mean_value' length: "+ JSON.stringify(PFR_mean_value.length));
-//            console.log("L.1058 mean values of PFR 'PFR_mean_value': \n"+ JSON.stringify(PFR_mean_value));
+//            console.log("L.1412 alt: "+iter_altern+ "  'PFR_mean_value' length: "+ JSON.stringify(PFR_mean_value.length));
+//            console.log("L.1413 mean values of PFR 'PFR_mean_value': \n"+ JSON.stringify(PFR_mean_value));
 
             PFR_mean_value.sort(function (a, b) {
                 if ((typeof b.val === 'undefined' && typeof a.val !== 'undefined') || a.val < b.val) {
@@ -1464,7 +1489,7 @@ in US Dollars" style="margin: 0px 0px 0px
     }
     else {
         //E: ****************************** Start: Saving Using JSON DATA *******************************
-        if (debug_js == 1) alert ("L.1151 Databse from JSON");
+//        if (debug_js == 1) alert ("L.1151 Databse from JSON");
         //EE: iteration through the '20 ALTERNATIVES' - JSON Data
         for (var i = 0; i < array_fullvalues.length; i++) {
 //        heatiter = 1;
@@ -1481,7 +1506,8 @@ in US Dollars" style="margin: 0px 0px 0px
                 //EE: The value of 'array_fullvalues[i]' is searched by its 'key' value (for example: by S1).
                 var my_target = array_fullvalues[i][key];//EE: it returns [0,0,0],[...],[...],[...],[...],[0,0,0]
                 var aux2 = JSON.parse("[" + my_target + "]");//EE: the previous result is converted in array of 6 items
-                // if (i<1) console.log("L.1052: \n"+ typeof aux2+ " ; "+ aux2.length+ " ; "+ JSON.stringify(aux2));
+//                if (i<1) console.log("L.1496:   my_target: \n"+ my_target);
+//                if (i<1) console.log("L.1497: \n"+ typeof aux2+ " ; "+ aux2.length+ " ; "+ JSON.stringify(aux2));
 
                 PFR_mean_value_js.push({name: iter_subbasins, val: -aux2[1][0]});//E:the second bracket i.e.[0] gives the mean value
                 Cost_mean_value_js.push({name: iter_subbasins, val: -aux2[2][0]});
@@ -1546,7 +1572,8 @@ in US Dollars" style="margin: 0px 0px 0px
     // These two lines get the subbasins' IDs with PFR values (127 in total) and store as 'PFR_meanVals_array'
     var subbasins_with_PFR = new Array();//E: Before: ressss
     subbasins_with_PFR = PFR_meanVals_array[0].val.map(function(a) { return a.name;});
-//    console.log("L.1036 subbasins_with_PFR: \n" + JSON.stringify(subbasins_with_PFR));
+//    console.log("L.1550 subbasins_with_PFR: \n" + JSON.stringify(PFR_meanVals_array[0]));
+//    console.log("L.1551 subbasins_with_PFR: \n" + JSON.stringify(subbasins_with_PFR));
     //subbasins_with_PFR= PFR_meanVals_array[1].val.map(function(a) { return a.name;});
     //console.log(heatpfra[1].val[0].val);//console.log(heatpfra[1].val[0].name);
 
@@ -1588,6 +1615,7 @@ in US Dollars" style="margin: 0px 0px 0px
 
     //for star rating hover ???? //E:no identified yet
     //E: It was identified. It changes star' color on rating box, when hovering. See 'css/star.css'
+    //E: When hovering, "jshoverNext" class is added to nextAll stars, and "jshover" class is added to prevAll stars
     $('.rating input[type="radio"]').hover(function() {
         $(this).nextAll('span').removeClass().addClass('jshoverNext');
         $(this).next('span').removeClass().addClass('jshover');
@@ -1872,16 +1900,20 @@ in US Dollars" style="margin: 0px 0px 0px
 
         //This grabs the information needed to get the radio buttons set up with new data
         function setUpRadio(){
+
             //Setting up the radio buttons - General Rating1
             var $radios = $('input:radio[name=rating1]');
-            //alert(answersArray[oneMap].RATING);
-            var ratingAnswer=answersArray[oneMap].RATING;
+            //alert(answersArray[oneMap].RATING1);
+//            var ratingAnswer=answersArray[oneMap].RATING;
+            var ratingAnswer=answersArray[oneMap].RATING1;//E: It takes 'RATING1' from the DB through 'answersArray'
 //            alert("L.1878 alert 1: oneMap = "+oneMap+"  r1= "+ ratingAnswer);
             $('input[name=rating1]').attr('checked', false);
             $radios.filter('[value='+ratingAnswer+']').attr('checked', true);
 
             var $radios2 = $('input:radio[name=rating2]');
-            var ratingAnswer2=answersArray[oneMap].RATING;//E: @@@
+//            var ratingAnswer2=answersArray[oneMap].RATING;//E: @@@
+//            var ratingAnswer2=answersArray[oneMap].RATING1;//E: @@@
+            var ratingAnswer2=answersArray[oneMap].RATING2;//E: @@@
 //            alert("L.1883 alert 1: oneMap = "+oneMap+"  r2= "+ ratingAnswer2);
             $('input[name=rating2]').attr('checked', false);
             $radios2.filter('[value='+ratingAnswer2+']').attr('checked', true);
@@ -1891,7 +1923,7 @@ in US Dollars" style="margin: 0px 0px 0px
 
             //setting up Crop-Rotation one (CR)
             var $radios5 = $('input:radio[name=cropRotation1]');
-            //alert(answersArray[oneMap].RATING);
+            //alert(answersArray[oneMap].RATING1);
             var cropRotationAnswer1=answersArray[oneMap].cropRotation;
             $('input[name=cropRotation1]').attr('checked', false);
             $radios5.filter('[value='+cropRotationAnswer1+']').attr('checked', true);
@@ -1903,7 +1935,7 @@ in US Dollars" style="margin: 0px 0px 0px
 
             //setting up Cover-Crops one (CC)
             var $radios7 = $('input:radio[name=coverCrops1]');
-            //alert(answersArray[oneMap].RATING);
+            //alert(answersArray[oneMap].RATING1);
             var coverCropsAnswer1=answersArray[oneMap].coverCrops;
             $('input[name=coverCrops1]').attr('checked', false);
             $radios7.filter('[value='+coverCropsAnswer1+']').attr('checked', true);
@@ -1916,11 +1948,11 @@ in US Dollars" style="margin: 0px 0px 0px
 
             //setting up Strip-Cropping one (SC)
             var $radios3 = $('input:radio[name=stripCropping1]');
-            //alert(answersArray[oneMap].RATING);
+            //alert(answersArray[oneMap].RATING1);
             var stripCroppingAnswer1=answersArray[oneMap].stripCropping;
             $('input[name=stripCropping1]').attr('checked', false);
             $radios3.filter('[value='+stripCroppingAnswer1+']').attr('checked', true);
-            //alert(rating1a);
+
             if(stripCroppingAnswer1 !== "0") {
                 $radios3.filter('[value='+stripCroppingAnswer1+']').attr('checked', true);
                 //$radios.filter('[rating1]').attr('checked', true);
@@ -1929,11 +1961,11 @@ in US Dollars" style="margin: 0px 0px 0px
 
             //setting up Filter-Strips one (FS)
             var $radios9 = $('input:radio[name = filterStrips1]');
-            //alert(answersArray[oneMap].RATING);
+            //alert(answersArray[oneMap].RATING1);
             var filterStripsAnswer1=answersArray[oneMap].filterStrips;
             $('input[name=filterStrips1]').attr('checked', false);
             $radios9.filter('[value='+filterStripsAnswer1+']').attr('checked', true);
-            //alert(rating1a);
+
             if(filterStripsAnswer1 !== "0") {
                 $radios9.filter('[value='+filterStripsAnswer1+']').attr('checked', true);
                 //$radios.filter('[rating1]').attr('checked', true);
@@ -1942,7 +1974,7 @@ in US Dollars" style="margin: 0px 0px 0px
 
             //setting up Grassed-Waterways one (GW)
             var $radios11 = $('input:radio[name=grassedWaterways1]');
-            //alert(answersArray[oneMap].RATING);
+            //alert(answersArray[oneMap].RATING1);
             var grassedWaterwaysAnswer1=answersArray[oneMap].grassedWaterways;
             $('input[name=grassedWaterways1]').attr('checked', false);
             $radios11.filter('[value='+grassedWaterwaysAnswer1+']').attr('checked', true);
@@ -1955,7 +1987,7 @@ in US Dollars" style="margin: 0px 0px 0px
 
             //setting up Conservation-Tillage one (CT)
             var $radios13 = $('input:radio[name=conservationTillage1]');
-            //alert(answersArray[oneMap].RATING);
+            //alert(answersArray[oneMap].RATING1);
             var conservationTillageAnswer1=answersArray[oneMap].conservationTillage;
             $('input[name=conservationTillage1]').attr('checked', false);
             $radios13.filter('[value='+conservationTillageAnswer1+']').attr('checked', true);
@@ -1968,7 +2000,7 @@ in US Dollars" style="margin: 0px 0px 0px
 
             //setting up Wetlands one (WT)
             var $radios15 = $('input:radio[name=Wetlands1]');
-            //alert(answersArray[oneMap].RATING);
+            //alert(answersArray[oneMap].RATING1);
             var WetlandsAnswer1=answersArray[oneMap].Wetlands;
 //            alert("WetlandsAnswer1: "+ WetlandsAnswer1);//E:
 //            alert("WetlandsAnswer1: "+ answersArray);//E:
@@ -1988,15 +2020,8 @@ in US Dollars" style="margin: 0px 0px 0px
             $("#rating1").val(function () {
                 return document.querySelector('input[name="rating1"]:checked').value;
             });
-//            alert("L.1825 text area: \n"+ $(this).val());
-//            if (oneMap == oneMap){
-//                if (debug_js == 0) alert ("L.1828 : Current Suggestion: "+ (oneMap+1));
-////                if (oneMap == 2) {//E: 19 corresponds to the last alternative
-////                    end_experiment ()
-//                    //$radios.filter('[rating1]').attr('checked', true);
-////                }
-//            }
         });
+
         jQuery('input:radio[name=rating2]').change(function(){
             //var id = $(this).attr("value");
             $("#rating2").val(function () {
@@ -2127,8 +2152,11 @@ in US Dollars" style="margin: 0px 0px 0px
         $('.totalMaps').text(totalLength);
         $('.totalPages').text(totalPages);
         $('.currentPage').text(page);
-        $("#rating1").val(answersArray[oneMap].RATING);
-        $("#rating2").val(answersArray[oneMap].RATING);//E: @@@
+//        $("#rating1").val(answersArray[oneMap].RATING);
+        $("#rating1").val(answersArray[oneMap].RATING1);
+//        $("#rating2").val(answersArray[oneMap].RATING);//E: @@@
+//        $("#rating2").val(answersArray[oneMap].RATING1);//E: @@@
+        $("#rating2").val(answersArray[oneMap].RATING2);//E: @@@
         $("#stripCropping1").val(answersArray[oneMap].stripCropping);
         $("#cropRotation1").val(answersArray[oneMap].cropRotation);
         $("#coverCrops1").val(answersArray[oneMap].coverCrops);
@@ -2146,18 +2174,20 @@ in US Dollars" style="margin: 0px 0px 0px
         //  ============== Start moveNext =============== //
         //This fires off each time someone hits the next button. It moves the data 2 spots and runs through the
         //new arrays that are created. The "if" statement stops it from doing anything if at the end of the set.
-        // ----- 'page' goes from 1 to 20; 'oneMap' goes from 0 to 19 ----- //
+        // ----- E: 'page' goes from 1 to 20; 'oneMap' goes from 0 to 19 ----- //
         $(".moveNext").click(function() {
             $('.displayStuff').html("");
             // Load the answers into the answers array //
             $(".moveBack").fadeTo(1000,1);
             //$(".moveBack").show();
-            answersArray[oneMap].RATING=$("#rating1").val();
-            alert("L.2154 alert 3: oneMap = "+oneMap+"  r1= "+ answersArray[oneMap].RATING);// E: shows the last rating
-//            console.log("L.2143 last-rate: " + answersArray[oneMap].RATING);
+//            answersArray[oneMap].RATING=$("#rating1").val();
+            answersArray[oneMap].RATING1=$("#rating1").val();
+//            alert("L.2154 alert 3: oneMap = "+oneMap+"  r1= "+ answersArray[oneMap].RATING1);// E: shows the last rating
             //answersArray[oneMap].CONFIDENCE=$("#confidence1").val();
-            answersArray[oneMap].RATING=$("#rating2").val();//E: @@@
-            alert("L.2158 alert 3: oneMap = "+oneMap+"  r2= "+ answersArray[oneMap].RATING);
+//            answersArray[oneMap].RATING=$("#rating2").val();//E: @@@
+//            answersArray[oneMap].RATING1=$("#rating2").val();//E: @@@
+            answersArray[oneMap].RATING2=$("#rating2").val();//E: @@@
+//            alert("L.2158 alert 3: oneMap = "+oneMap+"  r2= "+ answersArray[oneMap].RATING2);
             //answersArray[twoMap].CONFIDENCE=$("#confidence2").val();
             var value1 = $( "#slider" ).slider( "option", "value" );
 //            answersArray[oneMap].CONFIDENCE=value1;
@@ -2166,17 +2196,18 @@ in US Dollars" style="margin: 0px 0px 0px
 
             answersArray[oneMap].cropRotation=$("#cropRotation1").val();
 //            answersArray[twoMap].cropRotation=$("#cropRotation2").val();
-//            alert ("cropRotation: " + answersArray[oneMap].cropRotation);// E: Alert()
-            console.log("L.2160 cropRotation: " + answersArray[oneMap].cropRotation);
             answersArray[oneMap].coverCrops=$("#coverCrops1").val();
+//            answersArray[twoMap].coverCrops=$("#coverCrops2").val();
             answersArray[oneMap].stripCropping=$("#stripCropping1").val();
 //            answersArray[twoMap].stripCropping=$("#stripCropping2").val();
-//            alert ("stripCropping1: " + answersArray[oneMap].stripCropping);// E: Alert()
-            console.log("L.2155 stripCropping1: " + answersArray[oneMap].stripCropping);
             answersArray[oneMap].filterStrips=$("#filterStrips1").val();
+//            answersArray[twoMap].filterStrips=$("#filterStrips2").val();
             answersArray[oneMap].grassedWaterways=$("#grassedWaterways1").val();
+//            answersArray[twoMap].grassedWaterways=$("#grassedWaterways2").val();
             answersArray[oneMap].conservationTillage=$("#conservationTillage1").val();
+//            answersArray[twoMap].conservationTillage=$("#conservationTillage2").val();
             answersArray[oneMap].Wetlands=$("#Wetlands1").val();
+//            answersArray[twoMap].Wetlands=$("#Wetlands2").val();
 
 //            JSONHolder holds rates obtained from users
             $("#JSONHolder").val(JSON.stringify(answersArray));
@@ -2188,7 +2219,7 @@ in US Dollars" style="margin: 0px 0px 0px
 //            alert ("move-Next: current 'bmpArray' index: " + oneMap); //E: it gives the current 'bmpArray' index,
             // which goes from 0 to 19 (20 alternatives)
             
-            if(page!=totalPages){ //'page' value starts at 1 an so on.
+            if(page!=totalPages){ //E: 'page' value starts at 1 an so on.
 //                alert("here");
                 if (page==totalPages-1){
                     $(".moveNext").fadeTo(1000,.2);
@@ -2218,22 +2249,34 @@ in US Dollars" style="margin: 0px 0px 0px
                 //initialize();
                 $( "#tabs" ).tabs("destroy");
 //                alert("destroy 1 - in 'moveNext' button ");//E: it shows which button was clicked (moveNext or moveBack)
+                report('NEXT >> SP & ID2 = ', (oneMap+1)+" & "+ array_fullvalues[oneMap].ID2.toString());
                 heatinitialize();
 
-                $("#rating1").val(answersArray[oneMap].RATING);
-                $("#rating2").val(answersArray[oneMap].RATING);//E: @@@
-                alert("L.2223 a4: oneMap= "+oneMap+" - r2= "+ $("#rating2").val(answersArray[oneMap].RATING));
+//                $("#rating1").val(answersArray[oneMap].RATING);
+                $("#rating1").val(answersArray[oneMap].RATING1);
+//                $("#rating2").val(answersArray[oneMap].RATING);//E: @@@
+//                $("#rating2").val(answersArray[oneMap].RATING1);//E: @@@
+                $("#rating2").val(answersArray[oneMap].RATING2);//E: @@@
+//                alert("L.2223 a4: oneMap= "+oneMap+" - r2= "+ $("#rating2").val(answersArray[oneMap].RATING1));
                 $("#confidence1").val(answersArray[oneMap].CONFIDENCE);
                 $("#slider" ).slider("option","value",(answersArray[oneMap].CONFIDENCE));
+//                $( "#slider1" ).slider("option","value",(answersArray[twoMap].CONFIDENCE));
+//                $("#confidence2").val(answersArray[twoMap].CONFIDENCE);
 
                 $("#stripCropping1").val(answersArray[oneMap].stripCropping);
+//                $("#stripCropping2").val(answersArray[twoMap].stripCropping);
                 $("#cropRotation1").val(answersArray[oneMap].cropRotation);
+//                $("#cropRotation2").val(answersArray[twoMap].cropRotation);
                 $("#coverCrops1").val(answersArray[oneMap].coverCrops);
+//                $("#coverCrops2").val(answersArray[twoMap].coverCrops);
                 $("#filterStrips1").val(answersArray[oneMap].filterStrips);
+//                $("#filterStrips2").val(answersArray[twoMap].filterStrips);
                 $("#grassedWaterways1").val(answersArray[oneMap].grassedWaterways);
+//                $("#grassedWaterways2").val(answersArray[twoMap].grassedWaterways);
                 $("#conservationTillage1").val(answersArray[oneMap].conservationTillage);
+//                $("#conservationTillage2").val(answersArray[twoMap].conservationTillage);
                 $("#Wetlands1").val(answersArray[oneMap].Wetlands);
-//                alert("alert wetlands1: "+ answersArray); //E:
+//                $("#Wetlands2").val(answersArray[twoMap].Wetlands);
 
                 //This JSONHolder is just a hidden text field on the page where I am saving my giant array of answers. When the person is done, this field is submitted and we can grab all the data out of it.
                 $("#JSONHolder").val(JSON.stringify(answersArray));
@@ -2260,22 +2303,32 @@ in US Dollars" style="margin: 0px 0px 0px
 //            alert("moving back: ");
             $('.displayStuff').html("");
             $(".moveNext").fadeTo(1000,1);
-            answersArray[oneMap].RATING=$("#rating1").val();
+//            answersArray[oneMap].RATING=$("#rating1").val();
+            answersArray[oneMap].RATING1=$("#rating1").val();
             //answersArray[oneMap].CONFIDENCE=$("#confidence1").val();
-            answersArray[oneMap].RATING=$("#rating2").val();//E: @@@
-
+//            answersArray[oneMap].RATING=$("#rating2").val();//E: @@@
+//            answersArray[oneMap].RATING1=$("#rating2").val();//E: @@@
+            answersArray[oneMap].RATING2=$("#rating2").val();//E: @@@
             //answersArray[twoMap].CONFIDENCE=$("#confidence2").val();
             var value1 = $( "#slider" ).slider( "option", "value" );
             answersArray[oneMap].CONFIDENCE=value1;
 //            var value2 = $( "#slider1" ).slider( "option", "value" );
+//            answersArray[twoMap].CONFIDENCE=value2;
 
             answersArray[oneMap].stripCropping=$("#stripCropping1").val();
+//            answersArray[twoMap].stripCropping=$("#stripCropping2").val();
             answersArray[oneMap].cropRotation=$("#cropRotation1").val();
+//            answersArray[twoMap].cropRotation=$("#cropRotation2").val();
             answersArray[oneMap].coverCrops=$("#coverCrops1").val();
+//            answersArray[twoMap].coverCrops=$("#coverCrops2").val();
             answersArray[oneMap].filterStrips=$("#filterStrips1").val();
+//            answersArray[twoMap].filterStrips=$("#filterStrips2").val();
             answersArray[oneMap].grassedWaterways=$("#grassedWaterways1").val();
+//            answersArray[twoMap].grassedWaterways=$("#grassedWaterways2").val();
             answersArray[oneMap].conservationTillage=$("#conservationTillage1").val();
+//            answersArray[twoMap].conservationTillage=$("#conservationTillage2").val();
             answersArray[oneMap].Wetlands=$("#Wetlands1").val();
+//            answersArray[twoMap].Wetlands=$("#Wetlands2").val();
 
             $("#JSONHolder").val(JSON.stringify(answersArray));
             //alert(JSON.stringify(answersArray));
@@ -2299,10 +2352,14 @@ in US Dollars" style="margin: 0px 0px 0px
                 getSubBasins();
                 $( "#tabs" ).tabs("destroy");
 //                alert("destroy 2");
+                report('BACK << SP & ID2 = ', (oneMap+1)+" & "+ array_fullvalues[oneMap].ID2.toString());
                 heatinitialize();
 
-                $("#rating1").val(answersArray[oneMap].RATING);
-                $("#rating2").val(answersArray[oneMap].RATING);//E: @@@
+//                $("#rating1").val(answersArray[oneMap].RATING);
+                $("#rating1").val(answersArray[oneMap].RATING1);
+//                $("#rating2").val(answersArray[oneMap].RATING);//E: @@@
+//                $("#rating2").val(answersArray[twoMap].RATING);
+                $("#rating2").val(answersArray[oneMap].RATING2);
                 $( "#slider" ).slider("option","value",(answersArray[oneMap].CONFIDENCE));
                 $("#confidence1").val(answersArray[oneMap].CONFIDENCE);
 
@@ -2333,11 +2390,14 @@ in US Dollars" style="margin: 0px 0px 0px
         //  =======================  Start submit All ================ //
         //This sends all the data. I move the answers data into the id JSONHolder and then submit the form.
         $(".submitAll").click(function() {
-            answersArray[oneMap].RATING=$("#rating1").val();
-            answersArray[oneMap].RATING=$("#rating2").val();//E: @@@
+//            answersArray[oneMap].RATING=$("#rating1").val();
+            answersArray[oneMap].RATING1=$("#rating1").val();
+//            answersArray[oneMap].RATING=$("#rating2").val();//E: @@@
+//            answersArray[oneMap].RATING1=$("#rating2").val();//E: @@@
+            answersArray[oneMap].RATING2=$("#rating2").val();//E: @@@
             var value1 = $( "#slider" ).slider( "option", "value" );
             answersArray[oneMap].CONFIDENCE=value1;
-            var value2 = $( "#slider1" ).slider( "option", "value" );
+//            var value2 = $( "#slider1" ).slider( "option", "value" );
 //            answersArray[twoMap].CONFIDENCE=value2;
             $("#JSONHolder").val(JSON.stringify(answersArray));
             $('#form1').submit();
@@ -2348,6 +2408,8 @@ in US Dollars" style="margin: 0px 0px 0px
     window.onload = function() {
         heatinitialize(); // This function is located at 'heatmapnew1.js' file
         // open a welcome message as soon as the window loads
+//        alert("Begining. Alternative 1");
+        report('BEGINNING SP & ID2 = ', (oneMap+1)+" & "+ array_fullvalues[oneMap].ID2.toString());
         Shadowbox.open({
             content:    '<div id="welcome-msg"><h2 style="font-family: \'Oswald\', Arial, Helvetica, sans-serif;\n' +
             '                font-weight:normal; color:#7d110c;font-size:20px; text-transform:uppercase;">' +
@@ -2438,7 +2500,6 @@ in US Dollars" style="margin: 0px 0px 0px
         document.getElementById("shade_frame").style.display = "block";//EE: call to "tags" in Voladizo (6)
         document.getElementById("end_experiment_box").style.display = "block";//EE: call to "tags" in Voladizo (6)
     }
-
 
 //    function instruct1() {
 //        // open a welcome message as soon as the window loads
@@ -3367,22 +3428,34 @@ in US Dollars" style="margin: 0px 0px 0px
     // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$  End: Check boxes $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 </script>
 
+<script type="text/javascript">
+    //E: Functions for Shuffling a js object
+    function shuffle1(a) {
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+    }
 
-<!--  This 'scrip' performs the rating process. It needs also "SimpleStarRating.js"  -->
-<script>
-//    // This 'scrip' performs the rating process. It needs also "SimpleStarRating.js"
-//    //            var ratings = document.getElementsByClassName('rating');
-//    var ratings = document.getElementById('rating_q1');
-//    var r = new SimpleStarRating(ratings);
-//    ratings.addEventListener('rate', function(e) {
-//        console.log('Rating: ' + e.detail);
-//    });
-//
-//    var ratings = document.getElementById('rating_q2');
-//    var r = new SimpleStarRating(ratings);
-//    ratings.addEventListener('rate', function(e) {
-//        console.log('Rating: ' + e.detail);
-//    });
+    function shuffle2(array) {
+        let counter = array.length;
+
+        // While there are elements in the array
+        while (counter > 0) {
+            // Pick a random index
+            let index = Math.floor(Math.random() * counter);
+
+            // Decrease counter by 1
+            counter--;
+
+            // And swap the last element with it
+            let temp = array[counter];
+            array[counter] = array[index];
+            array[index] = temp;
+        }
+        return array;
+    }
 </script>
 
 
