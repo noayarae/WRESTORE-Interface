@@ -1338,7 +1338,7 @@ in US Dollars" style="margin: 0px 0px 0px
         //E: For "database_option == 3", nsga2_values_as_json = "json_from_mysql" from "read_db.php", see L.1228
         ///////////////////////////////////////////  RANDOMIZATION  ////////////////////////////////////////
         var nsga2_values_as_json_shuffled;
-        nsga2_values_as_json_shuffled = shuffle1(nsga2_values_as_json);
+//        nsga2_values_as_json_shuffled = shuffle1(nsga2_values_as_json);
         if (nsga2_values_as_json_shuffled) {
             nsga2_values_as_json = nsga2_values_as_json_shuffled;
             alert ("L.1344  Shuffling...");
