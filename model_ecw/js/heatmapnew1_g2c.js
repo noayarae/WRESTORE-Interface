@@ -1,15 +1,16 @@
 function heatinitialize() {
-    // var cccc = 0;
     //empty the div that shows all the data if they click on a sub basin
-    // var PeakArray=[];
 
     //var option = document.getElementById('heatDrop').value-1;
     $('#oneMapPF').empty();
     // $('#oneMapPF').append('Range+: (' + heatpfra[oneMap].val[0].val + ' to ' + heatpfra[oneMap].val[126].val +') cfs');
+    console.log("L.9 'min_value_PF1': "+ Object.keys(PFR_meanVals_array[oneMap].val).length);
+    console.log("L.10 'min_value_PF1': "+ JSON.stringify(PFR_meanVals_array[oneMap]));
+    console.log("L.11 'min_value_PF1': "+ typeof (PFR_meanVals_array[oneMap].val[0]));
     var min_value_PF1 = PFR_meanVals_array[oneMap].val[0].val;//mk: Get the min value of mean values of PFR
     var max_value_PF1 = PFR_meanVals_array[oneMap].val[129].val;//mk: Get the max value of mean values of PFR
-    console.log("L.11 'min_value_PF1': "+ min_value_PF1);
-    console.log("L.12 'max_value_PF1': "+ max_value_PF1);
+    // alert("L.11 'min_value_PF1': "+ min_value_PF1);
+    // alert("L.12 'max_value_PF1': "+ max_value_PF1);
 
     $('#oneMapRV').empty();
     // $('#oneMapRV').append('Range: (' + heatera[oneMap].val[0].val + ' to ' + heatera[oneMap].val[126].val +') Dollars');

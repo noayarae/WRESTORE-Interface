@@ -31,7 +31,6 @@ ALTER TABLE users
 /* Query to INSERT a column into an existing DB */
 ALTER TABLE `takefeedback2`
     ADD COLUMN `RATING1` INT(10) AFTER `firstCol`;
-
 ALTER TABLE `takefeedback2`
     ADD COLUMN `RATING1` tinyint(4) AFTER `RATING`;
 

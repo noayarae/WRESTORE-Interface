@@ -27,21 +27,21 @@
     /*border: 1px solid blue;*/
 }
 
+/* See this url: "https://techbrij.com/css-selector-adjacent-child-sibling" to lear about these selectors*/
 /* Change span immediately following the checked radio */
-
 .rating input:checked + span {
     background-position:-22px 0;
     /*border: 1px solid green;*/
 }
 
-/* Reset all remaining stars back to default background.
-   This supersedes the above due to its ordering. */
-
+/* Reset all remaining stars back to default background. This supersedes the above due to its ordering. */
 .rating input:checked + span ~ span {
     background-position:0 0;
     /*border: 1px solid yellow;*/
 }
 
+/* E: When hovering, "jshoverNext" class is added to nextAll stars, and "jshover" class is added to prevAll stars */
+/* See L.1604 and search as "$('.rating input[type="radio"]').hover(function()" in g2.php */
 .jshover {
     background-position:-22px 0 !important;
     /*border: 1px solid magenta;*/

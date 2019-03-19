@@ -669,7 +669,7 @@ function initialize() {
             console.log("L.662 listofSubs (crop_rotation): " + listofSubs);
         }
 
-        //Query to create a new JSON of No-Till just with basins with this cons.practice
+        //Query to create a new JSON of CropRotation just with basins with this cons.practice
         var sb_with_cr_only = {};
         sb_with_cr_only.properties = new Array();
         for (var i = 0; i < subbasin_json.features.length; i++) {
@@ -698,8 +698,8 @@ function initialize() {
             // var x_croprot = (sb_with_cr_only.properties[i]["coord_x"]);
             var x_croprot = (sb_with_cr_only.properties[i]["coord_x"] - 0.0045);
             var y_croprot = (sb_with_cr_only.properties[i]["coord_y"]);
-            console.log("L.693 coord grass: " + typeof x_croprot + " , " + typeof y_croprot);
-            console.log("L.694 coord grass: " + x_croprot + " , " + y_croprot);
+            // console.log("L.693 coord croprot: " + typeof x_croprot + " , " + typeof y_croprot);
+            // console.log("L.694 coord croprot: " + x_croprot + " , " + y_croprot);
 
             var newCoordinates = constructNewCoordinatesCropRotation(x_croprot, y_croprot);
             var geosss = newCoordinates;
@@ -1044,8 +1044,7 @@ function initialize() {
                 // var newCoordinates = constructNewCoordinates(rows[i][1]['geometry']);
                 var newCoordinates = constructNewCoordinates(subbasin_json.features[i].geometry);
                 //answersArray[oneMap].RATING
-                // var row = rows[i];//EE: not needed when json data
-                // var whichNode = row[0];
+
                 var whichNode = subbasin_json.properties[i]["Subbasin"].toString();
                 /////////You will put your acreage here///////////
                 // var acres = parseFloat(row[2]).toFixed(1);
